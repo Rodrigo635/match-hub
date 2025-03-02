@@ -219,13 +219,21 @@ button {
      ========================================================================== */
 
 @media (min-width: 1024px) {
+  button:hover {
+    background-color: #1d4f25;
+    transition: 0.3s;
+  }
+  .button-register-login label:hover {
+    cursor: pointer;
+  }
+
   footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
   }
-  .password-container img{
+  .password-container img {
     top: 50%;
   }
 
@@ -277,7 +285,8 @@ button {
     width: 40vw;
   }
 
-  input{
+  input {
+    margin-top: 1.7vw;
     padding: 20px;
   }
 }
