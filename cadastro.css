@@ -176,6 +176,7 @@ button {
   width: 100%;
   position: absolute;
   bottom: 0;
+  
 }
 
 .button-register-login input {
@@ -193,10 +194,10 @@ button {
   flex: 1;
   padding: 12px 0;
   text-align: center;
-  background-color: var(--cor-bg);
   color: var(--cor-azul);
   font-size: 16px;
   transition: background 0.3s;
+  background-color: var(--cor-cinzaEscuro);
 }
 
 .button-register-login label:first-of-type {
@@ -289,4 +290,9 @@ button {
     margin-top: 1.7vw;
     padding: 20px;
   }
+
+  .password-container img {
+    top: 60%;
+  }
+
 }
