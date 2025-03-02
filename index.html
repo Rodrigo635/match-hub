@@ -1,188 +1,186 @@
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="home.css">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="home.css" />
     <title>Happy Game</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <nav>
-            <div class="logo">
-                <a href="">HAPPY GAME</a>
-            </div> <!-- logo -->
+      <nav>
+        <div class="logo">
+          <a href="">HAPPY GAME</a>
+        </div> <!-- logo -->
 
-            <div class="nav-links">
-                <ul>
-                    <li>
-                        <input type="text" class="pesquisa" placeholder="Pesquisar...">
-                    </li>
+        <div class="nav-links">
+          <ul>
 
-                    <li>
-                        <a href="#">
-                            <div class="btn-login">
-                                <p>Entrar</p>
-                            </div> <!-- btn-login -->
-                        </a> 
+            <li><a href="">Início</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="">Contato</a></li>
+            <li><a href="">Ajuda</a></li>
 
-                    </li>
-                </ul> <!-- ul -->
+            <li>
+              <input type="text" class="pesquisa" placeholder="Pesquisar..." />
+            </li> <!-- search -->
+ 
+            <li>
+              <a href="#">
+                <div class="btn-login">
+                  <p>Entrar</p>
+                </div> <!-- btn-login -->
 
-        </nav> <!-- nav -->
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav> <!-- nav-bar-header -->
+      
     </header> <!-- header -->
-
-
+   
 
     <section class="banner">
+      <div class="wrapper">
+        <div class="container">
+          <input type="radio" name="slide" id="c1" checked />
+          <label for="c1" class="card">
+            <div class="row">
+              <div class="icon">1</div>
+              <div class="descricao">
+                <h4>Acompanhe E-sports como nunca antes!</h4>
+                <p>
+                  Esteja sempre ligado nas novidades de seus jogos favoritos.
+                </p>
+              </div> <!-- descricao -->
+              
+            </div> <!-- row -->
+            
+          </label>
+          <!-- card -->
 
-        <div class="wrapper">
-            <div class="container">
-
-                <input type="radio" name="slide" id="c1" checked>
-                <label for="c1" class="card">
-                    <div class="row">
-                        <div class="icon">1</div>
-                        <div class="descricao">
-                            <h4>Acompanhe E-sports como nunca antes!</h4>
-                            <p>Esteja sempre ligado nas novidades de seus jogos favoritos.</p>
-                        </div> <!-- descricao -->
-                    </div> <!-- row -->
-                </label> <!-- card -->
-
-                <input type="radio" name="slide" id="c2">
-                <label for="c2" class="card">
-                    <div class="row">
-                        <div class="icon">2</div>
-                        <div class="descricao">
-                            <h4>Campeonatos de CS</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div> <!-- descricao -->
-                    </div> <!-- row -->
-                </label> <!-- card -->
-
-                <input type="radio" name="slide" id="c3">
-                <label for="c3" class="card">
-                    <div class="row">
-                        <div class="icon">3</div>
-                        <div class="descricao">
-                            <h4>Ligas do LOL</h4>
-                            <p>Mauris vehicula, eros ac porttitor convallis, ipsum maximus sapien.</p>
-                        </div> <!-- descricao -->
-                    </div> <!-- row -->
-                </label> <!-- card -->
-
-                <input type="radio" name="slide" id="c4">
-                <label for="c4" class="card">
-                    <div class="row">
-                        <div class="icon">4</div>
-                        <div class="descricao">
-                            <h4>E MUITO MAIS!</h4>
-                            <p>Nam convallis finibus aliquet. Ultrices urna sem, urna ullamcorper.</p>
-                        </div> <!-- descricao -->
-                    </div> <!-- row -->
-                </label> <!-- card -->
-
-            </div> <!-- container -->
-        </div>  <!-- wrapper -->
-
-    </section> <!-- banner -->
-
-
-
-    <section class="conteudo" style="margin-top: 60px;">
-
-        <div class="titulo-filtros">
-            <div class="titulo">
-                <h2>Campeonatos</h2>
-            </div> <!-- titulo -->
-
-            <div class="filtros">
-                <ul>
-                    <li>filtro 1</li>
-                    <li>filtro 2</li>
-                    <li>filtro 3</li>
-                </ul>
-            </div> <!-- filtros -->
-        </div> <!-- titulo-filtros -->
-
-    </section> <!-- conteudo -->
-
-
-
-    <section class="conteudo" style="margin-top: 20px;">
-        <div class="blocos">
-            <div class="card-conteudo">
-
+          <input type="radio" name="slide" id="c2" />
+          <label for="c2" class="card">
+            <div class="row">
+              <div class="icon">2</div>
+              <div class="descricao">
+                <h4>Campeonatos de CS</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <!-- descricao -->
             </div>
-            <div class="card-conteudo">
+            <!-- row -->
+          </label>
+          <!-- card -->
 
+          <input type="radio" name="slide" id="c3" />
+          <label for="c3" class="card">
+            <div class="row">
+              <div class="icon">3</div>
+              <div class="descricao">
+                <h4>Ligas do LOL</h4>
+                <p>
+                  Mauris vehicula, eros ac porttitor convallis, ipsum maximus
+                  sapien.
+                </p>
+              </div>
+              <!-- descricao -->
             </div>
-            <div class="card-conteudo">
+            <!-- row -->
+          </label>
+          <!-- card -->
 
+          <input type="radio" name="slide" id="c4" />
+          <label for="c4" class="card">
+            <div class="row">
+              <div class="icon">4</div>
+              <div class="descricao">
+                <h4>E MUITO MAIS!</h4>
+                <p>
+                  Nam convallis finibus aliquet. Ultrices urna sem, urna
+                  ullamcorper.
+                </p>
+              </div>
+              <!-- descricao -->
             </div>
-            <div class="card-conteudo">
+            <!-- row -->
+          </label>
+          <!-- card -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- wrapper -->
+    </section>
+    <!-- banner -->
 
-            </div>
-            <div class="card-conteudo">
+    <section class="conteudo" style="margin-top: 60px">
+      <div class="titulo-filtros">
+        <div class="titulo">
+          <h2>Campeonatos</h2>
+        </div>
+        <!-- titulo -->
 
-            </div>
-            <div class="card-conteudo">
+        <div class="filtros">
+          <ul>
+            <li>filtro 1</li>
+            <li>filtro 2</li>
+            <li>filtro 3</li>
+          </ul>
+        </div>
+        <!-- filtros -->
+      </div>
+      <!-- titulo-filtros -->
+    </section>
+    <!-- conteudo -->
 
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-            <div class="card-conteudo">
-
-            </div>
-        </div> <!-- blocos -->
-
-    </section> <!-- conteúdo -->
-
-
+    <section class="conteudo" style="margin-top: 20px">
+      <div class="blocos">
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+        <div class="card-conteudo"></div>
+      </div>
+      <!-- blocos -->
+    </section>
+    <!-- conteúdo -->
 
     <footer>
-        <div class="footer-container">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <a href="">
+            <div class="logo">
+              <a href="">HAPPY GAME</a>
+            </div>
+            <!-- logo -->
+          </a>
+        </div>
+        <!-- footer-logo -->
 
-            <div class="footer-logo">
-                <a href="">
-                    <div class="logo">
-                        <a href="">HAPPY GAME</a>
-                    </div> <!-- logo -->
-                </a>
-            </div> <!-- footer-logo -->
-    
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Ajuda</a></li>
-                </ul>
-            </div> <!-- footer-links -->
-    
-            <div class="footer-rights">
-                <p>&copy; 2025 Happy Game. Todos os direitos reservados.</p>
-            </div> <!-- footer-rights -->
+        <div class="footer-links">
+          <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Ajuda</a></li>
+          </ul>
+        </div>
+        <!-- footer-links -->
 
-        </div> <!-- footer-container -->
-    </footer> <!-- footer -->
-    
-</body>
-
+        <div class="footer-rights">
+          <p>&copy; 2025 Happy Game. Todos os direitos reservados.</p>
+        </div>
+        <!-- footer-rights -->
+      </div>
+      <!-- footer-container -->
+    </footer>
+    <!-- footer -->
+  </body>
 </html>
