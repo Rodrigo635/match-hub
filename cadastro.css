@@ -1,0 +1,283 @@
+/* ==========================================================================
+   VARIÁVEIS
+   ========================================================================== */
+:root {
+  --cor-branco: #ffffff;
+  --cor-preto: #000;
+  --cor-cinza: #bfbfbf;
+  --cor-cinzaEscuro: #222222 !important;
+  --cor-bg: #1e1e1e;
+  --cor-azul: #32cccc;
+  --cor-verde: #3c9d4c;
+}
+
+/* ==========================================================================
+     RESET E ESTILOS GERAIS
+     ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--cor-bg);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ==========================================================================
+     LAYOUT GERAL
+     ========================================================================== */
+footer {
+  display: none;
+}
+
+.logo {
+  text-align: center;
+  width: 100%;
+}
+
+main {
+  display: grid;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ==========================================================================
+     FORMULÁRIO
+     ========================================================================== */
+form {
+  width: 80vw;
+  padding-inline: 10px;
+  background-color: var(--cor-cinzaEscuro);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 19px;
+  width: 100%;
+}
+
+/* SENHAS */
+.password-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.password-container img {
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Estilos para inputs gerais */
+input {
+  height: 32px;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #ddd;
+}
+
+label {
+  color: #ccc;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Estilos para o ícone de olho */
+.eye-icon img {
+  height: 20px;
+  width: 20px;
+}
+
+/* ==========================================================================
+     GIF
+     ========================================================================== */
+.gif {
+  text-align: center;
+}
+
+.gif img {
+  width: 270px;
+}
+
+/* ==========================================================================
+     TERMOS
+     ========================================================================== */
+.termos-container {
+  margin-top: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.termos-container label {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.termos-container input {
+  width: 16px;
+  height: 16px;
+}
+
+.termos-container a {
+  color: var(--cor-cinza);
+  text-decoration: none;
+}
+
+.termos-container a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+     BOTÕES
+     ========================================================================== */
+button {
+  background: var(--cor-verde);
+  color: var(--cor-branco);
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 80%;
+  font-size: 16px;
+  margin-block: 30px 5px;
+}
+
+/* Botões de Registro/Login */
+.button-register-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.button-register-login input {
+  display: none;
+}
+
+.button-register-login label:first-of-type {
+  margin-left: 0;
+}
+
+.button-register-login label:nth-of-type(2) {
+  margin-right: 0;
+}
+.button-register-login label {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  background-color: var(--cor-bg);
+  color: var(--cor-azul);
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.button-register-login label:first-of-type {
+  margin-left: 20px;
+  border-top-right-radius: 15px;
+}
+
+.button-register-login label:nth-of-type(2) {
+  margin-right: 20px;
+  border-top-left-radius: 15px;
+}
+
+.button-register-login input:checked + label {
+  background-color: var(--cor-azul);
+  color: var(--cor-branco);
+}
+
+/* ==========================================================================
+     MEDIA QUERIES
+     ========================================================================== */
+
+@media (min-width: 1024px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+  }
+  .password-container img{
+    top: 50%;
+  }
+
+  .button-register-login {
+    position: relative;
+    order: -1;
+    width: 84vw;
+    text-align: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-inline: auto;
+  }
+
+  .gif {
+    display: none;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  button {
+    margin-block: 30px 0;
+  }
+
+  input {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  form,
+  .button-register-login {
+    width: 57vw;
+  }
+
+  .button-register-login label:first-of-type {
+    margin-left: 0;
+  }
+
+  .button-register-login label:nth-of-type(2) {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  form,
+  .button-register-login {
+    width: 40vw;
+  }
+
+  input{
+    padding: 20px;
+  }
+}

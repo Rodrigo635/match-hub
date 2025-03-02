@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="cadastro.css" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Cadastro</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="">HAPPY GAME</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <div class="gif">
+        <img
+          src="static/icons/podio.gif"
+          alt="Descrição do GIF"
+          style="max-width: 100%; height: auto"
+        />
+      </div>
+      <!-- .gif -->
+      <div class="container">
+        <form>
+          <div class="input-group">
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Digite seu nome"
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Digite seu mail"
+            />
+          </div>
+
+          <div class="input-group">
+            <div class="password-container">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+              />
+              <span class="eye-icon">
+                <img src="static/icons/eye.png" alt="Mostrar senha" />
+              </span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="password-container">
+              <input
+                type="password"
+                id="confirma-senha"
+                name="confirma-senha"
+                placeholder="Confirme sua senha"
+              />
+              <span class="eye-icon">
+                <img src="static/icons/eye.png" alt="Mostrar senha" />
+              </span>
+            </div>
+          </div>
+
+          <div class="termos-container">
+            <label>
+              <input type="checkbox" name="termos" required /> Eu concordo com
+              os <a href="#">termos de uso.</a>
+            </label>
+          </div>
+          <button type="submit">Criar conta</button>
+        </form>
+      </div>
+      <!-- .container -->
+
+      <!-- BUTTONS (POSITION CONTROLLED BY CSS) -->
+      <div class="button-register-login" id="botoes-cadastro">
+        <input type="radio" name="button" id="b1" checked />
+        <label for="b1" class="button">Register</label>
+
+        <input type="radio" name="button" id="b2" />
+        <label for="b2" class="button">Login</label>
+      </div>
+    </main>
+    <!-- .Main -->
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <a href="">
+            <div class="logo">
+              <a href="">HAPPY GAME</a>
+            </div>
+            <!-- logo -->
+          </a>
+        </div>
+        <!-- footer-logo -->
+
+        <div class="footer-links">
+          <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Ajuda</a></li>
+          </ul>
+        </div>
+        <!-- footer-links -->
+
+        <div class="footer-rights">
+          <p>© 2025 Happy Game. Todos os direitos reservados.</p>
+        </div>
+        <!-- footer-rights -->
+      </div>
+      <!-- footer-container -->
+    </footer>
+  </body>
+</html>

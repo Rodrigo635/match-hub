@@ -17,8 +17,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
 /* ESTILOS GERAIS */
 a {
     text-decoration: none;
@@ -33,9 +31,7 @@ body {
 
 /* HEADER */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    
     width: 100%;
     background: linear-gradient(to bottom, rgb(18, 18, 18), var(--cor-bg));
     padding: 20px 0;
