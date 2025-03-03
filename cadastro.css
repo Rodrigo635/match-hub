@@ -277,7 +277,7 @@ hr {
   }
 
   main {
-    height: 100vh;
+    height: auto;
     padding: 0;
     margin: 0;
     align-items: end;
@@ -306,7 +306,7 @@ hr {
   }
 
   .cadastro-e-entrar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
