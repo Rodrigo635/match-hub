@@ -174,10 +174,13 @@ input:checked + label .descricao {
     justify-content: space-between;
     width: 80vw;
     margin: 0 auto;
+    margin-bottom: 60px;
 }
 
 .card-conteudo {
-    background-color: var(--cor-branco);
+    background-color: var(--cor-bg);
+    border: 2px solid var(--cor-branco);
+    box-sizing: border-box;
     border-radius: 10px;
     color: var(--cor-branco);
     width: 23%; /* 4 cards por linha */

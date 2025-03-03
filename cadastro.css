@@ -1,6 +1,4 @@
-/* ==========================================================================
-   VARIÁVEIS
-   ========================================================================== */
+/* VARIÁVEIS */
 :root {
   --cor-branco: #ffffff;
   --cor-preto: #000;
@@ -11,30 +9,9 @@
   --cor-verde: #3c9d4c;
 }
 
-/* ==========================================================================
-     RESET E ESTILOS GERAIS
-     ========================================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background-color: var(--cor-bg);
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-/* ==========================================================================
-     LAYOUT GERAL
-     ========================================================================== */
-footer {
-  display: none;
+/* HEADER */
+header {
+  background: var(--cor-preto) !important;
 }
 
 .logo {
@@ -42,257 +19,215 @@ footer {
   width: 100%;
 }
 
-main {
-  display: grid;
-  text-align: center;
+/* CONTEUDO */
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 91vh;
+  justify-content: center;
+  align-items: center;
+  background-image: url('static/img/img1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
-  padding: 20px;
-  border-radius: 8px;
+  display: flex;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+/* Trocar entre cadastro e entrar */
+.cadastro-e-entrar {
+  display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadastro-e-entrar .cadastro, .cadastro-e-entrar .entrar {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+.cadastro-e-entrar label {
+  color: var(--cor-branco);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  padding: 15px 0;
+  background-color: var(--cor-preto);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.cadastro-e-entrar input {
+  display: none;
+}
+
+.cadastro-e-entrar input:checked + label {
+  background-color: var(--cor-bg);
+}
+
+/* Container do formulário */
+.container-form {
+  display: flex;
+  margin-bottom: 60px;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0 0 20px 20px;
+  background-color: var(--cor-bg);
+}
+
+/* Formulário */
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  width: 100%;
 }
 
-/* ==========================================================================
-     FORMULÁRIO
-     ========================================================================== */
-form {
-  width: 80vw;
-  padding-inline: 10px;
-  background-color: var(--cor-cinzaEscuro);
+.gif-container {
+  display: none;
+  width: 70%;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.gif-container img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.titulo {
+  color: var(--cor-branco);
+  font-size: 1.8rem;
+  margin-top: 40px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-top: 19px;
-  width: 100%;
-}
-
-/* SENHAS */
-.password-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.password-container img {
-  position: absolute;
-  right: 10px;
-  top: 35%;
-  width: 20px;
-  height: auto;
-  cursor: pointer;
-}
-
-/* Estilos para inputs gerais */
-input {
-  height: 32px;
-  width: 100%;
-  padding: 8px;
-  margin-top: 8px;
-  border: none;
-  border-radius: 4px;
-  background: #ddd;
-}
-
-label {
-  color: #ccc;
-  margin-bottom: 5px;
-  text-align: left;
-}
-
-/* Estilos para o ícone de olho */
-.eye-icon img {
-  height: 20px;
-  width: 20px;
-}
-
-/* ==========================================================================
-     GIF
-     ========================================================================== */
-.gif {
-  text-align: center;
-}
-
-.gif img {
-  width: 270px;
-}
-
-/* ==========================================================================
-     TERMOS
-     ========================================================================== */
-.termos-container {
   margin-top: 30px;
-  text-align: center;
-  align-items: center;
+  width: 70%;
 }
 
-.termos-container label {
+.input-group input {
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: none;
+}
+
+/* Termos e condições */
+.termos-container {
   display: flex;
-  align-items: end;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
   gap: 8px;
-  color: #ccc;
-  font-size: 14px;
+}
+
+.termos-container p {
+  color: var(--cor-branco);
+  font-size: 1rem;
+  display: inline;
 }
 
 .termos-container input {
   width: 16px;
   height: 16px;
+  cursor: pointer;
 }
 
 .termos-container a {
   color: var(--cor-cinza);
   text-decoration: none;
+  margin: 0 2px;
 }
 
 .termos-container a:hover {
   text-decoration: underline;
 }
 
-/* ==========================================================================
-     BOTÕES
-     ========================================================================== */
-button {
-  background: var(--cor-verde);
-  color: var(--cor-branco);
-  padding: 15px;
-  border: none;
-  border-radius: 4px;
+/* Botão de login */
+.btn-login {
+  padding: 9px 20px;
+  background-color: var(--cor-branco);
+  color: var(--cor-preto);
+  border-radius: 10px;
+  transition: 0.2s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   cursor: pointer;
-  width: 80%;
-  font-size: 16px;
-  margin-block: 30px 5px;
+  font-size: 1.1rem;
+  margin-bottom: 50px;
 }
 
-/* Botões de Registro/Login */
-.button-register-login {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  
-}
-
-.button-register-login input {
-  display: none;
-}
-
-.button-register-login label:first-of-type {
-  margin-left: 0;
-}
-
-.button-register-login label:nth-of-type(2) {
-  margin-right: 0;
-}
-.button-register-login label {
-  flex: 1;
-  padding: 12px 0;
-  text-align: center;
-  color: var(--cor-azul);
-  font-size: 16px;
-  transition: background 0.3s;
-  background-color: var(--cor-cinzaEscuro);
-}
-
-.button-register-login label:first-of-type {
-  margin-left: 20px;
-  border-top-right-radius: 15px;
-}
-
-.button-register-login label:nth-of-type(2) {
-  margin-right: 20px;
-  border-top-left-radius: 15px;
-}
-
-.button-register-login input:checked + label {
-  background-color: var(--cor-azul);
-  color: var(--cor-branco);
-}
-
-/* ==========================================================================
-     MEDIA QUERIES
-     ========================================================================== */
-
-@media (min-width: 1024px) {
-  button:hover {
-    background-color: #1d4f25;
-    transition: 0.3s;
-  }
-  .button-register-login label:hover {
-    cursor: pointer;
-  }
-
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-  }
-  .password-container img {
-    top: 50%;
-  }
-
-  .button-register-login {
-    position: relative;
-    order: -1;
-    width: 84vw;
-    text-align: center;
-    justify-content: center;
-    margin-top: 40px;
-    margin-inline: auto;
-  }
-
-  .gif {
+/* RESPONSIVIDADE */
+@media screen and (max-width: 768px) {
+  header {
     display: none;
   }
 
-  .container {
+  .conteudo {
+    height: 100%;
     padding: 0;
+    margin: 0;
+    align-items: end;
+    justify-content: end;
   }
 
-  button {
-    margin-block: 30px 0;
+  .container {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    align-items: end;
+    justify-content: end;
   }
 
-  input {
+  .gif-container {
+    display: flex;
+  }
+
+  .titulo {
     margin-top: 20px;
   }
-}
 
-@media (min-width: 1440px) {
-  form,
-  .button-register-login {
-    width: 57vw;
+  .cadastro-e-entrar {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cadastro-e-entrar label {
+    padding: 30px;
   }
 
-  .button-register-login label:first-of-type {
-    margin-left: 0;
+  .container-form {
+    height: 100%;
+    border-radius: 0;
   }
 
-  .button-register-login label:nth-of-type(2) {
-    margin-right: 0;
+  footer {
+    display: none;
   }
-}
-
-@media (min-width: 1920px) {
-  form,
-  .button-register-login {
-    width: 40vw;
-  }
-
-  input {
-    margin-top: 1.7vw;
-    padding: 20px;
-  }
-
-  .password-container img {
-    top: 60%;
-  }
-
 }
