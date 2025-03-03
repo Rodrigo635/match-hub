@@ -3,11 +3,15 @@
   --cor-branco: #ffffff;
   --cor-preto: #000;
   --cor-cinza: #bfbfbf;
+  --cor-cinzaTexto: #9d9d9d;
   --cor-cinzaEscuro: #222222 !important;
   --cor-bg: #1e1e1e;
+  --cor-bgEscuro: #0f0f0f;
   --cor-azul: #32cccc;
   --cor-verde: #3c9d4c;
 }
+
+
 
 /* HEADER */
 header {
@@ -19,15 +23,17 @@ header {
   width: 100%;
 }
 
+
+
 /* CONTEUDO */
-.conteudo {
+main {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 91vh;
   justify-content: center;
   align-items: center;
-  background-image: url('static/img/img1.jpg');
+  background-image: url('static/img/cadastro-img.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -37,7 +43,7 @@ header {
   margin-top: 60px;
   margin-bottom: 60px;
   width: 80%;
-  max-width: 400px;
+  max-width: 500px;
   height: auto;
   justify-content: space-between;
   flex-direction: column;
@@ -60,22 +66,45 @@ header {
   cursor: pointer;
   text-align: center;
 }
-.cadastro-e-entrar label {
-  color: var(--cor-branco);
-  border-radius: 20px 20px 0 0;
-  width: 100%;
-  padding: 15px 0;
-  background-color: var(--cor-preto);
-  font-size: 1.3rem;
-  cursor: pointer;
-}
 
 .cadastro-e-entrar input {
   display: none;
 }
 
-.cadastro-e-entrar input:checked + label {
+.cadastro-e-entrar label {
+  color: var(--cor-branco);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  padding: 15px 0;
+  background-color: var(--cor-bgEscuro);
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.container input[type="radio"] {
+  display: none;
+}
+
+/* Alterar a cor do botão ativo */
+#b1:checked ~ .cadastro-e-entrar label[for="b1"],
+#b2:checked ~ .cadastro-e-entrar label[for="b2"] {
   background-color: var(--cor-bg);
+}
+
+.form-cadastro, .form-login {
+  display: none;
+}
+
+#b1:checked ~ .container-form .form-cadastro {
+  display: flex;
+  flex-direction: column;
+}
+
+#b2:checked ~ .container-form .form-login {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Container do formulário */
@@ -100,7 +129,7 @@ form {
 
 .gif-container {
   display: none;
-  width: 70%;
+  width: 75%;
   border-radius: 20px;
   margin-bottom: 10px;
   justify-content: center;
@@ -121,21 +150,27 @@ form {
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  width: 70%;
+  width: 75%;
 }
 
 .input-group input {
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-radius: 5px;
   margin-bottom: 20px;
   border: none;
+}
+
+.esqueceu-senha {
+  color: var(--cor-branco);
+  text-decoration: none;
+  margin-bottom: 40px;
 }
 
 /* Termos e condições */
 .termos-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
   gap: 8px;
 }
@@ -167,14 +202,73 @@ form {
   padding: 9px 20px;
   background-color: var(--cor-branco);
   color: var(--cor-preto);
+  width: 75%;
   border-radius: 10px;
   transition: 0.2s ease;
   border: 2px solid transparent;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 1.1rem;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
+
+.ou-container {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  justify-content: center;
+  gap: 	10px;
+  margin-bottom: 15px;
+}
+
+.ou {
+  display: flex;
+  color: var(--cor-cinzaTexto);
+}
+
+hr {
+  flex-grow: 1;
+  border: none;
+  border-top: 1px solid var(--cor-cinzaTexto);
+}
+
+.cadastrar-com-google {
+  display: flex;
+  width: 75%;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cadastrar-com-google .google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  background-color: var(--cor-branco);
+  color: var(--cor-preto);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.cadastrar-com-google .google-button:hover {
+  border: 2px solid var(--cor-branco);
+  background-color: transparent;
+  color: var(--cor-branco);
+}
+
+.cadastrar-com-google .google-button img {
+  width: 20px;
+  height: 20px;
+}
+
+
 
 /* RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
@@ -203,6 +297,8 @@ form {
 
   .gif-container {
     display: flex;
+    width: 40%;
+
   }
 
   .titulo {

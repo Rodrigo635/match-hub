@@ -196,6 +196,9 @@ input:checked + label .descricao {
     transform: translateY(-10px);
 }
 
+
+
+/* RESPONSIVIDADE */
 @media (max-width: 1200px) {
     .card-conteudo {
         width: 23%;
