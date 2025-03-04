@@ -195,7 +195,7 @@ form {
   transform: translateY(-50%);
   color: var(--cor-cinzaTexto);
   font-size: 1.2rem;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .input-group .eye-icon img {
