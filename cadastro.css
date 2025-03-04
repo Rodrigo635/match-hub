@@ -276,6 +276,10 @@ hr {
     display: none;
   }
 
+  main{
+    background-image: none;
+  }
+
   .conteudo {
     height: 100%;
     padding: 0;
