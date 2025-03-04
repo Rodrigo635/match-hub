@@ -14,8 +14,20 @@
 
         <div class="logo">
           <a href="index.html">HAPPY GAME</a>
-        </div><!-- logo -->
+        </div> <!-- logo -->
 
+        <div class="nav-links">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="">Contato</a></li>
+
+            <li>
+              <input type="text" class="pesquisa" placeholder="Pesquisar..." />
+            </li> <!-- search -->
+          </ul>
+        </div>
+        
       </nav><!-- navbar do header -->
     </header><!-- header -->
 
@@ -44,11 +56,26 @@
             <h1 class="titulo">Faça seu cadastro</h1>
 
             <div class="input-group">
-              <input type="text" id="nome" name="nome" placeholder="Digite seu nome..." />
-              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..." />
-              <input type="password" id="senha" name="senha" placeholder="Digite sua senha" />
-              <input type="password" id="confirma-senha" name="confirma-senha" placeholder="Confirme sua senha" />
-            </div><!-- input-group -->
+              <input type="text" id="nome" name="nome" required />
+              <label for="nome">Nome</label>
+            </div><!-- input-group de nome -->
+
+            <div class="input-group">
+              <input type="email" id="email" name="email" required />
+              <label for="email">E-mail</label>
+            </div><!-- input-group de email -->
+
+            <div class="input-group">
+              <input type="password" id="senha" name="senha" required />
+              <label for="senha">Senha</label>
+              <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
+            </div><!-- input-group de senha -->
+
+            <div class="input-group">
+                <input type="password" id="senha" name="senha" required />
+                <label for="senha">Confirmar Senha</label>
+                <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
+            </div><!-- input-group de confirmar senha -->
 
             <div class="termos-container">
               <input type="checkbox" id="termos" name="termos" />
@@ -59,7 +86,7 @@
 
             <div class="ou-container">
               <hr><p class="ou">Ou</p><hr>
-            </div>
+            </div><!-- ou-container -->
             
             <div class="cadastrar-com-google">
               <div class="google-button">
@@ -78,9 +105,15 @@
             <h1 class="titulo">Faça login</h1>
 
             <div class="input-group">
-              <input type="email" id="login-email" name="login-email" placeholder="Digite seu e-mail..." />
-              <input type="password" id="login-senha" name="login-senha" placeholder="Digite sua senha" />
-            </div><!-- input-group -->
+              <input type="email" id="email" name="email" required />
+              <label for="email">E-mail</label>
+            </div><!-- input-group de email -->
+
+            <div class="input-group">
+              <input type="password" id="senha" name="senha" required />
+              <label for="senha">Senha</label>
+              <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
+            </div><!-- input-group de senha -->
 
             <a class="esqueceu-senha" href="#">Esqueceu a senha?</a>
 
@@ -88,7 +121,7 @@
 
             <div class="ou-container">
               <hr><p class="ou">Ou</p><hr>
-            </div>
+            </div><!-- ou-container -->
 
             <div class="cadastrar-com-google">
               <div class="google-button">
