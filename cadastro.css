@@ -18,11 +18,6 @@ header {
   background: var(--cor-preto) !important;
 }
 
-.logo {
-  text-align: center;
-  width: 100%;
-}
-
 
 
 /* CONTEUDO */
@@ -56,6 +51,7 @@ main {
   width: 100%;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .cadastro-e-entrar .cadastro, .cadastro-e-entrar .entrar {
@@ -144,32 +140,85 @@ form {
   color: var(--cor-branco);
   font-size: 1.8rem;
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
+  position: relative;
   width: 75%;
+  margin: 10px 0;
 }
 
 .input-group input {
-  padding: 10px 15px;
+  width: 100%;
+  padding: 12px 40px 12px 15px;
   border-radius: 5px;
-  margin-bottom: 20px;
-  border: none;
+  border: 2px solid var(--cor-cinza);
+  background: transparent;
+  font-size: 1rem;
+  color: var(--cor-branco);
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: var(--cor-cinzaTexto);
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+  background: var(--cor-bg);
+  padding: 0 5px;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+  border-color: var(--cor-branco);
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: 0;
+  left: 10px;
+  font-size: 0.9rem;
+  color: var(--cor-branco);
+  padding: 0 5px;
+}
+
+.input-group .eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cor-cinzaTexto);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.input-group .eye-icon img {
+  width: 25px;
+  height: 18px;
 }
 
 .esqueceu-senha {
-  color: var(--cor-branco);
+  color: var(--cor-cinzaTexto);
   text-decoration: none;
+  margin-top: 10px;
   margin-bottom: 40px;
+}
+
+.esqueceu-senha:hover {
+  text-decoration: underline;
 }
 
 /* Termos e condições */
 .termos-container {
   display: flex;
   align-items: center;
+  margin-top: 10px;
   margin-bottom: 40px;
   text-align: center;
   gap: 8px;
@@ -199,6 +248,7 @@ form {
 
 /* Botão de login */
 .btn-login {
+  justify-content: center;
   padding: 9px 20px;
   background-color: var(--cor-branco);
   color: var(--cor-preto);
@@ -212,6 +262,7 @@ form {
   margin-bottom: 15px;
 }
 
+/* Ou container */
 .ou-container {
   display: flex;
   align-items: center;
@@ -232,6 +283,7 @@ hr {
   border-top: 1px solid var(--cor-cinzaTexto);
 }
 
+/* Cadastrar com Google */
 .cadastrar-com-google {
   display: flex;
   width: 75%;
