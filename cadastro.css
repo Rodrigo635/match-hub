@@ -330,6 +330,7 @@ hr {
 
   main {
     height: auto;
+    background-image: none;
     padding: 0;
     margin: 0;
     align-items: end;
