@@ -120,6 +120,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -174,12 +175,6 @@ form {
   padding: 0 5px;
 }
 
-.input-group input:focus,
-.input-group input:valid {
-  border-color: var(--cor-branco);
-}
-
-.input-group input:focus + label,
 .input-group input:valid + label {
   top: 0;
   left: 10px;
@@ -247,19 +242,34 @@ form {
 }
 
 /* Botão de login */
-.btn-login {
+.btn-cadastro-container {
+  display: flex;
+  width: 75%;
+  align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn-cadastro {
+  align-items: center;
   padding: 9px 20px;
   background-color: var(--cor-branco);
   color: var(--cor-preto);
-  width: 75%;
+  width: 100%;
   border-radius: 10px;
   transition: 0.2s ease;
   border: 2px solid transparent;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 1.1rem;
-  margin-bottom: 15px;
+  text-align: center;
+
+}
+
+.btn-cadastro:hover {
+  background-color: var(--cor-bg);
+  border-color: var(--cor-branco);
+  color: var(--cor-branco);
 }
 
 /* Ou container */

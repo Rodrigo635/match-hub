@@ -1,0 +1,147 @@
+/* VARIÁVEIS */
+:root {
+    --cor-branco: #ffffff;
+    --cor-preto: #000;
+    --cor-cinza: #bfbfbf;
+    --cor-cinzaTexto: #9d9d9d;
+    --cor-cinzaEscuro: #222222 !important;
+    --cor-bg: #1e1e1e;
+    --cor-bgEscuro: #0f0f0f;
+    --cor-azul: #32cccc;
+    --cor-verde: #3c9d4c;
+  }
+  
+  
+  
+  /* HEADER */
+  header {
+    background: var(--cor-preto) !important;
+  }
+  
+  
+  
+  /* CONTEUDO */
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-image: url('static/img/cadastro-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  
+  /* Container do formulário */
+  .container-form {
+    display: flex;
+    margin-bottom: 60px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: var(--cor-bg);
+  }
+  
+  .gif-container {
+    display: flex;
+    margin-top: 40px;
+    width: 75%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .cadastro-concluido {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gif-container img {
+    width: 75%;
+    border-radius: 20px;
+  }
+
+  .textos {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .titulo {
+    text-align: center;
+    color: var(--cor-branco);
+    font-size: 1.8rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .subtitulo {
+    text-align: center;
+    color: var(--cor-branco);
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  /* Botão de login */
+  .btn-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    gap: 10px;
+    background-color: var(--cor-branco);
+    color: var(--cor-preto);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+  
+  
+  
+  /* RESPONSIVIDADE */
+  @media screen and (max-width: 768px) {
+    main {
+      height: auto;
+      background-image: none;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .container {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
