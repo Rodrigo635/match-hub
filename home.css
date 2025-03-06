@@ -1,3 +1,10 @@
+/* HEADER */
+
+.nav-links li:first-child a{
+    color: white;
+}
+
+
 /* BANNER */
 .banner {
     margin-top: 40px;

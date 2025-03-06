@@ -17,6 +17,10 @@
 header {
     background: var(--cor-preto) !important;
 }
+
+.nav-links li:nth-child(3) a{
+    color: white;
+}
   
   
   
