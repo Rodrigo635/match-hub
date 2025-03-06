@@ -120,6 +120,7 @@ form {
   align-items: center;
   justify-content: center;
   width: 100%;
+
 }
 
 .gif-container {
@@ -332,9 +333,6 @@ hr {
 
 /* RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
-  header {
-    display: none;
-  }
 
   main {
     height: auto;
@@ -367,9 +365,7 @@ hr {
   }
 
   .cadastro-e-entrar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    order: 1;
     width: 100%;
     justify-content: center;
   }
