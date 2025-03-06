@@ -55,7 +55,7 @@ main{
     background-color: var(--cor-bg);
     color: var(--cor-branco);
     gap: 20px;
-    padding: 50px 0px;
+    padding-block: 50px;
 }
 
 .introducao h1 {
