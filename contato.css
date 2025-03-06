@@ -30,6 +30,17 @@ main{
     align-items: center;
 }
 
+.quem-somos{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    background-color: var(--cor-bg);
+    color: var(--cor-branco);
+    gap: 30px;
+    padding: 50px 0px;
+}
+
 /* INTRODUÇÃO */
 .introducao {
     display: flex;
@@ -52,7 +63,8 @@ main{
 
 .introducao p {
     font-size: 1.4rem;
-    text-align: center;
+    line-height: 2rem;
+    text-align: justify;
 }
 
 /* FIGURA */
@@ -67,6 +79,7 @@ figure img{
     object-fit: cover;
     object-position: center;
     margin: 0;
+    border-radius: 15px;
     transition: .5s ease-in-out;
 }
 
@@ -77,14 +90,27 @@ figure img:hover{
 /* FRASE ESPECIAL */
 .frase{
     display: flex;
-    align-items: center;
-    width: 80%;
+    justify-content: center;
+    width: 100%;
     height: auto;
     background-color: var(--cor-cinzaEscuro);
     color: var(--cor-branco);
     gap: 20px;
-    width: 100%;
     padding: 20px;
+}
+
+.frase > div{
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.frase__texto{
+    width: 50%;
+}
+
+.frase__imagem{
+    width: 50%;
 }
 
 .frase h1{
@@ -160,7 +186,7 @@ figure img:hover{
     color: var(--cor-branco);
     display: flex;
     flex-wrap: nowrap;
-    padding: 2px;
+    padding: 5px;
 }
 
 .card:hover {
@@ -327,7 +353,7 @@ input:checked + label .descricao {
     font-size: 1.3rem;
 }
 
-.form a{
+.form .button-submit{
     color: var(--cor-cinzaEscuro);
     background-color: var(--cor-azul);
     padding: 10px 30px;
@@ -336,25 +362,46 @@ input:checked + label .descricao {
     text-decoration: none;
     font-size: 1.3rem;
     transition: .5s;
+    cursor: pointer;
 }
 
-.form a:hover{
+.form .button-submit:hover{
     border: 2px solid var(--cor-azul);
     background-color: transparent;
     color: var(--cor-azul);
 }
 
 @media (max-width: 1080px) {
+    .quem-somos{
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .quem-somos .introducao{
+        width: 100%;
+    }
+
     .frase{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .frase > div{
+        width: 100%;
         flex-direction: column;
     }
 
     .frase__texto{
         padding: 20px;
+        width: 100%;
     }
 
     .frase__texto h1{
         font-size: 2.5rem;
+    }
+
+    .frase__imagem{
+        width: 100%;
     }
 
     .sobre-nos {
@@ -457,8 +504,3 @@ input:checked + label .descricao {
     .titulo-filtros {
         flex-direction: column;}
 }
-
-
-
-
-
