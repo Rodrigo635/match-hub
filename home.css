@@ -1,6 +1,6 @@
 /* BANNER */
-.wrapper {
-    margin-top: 120px;
+.banner {
+    margin-top: 40px;
     width: 100%;
     height: auto;
     display: flex;
@@ -9,7 +9,8 @@
 }
 
 .container {
-    height: 60vh;
+    height: 65vh;
+    width: 80%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: start;
@@ -160,9 +161,24 @@ input:checked + label .descricao {
 .filtros li{
     display: flex;
     list-style: none;
+    padding: 3px 13px;
+    border: 2px solid var(--cor-branco);
+    border-radius: 15px;
+    box-sizing: border-box;
     align-items: center;
     margin-left: 15px;
     color: var(--cor-branco);
+    cursor: pointer;
+}
+
+.filtros li img {
+    width: 25px;
+    margin-left: 2px;
+}
+
+.filtros-dropdown {
+    display: none;
+    cursor: pointer;
 }
 
 
@@ -205,9 +221,85 @@ input:checked + label .descricao {
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
     .card-conteudo {
         width: 48%;
+    }
+
+    .card .row .icon {
+        margin: 3%;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    input:checked + label {
+        width: 80%;
+        height: 100%;
+    }
+
+    .card .row .icon {
+        margin: 10px;
+        display: none;
+    }
+
+    .card .row .descricao {
+        width: 100%;
+        display: none;
+        padding: 0 10px 10px 10px;
+    }
+
+    input:checked + label .descricao {
+        display: flex !important;
+        transform: translateY(0) !important;
+    }
+
+    .card[for="c1"] {
+        background-image: url('static/img/img1.jpg');
+        background-position: center;
+    }
+    .card[for="c2"] {
+        background-image: url('static/img/img2.jpg');
+        background-position: center;
+
+    }
+    .card[for="c3"] {
+        background-image: url('static/img/img3.jpg');
+        background-position: center;
+
+    }
+    .card[for="c4"] {
+        background-image: url('static/img/img4.jpg');
+        background-position: center;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .filtros {
+        display: none;
+    }
+
+    .filtros-dropdown {
+        display: flex;
+    }
+
+    .filtros-dropdown img {
+        width: 40px;
     }
 }
 
@@ -215,6 +307,11 @@ input:checked + label .descricao {
     .card-conteudo {
         width: 100%;
     }
+}
+
+@media (max-width: 400px) {
+    .titulo-filtros {
+        flex-direction: column;}
 }
 
 

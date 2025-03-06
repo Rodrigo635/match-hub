@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="cadastro.css" />
     <link rel="stylesheet" href="index.css" />
-    <title>Happy Game - Cadastrar</title>
+    <title>MATCH HUB - Cadastrar</title>
   </head>
 
   <body>
@@ -13,7 +13,7 @@
       <nav>
 
         <div class="logo">
-          <a href="index.html">HAPPY GAME</a>
+          <a href="index.html">MATCH HUB</a>
         </div> <!-- logo -->
 
         <div class="nav-links">
@@ -21,8 +21,18 @@
             <li><a href="index.html">Início</a></li>
             <li><a href="">Sobre</a></li>
             <li><a href="">Contato</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+
+            <li>
+              <input type="text" class="pesquisa" placeholder="Pesquisar..." />
+            </li> <!-- search -->
           </ul>
-        </div>
+
+          <div class="menu">
+            <img src="static/icons/menu.png" alt="">
+          </div><!-- menu -->
+        </div><!-- nav-links -->
         
       </nav><!-- navbar do header -->
     </header><!-- header -->
@@ -52,24 +62,24 @@
             <h1 class="titulo">Faça seu cadastro</h1>
 
             <div class="input-group">
-              <input type="text" id="nome" name="nome" required />
-              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome..."/>
+              <label>Nome</label>
             </div><!-- input-group de nome -->
 
             <div class="input-group">
-              <input type="email" id="email" name="email" required />
-              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..."/>
+              <label>E-mail</label>
             </div><!-- input-group de email -->
 
             <div class="input-group">
-              <input type="password" id="senha" name="senha" required />
-              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..."/>
+              <label>Senha</label>
               <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de senha -->
 
             <div class="input-group">
-                <input type="password" id="senha" name="senha" required />
-                <label for="senha">Confirmar Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Confirme sua senha..."/>
+                <label>Confirmar Senha</label>
                 <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de confirmar senha -->
 
@@ -78,7 +88,9 @@
               <p>Aceito os <a href="#">termos de uso </a> e <a href="#">condições.</a></p>
             </div><!-- termos-container -->
 
-            <button class="btn-login" type="submit">Cadastrar</button>
+            <div class="btn-cadastro-container">
+              <a class="btn-cadastro" href="cadastro_concluido.html">Cadastrar</a>
+            </div><!-- btn-cadastro-container -->
 
             <div class="ou-container">
               <hr><p class="ou">Ou</p><hr>
@@ -101,19 +113,21 @@
             <h1 class="titulo">Faça login</h1>
 
             <div class="input-group">
-              <input type="email" id="email" name="email" required />
-              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..."/>
+              <label>E-mail</label>
             </div><!-- input-group de email -->
 
             <div class="input-group">
-              <input type="password" id="senha" name="senha" required />
-              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..."/>
+              <label>Senha</label>
               <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de senha -->
 
             <a class="esqueceu-senha" href="#">Esqueceu a senha?</a>
 
-            <button class="btn-login" type="submit">Entrar</button>
+            <div class="btn-cadastro-container">
+              <a class="btn-cadastro" href="index.html">Entrar</a>
+            </div><!-- btn-cadastro-container -->
 
             <div class="ou-container">
               <hr><p class="ou">Ou</p><hr>
@@ -130,17 +144,16 @@
         </div><!-- container-form -->
 
       </div><!-- container -->
-    </main><!-- conteudo -->
-
+    </main>
 
 
 
     <footer>
       <div class="footer-container">
         <div class="footer-logo">
-          <a href="">
+          <a href="index.html">
             <div class="logo">
-              <a href="">HAPPY GAME</a>
+              <a href="">MATCH HUB</a>
             </div><!-- logo -->
           </a>
         </div><!-- footer-logo -->
@@ -148,13 +161,13 @@
         <div class="footer-links">
           <ul>
             <li><a href="index.html">Início</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
           </ul>
         </div><!-- footer-links -->
 
         <div class="footer-rights">
-          <p>&copy; 2025 Happy Game. Todos os direitos reservados.</p>
+          <p>© 2025 Match Hub. Todos os direitos reservados.</p>
         </div><!-- footer-rights -->
       </div><!-- footer-container -->
     </footer><!-- footer -->

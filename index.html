@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="home.css" />
-    <title>Happy Game</title>
+    <title>MATCH HUB</title>
   </head>
 
   <body>
@@ -13,35 +14,39 @@
       <nav>
 
         <div class="logo">
-          <a href="index.html">HAPPY GAME</a>
+          <a href="index.html">MATCH HUB</a>
         </div> <!-- logo -->
 
         <div class="nav-links">
           <ul>
             <li><a href="index.html">Início</a></li>
-            <li><a href="">Sobre</a></li>
-            <li><a href="">Contato</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
 
             <li>
               <input type="text" class="pesquisa" placeholder="Pesquisar..." />
             </li> <!-- search -->
  
           </ul>
+
           <a href="cadastro.html">
             <div class="btn-login">
               <p>Entrar</p>
             </div> <!-- btn-login -->
-
           </a>
-        </div>
+
+          <div class="menu">
+            <img src="static/icons/menu.png" alt="">
+          </div><!-- menu -->
+        </div><!-- nav-links -->
         
       </nav><!-- navbar do header -->
     </header><!-- header -->
    
 
 
-    <section class="banner">
-      <div class="wrapper">
+    <main>
+      <div class="banner">
         <div class="container">
           <input type="radio" name="slide" id="c1" checked />
           <label for="c1" class="card">
@@ -88,9 +93,10 @@
               </div><!-- descricao -->
             </div><!-- row -->
           </label><!-- card -->
+
         </div><!-- container -->
-      </div><!-- wrapper -->
-    </section><!-- banner -->
+      </div><!-- banner -->
+    </main>
 
 
 
@@ -102,11 +108,16 @@
 
         <div class="filtros">
           <ul>
-            <li>filtro 1</li>
-            <li>filtro 2</li>
-            <li>filtro 3</li>
+            <li>Jogo<img src="static/icons/arrow_down.png" alt=""></li>
+            <li>Campeonato<img src="static/icons/arrow_down.png" alt=""></li>
+            <li>Data<img src="static/icons/arrow_down.png" alt=""></li>
           </ul>
         </div><!-- filtros -->
+
+        <div class="filtros-dropdown">
+          <img src="static/icons/filtros.png" alt="">
+        </div>
+
       </div><!-- titulo-filtros -->
     </section><!-- conteudo -->
 
@@ -134,9 +145,9 @@
     <footer>
       <div class="footer-container">
         <div class="footer-logo">
-          <a href="">
+          <a href="index.html">
             <div class="logo">
-              <a href="">HAPPY GAME</a>
+              <a href="">MATCH HUB</a>
             </div><!-- logo -->
           </a>
         </div><!-- footer-logo -->
@@ -144,13 +155,13 @@
         <div class="footer-links">
           <ul>
             <li><a href="index.html">Início</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
           </ul>
         </div><!-- footer-links -->
 
         <div class="footer-rights">
-          <p>&copy; 2025 Happy Game. Todos os direitos reservados.</p>
+          <p>Match Hub © 2025. Todos os direitos reservados.</p>
         </div><!-- footer-rights -->
       </div><!-- footer-container -->
     </footer><!-- footer -->
