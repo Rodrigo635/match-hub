@@ -17,6 +17,8 @@
   header {
     background: var(--cor-preto) !important;
   }
+
+  
   
   
   
@@ -119,7 +121,11 @@
     font-size: 1.1rem;
     margin-bottom: 40px;
   }
+
   
+  nav{
+    flex-wrap: nowrap;
+  }
   
   
   /* RESPONSIVIDADE */

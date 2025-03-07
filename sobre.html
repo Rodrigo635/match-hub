@@ -11,31 +11,41 @@
 
     <header>
       <nav>
-
+        <!-- Logo -->
         <div class="logo">
           <a href="index.html">MATCH HUB</a>
-        </div> <!-- logo -->
+        </div>
 
+        <a href="cadastro.html">
+          <div class="btn-login">
+            <p>Entrar</p>
+          </div>
+        </a>
+        <!-- Navegação e menu hamburguer -->
         <div class="nav-links">
+          <!-- Checkbox para controlar o menu -->
+          <input type="checkbox" id="menu-toggle" />
+          <!-- Label com o ícone do menu -->
+          <label for="menu-toggle" class="menu">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </label>
           <ul>
+            <li>
+              <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+            </li> <!-- search -->
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre</a></li>
             <li><a href="contato.html">Contato</a></li>
-          </ul>
-
-          <a href="cadastro.html">
-            <div class="btn-login">
-              <p>Entrar</p>
-            </div> <!-- btn-login -->
-          </a>
-
-          <div class="menu">
-            <img src="static/icons/menu.png" alt="">
-          </div><!-- menu -->
-        </div><!-- nav-links -->
         
-      </nav><!-- navbar do header -->
-    </header><!-- header -->
+          </ul>
+        </div>
+        
+      </nav>
+    </header>
    
 
 
