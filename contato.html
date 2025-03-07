@@ -1,36 +1,40 @@
+<!-- Estrutura principal do documento -->
 <html>
   <head>
+    <!-- Configurações de codificação e responsividade -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Links para os arquivos CSS -->
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="contato.css" />
+    <!-- Título da página -->
     <title>MATCH HUB - Contato</title>
   </head>
 
   <body>
+    <!-- Cabeçalho da página -->
     <header>
       <nav>
+        <!-- Logo do site -->
         <div class="logo">
           <a href="index.html">MATCH HUB</a>
         </div>
         <!-- logo -->
 
+        <!-- Links de navegação e botão de login -->
         <div class="nav-links">
           <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre</a></li>
             <li><a href="contato.html">Contato</a></li>
-
-            <!-- search -->
           </ul>
-
           <a href="cadastro.html">
             <div class="btn-login">
               <p>Entrar</p>
             </div>
             <!-- btn-login -->
           </a>
-
+          <!-- Ícone de menu para dispositivos móveis -->
           <div class="menu">
             <img src="static/icons/menu.png" alt="" />
           </div>
@@ -42,36 +46,45 @@
     </header>
     <!-- header -->
 
+    <!-- Conteúdo principal -->
     <main>
+      <!-- Seção 'Quem Somos' -->
       <section class="quem-somos">
         <figure>
-          <img
-            src="static/img/place-work.jpg"
-            alt="Imagem ilustrando um local de trabalho"
-          />
+          <img src="static/img/place-work.jpg" alt="Imagem ilustrando um local de trabalho" />
         </figure>
         <article class="introducao">
           <h1>Quem somos nós</h1>
           <p>
-            Somos cinco estudantes do primeiro módulo de Sistemas de Informação da FIAP e desenvolvemos este site como parte de um trabalho acadêmico. Nosso objetivo é criar uma plataforma que centralize as datas dos principais campeonatos de eSports, facilitando o acesso às informações para os fãs e entusiastas dos jogos eletrônicos. Este projeto reforça nossos conhecimentos em desenvolvimento web, colaboração em equipe e boas práticas de tecnologia, entregando uma solução útil para a comunidade gamer.
+            Somos cinco estudantes do primeiro módulo de Sistemas de Informação
+            da FIAP e desenvolvemos este site como parte de um trabalho
+            acadêmico. Nosso objetivo é criar uma plataforma que centralize as
+            datas dos principais campeonatos de eSports, facilitando o acesso às
+            informações para os fãs e entusiastas dos jogos eletrônicos. Este
+            projeto reforça nossos conhecimentos em desenvolvimento web,
+            colaboração em equipe e boas práticas de tecnologia, entregando uma
+            solução útil para a comunidade gamer.
           </p>
           <p>
-            Além disso, buscamos aprimorar nossas habilidades em pesquisa, design e usabilidade, garantindo que a experiência do usuário seja intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em criar uma interface acessível e responsiva, para que os usuários encontrem facilmente as informações, independentemente do dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a navegação fluida, desafiando-nos a pensar em soluções inovadoras para a interação dos fãs com o cenário competitivo de eSports.
+            Além disso, buscamos aprimorar nossas habilidades em pesquisa,
+            design e usabilidade, garantindo que a experiência do usuário seja
+            intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
+            criar uma interface acessível e responsiva, para que os usuários
+            encontrem facilmente as informações, independentemente do
+            dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
+            navegação fluida, desafiando-nos a pensar em soluções inovadoras
+            para a interação dos fãs com o cenário competitivo de eSports.
           </p>
-          
-          
-          
-          
-          
         </article>
-       
       </section>
 
+      <!-- Seção de frase especial -->
       <section class="frase">
         <div>
           <div class="frase__texto">
             <h1>
-              "A tecnologia nos une, os eSports nos inspiram, e a inovação nos move!"
+              "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
+              move!"
             </h1>
           </div>
           <div class="frase__imagem">
@@ -80,32 +93,53 @@
         </div>
       </section>
 
-      <!-- integrantes -->
+      <!-- Título da equipe -->
       <div class="integrantes__titulo">
         <h1>Nossa equipe</h1>
       </div>
+
+      <!-- Seção 'Sobre Nós' com cards dos integrantes -->
       <section class="sobre-nos">
+        <!-- Card 1: Gabriel Vilela -->
         <input type="radio" name="slide" id="c1" checked />
         <label for="c1" class="card">
           <div class="row">
             <div class="icon">1</div>
             <div class="descricao">
               <h4>Gabriel Vilela</h4>
-              <p>Função: Arrumar as merdas que eu mesmo faço</p>
-              <p>Curso: Sitemas de Informação - FIAP (1° Módulo)</p>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
               <p>
-                Como a propria merda e cago na sala de casa
+                Me chamo Gabriel, tenho 20 anos, sou formado em Técnico de
+                Informática, nasci em Cajuru-SP mas moro em Ribeirão Preto-SP.
+                Atualmente estou cursando Sistema de Informação pela FIAP
               </p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/gabrielvilela12">
+                    <img src="static/img/github.png" alt="" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/">
+                    <img src="static/img/linkedin.jpeg" alt="" width="50px" />
+                  </a>
+                </div>
+              </div>
             </div>
             <!-- descricao -->
             <div class="image">
               <img src="static/img/Gabriel.png" alt="Imagem do integrante" />
-            </div>  <!--Adicione uma imagem sua pelo css-->
+            </div>
             <!-- img -->
           </div>
-          <!-- row --> 
-        </label><!-- card -->
+          <!-- row -->
+        </label>
+        <!-- card -->
 
+        <!-- Card 2: Miguel -->
         <input type="radio" name="slide" id="c2" />
         <label for="c2" class="card">
           <div class="row">
@@ -113,12 +147,26 @@
             <div class="descricao">
               <h4>Miguel</h4>
               <p>Função: Desenvolvimento do site, design e documentação</p>
-              <p>Curso: Sitemas de Informação - FIAP (1° Módulo)</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
               <p>
                 Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
                 Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
                 Atualmente estou cursando Sistemas de Informação pela FIAP.
               </p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/MiguelAssis0">
+                    <img src="static/img/github.png" alt="" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/miguel-anjoss/">
+                    <img src="static/img/linkedin.jpeg" alt="" width="50px" />
+                  </a>
+                </div>
+              </div>
             </div>
             <!-- descricao -->
             <div class="image">
@@ -126,9 +174,11 @@
             </div>
             <!-- img -->
           </div>
-          <!-- row --> 
-        </label><!-- card -->
+          <!-- row -->
+        </label>
+        <!-- card -->
 
+        <!-- Card 3: Placeholder -->
         <input type="radio" name="slide" id="c3" />
         <label for="c3" class="card">
           <div class="row">
@@ -136,10 +186,18 @@
             <div class="descricao">
               <h4>[Nome]</h4>
               <p>Função: [descrever o que fez no projeto]</p>
-              <p>Curso: Sitemas de Informação - FIAP (1° Módulo)</p>
-              <p>
-                [Uma breve descrição sobre você
-              </p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>[Uma breve descrição sobre você]</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="#"><img src="static/img/github.png" alt="" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="#"><img src="static/img/linkedin.jpeg" alt="" width="50px" /></a>
+                </div>
+              </div>
             </div>
             <!-- descricao -->
             <div class="image">
@@ -147,9 +205,11 @@
             </div>
             <!-- img -->
           </div>
-          <!-- row --> </label
-        ><!-- card -->
+          <!-- row -->
+        </label>
+        <!-- card -->
 
+        <!-- Card 4: Placeholder -->
         <input type="radio" name="slide" id="c4" />
         <label for="c4" class="card">
           <div class="row">
@@ -157,10 +217,18 @@
             <div class="descricao">
               <h4>[Nome]</h4>
               <p>Função: [descrever o que fez no projeto]</p>
-              <p>Curso: Sitemas de Informação - FIAP (1° Módulo)</p>
-              <p>
-                [Uma breve descrição sobre você
-              </p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>[Uma breve descrição sobre você]</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="#"><img src="static/img/github.png" alt="" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="#"><img src="static/img/linkedin.jpeg" alt="" width="50px" /></a>
+                </div>
+              </div>
             </div>
             <!-- descricao -->
             <div class="image">
@@ -168,8 +236,11 @@
             </div>
             <!-- img -->
           </div>
-          <!-- row --> </label
-        ><!-- card -->
+          <!-- row -->
+        </label>
+        <!-- card -->
+
+        <!-- Card 5: Placeholder -->
         <input type="radio" name="slide" id="c5" />
         <label for="c5" class="card">
           <div class="row">
@@ -177,10 +248,18 @@
             <div class="descricao">
               <h4>[Nome]</h4>
               <p>Função: [descrever o que fez no projeto]</p>
-              <p>Curso: Sitemas de Informação - FIAP (1° Módulo)</p>
-              <p>
-                [Uma breve descrição sobre você
-              </p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>[Uma breve descrição sobre você]</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="#"><img src="static/img/github.png" alt="" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="#"><img src="static/img/linkedin.jpeg" alt="" width="50px" /></a>
+                </div>
+              </div>
             </div>
             <!-- descricao -->
             <div class="image">
@@ -188,10 +267,12 @@
             </div>
             <!-- img -->
           </div>
-          <!-- row --> </label
-        ><!-- card -->
+          <!-- row -->
+        </label>
+        <!-- card -->
       </section>
 
+      <!-- Formulário de Contato -->
       <section class="contate-nos">
         <form class="form">
           <h2>Contate-nos</h2>
@@ -216,8 +297,7 @@
       </section>
     </main>
 
-    
-
+    <!-- Rodapé -->
     <footer>
       <div class="footer-container">
         <div class="footer-logo">

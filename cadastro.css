@@ -18,6 +18,10 @@ header {
   background: var(--cor-preto) !important;
 }
 
+nav{
+  justify-content: center;
+}
+
 /* CONTEUDO */
 main {
   display: flex;
