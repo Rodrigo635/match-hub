@@ -1,6 +1,6 @@
 /* HEADER */
 
-.nav-links li:first-child a{
+.nav-links li:nth-child(2) a{
     color: white;
 }
 
@@ -218,8 +218,6 @@ input:checked + label .descricao {
 .card-conteudo:hover {
     transform: translateY(-10px);
 }
-
-
 
 /* RESPONSIVIDADE */
 @media (max-width: 1200px) {
