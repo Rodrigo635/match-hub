@@ -33,20 +33,21 @@ header {
   background: linear-gradient(to bottom, rgb(18, 18, 18), var(--cor-bg));
   transition: 0.3s ease;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   z-index: 999;
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  flex-wrap: nowrap;
   margin: 0 auto;
-  width: 80%;
 }
 
 .logo {
   transition: 0.3s ease;
-  width: 80%;
   margin: 10px auto;
 }
 
@@ -155,6 +156,7 @@ nav > a {
 /* MENU HAMBURGUER */
 .menu {
   display: none;
+  max-width: fit-content;
   cursor: pointer;
 }
 
@@ -249,12 +251,15 @@ footer {
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
 header{
-    padding-top:10px;
-    padding-bottom: 30px;
+    padding: 10px 10%;
+    height: auto;
+    
 }
 
   nav {
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
   }
 
   nav > a {

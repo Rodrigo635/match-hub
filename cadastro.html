@@ -11,13 +11,9 @@
   <body>
 
     <header>
-      <nav>
-
         <div class="logo">
           <a href="index.html">MATCH HUB</a>
         </div> <!-- logo -->
-    
-      </nav><!-- navbar do header -->
     </header><!-- header -->
 
     <main>
@@ -35,7 +31,7 @@
 
         <div class="container-form">
 
-          <form class="form-cadastro">
+          <form class="form-cadastro" action="cadastro_concluido.html">
             <div class="gif-container">
               <img src="static/icons/podio.gif" alt="Podio GIF" />
             </div><!-- gif-container -->
@@ -43,34 +39,34 @@
             <h1 class="titulo">Faça seu cadastro</h1>
 
             <div class="input-group">
-              <input type="text" id="nome" name="nome" placeholder="Digite seu nome..."/>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome..." required/>
               <label>Nome</label>
             </div><!-- input-group de nome -->
 
             <div class="input-group">
-              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..."/>
+              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..." required/>
               <label>E-mail</label>
             </div><!-- input-group de email -->
 
             <div class="input-group">
-              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..."/>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required/>
               <label>Senha</label>
               <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de senha -->
 
             <div class="input-group">
-                <input type="password" id="senha" name="senha" placeholder="Confirme sua senha..."/>
+                <input type="password" id="senha" name="senha" placeholder="Confirme sua senha..." required/>
                 <label>Confirmar Senha</label>
                 <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de confirmar senha -->
 
             <div class="termos-container">
-              <input type="checkbox" id="termos" name="termos" />
+              <input type="checkbox" id="termos" name="termos" required/>
               <p>Aceito os <a href="#">termos de uso </a> e <a href="#">condições.</a></p>
             </div><!-- termos-container -->
 
             <div class="btn-cadastro-container">
-              <a class="btn-cadastro" href="cadastro_concluido.html">Cadastrar</a>
+              <button type="submit" class="btn-cadastro" href="cadastro_concluido.html">Cadastrar</button>
             </div><!-- btn-cadastro-container -->
 
             <div class="ou-container">
@@ -86,7 +82,7 @@
           </form><!-- form-cadastro -->
         
 
-          <form class="form-login">
+          <form class="form-login" action="index.html">
             <div class="gif-container">
               <img src="static/icons/podio.gif" alt="Podio GIF" />
             </div><!-- gif-container -->
@@ -94,12 +90,12 @@
             <h1 class="titulo">Faça login</h1>
 
             <div class="input-group">
-              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..."/>
+              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..." required/>
               <label>E-mail</label>
             </div><!-- input-group de email -->
 
             <div class="input-group">
-              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..."/>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required/>
               <label>Senha</label>
               <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
             </div><!-- input-group de senha -->
@@ -107,7 +103,7 @@
             <a class="esqueceu-senha" href="#">Esqueceu a senha?</a>
 
             <div class="btn-cadastro-container">
-              <a class="btn-cadastro" href="index.html">Entrar</a>
+              <button type="submit" class="btn-cadastro" href="index.html">Entrar</button>
             </div><!-- btn-cadastro-container -->
 
             <div class="ou-container">
