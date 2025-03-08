@@ -9,23 +9,29 @@
     --cor-bgEscuro: #0f0f0f;
     --cor-azul: #32cccc;
     --cor-verde: #3c9d4c;
-}
-  
 
-  
+    /* Font-size */
+    --font-size-small: 1.3rem;
+    --font-size-medium: 1.4rem;
+    --font-size-large: 2.5rem;
+}
+
+
+
 /* HEADER */
 header {
     background: var(--cor-preto) !important;
 }
-  
-.nav-links li:nth-child(3) a{
+
+.nav-links li:nth-child(3) a {
     color: white;
 }
 
-  
+
 /* CONTEUDO */
 main {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
     justify-content: center;
@@ -33,76 +39,167 @@ main {
     margin-top: 40px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-height: 91vh;
-    height: auto;
-    background-color: var(--cor-bg);
+.bg-cinza {
+    background-color: var(--cor-cinzaEscuro);
 }
 
-.container-sobre {
-    display: flex;
-    align-items: start;
-    margin-top: 60px;
-    width: 80%;
-    height: auto;
-    justify-content: space-between;
-    gap: 50px;
+.reverse {
+    flex-direction: row-reverse;
 }
 
-.container-sobre .imagem-sobre {
+.slogan-destaque {
+    color: var(--cor-branco);
     display: flex;
-    width: 45%;
-    height: auto;
+    font-size: 2rem;
+    text-align: center;
     justify-content: center;
-    align-items: center;
+    margin: 15px 0 30px 0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.container-sobre img {
+/* seçoes */
+.container-secao {
     display: flex;
+    justify-content: center;
     width: 100%;
     height: auto;
-    border-radius: 20px;
+    min-height: 500px;
+    color: var(--cor-branco);
+    padding: 20px;
 }
 
-.container-sobre .container-sobre-text {
+.container-secao>div {
+    width: 80%;
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    color: var(--cor-branco);
-    width: 55%;
-    height: auto;
+    align-items: center;
+    gap: 20px;
 }
 
-.container-sobre .container-sobre-text h1 {
-    font-size: 3.5rem;
+.secao-imagem {
+    width: 50%;
+}
+
+.secao-texto {
+    width: 50%;
+    font-size: var(--font-size-medium);
+
+}
+
+.container-secao h1 {
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: var(--font-size-large);
+    color: var(--cor-azul);
     margin-bottom: 20px;
-    color: var(--cor-branco);
 }
 
-.container-sobre .container-sobre-text p {
-    font-size: 1.2rem;
+.container-secao p {
     text-align: justify;
+    line-height: 2rem;
+    margin-bottom: 20px;
+}
+
+.secao-lista li {
+    margin-bottom: 15px;
+    margin-left: 25px;
+}
+
+.container-secao img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+    margin: 0;
+    filter: brightness(0.5);
+    transition: 0.5s ease-in-out;
+}
+
+.container-secao img:hover {
+    filter: brightness(1);
+}
+
+.tabela-container {
+    width: 50%;
+}
+
+.tabela-dados {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--cor-cinzaEscuro);
+
+}
+
+.tabela-dados tr:hover {
+    transition: 0.5s ease-in-out;
+    background: rgba(50, 204, 204, 0.1);
+}
+
+.tabela-dados th,
+.tabela-dados td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--cor-azul);
     color: var(--cor-branco);
 }
 
+.tabela-dados th {
+    background-color: var(--cor-bgEscuro);
+    text-transform: uppercase;
+    font-size: var(--font-size-small);
+}
 
 
 /* RESPONSIVIDADE */
-@media screen and (max-width: 768px) {
-    .container-sobre {
+@media screen and (max-width: 820px) {
+
+    .slogan-destaque {
+        flex-direction: column;
+        text-align: center !important;
+    }
+
+    .secao-conteudo {
         flex-direction: column;
         align-items: center;
+        width: 90%;
+        padding: 20px 0;
     }
 
-    .container-sobre .imagem-sobre {
+    .container-secao {
+        flex-direction: column;
+        align-items: center;
         width: 100%;
     }
 
-    .container-sobre .container-sobre-text {
+    .container-secao>div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .reverse {
+        flex-direction: column;
+    }
+
+    .secao-texto {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .secao-texto h1 {
+        font-size: var(--font-size-large);
+        justify-items: center;
+    }
+
+    .secao-imagem {
         width: 100%;
     }
+
+    .tabela-container {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .tabela-dados {
+        font-size: 1.2rem;
+    }
+
 }
