@@ -121,12 +121,6 @@
     font-size: 1.1rem;
     margin-bottom: 40px;
   }
-
-  
-  nav{
-    flex-wrap: nowrap;
-  }
-  
   
   /* RESPONSIVIDADE */
   @media screen and (max-width: 768px) {
