@@ -13,7 +13,12 @@
     /* Font-size */
     --font-size-small: 1.3rem;
     --font-size-medium: 1.4rem;
+    --font-size-medium-large: 1.6rem;
     --font-size-large: 2.5rem;
+    
+    --font-size-tablet: 1.2rem;
+    --font-size-mobile: 1rem;
+    --font-size-smallest: 0.9rem;
 }
 
 /* HEADER */
@@ -22,7 +27,7 @@ header {
 }
 
 .nav-links li:nth-child(3) a {
-    color: white;
+    color: var(--cor-branco);
 }
 
 /* CONTEÚDO */
@@ -30,10 +35,9 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-block: 40px;
 }
 
 .bg-cinza {
@@ -46,12 +50,11 @@ main {
 
 .slogan-destaque {
     color: var(--cor-branco);
-    display: flex;
     font-size: 2rem;
     text-align: center;
-    justify-content: center;
-    margin: 15px 0 30px 0;
     font-family: 'Courier New', Courier, monospace;
+    margin: 15px 0 30px 0;
+    
 }
 
 /* Seções */
@@ -59,25 +62,23 @@ main {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: auto;
     min-height: 500px;
     color: var(--cor-branco);
     padding: 20px;
 }
 
-.container-secao>div {
+.container-secao > div {
     width: 80%;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 
-.secao-imagem {
+.secao-imagem, .secao-texto {
     width: 50%;
 }
 
 .secao-texto {
-    width: 50%;
     font-size: var(--font-size-medium);
 }
 
@@ -89,30 +90,36 @@ main {
     margin-bottom: 20px;
 }
 
+.container-secao .slogan-destaque {  
+    text-align: center;
+ }
+
 .container-secao p {
     text-align: justify;
     line-height: 2rem;
     margin-bottom: 20px;
 }
 
-.secao-lista li {
-    margin-bottom: 15px;
-    margin-left: 25px;
-}
-
 .container-secao img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center;
     border-radius: 15px;
-    margin: 0;
     filter: brightness(0.5);
     transition: 0.5s ease-in-out;
 }
 
+
 .container-secao img:hover {
     filter: brightness(1);
 }
+.container-secao li {
+    margin-block: 30px;
+}
+.secao-lista li {
+    list-style: none;
+}
+
 
 /* Tabela */
 .tabela-container {
@@ -123,15 +130,15 @@ main {
     width: 100%;
     border-collapse: collapse;
     background-color: var(--cor-cinzaEscuro);
+    font-size: var(--font-size-tablet);
 }
 
 .tabela-dados tr:hover {
-    transition: 0.5s ease-in-out;
     background: rgba(50, 204, 204, 0.1);
+    transition: 0.5s ease-in-out;
 }
 
-.tabela-dados th,
-.tabela-dados td {
+.tabela-dados th, .tabela-dados td {
     padding: 12px;
     text-align: center;
     border: 1px solid var(--cor-azul);
@@ -144,135 +151,70 @@ main {
     font-size: var(--font-size-small);
 }
 
+
 /* RESPONSIVIDADE */
 
 @media screen and (max-width: 1024px) {
-    .container-secao>div {
+    .container-secao > div, .reverse {
         flex-direction: column;
-    }
-
-    .secao-imagem {
-        width: 100%;
-    }
-
-    .secao-texto {
-        width: 100%;
-    }
-
-    .tabela-container {
-        width: 100%;
     }
     
+    .secao-imagem, .secao-texto, .tabela-container {
+        width: 100%;
+    }
+
+    .container-secao .slogan-destaque {  
+        text-align: center;
+     }
 }
 
-
-
-/* Para telas menores que 768px */
 @media screen and (max-width: 768px) {
-
- 
-    .slogan-destaque {
-        flex-direction: column;
-        text-align: center !important;
-    }
-
-    .secao-conteudo {
-        flex-direction: column;
-        align-items: center;
+    
+    
+    .container-secao > div {
         width: 90%;
-        padding: 20px 0;
-    }
-
-    .container-secao {
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .container-secao>div {
-        width: 90%;
-        flex-direction: column;
-    }
-
-    .reverse {
-        flex-direction: column;
-    }
-
-    .secao-texto {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .secao-texto h1 {
-        font-size: var(--font-size-large);
-        justify-items: center;
-    }
-
-    .secao-imagem {
-        width: 100%;
-    }
-
-    .tabela-container {
-        width: 100%;
-        margin: 15px 0;
-    }
-
-    .tabela-dados {
-        font-size: 1.2rem;
     }
 }
 
-/* Para telas menores que 425px */
 @media screen and (max-width: 425px) {
     main {
         margin-top: 10px;
     }
-
-    .container-secao p {
-        text-align: start;
-    }
-
-    .tabela-dados th, .tabela-dados td {
-        font-size: 18px;
-        padding: 8px;
-    }
-}
-
-/* Para telas menores que 375px */
-@media screen and (max-width: 375px) {
     
-
-    /* Reduz o tamanho das colunas da tabela */
-    .tabela-container {
-        width: 100%;
-        overflow-x: auto; /* Permite rolagem horizontal se necessário */
-    }
-
-    /* Ajusta as bordas da tabela */
-    .tabela-dados {
-        font-size: 14px; /* Reduz a fonte */
-    }
-
-    /* Deixa as linhas da tabela mais compactas */
-    .tabela-dados td, .tabela-dados th {
-        padding: 8px;
-    }
-
-    /* Reduz a largura das colunas para melhorar o layout */
-    .tabela-dados th, .tabela-dados td {
-        text-align: left;
-    }
-
-    /* Aumenta o espaçamento nas tabelas para facilitar a leitura em dispositivos pequenos */
-    .tabela-dados tr {
-        margin-bottom: 5px; /* Espaçamento entre as linhas */
+    .container-secao p, .secao-lista li {
+        font-size: var(--font-size-mobile);
+        text-align: center;
     }
 
     .secao-texto h1 {
-        font-size: 1.6rem;
+        font-size: var(--font-size-medium-large);
     }
 
-    .container-secao p, .secao-lista li {
-        font-size: 18px;
+    .tabela-dados th, .tabela-dados td{
+        font-size: var(--font-size-smallest);
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .tabela-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tabela-dados {
+        font-size: var(--font-size-smallest);
+    }
+
+    .tabela-dados th, .tabela-dados td {
+        padding: 8px;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+
+    .secao-texto h1 {
+        font-size: var(--font-size-medium);
     }
 }
