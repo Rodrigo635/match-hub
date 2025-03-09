@@ -15,14 +15,10 @@
       <div class="logo">
         <a href="index.html">MATCH HUB</a>
       </div>
-      <nav>
+      <nav class="nav">
         
 
-        <a href="cadastro.html">
-          <div class="btn-login">
-            <p>Entrar</p>
-          </div>
-        </a>
+        <a href="cadastro.html" class="btn-login">Entrar</a>
         <!-- Navegação e menu hamburguer -->
         <div class="nav-links">
           <!-- Checkbox para controlar o menu -->
@@ -112,17 +108,52 @@
           <h2>Campeonatos</h2>
         </div><!-- titulo -->
 
+          <input type="checkbox" id="abrir-filtro" class="abrir-filtro filtros-dropdown">
+          <label for="abrir-filtro" class="abrir">
+            <img src="static/icons/filtros.png" alt="Filtro">
+          </label>
+          <label for="abrir-filtro" class="fechar">
+            X
+          </label>
+
         <div class="filtros">
           <ul>
-            <li>Jogo<img src="static/icons/arrow_down.png" alt=""></li>
-            <li>Campeonato<img src="static/icons/arrow_down.png" alt=""></li>
-            <li>Data<img src="static/icons/arrow_down.png" alt=""></li>
+            <li>
+              <select class="select" id="jogos" name="jogos">
+                <option value="Jogos" selected disabled>Jogos</option>
+                <option value="Todos">Todos</option>
+                <option value="League of Legends">League of Legends</option>
+                <option value="Valorant">Valorant</option>
+                <option value="Counter-Strike">Counter-Strike</option>
+                <option value="Rainbow Six">Rainbow Six</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="Dota">Dota</option>
+              </select>
+            </li>
+            <li>
+              <select id="campeonatos" name="campeonatos" class="select">
+                <option value="Campeonatos" selected disabled>Campeonatos</option>
+                <option value="Todos">Todos</option>
+                <option value="Champions Valorant">Champions Valorant</option>
+                <option value="Paris Major">Paris Major</option>
+                <option value="Masters">Masters</option>
+                <option value="Fortnite World Cup">Fortnite World Cup</option>
+                <option value="DreamHack Winter">DreamHack Winter</option>
+                <option value="The International">The International</option>
+              </select>
+            </li>
+            <li>
+              <select name="data" id="data" class="select">
+                <option value="Data" selected disabled>Data</option>
+                <option value="Recentes">Mais Recentes</option>
+                <option value="Antigos">Mais Antigos</option>
+              </select>
+            </li>
           </ul>
+          
         </div><!-- filtros -->
 
-        <div class="filtros-dropdown">
-          <img src="static/icons/filtros.png" alt="">
-        </div>
+        
 
       </div><!-- titulo-filtros -->
     </section><!-- conteudo -->
