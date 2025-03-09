@@ -5,6 +5,14 @@
   --cor-cinza: #bfbfbf;
   --cor-cinzaEscuro: #4c4c4c;
   --cor-bg: #1e1e1e;
+
+  /* Font-size */
+  --font-size-nav-links: 1.1rem;
+  --font-size-logo: 1.5rem;
+  --font-size-footer-links: 1.2rem;
+
+  --font-size-small: 1rem;
+  --font-size-smallest: 0.9rem;
 }
 
 /* RESET CSS */
@@ -52,7 +60,7 @@ nav {
 }
 
 .logo a {
-  font-size: 1.5rem;
+  font-size: var(--font-size-logo);
   font-weight: bold;
   color: var(--cor-branco);
   flex-shrink: 0;
@@ -93,7 +101,7 @@ nav > a {
   border: 2px solid var(--cor-cinza);
   background-color: transparent;
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: var(--font-size-small);
   transition: 0.3s ease;
   padding-left: 35px;
   background-image: url("static/icons/search.png");
@@ -112,7 +120,7 @@ nav > a {
   position: relative;
   text-decoration: none;
   color: var(--cor-cinza);
-  font-size: 1.1rem;
+  font-size: var(--font-size-nav-links);
   transition: 0.2s ease;
 }
 
@@ -232,7 +240,7 @@ footer {
 
 .footer-links a {
   color: var(--cor-branco);
-  font-size: 1.2rem;
+  font-size: var(--font-size-footer-links);
   transition: color 0.3s ease;
 }
 
@@ -331,3 +339,4 @@ header{
     text-align: center;
   }
 }
+
