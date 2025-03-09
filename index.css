@@ -247,11 +247,10 @@ footer {
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-header{
-    padding: 10px 10%;
-    height: auto;
-    
-}
+  header{
+      padding: 10px 10%;
+      height: auto;
+  }
 
   .nav {
     flex-wrap: wrap;
