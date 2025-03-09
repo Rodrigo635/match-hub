@@ -38,7 +38,7 @@ header {
   z-index: 999;
 }
 
-nav {
+.nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -66,7 +66,7 @@ nav {
   order: 1;
 }
 
-nav > a {
+.nav > a {
   order: 2;
 }
 
@@ -77,18 +77,15 @@ nav > a {
   align-items: center;
 }
 
+
 .nav-links ul {
   gap: 15px;
   margin-right: 10px;
 }
 
-.nav-links ul li input {
-  width: 100%;
-}
-
 .pesquisa {
   display: flex;
-  width: 13vw;
+  width: 100%;
   padding: 8px 12px;
   border: 2px solid var(--cor-cinza);
   background-color: transparent;
@@ -256,13 +253,13 @@ header{
     
 }
 
-  nav {
+  .nav {
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
   }
 
-  nav > a {
+  .nav > a {
     order: 1;
   }
 
@@ -304,8 +301,8 @@ header{
     background-color: var(--cor-bg);
     position: absolute;
     z-index: 1;
-    top: 103px;
-    right: 0;
+    top: 110px;
+    left: 0;
     width: 100%;
     padding: 10px 0;
     list-style-type: none;
