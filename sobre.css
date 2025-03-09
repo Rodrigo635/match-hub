@@ -16,8 +16,6 @@
     --font-size-large: 2.5rem;
 }
 
-
-
 /* HEADER */
 header {
     background: var(--cor-preto) !important;
@@ -27,8 +25,7 @@ header {
     color: white;
 }
 
-
-/* CONTEUDO */
+/* CONTEÚDO */
 main {
     display: flex;
     flex-direction: column;
@@ -57,7 +54,7 @@ main {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* seçoes */
+/* Seções */
 .container-secao {
     display: flex;
     justify-content: center;
@@ -82,7 +79,6 @@ main {
 .secao-texto {
     width: 50%;
     font-size: var(--font-size-medium);
-
 }
 
 .container-secao h1 {
@@ -118,6 +114,7 @@ main {
     filter: brightness(1);
 }
 
+/* Tabela */
 .tabela-container {
     width: 50%;
 }
@@ -126,7 +123,6 @@ main {
     width: 100%;
     border-collapse: collapse;
     background-color: var(--cor-cinzaEscuro);
-
 }
 
 .tabela-dados tr:hover {
@@ -148,10 +144,33 @@ main {
     font-size: var(--font-size-small);
 }
 
-
 /* RESPONSIVIDADE */
-@media screen and (max-width: 820px) {
 
+@media screen and (max-width: 1024px) {
+    .container-secao>div {
+        flex-direction: column;
+    }
+
+    .secao-imagem {
+        width: 100%;
+    }
+
+    .secao-texto {
+        width: 100%;
+    }
+
+    .tabela-container {
+        width: 100%;
+    }
+    
+}
+
+
+
+/* Para telas menores que 768px */
+@media screen and (max-width: 768px) {
+
+ 
     .slogan-destaque {
         flex-direction: column;
         text-align: center !important;
@@ -167,11 +186,11 @@ main {
     .container-secao {
         flex-direction: column;
         align-items: center;
-        width: 100%;
+
     }
 
     .container-secao>div {
-        width: 100%;
+        width: 90%;
         flex-direction: column;
     }
 
@@ -201,5 +220,59 @@ main {
     .tabela-dados {
         font-size: 1.2rem;
     }
+}
 
+/* Para telas menores que 425px */
+@media screen and (max-width: 425px) {
+    main {
+        margin-top: 10px;
+    }
+
+    .container-secao p {
+        text-align: start;
+    }
+
+    .tabela-dados th, .tabela-dados td {
+        font-size: 18px;
+        padding: 8px;
+    }
+}
+
+/* Para telas menores que 375px */
+@media screen and (max-width: 375px) {
+    
+
+    /* Reduz o tamanho das colunas da tabela */
+    .tabela-container {
+        width: 100%;
+        overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    }
+
+    /* Ajusta as bordas da tabela */
+    .tabela-dados {
+        font-size: 14px; /* Reduz a fonte */
+    }
+
+    /* Deixa as linhas da tabela mais compactas */
+    .tabela-dados td, .tabela-dados th {
+        padding: 8px;
+    }
+
+    /* Reduz a largura das colunas para melhorar o layout */
+    .tabela-dados th, .tabela-dados td {
+        text-align: left;
+    }
+
+    /* Aumenta o espaçamento nas tabelas para facilitar a leitura em dispositivos pequenos */
+    .tabela-dados tr {
+        margin-bottom: 5px; /* Espaçamento entre as linhas */
+    }
+
+    .secao-texto h1 {
+        font-size: 1.6rem;
+    }
+
+    .container-secao p, .secao-lista li {
+        font-size: 18px;
+    }
 }
