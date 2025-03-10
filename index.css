@@ -173,7 +173,7 @@ header {
 /* Estilos para o ícone do menu (hamburger) */
 .menu .hamburger {
   min-width: 40px;
-  min-height: 30px;
+  min-height: 29px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
