@@ -234,7 +234,6 @@ figure img:hover {
   transition-delay: 0.3s;
   transition: all 0.3s ease;
   z-index: 1;
-  margin-right: 30px;
 }
 
 .descricao h4 {
@@ -586,5 +585,12 @@ input:checked + label .image{
   }
   .titulo-filtros {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 320px) {
+  .integrantes__titulo > h1{
+    width: 90%;
+    margin-inline: auto;
   }
 }
