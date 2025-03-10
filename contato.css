@@ -9,6 +9,7 @@
   --cor-bgEscuro: #0f0f0f;
   --cor-azul: #32cccc;
   --cor-verde: #3c9d4c;
+  --cor-vermelho: #ff0000;
 
   /* Font-size */
   --font-size-small: 1.3rem;
@@ -252,6 +253,10 @@ figure img:hover {
   padding-block: 10px;
   font-size: var(--font-size-medium);
   text-align: start;
+}
+
+.card .rm{
+  color: var(--cor-vermelho);
 }
 
 /* Github e Linkedin */
