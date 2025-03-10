@@ -164,9 +164,8 @@ header {
 
 /* Estilos para o ícone do menu (hamburger) */
 .menu .hamburger {
-  width: 40px;
-  height: 30px;
-  margin-left: 20px;
+  min-width: 40px;
+  min-height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -186,6 +185,7 @@ header {
 
 #menu-toggle:checked + label.menu .hamburger span:nth-child(2) {
   opacity: 0;
+  display: none;
 }
 
 #menu-toggle:checked + label.menu .hamburger span:nth-child(3) {
