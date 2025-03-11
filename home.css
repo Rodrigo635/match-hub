@@ -54,7 +54,7 @@
   align-items: flex-end;
   flex-wrap: nowrap;
 }
-
+ 
 .card .row .icon {
   background: var(--cor-branco);
   color: var(--cor-bg);
