@@ -11,10 +11,45 @@
   --cor-verde: #3c9d4c;
   --cor-vermelho: #ff0000;
 
-  /* Font-size */
+  /* Fonte-size */
+
+  /* titulo */
+  --font-size-titulo-mobile: 1.7rem;
+  --font-size-titulo-tablet: 1.9rem;
+  --font-size-titulo-laptop: 2.1rem;
+  --font-size-titulo-pc-menor: 2.3rem;
+  --font-size-titulo-pc: 2.5rem;
+
+  /* paragrafo */
+  --font-size-paragrafo-touch-pc-menor: 1.1rem;
+  --font-size-paragrafo-pc: 1.4rem;
+
+  /* uso derivados(form) */
   --font-size-small: 1.3rem;
-  --font-size-medium: 1.4rem;
-  --font-size-large: 2.5rem;
+}
+
+/* Ajuste titulo, paragrafos e formulario*/
+
+.introducao h1,
+.integrantes__titulo h1,
+.descricao h4,
+.frase__texto h1,
+.form h2 {
+  font-size: var(--font-size-titulo-pc);
+}
+
+.introducao p,
+.frase__texto p,
+.descricao p,
+.form legend {
+  font-size: var(--font-size-paragrafo-pc);
+}
+
+.form textarea::placeholder,
+.form textarea,
+.form input::placeholder,
+.form input {
+  font-size: var(--font-size-small);
 }
 
 /* HEADER */
@@ -61,14 +96,12 @@ main {
 }
 
 .introducao h1 {
-  font-size: var(--font-size-large);
   text-transform: uppercase;
   color: var(--cor-azul);
   text-align: center;
 }
 
 .introducao p {
-  font-size: var(--font-size-medium);
   line-height: 2rem;
   text-align: justify;
 }
@@ -123,7 +156,6 @@ figure img:hover {
   font-style: italic;
   font-family: "Courier New", Courier, monospace;
   text-align: center;
-  font-size: var(--font-size-large);
 }
 
 .frase img {
@@ -144,13 +176,10 @@ figure img:hover {
 .integrantes__titulo > h1 {
   display: block;
   margin-top: 50px;
-  font-size: var(--font-size-large);
   text-transform: uppercase;
   text-align: center;
   color: var(--cor-azul);
 }
-
-
 
 .sobre-nos {
   width: 55%;
@@ -178,9 +207,9 @@ figure img:hover {
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
-.row{
+.row {
   margin-top: 5px;
-  margin-left: 1.50px;
+  margin-left: 1.5px;
 }
 
 .card::after {
@@ -199,7 +228,6 @@ figure img:hover {
   display: flex;
   flex-wrap: nowrap;
   padding: 5px;
-  
 }
 
 .card:hover {
@@ -237,7 +265,6 @@ figure img:hover {
 }
 
 .descricao h4 {
-  font-size: var(--font-size-large);
   padding-block: 5px;
   text-transform: uppercase;
   color: var(--cor-azul);
@@ -250,11 +277,10 @@ figure img:hover {
 .descricao p {
   color: var(--cor-branco);
   padding-block: 10px;
-  font-size: var(--font-size-medium);
   text-align: start;
 }
 
-.card .rm{
+.card .rm {
   color: var(--cor-vermelho);
 }
 
@@ -263,7 +289,6 @@ figure img:hover {
   display: flex;
   justify-content: space-evenly;
   margin-top: 10px;
- 
 }
 
 .redes-sociais p {
@@ -297,7 +322,6 @@ figure img:hover {
   object-position: center;
 }
 
-
 input {
   display: none;
 }
@@ -317,7 +341,7 @@ input:checked + label .descricao {
   cursor: default;
 }
 
-input:checked + label .image{
+input:checked + label .image {
   display: flex !important;
   transform: translateY(0) !important;
 }
@@ -344,7 +368,6 @@ input:checked + label .image{
 }
 
 .form h2 {
-  font-size: var(--font-size-large);
   text-transform: uppercase;
   color: var(--cor-azul);
   text-align: center;
@@ -352,12 +375,12 @@ input:checked + label .image{
 
 .form fieldset {
   padding: 10px;
+  margin-top: 10px;
   border: none;
   width: 100%;
 }
 
 .form legend {
-  font-size: var(--font-size-medium);
   color: var(--cor-branco);
 }
 
@@ -371,11 +394,6 @@ input:checked + label .image{
   border: 1px solid var(--cor-azul);
   border-radius: 5px;
   color: var(--cor-branco);
-  font-size: var(--font-size-small);
-}
-
-.form input::placeholder {
-  font-size: var(--font-size-small);
 }
 
 .form textarea {
@@ -390,11 +408,6 @@ input:checked + label .image{
   border-radius: 5px;
   resize: none;
   color: var(--cor-branco);
-  font-size: var(--font-size-small);
-}
-
-.form textarea::placeholder {
-  font-size: var(--font-size-small);
 }
 
 .form .button-submit {
@@ -415,21 +428,28 @@ input:checked + label .image{
   color: var(--cor-azul);
 }
 
-
-
-
-
-
 /* MEDIA QUERIES */
 @media (max-width: 1440px) {
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-pc-menor);
+  }
+
+  .frase__texto p,
+  .descricao p,
+  .introducao p {
+    font-size: var(--font-size-paragrafo-touch-pc-menor);
+  }
+
   .sobre-nos {
     width: 70%;
   }
 
-  .row{
+  .row {
     margin-left: 5.5px;
   }
-
 }
 
 @media (max-width: 1150px) {
@@ -438,7 +458,7 @@ input:checked + label .image{
     flex-direction: column;
   }
 
-  .row{
+  .row {
     margin-left: 1.5px;
   }
   .quem-somos .introducao {
@@ -460,10 +480,6 @@ input:checked + label .image{
     width: 100%;
   }
 
-  .frase__texto h1 {
-    font-size: var(--font-size-large);
-  }
-
   .frase__imagem {
     width: 100%;
   }
@@ -479,7 +495,6 @@ input:checked + label .image{
   .row {
     text-align: center;
     margin-top: 1.5px;
-    
   }
 
   .card {
@@ -534,8 +549,52 @@ input:checked + label .image{
     width: 100%;
   }
 }
+@media (max-width: 1024px) {
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-laptop);
+  }
 
+  .frase__texto p,
+  .descricao p,
+  .introducao p {
+    font-size: var(--font-size-paragrafo-touch-pc-menor);
+  }
+
+  .quem-somos {
+    padding-block: 20px;
+  }
+
+  .introducao {
+    padding-block: 0;
+  }
+
+  .introducao p {
+    text-align: start;
+  }
+
+  .sobre-nos {
+    padding-block: 20px;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .descricao p {
+    text-align: center;
+  }
+}
 @media (max-width: 768px) {
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-tablet);
+  }
+
   .descricao h4 {
     margin-top: 15px;
   }
@@ -579,7 +638,14 @@ input:checked + label .image{
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 425px) {
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-mobile);
+  }
+
   .descricao p {
     padding: 10px;
   }
@@ -589,7 +655,7 @@ input:checked + label .image{
 }
 
 @media (max-width: 320px) {
-  .integrantes__titulo > h1{
+  .integrantes__titulo > h1 {
     width: 90%;
     margin-inline: auto;
   }
