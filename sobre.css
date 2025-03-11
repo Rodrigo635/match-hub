@@ -11,7 +11,7 @@
   --cor-verde: #3c9d4c;
 
   /* Fonte-size */
-
+  
   /* titulo */
   --font-size-titulo-mobile: 2rem;
   --font-size-titulo-tablet: 2.8rem;
@@ -46,7 +46,6 @@ main {
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin-block: 40px;
 }
 
 /* Seções */
@@ -71,11 +70,11 @@ main {
   width: 100%;
   min-height: 500px;
   color: var(--cor-branco);
-  padding: 20px;
 }
 
 .container-secao > div {
-  width: 80%;
+  width: 100%;
+  padding: 50px 10%;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -99,7 +98,6 @@ main {
 }
 
 .container-secao p {
-  text-align: justify;
   line-height: 2rem;
   margin-bottom: 20px;
 }
