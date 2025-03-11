@@ -74,12 +74,12 @@ main {
 .quem-somos {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: auto;
   background-color: var(--cor-bg);
   color: var(--cor-branco);
   gap: 30px;
-  padding: 50px 0px;
+  padding: 50px 10%;
 }
 
 /* INTRODUÇÃO */
@@ -130,22 +130,24 @@ figure img:hover {
 .frase {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: auto;
   background-color: var(--cor-cinzaEscuro);
   color: var(--cor-branco);
   gap: 20px;
-  padding: 20px;
+  padding: 50px 10%;
 }
 
 .frase > div {
-  width: 80%;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .frase__texto {
-  width: 50%;
+  width: 40%;
 }
 
 .frase__imagem {
@@ -182,12 +184,13 @@ figure img:hover {
 }
 
 .sobre-nos {
-  width: 55%;
-  padding: 50px 15px;
+  min-width: 100%;
+  padding: 50px 10%;
   gap: 20px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 }
 
@@ -227,6 +230,7 @@ figure img:hover {
   color: var(--cor-branco);
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
   padding: 5px;
 }
 
@@ -240,13 +244,15 @@ figure img:hover {
   border-color: var(--cor-branco);
 }
 
-.card .row .icon {
+.card .icon {
   display: flex;
+  color: var(--cor-branco);
   align-items: center;
   justify-content: center;
   width: 30px;
   height: 30px;
-  padding: 15px;
+  margin: 10px auto;
+  padding: 20px;
   border-radius: 50%;
   border: 2px solid var(--cor-azul);
   transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
@@ -454,7 +460,7 @@ input:checked + label .image {
 
 @media (max-width: 1150px) {
   .quem-somos {
-    width: 80%;
+    width: 100%;
     flex-direction: column;
   }
 
@@ -498,13 +504,17 @@ input:checked + label .image {
   }
 
   .card {
-    width: 80%;
+    width: 100%;
     height: 60px;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
     padding: 10px;
     transition: 0.1s cubic-bezier(0.28, -0.03, 0, 0.99);
+  }
+
+  .icon{
+    position: absolute;
   }
 
   .card .row {
@@ -516,6 +526,8 @@ input:checked + label .image {
     width: 100%;
     display: none;
   }
+
+  
 
   input:checked + label.card {
     height: 100%;
