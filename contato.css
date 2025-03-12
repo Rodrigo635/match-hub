@@ -78,7 +78,7 @@ main {
   height: auto;
   background-color: var(--cor-bg);
   color: var(--cor-branco);
-  gap: 30px;
+  gap: 60px;
   padding: 50px 10%;
 }
 
@@ -513,7 +513,7 @@ input:checked + label .image {
     transition: 0.1s cubic-bezier(0.28, -0.03, 0, 0.99);
   }
 
-  .icon{
+  .icon {
     position: absolute;
   }
 
@@ -526,8 +526,6 @@ input:checked + label .image {
     width: 100%;
     display: none;
   }
-
-  
 
   input:checked + label.card {
     height: 100%;
