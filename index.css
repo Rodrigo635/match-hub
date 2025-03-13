@@ -62,11 +62,11 @@ header {
   font-size: var(--font-size-logo);
   font-weight: bold;
   color: var(--cor-branco);
-  flex-shrink: 0;
+  transition: .5s ease;
 }
 
-.logo:hover {
-  color: var(--cor-branco);
+.logo a:hover {
+  color: var(--cor-cinza);
 }
 
 .nav-links {
