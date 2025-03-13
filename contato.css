@@ -313,7 +313,7 @@ figure img:hover {
 
 .card .row .image {
   display: none;
-  width: 40%;
+  width: 340px;
   height: 340px;
   border-radius: 50%;
   border: 2px solid var(--cor-branco);
