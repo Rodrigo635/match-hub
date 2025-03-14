@@ -67,32 +67,30 @@ main {
   flex-direction: column;
   width: 100%;
   height: auto;
+  padding-bottom: 60px;
   justify-content: center;
   align-items: center;
 }
 
 .quem-somos {
   display: flex;
-  align-items: center;
   width: 100%;
   height: auto;
   background-color: var(--cor-bg);
   color: var(--cor-branco);
   gap: 60px;
-  padding: 50px 10%;
+  padding: 60px 10%;
 }
 
 /* INTRODUÇÃO */
 .introducao {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 80%;
   height: auto;
   background-color: var(--cor-bg);
   color: var(--cor-branco);
-  gap: 20px;
-  padding-block: 50px;
+  gap: 20px; 
 }
 
 .introducao h1 {
@@ -136,7 +134,7 @@ figure img:hover {
   background-color: var(--cor-cinzaEscuro);
   color: var(--cor-branco);
   gap: 20px;
-  padding: 50px 10%;
+  padding: 60px 10%;
 }
 
 .frase > div {
@@ -185,7 +183,7 @@ figure img:hover {
 
 .sobre-nos {
   min-width: 100%;
-  padding: 50px 10%;
+  padding: 60px 10%;
   gap: 20px;
   display: flex;
   flex-wrap: nowrap;
@@ -355,7 +353,7 @@ input:checked + label .image {
 /* FORMULÁRIO DE CONTATO */
 .contate-nos {
   width: 80%;
-  padding: 50px 0px;
+  padding: 60px 0px;
   display: flex;
   align-items: center;
   margin: 0 auto;
@@ -375,19 +373,26 @@ input:checked + label .image {
 
 .form h2 {
   text-transform: uppercase;
-  color: var(--cor-azul);
+  color: var(--cor-branco);
   text-align: center;
+  font-size: 1.8rem;
 }
 
 .form fieldset {
-  padding: 10px;
+  padding: 0px 0px 0px 10px;
   margin-top: 10px;
-  border: none;
   width: 100%;
+  border-radius: 5px;
 }
 
 .form legend {
   color: var(--cor-branco);
+  padding: 0px 4px;
+}
+
+.form label,
+.form textarea{
+  font-size: 1rem;
 }
 
 .form input {
@@ -395,10 +400,9 @@ input:checked + label .image {
   height: auto;
   display: block;
   background-color: transparent;
-  padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid var(--cor-azul);
-  border-radius: 5px;
+  padding: 5px 0;
+  border: none;
   color: var(--cor-branco);
 }
 
@@ -406,32 +410,41 @@ input:checked + label .image {
   width: 100%;
   display: block;
   background-color: transparent;
-  padding: 10px;
   height: 200px;
   width: 100%;
   margin-bottom: 10px;
-  border: 1px solid var(--cor-azul);
+  border:  0px solid transparent;
   border-radius: 5px;
   resize: none;
   color: var(--cor-branco);
+  padding: 5px 0;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
 }
 
 .form .button-submit {
-  color: var(--cor-cinzaEscuro);
-  background-color: var(--cor-azul);
-  padding: 10px 30px;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  font-size: var(--font-size-small);
-  transition: 0.5s;
+  align-items: center;
+  padding: 9px 20px;
+  background-color: var(--cor-branco);
+  color: var(--cor-preto);
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   cursor: pointer;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .form .button-submit:hover {
-  border: 2px solid var(--cor-azul);
+  border: 2px solid var(--cor-branco);
   background-color: transparent;
-  color: var(--cor-azul);
+  color: var(--cor-branco);
 }
 
 /* MEDIA QUERIES */
@@ -458,7 +471,7 @@ input:checked + label .image {
   }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1024px) {
   .quem-somos {
     width: 100%;
     flex-direction: column;
