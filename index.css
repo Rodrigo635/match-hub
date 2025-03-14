@@ -62,11 +62,11 @@ header {
   font-size: var(--font-size-logo);
   font-weight: bold;
   color: var(--cor-branco);
-  flex-shrink: 0;
+  transition: .5s ease;
 }
 
-.logo:hover {
-  color: var(--cor-branco);
+.logo a:hover {
+  color: var(--cor-cinza);
 }
 
 .nav-links {
@@ -112,7 +112,8 @@ header {
   color: var(--cor-cinza);
 }
 
-.nav-links a {
+.nav-links a,
+.footer-links a {
   position: relative;
   text-decoration: none;
   color: var(--cor-cinza);
@@ -124,7 +125,8 @@ header {
   color: var(--cor-branco);
 }
 
-.nav-links ul a:after {
+.nav-links ul a:after,
+.footer-links ul a:after {
   content: "";
   position: absolute;
   background-color: var(--cor-branco);
@@ -135,7 +137,8 @@ header {
   transition: 0.2s ease;
 }
 
-.nav-links ul a:hover:after {
+.nav-links ul a:hover:after,
+.footer-links ul a:hover:after {
   width: 100%;
 }
 
@@ -143,18 +146,22 @@ header {
   display: flex;
   padding: 9px 20px;
   margin-left: 15px;
-  background-color: var(--cor-branco);
-  color: var(--cor-preto);
+  background-color: var(--cor-branco) !important;
+  color: var(--cor-preto) !important;
   border-radius: 10px;
   transition: 0.2s ease;
   border: 2px solid transparent;
   box-sizing: border-box;
 }
 
+.btn-login::after{
+  height: 0px !important;
+}
+
 .btn-login:hover {
-  background-color: var(--cor-bg);
-  border-color: var(--cor-branco);
-  color: var(--cor-branco);
+  background-color: var(--cor-bg) !important;
+  border-color: var(--cor-branco) !important;
+  color: var(--cor-branco) !important;
 }
 
 /* MENU HAMBURGUER */
@@ -253,7 +260,7 @@ footer {
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   header{
       padding: 10px 10%;
       height: auto;
@@ -276,6 +283,11 @@ footer {
   }
 
   /* Oculta os links de navegação e o botão de login por padrão */
+  .nav-links{
+    justify-content: flex-end;
+    width: 100%;
+  }
+
   .nav-links ul {
     display: none;
   }
@@ -284,20 +296,15 @@ footer {
     padding: 5px;
   }
 
-  .nav-links .btn-login {
-    display: none;
-  }
-
   /* Exibe o ícone do menu */
   .menu {
     display: flex;
     cursor: pointer;
-    justify-content: flex-end;
   }
 
   .hamburger {
     cursor: pointer;
-    z-index: 1;
+    z-index: 20;
   }
 
   /* Quando o checkbox estiver marcado, exibe o menu */
@@ -306,8 +313,8 @@ footer {
     flex-direction: column;
     background-color: var(--cor-bg);
     position: absolute;
-    z-index: 1;
-    top: 110px;
+    z-index: 20;
+    top: 75px;
     left: 0;
     width: 100%;
     padding: 10px 0;

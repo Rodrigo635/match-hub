@@ -46,6 +46,7 @@ main {
   width: 100%;
   justify-content: center;
   align-items: center;
+  padding-bottom: 60px;
 }
 
 /* Seções */
@@ -74,12 +75,12 @@ main {
 
 .container-secao > div {
   width: 100%;
-  padding: 50px 10%;
+  padding: 60px 10%;
   display: flex;
   align-items: center;
   gap: 40px;
 }
-
+ 
 .secao-imagem,
 .secao-texto {
   width: 50%;
@@ -87,7 +88,6 @@ main {
 
 .container-secao h1 {
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
   font-size: var(--font-size-titulo-pc);
   color: var(--cor-azul);
   margin-bottom: 20px;
