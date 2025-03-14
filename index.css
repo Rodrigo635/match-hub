@@ -293,7 +293,24 @@ footer {
   }
 
   .nav-links ul li{
-    padding: 5px;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links .btn-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links ul li a{
+    width: 100%;
+    
+    margin: 0 !important; 
+    display: flex;
+    justify-content: center;
   }
 
   /* Exibe o ícone do menu */
@@ -316,6 +333,7 @@ footer {
     z-index: 20;
     top: 75px;
     left: 0;
+    justify-content: center;
     width: 100%;
     padding: 10px 0;
     list-style-type: none;
