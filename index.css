@@ -3,16 +3,40 @@
   --cor-branco: #ffffff;
   --cor-preto: #000;
   --cor-cinza: #bfbfbf;
-  --cor-cinzaEscuro: #4c4c4c;
+  --cor-cinzaEscuro: #222222;
+
   --cor-bg: #1e1e1e;
+  --cor-bgEscuro: #0f0f0f;
+  
+  --cor-azul: #32cccc;
+  --cor-verde: #3c9d4c;
+  --cor-vermelho: #ff0000;
+
+  --cor-cinzaTexto: #9d9d9d;
+  
+
 
   /* Font-size */
   --font-size-nav-links: 1.1rem;
   --font-size-logo: 1.5rem;
   --font-size-footer-links: 1.2rem;
 
+  /* titulo */
+  --font-size-titulo-mobile: 2rem;
+  --font-size-titulo-tablet: 2.8rem;
+  --font-size-titulo-laptop: 3.5rem;
+  --font-size-titulo-pc-menor: 2.3rem;
+  --font-size-titulo-pc: 3.7rem;
+
+  /* paragrafo */
+  --font-size-paragrafo-touch-pc-menor: 1.1rem;
+  --font-size-paragrafo-pc: 1.4rem;
+
+  /* uso derivados(form) */
   --font-size-small: 1rem;
-  --font-size-smallest: 0.9rem;
+
+    /* uso derivado(table) */
+    --font-size-tabela: 1.2rem;
 }
 
 /* RESET CSS */
