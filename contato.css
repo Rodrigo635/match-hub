@@ -484,6 +484,10 @@ input:checked + label .image {
     width: 100%;
   }
 
+  .quem-somos figure{
+    padding-top: 60px;
+  }
+
   .frase {
     flex-direction: column;
     width: 100%;
