@@ -1,21 +1,27 @@
-/* VARIÁVEIS */
-:root {
-  --cor-branco: #ffffff;
-  --cor-preto: #000;
-  --cor-cinza: #bfbfbf;
-  --cor-cinzaTexto: #9d9d9d;
-  --cor-cinzaEscuro: #222222;
-  --cor-bg: #1e1e1e;
-  --cor-bgEscuro: #0f0f0f;
-  --cor-azul: #32cccc;
-  --cor-verde: #3c9d4c;
-  --cor-vermelho: #ff0000;
-
-  /* Font-size */
-  --font-size-small: 1.3rem;
-  --font-size-medium: 1.4rem;
-  --font-size-large: 2.5rem;
+/* Ajuste titulo, paragrafos e formulario*/
+.introducao h1,
+.integrantes__titulo h1,
+.descricao h4,
+.frase__texto h1,
+.form h2 {
+  font-size: var(--font-size-titulo-pc);
 }
+
+.introducao p,
+.frase__texto p,
+.descricao p,
+.form legend {
+  font-size: var(--font-size-paragrafo-pc);
+}
+
+.form textarea::placeholder,
+.form textarea,
+.form input::placeholder,
+.form input {
+  font-size: var(--font-size-small);
+}
+
+
 
 /* HEADER */
 header {
@@ -23,8 +29,10 @@ header {
 }
 
 .nav-links li:nth-child(4) a {
-  color: white;
+  color: var(--cor-azul);
 }
+
+
 
 /* CONTEUDO */
 main {
@@ -47,24 +55,20 @@ main {
   padding: 50px 0px;
 }
 
-/* INTRODUÇÃO */
+/* introducao */
 .introducao {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80%;
   height: auto;
-  background-color: var(--cor-bg);
   color: var(--cor-branco);
   gap: 20px;
   padding-block: 50px;
 }
 
 .introducao h1 {
-  font-size: var(--font-size-large);
-  text-transform: uppercase;
-  color: var(--cor-azul);
-  text-align: center;
+  color: var(--cor-branco);
 }
 
 .introducao p {
@@ -73,7 +77,7 @@ main {
   text-align: justify;
 }
 
-/* FIGURA */
+/* figura */
 figure {
   width: 100%;
 }
@@ -93,7 +97,7 @@ figure img:hover {
   filter: brightness(1);
 }
 
-/* FRASE ESPECIAL */
+/* frase especial */
 .frase {
   display: flex;
   justify-content: center;
@@ -140,14 +144,12 @@ figure img:hover {
   filter: brightness(1);
 }
 
-/* SOBRE NÓS */
+/* sobre nós */
 .integrantes__titulo > h1 {
   display: block;
   margin-top: 50px;
-  font-size: var(--font-size-large);
-  text-transform: uppercase;
   text-align: center;
-  color: var(--cor-azul);
+  color: var(--cor-branco);
 }
 
 
@@ -322,7 +324,7 @@ input:checked + label .image{
   transform: translateY(0) !important;
 }
 
-/* FORMULÁRIO DE CONTATO */
+/* formulário de contato */
 .contate-nos {
   width: 80%;
   padding: 50px 0px;
@@ -336,7 +338,7 @@ input:checked + label .image{
   width: 60%;
   background-color: var(--cor-cinzaEscuro);
   border-radius: 10px;
-  padding: 30px;
+  padding: 60px;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
@@ -344,10 +346,10 @@ input:checked + label .image{
 }
 
 .form h2 {
-  font-size: var(--font-size-large);
-  text-transform: uppercase;
-  color: var(--cor-azul);
+  color: var(--cor-branco);
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .form fieldset {
@@ -398,10 +400,17 @@ input:checked + label .image{
 }
 
 .form .button-submit {
-  color: var(--cor-cinzaEscuro);
+  align-items: center;
+  padding: 9px 20px;
   background-color: var(--cor-azul);
-  padding: 10px 30px;
-  border-radius: 5px;
+  color: var(--cor-branco);
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1.1rem;
   text-align: center;
   text-decoration: none;
   font-size: var(--font-size-small);
@@ -417,10 +426,7 @@ input:checked + label .image{
 
 
 
-
-
-
-/* MEDIA QUERIES */
+/* RESPONSIVIDADE */
 @media (max-width: 1440px) {
   .sobre-nos {
     width: 70%;
@@ -432,7 +438,11 @@ input:checked + label .image{
 
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1024px) {
+  img {
+    filter: brightness(1) !important;
+  }
+
   .quem-somos {
     width: 80%;
     flex-direction: column;
@@ -532,6 +542,46 @@ input:checked + label .image{
 
   .form {
     width: 100%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-laptop);
+  }
+
+  .frase__texto p,
+  .descricao p,
+  .introducao p {
+    font-size: var(--font-size-paragrafo-touch-pc-menor);
+  }
+
+  .quem-somos {
+    padding-block: 20px;
+  }
+
+  .introducao {
+    padding-block: 0;
+  }
+
+  .introducao p {
+    text-align: start;
+  }
+
+  .sobre-nos {
+    padding-block: 20px;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .descricao p {
+    text-align: center;
   }
 }
 
