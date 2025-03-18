@@ -1,7 +1,9 @@
 /* HEADER */
 .nav-links li:nth-child(2) a {
-  color: white;
+  color: var(--cor-azul);
 }
+
+
 
 /* BANNER */
 .banner {
@@ -135,7 +137,9 @@ input:checked + label .descricao {
   background-image: url("static/img/img4.jpg");
 }
 
-/* CONTEUDO ROW TITULO */
+
+
+/* CONTAINER FILTROS */
 .conteudo {
   display: flex;
   width: 100%;
@@ -181,11 +185,19 @@ input:checked + label .descricao {
   background-color: transparent;
   font-size: 1rem;
   font-weight: bold;
-  color: var(--cor-branco);
+  color: var(--cor-bg);
+  background-color: var(--cor-branco);
   padding: 5px 26px 5px 13px;
   border: 2px solid var(--cor-branco);
+  box-sizing: border-box;
   border-radius: 15px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.filtros .select:hover {
+  background-color: var(--cor-bg);
+  color: var(--cor-branco);
 }
 
 .select:hover::backdrop {
@@ -203,6 +215,8 @@ input:checked + label .descricao {
   display: none;
   cursor: pointer;
 }
+
+
 
 /* CONTEUDO BLOCOS */
 .blocos {
@@ -232,6 +246,8 @@ input:checked + label .descricao {
 .card-conteudo:hover {
   transform: translateY(-10px);
 }
+
+
 
 /* RESPONSIVIDADE */
 @media (max-width: 1200px) {
@@ -313,6 +329,7 @@ input:checked + label .descricao {
     background-position: center;
   }
 
+  /* titulo e filtros */
   .titulo-filtros {
     display: flex;
     flex-direction: column;

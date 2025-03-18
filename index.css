@@ -1,20 +1,29 @@
 /* VARIAVEIS */
 :root {
-  --cor-branco: #ffffff;
+  /* Cores */
+  --cor-branco: #fff;
   --cor-preto: #000;
   --cor-cinza: #bfbfbf;
-  --cor-cinzaEscuro: #222222;
+  --cor-cinzaEscuro: #222;  
+  --cor-cinzaTexto: #9d9d9d;
+
 
   --cor-bg: #1e1e1e;
   --cor-bgEscuro: #0f0f0f;
+  --cor-azul-bg: #112a53;
   
-  --cor-azul: #32cccc;
+  --cor-azul: #3a87ff;
+  --cor-azul2: #2a63bf;
   --cor-verde: #3c9d4c;
   --cor-vermelho: #ff0000;
 
   --cor-cinzaTexto: #9d9d9d;
   
 
+  
+
+  --cor-verde: #3c9d4c;
+  --cor-vermelho: #ff0000;
 
   /* Font-size */
   --font-size-nav-links: 1.1rem;
@@ -39,6 +48,8 @@
     --font-size-tabela: 1.2rem;
 }
 
+
+
 /* RESET CSS */
 * {
   margin: 0;
@@ -47,15 +58,19 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 /* ESTILOS GERAIS */
 a {
   text-decoration: none;
-  color: black;
+  color: var(--cor-cinzaEscuro);
 }
 
 body {
   background-color: var(--cor-bg);
 }
+
+
 
 /* HEADER */
 header {
@@ -89,10 +104,25 @@ header {
   transition: .5s ease;
 }
 
-.logo a:hover {
-  color: var(--cor-cinza);
+.logo a > span{
+  color: var(--cor-azul);
 }
 
+.logo a:hover {
+  display: block;
+  scale: 1.05;
+}
+
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* nav */
 .nav-links {
   order: 1;
 }
@@ -146,14 +176,14 @@ header {
 }
 
 .nav-links a:hover {
-  color: var(--cor-branco);
+  color: var(--cor-azul);
 }
 
 .nav-links ul a:after,
 .footer-links ul a:after {
   content: "";
   position: absolute;
-  background-color: var(--cor-branco);
+  background-color: var(--cor-azul);
   height: 2px;
   width: 0;
   left: 0;
@@ -170,8 +200,8 @@ header {
   display: flex;
   padding: 9px 20px;
   margin-left: 15px;
-  background-color: var(--cor-branco) !important;
-  color: var(--cor-preto) !important;
+  background-color: var(--cor-azul) !important;
+  color: var(--cor-branco) !important;
   border-radius: 10px;
   transition: 0.2s ease;
   border: 2px solid transparent;
@@ -184,9 +214,12 @@ header {
 
 .btn-login:hover {
   background-color: var(--cor-bg) !important;
-  border-color: var(--cor-branco) !important;
-  color: var(--cor-branco) !important;
+  border-color: var(--cor-azul) !important;
+  color: var(--cor-azul) !important;
+  scale: 1.1;
 }
+
+
 
 /* MENU HAMBURGUER */
 .menu {
@@ -229,6 +262,8 @@ header {
 #menu-toggle:checked + label.menu .hamburger span:nth-child(3) {
   transform: rotate(-45deg) translate(8px, -9px);
 }
+
+
 
 /* FOOTER */
 footer {
@@ -283,6 +318,8 @@ footer {
   font-size: 0.9rem;
 }
 
+
+
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   header{
@@ -291,21 +328,9 @@ footer {
   }
 
   .nav {
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .nav > a {
-    order: 1;
-  }
-
-  .logo {
-    width: 100%;
-    display: flex;
     justify-content: center;
   }
-
+  
   /* Oculta os links de navegação e o botão de login por padrão */
   .nav-links{
     justify-content: flex-end;
@@ -355,7 +380,7 @@ footer {
     background-color: var(--cor-bg);
     position: absolute;
     z-index: 20;
-    top: 75px;
+    top: 49px;
     left: 0;
     justify-content: center;
     width: 100%;

@@ -3,6 +3,8 @@
     background: var(--cor-preto) !important;
   }
   
+
+
   /* CONTEUDO */
   main {
     display: flex;
@@ -103,6 +105,8 @@
     margin-bottom: 40px;
   }
   
+
+
   /* RESPONSIVIDADE */
   @media screen and (max-width: 768px) {
     main {
