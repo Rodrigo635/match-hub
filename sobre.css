@@ -312,9 +312,7 @@ main {
 }
 
 @media screen and (max-width: 425px) {
-    main {
-        margin-top: 10px;
-    }
+  
     
     .container-secao p, .secao-lista li {
         font-size: var(--font-size-mobile);
