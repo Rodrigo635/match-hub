@@ -32,6 +32,7 @@
 
   /* titulo */
   --font-size-titulo-mobile: 2rem;
+  --font-size-subtitulo-mobile: 1.4rem;
   --font-size-titulo-tablet: 2.8rem;
   --font-size-titulo-laptop: 3.5rem;
   --font-size-titulo-pc-menor: 2.3rem;
@@ -45,7 +46,8 @@
   --font-size-small: 1rem;
 
     /* uso derivado(table) */
-    --font-size-tabela: 1.2rem;
+    --font-size-tabela-mobile: 0.85rem;
+    --font-size-tabela-pc: 1.2rem;
 }
 
 
@@ -323,7 +325,7 @@ footer {
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   header{
-      padding: 10px 10%;
+      padding: 20px 10%;
       height: auto;
   }
 
@@ -380,7 +382,7 @@ footer {
     background-color: var(--cor-bg);
     position: absolute;
     z-index: 20;
-    top: 49px;
+    top: 60px;
     left: 0;
     justify-content: center;
     width: 100%;
