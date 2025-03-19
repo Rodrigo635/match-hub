@@ -124,6 +124,10 @@ input:checked + label .descricao {
   transform: translateY(0) !important;
 }
 
+input:checked + label:hover{
+  transform: scale(1);
+}
+
 .card[for="c1"] {
   background-image: url("static/img/img1.jpg");
 }

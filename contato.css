@@ -366,6 +366,10 @@ input:checked + label .image {
   transform: translateY(0) !important;
 }
 
+input:checked + label:hover{
+  transform: scale(1);
+}
+
 /* formulário de contato */
 .contate-nos {
   width: 100%;
