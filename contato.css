@@ -1,9 +1,5 @@
 /* Ajuste titulo, paragrafos e formulario*/
-.introducao h1,
-.integrantes__titulo h1,
-.descricao h4,
-.frase__texto h1,
-.form h2 {
+h1, h2, h4 {
   font-size: var(--font-size-titulo-pc);
 }
 
@@ -20,22 +16,6 @@
 .form input {
   font-size: var(--font-size-small);
 }
-
-.introducao p,
-.frase__texto p,
-.descricao p,
-.form legend {
-  font-size: var(--font-size-paragrafo-pc);
-}
-
-.form textarea::placeholder,
-.form textarea,
-.form input::placeholder,
-.form input {
-  font-size: var(--font-size-small);
-}
-
-
 
 /* HEADER */
 header {
@@ -54,15 +34,16 @@ main {
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding-bottom: 60px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
+.bg-azul {
+  background: var(--gradient-azul);
+}
 
 .imagem-bg {
-  background-image: url('static/img/background-contato.jpg');
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(58, 68, 211, 0.5)), url('static/img/background-contato.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -101,7 +82,7 @@ main {
   background-color: var(--cor-bg);
   color: var(--cor-branco);
   gap: 60px;
-  padding: 60px 10%;
+  padding: 100px 10%;
 }
 
 /* introducao */
@@ -115,8 +96,7 @@ main {
 }
 
 .introducao h1 {
-  text-transform: uppercase;
-  text-align: center;
+  text-align: left;
 }
 
 .introducao p {
@@ -132,12 +112,12 @@ figure {
 figure img {
   width: 100%;
   height: 700px;
-  filter: brightness(0.5);
+  filter: brightness(0.7);
   object-fit: cover;
   object-position: center;
   margin: 0;
   border-radius: 15px;
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 figure img:hover {
@@ -154,7 +134,7 @@ figure img:hover {
   background-color: var(--cor-cinzaEscuro);
   color: var(--cor-branco);
   gap: 20px;
-  padding: 60px 10%;
+  padding: 80px 10%;
 }
 
 .frase > div {
@@ -184,32 +164,45 @@ figure img:hover {
   object-position: center;
   border-radius: 15px;
   margin: 0;
-  filter: brightness(0.5);
-  transition: 0.5s ease-in-out;
+  filter: brightness(0.7);
+  transition: 0.3s ease-in-out;
 }
 
 .frase img:hover {
   filter: brightness(1);
 }
 
-/* sobre nós */
-.integrantes__titulo > h1 {
-  display: block;
-  margin-top: 50px;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--cor-branco);
-}
 
+
+/* sobre nós */
 .sobre-nos {
   min-width: 100%;
-  padding: 60px 10%;
+  padding: 100px 10%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.integrantes_titulo {
+  text-align: center;
+  color: var(--cor-branco);
+  padding: 20px 0px;
+}
+
+
+.cards-sobre-nos {
+  min-width: 100%;
+  padding: 0px 10%;
   gap: 20px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100%; 
 }
 
 .card {
@@ -259,20 +252,24 @@ figure img:hover {
 .card:hover .icon {
   background-color: var(--cor-bg);
   color: var(--cor-branco);
-  border-color: var(--cor-branco);
 }
 
 .card .icon {
   display: flex;
   color: var(--cor-branco);
+  border: 2px solid var(--cor-branco);
+  font-weight: bold;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  box-sizing: border-box;
+  height: 50px;
+  width: 50px;
   margin: 10px auto;
+  font-size: 1.2rem;
   padding: 20px;
   border-radius: 50%;
-  border: 2px solid var(--cor-azul);
+  background-color: var(--cor-branco);
+  color: var(--cor-bg);
   transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
 }
 
@@ -290,7 +287,6 @@ figure img:hover {
 
 .descricao h4 {
   padding-block: 5px;
-  text-transform: uppercase;
   color: var(--cor-azul);
 }
 
@@ -305,13 +301,13 @@ figure img:hover {
 }
 
 .card .rm {
-  color: var(--cor-vermelho);
+  color: var(--cor-rosa);
 }
 
 /* Github e Linkedin */
 .redes-sociais {
   display: flex;
-  justify-content: space-evenly;
+  gap: 20px;
   margin-top: 10px;
 }
 
@@ -372,16 +368,15 @@ input:checked + label .image {
 
 /* formulário de contato */
 .contate-nos {
-  width: 80%;
-  padding: 60px 0px;
+  width: 100%;
+  padding: 90px 0px;
   display: flex;
   align-items: center;
-  margin: 0 auto;
   justify-content: center;
 }
 
 .form {
-  width: 60%;
+  width: 50%;
   background-color: var(--cor-cinzaEscuro);
   border-radius: 10px;
   padding: 60px;
@@ -392,10 +387,9 @@ input:checked + label .image {
 }
 
 .form h2 {
-  text-transform: uppercase;
   color: var(--cor-branco);
   text-align: center;
-  font-size: 1.8rem;
+  padding: 0 0 10px 0;
 }
 
 .form fieldset {
@@ -482,7 +476,7 @@ input:checked + label .image {
     font-size: var(--font-size-paragrafo-touch-pc-menor);
   }
 
-  .sobre-nos {
+  .cards-sobre-nos {
     width: 70%;
   }
 
@@ -527,7 +521,7 @@ input:checked + label .image {
     width: 100%;
   }
 
-  .sobre-nos {
+  .cards-sobre-nos {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -599,16 +593,11 @@ input:checked + label .image {
 }
 
 @media (max-width: 1024px) {
-  .introducao h1,
-  .integrantes__titulo h1,
-  .descricao h4,
-  .frase__texto h1 {
+  h1,h2,h4 {
     font-size: var(--font-size-titulo-laptop);
   }
 
-  .frase__texto p,
-  .descricao p,
-  .introducao p {
+  p{
     font-size: var(--font-size-paragrafo-touch-pc-menor);
   }
 
@@ -624,7 +613,7 @@ input:checked + label .image {
     text-align: start;
   }
 
-  .sobre-nos {
+  .cards-sobre-nos {
     padding-block: 20px;
   }
 
@@ -637,16 +626,11 @@ input:checked + label .image {
   }
 }
 @media (max-width: 1024px) {
-  .introducao h1,
-  .integrantes__titulo h1,
-  .descricao h4,
-  .frase__texto h1 {
+  h1,h2,h4 {
     font-size: var(--font-size-titulo-laptop);
   }
 
-  .frase__texto p,
-  .descricao p,
-  .introducao p {
+  p {
     font-size: var(--font-size-paragrafo-touch-pc-menor);
   }
 
@@ -662,7 +646,7 @@ input:checked + label .image {
     text-align: start;
   }
 
-  .sobre-nos {
+  .cards-sobre-nos {
     padding-block: 20px;
   }
 
@@ -675,10 +659,7 @@ input:checked + label .image {
   }
 }
 @media (max-width: 768px) {
-  .introducao h1,
-  .integrantes__titulo h1,
-  .descricao h4,
-  .frase__texto h1 {
+  h1,h2,h4 {
     font-size: var(--font-size-titulo-tablet);
   }
 
@@ -713,12 +694,18 @@ input:checked + label .image {
   .filtros-dropdown img {
     width: 40px;
   }
+
+  .sobre-nos{
+    padding: 0 5%;
+  }
+
+  .cards-sobre-nos{
+    padding: 0;
+  }
 }
 
 @media (max-width: 600px) {
-  .card-conteudo {
-    width: 100%;
-  }
+ 
 
   .descricao p {
     text-align: center;
