@@ -15,15 +15,12 @@
   --cor-azul: #3a87ff;
   --cor-azul2: #2a63bf;
   --cor-verde: #3c9d4c;
-  --cor-vermelho: #ff0000;
+  --cor-rosa: #ed145b;
 
   --cor-cinzaTexto: #9d9d9d;
-  
 
-  
+  --gradient-azul: linear-gradient(to bottom, var(--cor-azul2), var(--cor-azul-bg));
 
-  --cor-verde: #3c9d4c;
-  --cor-vermelho: #ff0000;
 
   /* Font-size */
   --font-size-nav-links: 1.1rem;
@@ -34,13 +31,15 @@
   --font-size-titulo-mobile: 2rem;
   --font-size-subtitulo-mobile: 1.4rem;
   --font-size-titulo-tablet: 2.8rem;
-  --font-size-titulo-laptop: 3.5rem;
+  --font-size-titulo-laptop: 3rem;
   --font-size-titulo-pc-menor: 2.3rem;
-  --font-size-titulo-pc: 3.7rem;
+  --font-size-titulo-pc: 3.2rem;
+  --font-size-titulo-h2: 2.5rem;
 
   /* paragrafo */
   --font-size-paragrafo-touch-pc-menor: 1.1rem;
   --font-size-paragrafo-pc: 1.4rem;
+  --font-size-paragrafo-pc-menor: 1.2rem;
 
   /* uso derivados(form) */
   --font-size-small: 1rem;
@@ -218,7 +217,7 @@ header {
   background-color: var(--cor-bg) !important;
   border-color: var(--cor-azul) !important;
   color: var(--cor-azul) !important;
-  scale: 1.1;
+  /* scale: 1.1; */
 }
 
 
@@ -309,7 +308,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: var(--cor-branco);
+  color: var(--cor-azul);
 }
 
 .footer-rights {

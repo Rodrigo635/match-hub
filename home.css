@@ -157,8 +157,8 @@ input:checked + label .descricao {
 }
 
 .titulo-filtros h2 {
-  color: var(--cor-azul);
-  font-size: 2.5rem;
+  color: var(--cor-branco);
+  font-size: var(--font-size-titulo-h2);
 }
 
 .fechar,
@@ -225,31 +225,167 @@ input:checked + label .descricao {
   justify-content: space-between;
   width: 80vw;
   margin: 0 auto;
-  margin-bottom: 60px;
 }
 
 .card-conteudo {
   background-color: var(--cor-bg);
-  border: 2px solid var(--cor-branco);
   box-sizing: border-box;
   border-radius: 10px;
   color: var(--cor-branco);
   width: 23%; /* 4 cards por linha */
-  height: 200px;
+  height: auto;
   margin-bottom: 60px;
-  padding: 20px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .card-conteudo:hover {
   transform: translateY(-10px);
 }
 
+.card-conteudo img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+  filter: opacity(0.8);
+  transition: 0.2s ease-in-out;
+}
+
+.card-conteudo img:hover {
+  filter: opacity(1);
+}
+
+.info-jogo {
+  display: flex;
+  padding: 5px 10px 15px 10px;
+  flex-direction: column;
+  text-align: start;
+}
+
+.info-jogo .nome-jogo {
+  font-size: var(--font-size-paragrafo-pc);
+  color: var(--cor-branco);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.nome-campeonato {
+  color: var(--cor-branco);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ver-mais {
+  display: flex;
+  color: var(--cor-azul) !important;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+  margin-bottom: 60px;
+}
+
+.ver-mais:hover {
+  color: var(--cor-azul2) !important;
+}
+
+.lista-funcoes {
+  display: flex;
+  background-image: linear-gradient(to right, var(--cor-azul-bg), rgba(0, 0, 0, 0.9)), url('static/img/haven1.jpg');
+  background-size: cover;
+  background-position: bottom;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.funcoes {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px 10% 60px 10%;
+}
+
+.texto-funcao {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.texto-funcao h2 {
+  text-wrap: nowrap;
+  color: var(--cor-branco);
+  font-size: var(--font-size-titulo-h2);
+  margin-bottom: 10px;
+}
+
+.texto-funcao ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.texto-funcao li {
+  position: relative;
+  padding-left: 35px;
+}
+
+.texto-funcao li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-image: url('./static/icons/icon-check-48px.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.texto-funcao li {
+  color: var(--cor-branco);
+  text-align: left;
+  font-size: var(--font-size-paragrafo-pc);
+  margin-top: 35px;
+}
+
+.imagem-funcao {
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  border-radius: 20px;
+  align-self: flex-end;
+}
+
+.imagem-funcao img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tracinho {
+  height: 0.3rem;
+  width: 120px;
+  background-color: var(--cor-azul);
+}
+
 
 
 /* RESPONSIVIDADE */
+@media (max-width: 1300px) {
+  .texto-funcao li {
+    font-size: var(--font-size-small);
+  }
+}
+
 @media (max-width: 1200px) {
   .card-conteudo {
     width: 23%;
@@ -272,6 +408,18 @@ input:checked + label .descricao {
 
   .card .row .icon {
     margin: 3%;
+  }
+
+  .funcoes {
+    padding: 60px 10% 100px 10%;
+  }
+
+  .texto-funcao {
+    width: 100%;
+  }
+
+  .imagem-funcao {
+    display: none;
   }
 }
 
@@ -440,6 +588,10 @@ input:checked + label .descricao {
 @media (max-width: 600px) {
   .card-conteudo {
     width: 100%;
+  }
+
+  .texto-funcao h2 {
+    text-wrap: wrap;
   }
 }
 
