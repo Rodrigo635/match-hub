@@ -1,3 +1,4 @@
+/* ESTILIZAÇÃO DOS TEXTOS */
 h1, h2, h3, h4, h5, h6{
   font-size: var(--font-size-titulo-pc);
 }
@@ -8,8 +9,9 @@ p{
 
 .secao-texto {
   font-size: var(--font-size-paragrafo-pc);
-  /* text-align: justify; */
 }
+
+
 
 /* HEADER */
 header {
@@ -20,14 +22,15 @@ header {
   color: var(--cor-azul);
 }
 
-/* CONTEÚDO */
+
+
+/* CONTEÚDO GERAL */
 main {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
-  /* padding-bottom: 60px; */
 }
 
 .bg-cinza {
@@ -75,7 +78,9 @@ main {
   margin-bottom: 20px;
 }
 
-/* Seções */
+
+
+/* CONTAINER SEÇÃO */
 .container-secao {
   display: flex;
   justify-content: center;
@@ -154,7 +159,9 @@ main {
   object-position: center;
 }
 
-/* cards */
+
+
+/* CARDS */
 .cards {
   display: flex;
   justify-content: center;
@@ -224,14 +231,17 @@ main {
   margin-bottom: 10px;
 }
 
-/* Tabela */
+
+
+/* TABELAS */
 .tabela-container {
   width: 50%;
+  border-radius: 15px;
 }
 
 .tabela-dados {
   width: 100%;
-  border-collapse: collapse;
+  border-spacing: 0;
   background-color: var(--cor-cinzaEscuro);
   font-size: var(--font-size-tablet);
 }
@@ -256,28 +266,53 @@ main {
   font-size: var(--font-size-small);
 }
 
+.tabela-dados thead tr:first-child th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.tabela-dados thead tr:first-child th:last-child {
+  border-top-right-radius: 15px;
+}
+
+.tabela-dados tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+.tabela-dados tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+}
+
+
+
+/* AJUSTE NO FOOTER */
 footer .footer-rights p {
   font-size: var(--font-size-small);
 }
 
+
+
 /* RESPONSIVIDADE */
 @media screen and (max-width: 1470px) {
+  /* Responsividade dos cards */
   .cards li{
     min-height: 375px;
   }
 }
 
 @media screen and (max-width: 1188px){
+  /* Responsividade dos cards */
   .cards li{
     min-height: 470px;
   }
 }
 
 @media screen and (max-width: 1024px) {
+  /* A imagem não precisa mais do filtro quando o tamnho da tela for menor */
   img {
     filter: brightness(1) !important;
   }
 
+  /* Responsividade do container e seus filhos */
   .container-secao {
     display: grid;
   }
@@ -296,7 +331,6 @@ footer .footer-rights p {
     font-size: var(--font-size-paragrafo-touch-laptop);
   }
 
-  
   .container-secao > div,
   .reverse {
     flex-direction: column;
@@ -315,12 +349,12 @@ footer .footer-rights p {
     text-align: center;
   }
 
+  /* Responsividade dos cards */
   .cards ul {
     flex-wrap: wrap;
   }
 
   .cards li {
-    /* min-height: auto; */
     padding-bottom: 40px;
     width: 45%;
     min-height: 350px;
@@ -328,11 +362,12 @@ footer .footer-rights p {
 }
 
 @media screen and (max-width: 730px) {
-  
+  /* Responsividade dos titulos */
   h1,h2 {
     font-size: var(--font-size-titulo-pc-menor) !important;
   }
 
+  /* Responsividade dos cards */
   .cards li{
     width: 90%;
     min-height: 100%;
@@ -340,8 +375,7 @@ footer .footer-rights p {
 }
 
 @media screen and (max-width: 436px) {
-
-
+  /* Responsividade dos textos */
   .container-secao p,
   .secao-lista li {
     font-size: var(--font-size-mobile);
@@ -353,17 +387,10 @@ footer .footer-rights p {
     text-align: center;
   }
 
+  /* Responsividade das tabelas */
   .tabela-dados th,
   .tabela-dados td {
     font-size: var(--font-size-tabela-mobile);
-  }
-
-  .cards h1 {
-    font-size: var(--font-size-titulo-mobile);
-  }
-
-  .cards h2 {
-    font-size: var(--font-size-subtitulo-mobile);
   }
 
   .tabela-container {
@@ -379,6 +406,15 @@ footer .footer-rights p {
   .tabela-dados td {
     padding: 8px;
     text-align: left;
+  }
+
+  /* Responsividade dos cards */
+  .cards h1 {
+    font-size: var(--font-size-titulo-mobile);
+  }
+
+  .cards h2 {
+    font-size: var(--font-size-subtitulo-mobile);
   }
 }
 

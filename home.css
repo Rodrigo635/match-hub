@@ -236,7 +236,7 @@ input:checked + label:hover{
   box-sizing: border-box;
   border-radius: 10px;
   color: var(--cor-branco);
-  width: 23%; /* 4 cards por linha */
+  width: 23%; /* 23% pra fazer 4 cards por linha */
   height: auto;
   margin-bottom: 60px;
   text-align: center;
@@ -282,7 +282,7 @@ input:checked + label:hover{
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
+/* Ver mais */
 .ver-mais {
   display: flex;
   color: var(--cor-azul) !important;
@@ -297,6 +297,9 @@ input:checked + label:hover{
   color: var(--cor-azul2) !important;
 }
 
+
+
+/* LISTA DE FUNÇÕES */
 .lista-funcoes {
   display: flex;
   background-image: linear-gradient(to right, var(--cor-azul-bg), rgba(0, 0, 0, 0.9)), url('static/img/haven1.jpg');
@@ -385,18 +388,21 @@ input:checked + label:hover{
 
 /* RESPONSIVIDADE */
 @media (max-width: 1300px) {
+  /* Responsividade dos textos */
   .texto-funcao li {
     font-size: var(--font-size-small);
   }
 }
 
 @media (max-width: 1200px) {
+  /* Responsividade dos cards de jogos */
   .card-conteudo {
     width: 23%;
   }
 }
 
 @media (max-width: 1024px) {
+  /* Responsividade dos filtros */
   .titulo-filtros {
     flex-wrap: wrap;
     justify-content: center;
@@ -406,6 +412,7 @@ input:checked + label:hover{
     padding-top: 10px;
   }
 
+  /* Responsividade dos cards de jogos */
   .card-conteudo {
     width: 48%;
   }
@@ -414,6 +421,7 @@ input:checked + label:hover{
     margin: 3%;
   }
 
+  /* Responsividade da seção de funcoes */
   .funcoes {
     padding: 60px 10% 100px 10%;
   }
@@ -428,6 +436,7 @@ input:checked + label:hover{
 }
 
 @media (max-width: 900px) {
+  /* Responsividade do banner */
   .container {
     height: 100vh;
     width: 100%;
@@ -481,7 +490,7 @@ input:checked + label:hover{
     background-position: center;
   }
 
-  /* titulo e filtros */
+  /* Responsividade da seção titulo e filtros */
   .titulo-filtros {
     display: flex;
     flex-direction: column;
@@ -489,7 +498,6 @@ input:checked + label:hover{
     align-items: center;
     flex-wrap: wrap;
     max-width: 100%;
-
   }
 
   .titulo-filtros h2 {
@@ -590,16 +598,19 @@ input:checked + label:hover{
 }
 
 @media (max-width: 600px) {
+  /* Responsividade dos cards de jogos */
   .card-conteudo {
     width: 100%;
   }
 
+  /* Responsividade da seção de funçôes */
   .texto-funcao h2 {
     text-wrap: wrap;
   }
 }
 
 @media (max-width: 400px) {
+  /* Responsividade da seção de titulo e filtros */
   .titulo-filtros {
     flex-direction: column;
   }

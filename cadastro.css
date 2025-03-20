@@ -316,7 +316,7 @@ hr {
 
 /* RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
-
+  /* Responsividade da main */
   main {
     height: auto;
     background-image: none;
@@ -362,6 +362,7 @@ hr {
     border-radius: 0;
   }
 
+  /* Footer desaparece no mobile */
   footer {
     display: none;
   }

@@ -6,28 +6,24 @@
   --cor-cinza: #bfbfbf;
   --cor-cinzaEscuro: #222;  
   --cor-cinzaTexto: #9d9d9d;
-
-
   --cor-bg: #1e1e1e;
   --cor-bgEscuro: #0f0f0f;
   --cor-azul-bg: #112a53;
-  
   --cor-azul: #3a87ff;
   --cor-azul2: #2a63bf;
   --cor-verde: #3c9d4c;
   --cor-rosa: #ed145b;
-
   --cor-cinzaTexto: #9d9d9d;
 
+  /* Gradientes */
   --gradient-azul: linear-gradient(to bottom, var(--cor-azul2), var(--cor-azul-bg));
-
 
   /* Font-size */
   --font-size-nav-links: 1.1rem;
   --font-size-logo: 1.5rem;
   --font-size-footer-links: 1.2rem;
 
-  /* titulo */
+  /* Titulos */
   --font-size-titulo-mobile: 2rem;
   --font-size-subtitulo-mobile: 1.4rem;
   --font-size-titulo-tablet: 2.8rem;
@@ -36,17 +32,17 @@
   --font-size-titulo-pc: 3.2rem;
   --font-size-titulo-h2: 2.5rem;
 
-  /* paragrafo */
+  /* Paragrafos */
   --font-size-paragrafo-touch-pc-menor: 1.1rem;
   --font-size-paragrafo-pc: 1.4rem;
   --font-size-paragrafo-pc-menor: 1.2rem;
 
-  /* uso derivados(form) */
+  /* Usos derivados(form) */
   --font-size-small: 1rem;
 
-    /* uso derivado(table) */
-    --font-size-tabela-mobile: 0.85rem;
-    --font-size-tabela-pc: 1.2rem;
+  /* Usos derivado(table) */
+  --font-size-tabela-mobile: 0.85rem;
+  --font-size-tabela-pc: 1.2rem;
 }
 
 
@@ -87,13 +83,15 @@ header {
   z-index: 999;
 }
 
+/* Nav */
 .nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
 }
 
+/* Logo */
 .logo {
   transition: 0.3s ease;
 }
@@ -114,16 +112,7 @@ header {
   scale: 1.05;
 }
 
-
-
-.nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-/* nav */
+/* Links de navegação */
 .nav-links {
   order: 1;
 }
@@ -138,7 +127,6 @@ header {
   display: flex;
   align-items: center;
 }
-
 
 .nav-links ul {
   gap: 15px;
@@ -217,7 +205,6 @@ header {
   background-color: var(--cor-bg) !important;
   border-color: var(--cor-azul) !important;
   color: var(--cor-azul) !important;
-  /* scale: 1.1; */
 }
 
 
@@ -229,7 +216,7 @@ header {
   cursor: pointer;
 }
 
-/* Oculta o input checkbox (usado para controlar o menu) */
+/* Oculta o input checkbox (q é usado para controlar o menu) */
 #menu-toggle {
   display: none;
 }
@@ -323,21 +310,23 @@ footer {
 
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
+  /* Responsividade do header */
   header{
       padding: 20px 10%;
       height: auto;
   }
 
+  /* Responsividade da navegação do menu hamburguer */
   .nav {
     justify-content: center;
   }
   
-  /* Oculta os links de navegação e o botão de login por padrão */
   .nav-links{
     justify-content: flex-end;
     width: 100%;
   }
-
+  
+  /* Oculta os links de navegação e o botão de login por padrão */
   .nav-links ul {
     display: none;
   }
@@ -391,6 +380,7 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* Responsividade do footer */
   .footer-container {
     flex-direction: column;
     align-items: center;
