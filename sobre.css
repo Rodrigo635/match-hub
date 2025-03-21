@@ -376,6 +376,13 @@ footer .footer-rights p {
 
 @media screen and (max-width: 436px) {
   /* Responsividade dos textos */
+
+
+  .container-imagem {
+    width: 100%;
+    min-height: 250px;
+  }
+
   .container-secao p,
   .secao-lista li {
     font-size: var(--font-size-mobile);
