@@ -73,8 +73,7 @@ body {
 header {
   display: flex;
   width: 100%;
-  padding: 0 10%;
-  height: 103px;
+  padding: 25px 10%;
   background: linear-gradient(to bottom, rgb(18, 18, 18), var(--cor-bg));
   transition: 0.3s ease;
   align-items: center;

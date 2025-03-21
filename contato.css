@@ -1,5 +1,7 @@
 /* ESTILIZAÇÃO DOS TEXTOS */
-h1, h2, h4 {
+h1,
+h2,
+h4 {
   font-size: var(--font-size-titulo-pc);
 }
 
@@ -17,8 +19,6 @@ h1, h2, h4 {
   font-size: var(--font-size-small);
 }
 
-
-
 /* HEADER */
 header {
   background: var(--cor-preto);
@@ -27,8 +27,6 @@ header {
 .nav-links li:nth-child(4) a {
   color: var(--cor-azul);
 }
-
-
 
 /* CONTEUDO GERAL */
 main {
@@ -45,11 +43,14 @@ main {
   background: var(--gradient-azul);
 }
 
-
-
 /* BANNER */
 .imagem-bg {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(58, 68, 211, 0.5)), url('static/img/background-contato.jpg');
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5),
+      rgba(58, 68, 211, 0.5)
+    ),
+    url("static/img/background-contato.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -79,8 +80,6 @@ main {
   margin-bottom: 20px;
 }
 
-
-
 /* QUEM SOMOS */
 .quem-somos {
   display: flex;
@@ -99,7 +98,7 @@ main {
   width: 80%;
   height: auto;
   color: var(--cor-branco);
-  gap: 20px; 
+  gap: 20px;
 }
 
 .introducao h1 {
@@ -130,8 +129,6 @@ figure img {
 figure img:hover {
   filter: brightness(1);
 }
-
-
 
 /* FRASE ESPECIAL */
 .frase {
@@ -181,8 +178,6 @@ figure img:hover {
   filter: brightness(1);
 }
 
-
-
 /* SOBRE NÓS CARDS */
 .sobre-nos {
   min-width: 100%;
@@ -211,7 +206,7 @@ figure img:hover {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  height: 100%; 
+  height: 100%;
 }
 
 .card {
@@ -375,11 +370,9 @@ input:checked + label .image {
   transform: translateY(0) !important;
 }
 
-input:checked + label:hover{
+input:checked + label:hover {
   transform: scale(1);
 }
-
-
 
 /* FORMULÁRIO DE CONTATO */
 .contate-nos {
@@ -420,7 +413,7 @@ input:checked + label:hover{
 }
 
 .form label,
-.form textarea{
+.form textarea {
   font-size: 1rem;
 }
 
@@ -442,7 +435,7 @@ input:checked + label:hover{
   height: 200px;
   width: 100%;
   margin-bottom: 10px;
-  border:  0px solid transparent;
+  border: 0px solid transparent;
   border-radius: 5px;
   resize: none;
   color: var(--cor-branco);
@@ -476,8 +469,6 @@ input:checked + label:hover{
   color: var(--cor-branco);
 }
 
-
-
 /* RESPONSIVIDADE */
 @media (max-width: 1440px) {
   /* Responsividade dos textos */
@@ -493,7 +484,7 @@ input:checked + label:hover{
   .introducao p {
     font-size: var(--font-size-paragrafo-touch-pc-menor);
   }
-  
+
   .row {
     margin-left: 5.5px;
   }
@@ -505,6 +496,15 @@ input:checked + label:hover{
 }
 
 @media (max-width: 1024px) {
+  /* Responsividade dos textos */
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1,
+  .container-imagem h1 {
+    font-size: var(--font-size-titulo-pc-menor);
+  }
+
   /* Responsividade da seção quem somos */
   .quem-somos {
     width: 100%;
@@ -519,7 +519,7 @@ input:checked + label:hover{
     width: 100%;
   }
 
-  .quem-somos figure{
+  .quem-somos figure {
     padding-top: 60px;
   }
 
@@ -550,7 +550,7 @@ input:checked + label:hover{
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding: 0px; 
+    padding: 0px;
   }
 
   .row {
@@ -610,91 +610,24 @@ input:checked + label:hover{
     padding: 0 !important;
   }
 
+  .redes-sociais {
+    justify-content: center;
+  }
+
   /* Responsividade da seção de formulário de contato */
   .form {
-    width: 100%;
+    width: 80%;
     padding: 30px;
-  }
-}
-
-@media (max-width: 1024px) {
-  /* Responsividade dos textos */
-  h1,h2,h4 {
-    font-size: var(--font-size-titulo-laptop);
-  }
-
-  p{
-    font-size: var(--font-size-paragrafo-touch-pc-menor);
-  }
-
-  /* Responsividade da seção quem somos */
-  .quem-somos {
-    padding-block: 20px;
-  }
-
-  .introducao {
-    padding-block: 0;
-  }
-
-  .introducao p {
-    text-align: start;
-  }
-
-  /* Responsividade da seção sobre nos cards */
-  .cards-sobre-nos {
-    padding-block: 20px;
-  }
-
-  .card {
-    width: 90%;
-  }
-
-  .descricao p {
-    text-align: center;
-  }
-}
-
-@media (max-width: 1024px) {
-  /* Responsividade dos textos */
-  h1,h2,h4 {
-    font-size: var(--font-size-titulo-laptop);
-  }
-
-  p {
-    font-size: var(--font-size-paragrafo-touch-pc-menor);
-  }
-
-  /* Responsividade da seção quem somos */
-  .quem-somos {
-    padding-block: 20px;
-  }
-
-  .introducao {
-    padding-block: 0;
-  }
-
-  .introducao p {
-    text-align: start;
-  }
-
-  /* Responsividade da seção sobre nos cards */
-  .cards-sobre-nos {
-    padding-block: 20px;
-  }
-
-  .card {
-    width: 90%;
-  }
-
-  .descricao p {
-    text-align: center;
   }
 }
 
 @media (max-width: 768px) {
   /* Responsividade dos textos */
-  h1,h2,h4 {
-    font-size: var(--font-size-titulo-tablet);
+  .introducao h1,
+  .integrantes__titulo h1,
+  .descricao h4,
+  .frase__texto h1 {
+    font-size: var(--font-size-titulo-pc-menor);
   }
 
   .descricao h4 {
@@ -704,6 +637,10 @@ input:checked + label:hover{
   /* Responsividade da seção quem somos */
   .quem-somos {
     padding-block: 20px;
+  }
+
+  .quem-somos figure {
+    padding-top: 0;
   }
 
   figure img {
@@ -731,22 +668,9 @@ input:checked + label:hover{
 }
 
 @media (max-width: 425px) {
-  /* Responsividade dos textos */
-  .introducao h1,
-  .integrantes__titulo h1,
-  .descricao h4,
-  .frase__texto h1{
-    font-size: var(--font-size-titulo-mobile);
-  }
-
-  .container-imagem{
+  .container-imagem {
     min-height: 250px;
   }
-  .container-imagem h1 {
-    font-size: var(--font-size-titulo-pc-menor);
-  }
-
-
 
   .descricao p {
     padding: 10px;
