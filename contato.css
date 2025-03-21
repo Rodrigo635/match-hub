@@ -735,9 +735,18 @@ input:checked + label:hover{
   .introducao h1,
   .integrantes__titulo h1,
   .descricao h4,
-  .frase__texto h1 {
+  .frase__texto h1{
     font-size: var(--font-size-titulo-mobile);
   }
+
+  .container-imagem{
+    min-height: 250px;
+  }
+  .container-imagem h1 {
+    font-size: var(--font-size-titulo-pc-menor);
+  }
+
+
 
   .descricao p {
     padding: 10px;
