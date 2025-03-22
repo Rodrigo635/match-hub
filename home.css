@@ -296,6 +296,8 @@ input:checked + label:hover {
   color: var(--cor-azul2) !important;
 }
 
+
+
 /* LISTA DE FUNÇÕES */
 .lista-funcoes {
   display: flex;
@@ -386,6 +388,8 @@ input:checked + label:hover {
   background-color: var(--cor-azul);
 }
 
+
+
 /* RESPONSIVIDADE */
 @media (max-width: 1300px) {
   /* Responsividade dos textos */
@@ -418,6 +422,10 @@ input:checked + label:hover {
   }
 
   /* Responsividade dos cards de jogos */
+  .card-conteudo {
+    margin-bottom: 40px;
+  }
+
   .card-conteudo {
     width: 48%;
   }
@@ -520,7 +528,6 @@ input:checked + label:hover {
   }
 
   /* Responsividade da seção titulo e filtros */
-
   .titulo-filtros {
     display: flex;
     flex-direction: column;
@@ -608,7 +615,7 @@ input:checked + label:hover {
 
   .abrir-filtro:checked + .abrir {
     opacity: 0;
-    position: absolute;
+    position: fixed;
     left: 0;
   }
 
@@ -654,5 +661,11 @@ input:checked + label:hover {
   }
   .descricao p {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .card-conteudo {
+    margin-bottom: 30px;
   }
 }
