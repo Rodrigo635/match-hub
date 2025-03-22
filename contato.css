@@ -523,6 +523,15 @@ input:checked + label:hover{
     padding-top: 60px;
   }
 
+  /* Responsividade da seção quem somos */
+  .quem-somos {
+    padding-block: 20px;
+  }
+  
+  .introducao {
+    padding-block: 0;
+  }
+
   /* Responsividade da seção frase */
   .frase {
     flex-direction: column;
@@ -610,14 +619,20 @@ input:checked + label:hover{
     padding: 0 !important;
   }
 
+  .card .redes-sociais {
+    margin: 0 auto;
+  }
+
   /* Responsividade da seção de formulário de contato */
   .form {
-    width: 100%;
-    padding: 30px;
+    width: 90%;
+    padding: 60px;
   }
-}
 
-@media (max-width: 1024px) {
+  .container-imagem {
+    min-height: auto;
+  }
+
   /* Responsividade dos textos */
   h1,h2,h4 {
     font-size: var(--font-size-titulo-laptop);
@@ -625,19 +640,6 @@ input:checked + label:hover{
 
   p{
     font-size: var(--font-size-paragrafo-touch-pc-menor);
-  }
-
-  /* Responsividade da seção quem somos */
-  .quem-somos {
-    padding-block: 20px;
-  }
-
-  .introducao {
-    padding-block: 0;
-  }
-
-  .introducao p {
-    text-align: start;
   }
 
   /* Responsividade da seção sobre nos cards */
@@ -652,9 +654,7 @@ input:checked + label:hover{
   .descricao p {
     text-align: center;
   }
-}
 
-@media (max-width: 1024px) {
   /* Responsividade dos textos */
   h1,h2,h4 {
     font-size: var(--font-size-titulo-laptop);
@@ -662,19 +662,6 @@ input:checked + label:hover{
 
   p {
     font-size: var(--font-size-paragrafo-touch-pc-menor);
-  }
-
-  /* Responsividade da seção quem somos */
-  .quem-somos {
-    padding-block: 20px;
-  }
-
-  .introducao {
-    padding-block: 0;
-  }
-
-  .introducao p {
-    text-align: start;
   }
 
   /* Responsividade da seção sobre nos cards */
@@ -703,19 +690,19 @@ input:checked + label:hover{
 
   /* Responsividade da seção quem somos */
   .quem-somos {
-    padding-block: 20px;
+    padding: 40px 10% 60px 10%;
   }
 
-  figure img {
+  .quem-somos figure {
     display: none;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    height: 0;
   }
 
   .introducao {
     padding-block: 0;
-  }
-
-  .introducao p {
-    text-align: start;
   }
 }
 
@@ -730,13 +717,34 @@ input:checked + label:hover{
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
+  /* Responsividade da seção sobre nos cards */
+  .sobre-nos {
+    min-width: 100%;
+    padding: 40px 1%;
+    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .form {
+    padding: 40px;
+  }
+
   /* Responsividade dos textos */
   .introducao h1,
   .integrantes__titulo h1,
   .descricao h4,
   .frase__texto h1 {
-    font-size: var(--font-size-titulo-mobile);
+    font-size: var(--font-size-titulo-pc-menor);
+  }
+
+  .imagem-bg h1 {
+    font-size: var(--font-size-titulo-pc-menor);
   }
 
   .descricao p {
@@ -753,5 +761,9 @@ input:checked + label:hover{
   .integrantes__titulo > h1 {
     width: 90%;
     margin-inline: auto;
+  }
+
+  .form {
+    padding: 25px;
   }
 }
