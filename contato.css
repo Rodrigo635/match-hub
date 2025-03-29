@@ -704,13 +704,34 @@ input:checked + label:hover{
   .introducao {
     padding-block: 0;
   }
+
+  .introducao p {
+    text-align: start;
+  }
+
+  .filtros {
+    display: none;
+  }
+
+  .filtros-dropdown {
+    display: flex;
+  }
+
+  .filtros-dropdown img {
+    width: 40px;
+  }
+
+  .sobre-nos{
+    padding: 0 5%;
+  }
+
+  .cards-sobre-nos{
+    padding: 0;
+  }
 }
 
 @media (max-width: 600px) {
-  /* Responsividade da seção sobre nos cards */
-  .card-conteudo {
-    width: 100%;
-  }
+ 
 
   .descricao p {
     text-align: center;

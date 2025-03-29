@@ -19,6 +19,7 @@
   --gradient-azul: linear-gradient(to bottom, var(--cor-azul2), var(--cor-azul-bg));
 
   /* Font-size */
+  font-size: 16px;
   --font-size-nav-links: 1.1rem;
   --font-size-logo: 1.5rem;
   --font-size-footer-links: 1.2rem;

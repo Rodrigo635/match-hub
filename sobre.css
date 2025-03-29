@@ -381,26 +381,15 @@ footer .footer-rights p {
   }
 }
 
-@media screen and (max-width: 436px) {
-  .container-secao > div {
-    width: 100%;
-    padding: 40px 10%;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  /* Responsividade dos textos */
-  .container-imagem {
-    width: 100%;
-    min-height: auto;
-  }
-
-  .container-secao p {
-    font-size: var(--font-size-mobile);
-    text-align: justify;
-  }
+@media screen and (max-width: 425px) {
   
+    
+    .container-secao p, .secao-lista li {
+        font-size: var(--font-size-mobile);
+        text-align: center;
+    }
+
+  .container-secao p,
   .secao-lista li {
     font-size: var(--font-size-mobile);
     text-align: center;
