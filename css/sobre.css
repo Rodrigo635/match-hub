@@ -42,7 +42,7 @@ main {
 }
 
 .imagem-bg {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(58, 68, 211, 0.5)), url('static/img/background-sobre.jpg');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(58, 68, 211, 0.5)), url('../static/img/background-sobre.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
