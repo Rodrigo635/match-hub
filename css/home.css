@@ -127,20 +127,20 @@ input:checked + label:hover {
 }
 
 .card[for="c1"] {
-  background-image: url("static/img/img1.jpg");
+  background-image: url("../static/img/img1.jpg");
   background-size: cover;
   background-position: center;
 }
 .card[for="c2"] {
-  background-image: url("static/img/img2.jpg");
+  background-image: url("../static/img/img2.jpg");
   background-position: center;
 }
 .card[for="c3"] {
-  background-image: url("static/img/img3.jpg");
+  background-image: url("../static/img/img3.jpg");
   background-position: center;
 }
 .card[for="c4"] {
-  background-image: url("static/img/img4.jpg");
+  background-image: url("../static/img/img4.jpg");
   background-position: center;
 }
 
@@ -306,7 +306,7 @@ input:checked + label:hover {
       var(--cor-azul-bg),
       rgba(0, 0, 0, 0.9)
     ),
-    url("static/img/haven1.jpg");
+    url("../static/img/haven1.jpg");
   background-size: cover;
   background-position: bottom;
   justify-content: center;
@@ -354,7 +354,7 @@ input:checked + label:hover {
   transform: translateY(-50%);
   width: 25px;
   height: 25px;
-  background-image: url("./static/icons/icon-check-48px.png");
+  background-image: url("../static/icons/icon-check-48px.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -497,7 +497,7 @@ input:checked + label:hover {
         rgba(0, 0, 0, 0.8),
         rgba(0, 0, 0, 0) 60%
       ),
-      url("static/img/img1.jpg");
+      url("../static/img/img1.jpg");
   }
 
   .card[for="c2"] {
@@ -506,7 +506,7 @@ input:checked + label:hover {
         rgba(0, 0, 0, 0.8),
         rgba(0, 0, 0, 0) 60%
       ),
-      url("static/img/img2.jpg");
+      url("../static/img/img2.jpg");
   }
 
   .card[for="c3"] {
@@ -515,7 +515,7 @@ input:checked + label:hover {
         rgba(0, 0, 0, 0.8),
         rgba(0, 0, 0, 0) 60%
       ),
-      url("static/img/img3.jpg");
+      url("../static/img/img3.jpg");
   }
 
   .card[for="c4"] {
@@ -524,7 +524,7 @@ input:checked + label:hover {
         rgba(0, 0, 0, 0.8),
         rgba(0, 0, 0, 0) 60%
       ),
-      url("static/img/img4.jpg");
+      url("../static/img/img4.jpg");
   }
 
   /* Responsividade da seção titulo e filtros */
