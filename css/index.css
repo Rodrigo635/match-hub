@@ -83,6 +83,19 @@ header {
   z-index: 999;
 }
 
+h1 {
+  font-size: var(--font-size-titulo-pc);
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: var(--font-size-paragrafo-pc);
+  line-height: 2rem;
+  text-align: justify;
+  margin-bottom: 1.25rem;
+}
+
 /* Nav */
 .nav {
   display: flex;
@@ -316,6 +329,19 @@ footer {
       height: auto;
   }
 
+  h1{
+    font-size: var(--font-size-titulo-pc-menor);
+  }
+
+  h2{
+    font-size: var(--font-size-titulo-h2);
+  }
+
+  p{
+    font-size: var(--font-size-paragrafo-pc-menor);
+  }
+
+
   /* Responsividade da navegação do menu hamburguer */
   .nav {
     justify-content: center;
@@ -380,6 +406,20 @@ footer {
 }
 
 @media (max-width: 600px) {
+
+  
+  h1{
+    font-size: var(--font-size-titulo-mobile);
+  }
+
+  h2{
+    font-size: var(--font-size-titulo-mobile);
+  }
+
+  p{
+    font-size: var(--font-size-paragrafo-mobile);
+  }
+
   /* Responsividade do footer */
   .footer-container {
     flex-direction: column;
