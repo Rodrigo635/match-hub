@@ -22,7 +22,7 @@ main {
   background-repeat: no-repeat;
 }
 
-.container {
+.container-cadastro {
   display: flex;
   margin-top: 80px;
   margin-bottom: 60px;
@@ -68,7 +68,7 @@ main {
   transition: background-color 0.3s ease;
 }
 
-.container input[type="radio"] {
+.container-cadastro input[type="radio"] {
   display: none;
 }
 
@@ -143,7 +143,8 @@ form {
 .input-group input {
   width: 100%;
   padding: 12px 40px 12px 15px;
-  border-radius: 5px;
+  border-radius: 5px !important;
+  line-height: normal;
   border: 2px solid var(--cor-cinza);
   background: transparent;
   font-size: 1rem;
@@ -204,7 +205,7 @@ form {
 .termos-container p {
   color: var(--cor-branco);
   font-size: 1rem;
-  display: inline;
+  margin: 0 ;
 }
 
 .termos-container input {
@@ -219,12 +220,14 @@ form {
   margin: 0 2px;
 }
 
+
+
 .termos-container a:hover {
   text-decoration: underline;
 }
 
 /* Botão de login */
-.btn-cadastro-container {
+.button-cadastro-container {
   display: flex;
   width: 75%;
   align-items: center;
@@ -232,7 +235,7 @@ form {
   margin-bottom: 20px;
 }
 
-.btn-cadastro {
+.button-cadastro {
   align-items: center;
   padding: 9px 20px;
   background-color: var(--cor-branco);
@@ -248,14 +251,14 @@ form {
 
 }
 
-.btn-cadastro:hover {
+.button-cadastro:hover {
   background-color: var(--cor-bg);
   border-color: var(--cor-branco);
   color: var(--cor-branco);
 }
 
 /* Ou container */
-.ou-container {
+.container-ou {
   display: flex;
   align-items: center;
   width: 75%;
@@ -266,11 +269,13 @@ form {
 
 .ou {
   display: flex;
+  margin: 0;
   color: var(--cor-cinzaTexto);
 }
 
 hr {
   flex-grow: 1;
+  margin: 0;
   border: none;
   border-top: 1px solid var(--cor-cinzaTexto);
 }
@@ -285,6 +290,7 @@ hr {
 
 .cadastrar-com-google .google-button {
   display: flex;
+  line-height: 0;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -299,6 +305,11 @@ hr {
   box-sizing: border-box;
   font-size: 1.1rem;
   margin-bottom: 40px;
+}
+
+.cadastrar-com-google  p{
+  margin: 0;
+  line-height: 0;
 }
 
 .cadastrar-com-google .google-button:hover {
@@ -326,7 +337,7 @@ hr {
     justify-content: end;
   }
 
-  .container {
+  .container-cadastro {
     width: 100%;
     max-width: 100%;
     height: 100%;

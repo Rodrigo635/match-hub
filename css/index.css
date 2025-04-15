@@ -1,75 +1,3 @@
-/* VARIAVEIS */
-:root {
-  /* Cores */
-  --cor-branco: #fff;
-  --cor-preto: #000;
-  --cor-cinza: #bfbfbf;
-  --cor-cinzaEscuro: #222;  
-  --cor-cinzaTexto: #9d9d9d;
-  --cor-bg: #1e1e1e;
-  --cor-bgEscuro: #0f0f0f;
-  --cor-azul-bg: #112a53;
-  --cor-azul: #3a87ff;
-  --cor-azul2: #2a63bf;
-  --cor-verde: #3c9d4c;
-  --cor-rosa: #ed145b;
-  --cor-cinzaTexto: #9d9d9d;
-
-  /* Gradientes */
-  --gradient-azul: linear-gradient(to bottom, var(--cor-azul2), var(--cor-azul-bg));
-
-  /* Font-size */
-  font-size: 16px;
-  --font-size-nav-links: 1.1rem;
-  --font-size-logo: 1.5rem;
-  --font-size-footer-links: 1.2rem;
-
-  /* Titulos */
-  --font-size-titulo-mobile: 2rem;
-  --font-size-subtitulo-mobile: 1.4rem;
-  --font-size-titulo-tablet: 2.8rem;
-  --font-size-titulo-laptop: 3rem;
-  --font-size-titulo-pc-menor: 2.3rem;
-  --font-size-titulo-pc: 3.2rem;
-  --font-size-titulo-h2: 2.5rem;
-
-  /* Paragrafos */
-  --font-size-paragrafo-touch-pc-menor: 1.1rem;
-  --font-size-paragrafo-pc: 1.4rem;
-  --font-size-paragrafo-pc-menor: 1.2rem;
-
-  /* Usos derivados(form) */
-  --font-size-small: 1rem;
-
-  /* Usos derivado(table) */
-  --font-size-tabela-mobile: 0.85rem;
-  --font-size-tabela-pc: 1.2rem;
-}
-
-
-
-/* RESET CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-
-/* ESTILOS GERAIS */
-a {
-  text-decoration: none;
-  color: var(--cor-cinzaEscuro);
-}
-
-body {
-  background-color: var(--cor-bg);
-}
-
-
-
 /* HEADER */
 header {
   display: flex;
@@ -93,7 +21,7 @@ p {
   font-size: var(--font-size-paragrafo-pc);
   line-height: 2rem;
   text-align: justify;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 /* Nav */
@@ -316,7 +244,7 @@ footer {
   margin-top: 20px;
   width: 100%;
   color: var(--cor-branco);
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
 }
 
 
@@ -372,7 +300,6 @@ footer {
 
   .nav-links ul li a{
     width: 100%;
-    
     margin: 0 !important; 
     display: flex;
     justify-content: center;

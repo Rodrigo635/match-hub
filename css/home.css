@@ -13,7 +13,7 @@
   justify-content: center;
 }
 
-.container {
+.container-card {
   height: 65vh;
   width: 80%;
   display: flex;
@@ -21,7 +21,7 @@
   justify-content: start;
 }
 
-.card {
+.cards {
   position: relative;
   width: 80px;
   border-radius: 2rem;
@@ -35,7 +35,7 @@
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
-.card::after {
+.cards::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -46,7 +46,7 @@
   pointer-events: none;
 }
 
-.card .row {
+.cards .conteudo-card {
   color: white;
   display: flex;
   justify-content: end;
@@ -54,7 +54,7 @@
   flex-wrap: nowrap;
 }
 
-.card .row .icon {
+.cards .conteudo-card .icon {
   background: var(--cor-branco);
   color: var(--cor-bg);
   font-weight: bold;
@@ -72,7 +72,7 @@
   transition: 0.2s ease;
 }
 
-.card:hover {
+.cards:hover {
   transform: scale(1.02);
   .icon {
     background-color: var(--cor-bg);
@@ -81,7 +81,7 @@
   }
 }
 
-.card .row .descricao {
+.cards .conteudo-card .descricao {
   display: flex;
   margin-left: 10px;
   flex-direction: column;
@@ -126,20 +126,20 @@ input:checked + label:hover {
   transform: scale(1);
 }
 
-.card[for="c1"] {
+.cards[for="c1"] {
   background-image: url("../static/img/img1.jpg");
   background-size: cover;
   background-position: center;
 }
-.card[for="c2"] {
+.cards[for="c2"] {
   background-image: url("../static/img/img2.jpg");
   background-position: center;
 }
-.card[for="c3"] {
+.cards[for="c3"] {
   background-image: url("../static/img/img3.jpg");
   background-position: center;
 }
-.card[for="c4"] {
+.cards[for="c4"] {
   background-image: url("../static/img/img4.jpg");
   background-position: center;
 }
@@ -430,7 +430,7 @@ input:checked + label:hover {
     width: 48%;
   }
 
-  .card .row .icon {
+  .cards .row .icon {
     margin: 3%;
   }
 
@@ -450,7 +450,7 @@ input:checked + label:hover {
 
 @media (max-width: 900px) {
   /* Responsividade do banner */
-  .container {
+  .container-card {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -459,7 +459,7 @@ input:checked + label:hover {
     align-items: center;
   }
 
-  .card {
+  .cards {
     width: 80%;
     height: 80px;
     margin-bottom: 15px;
@@ -470,12 +470,12 @@ input:checked + label:hover {
     height: 100%;
   }
 
-  .card .row .icon {
+  .cards .conteudo-card .icon {
     margin: 10px;
     display: none;
   }
 
-  .card .row .descricao {
+  .cards .conteudo-card .descricao {
     width: 100%;
     display: none;
     padding: 0 10px 10px 10px;
@@ -486,12 +486,12 @@ input:checked + label:hover {
     transform: translateY(0) !important;
   }
 
-  .card {
+  .cards {
     background-size: cover;
     background-position: center;
   }
 
-  .card[for="c1"] {
+  .cards[for="c1"] {
     background-image: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.8),
@@ -500,7 +500,7 @@ input:checked + label:hover {
       url("../static/img/img1.jpg");
   }
 
-  .card[for="c2"] {
+  .cards[for="c2"] {
     background-image: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.8),
@@ -509,7 +509,7 @@ input:checked + label:hover {
       url("../static/img/img2.jpg");
   }
 
-  .card[for="c3"] {
+  .cards[for="c3"] {
     background-image: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.8),
@@ -518,7 +518,7 @@ input:checked + label:hover {
       url("../static/img/img3.jpg");
   }
 
-  .card[for="c4"] {
+  .cards[for="c4"] {
     background-image: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.8),

@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Links para os arquivos CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/cadastro.css" />
-
+    <link rel="stylesheet" href="./css/variaveis.css">
+    
     <!-- Título da página -->
     <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon">
     <title>MATCH HUB - Cadastrar</title>
@@ -54,8 +56,8 @@
 
 
 
-    <main>
-      <div class="container">
+    <main class="">
+      <div class="container-cadastro">
 
         <!-- Nossos inputs de type radio pra alternar entre cadastro e login -->
         <input type="radio" name="button" id="b1" checked />
@@ -103,11 +105,11 @@
               <p>Aceito os <a href="#">termos de uso </a> e <a href="#">condições.</a></p>
             </div><!-- termos-container -->
 
-            <div class="btn-cadastro-container">
-              <button type="submit" class="btn-cadastro" href="cadastro_concluido.html">Cadastrar</button>
+            <div class="button-cadastro-container">
+              <button type="submit" class="button-cadastro" href="cadastro_concluido.html">Cadastrar</button>
             </div><!-- btn-cadastro-container -->
 
-            <div class="ou-container">
+            <div class="container-ou">
               <hr><p class="ou">Ou</p><hr>
             </div><!-- ou-container -->
             
@@ -140,16 +142,16 @@
 
             <a class="esqueceu-senha" href="#">Esqueceu a senha?</a>
 
-            <div class="btn-cadastro-container">
-              <button type="submit" class="btn-cadastro" href="index.html">Entrar</button>
+            <div class="button-cadastro-container">
+              <button type="submit" class="button-cadastro" href="index.html">Entrar</button>
             </div><!-- btn-cadastro-container -->
 
-            <div class="ou-container">
+            <div class="container-ou">
               <hr><p class="ou">Ou</p><hr>
             </div><!-- ou-container -->
 
             <div class="cadastrar-com-google">
-              <div class="google-button">
+              <div class="google-button google">
                 <img src="static/icons/google.png" alt="Google Icon" />
                 <p>Entrar com Google</p>
               </div><!-- google-button -->
@@ -180,10 +182,12 @@
         </div><!-- footer-links -->
 
         <div class="footer-rights">
-          <p>© 2025 Match Hub. Todos os direitos reservados.</p>
+          <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">© 2025 Match Hub. Todos os direitos reservados.</p>
         </div><!-- footer-rights -->
       </div><!-- footer-container -->
     </footer><!-- footer -->
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
 
   </body>
 

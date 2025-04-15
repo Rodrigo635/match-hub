@@ -1,377 +1,382 @@
 <!-- Estrutura principal do documento -->
 <html>
 
-  <head>
-    <!-- Configurações de codificação e responsividade -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <!-- Configurações de codificação e responsividade -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Links para os arquivos CSS -->
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/contato.css" />
+  <!-- Links para os arquivos CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/contato.css" />
+  <link rel="stylesheet" href="/css/variaveis.css">
 
-    <!-- Título da página -->
-    <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
-    <title>MATCH HUB - Contato</title>
-  </head>
+  <!-- Título da página -->
+  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
+  <title>MATCH HUB - Contato</title>
+</head>
 
-  <body>
+<body>
 
-    <header>
-      
-      <div class="logo">
-        <a href="index.html"><span>MATCH</span> HUB</a>
-      </div><!-- Logo -->
+  <header>
 
-      <nav class="nav">
+    <div class="logo">
+      <a href="index.html"><span>MATCH</span> HUB</a>
+    </div><!-- Logo -->
 
-        <div class="nav-links">
+    <nav class="nav">
 
-          <!-- Checkbox para controlar o menu -->
-          <input type="checkbox" id="menu-toggle" />
+      <div class="nav-links">
 
-          <!-- Label com o ícone do menu -->
-          <label for="menu-toggle" class="menu">
-            <div class="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </label>
+        <!-- Checkbox para controlar o menu -->
+        <input type="checkbox" id="menu-toggle" />
 
-          <ul>
-            <li>
-              <input type="search" class="pesquisa" placeholder="Pesquisar..." />
-            </li>
-            <!-- search -->
-            <li><a href="index.html">Início</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-            <li><a href="cadastro.html" class="btn-login">Entrar</a></li>
-          </ul>
-
-        </div><!-- nav-links -->
-
-      </nav>
-
-    </header><!-- header -->
-
-
-
-    <main>
-      <section class="container-imagem">
-        <div class="imagem-bg">
-          <h1>Contato</h1>
-        </div>
-      </section><!-- container-imagem -->
-
-      <section class="quem-somos">
-        
-        <figure>
-          <img src="static/img/place-work.jpg" alt="Imagem ilustrando um local de trabalho" />
-        </figure>
-
-        <article class="introducao">
-          <h1>Quem somos nós</h1>
-          <p>
-            Somos cinco estudantes do primeiro módulo de Sistemas de Informação
-            da FIAP e desenvolvemos este site como parte de um trabalho
-            acadêmico. Nosso objetivo é criar uma plataforma que centralize as
-            datas dos principais campeonatos de eSports, facilitando o acesso às
-            informações para os fãs e entusiastas dos jogos eletrônicos. Este
-            projeto reforça nossos conhecimentos em desenvolvimento web,
-            colaboração em equipe e boas práticas de tecnologia, entregando uma
-            solução útil para a comunidade gamer.
-          </p>
-          <p>
-            Além disso, buscamos aprimorar nossas habilidades em pesquisa,
-            design e usabilidade, garantindo que a experiência do usuário seja
-            intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
-            criar uma interface acessível e responsiva, para que os usuários
-            encontrem facilmente as informações, independentemente do
-            dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
-            navegação fluida, desafiando-nos a pensar em soluções inovadoras
-            para a interação dos fãs com o cenário competitivo de eSports.
-          </p>
-        </article><!-- introducao -->
-
-      </section><!-- quem-somos -->
-
-
-
-      <section class="frase">
-        <div>
-          <div class="frase__texto">
-            <h1>
-              "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
-              move!"
-            </h1>
+        <!-- Label com o ícone do menu -->
+        <label for="menu-toggle" class="menu">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <div class="frase__imagem">
-            <img src="static/img/tecnologia.jpg" alt="Imagem de um homem mexendo em um tablet" />
-          </div>
-        </div>
-      </section><!-- frase -->
+        </label>
+
+        <ul>
+          <li>
+            <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+          </li>
+          <!-- search -->
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="cadastro.html" class="btn-login">Entrar</a></li>
+        </ul>
+
+      </div><!-- nav-links -->
+
+    </nav>
+
+  </header><!-- header -->
 
 
 
-      <div class="sobre-nos">
-        <h1 class="integrantes_titulo">Nossa equipe</h1>
-        <div class="cards-sobre-nos">
-          <!-- Card 1: Gabriel Vilela -->
-          <input type="radio" name="slide" id="c1" checked />
-          <label for="c1" class="card">
-            <div class="icon">1</div>
-            <div class="row">
-              <div class="descricao">
-                <h4>Gabriel Vilela</h4>
-                <p>Função: Desenvolvimento do site, design e documentação</p>
-                <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
-                <p>
-                  Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado em Técnico de
-                  Informática, nasci em Cajuru-SP mas moro em Ribeirão Preto-SP.
-                  Atualmente estou cursando Sistema de Informação pela FIAP
-                </p>
-
-                <p class="rm">RM: 562125</p>
-
-                <div class="redes-sociais">
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/gabrielvilela12" target="_blank">
-                      <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
-                    </a>
-                  </div><!-- plataforma -->
-
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/" target="_blank">
-                      <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
-                    </a>
-                  </div><!-- plataforma -->
-                </div><!-- redes-sociais -->
-                
-              </div><!-- descricao -->
-              <div class="image">
-                <img src="static/img/Gabriel.png" alt="Imagem do integrante" />
-              </div><!-- img -->
-            </div><!-- row -->
-          </label><!-- card -->
-
-          <!-- Card 2: Miguel -->
-          <input type="radio" name="slide" id="c2" />
-          <label for="c2" class="card">
-            <div class="icon">2</div>
-            <div class="row">
-              <div class="descricao">
-                <h4>Miguel</h4>
-                <p>Função: Desenvolvimento do site, design e documentação</p>
-                <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
-                <p>
-                  Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
-                  Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
-                  Atualmente estou cursando Sistemas de Informação pela FIAP.
-                </p>
-
-                <p class="rm">RM: 562196</p>
-                <div class="redes-sociais">
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/MiguelAssis0" target="_blank">
-                      <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a href="https://www.linkedin.com/in/miguel-anjoss/" target="_blank">
-                      <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- descricao -->
-              <div class="image">
-                <img src="static/img/miguel.png" alt="Imagem do integrante" />
-              </div>
-              <!-- img -->
-            </div>
-            <!-- row -->
-          </label>
-          <!-- card -->
-
-          <!-- Card 3: Luis -->
-          <input type="radio" name="slide" id="c3" />
-          <label for="c3" class="card">
-            <div class="icon">3</div>
-            <div class="row">
-              <div class="descricao">
-                <h4>Luis</h4>
-                <p>Função: Desenvolvimento do site, design e documentação</p>
-                <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
-                <p>
-                  Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos, nasci em Ribeirão Preto-SP e
-                  atualmente moro em Cajuru-SP, gosto muito de programar e quero
-                  ser um desenvolvedor FullStack. Atualmente curso Sistemas de
-                  informação na FIAP.
-                </p>
-                <p class="rm">RM:561742</p>
-                <div class="redes-sociais">
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/LuisRivalta" target="_blank"><img src="static/img/github.png"
-                        alt="Logo do GitHub" width="50px" /></a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a href="https://www.linkedin.com/in/luisrivalta/" target="_blank"><img src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin" width="50px" /></a>
-                  </div>
-                </div>
-              </div>
-              <!-- descricao -->
-              <div class="image">
-                <img src="static/img/luis (1).png" alt="Imagem do integrante" />
-              </div>
-              <!-- img -->
-            </div>
-            <!-- row -->
-          </label>
-          <!-- card -->
-
-          <!-- Card 4: Placeholder -->
-          <input type="radio" name="slide" id="c4" />
-          <label for="c4" class="card">
-            <div class="icon">4</div>
-            <div class="row">
-              <div class="descricao">
-                <h4>Michel</h4>
-                <p>Função: Desenvolvimento do site, design e documentação</p>
-                <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
-                <p>Meu nome é Michel Pereira Dos Santos, tenho 21 anos e moro em São Paulo. Sou formado em Segurança da
-                  Informação
-                  pela Fatec SCS e tenho o desejo de me tornar um desenvolvedor backend. Atualmente estou cursando
-                  Sistemas
-                  de Informação na FIAP</p>
-                <p class="rm">RM:564919</p>
-                <div class="redes-sociais">
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/DarkFoxV" target="_blank"><img src="static/img/github.png"
-                        alt="Logo do GitHub" width="50px" /></a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a href="https://www.linkedin.com/in/michel-pereira42/" target="_blank"><img
-                        src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
-                  </div>
-                </div>
-              </div>
-              <!-- descricao -->
-              <div class="image">
-                <img src="static/img/michel.jpg" alt="Imagem do integrante" />
-              </div>
-              <!-- img -->
-            </div>
-            <!-- row -->
-          </label>
-          <!-- card -->
-
-          <!-- Card 5: Placeholder -->
-          <input type="radio" name="slide" id="c5" />
-          <label for="c5" class="card">
-            <div class="icon">5</div>
-            <div class="row">
-              <div class="descricao">
-                <h4>Rodrigo</h4>
-                <p>Função: Desenvolvimento do site, design e documentação</p>
-                <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
-                <p>
-                  Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou natural
-                  de São Gabriel - RS e também sou formado em inglês pela FISK.
-                  Atualmente trabalho como desenvolvedor full stack e estou
-                  cursando Sistemas de Informação na FIAP.
-                </p>
-                <p class="rm">RM: 563042</p>
-                <div class="redes-sociais">
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/Rodrigo635" target="_blank"><img src="static/img/github.png"
-                        alt="Logo do GitHub" width="50px" /></a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/" target="_blank"><img
-                        src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
-                  </div>
-                </div>
-              </div>
-              <!-- descricao -->
-              <div class="image">
-                <img src="static/img/Rodrigo.jpeg" alt="Imagem do integrante" />
-              </div>
-              <!-- img -->
-            </div>
-            <!-- row -->
-          </label>
-          <!-- card -->
-        </div><!-- card-sobre-nos -->
-      </div><!-- integrantes -->
-
-
-      <!-- Formulário de Contato -->
-      <section class="contate-nos bg-azul">
-        <form class="form">
-          <h2>Contate-nos</h2>
-          <fieldset>
-            <legend><label for="nome">Nome</label></legend>
-            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required pattern="[A-Za-z\s]+" />
-          </fieldset>
-          <fieldset>
-            <legend><label for="email">E-mail</label></legend>
-            <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required />
-          </fieldset>
-          <fieldset>
-            <legend><label for="titulo">Título</label></legend>
-            <input type="text" name="titulo" id="titulo" placeholder="Digite o título da mensagem" required />
-          </fieldset>
-          <fieldset>
-            <legend><label for="mensagem">Mensagem</label></legend>
-            <textarea name="mensagem" id="mensagem" placeholder="Digite sua mensagem" required></textarea>
-          </fieldset>
-          <button type="submit" class="button-submit">Enviar</button>
-        </form><!-- form -->
-      </section><!-- contate-nos -->
-    </main>
-
-    <!-- Rodapé -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-logo">
-          <div class="logo">
-            <a href="index.html"><span>MATCH</span> HUB</a>
-          </div>
-          <!-- logo -->
-        </div>
-        <!-- footer-logo -->
-
-        <div class="footer-links">
-          <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-          </ul>
-        </div>
-        <!-- footer-links -->
-
-        <div class="footer-rights">
-          <p>Match Hub © 2025. Todos os direitos reservados.</p>
-        </div>
-        <!-- footer-rights -->
+  <main>
+    <section class="container-imagem">
+      <div class="imagem-bg">
+        <h1>Contato</h1>
       </div>
-      <!-- footer-container -->
-    </footer>
-    <!-- footer -->
+    </section><!-- container-imagem -->
 
-  </body>
+    <section class="quem-somos">
+
+      <figure>
+        <img src="static/img/place-work.jpg" alt="Imagem ilustrando um local de trabalho" />
+      </figure>
+
+      <article class="introducao ">
+
+        <h1>Quem somos nós</h1>
+
+        <p>
+          Somos cinco estudantes do primeiro módulo de Sistemas de Informação
+          da FIAP e desenvolvemos este site como parte de um trabalho
+          acadêmico. Nosso objetivo é criar uma plataforma que centralize as
+          datas dos principais campeonatos de eSports, facilitando o acesso às
+          informações para os fãs e entusiastas dos jogos eletrônicos. Este
+          projeto reforça nossos conhecimentos em desenvolvimento web,
+          colaboração em equipe e boas práticas de tecnologia, entregando uma
+          solução útil para a comunidade gamer.
+        </p>
+        <p>
+          Além disso, buscamos aprimorar nossas habilidades em pesquisa,
+          design e usabilidade, garantindo que a experiência do usuário seja
+          intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
+          criar uma interface acessível e responsiva, para que os usuários
+          encontrem facilmente as informações, independentemente do
+          dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
+          navegação fluida, desafiando-nos a pensar em soluções inovadoras
+          para a interação dos fãs com o cenário competitivo de eSports.
+        </p>
+      </article><!-- introducao -->
+
+    </section><!-- quem-somos -->
+
+
+
+    <section class="frase">
+      <div>
+        <div class="frase__texto">
+          <h1>
+            "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
+            move!"
+          </h1>
+        </div>
+        <div class="frase__imagem">
+          <img src="static/img/tecnologia.jpg" alt="Imagem de um homem mexendo em um tablet" />
+        </div>
+      </div>
+    </section><!-- frase -->
+
+    <div class="sobre-nos">
+      <h1 class="integrantes_titulo">Nossa equipe</h1>
+      <div class="cards-sobre-nos">
+        <!-- Card 1: Gabriel Vilela -->
+        <input type="radio" name="slide" id="c1" checked />
+        <label for="c1" class="card bg-dark">
+          <div class="icon">1</div>
+          <div class="row">
+            <div class="descricao">
+              <h4>Gabriel Vilela</h4>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>
+                Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado em Técnico de
+                Informática, nasci em Cajuru-SP mas moro em Ribeirão Preto-SP.
+                Atualmente estou cursando Sistema de Informação pela FIAP
+              </p>
+
+              <p class="rm">RM: 562125</p>
+
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/gabrielvilela12" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div><!-- plataforma -->
+
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div><!-- plataforma -->
+              </div><!-- redes-sociais -->
+
+            </div><!-- descricao -->
+            <div class="image">
+              <img src="static/img/Gabriel.png" alt="Imagem do integrante" />
+            </div><!-- img -->
+          </div><!-- row -->
+        </label><!-- card -->
+
+        <!-- Card 2: Miguel -->
+        <input type="radio" name="slide" id="c2" />
+        <label for="c2" class="card bg-dark">
+          <div class="icon">2</div>
+          <div class="row">
+            <div class="descricao">
+              <h4>Miguel</h4>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>
+                Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
+                Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
+                Atualmente estou cursando Sistemas de Informação pela FIAP.
+              </p>
+
+              <p class="rm">RM: 562196</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/MiguelAssis0" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/miguel-anjoss/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- descricao -->
+            <div class="image">
+              <img src="static/img/miguel.png" alt="Imagem do integrante" />
+            </div>
+            <!-- img -->
+          </div>
+          <!-- row -->
+        </label>
+        <!-- card -->
+
+        <!-- Card 3: Luis -->
+        <input type="radio" name="slide" id="c3" />
+        <label for="c3" class="card bg-dark">
+          <div class="icon">3</div>
+          <div class="row">
+            <div class="descricao">
+              <h4>Luis</h4>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>
+                Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos, nasci em Ribeirão Preto-SP e
+                atualmente moro em Cajuru-SP, gosto muito de programar e quero
+                ser um desenvolvedor FullStack. Atualmente curso Sistemas de
+                informação na FIAP.
+              </p>
+              <p class="rm">RM:561742</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/LuisRivalta" target="_blank"><img src="static/img/github.png"
+                      alt="Logo do GitHub" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/luisrivalta/" target="_blank"><img src="static/img/linkedin.jpeg"
+                      alt="Logo do Linkedin" width="50px" /></a>
+                </div>
+              </div>
+            </div>
+            <!-- descricao -->
+            <div class="image">
+              <img src="static/img/luis (1).png" alt="Imagem do integrante" />
+            </div>
+            <!-- img -->
+          </div>
+          <!-- row -->
+        </label>
+
+        <!-- card -->
+
+        <!-- Card 4: Placeholder -->
+        <input type="radio" name="slide" id="c4" />
+        <label for="c4" class="card bg-dark">
+          <div class="icon">4</div>
+          <div class="row">
+            <div class="descricao">
+              <h4>Michel</h4>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>Meu nome é Michel Pereira Dos Santos, tenho 21 anos e moro em São Paulo. Sou formado em Segurança da
+                Informação
+                pela Fatec SCS e tenho o desejo de me tornar um desenvolvedor backend. Atualmente estou cursando
+                Sistemas
+                de Informação na FIAP</p>
+              <p class="rm">RM:564919</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/DarkFoxV" target="_blank"><img src="static/img/github.png"
+                      alt="Logo do GitHub" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/michel-pereira42/" target="_blank"><img
+                      src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
+                </div>
+              </div>
+            </div>
+            <!-- descricao -->
+            <div class="image">
+              <img src="static/img/michel.jpg" alt="Imagem do integrante" />
+            </div>
+            <!-- img -->
+          </div>
+          <!-- row -->
+        </label>
+        <!-- card -->
+
+        <!-- Card 5: Placeholder -->
+        <input type="radio" name="slide" id="c5" />
+        <label for="c5" class="card bg-dark">
+          <div class="icon">5</div>
+          <div class="row">
+            <div class="descricao">
+              <h4>Rodrigo</h4>
+              <p>Função: Desenvolvimento do site, design e documentação</p>
+              <p>Curso: Sistemas de Informação - FIAP (1° Módulo)</p>
+              <p>
+                Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou natural
+                de São Gabriel - RS e também sou formado em inglês pela FISK.
+                Atualmente trabalho como desenvolvedor full stack e estou
+                cursando Sistemas de Informação na FIAP.
+              </p>
+              <p class="rm">RM: 563042</p>
+              <div class="redes-sociais">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/Rodrigo635" target="_blank"><img src="static/img/github.png"
+                      alt="Logo do GitHub" width="50px" /></a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/" target="_blank"><img
+                      src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
+                </div>
+              </div>
+            </div>
+            <!-- descricao -->
+            <div class="image">
+              <img src="static/img/Rodrigo.jpeg" alt="Imagem do integrante" />
+            </div>
+            <!-- img -->
+          </div>
+          <!-- row -->
+        </label>
+        <!-- card -->
+      </div><!-- card-sobre-nos -->
+    </div><!-- integrantes -->
+
+
+    <!-- Formulário de Contato -->
+    <section class="contate-nos bg-azul">
+      <form class="form">
+        <h2>Contate-nos</h2>
+        <fieldset>
+          <legend><label for="nome">Nome</label></legend>
+          <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required pattern="[A-Za-z\s]+" />
+        </fieldset>
+        <fieldset>
+          <legend><label for="email">E-mail</label></legend>
+          <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required />
+        </fieldset>
+        <fieldset>
+          <legend><label for="titulo">Título</label></legend>
+          <input type="text" name="titulo" id="titulo" placeholder="Digite o título da mensagem" required />
+        </fieldset>
+        <fieldset>
+          <legend><label for="mensagem">Mensagem</label></legend>
+          <textarea name="mensagem" id="mensagem" placeholder="Digite sua mensagem" required></textarea>
+        </fieldset>
+        <button type="submit" class="button-submit">Enviar</button>
+      </form><!-- form -->
+    </section><!-- contate-nos -->
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo">
+          <a href="index.html"><span>MATCH</span> HUB</a>
+        </div>
+        <!-- logo -->
+      </div>
+      <!-- footer-logo -->
+
+      <div class="footer-links">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- footer-links -->
+
+      <div class="footer-rights">
+        <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">© 2025 Match Hub. Todos os direitos reservados.</p>
+      </div>
+      <!-- footer-rights -->
+    </div>
+    <!-- footer-container -->
+  </footer>
+  <!-- footer -->
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+
+</body>
 
 </html>
