@@ -100,11 +100,6 @@ main {
   gap: 20px; 
 }
 
-.introducao p {
-  line-height: 2rem;
-  text-align: justify;
-}
-
 /* figura */
 figure {
   width: 100%;
@@ -114,18 +109,13 @@ figure img {
   width: 100%;
   height: 700px;
   filter: brightness(0.7);
-  object-fit: cover;
-  object-position: center;
-  margin: 0;
-  border-radius: 15px;
+ 
   transition: 0.3s ease-in-out;
 }
 
 figure img:hover {
   filter: brightness(1);
 }
-
-
 
 /* FRASE ESPECIAL */
 .frase {
@@ -158,7 +148,6 @@ figure img:hover {
 .frase h1 {
   font-style: italic;
   font-family: "Courier New", Courier, monospace;
-  text-align: center;
 }
 
 .frase img {
@@ -175,36 +164,21 @@ figure img:hover {
   filter: brightness(1);
 }
 
-
-
 /* SOBRE NÓS CARDS */
-.sobre-nos {
-  min-width: 100%;
-  padding: 100px 10%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
 
-.integrantes_titulo {
-  text-align: center;
-  color: var(--cor-branco);
+.sobre-nos, .cards-sobre-nos {
+  min-width: 100%;
+  gap: 20px;
+  height: 100%; 
+  flex-wrap: nowrap;
+}
+.sobre-nos {
+  padding: 100px 10%;
 }
 
 /* cards */
 .cards-sobre-nos {
-  min-width: 100%;
   padding: 0px 10%;
-  gap: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 100%; 
 }
 
 .card {
@@ -288,18 +262,11 @@ figure img:hover {
 }
 
 .descricao h4 {
-  padding-block: 5px;
   color: var(--cor-azul);
-}
-
-.descricao {
-  padding: 5px;
 }
 
 .descricao p {
   color: var(--cor-branco);
-  padding-block: 5px;
-  text-align: start;
 }
 
 .card .rm {
@@ -317,10 +284,6 @@ figure img:hover {
   font-weight: bold;
 }
 
-.plataforma {
-  justify-content: center;
-  text-align: center;
-}
 
 .name-plataforma {
   color: var(--cor-azul);
@@ -330,8 +293,7 @@ figure img:hover {
   display: none;
   width: 320px;
   height: 340px;
-  border-radius: 50%;
-  border: 2px solid var(--cor-branco);
+  border-radius: 100%;
   margin: 10px;
 }
 
@@ -721,14 +683,6 @@ input:checked + label:hover{
 
   .cards-sobre-nos{
     padding: 0;
-  }
-}
-
-@media (max-width: 600px) {
- 
-
-  .descricao p {
-    text-align: center;
   }
 }
 

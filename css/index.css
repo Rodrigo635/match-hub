@@ -19,7 +19,7 @@ h1 {
 
 p {
   font-size: var(--font-size-paragrafo-pc);
-  line-height: 2rem;
+  line-height: 1.8rem;
   text-align: justify;
   margin-bottom: 1rem;
 }
