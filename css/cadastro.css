@@ -8,7 +8,6 @@ nav{
 }
 
 
-
 /* CONTEUDO */
 main {
   display: flex;
@@ -43,64 +42,38 @@ main {
   z-index: 1;
 }
 
-.cadastro-e-entrar .cadastro, .cadastro-e-entrar .entrar {
+/* .cadastro-e-entrar .cadastro, .cadastro-e-entrar .entrar {
   display: flex;
   width: 50%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   text-align: center;
-}
+} */
 
-.cadastro-e-entrar input {
+/* .cadastro-e-entrar input {
   display: none;
-}
+} */
 
-.cadastro-e-entrar label {
-  color: var(--cor-branco);
-  border-radius: 20px 20px 0 0;
-  width: 100%;
-  padding: 15px 0;
-  background-color: var(--cor-bgEscuro);
-  font-size: 1.3rem;
-  cursor: pointer;
-  text-align: center;
+.cadastro-e-entrar .button {
   transition: background-color 0.3s ease;
 }
 
-.container-cadastro input[type="radio"] {
+
+/* .form-cadastro, .form-login {
   display: none;
-}
+} */
 
-/* Alterar a cor do botão ativo */
-#b1:checked ~ .cadastro-e-entrar label[for="b1"],
-#b2:checked ~ .cadastro-e-entrar label[for="b2"] {
-  background-color: var(--cor-bg);
-}
-
-.form-cadastro, .form-login {
-  display: none;
-}
-
-#b1:checked ~ .container-form .form-cadastro {
-  display: flex;
-  flex-direction: column;
-}
-
-#b2:checked ~ .container-form .form-login {
-  display: flex;
-  flex-direction: column;
-}
 
 /* Container do formulário */
 .container-form {
-  display: flex;
+  /* display: flex;
   margin-bottom: 60px;
   width: 100%;
   height: auto;
   justify-content: center;
   flex-direction: column;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px; */
   background-color: var(--cor-bg);
 }
 
@@ -115,7 +88,6 @@ form {
 }
 
 .gif-container {
-  display: none;
   width: 75%;
   border-radius: 20px;
   margin-bottom: 10px;
@@ -127,23 +99,23 @@ form {
   border-radius: 20px;
 }
 
-.titulo {
+/* .titulo {
   color: var(--cor-branco);
   font-size: 1.8rem;
   margin-top: 40px;
   margin-bottom: 20px;
-}
+} */
 
-.input-group {
+.container-input{
   position: relative;
   width: 75%;
   margin: 10px 0;
 }
 
-.input-group input {
+.container-input input {
   width: 100%;
+  z-index: auto !important;
   padding: 12px 40px 12px 15px;
-  border-radius: 5px !important;
   line-height: normal;
   border: 2px solid var(--cor-cinza);
   background: transparent;
@@ -153,8 +125,13 @@ form {
   transition: border-color 0.3s ease-in-out;
 }
 
-.input-group label {
-  position: absolute;
+.container-input input::placeholder {
+  color: var(--cor-branco);
+  opacity: 0.7;
+}
+
+.container-input label {
+  position: absolute !important;
   top: 0;
   left: 15px;
   transform: translateY(-50%);
@@ -166,19 +143,34 @@ form {
   padding: 0 5px;
 }
 
-.input-group .eye-icon {
+.container-input .eye {
   position: absolute;
-  right: 15px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--cor-cinzaTexto);
-  font-size: 1.2rem;
-  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+  z-index: 2;
 }
 
-.input-group .eye-icon img {
+.container-input .eye-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  transition: opacity 0.3s ease;
+}
+
+.container-input .eye-icon img {
   width: 25px;
   height: 18px;
+  filter: invert(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.container-input button:hover .eye-icon {
+  opacity: 0.8;
 }
 
 .esqueceu-senha {
@@ -227,34 +219,11 @@ form {
 }
 
 /* Botão de login */
-.button-cadastro-container {
-  display: flex;
-  width: 75%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.button-cadastro {
-  align-items: center;
-  padding: 9px 20px;
-  background-color: var(--cor-branco);
-  color: var(--cor-preto);
-  width: 100%;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  border: 2px solid transparent;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-size: 1.1rem;
-  text-align: center;
-
-}
 
 .button-cadastro:hover {
-  background-color: var(--cor-bg);
-  border-color: var(--cor-branco);
-  color: var(--cor-branco);
+  background-color: var(--cor-bg) !important;
+  border-color: var(--cor-branco) !important;
+  color: var(--cor-branco) !important;
 }
 
 /* Ou container */
@@ -280,49 +249,32 @@ hr {
   border-top: 1px solid var(--cor-cinzaTexto);
 }
 
-/* Cadastrar com Google */
-.cadastrar-com-google {
-  display: flex;
-  width: 75%;
-  justify-content: center;
-  margin-bottom: 20px;
-}
 
-.cadastrar-com-google .google-button {
-  display: flex;
-  line-height: 0;
-  align-items: center;
-  justify-content: center;
+.google-button {
   width: 100%;
   gap: 10px;
-  background-color: var(--cor-branco);
-  color: var(--cor-preto);
-  border-radius: 10px;
-  padding: 10px;
   cursor: pointer;
   transition: 0.2s ease;
-  border: 2px solid transparent;
   box-sizing: border-box;
   font-size: 1.1rem;
   margin-bottom: 40px;
 }
 
-.cadastrar-com-google  p{
+/* .cadastrar-com-google  p{
   margin: 0;
   line-height: 0;
-}
+} */
 
-.cadastrar-com-google .google-button:hover {
+.google-button:hover {
   border: 2px solid var(--cor-branco);
   background-color: transparent;
   color: var(--cor-branco);
 }
 
-.cadastrar-com-google .google-button img {
+.google-button img {
   width: 20px;
   height: 20px;
 }
-
 
 
 /* RESPONSIVIDADE */
@@ -354,9 +306,9 @@ hr {
     margin-top: 40px;
   }
 
-  .titulo {
+  /* .titulo {
     margin-top: 20px;
-  }
+  } */
 
   .cadastro-e-entrar {
     order: 1;
@@ -364,7 +316,7 @@ hr {
     justify-content: center;
   }
   
-  .cadastro-e-entrar label {
+  .cadastro-e-entrar .button {
     padding: 30px;
   }
 

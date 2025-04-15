@@ -1,5 +1,4 @@
 <html lang="pt">
-
   <head>
     <!-- Configurações de codificação e responsividade -->
     <meta charset="UTF-8" />
@@ -9,26 +8,23 @@
     <link rel="stylesheet" href="./css/bootstrap.css" />
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/cadastro.css" />
-    <link rel="stylesheet" href="./css/variaveis.css">
-    
+    <link rel="stylesheet" href="./css/variaveis.css" />
+
     <!-- Título da página -->
-    <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
     <title>MATCH HUB - Cadastrar</title>
   </head>
 
   <body>
-
     <header>
-
       <div class="logo">
         <a href="index.html"><span>MATCH</span> HUB</a>
-      </div><!-- Logo -->
+      </div>
+      <!-- Logo -->
 
       <nav class="nav">
-
         <!-- Navegação e menu hamburguer -->
         <div class="nav-links">
-
           <!-- Checkbox para controlar o menu -->
           <input type="checkbox" id="menu-toggle" />
 
@@ -47,131 +43,236 @@
             <li><a href="sobre.html">Sobre</a></li>
             <li><a href="contato.html">Contato</a></li>
           </ul>
-
-        </div><!-- nav-links -->
-
+        </div>
+        <!-- nav-links -->
       </nav>
-
     </header>
 
-
-
-    <main class="">
+    <main>
       <div class="container-cadastro">
-
-        <!-- Nossos inputs de type radio pra alternar entre cadastro e login -->
-        <input type="radio" name="button" id="b1" checked />
-        <input type="radio" name="button" id="b2" />
-      
+        <!-- Nossos inputs pra alternar entre cadastro e login -->
         <div class="cadastro-e-entrar">
-          <label for="b1" class="button">Cadastrar</label>
-          <label for="b2" class="button">Entrar</label>
-        </div><!-- cadastro-e-entrar -->
+          <button
+            class="button border-0 w-100 py-3 fs-5 rounded-top-4"
+            id="button-cadastro"
+            style="background-color: var(--cor-bg)"
+            onclick="toggleEnter('form-cadastro')"
+          >
+            Cadastrar
+          </button>
+          <button
+            class="button border-0 w-100 py-3 fs-5 rounded-top-4"
+            style="background-color: var(--cor-bgEscuro)"
+            id="button-entrar"
+            onclick="toggleEnter('form-login')"
+          >
+            Entrar
+          </button>
+        </div>
 
+        <!-- cadastro-e-entrar -->
 
-        <div class="container-form">
+        <div class="container-form mb-5 w-100 h-auto rounded-bottom-4">
+          <form
+            class="form-cadastro"
+            id="form-cadastro"
+            style="display: flex"
+            action="cadastro_concluido.html"
+          >
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="gif-container d-md-none col-12">
+                <img src="static/icons/podio.gif" alt="Podio GIF" />
+              </div>
+              <!-- gif-container -->
 
-          <form class="form-cadastro" action="cadastro_concluido.html">
-            <div class="gif-container">
-              <img src="static/icons/podio.gif" alt="Podio GIF" />
-            </div><!-- gif-container -->
+              <h2 class="text-white text text-center mt-5 mb-3 col-12">Faça seu cadastro</h2>
 
-            <h1 class="titulo">Faça seu cadastro</h1>
+              <div class="mb-3 bg-dark container-input col-12">
+                <input
+                  type="email"
+                  class="form-control bg-dark text-white rounded-2"
+                  placeholder="Digite seu e-mail..."
+                  id="email"
+                  required
+                />
 
-            <div class="input-group">
-              <input type="text" id="nome" name="nome" placeholder="Digite seu nome..." required/>
-              <label>Nome</label>
-            </div><!-- input-group de nome -->
+                <label for="email" class="form-label text-light">E-mail</label>
+              </div>
+              <!-- input-group de email -->
 
-            <div class="input-group">
-              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..." required/>
-              <label>E-mail</label>
-            </div><!-- input-group de email -->
+              <!-- Campo de Senha -->
+              <div class="mb-3 bg-dark container-input col-12">
+                <input
+                  type="password"
+                  class="form-control bg-dark text-white rounded-2"
+                  placeholder="Digite sua senha..."
+                  id="mainPassword"
+                  required
+                />
+                <label for="mainPassword" class="form-label text-light">Senha</label>
+                <button
+                  class="btn btn-outline-light eye"
+                  type="button"
+                  onclick="togglePassword('mainPassword', 'eyeIconMain')"
+                  aria-label="Mostrar senha"
+                >
+                  <span class="eye-icon" id="eyeIconMain"
+                    ><img src="static/icons/eye-solid.svg" alt=""
+                  /></span>
+                </button>
+              </div>
 
-            <div class="input-group">
-              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required/>
-              <label>Senha</label>
-              <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
-            </div><!-- input-group de senha -->
+              <!-- Campo de Confirmação de Senha -->
+              <div class="mb-3 bg-dark container-input col-12">
+                <input
+                  type="password"
+                  class="form-control bg-dark text-white rounded-2"
+                  placeholder="Confirme sua senha..."
+                  id="confirmPassword"
+                  required
+                />
+                <label for="confirmPassword" class="form-label text-light">Confirmar Senha</label>
+                <button
+                  class="btn btn-outline-light eye"
+                  type="button"
+                  onclick="togglePassword('confirmPassword', 'eyeIconConfirm')"
+                  aria-label="Mostrar senha"
+                >
+                  <span class="eye-icon" id="eyeIconConfirm"
+                    ><img src="static/icons/eye-solid.svg" alt=""
+                  /></span>
+                </button>
+              </div>
 
-            <div class="input-group">
-                <input type="password" id="senha" name="senha" placeholder="Confirme sua senha..." required/>
-                <label>Confirmar Senha</label>
-                <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
-            </div><!-- input-group de confirmar senha -->
+              <div class="termos-container d-flex justify-content-center col-12">
+                <input type="checkbox" id="termos" name="termos" required />
+                <p class="text-center">
+                  Aceito os <a href="#">termos de uso </a> e
+                  <a href="#">condições.</a>
+                </p>
+              </div>
+              <!-- termos-container -->
 
-            <div class="termos-container">
-              <input type="checkbox" id="termos" name="termos" required/>
-              <p>Aceito os <a href="#">termos de uso </a> e <a href="#">condições.</a></p>
-            </div><!-- termos-container -->
+              <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
+                <button
+                  type="submit"
+                  class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light button-cadastro"
+                >
+                  Cadastrar
+                </button>
+              </div>
+              <!-- btn-cadastro-container -->
 
-            <div class="button-cadastro-container">
-              <button type="submit" class="button-cadastro" href="cadastro_concluido.html">Cadastrar</button>
-            </div><!-- btn-cadastro-container -->
+              <div class="container-ou col-12">
+                <hr />
+                <p class="ou">Ou</p>
+                <hr />
+              </div>
+              <!-- ou-container -->
 
-            <div class="container-ou">
-              <hr><p class="ou">Ou</p><hr>
-            </div><!-- ou-container -->
-            
-            <div class="cadastrar-com-google">
-              <div class="google-button">
-                <img src="static/icons/google.png" alt="Google Icon" />
-                <p>Cadastrar com Google</p>
-              </div><!-- google-button -->
-            </div><!-- cadastrar-com-google -->
-          </form><!-- form-cadastro -->
-        
+              <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
+                <button
+                  type="submit"
+                  class="btn align-items-center w-100 fw-bold p-2 rounded-3 btn-light google-button"
+                >
+                  <img src="static/icons/google.png" alt="Google Icon" />
+                  Cadastrar com google
+                </button>
+                <!-- google-button -->
+              </div>
+              <!-- cadastrar-com-google -->
+            </div>
+          </form>
+          <!-- form-cadastro -->
 
-          <form class="form-login" action="index.html">
-            <div class="gif-container">
-              <img src="static/icons/podio.gif" alt="Podio GIF" />
-            </div><!-- gif-container -->
+          <form class="form-login" id="form-login" style="display: none" action="index.html">
+            <div class="row justify-content-center align-items-center">
+              <div class="gif-container d-md-none col-12">
+                <img src="static/icons/podio.gif" alt="Podio GIF" />
+              </div>
+              <!-- gif-container -->
 
-            <h1 class="titulo">Faça login</h1>
+              <h2 class="text-white mt-5 mb-3 text-center col-12"> Faça Login </h2>
 
-            <div class="input-group">
-              <input type="email" id="email" name="email" placeholder="Digite seu e-mail..." required/>
-              <label>E-mail</label>
-            </div><!-- input-group de email -->
+              <div class="mb-3 bg-dark container-input col-12">
+                <input
+                  type="email"
+                  class="form-control bg-dark text-white rounded-2"
+                  placeholder="Digite seu e-mail..."
+                  id="email"
+                />
+                <label for="email" class="form-label text-light">E-mail</label>
+              </div>
+              <!-- input-group de email -->
 
-            <div class="input-group">
-              <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required/>
-              <label>Senha</label>
-              <span class="eye-icon"><img src="static/icons/eye.png" alt=""></span>
-            </div><!-- input-group de senha -->
+              <!-- Campo de Senha -->
+              <div class="mb-3 bg-dark container-input col-12">
+                <input
+                  type="password"
+                  class="form-control bg-dark text-white rounded-2"
+                  placeholder="Digite sua senha..."
+                  id="loginPassword"
+                />
+                <label for="loginPassword" class="form-label text-light">Senha</label>
+                <button
+                  class="btn btn-outline-light eye"
+                  type="button"
+                  onclick="togglePassword('loginPassword', 'eyeIconLogin')"
+                  aria-label="Mostrar senha"
+                >
+                  <span class="eye-icon" id="eyeIconLogin"
+                    ><img src="static/icons/eye-solid.svg" alt=""
+                  /></span>
+                </button>
+              </div>
 
-            <a class="esqueceu-senha" href="#">Esqueceu a senha?</a>
+              <a class="esqueceu-senha text-center col-12" href="#">Esqueceu a senha?</a>
 
-            <div class="button-cadastro-container">
-              <button type="submit" class="button-cadastro" href="index.html">Entrar</button>
-            </div><!-- btn-cadastro-container -->
+              <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
+                <button
+                  type="submit"
+                  class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light button-cadastro"
+                >
+                  Entrar
+                </button>
+              </div>
+              <!-- btn-cadastro-container -->
 
-            <div class="container-ou">
-              <hr><p class="ou">Ou</p><hr>
-            </div><!-- ou-container -->
+              <div class="container-ou col-12">
+                <hr />
+                <p class="ou">Ou</p>
+                <hr />
+              </div>
+              <!-- ou-container -->
 
-            <div class="cadastrar-com-google">
-              <div class="google-button google">
-                <img src="static/icons/google.png" alt="Google Icon" />
-                <p>Entrar com Google</p>
-              </div><!-- google-button -->
-            </div><!-- cadastrar-com-google -->
-          </form><!-- form-login -->
-
-        </div><!-- container-form -->
-
-      </div><!-- container -->
+              <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
+                <button
+                  type="submit"
+                  class="btn align-items-center w-100 fw-bold p-2 rounded-3 btn-light google-button"
+                >
+                  <img src="static/icons/google.png" alt="Google Icon" />
+                  Entrar com google
+                </button>
+              </div>
+            </div>
+            <!-- cadastrar-com-google -->
+          </form>
+          <!-- form-login -->
+        </div>
+        <!-- container-form -->
+      </div>
+      <!-- container -->
     </main>
 
-
-    
     <footer>
       <div class="footer-container">
         <div class="footer-logo">
           <div class="logo">
             <a href="index.html"><span>MATCH</span> HUB</a>
-          </div><!-- logo -->
-      </div><!-- footer-logo -->
+          </div>
+          <!-- logo -->
+        </div>
+        <!-- footer-logo -->
 
         <div class="footer-links">
           <ul>
@@ -179,16 +280,21 @@
             <li><a href="sobre.html">Sobre</a></li>
             <li><a href="contato.html">Contato</a></li>
           </ul>
-        </div><!-- footer-links -->
+        </div>
+        <!-- footer-links -->
 
         <div class="footer-rights">
-          <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">© 2025 Match Hub. Todos os direitos reservados.</p>
-        </div><!-- footer-rights -->
-      </div><!-- footer-container -->
-    </footer><!-- footer -->
+          <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">
+            © 2025 Match Hub. Todos os direitos reservados.
+          </p>
+        </div>
+        <!-- footer-rights -->
+      </div>
+      <!-- footer-container -->
+    </footer>
+    <!-- footer -->
 
     <script src="./js/bootstrap.bundle.min.js"></script>
-
+    <script src="./js/cadastro.js"></script>
   </body>
-
 </html>
