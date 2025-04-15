@@ -1,17 +1,20 @@
 /* ESTILIZAÇÃO DOS TEXTOS */
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: var(--font-size-titulo-pc);
 }
 
-p{
+p {
   font-size: var(--font-size-paragrafo-pc);
 }
 
 .secao-texto {
   font-size: var(--font-size-paragrafo-pc);
 }
-
-
 
 /* HEADER */
 header {
@@ -21,8 +24,6 @@ header {
 .nav-links li:nth-child(3) a {
   color: var(--cor-azul);
 }
-
-
 
 /* CONTEÚDO GERAL */
 main {
@@ -42,7 +43,12 @@ main {
 }
 
 .imagem-bg {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(58, 68, 211, 0.5)), url('../static/img/background-sobre.jpg');
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5),
+      rgba(58, 68, 211, 0.5)
+    ),
+    url("../static/img/background-sobre.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -52,14 +58,6 @@ main {
   color: var(--cor-branco);
   font-weight: bold;
   font-size: var(--font-size-titulo-mobile);
-}
-
-.container-imagem {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  min-height: 400px;
-  color: var(--cor-branco);
 }
 
 .container-imagem > div {
@@ -77,8 +75,6 @@ main {
   color: var(--cor-branco);
   margin-bottom: 20px;
 }
-
-
 
 /* CONTAINER SEÇÃO */
 .container-secao {
@@ -143,7 +139,7 @@ main {
   list-style: none;
 }
 
-.secao-lista p{
+.secao-lista p {
   font-size: var(--font-size-paragrafo-pc-menor);
 }
 
@@ -158,8 +154,6 @@ main {
   object-fit: cover;
   object-position: center;
 }
-
-
 
 /* CARDS */
 .cards {
@@ -231,8 +225,6 @@ main {
   margin-bottom: 10px;
 }
 
-
-
 /* TABELAS */
 .tabela-container {
   width: 50%;
@@ -282,26 +274,22 @@ main {
   border-bottom-right-radius: 15px;
 }
 
-
-
 /* AJUSTE NO FOOTER */
 footer .footer-rights p {
   font-size: var(--font-size-small);
 }
 
-
-
 /* RESPONSIVIDADE */
 @media screen and (max-width: 1470px) {
   /* Responsividade dos cards */
-  .cards li{
+  .cards li {
     min-height: 375px;
   }
 }
 
-@media screen and (max-width: 1188px){
+@media screen and (max-width: 1188px) {
   /* Responsividade dos cards */
-  .cards li{
+  .cards li {
     min-height: 470px;
   }
 }
@@ -320,7 +308,7 @@ footer .footer-rights p {
     display: grid;
   }
 
-  .container-secao > div{
+  .container-secao > div {
     padding-block: 60px;
   }
 
@@ -375,19 +363,18 @@ footer .footer-rights p {
   }
 
   /* Responsividade dos cards */
-  .cards li{
+  .cards li {
     width: 90%;
     min-height: 100%;
   }
 }
 
 @media screen and (max-width: 425px) {
-  
-    
-    .container-secao p, .secao-lista li {
-        font-size: var(--font-size-mobile);
-        text-align: center;
-    }
+  .container-secao p,
+  .secao-lista li {
+    font-size: var(--font-size-mobile);
+    text-align: center;
+  }
 
   .container-secao p,
   .secao-lista li {
@@ -426,4 +413,3 @@ footer .footer-rights p {
     font-size: var(--font-size-titulo-mobile);
   }
 }
-

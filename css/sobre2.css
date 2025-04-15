@@ -33,20 +33,8 @@
 
 /* Estilos de texto */
 
-
-
-
-.destaque-azul {
-  color: var(--cor-azul);
-  font-weight: bold;
-}
-
 /* Cards */
 .card-item {
-  background-color: var(--cor-branco);
-  color: var(--cor-preto);
-  border-radius: 15px;
-  padding: 20px;
   height: 100%;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
   transition: 0.2s ease-in-out;
@@ -107,7 +95,6 @@
   border-bottom-right-radius: 15px;
 }
 
-
 /* Imagens */
 .img-custom {
   width: 100%;
@@ -130,7 +117,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  h1,h2{
+  h1,
+  h2 {
     text-align: center;
   }
 }
