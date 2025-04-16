@@ -1,16 +1,11 @@
 /* HEADER */
 header {
-  display: flex;
-  width: 100%;
-  padding: 25px 10%;
   background: linear-gradient(to bottom, rgb(18, 18, 18), var(--cor-bg));
   transition: 0.3s ease;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   z-index: 999;
 }
 
+<<<<<<< Updated upstream
 h1 {
   font-size: var(--font-size-titulo-pc);
   margin-bottom: 1.5rem;
@@ -32,25 +27,16 @@ p {
   flex-wrap: nowrap;
 }
 
+=======
+>>>>>>> Stashed changes
 /* Logo */
 .logo {
+  text-wrap: nowrap;
   transition: 0.3s ease;
-}
-
-.logo a {
-  font-size: var(--font-size-logo);
-  font-weight: bold;
-  color: var(--cor-branco);
-  transition: .5s ease;
 }
 
 .logo a > span{
   color: var(--cor-azul);
-}
-
-.logo a:hover {
-  display: block;
-  scale: 1.05;
 }
 
 /* Links de navegação */
@@ -62,21 +48,17 @@ p {
   order: 2;
 }
 
-.nav-links,
-.nav-links ul,
-.nav-links ul li {
-  display: flex;
-  align-items: center;
-}
-
 .nav-links ul {
-  gap: 15px;
-  margin-right: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: nowrap;
 }
 
 .pesquisa {
   display: flex;
-  width: 100%;
+  width: 200px;
+  min-width: 150px;
   padding: 8px 12px;
   border: 2px solid var(--cor-cinza);
   background-color: transparent;
@@ -129,7 +111,6 @@ p {
 .btn-login {
   display: flex;
   padding: 9px 20px;
-  margin-left: 15px;
   background-color: var(--cor-azul) !important;
   color: var(--cor-branco) !important;
   border-radius: 10px;
@@ -195,56 +176,16 @@ p {
 
 
 /* FOOTER */
-footer {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--cor-preto);
-  color: var(--cor-branco);
-  padding: 25px 0;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-
-.footer-logo a img {
-  width: 120px;
-  height: auto;
-}
-
 .footer-links ul {
   list-style: none;
-  display: flex;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-left: 20px;
 }
 
 .footer-links a {
-  color: var(--cor-branco);
-  font-size: var(--font-size-footer-links);
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
   color: var(--cor-azul);
-}
-
-.footer-rights {
-  text-align: start;
-  margin-top: 20px;
-  width: 100%;
-  color: var(--cor-branco);
-  font-size: 0.9rem !important;
 }
 
 
@@ -333,8 +274,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-
-  
   h1{
     font-size: var(--font-size-titulo-mobile);
   }
@@ -345,25 +284,6 @@ footer {
 
   p{
     font-size: var(--font-size-paragrafo-mobile);
-  }
-
-  /* Responsividade do footer */
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-links ul {
-    margin-top: 20px;
-    justify-content: center;
-  }
-
-  .footer-links li {
-    margin: 0 10px;
-  }
-
-  .footer-rights {
-    text-align: center;
   }
 }
 

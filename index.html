@@ -3,13 +3,13 @@
 
 <head>
   <!-- Configurações de codificação e responsividade -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- Links para os arquivos CSS -->
-  <link rel="stylesheet" href="./css/bootstrap.css" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/home.css" />
+  <link rel="stylesheet" href="./css/bootstrap.css"/>
+  <link rel="stylesheet" href="./css/index.css"/>
+  <link rel="stylesheet" href="./css/home.css"/>
   <link rel="stylesheet" href="./css/variaveis.css">
 
   <!-- Título da página -->
@@ -19,41 +19,48 @@
 
 <body>
 
-  <header>
+  <header class="header py-4">
+    <div class="container">
+      <div class="row">
 
-    <div class="logo">
-      <a href="index.html"><span>MATCH</span> HUB</a>
-    </div><!-- Logo -->
+        <div class="col-3 d-flex align-items-center justify-content-start">
+          <div class="logo">
+            <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
+          </div><!-- Logo -->
+        </div><!-- col -->
 
-    <nav class="nav">
+        <div class="col-9 d-flex align-items-center justify-content-end">
+          <nav class="d-flex justify-content-end nav">
+            <div class="d-flex align-items-center nav-links">
+      
+              <!-- Checkbox para controlar o menu -->
+              <input type="checkbox" id="menu-toggle" />
+      
+              <!-- Label com o ícone do menu -->
+              <label for="menu-toggle" class="menu d-lg-none">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </label><!-- menu -->
+      
+              <ul class="d-lg-flex align-items-center gap-3 ps-0"> <!-- Adicione gap-3 -->
+                <li>
+                  <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+                </li> <!-- search -->
+                <li><a href="index.html"><h5 class="mb-0">Início</h5></a></li>
+                <li><a href="sobre.html"><h5 class="mb-0">Sobre</h5></a></li>
+                <li><a href="contato.html"><h5 class="mb-0">Contato</h5></a></li>
+                <li><a href="cadastro.html" class="btn btn-login">Entrar</a></li>
+              </ul>
+      
+            </div><!-- nav-links -->
+          </nav>
+        </div><!-- col -->
 
-      <div class="nav-links">
-
-        <!-- Checkbox para controlar o menu -->
-        <input type="checkbox" id="menu-toggle" />
-
-        <!-- Label com o ícone do menu -->
-        <label for="menu-toggle" class="menu">
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </label><!-- menu -->
-
-        <ul>
-          <li>
-            <input type="search" class="pesquisa" placeholder="Pesquisar..." />
-          </li> <!-- search -->
-          <li><a href="index.html">Início</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="contato.html">Contato</a></li>
-          <li><a href="cadastro.html" class="btn-login">Entrar</a></li>
-        </ul>
-
-      </div><!-- nav-links -->
-
-    </nav>
+      </div><!-- row -->
+    </div><!-- container -->
 
   </header>
 
@@ -116,24 +123,16 @@
 
 
 
-  <section class="conteudo" style="margin-top: 60px">
-    <div class="titulo-filtros">
-      <div class="titulo">
-        <h2>Campeonatos</h2>
+  <section class="container mt-5 mb-3">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-12 col-lg-6 filtros-titulo">
+        <h2 class="text-white fw-bold">Campeonatos</h2>
       </div><!-- titulo -->
 
-      <input type="checkbox" id="abrir-filtro" class="abrir-filtro filtros-dropdown">
-      <label for="abrir-filtro" class="abrir">
-        <img src="static/icons/filtros.png" alt="Filtro">
-      </label><!-- abrir -->
-      <label for="abrir-filtro" class="fechar">
-        X
-      </label><!-- fechar -->
-
-      <div class="filtros">
-        <ul>
-          <li>
-            <select class="select" id="jogos" name="jogos">
+      <div class="col-12 col-md-12 col-lg-6">
+        <ul class="row m-0 p-0 list-style-none gx-2">
+          <li class="col-4 filtro">
+            <select class="form-select rounded-5 fw-bold cursor-pointer" name="jogos" id="jogos">
               <option value="Jogos" selected disabled>Jogos</option>
               <option value="Todos">Todos</option>
               <option value="League of Legends">League of Legends</option>
@@ -149,8 +148,8 @@
               <option value="PUBG Mobile">PUBG Mobile</option>
             </select>
           </li>
-          <li>
-            <select id="campeonatos" name="campeonatos" class="select">
+          <li class="col-4 filtro">
+            <select class="form-select rounded-5 fw-bold cursor-pointer" name="campeonatos" id="campeonatos">
               <option value="Campeonatos" selected disabled>Campeonatos</option>
               <option value="Todos">Todos</option>
               <option value="Champions Valorant">Champions Valorant</option>
@@ -167,8 +166,8 @@
               <option value="Global Championship">PUBG Global Championship</option>
             </select>
           </li>
-          <li>
-            <select name="data" id="data" class="select">
+          <li class="col-4 filtro">
+            <select class="form-select rounded-5 fw-bold cursor-pointer" name="data" id="data">
               <option value="Data" selected disabled>Data</option>
               <option value="Recentes">Mais Recentes</option>
               <option value="Antigos">Mais Antigos</option>
@@ -182,137 +181,149 @@
 
 
 
-  <section class="conteudo" style="margin-top: 20px; flex-direction: column;">
-    <div class="blocos">
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/lol_thumb.jpg" alt="lol_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">League of Legends</p>
-          <p class="nome-campeonato">Worlds 2025</p>
+  <section class="container mt-2">
+    <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/lol_thumb.jpg" alt="lol_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">League of Legends</h5>
+          <h6 class="pb-3 ps-3 text-white">Worlds 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/cs2_thumb.jpg" alt="cs_go2_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Counter Strike 2</p>
-          <p class="nome-campeonato">Major 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/cs2_thumb.jpg" alt="cs_go2_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">Counter Strike 2</h5>
+          <h6 class="pb-3 ps-3 text-white">Major 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/valorant_thumb2.jpg" alt="valorant_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Valorant</p>
-          <p class="nome-campeonato">Champions 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/valorant_thumb2.jpg" alt="valorant_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">Valorant</h5>
+          <h6 class="pb-3 ps-3 text-white">Champions 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/fortnite_thumb2.jpg" alt="fortnite_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Fortnite</p>
-          <p class="nome-campeonato">World Cup 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/fortnite_thumb2.jpg" alt="fortnite_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">Fortnite</h5>
+          <h6 class="pb-3 ps-3 text-white">World Cup 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/fifa24_thumb.jpg" alt="fifa24_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">EA Sports FC 24</p>
-          <p class="nome-campeonato">Global Series 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/fifa24_thumb.jpg" alt="fifa24_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">EA Sports FC 24</h5>
+          <h6 class="pb-3 ps-3 text-white">Global Series 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/evo_thumb.jpg" alt="evo_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">EVO</p>
-          <p class="nome-campeonato">Championship Series 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/evo_thumb.jpg" alt="evo_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">EVO</h5>
+          <h6 class="pb-3 ps-3 text-white">Championship Series 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/street_fighter6_thumb.jpg" alt="sf6_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Street Fighter 6</p>
-          <p class="nome-campeonato">Capcom Cup 11</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/street_fighter6_thumb.jpg" alt="sf6_thumb">
+          <h5 class="pt-3 ps-3 text-white fw-bold">Street Fighter 6</h5>
+          <h6 class="pb-3 ps-3 text-white">Capcom Cup 11</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/mk1_thumb.jpg" alt="mk1_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Mortal Kombat 1</p>
-          <p class="nome-campeonato">Pro Kompetition 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/mk1_thumb.jpg" alt="mk1_thumb">
+            <h5 class="pt-3 ps-3 text-white fw-bold">Mortal Kombat 1</h5>
+            <h6 class="pb-3 ps-3 text-white">Pro Kompetition 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/tekken8_thumb.jpg" alt="tekken8_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Tekken 8</p>
-          <p class="nome-campeonato">World Tour Finals 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/tekken8_thumb.jpg" alt="tekken8_thumb">
+            <h5 class="pt-3 ps-3 text-white fw-bold">Tekken 8</h5>
+            <h6 class="pb-3 ps-3 text-white">World Tour Finals 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/free_fire_thumb.jpg" alt="free_fire_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">Free Fire</p>
-          <p class="nome-campeonato">Worlds 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/free_fire_thumb.jpg" alt="free_fire_thumb">
+            <h5 class="pt-3 ps-3 text-white fw-bold">Free Fire</h5>
+            <h6 class="pb-3 ps-3 text-white">Worlds 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/pubg_thumb.jpg" alt="pubg_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">PUBG Battlegrounds</p>
-          <p class="nome-campeonato">Global Series 7 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/pubg_thumb.jpg" alt="pubg_thumb">
+            <h5 class="pt-3 ps-3 text-white fw-bold">PUBG Battlegrounds</h5>
+            <h6 class="pb-3 ps-3 text-white">Global Series 7 2025</h6>
         </div>
       </div>
-      <div class="card-conteudo">
-        <img src="./static/img/thumbs/pubg_mobile_thumb.jpg" alt="pubg_mobile_thumb">
-        <div class="info-jogo">
-          <p class="nome-jogo">PUBG Mobile</p>
-          <p class="nome-campeonato">Global Championship 2025</p>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card bg-dark h-100">
+          <img class="rounded-3" src="./static/img/thumbs/pubg_mobile_thumb.jpg" alt="pubg_mobile_thumb">
+            <h5 class="pt-3 ps-3 text-white fw-bold">PUBG Mobile</h5>
+            <h6 class="pb-3 ps-3 text-white">Global Championship 2025</h6>
         </div>
       </div>
     </div><!-- blocos -->
-    <a class="ver-mais" href="#">Ver mais</a>
+    <div class="container text-center mt-4 mb-5">
+      <a class="text-center ver-mais" href="#"><h5>Ver mais</h5></a>
+    </div>
   </section><!-- conteúdo -->
 
-  <section class="lista-funcoes">
-    <div class="funcoes">
-      <div class="texto-funcao">
-        <h2>Construído para você!</h2>
-        <div class="tracinho"></div>
-        <ul>
-          <li>Nunca mais perca a chance de assistir os campeonatos ao vivo.</li>
-          <li>Acompanhe os seus torneios e jogadores favoritos de uma forma fácil.</li>
-          <li>Sempre esteja atualizado das notícias mais importantes de seus jogos favoritos.</li>
-          <li>Saiba onde comprar ingressos e merchandises.</li>
-          <li>Fique por dentro do meta e aprenda a jogar os jogos mais competitivos do mercado.</li>
-        </ul>
-      </div>
-      <div class="imagem-funcao">
-        <img src="./static/img/Neon_Artwork_Full.png" alt="logo do match hub">
-      </div>
+
+
+  <section class="lista-funcoes-bg">
+    <div class="container">
+      <div class="row my-5">
+        <div class="col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao">
+          <h2 class="text-white fw-bold">Construído para você!</h2>
+          <div class="tracinho"></div>
+          <ul class="text-white">
+            <li class="mt-4"><h5>Nunca mais perca a chance de assistir os campeonatos ao vivo.</h5></li>
+            <li class="mt-4"><h5>Acompanhe os seus torneios e jogadores favoritos de uma forma fácil.</h5></li>
+            <li class="mt-4"><h5>Sempre esteja atualizado das notícias mais importantes de seus jogos favoritos.</h5></li>
+            <li class="mt-4"><h5>Saiba onde comprar ingressos e merchandises.</h5></li>
+            <li class="mt-4"><h5>Fique por dentro do meta e aprenda a jogar os jogos mais competitivos do mercado.</h5></li>
+          </ul>
+        </div><!-- col do texto -->
+        <div class="col-12 col-md-7 imagem-funcao">
+          <img class="img-fluid d-flex align-items-end justify-content-end" src="./static/img/Neon_Artwork_Full.png" alt="logo do match hub">
+        </div><!-- col da imagem -->
+      </div><!-- row -->
     </div>
-  </section>
+  </section><!-- lista-funcoes -->
 
 
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-logo">
-        <div class="logo">
-          <a href="index.html"><span>MATCH</span> HUB</a>
-        </div><!-- logo -->
-      </div><!-- footer-logo -->
+  <footer class="footer bg-black py-5">
+    <div class="container">
 
-      <div class="footer-links">
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div><!-- footer-links -->
+      <div class="row">
+
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-start justify-content-md-start footer-logo">
+          <div class="logo">
+            <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
+          </div><!-- logo -->
+        </div><!-- footer-logo -->
+  
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-end justify-content-md-end mt-2 mt-md-0 footer-links">
+          <ul class="d-flex gap-4 ps-0">
+            <li><a href="index.html"><h5>Início</h5></a></li>
+            <li><a href="sobre.html"><h5>Sobre</h5></a></li>
+            <li><a href="contato.html"><h5>Contato</h5></a></li>
+          </ul>
+        </div><!-- footer-links -->
+
+      </div><!-- row -->
 
       <div class="footer-rights">
-        <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">© 2025 Match Hub. Todos os direitos reservados.</p>
+        <h6 class="text-white text-center text-md-start mt-md-2">Todos os direitos reservados. Match Hub ©, 2025. </h6>
       </div><!-- footer-rights -->
-    </div><!-- footer-container -->
+      
+    </div><!-- footer container -->
   </footer><!-- footer -->
 
   <script src="./js/bootstrap.bundle.min.js"></script>

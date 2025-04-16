@@ -145,110 +145,30 @@ input:checked + label:hover {
 }
 
 /* CONTAINER FILTROS */
-.conteudo {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.titulo-filtros {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80vw;
-  margin: 0 auto;
-  padding: 10px 10px;
-}
-
-.titulo-filtros h2 {
-  color: var(--cor-branco);
-  font-size: var(--font-size-titulo-h2);
-}
-
-.fechar,
-.abrir {
-  display: none;
-}
-
-.filtros ul {
-  display: flex;
-}
-
-.filtros li {
-  display: flex;
+.list-style-none {
   list-style: none;
-  box-sizing: border-box;
-  align-items: center;
-  margin-left: 15px;
-  color: var(--cor-branco);
+}
+
+.cursor-pointer {
+  list-style: none;
   cursor: pointer;
 }
 
-.filtros .select {
-  display: flex;
-  background-color: transparent;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--cor-bg);
-  background-color: var(--cor-branco);
-  padding: 5px 26px 5px 13px;
-  border: 2px solid var(--cor-branco);
-  box-sizing: border-box;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.filtros .select:hover {
-  background-color: var(--cor-bg);
-  color: var(--cor-branco);
-}
-
-.select:hover::backdrop {
-  background-color: var(--cor-bg);
-  color: var(--cor-branco);
-}
-
-.filtros .select option {
-  background-color: var(--cor-bg);
-  color: var(--cor-branco);
-  padding: 3px 5px;
-}
-
-.filtros-dropdown {
-  display: none;
-  cursor: pointer;
-}
-
-/* CONTEUDO BLOCOS */
-.blocos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 80vw;
-  margin: 0 auto;
-}
-
-.card-conteudo {
-  background-color: var(--cor-bg);
-  box-sizing: border-box;
+/* CARDS DOS JOGOS */
+.card {
+  padding: 0;
+  border: none !important;
   border-radius: 10px;
-  color: var(--cor-branco);
-  width: 23%; /* 23% pra fazer 4 cards por linha */
-  height: auto;
-  margin-bottom: 60px;
-  text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  overflow: hidden;
 }
 
-.card-conteudo:hover {
+.card:hover {
   transform: translateY(-10px);
 }
 
-.card-conteudo img {
+.card img {
   width: 100%;
   height: 200px;
   border-radius: 10px;
@@ -258,38 +178,14 @@ input:checked + label:hover {
   transition: 0.2s ease-in-out;
 }
 
-.card-conteudo img:hover {
+.card img:hover {
   filter: opacity(1);
 }
 
-.info-jogo {
-  display: flex;
-  padding: 5px 10px 15px 10px;
-  flex-direction: column;
-  text-align: start;
-}
-
-.info-jogo .nome-jogo {
-  font-size: var(--font-size-paragrafo-pc);
-  color: var(--cor-branco);
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.nome-campeonato {
-  color: var(--cor-branco);
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
 /* Ver mais */
 .ver-mais {
-  display: flex;
   color: var(--cor-azul) !important;
-  text-decoration: none;
-  font-size: 1.2rem;
-  margin-top: 10px;
   transition: 0.3s ease-in-out;
-  margin-bottom: 60px;
 }
 
 .ver-mais:hover {
@@ -299,7 +195,7 @@ input:checked + label:hover {
 
 
 /* LISTA DE FUNÇÕES */
-.lista-funcoes {
+.lista-funcoes-bg {
   display: flex;
   background-image: linear-gradient(
       to right,
@@ -312,28 +208,6 @@ input:checked + label:hover {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.funcoes {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 20px 10% 60px 10%;
-}
-
-.texto-funcao {
-  width: 35%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-}
-
-.texto-funcao h2 {
-  text-wrap: nowrap;
-  color: var(--cor-branco);
-  font-size: var(--font-size-titulo-h2);
-  margin-bottom: 10px;
 }
 
 .texto-funcao ul {
@@ -359,29 +233,6 @@ input:checked + label:hover {
   background-repeat: no-repeat;
 }
 
-.texto-funcao li {
-  color: var(--cor-branco);
-  text-align: left;
-  font-size: var(--font-size-paragrafo-pc);
-  margin-top: 35px;
-}
-
-.imagem-funcao {
-  justify-content: center;
-  align-items: center;
-  width: 65%;
-  border-radius: 20px;
-  align-self: flex-end;
-}
-
-.imagem-funcao img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  object-fit: cover;
-  object-position: center;
-}
-
 .tracinho {
   height: 0.3rem;
   width: 120px;
@@ -391,19 +242,7 @@ input:checked + label:hover {
 
 
 /* RESPONSIVIDADE */
-@media (max-width: 1300px) {
-  /* Responsividade dos textos */
-  .texto-funcao li {
-    font-size: var(--font-size-small);
-  }
-}
-
 @media (max-width: 1200px) {
-  /* Responsividade dos cards de jogos */
-  .card-conteudo {
-    width: 23%;
-  }
-
   .descricao h4,
   .descricao p {
     text-align: start;
@@ -411,34 +250,19 @@ input:checked + label:hover {
 }
 
 @media (max-width: 1024px) {
-  /* Responsividade dos filtros */
-  .titulo-filtros {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .filtros {
-    padding-top: 10px;
-  }
-
-  /* Responsividade dos cards de jogos */
-  .card-conteudo {
-    margin-bottom: 40px;
-  }
-
-  .card-conteudo {
-    width: 48%;
-  }
-
-  .cards .row .icon {
+  /* Responsividade do banner/carrosel */
+  .cards .conteudo-card .icon {
     margin: 3%;
   }
+}
 
-  /* Responsividade da seção de funcoes */
-  .funcoes {
-    padding: 60px 10% 100px 10%;
+@media (max-width: 992px) {
+  /* Responsividade dos filtros */
+  .filtros-titulo {
+    margin-bottom: 5px;
   }
-
+  
+  /* Responsividade da seção de funcoes */
   .texto-funcao {
     width: 100%;
   }
@@ -449,7 +273,7 @@ input:checked + label:hover {
 }
 
 @media (max-width: 900px) {
-  /* Responsividade do banner */
+  /* Responsividade do banner/carrosel */
   .container-card {
     height: 100vh;
     width: 100%;
@@ -526,131 +350,22 @@ input:checked + label:hover {
       ),
       url("../static/img/img4.jpg");
   }
-
-  /* Responsividade da seção titulo e filtros */
-  .titulo-filtros {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 100%;
-  }
-
-  .titulo-filtros h2 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .titulo-filtros label {
-    padding: 10px 0;
-    max-width: 100%;
-  }
-
-  .titulo-filtros .abrir {
-    opacity: 1;
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .titulo-filtros img {
-    width: 40px;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Esconde o input checkbox */
-  .abrir-filtro {
-    display: none;
-  }
-
-  .fechar {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  /* Garante que a div.filtros apareça por padrão */
-  .filtros {
-    background: white;
-    border: 1px solid #ccc;
-    height: 0;
-    padding: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    max-width: 100%;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    transform: translateY(-10px);
-  }
-
-  .filtros ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 0;
-  }
-
-  .filtros li {
-    margin: 5px 0;
-  }
-
-  /* Exibe os filtros quando o checkbox for marcado */
-  .abrir-filtro:checked ~ .filtros,
-  .abrir-filtro:checked + label + .filtros {
-    width: 100%;
-    background-color: var(--cor-bg);
-    border: none;
-    height: auto;
-    box-sizing: border-box;
-    border-radius: 10px;
-    color: var(--cor-branco);
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .abrir-filtro:checked + .abrir {
-    opacity: 0;
-    position: fixed;
-    left: 0;
-  }
-
-  .abrir-filtro:checked ~ .fechar {
-    display: block !important;
-    color: var(--cor-branco);
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    opacity: 1;
-  }
-
-  .select {
-    width: 250px;
-  }
 }
 
-@media (max-width: 600px) {
-  /* Responsividade dos cards de jogos */
-  .card-conteudo {
+@media (max-width: 520px) {
+  /* Responsividade dos filtros */
+  .col-4.filtro {
     width: 100%;
+    margin-bottom: 10px;
   }
 
-  /* Responsividade da seção de funçôes */
-  .texto-funcao h2 {
-    text-wrap: wrap;
+  .col-4.filtro:last-child {
+    margin-bottom: 0px;
   }
 }
 
 @media (max-width: 425px) {
-  /* Responsividade da seção de titulo e filtros */
-  .titulo-filtros {
-    flex-direction: column;
-  }
+  /* Responsividade do banner/carrosel */
   .descricao h4,
   .descricao p {
     text-align: center;
@@ -661,11 +376,5 @@ input:checked + label:hover {
   }
   .descricao p {
     font-size: 1rem;
-  }
-}
-
-@media (max-width: 375px) {
-  .card-conteudo {
-    margin-bottom: 30px;
   }
 }
