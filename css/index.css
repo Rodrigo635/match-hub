@@ -168,25 +168,6 @@ header {
 
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
-  /* Responsividade do header */
-  header{
-      padding: 20px 10%;
-      height: auto;
-  }
-
-  h1{
-    font-size: var(--font-size-titulo-pc-menor);
-  }
-
-  h2{
-    font-size: var(--font-size-titulo-h2);
-  }
-
-  p{
-    font-size: var(--font-size-paragrafo-pc-menor);
-  }
-
-
   /* Responsividade da navegação do menu hamburguer */
   .nav {
     justify-content: center;
@@ -249,18 +230,5 @@ header {
   }
 }
 
-@media (max-width: 600px) {
-  h1{
-    font-size: var(--font-size-titulo-mobile);
-  }
-
-  h2{
-    font-size: var(--font-size-titulo-mobile);
-  }
-
-  p{
-    font-size: var(--font-size-paragrafo-mobile);
-  }
-}
 
 
