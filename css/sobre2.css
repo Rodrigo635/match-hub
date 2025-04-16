@@ -10,16 +10,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  padding: 60px 10%;
+  min-height: 300px;
 }
 
 .imagem-bg h1 {
-  text-transform: uppercase;
   font-size: var(--font-size-titulo-pc);
-  color: var(--cor-branco);
 }
 
 /* Seções com fundo */
@@ -35,9 +30,9 @@
 
 /* Cards */
 .card-item {
-  height: 100%;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
   transition: 0.2s ease-in-out;
+  height: 283px;
 }
 
 .card-item:hover {
@@ -47,18 +42,12 @@
 
 .icon-card {
   font-size: 2.5rem;
-  margin: 10px auto;
-  text-align: center;
 }
 
 /* Tabelas */
 
-.table {
-  width: 100%;
-  border-radius: 15px !important;
-  border-spacing: 0;
-  background-color: var(--cor-cinzaEscuro);
-  font-size: var(--font-size-tablet);
+.tabela-arredondada {
+  border-radius: 15px;
 }
 
 .table tr:hover {
@@ -68,37 +57,15 @@
 
 .table th,
 .table td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid var(--cor-branco);
-  color: var(--cor-branco);
   font-size: var(--font-size-tabela-pc);
 }
 
 .table th {
-  background-color: var(--cor-bgEscuro);
-  text-transform: uppercase;
   font-size: var(--font-size-small);
-}
-
-.table td {
-  background-color: transparent;
-}
-
-.table thead {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.table tbody {
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
 /* Imagens */
 .img-custom {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 15px;
