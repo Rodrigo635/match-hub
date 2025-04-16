@@ -21,7 +21,7 @@ main {
   background-repeat: no-repeat;
 }
 
-.container-cadastro {
+.auth-container {
   display: flex;
   margin-top: 80px;
   margin-bottom: 60px;
@@ -33,92 +33,17 @@ main {
   border-radius: 20px;
 }
 
-/* Trocar entre cadastro e entrar */
-.cadastro-e-entrar {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-/* .cadastro-e-entrar .cadastro, .cadastro-e-entrar .entrar {
-  display: flex;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-align: center;
-} */
-
-/* .cadastro-e-entrar input {
-  display: none;
-} */
-
-.cadastro-e-entrar .button {
+.auth-toggle-btn {
   transition: background-color 0.3s ease;
 }
 
-
-/* .form-cadastro, .form-login {
-  display: none;
-} */
-
-
-/* Container do formulário */
-.container-form {
-  /* display: flex;
-  margin-bottom: 60px;
-  width: 100%;
-  height: auto;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 0 0 20px 20px; */
-  background-color: var(--cor-bg);
-}
-
 /* Formulário */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-}
-
-.gif-container {
-  width: 75%;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  justify-content: center;
-}
-
-.gif-container img {
-  width: 100%;
-  border-radius: 20px;
-}
-
-/* .titulo {
-  color: var(--cor-branco);
-  font-size: 1.8rem;
-  margin-top: 40px;
-  margin-bottom: 20px;
-} */
-
-.container-input{
-  position: relative;
-  width: 75%;
-  margin: 10px 0;
-}
-
 .container-input input {
   width: 100%;
-  z-index: auto !important;
   padding: 12px 40px 12px 15px;
   line-height: normal;
   border: 2px solid var(--cor-cinza);
-  background: transparent;
+  background: transparent !important;
   font-size: 1rem;
   color: var(--cor-branco);
   outline: none;
@@ -136,7 +61,6 @@ form {
   left: 15px;
   transform: translateY(-50%);
   color: var(--cor-branco);
-  font-size: 1rem;
   transition: 0.3s ease-in-out;
   pointer-events: none;
   background: var(--cor-bg);
@@ -156,6 +80,8 @@ form {
 
 .container-input .eye-icon {
   display: flex;
+  color: white;
+  opacity: 0.7;
   align-items: center;
   justify-content: center;
   width: 30px;
@@ -173,109 +99,35 @@ form {
   opacity: 0.8;
 }
 
-.esqueceu-senha {
-  color: var(--cor-cinzaTexto);
-  text-decoration: none;
-  margin-top: 10px;
-  margin-bottom: 40px;
-}
-
-.esqueceu-senha:hover {
-  text-decoration: underline;
-}
-
 /* Termos e condições */
-.termos-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  text-align: center;
-  gap: 8px;
-}
-
-.termos-container p {
-  color: var(--cor-branco);
-  font-size: 1rem;
-  margin: 0 ;
-}
-
-.termos-container input {
+.termos-input  {
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
-.termos-container a {
-  color: var(--cor-cinza);
-  text-decoration: none;
-  margin: 0 2px;
-}
-
-
-
-.termos-container a:hover {
+/* Decoração de link */
+.link:hover {
   text-decoration: underline;
 }
 
 /* Botão de login */
-
-.button-cadastro:hover {
-  background-color: var(--cor-bg) !important;
-  border-color: var(--cor-branco) !important;
-  color: var(--cor-branco) !important;
-}
-
-/* Ou container */
-.container-ou {
-  display: flex;
-  align-items: center;
-  width: 75%;
-  justify-content: center;
-  gap: 	10px;
-  margin-bottom: 15px;
-}
-
-.ou {
-  display: flex;
-  margin: 0;
-  color: var(--cor-cinzaTexto);
-}
-
-hr {
-  flex-grow: 1;
-  margin: 0;
-  border: none;
-  border-top: 1px solid var(--cor-cinzaTexto);
-}
-
-
-.google-button {
-  width: 100%;
-  gap: 10px;
-  cursor: pointer;
+.btn-primary {
   transition: 0.2s ease;
   box-sizing: border-box;
-  font-size: 1.1rem;
-  margin-bottom: 40px;
+  border: 2px solid var(--cor-branco);
 }
 
-/* .cadastrar-com-google  p{
-  margin: 0;
-  line-height: 0;
-} */
-
-.google-button:hover {
+.btn-primary:hover {
   border: 2px solid var(--cor-branco);
   background-color: transparent;
   color: var(--cor-branco);
 }
 
-.google-button img {
+.btn-primary img {
   width: 20px;
   height: 20px;
 }
-
 
 /* RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
@@ -289,7 +141,7 @@ hr {
     justify-content: end;
   }
 
-  .container-cadastro {
+  .auth-container {
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -299,34 +151,5 @@ hr {
     align-items: end;
     justify-content: end;
   }
-
-  .gif-container {
-    display: flex;
-    width: 40%;
-    margin-top: 40px;
-  }
-
-  /* .titulo {
-    margin-top: 20px;
-  } */
-
-  .cadastro-e-entrar {
-    order: 1;
-    width: 100%;
-    justify-content: center;
-  }
   
-  .cadastro-e-entrar .button {
-    padding: 30px;
-  }
-
-  .container-form {
-    height: 100%;
-    border-radius: 0;
-  }
-
-  /* Footer desaparece no mobile */
-  footer {
-    display: none;
-  }
 }

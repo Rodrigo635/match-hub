@@ -46,10 +46,6 @@
                 ><!-- menu -->
 
                 <ul class="d-lg-flex align-items-center gap-3 ps-0">
-                  <!-- Adicione gap-3 -->
-                  <li>
-                    <input type="search" class="pesquisa" placeholder="Pesquisar..." />
-                  </li>
                   <!-- search -->
                   <li>
                     <a href="index.html"><h5 class="mb-0">Início</h5></a>
@@ -60,7 +56,6 @@
                   <li>
                     <a href="contato.html"><h5 class="mb-0">Contato</h5></a>
                   </li>
-                  <li><a href="cadastro.html" class="btn btn-login">Entrar</a></li>
                 </ul>
               </div>
               <!-- nav-links -->
@@ -74,21 +69,23 @@
     </header>
 
     <main>
-      <div class="container-cadastro">
+      <div class="auth-container">
         <!-- Nossos inputs pra alternar entre cadastro e login -->
-        <div class="cadastro-e-entrar">
+        <div
+          class="d-flex w-100 justify-content-center align-content-center z-1 order-1 order-md-0"
+        >
           <button
-            class="button border-0 w-100 py-3 fs-5 rounded-top-4"
-            id="button-cadastro"
+            class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
+            id="btn-cadastro"
             style="background-color: var(--cor-bg)"
             onclick="toggleEnter('form-cadastro')"
           >
             Cadastrar
           </button>
           <button
-            class="button border-0 w-100 py-3 fs-5 rounded-top-4"
+            class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
             style="background-color: var(--cor-bgEscuro)"
-            id="button-entrar"
+            id="btn-entrar"
             onclick="toggleEnter('form-login')"
           >
             Entrar
@@ -97,25 +94,26 @@
 
         <!-- cadastro-e-entrar -->
 
-        <div class="container-form mb-5 w-100 h-auto rounded-bottom-4">
+        <div class="bg-dark mb-5 w-100 h-auto rounded-bottom-4">
           <form
-            class="form-cadastro"
+            class="form-cadastro flex-column justify-content-center align-items-center w-100"
             id="form-cadastro"
             style="display: flex"
             action="cadastro_concluido.html"
           >
             <div class="row d-flex justify-content-center align-items-center">
-              <div class="gif-container d-md-none col-12">
-                <img src="static/icons/podio.gif" alt="Podio GIF" />
+              <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
+                <img class="w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
               </div>
               <!-- gif-container -->
 
               <h2 class="text-white text text-center mt-5 mb-3 col-12">Faça seu cadastro</h2>
 
-              <div class="mb-3 bg-dark container-input col-12">
+              <!-- Campo de email -->
+              <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
                   type="email"
-                  class="form-control bg-dark text-white rounded-2"
+                  class="form-control text-white rounded-2"
                   placeholder="Digite seu e-mail..."
                   id="email"
                   required
@@ -123,13 +121,12 @@
 
                 <label for="email" class="form-label text-light">E-mail</label>
               </div>
-              <!-- input-group de email -->
 
               <!-- Campo de Senha -->
-              <div class="mb-3 bg-dark container-input col-12">
+              <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
                   type="password"
-                  class="form-control bg-dark text-white rounded-2"
+                  class="form-control text-white rounded-2"
                   placeholder="Digite sua senha..."
                   id="mainPassword"
                   required
@@ -148,10 +145,10 @@
               </div>
 
               <!-- Campo de Confirmação de Senha -->
-              <div class="mb-3 bg-dark container-input col-12">
+              <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
                   type="password"
-                  class="form-control bg-dark text-white rounded-2"
+                  class="form-control text-white rounded-2"
                   placeholder="Confirme sua senha..."
                   id="confirmPassword"
                   required
@@ -169,11 +166,11 @@
                 </button>
               </div>
 
-              <div class="termos-container d-flex justify-content-center col-12">
-                <input type="checkbox" id="termos" name="termos" required />
-                <p class="text-center">
-                  Aceito os <a href="#">termos de uso </a> e
-                  <a href="#">condições.</a>
+              <div class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12">
+                <input class="termos-input" type="checkbox" id="termos" name="termos" required />
+                <p class="text-center text-white m-0">
+                  Aceito os <a class="link text-white opacity-75 mx-1" href="#">termos de uso </a> e
+                  <a class="link text-white opacity-75 mx-1" href="#">condições.</a>
                 </p>
               </div>
               <!-- termos-container -->
@@ -181,24 +178,24 @@
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light button-cadastro"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
                 >
                   Cadastrar
                 </button>
               </div>
               <!-- btn-cadastro-container -->
 
-              <div class="container-ou col-12">
-                <hr />
-                <p class="ou">Ou</p>
-                <hr />
+              <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
+                <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+                <p class="ou d-flex m-0 text-white opacity-75">Ou</p>
+                <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
               </div>
               <!-- ou-container -->
 
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn align-items-center w-100 fw-bold p-2 rounded-3 btn-light google-button"
+                  class="btn-primary btn align-items-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
                 >
                   <img src="static/icons/google.png" alt="Google Icon" />
                   Cadastrar com google
@@ -210,16 +207,21 @@
           </form>
           <!-- form-cadastro -->
 
-          <form class="form-login" id="form-login" style="display: none" action="index.html">
+          <form
+            class="form-login flex-column justify-content-center align-items-center w-100"
+            id="form-login"
+            style="display: none"
+            action="index.html"
+          >
             <div class="row justify-content-center align-items-center">
-              <div class="gif-container d-md-none col-12">
-                <img src="static/icons/podio.gif" alt="Podio GIF" />
+              <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
+                <img class="w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
               </div>
               <!-- gif-container -->
 
               <h2 class="text-white mt-5 mb-3 text-center col-12">Faça Login</h2>
 
-              <div class="mb-3 bg-dark container-input col-12">
+              <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
                   type="email"
                   class="form-control bg-dark text-white rounded-2"
@@ -231,7 +233,7 @@
               <!-- input-group de email -->
 
               <!-- Campo de Senha -->
-              <div class="mb-3 bg-dark container-input col-12">
+              <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
                   type="password"
                   class="form-control bg-dark text-white rounded-2"
@@ -251,29 +253,31 @@
                 </button>
               </div>
 
-              <a class="esqueceu-senha text-center col-12" href="#">Esqueceu a senha?</a>
+              <a class="text-white opacity-75 mt-1 mb-4 text-center col-12 link" href="#"
+                >Esqueceu a senha?</a
+              >
 
               <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light button-cadastro"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
                 >
                   Entrar
                 </button>
               </div>
               <!-- btn-cadastro-container -->
 
-              <div class="container-ou col-12">
-                <hr />
-                <p class="ou">Ou</p>
-                <hr />
+              <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
+                <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+                <p class="ou d-flex m-0 text-white opacity-75">Ou</p>
+                <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
               </div>
               <!-- ou-container -->
 
               <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn align-items-center w-100 fw-bold p-2 rounded-3 btn-light google-button"
+                  class="btn-primary btn align-items-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
                 >
                   <img src="static/icons/google.png" alt="Google Icon" />
                   Entrar com google
@@ -289,7 +293,7 @@
       <!-- container -->
     </main>
 
-    <footer class="footer bg-black py-5">
+    <footer class="d-none d-md-flex bg-black py-5">
       <div class="container">
         <div class="row">
           <div

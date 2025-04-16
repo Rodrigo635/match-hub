@@ -12,8 +12,8 @@ function togglePassword(inputId, iconId) {
 }
 
 function toggleEnter(inputId) {
-  const buttonCadastro = document.getElementById('button-cadastro');
-  const buttonEntrar = document.getElementById('button-entrar');
+  const buttonCadastro = document.getElementById('btn-cadastro');
+  const buttonEntrar = document.getElementById('btn-entrar');
 
   if (inputId === 'form-cadastro') {
     document.getElementById('form-login').style.display = 'none';
