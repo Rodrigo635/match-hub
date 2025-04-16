@@ -73,7 +73,7 @@
       <section class="quem-somos d-flex text-white">
         <figure>
           <img
-            class="rounded-3"
+            class="rounded-3 img-fluid"
             src="static/img/place-work.jpg"
             alt="Imagem ilustrando um local de trabalho"
           />
@@ -137,32 +137,42 @@
         >
           <!-- Card 1: Gabriel Vilela -->
           <input type="radio" name="slide" id="c1" checked />
-          <label for="c1" class="card bg-dark p-2">
-            <div class="icon">1</div>
-            <div class="row">
-              <div class="descricao text-center">
+          <label
+            for="c1"
+            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+            role="button"
+          >
+            <div
+              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
+            >
+              1
+            </div>
+            <div
+              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
+            >
+              <div
+                class="descricao hidden d-none flex-column text-center overflow-hidden"
+              >
                 <h4 class="text-center text-xl-start py-md-2">
                   Gabriel Vilela
                 </h4>
-
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Função: Desenvolvimento do site, design e documentação
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Curso: Sistemas de Informação - FIAP (1° Módulo)
                 </p>
-
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado em
                   Técnico de Informática, nasci em Cajuru-SP mas moro em
                   Ribeirão Preto-SP. Atualmente estou cursando Sistema de
                   Informação pela FIAP
                 </p>
-
                 <p class="rm text-center text-md-start">RM: 562125</p>
-
                 <!-- Redes sociais -->
-                <div class="redes-sociais text-center fw-bold">
+                <div
+                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
+                >
                   <div class="plataforma">
                     <p class="name-plataforma">GitHub</p>
                     <a
@@ -173,9 +183,9 @@
                         src="static/img/github.png"
                         alt="Logo do GitHub"
                         width="50px"
-                    /></a>
+                      />
+                    </a>
                   </div>
-                  <!-- plataforma -->
                   <div class="plataforma">
                     <p class="name-plataforma">Linkedin</p>
                     <a
@@ -189,45 +199,53 @@
                       />
                     </a>
                   </div>
-                  <!-- plataforma -->
                 </div>
-                <!-- redes-sociais -->
               </div>
-              <!-- descricao -->
-              <div class="image">
+              <div class="image m-2 d-none rounded-6">
                 <img
                   src="static/img/Gabriel.png"
                   alt="Imagem do integrante"
                   class="img-fluid"
                 />
               </div>
-              <!-- img -->
             </div>
-            <!-- row --> </label
-          ><!-- card -->
+          </label>
 
           <!-- Card 2: Miguel -->
           <input type="radio" name="slide" id="c2" />
-          <label for="c2" class="card bg-dark p-2">
-            <div class="icon">2</div>
-            <div class="row">
-              <div class="descricao text-center">
+          <label
+            for="c2"
+            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+            role="button"
+          >
+            <div
+              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
+            >
+              2
+            </div>
+            <div
+              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
+            >
+              <div
+                class="descricao d-none hidden flex-column text-center overflow-hidden"
+              >
                 <h4 class="text-center text-xl-start py-md-2">Miguel</h4>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Função: Desenvolvimento do site, design e documentação
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Curso: Sistemas de Informação - FIAP (1° Módulo)
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
                   Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
                   Atualmente estou cursando Sistemas de Informação pela FIAP.
                 </p>
                 <p class="rm text-center text-md-start">RM: 562196</p>
-
                 <!-- Redes sociais -->
-                <div class="redes-sociais text-center fw-bold">
+                <div
+                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
+                >
                   <div class="plataforma">
                     <p class="name-plataforma">GitHub</p>
                     <a href="https://github.com/MiguelAssis0" target="_blank">
@@ -253,7 +271,7 @@
                   </div>
                 </div>
               </div>
-              <div class="image">
+              <div class="image m-2 d-none rounded-6">
                 <img
                   src="static/img/miguel.png"
                   alt="Imagem do integrante"
@@ -265,27 +283,40 @@
 
           <!-- Card 3: Luis -->
           <input type="radio" name="slide" id="c3" />
-          <label for="c3" class="card bg-dark p-2">
-            <div class="icon">3</div>
-            <div class="row">
-              <div class="descricao text-center">
+          <label
+            for="c3"
+            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+            role="button"
+          >
+            <div
+              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
+            >
+              3
+            </div>
+            <div
+              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
+            >
+              <div
+                class="descricao d-none hidden flex-column text-center overflow-hidden"
+              >
                 <h4 class="text-center text-xl-start py-md-2">Luis</h4>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Função: Desenvolvimento do site, design e documentação
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Curso: Sistemas de Informação - FIAP (1° Módulo)
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos,
                   nasci em Ribeirão Preto-SP e atualmente moro em Cajuru-SP,
                   gosto muito de programar e quero ser um desenvolvedor
                   FullStack. Atualmente curso Sistemas de informação na FIAP.
                 </p>
                 <p class="rm text-center text-md-start">RM: 561742</p>
-
                 <!-- Redes sociais -->
-                <div class="redes-sociais text-center fw-bold">
+                <div
+                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
+                >
                   <div class="plataforma">
                     <p class="name-plataforma">GitHub</p>
                     <a href="https://github.com/LuisRivalta" target="_blank">
@@ -311,7 +342,7 @@
                   </div>
                 </div>
               </div>
-              <div class="image">
+              <div class="image m-2 d-none rounded-6">
                 <img
                   src="static/img/luis (1).png"
                   alt="Imagem do integrante"
@@ -323,27 +354,40 @@
 
           <!-- Card 4: Michel -->
           <input type="radio" name="slide" id="c4" />
-          <label for="c4" class="card bg-dark p-2">
-            <div class="icon">4</div>
-            <div class="row">
-              <div class="descricao text-center">
+          <label
+            for="c4"
+            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+            role="button"
+          >
+            <div
+              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
+            >
+              4
+            </div>
+            <div
+              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
+            >
+              <div
+                class="descricao d-none hidden flex-column text-center overflow-hidden"
+              >
                 <h4 class="text-center text-xl-start py-md-2">Michel</h4>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Função: Desenvolvimento do site, design e documentação
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Curso: Sistemas de Informação - FIAP (1° Módulo)
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Meu nome é Michel Pereira Dos Santos, tenho 21 anos e moro em
                   São Paulo. Sou formado em Segurança da Informação pela Fatec
                   SCS e tenho o desejo de me tornar um desenvolvedor backend.
                   Atualmente estou cursando Sistemas de Informação na FIAP.
                 </p>
                 <p class="rm text-center text-md-start">RM: 564919</p>
-
                 <!-- Redes sociais -->
-                <div class="redes-sociais text-center fw-bold">
+                <div
+                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
+                >
                   <div class="plataforma">
                     <p class="name-plataforma">GitHub</p>
                     <a href="https://github.com/DarkFoxV" target="_blank">
@@ -369,7 +413,7 @@
                   </div>
                 </div>
               </div>
-              <div class="image">
+              <div class="image m-2 d-none rounded-6">
                 <img
                   src="static/img/michel.jpg"
                   alt="Imagem do integrante"
@@ -381,27 +425,40 @@
 
           <!-- Card 5: Rodrigo -->
           <input type="radio" name="slide" id="c5" />
-          <label for="c5" class="card bg-dark p-2">
-            <div class="icon">5</div>
-            <div class="row">
-              <div class="descricao text-center">
+          <label
+            for="c5"
+            class="card d-flex position-relative pointer align-items-центer flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+            role="button"
+          >
+            <div
+              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
+            >
+              5
+            </div>
+            <div
+              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
+            >
+              <div
+                class="descricao d-none hidden flex-column text-center overflow-hidden"
+              >
                 <h4 class="text-center text-xl-start py-md-2">Rodrigo</h4>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Função: Desenvolvimento do site, design e documentação
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Curso: Sistemas de Informação - FIAP (1° Módulo)
                 </p>
-                <p class="text-center text-md-start">
+                <p class="text-center text-md-start text-white">
                   Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou natural
                   de São Gabriel - RS e também sou formado em inglês pela FISK.
                   Atualmente trabalho como desenvolvedor full stack e estou
                   cursando Sistemas de Informação na FIAP.
                 </p>
                 <p class="rm text-center text-md-start">RM: 563042</p>
-
                 <!-- Redes sociais -->
-                <div class="redes-sociais text-center fw-bold">
+                <div
+                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
+                >
                   <div class="plataforma">
                     <p class="name-plataforma">GitHub</p>
                     <a href="https://github.com/Rodrigo635" target="_blank">
@@ -427,7 +484,7 @@
                   </div>
                 </div>
               </div>
-              <div class="image">
+              <div class="image m-2 d-none rounded-6">
                 <img
                   src="static/img/Rodrigo.jpeg"
                   alt="Imagem do integrante"
@@ -443,11 +500,13 @@
       <!-- integrantes -->
 
       <!-- Formulário de Contato -->
-       
+
       <section class="contate-nos bg-azul py-5">
-        <form class="form container d-flex flex-column align-items-center text-white rounded-4">
+        <form
+          class="form container d-flex flex-column align-items-center text-white rounded-4"
+        >
           <h2 class="fw-bold text-center mb-4 pb-3">Contate-nos</h2>
-      
+
           <fieldset class="mb-4 mt-3 rounded-3">
             <div class="container-input position-relative">
               <input
@@ -461,12 +520,12 @@
               <label for="nome">Nome</label>
             </div>
           </fieldset>
-      
+
           <fieldset class="mb-4">
             <div class="container-input position-relative">
               <input
-              class="form-control bg-dark text-white border border-2 rounded-2 p-3  mb-4"
-              type="email"
+                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
+                type="email"
                 name="email"
                 id="email"
                 required
@@ -474,12 +533,12 @@
               <label for="email">E-mail</label>
             </div>
           </fieldset>
-      
+
           <fieldset class="mb-4">
             <div class="container-input position-relative">
               <input
-              class="form-control bg-dark text-white border border-2 rounded-2 p-3  mb-4"
-              type="text"
+                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
+                type="text"
                 name="titulo"
                 id="titulo"
                 required
@@ -487,12 +546,12 @@
               <label for="titulo">Título</label>
             </div>
           </fieldset>
-      
+
           <fieldset class="mb-4">
             <div class="container-input position-relative">
               <textarea
-              class="form-control bg-dark text-white border border-2 rounded-2 p-3  mb-4"
-              name="mensagem"
+                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
+                name="mensagem"
                 id="mensagem"
                 rows="5"
                 required
@@ -500,8 +559,13 @@
               <label for="mensagem">Mensagem</label>
             </div>
           </fieldset>
-      
-          <button type="submit" class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light">Enviar</button>
+
+          <button
+            type="submit"
+            class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
+          >
+            Enviar
+          </button>
         </form>
       </section>
       <!-- contate-nos -->
