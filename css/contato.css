@@ -26,24 +26,20 @@ header {
   color: var(--cor-azul);
 }
 
-
-
 /* CONTEUDO GERAL */
 main {
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: auto;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .bg-azul {
   background: var(--gradient-azul);
 }
-
-
 
 /* BANNER */
 .imagem-bg {
@@ -54,11 +50,8 @@ main {
 }
 
 .container-imagem {
-  display: flex;
-  justify-content: center;
   width: 100%;
   min-height: 400px;
-  color: var(--cor-branco);
 }
 
 .container-imagem > div {
@@ -70,34 +63,22 @@ main {
 }
 
 .container-imagem h1 {
-  text-align: left;
-  text-transform: uppercase;
   font-size: var(--font-size-titulo-pc);
-  color: var(--cor-branco);
-  margin-bottom: 20px;
 }
-
-
 
 /* QUEM SOMOS */
 .quem-somos {
-  display: flex;
   width: 100%;
   height: auto;
   background-color: var(--cor-bg);
-  color: var(--cor-branco);
   gap: 60px;
   padding: 100px 10%;
 }
 
 /* introducao */
 .introducao {
-  display: flex;
-  flex-direction: column;
   width: 80%;
   height: auto;
-  color: var(--cor-branco);
-  gap: 20px; 
 }
 
 /* figura */
@@ -109,7 +90,6 @@ figure img {
   width: 100%;
   height: 700px;
   filter: brightness(0.7);
- 
   transition: 0.3s ease-in-out;
 }
 
@@ -119,14 +99,9 @@ figure img:hover {
 
 /* FRASE ESPECIAL */
 .frase {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: auto;
   background-color: var(--cor-cinzaEscuro);
-  color: var(--cor-branco);
-  gap: 20px;
   padding: 80px 10%;
 }
 
@@ -146,16 +121,13 @@ figure img:hover {
 }
 
 .frase h1 {
-  font-style: italic;
   font-family: "Courier New", Courier, monospace;
 }
 
 .frase img {
   width: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 15px;
-  margin: 0;
+
+
   filter: brightness(0.7);
   transition: 0.3s ease-in-out;
 }
@@ -182,25 +154,13 @@ figure img:hover {
 }
 
 .card {
-  display: flex;
-  position: relative;
+
   width: 80px;
   height: 600px;
-  border-radius: 2rem;
   background-size: cover;
-  cursor: pointer;
-  overflow: hidden;
-  padding: 2.5px;
-  align-items: flex-start;
-  flex-direction: column;
-  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
-.row {
-  margin-top: 5px;
-  margin-left: 1.5px;
-}
 
 .card::after {
   content: "";
@@ -231,33 +191,15 @@ figure img:hover {
 }
 
 .card .icon {
-  display: flex;
-  color: var(--cor-branco);
-  border: 2px solid var(--cor-branco);
-  font-weight: bold;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
   height: 50px;
   width: 50px;
-  margin: 10px auto;
   font-size: 1.2rem;
-  padding: 20px;
-  border-radius: 50%;
-  background-color: var(--cor-branco);
   color: var(--cor-bg);
   transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
 }
 
 .card .row .descricao {
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  height: auto;
   width: 60%;
-  transform: translateY(30px);
-  transition-delay: 0.3s;
-  transition: all 0.3s ease;
   z-index: 1;
 }
 
@@ -265,36 +207,23 @@ figure img:hover {
   color: var(--cor-azul);
 }
 
-.descricao p {
-  color: var(--cor-branco);
-}
-
 .card .rm {
   color: var(--cor-rosa);
 }
 
 /* Github e Linkedin */
-.redes-sociais {
-  display: flex;
-  gap: 20px;
-}
 
 .redes-sociais p {
   color: var(--cor-azul);
-  font-weight: bold;
 }
-
 
 .name-plataforma {
   color: var(--cor-azul);
 }
 
 .card .row .image {
-  display: none;
   width: 320px;
   height: 340px;
-  border-radius: 100%;
-  margin: 10px;
 }
 
 .card .row .image img {
@@ -324,6 +253,7 @@ input:checked + label .descricao {
   cursor: default;
 }
 
+
 input:checked + label .image {
   display: flex !important;
   transform: translateY(0) !important;
@@ -333,103 +263,33 @@ input:checked + label:hover{
   transform: scale(1);
 }
 
-
-
 /* FORMULÁRIO DE CONTATO */
-.contate-nos {
+.form fieldset, .form textarea,.contate-nos {
   width: 100%;
-  padding: 90px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .form {
   width: 50%;
   background-color: var(--cor-cinzaEscuro);
-  border-radius: 10px;
   padding: 60px;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.form h2 {
-  color: var(--cor-branco);
-  text-align: center;
-  padding: 0 0 10px 0;
+.container-input label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  background: #222; /* cor do input (bg escuro) */
+  padding-inline: 5px;
 }
 
-.form fieldset {
-  padding: 0px 0px 0px 10px;
-  margin-top: 10px;
-  width: 100%;
-  border-radius: 5px;
+.container-input input:focus + label,
+.container-input input:not(:placeholder-shown) + label,
+.container-input textarea:focus + label,
+.container-input textarea:not(:placeholder-shown) + label {
+  top: 0;
 }
-
-.form legend {
-  color: var(--cor-branco);
-  padding: 0px 4px;
-}
-
-.form label,
-.form textarea{
-  font-size: 1rem;
-}
-
-.form input {
-  width: 100%;
-  height: auto;
-  display: block;
-  background-color: transparent;
-  margin-bottom: 10px;
-  padding: 5px 0;
-  border: none;
-  color: var(--cor-branco);
-}
-
-.form textarea {
-  width: 100%;
-  display: block;
-  background-color: transparent;
-  height: 200px;
-  width: 100%;
-  margin-bottom: 10px;
-  border:  0px solid transparent;
-  border-radius: 5px;
-  resize: none;
-  color: var(--cor-branco);
-  padding: 5px 0;
-}
-
-.form input:focus,
-.form textarea:focus {
-  outline: none;
-}
-
-.form .button-submit {
-  align-items: center;
-  padding: 9px 20px;
-  background-color: var(--cor-branco);
-  color: var(--cor-preto);
-  width: 100%;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  border: 2px solid transparent;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-size: 1.1rem;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.form .button-submit:hover {
-  border: 2px solid var(--cor-branco);
-  background-color: transparent;
-  color: var(--cor-branco);
-}
-
 
 
 /* RESPONSIVIDADE */

@@ -20,43 +20,49 @@
   </head>
 
   <body>
-    <header>
-      <div class="logo">
-        <a href="index.html"><span>MATCH</span> HUB</a>
-      </div>
-      <!-- Logo -->
-
-      <nav class="nav">
-        <div class="nav-links">
-          <!-- Checkbox para controlar o menu -->
-          <input type="checkbox" id="menu-toggle" />
-
-          <!-- Label com o ícone do menu -->
-          <label for="menu-toggle" class="menu">
-            <div class="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </label>
-
-          <ul>
-            <li>
-              <input
-                type="search"
-                class="pesquisa"
-                placeholder="Pesquisar..."
-              />
-            </li>
-            <!-- search -->
-            <li><a href="index.html">Início</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-            <li><a href="cadastro.html" class="btn-login">Entrar</a></li>
-          </ul>
-        </div>
-        <!-- nav-links -->
-      </nav>
+    <header class="header py-4">
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-3 d-flex align-items-center justify-content-start">
+            <div class="logo">
+              <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
+            </div><!-- Logo -->
+          </div><!-- col -->
+  
+          <div class="col-9 d-flex align-items-center justify-content-end">
+            <nav class="d-flex justify-content-end nav">
+              <div class="d-flex align-items-center nav-links">
+        
+                <!-- Checkbox para controlar o menu -->
+                <input type="checkbox" id="menu-toggle" />
+        
+                <!-- Label com o ícone do menu -->
+                <label for="menu-toggle" class="menu d-lg-none">
+                  <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </label><!-- menu -->
+        
+                <ul class="d-lg-flex align-items-center gap-3 ps-0"> <!-- Adicione gap-3 -->
+                  <li>
+                    <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+                  </li> <!-- search -->
+                  <li><a href="index.html"><h5 class="mb-0">Início</h5></a></li>
+                  <li><a href="sobre.html"><h5 class="mb-0">Sobre</h5></a></li>
+                  <li><a href="contato.html"><h5 class="mb-0">Contato</h5></a></li>
+                  <li><a href="cadastro.html" class="btn btn-login">Entrar</a></li>
+                </ul>
+        
+              </div><!-- nav-links -->
+            </nav>
+          </div><!-- col -->
+  
+        </div><!-- row -->
+      </div><!-- container -->
+  
     </header>
 
     <main class="text-white">
@@ -470,35 +476,33 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-container">
-        <div class="footer-logo">
-          <div class="logo">
-            <a href="index.html"><span>MATCH</span> HUB</a>
-          </div>
-          <!-- logo -->
-        </div>
-        <!-- footer-logo -->
-
-        <div class="footer-links">
-          <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-          </ul>
-        </div>
-        <!-- footer-links -->
-
+    <footer class="footer bg-black py-5">
+      <div class="container">
+  
+        <div class="row">
+  
+          <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-start justify-content-md-start footer-logo">
+            <div class="logo">
+              <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
+            </div><!-- logo -->
+          </div><!-- footer-logo -->
+    
+          <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-end justify-content-md-end mt-2 mt-md-0 footer-links">
+            <ul class="d-flex gap-4 ps-0">
+              <li><a href="index.html"><h5>Início</h5></a></li>
+              <li><a href="sobre.html"><h5>Sobre</h5></a></li>
+              <li><a href="contato.html"><h5>Contato</h5></a></li>
+            </ul>
+          </div><!-- footer-links -->
+  
+        </div><!-- row -->
+  
         <div class="footer-rights">
-          <p class="subtitulo fs-5 fs-md-3 text-center text-md-start">
-            © 2025 Match Hub. Todos os direitos reservados.
-          </p>
-        </div>
-        <!-- footer-rights -->
-      </div>
-      <!-- footer-container -->
-    </footer>
-    <!-- footer -->
+          <h6 class="text-white text-center text-md-start mt-md-2">Todos os direitos reservados. Match Hub ©, 2025. </h6>
+        </div><!-- footer-rights -->
+        
+      </div><!-- footer container -->
+    </footer><!-- footer -->
 
     <script src="./js/bootstrap.bundle.min.js"></script>
   </body>
