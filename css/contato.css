@@ -1,15 +1,4 @@
 /* ESTILIZAÇÃO DOS TEXTOS */
-h1, h2, h4 {
-  font-size: var(--font-size-titulo-pc);
-}
-
-.introducao p, .frase__texto p, .descricao p, .form legend {
-  font-size: var(--font-size-paragrafo-pc);
-}
-
-.form textarea::placeholder, .form textarea, .form input::placeholder, .form input {
-  font-size: var(--font-size-small);
-}
 
 /* HEADER */
 header {
@@ -47,9 +36,7 @@ header {
   width: 100%;
 }
 
-.container-imagem h1 {
-  font-size: var(--font-size-titulo-pc);
-}
+
 
 /* QUEM SOMOS */
 .quem-somos {
@@ -230,15 +217,6 @@ input:checked + label:hover {
 
 /* RESPONSIVIDADE */
 @media (max-width: 1440px) {
-  /* Responsividade dos textos */
-  .introducao h1, .integrantes__titulo h1, .descricao h4, .frase__texto h1 {
-    font-size: var(--font-size-titulo-pc-menor);
-  }
-
-  .frase__texto p, .descricao p, .introducao p {
-    font-size: var(--font-size-paragrafo-touch-pc-menor);
-  }
-
   .cards .row .image {
     width: 250px;
   }
@@ -298,9 +276,3 @@ input:checked + label:hover {
   }
 }
 
-@media (max-width: 768px) {
-  /* Responsividade dos textos */
-  h1, h2, h4 {
-    font-size: var(--font-size-titulo-tablet);
-  }
-}
