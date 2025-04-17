@@ -22,10 +22,6 @@ header {
   min-height: 300px;
 }
 
-.imagem-bg h1 {
-  font-size: var(--font-size-titulo-pc);
-}
-
 /* Seções com fundo */
 .bg-cinza {
   background-color: var(--cor-cinzaEscuro);
@@ -33,10 +29,6 @@ header {
 
 .bg-azul {
   background: var(--gradient-azul);
-}
-
-.destaque-azul {
-  color: var(--cor-azul);
 }
 
 /* Cards */

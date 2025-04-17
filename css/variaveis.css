@@ -17,36 +17,7 @@
   
     /* Gradientes */
     --gradient-azul: linear-gradient(to bottom, var(--cor-azul2), var(--cor-azul-bg));
-  
-    /* Font-size */
-    --font-size: 16px;
-    --font-size-nav-links: 1.1rem;
-    --font-size-logo: 1.5rem;
-    --font-size-footer-links: 1.2rem;
-  
-    /* Titulos */
-    --font-size-titulo-mobile: 2rem;
-    --font-size-subtitulo-mobile: 1.4rem;
-    --font-size-titulo-tablet: 2.8rem;
-    --font-size-titulo-laptop: 3rem;
-    --font-size-titulo-pc-menor: 2.3rem;
-    --font-size-titulo-pc: 3.2rem;
-    --font-size-titulo-h2: 2.5rem;
-  
-    /* Paragrafos */
-    --font-size-paragrafo-touch-pc-menor: 1.1rem;
-    --font-size-paragrafo-pc: 1.4rem;
-    --font-size-paragrafo-pc-menor: 1.2rem;
-  
-    /* Usos derivados(form) */
-    --font-size-small: 1rem;
-  
-    /* Usos derivado(table) */
-    --font-size-tabela-mobile: 0.85rem;
-    --font-size-tabela-pc: 1.2rem;
 }
-  
-  
   
 /* RESET CSS */
 * {
@@ -55,8 +26,6 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-  
-  
   
 /* ESTILOS GERAIS */
 a {
@@ -67,3 +36,12 @@ a {
 body {
     background-color: var(--cor-bg);
 }
+
+.text-azul {
+    color: var(--cor-azul);
+}
+  
+.text-rosa-fiap {
+    color: var(--cor-rosa);
+}
+  

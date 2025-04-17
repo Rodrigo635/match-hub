@@ -73,122 +73,114 @@ figure img:hover {
   background-color: var(--cor-cinzaEscuro);
 }
 
-/* SOBRE NÓS CARDS */
-.sobre-nos, .cards-sobre-nos {
-  min-width: 100%;
-  gap: 20px;
-  height: 100%;
+
+
+/* BANNER */
+.container-card {
+  height: 65vh;
+  width: 100%;
+  display: flex;
   flex-wrap: nowrap;
+  justify-content: start;
+  gap: 1%;
 }
 
-/* cards */
-
 .cards {
-  width: 80px;
-  height: 600px;
+  position: relative;
+  width: 6%;
+  border-radius: 2rem;
   background-size: cover;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
-.card::after {
+.cards::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to top, rgba(6, 6, 6, 0.8), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   pointer-events: none;
 }
 
-.cards .row {
-  color: var(--cor-branco);
+.cards .conteudo-card {
+  color: white;
   display: flex;
+  justify-content: start;
+  align-items: flex-start;
   flex-wrap: nowrap;
-  justify-content: space-between;
-  padding: 5px;
 }
 
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card:hover .icon {
-  background-color: var(--cor-bg);
-  color: var(--cor-branco);
-}
-
-.cards .icon {
+.cards .conteudo-card .icon {
+  background: var(--cor-branco);
+  color: var(--cor-bg);
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 50%;
   height: 50px;
   width: 50px;
-  font-size: 1.2rem;
-  color: var(--cor-bg);
-  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
-}
-
-.cards .row .descricao {
-  width: 60%;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   z-index: 1;
+  transition: 0.2s ease;
 }
 
-.descricao h4 {
-  color: var(--cor-azul);
+.cards:hover {
+  transform: scale(1.02);
+  .icon {
+    background-color: var(--cor-bg);
+    color: var(--cor-branco);
+    border-color: var(--cor-branco);
+  }
 }
 
-.cards .rm {
-  color: var(--cor-rosa);
-}
-
-/* Github e Linkedin */
-
-.redes-sociais p {
-  color: var(--cor-azul);
-}
-
-.name-plataforma {
-  color: var(--cor-azul);
-}
-
-.cards .row .image {
-  width: 320px;
-  height: 340px;
-}
-
-.cards .row .image img {
+.cards .conteudo-card .descricao {
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  overflow: hidden;
+  height: auto;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
+  transform: translateY(30px);
+  transition-delay: 0.3s;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
 input {
   display: none;
 }
 
+input:checked + label {
+  width: 79%;
+}
+
 input:checked + label .icon {
   display: none !important;
 }
 
-input:checked + label {
-  width: 60vw;
-  cursor: default;
-}
-
 input:checked + label .descricao {
-  display: flex !important;
-  transform: translateY(0) !important;
-  cursor: default;
-}
-
-input:checked + label .image {
-  display: flex !important;
+  opacity: 1 !important;
   transform: translateY(0) !important;
 }
 
 input:checked + label:hover {
   transform: scale(1);
 }
+
+
 
 /* FORMULÁRIO DE CONTATO */
 .form fieldset, .form textarea, .contate-nos {
@@ -216,63 +208,81 @@ input:checked + label:hover {
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 1440px) {
-  .cards .row .image {
-    width: 250px;
+@media (max-width: 1399px) {
+  .cards {
+    width: 7%;
   }
 }
 
-@media (max-width: 1024px) {
-  .quem-somos, .quem-somos .introducao, .frase__texto, .frase__imagem, .cards .row .descricao {
-    width: 100%;
-  }
-
-  /* Responsividade da seção sobre nos cards */
+@media (max-width: 1199px) {
   .cards {
-    width: 90%;
-    height: 60px;
-    transition: 0.1s cubic-bezier(0.28, -0.03, 0, 0.99);
+    width: 8%;
   }
 
-  .icon {
-    position: absolute;
+  .cards .conteudo-card .icon {
+    margin: 15px 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .cards {
+    width: 10%;
   }
 
-  input:checked + label.cards {
-    height: 100%;
-    width: 90%;
-    padding: 0;
-    transition: 0.1s cubic-bezier(0.28, -0.03, 0, 0.99);
+  .cards .conteudo-card .descricao {
+    width: 60%;
   }
+  
+  .cards .conteudo-card .icon {
+    margin: 15px 10px;
+  }
+  
+  input:checked + label {
+    width: 64%;
+  }
+}
 
-  input:checked + label .row {
+@media (max-width: 767px) {
+  /* Responsividade do banner/carrosel */
+  .container-card {
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding-inline: 5px;
-    padding-block: 20px;
+    justify-content: start;
+    align-items: center;
+    gap: 2%;
+  }
+
+  .cards {
+    width: 100%;
+    height: 80px;
+  }
+
+  input:checked + label {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cards .conteudo-card .icon {
+    margin: 10px;
+    display: none;
+  }
+
+  .cards .conteudo-card .descricao {
+    width: 100%;
+    display: none;
+    padding: 0 10px 10px 10px;
   }
 
   input:checked + label .descricao {
-    order: 2;
-    padding: 10px;
-    transform: translateY(0);
+    display: flex !important;
+    transform: translateY(0) !important;
   }
 
-  input:checked + label .image {
-    order: 1;
-    height: 200px !important;
-    width: 200px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
-
-  .cards .redes-sociais {
-    margin: 0 auto;
-  }
-
-  /* Responsividade da seção de formulário de contato */
-  .form {
-    width: 90%;
+  .cards {
+    background-size: cover;
+    background-position: center;
   }
 }
 
