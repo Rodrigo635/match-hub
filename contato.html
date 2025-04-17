@@ -1,611 +1,486 @@
 <html>
-  <head>
-    <!-- Configurações de codificação e responsividade -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Links para os arquivos CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.css" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/contato.css" />
-    <link rel="stylesheet" href="./css/variaveis.css" />
+<head>
+  <!-- Configurações de codificação e responsividade -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
-    <link
-      rel="shortcut icon"
-      href="./static/icons/gamepad.png"
-      type="image/x-icon"
-    />
-    <title>MATCH HUB - Contato</title>
-  </head>
+  <!-- Links para os arquivos CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/contato.css" />
+  <link rel="stylesheet" href="./css/variaveis.css" />
 
-  <body>
-    <header class="header py-4">
-      <div class="container">
-        <div class="row">
-  
-          <div class="col-3 d-flex align-items-center justify-content-start">
-            <div class="logo">
-              <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
-            </div><!-- Logo -->
-          </div><!-- col -->
-  
-          <div class="col-9 d-flex align-items-center justify-content-end">
-            <nav class="d-flex justify-content-end nav">
-              <div class="d-flex align-items-center nav-links">
-        
-                <!-- Checkbox para controlar o menu -->
-                <input type="checkbox" id="menu-toggle" />
-        
-                <!-- Label com o ícone do menu -->
-                <label for="menu-toggle" class="menu d-lg-none">
-                  <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </label><!-- menu -->
-        
-                <ul class="d-lg-flex align-items-center gap-3 ps-0"> <!-- Adicione gap-3 -->
-                  <li>
-                    <input type="search" class="pesquisa" placeholder="Pesquisar..." />
-                  </li> <!-- search -->
-                  <li><a href="index.html"><h5 class="mb-0">Início</h5></a></li>
-                  <li><a href="sobre.html"><h5 class="mb-0">Sobre</h5></a></li>
-                  <li><a href="contato.html"><h5 class="mb-0">Contato</h5></a></li>
-                  <li><a href="cadastro.html" class="btn btn-login">Entrar</a></li>
-                </ul>
-        
-              </div><!-- nav-links -->
-            </nav>
-          </div><!-- col -->
-  
-        </div><!-- row -->
-      </div><!-- container -->
-  
-    </header>
-    <!-- header -->
+  <!-- Título da página -->
+  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
+  <title>MATCH HUB - Contato</title>
+</head>
 
-    <main>
-      <section
-        class="container-imagem d-flex justify-content-center text-white"
-      >
-        <div class="imagem-bg">
-          <h1 class="text-uppercase text-white">Contato</h1>
-        </div>
-      </section>
-      <!-- container-imagem -->
-
-      <section class="quem-somos d-flex text-white">
-        <figure>
-          <img
-            class="rounded-3 img-fluid"
-            src="static/img/place-work.jpg"
-            alt="Imagem ilustrando um local de trabalho"
-          />
-        </figure>
-
-        <article class="introducao d-flex flex-column gap-3">
-          <h1>Quem somos nós</h1>
-
-          <p>
-            Somos cinco estudantes do primeiro módulo de Sistemas de Informação
-            da FIAP e desenvolvemos este site como parte de um trabalho
-            acadêmico. Nosso objetivo é criar uma plataforma que centralize as
-            datas dos principais campeonatos de eSports, facilitando o acesso às
-            informações para os fãs e entusiastas dos jogos eletrônicos. Este
-            projeto reforça nossos conhecimentos em desenvolvimento web,
-            colaboração em equipe e boas práticas de tecnologia, entregando uma
-            solução útil para a comunidade gamer.
-          </p>
-          <p>
-            Além disso, buscamos aprimorar nossas habilidades em pesquisa,
-            design e usabilidade, garantindo que a experiência do usuário seja
-            intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
-            criar uma interface acessível e responsiva, para que os usuários
-            encontrem facilmente as informações, independentemente do
-            dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
-            navegação fluida, desafiando-nos a pensar em soluções inovadoras
-            para a interação dos fãs com o cenário competitivo de eSports.
-          </p>
-        </article>
-        <!-- introducao -->
-      </section>
-      <!-- quem-somos -->
-
-      <section
-        class="frase d-flex justify-content-center align-items-center text-white fst-italic"
-      >
-        <div>
-          <div class="frase__texto">
-            <h1 class="text-center">
-              "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
-              move!"
-            </h1>
+<body>
+  <header class="header py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-3 d-flex align-items-center justify-content-start">
+          <div class="logo">
+            <a href="index.html"><span class="h3 fw-bold">MATCH </span><span
+                class="h3 fw-bold text-white">HUB</span></a>
           </div>
-          <div class="frase__imagem">
-            <img
-              class="img-fluid rounded-3"
-              src="static/img/tecnologia.jpg"
-              alt="Imagem de um homem mexendo em um tablet"
-            />
-          </div>
+          <!-- Logo -->
         </div>
-      </section>
-      <!-- frase -->
+        <!-- col -->
 
-      <div
-        class="sobre-nos d-flex flex-column align-items-center justify-content-center"
-      >
-        <h1 class="integrantes_titulo text-white">Nossa equipe</h1>
-        <div
-          class="cards-sobre-nos d-flex align-items-center justify-content-center"
-        >
-          <!-- Card 1: Gabriel Vilela -->
-          <input type="radio" name="slide" id="c1" checked />
-          <label
-            for="c1"
-            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
-            role="button"
-          >
-            <div
-              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
-            >
-              1
-            </div>
-            <div
-              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
-            >
-              <div
-                class="descricao hidden d-none flex-column text-center overflow-hidden"
-              >
-                <h4 class="text-center text-xl-start py-md-2">
-                  Gabriel Vilela
-                </h4>
-                <p class="text-center text-md-start text-white">
-                  Função: Desenvolvimento do site, design e documentação
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Curso: Sistemas de Informação - FIAP (1° Módulo)
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado em
-                  Técnico de Informática, nasci em Cajuru-SP mas moro em
-                  Ribeirão Preto-SP. Atualmente estou cursando Sistema de
-                  Informação pela FIAP
-                </p>
-                <p class="rm text-center text-md-start">RM: 562125</p>
-                <!-- Redes sociais -->
-                <div
-                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
-                >
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a
-                      href="https://github.com/gabrielvilela12"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/github.png"
-                        alt="Logo do GitHub"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a
-                      href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="image m-2 d-none rounded-6">
-                <img
-                  src="static/img/Gabriel.png"
-                  alt="Imagem do integrante"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </label>
+        <div class="col-9 d-flex align-items-center justify-content-end">
+          <nav class="d-flex justify-content-end nav">
+            <div class="d-flex align-items-center nav-links">
+              <!-- Checkbox para controlar o menu -->
+              <input type="checkbox" id="menu-toggle" />
 
-          <!-- Card 2: Miguel -->
-          <input type="radio" name="slide" id="c2" />
-          <label
-            for="c2"
-            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
-            role="button"
-          >
-            <div
-              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
-            >
-              2
-            </div>
-            <div
-              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
-            >
-              <div
-                class="descricao d-none hidden flex-column text-center overflow-hidden"
-              >
-                <h4 class="text-center text-xl-start py-md-2">Miguel</h4>
-                <p class="text-center text-md-start text-white">
-                  Função: Desenvolvimento do site, design e documentação
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Curso: Sistemas de Informação - FIAP (1° Módulo)
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
-                  Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
-                  Atualmente estou cursando Sistemas de Informação pela FIAP.
-                </p>
-                <p class="rm text-center text-md-start">RM: 562196</p>
-                <!-- Redes sociais -->
-                <div
-                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
-                >
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/MiguelAssis0" target="_blank">
-                      <img
-                        src="static/img/github.png"
-                        alt="Logo do GitHub"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a
-                      href="https://www.linkedin.com/in/miguel-anjoss/"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
+              <!-- Label com o ícone do menu -->
+              <label for="menu-toggle" class="menu d-lg-none">
+                <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
-              </div>
-              <div class="image m-2 d-none rounded-6">
-                <img
-                  src="static/img/miguel.png"
-                  alt="Imagem do integrante"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </label>
+              </label><!-- menu -->
 
-          <!-- Card 3: Luis -->
-          <input type="radio" name="slide" id="c3" />
-          <label
-            for="c3"
-            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
-            role="button"
-          >
-            <div
-              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
-            >
-              3
+              <ul class="d-lg-flex align-items-center gap-3 ps-0">
+                <!-- Adicione gap-3 -->
+                <li>
+                  <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+                </li>
+                <!-- search -->
+                <li>
+                  <a href="index.html">
+                    <h5 class="mb-0">Início</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="sobre.html">
+                    <h5 class="mb-0">Sobre</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="contato.html">
+                    <h5 class="mb-0">Contato</h5>
+                  </a>
+                </li>
+                <li>
+                  <a href="cadastro.html" class="btn btn-login">Entrar</a>
+                </li>
+              </ul>
             </div>
-            <div
-              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
-            >
-              <div
-                class="descricao d-none hidden flex-column text-center overflow-hidden"
-              >
-                <h4 class="text-center text-xl-start py-md-2">Luis</h4>
-                <p class="text-center text-md-start text-white">
-                  Função: Desenvolvimento do site, design e documentação
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Curso: Sistemas de Informação - FIAP (1° Módulo)
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos,
-                  nasci em Ribeirão Preto-SP e atualmente moro em Cajuru-SP,
-                  gosto muito de programar e quero ser um desenvolvedor
-                  FullStack. Atualmente curso Sistemas de informação na FIAP.
-                </p>
-                <p class="rm text-center text-md-start">RM: 561742</p>
-                <!-- Redes sociais -->
-                <div
-                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
-                >
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/LuisRivalta" target="_blank">
-                      <img
-                        src="static/img/github.png"
-                        alt="Logo do GitHub"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a
-                      href="https://www.linkedin.com/in/luisrivalta/"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="image m-2 d-none rounded-6">
-                <img
-                  src="static/img/luis (1).png"
-                  alt="Imagem do integrante"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </label>
-
-          <!-- Card 4: Michel -->
-          <input type="radio" name="slide" id="c4" />
-          <label
-            for="c4"
-            class="card d-flex position-relative pointer align-items-center flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
-            role="button"
-          >
-            <div
-              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
-            >
-              4
-            </div>
-            <div
-              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
-            >
-              <div
-                class="descricao d-none hidden flex-column text-center overflow-hidden"
-              >
-                <h4 class="text-center text-xl-start py-md-2">Michel</h4>
-                <p class="text-center text-md-start text-white">
-                  Função: Desenvolvimento do site, design e documentação
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Curso: Sistemas de Informação - FIAP (1° Módulo)
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Meu nome é Michel Pereira Dos Santos, tenho 21 anos e moro em
-                  São Paulo. Sou formado em Segurança da Informação pela Fatec
-                  SCS e tenho o desejo de me tornar um desenvolvedor backend.
-                  Atualmente estou cursando Sistemas de Informação na FIAP.
-                </p>
-                <p class="rm text-center text-md-start">RM: 564919</p>
-                <!-- Redes sociais -->
-                <div
-                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
-                >
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/DarkFoxV" target="_blank">
-                      <img
-                        src="static/img/github.png"
-                        alt="Logo do GitHub"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a
-                      href="https://www.linkedin.com/in/michel-pereira42/"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="image m-2 d-none rounded-6">
-                <img
-                  src="static/img/michel.jpg"
-                  alt="Imagem do integrante"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </label>
-
-          <!-- Card 5: Rodrigo -->
-          <input type="radio" name="slide" id="c5" />
-          <label
-            for="c5"
-            class="card d-flex position-relative pointer align-items-центer flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
-            role="button"
-          >
-            <div
-              class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white"
-            >
-              5
-            </div>
-            <div
-              class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap"
-            >
-              <div
-                class="descricao d-none hidden flex-column text-center overflow-hidden"
-              >
-                <h4 class="text-center text-xl-start py-md-2">Rodrigo</h4>
-                <p class="text-center text-md-start text-white">
-                  Função: Desenvolvimento do site, design e documentação
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Curso: Sistemas de Informação - FIAP (1° Módulo)
-                </p>
-                <p class="text-center text-md-start text-white">
-                  Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou natural
-                  de São Gabriel - RS e também sou formado em inglês pela FISK.
-                  Atualmente trabalho como desenvolvedor full stack e estou
-                  cursando Sistemas de Informação na FIAP.
-                </p>
-                <p class="rm text-center text-md-start">RM: 563042</p>
-                <!-- Redes sociais -->
-                <div
-                  class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start"
-                >
-                  <div class="plataforma">
-                    <p class="name-plataforma">GitHub</p>
-                    <a href="https://github.com/Rodrigo635" target="_blank">
-                      <img
-                        src="static/img/github.png"
-                        alt="Logo do GitHub"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                  <div class="plataforma">
-                    <p class="name-plataforma">Linkedin</p>
-                    <a
-                      href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/"
-                      target="_blank"
-                    >
-                      <img
-                        src="static/img/linkedin.jpeg"
-                        alt="Logo do Linkedin"
-                        width="50px"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="image m-2 d-none rounded-6">
-                <img
-                  src="static/img/Rodrigo.jpeg"
-                  alt="Imagem do integrante"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </label>
-          <!-- card -->
+            <!-- nav-links -->
+          </nav>
         </div>
-        <!-- card-sobre-nos -->
+        <!-- col -->
       </div>
-      <!-- integrantes -->
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </header>
+  <!-- header -->
 
-      <!-- Formulário de Contato -->
+  <main>
+    <section class="container-imagem d-flex justify-content-center align-items-center text-white">
+      <div class="imagem-bg">
+        <h1 class="text-uppercase text-white container">Contato</h1>
+      </div>
+    </section>
+    <!-- container-imagem -->
 
-      <section class="contate-nos bg-azul py-5">
-        <form
-          class="form container d-flex flex-column align-items-center text-white rounded-4"
-        >
-          <h2 class="fw-bold text-center mb-4 pb-3">Contate-nos</h2>
+    <section class="quem-somos container d-block d-xl-flex text-white gap-5 py-5">
+      <figure>
+        <img class="rounded-3 img-fluid" src="static/img/place-work.jpg" alt="Imagem ilustrando um local de trabalho" />
+      </figure>
 
-          <fieldset class="mb-4 mt-3 rounded-3">
-            <div class="container-input position-relative">
-              <input
-                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
-                type="text"
-                name="nome"
-                id="nome"
-                required
-                pattern="[A-Za-z\s]+"
-              />
-              <label for="nome">Nome</label>
+      <article class="introducao d-flex flex-column gap-xl-3">
+        <h1 class="py-3 py-xl-0">Quem somos nós</h1>
+
+        <p>
+          Somos cinco estudantes do primeiro módulo de Sistemas de Informação
+          da FIAP e desenvolvemos este site como parte de um trabalho
+          acadêmico. Nosso objetivo é criar uma plataforma que centralize as
+          datas dos principais campeonatos de eSports, facilitando o acesso às
+          informações para os fãs e entusiastas dos jogos eletrônicos. Este
+          projeto reforça nossos conhecimentos em desenvolvimento web,
+          colaboração em equipe e boas práticas de tecnologia, entregando uma
+          solução útil para a comunidade gamer.
+        </p>
+        <p>
+          Além disso, buscamos aprimorar nossas habilidades em pesquisa,
+          design e usabilidade, garantindo que a experiência do usuário seja
+          intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
+          criar uma interface acessível e responsiva, para que os usuários
+          encontrem facilmente as informações, independentemente do
+          dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
+          navegação fluida, desafiando-nos a pensar em soluções inovadoras
+          para a interação dos fãs com o cenário competitivo de eSports.
+        </p>
+      </article>
+      <!-- introducao -->
+    </section>
+    <!-- quem-somos -->
+
+    <section class="frase d-flex  justify-content-center align-items-center text-white fst-italic ">
+      <div class="container d-flex flex-column flex-xl-row gap-5">
+        <div class="frase__texto p-2">
+          <h1 class="text-center">
+            "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
+            move!"
+          </h1>
+        </div>
+        <div class="frase__imagem">
+          <img class="img-fluid rounded-3" src="static/img/tecnologia.jpg"
+            alt="Imagem de um homem mexendo em um tablet" />
+        </div>
+      </div>
+    </section>
+    <!-- frase -->
+
+    <div class="sobre-nos d-flex flex-column align-items-center justify-content-center py-5">
+      <h1 class="integrantes_titulo text-white pb-3">Nossa equipe</h1>
+      <div class="cards-sobre-nos d-flex align-items-center justify-content-center flex-column flex-xl-row">
+        <!-- Card 1: Gabriel Vilela -->
+        <input type="radio" name="slide" id="c1" checked />
+        <label for="c1"
+          class="cards d-flex position-relative pointer align-items-center justify-content-center justify-content-xl-start flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+          role="button">
+          <div
+            class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white">
+            1
+          </div>
+          <div class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap">
+            <div class="descricao hidden d-none flex-column text-center overflow-hidden">
+              <h4 class="text-center text-xl-start">Gabriel Vilela</h4>
+              <p class="text-center text-md-start text-white">
+                Função: Desenvolvimento do site, design e documentação
+              </p>
+              <p class="text-center text-md-start text-white">
+                Curso: Sistemas de Informação - FIAP (1° Módulo)
+              </p>
+              <p class="text-center text-md-start text-white">
+                Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado em
+                Técnico de Informática, nasci em Cajuru-SP mas moro em
+                Ribeirão Preto-SP. Atualmente estou cursando Sistema de
+                Informação pela FIAP
+              </p>
+              <p class="rm text-center text-md-start">RM: 562125</p>
+              <!-- Redes sociais -->
+              <div
+                class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/gabrielvilela12" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
             </div>
-          </fieldset>
-
-          <fieldset class="mb-4">
-            <div class="container-input position-relative">
-              <input
-                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
-                type="email"
-                name="email"
-                id="email"
-                required
-              />
-              <label for="email">E-mail</label>
+            <div class="image m-2 d-none rounded-6">
+              <img src="static/img/Gabriel.png" alt="Imagem do integrante" class="img-fluid" />
             </div>
-          </fieldset>
+          </div>
+        </label>
 
-          <fieldset class="mb-4">
-            <div class="container-input position-relative">
-              <input
-                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
-                type="text"
-                name="titulo"
-                id="titulo"
-                required
-              />
-              <label for="titulo">Título</label>
+        <!-- Card 2: Miguel -->
+        <input type="radio" name="slide" id="c2" />
+        <label for="c2"
+          class="cards d-flex position-relative pointer align-items-center justify-content-center justify-content-xl-start flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+          role="button">
+          <div
+            class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white">
+            2
+          </div>
+          <div class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap">
+            <div class="descricao d-none hidden flex-column text-center overflow-hidden">
+              <h4 class="text-center text-xl-start py-md-2">Miguel</h4>
+              <p class="text-center text-md-start text-white">
+                Função: Desenvolvimento do site, design e documentação
+              </p>
+              <p class="text-center text-md-start text-white">
+                Curso: Sistemas de Informação - FIAP (1° Módulo)
+              </p>
+              <p class="text-center text-md-start text-white">
+                Me chamo Miguel, tenho 18 anos, sou formado como Técnico em
+                Desenvolvimento de Sistemas, nasci e moro em Caçapava - SP.
+                Atualmente estou cursando Sistemas de Informação pela FIAP.
+              </p>
+              <p class="rm text-center text-md-start">RM: 562196</p>
+              <!-- Redes sociais -->
+              <div
+                class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/MiguelAssis0" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/miguel-anjoss/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
             </div>
-          </fieldset>
-
-          <fieldset class="mb-4">
-            <div class="container-input position-relative">
-              <textarea
-                class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4"
-                name="mensagem"
-                id="mensagem"
-                rows="5"
-                required
-              ></textarea>
-              <label for="mensagem">Mensagem</label>
+            <div class="image m-2 d-none rounded-6">
+              <img src="static/img/miguel.png" alt="Imagem do integrante" class="img-fluid" />
             </div>
-          </fieldset>
+          </div>
+        </label>
 
-          <button
-            type="submit"
-            class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
-          >
-            Enviar
-          </button>
-        </form>
-      </section>
-      <!-- contate-nos -->
-    </main>
+        <!-- Card 3: Luis -->
+        <input type="radio" name="slide" id="c3" />
+        <label for="c3"
+          class="cards d-flex position-relative pointer align-items-center justify-content-center justify-content-xl-start flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+          role="button">
+          <div
+            class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white">
+            3
+          </div>
+          <div class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap">
+            <div class="descricao d-none hidden flex-column text-center overflow-hidden">
+              <h4 class="text-center text-xl-start py-md-2">Luis</h4>
+              <p class="text-center text-md-start text-white">
+                Função: Desenvolvimento do site, design e documentação
+              </p>
+              <p class="text-center text-md-start text-white">
+                Curso: Sistemas de Informação - FIAP (1° Módulo)
+              </p>
+              <p class="text-center text-md-start text-white">
+                Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos,
+                nasci em Ribeirão Preto-SP e atualmente moro em Cajuru-SP,
+                gosto muito de programar e quero ser um desenvolvedor
+                FullStack. Atualmente curso Sistemas de informação na FIAP.
+              </p>
+              <p class="rm text-center text-md-start">RM: 561742</p>
+              <!-- Redes sociais -->
+              <div
+                class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/LuisRivalta" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/luisrivalta/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="image m-2 d-none rounded-6">
+              <img src="static/img/luis (1).png" alt="Imagem do integrante" class="img-fluid" />
+            </div>
+          </div>
+        </label>
 
-    <!-- Rodapé -->
-    <footer class="footer bg-black py-5">
-      <div class="container">
-  
-        <div class="row">
-  
-          <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-start justify-content-md-start footer-logo">
-            <div class="logo">
-              <a href="index.html"><span class="h3 fw-bold">MATCH </span><span class="h3 fw-bold text-white">HUB</span></a>
-            </div><!-- logo -->
-          </div><!-- footer-logo -->
-    
-          <div class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-end justify-content-md-end mt-2 mt-md-0 footer-links">
-            <ul class="d-flex gap-4 ps-0">
-              <li><a href="index.html"><h5>Início</h5></a></li>
-              <li><a href="sobre.html"><h5>Sobre</h5></a></li>
-              <li><a href="contato.html"><h5>Contato</h5></a></li>
-            </ul>
-          </div><!-- footer-links -->
-  
-        </div><!-- row -->
-  
-        <div class="footer-rights">
-          <h6 class="text-white text-center text-md-start mt-md-2">Todos os direitos reservados. Match Hub ©, 2025. </h6>
-        </div><!-- footer-rights -->
-        
-      </div><!-- footer container -->
-    </footer><!-- footer -->
+        <!-- Card 4: Michel -->
+        <input type="radio" name="slide" id="c4" />
+        <label for="c4"
+          class="cards d-flex position-relative pointer align-items-center justify-content-center justify-content-xl-start flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+          role="button">
+          <div
+            class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white">
+            4
+          </div>
+          <div class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap">
+            <div class="descricao d-none hidden flex-column text-center overflow-hidden">
+              <h4 class="text-center text-xl-start py-md-2">Michel</h4>
+              <p class="text-center text-md-start text-white">
+                Função: Desenvolvimento do site, design e documentação
+              </p>
+              <p class="text-center text-md-start text-white">
+                Curso: Sistemas de Informação - FIAP (1° Módulo)
+              </p>
+              <p class="text-center text-md-start text-white">
+                Meu nome é Michel Pereira Dos Santos, tenho 21 anos e moro em
+                São Paulo. Sou formado em Segurança da Informação pela Fatec
+                SCS e tenho o desejo de me tornar um desenvolvedor backend.
+                Atualmente estou cursando Sistemas de Informação na FIAP.
+              </p>
+              <p class="rm text-center text-md-start">RM: 564919</p>
+              <!-- Redes sociais -->
+              <div
+                class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/DarkFoxV" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/michel-pereira42/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="image m-2 d-none rounded-6">
+              <img src="static/img/michel.jpg" alt="Imagem do integrante" class="img-fluid" />
+            </div>
+          </div>
+        </label>
 
-    <script src="./js/bootstrap.bundle.min.js"></script>
-  </body>
+        <!-- Card 5: Rodrigo -->
+        <input type="radio" name="slide" id="c5" />
+        <label for="c5"
+          class="cards d-flex position-relative pointer align-items-center justify-content-center justify-content-xl-start flex-column overflow-hidden bg-dark text-white p-2 rounded-5"
+          role="button">
+          <div
+            class="icon text-black d-flex justify-content-center align-items-center fw-bold p-1 my-2 border border-2 rounded-5 bg-white">
+            5
+          </div>
+          <div class="row d-flex justify-content-between mt-1 ml-1 p-1 flex-nowrap">
+            <div class="descricao d-none hidden flex-column text-center overflow-hidden">
+              <h4 class="text-center text-xl-start py-md-2">Rodrigo</h4>
+              <p class="text-center text-md-start text-white">
+                Função: Desenvolvimento do site, design e documentação
+              </p>
+              <p class="text-center text-md-start text-white">
+                Curso: Sistemas de Informação - FIAP (1° Módulo)
+              </p>
+              <p class="text-center text-md-start text-white">
+                Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou natural
+                de São Gabriel - RS e também sou formado em inglês pela FISK.
+                Atualmente trabalho como desenvolvedor full stack e estou
+                cursando Sistemas de Informação na FIAP.
+              </p>
+              <p class="rm text-center text-md-start">RM: 563042</p>
+              <!-- Redes sociais -->
+              <div
+                class="redes-sociais d-flex text-center fw-bold gap-3 justify-content-center justify-content-md-start">
+                <div class="plataforma">
+                  <p class="name-plataforma">GitHub</p>
+                  <a href="https://github.com/Rodrigo635" target="_blank">
+                    <img src="static/img/github.png" alt="Logo do GitHub" width="50px" />
+                  </a>
+                </div>
+                <div class="plataforma">
+                  <p class="name-plataforma">Linkedin</p>
+                  <a href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/" target="_blank">
+                    <img src="static/img/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="image m-2 d-none rounded-6">
+              <img src="static/img/Rodrigo.jpeg" alt="Imagem do integrante" class="img-fluid" />
+            </div>
+          </div>
+        </label>
+        <!-- card -->
+      </div>
+      <!-- card-sobre-nos -->
+    </div>
+    <!-- integrantes -->
+
+    <!-- Formulário de Contato -->
+
+    <section class="contate-nos bg-azul py-5">
+      <form class="form container d-flex flex-column align-items-center text-white rounded-4 px-5">
+        <h2 class="fw-bold text-center mb-4 pb-3">Contate-nos</h2>
+
+        <fieldset class="mb-4 mt-3 rounded-3">
+          <div class="container-input position-relative">
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="text" name="nome"
+              id="nome" required pattern="[A-Za-z\s]+" />
+            <label for="nome">Nome</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="mb-4">
+          <div class="container-input position-relative">
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="email" name="email"
+              id="email" required />
+            <label for="email">E-mail</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="mb-4">
+          <div class="container-input position-relative">
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="text" name="titulo"
+              id="titulo" required />
+            <label for="titulo">Título</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="mb-4">
+          <div class="container-input position-relative">
+            <textarea class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" name="mensagem"
+              id="mensagem" rows="5" required></textarea>
+            <label for="mensagem">Mensagem</label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light">
+          Enviar
+        </button>
+      </form>
+    </section>
+    <!-- contate-nos -->
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer bg-black py-5">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-start justify-content-md-start footer-logo">
+          <div class="logo">
+            <a href="index.html"><span class="h3 fw-bold">MATCH </span><span
+                class="h3 fw-bold text-white">HUB</span></a>
+          </div>
+          <!-- logo -->
+        </div>
+        <!-- footer-logo -->
+
+        <div
+          class="col-12 col-md-6 d-flex align-items-center justify-content-center align-items-md-end justify-content-md-end mt-2 mt-md-0 footer-links">
+          <ul class="d-flex gap-4 ps-0">
+            <li>
+              <a href="index.html">
+                <h5>Início</h5>
+              </a>
+            </li>
+            <li>
+              <a href="sobre.html">
+                <h5>Sobre</h5>
+              </a>
+            </li>
+            <li>
+              <a href="contato.html">
+                <h5>Contato</h5>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- footer-links -->
+      </div>
+      <!-- row -->
+
+      <div class="footer-rights">
+        <h6 class="text-white text-center text-md-start mt-md-2">
+          Todos os direitos reservados. Match Hub ©, 2025.
+        </h6>
+      </div>
+      <!-- footer-rights -->
+    </div>
+    <!-- footer container -->
+  </footer>
+  <!-- footer -->
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
