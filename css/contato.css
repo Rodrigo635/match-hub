@@ -80,43 +80,13 @@ figure img:hover {
 
 /* FRASE ESPECIAL */
 .frase {
+  display: flex;
   width: 100%;
   height: auto;
   background-color: var(--cor-cinzaEscuro);
-  padding: 80px 10%;
-}
-
-.frase > div {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.frase__texto {
-  width: 40%;
-}
-
-.frase__imagem {
-  width: 50%;
-}
-
-.frase h1 {
-  font-family: "Courier New", Courier, monospace;
-}
-
-.frase img {
-  width: 100%;
-  filter: brightness(0.7);
-  transition: 0.3s ease-in-out;
-}
-
-.frase img:hover {
-  filter: brightness(1);
 }
 
 /* SOBRE NÓS CARDS */
-
 .sobre-nos, .cards-sobre-nos {
   min-width: 100%;
   gap: 20px;

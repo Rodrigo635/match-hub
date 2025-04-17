@@ -16,19 +16,19 @@
   </head>
 
   <body>
+
     <header class="header py-4">
       <div class="container">
         <div class="row">
+
           <div class="col-3 d-flex align-items-center justify-content-start">
             <div class="logo">
               <a href="index.html"
                 ><span class="h3 fw-bold">MATCH </span
                 ><span class="h3 fw-bold text-white">HUB</span></a
               >
-            </div>
-            <!-- Logo -->
-          </div>
-          <!-- col -->
+            </div><!-- Logo -->
+          </div><!-- col -->
 
           <div class="col-9 d-flex align-items-center justify-content-end">
             <nav class="d-flex justify-content-end nav">
@@ -44,8 +44,12 @@
                     <span></span>
                   </div> </label
                 ><!-- menu -->
-
+                
                 <ul class="d-lg-flex align-items-center gap-3 ps-0">
+
+                  <li>
+                    <input type="search" class="pesquisa" placeholder="Pesquisar..." />
+                  </li>
                   <!-- search -->
                   <li>
                     <a href="index.html"><h5 class="mb-0">Início</h5></a>
@@ -57,15 +61,15 @@
                     <a href="contato.html"><h5 class="mb-0">Contato</h5></a>
                   </li>
                 </ul>
-              </div>
-              <!-- nav-links -->
+
+              </div><!-- nav-links -->
             </nav>
-          </div>
-          <!-- col -->
-        </div>
-        <!-- row -->
-      </div>
-      <!-- container -->
+
+          </div><!-- col -->
+
+        </div><!-- row -->
+      </div><!-- container -->
+      
     </header>
 
     <main>
@@ -80,7 +84,7 @@
             style="background-color: var(--cor-bg)"
             onclick="toggleEnter('form-cadastro')"
           >
-            Cadastrar
+            <h5 class="mb-0">Cadastrar</h5>
           </button>
           <button
             class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
@@ -88,7 +92,7 @@
             id="btn-entrar"
             onclick="toggleEnter('form-login')"
           >
-            Entrar
+            <h5 class="mb-0">Entrar</h5>
           </button>
         </div>
 
@@ -103,11 +107,11 @@
           >
             <div class="row d-flex justify-content-center align-items-center">
               <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
-                <img class="w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
+                <img class="image-fluid w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
               </div>
               <!-- gif-container -->
 
-              <h2 class="text-white text text-center mt-5 mb-3 col-12">Faça seu cadastro</h2>
+              <h2 class="text-white fw-bold text text-center mt-5 mb-3 col-12">Faça seu cadastro</h2>
 
               <!-- Campo de email -->
               <div class="container-input mb-3 position-relative w-75 my-2 col-12">
@@ -168,26 +172,26 @@
 
               <div class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12">
                 <input class="termos-input" type="checkbox" id="termos" name="termos" required />
-                <p class="text-center text-white m-0">
+                <h6 class="text-center text-white m-0">
                   Aceito os <a class="link text-white opacity-75 mx-1" href="#">termos de uso </a> e
                   <a class="link text-white opacity-75 mx-1" href="#">condições.</a>
-                </p>
+                </h6>
               </div>
               <!-- termos-container -->
 
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light"
                 >
-                  Cadastrar
+                  <h5 class="mb-0">Cadastrar</h5>
                 </button>
               </div>
               <!-- btn-cadastro-container -->
 
               <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
                 <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
-                <p class="ou d-flex m-0 text-white opacity-75">Ou</p>
+                <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
                 <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
               </div>
               <!-- ou-container -->
@@ -195,10 +199,10 @@
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
+                  class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
                 >
                   <img src="static/icons/google.png" alt="Google Icon" />
-                  Cadastrar com google
+                  <h5 class="mb-0 ms-2">Cadastrar com Google</h5>
                 </button>
                 <!-- google-button -->
               </div>
@@ -219,7 +223,7 @@
               </div>
               <!-- gif-container -->
 
-              <h2 class="text-white mt-5 mb-3 text-center col-12">Faça Login</h2>
+              <h2 class="text-white fw-bold mt-5 mb-3 text-center col-12">Faça Login</h2>
 
               <div class="container-input mb-3 position-relative w-75 my-2 col-12">
                 <input
@@ -254,22 +258,22 @@
               </div>
 
               <a class="text-white opacity-75 mt-1 mb-4 text-center col-12 link" href="#"
-                >Esqueceu a senha?</a
+                ><h6>Esqueceu a senha?</h6></a
               >
 
               <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 rounded-3 btn-light"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light"
                 >
-                  Entrar
+                  <h5 class="mb-0">Entrar</h5>
                 </button>
               </div>
               <!-- btn-cadastro-container -->
 
               <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
                 <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
-                <p class="ou d-flex m-0 text-white opacity-75">Ou</p>
+                <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
                 <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
               </div>
               <!-- ou-container -->
@@ -277,10 +281,10 @@
               <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
+                  class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
                 >
                   <img src="static/icons/google.png" alt="Google Icon" />
-                  Entrar com google
+                  <h5 class="mb-0 ms-2">Entrar com Google</h5>
                 </button>
               </div>
             </div>

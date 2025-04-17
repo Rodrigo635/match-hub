@@ -84,7 +84,7 @@
   <main>
     <section class="container-imagem d-flex justify-content-center align-items-center text-white">
       <div class="imagem-bg">
-        <h1 class="text-uppercase text-white container">Contato</h1>
+        <h2 class="text-uppercase text-white fw-bold container">Contato</h2>
       </div>
     </section>
     <!-- container-imagem -->
@@ -95,9 +95,8 @@
       </figure>
 
       <article class="introducao d-flex flex-column gap-xl-3">
-        <h1 class="py-3 py-xl-0">Quem somos nós</h1>
-
-        <p>
+        <h2 class="mb-md-2 text-white fw-bold">Quem somos nós</h2>
+        <h5 class="mb-4">
           Somos cinco estudantes do primeiro módulo de Sistemas de Informação
           da FIAP e desenvolvemos este site como parte de um trabalho
           acadêmico. Nosso objetivo é criar uma plataforma que centralize as
@@ -106,8 +105,8 @@
           projeto reforça nossos conhecimentos em desenvolvimento web,
           colaboração em equipe e boas práticas de tecnologia, entregando uma
           solução útil para a comunidade gamer.
-        </p>
-        <p>
+        </h5>
+        <h5>
           Além disso, buscamos aprimorar nossas habilidades em pesquisa,
           design e usabilidade, garantindo que a experiência do usuário seja
           intuitiva e eficiente. Durante o desenvolvimento, nos preocupamos em
@@ -116,31 +115,33 @@
           dispositivo utilizado. Exploramos conceitos de UX/UI para tornar a
           navegação fluida, desafiando-nos a pensar em soluções inovadoras
           para a interação dos fãs com o cenário competitivo de eSports.
-        </p>
+        </h5>
       </article>
       <!-- introducao -->
     </section>
     <!-- quem-somos -->
 
-    <section class="frase d-flex  justify-content-center align-items-center text-white fst-italic ">
-      <div class="container d-flex flex-column flex-xl-row gap-5">
-        <div class="frase__texto p-2">
-          <h1 class="text-center">
-            "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
-            move!"
-          </h1>
-        </div>
-        <div class="frase__imagem">
-          <img class="img-fluid rounded-3" src="static/img/tecnologia.jpg"
-            alt="Imagem de um homem mexendo em um tablet" />
+    <section class="frase">
+      <div class="container my-5">
+        <div class="row">
+          <div class="col-md-12 col-lg-6 d-flex align-items-center">
+            <h2 class="text-center text-white mb-md-4">
+              "A tecnologia nos une, os eSports nos inspiram, e a inovação nos
+              move!"
+            </h2>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <img class="img-fluid rounded-3" src="static/img/tecnologia.jpg"
+              alt="Imagem de um homem mexendo em um tablet" />
+          </div>
         </div>
       </div>
     </section>
     <!-- frase -->
 
     <div class="sobre-nos d-flex flex-column align-items-center justify-content-center py-5">
-      <h1 class="integrantes_titulo text-white pb-3">Nossa equipe</h1>
-      <div class="cards-sobre-nos d-flex align-items-center justify-content-center flex-column flex-xl-row">
+      <h1 class="integrantes_titulo text-white pt-5">Nossa equipe</h1>
+      <div class="cards-sobre-nos d-flex align-items-center justify-content-center flex-column flex-xl-row pt-3">
         <!-- Card 1: Gabriel Vilela -->
         <input type="radio" name="slide" id="c1" checked />
         <label for="c1"
@@ -389,19 +390,19 @@
 
     <section class="contate-nos bg-azul py-5">
       <form class="form container d-flex flex-column align-items-center text-white rounded-4 px-5">
-        <h2 class="fw-bold text-center mb-4 pb-3">Contate-nos</h2>
+        <h2 class="fw-bold text-center mb-4">Contate-nos</h2>
 
         <fieldset class="mb-4 mt-3 rounded-3">
           <div class="container-input position-relative">
-            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="text" name="nome"
-              id="nome" required pattern="[A-Za-z\s]+" />
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="text" name="nome"
+              id="nome" required pattern="[A-Za-z\s]+"/>
             <label for="nome">Nome</label>
           </div>
         </fieldset>
 
         <fieldset class="mb-4">
           <div class="container-input position-relative">
-            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="email" name="email"
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="email" name="email"
               id="email" required />
             <label for="email">E-mail</label>
           </div>
@@ -409,7 +410,7 @@
 
         <fieldset class="mb-4">
           <div class="container-input position-relative">
-            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" type="text" name="titulo"
+            <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="text" name="titulo"
               id="titulo" required />
             <label for="titulo">Título</label>
           </div>
@@ -417,7 +418,7 @@
 
         <fieldset class="mb-4">
           <div class="container-input position-relative">
-            <textarea class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-4" name="mensagem"
+            <textarea class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" name="mensagem"
               id="mensagem" rows="5" required></textarea>
             <label for="mensagem">Mensagem</label>
           </div>
