@@ -17,3 +17,14 @@ menuCollapse.addEventListener("show.bs.collapse", () => {
 menuCollapse.addEventListener("hide.bs.collapse", () => {
     toggleMenuIcon();
 });
+
+window.addEventListener('scroll', function() {
+    const menu = document.querySelector('nav')
+  
+    if (window.scrollY > 0) {
+      menu.classList.add('fixed');
+    } else {
+      menu.classList.remove('fixed');
+    }
+  });
+  
