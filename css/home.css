@@ -57,6 +57,7 @@
   justify-content: center;
   align-items: center;
   margin: 15px;
+  flex-shrink: 0;
   border: 2px solid transparent;
   box-sizing: border-box;
   z-index: 1;
@@ -96,6 +97,7 @@ input:checked + label {
 input:checked + label .descricao {
   opacity: 1 !important;
   transform: translateY(0) !important;
+  padding: 10px;
 }
 
 input:checked + label:hover {
@@ -239,7 +241,7 @@ input:checked + label:hover {
   }
 
   .cards .conteudo-card .descricao {
-    width: 60%;
+    width: 90%;
   }
   
   .cards .conteudo-card .icon {
@@ -262,6 +264,10 @@ input:checked + label:hover {
 
   .imagem-funcao {
     display: none;
+  }
+
+  input:checked + label .icon {
+    display: none !important;
   }
 }
 

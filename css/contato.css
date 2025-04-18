@@ -44,10 +44,6 @@ header {
   background-color: var(--cor-bg);
 }
 
-/* introducao */
-.introducao {
-  width: 80%;
-}
 
 /* figura */
 figure {
@@ -188,7 +184,6 @@ input:checked + label:hover {
 }
 
 .form {
-  width: 50%;
   background-color: var(--cor-cinzaEscuro);
   padding: 60px;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
@@ -225,27 +220,8 @@ input:checked + label:hover {
 }
 
 @media (max-width: 991px) {
-  .cards {
-    width: 10%;
-  }
-
-  .cards .conteudo-card .descricao {
-    width: 60%;
-  }
-  
-  .cards .conteudo-card .icon {
-    margin: 15px 10px;
-  }
-  
-  input:checked + label {
-    width: 64%;
-  }
-}
-
-@media (max-width: 767px) {
-  /* Responsividade do banner/carrosel */
   .container-card {
-    height: 100vh;
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -254,19 +230,13 @@ input:checked + label:hover {
     gap: 2%;
   }
 
-  .cards {
-    width: 100%;
-    height: 80px;
-  }
-
   input:checked + label {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
-
+  
   .cards .conteudo-card .icon {
     margin: 10px;
-    display: none;
   }
 
   .cards .conteudo-card .descricao {
@@ -283,6 +253,13 @@ input:checked + label:hover {
   .cards {
     background-size: cover;
     background-position: center;
+    width: 100%;
+    height: 80px;
+  }
+
+  .foto {
+    display: none;
   }
 }
+
 
