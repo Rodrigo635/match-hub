@@ -69,6 +69,16 @@ header {
   width: 100%;
 }
 
+.form-control{
+  padding-left: 35px !important;
+}
+
+.btn-entrar:hover{
+  background-color: transparent;
+  color: var(--cor-azul) !important;
+  border: 2px solid var(--cor-azul) !important;
+}
+
 @media screen and (max-width: 991px) {
   .fixed{
     opacity: 1;
