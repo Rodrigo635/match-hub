@@ -166,14 +166,15 @@
       <div class="col-12 col-md-12 col-lg-6">
         <ul class="row m-0 p-0 list-style-none gx-2">
           <li class="col-4 filtro">
-            <select class="form-select rounded-5 fw-bold cursor-pointer" name="jogos" id="jogos">
+            <select class="form-select rounded-5 fw-bold cursor-pointer" name="jogos" id="jogos"
+              onchange="SelecionarJogo()">
               <option value="Jogos" selected disabled>Jogos</option>
               <option value="Todos">Todos</option>
               <option value="League of Legends">League of Legends</option>
-              <option value="Counter-Strike">Counter-Strike</option>
+              <option value="Counter Strike 2">Counter Strike</option>
               <option value="Valorant">Valorant</option>
               <option value="Fortnite">Fortnite</option>
-              <option value="Fifa">EA Sports FC</option>
+              <option value="EA Sports FC">EA Sports FC</option>
               <option value="Street Fighter">Street Fighter 6</option>
               <option value="Mortal Kombat">Mortal Kombat 1</option>
               <option value="Tekken 8">Tekken 8</option>
@@ -193,35 +194,25 @@
             </select>
           </li>
           <li class="col-4 filtro">
-            <select class="form-select rounded-5 fw-bold cursor-pointer" name="campeonatos" id="campeonatos">
+            <select class="form-select rounded-5 fw-bold cursor-pointer" name="campeonatos" id="campeonatos" onchange="SelecionarCampeonato()">
               <option value="Campeonatos" selected disabled>
                 Campeonatos
               </option>
               <option value="Todos">Todos</option>
-              <option value="Champions Valorant">Champions Valorant</option>
-              <option value="Major">CS Major</option>
-              <option value="Worlds">LOL Worlds</option>
-              <option value="Fortnite World Cup">Fortnite World Cup</option>
-              <option value="Global Series">EA Global Series</option>
-              <option value="Champions Series">Champions Series</option>
+              <option value="Champions ">Champions</option>
+              <option value="Championship">Championship</option>
+              <option value="Major">Major</option>
+              <option value="World ">World</option>
+              <option value="Worlds">Worlds</option>
+              <option value="Global Series">Global Series</option>
               <option value="Capcom Cup 11">Capcom Cup 11</option>
               <option value="Pro Kompetition">Pro Kompetition</option>
               <option value="World Tour Finals">World Tour Finals</option>
-              <option value="Free Fire Worlds">Free Fire Worlds</option>
-              <option value="Global Series">PUBG Global Series 7</option>
-              <option value="Global Championship">
-                PUBG Global Championship
-              </option>
-              <option value="Apex Legends">Apex Legends</option>
-              <option value="Rocket League">Rocket League</option>
-              <option value="Overwatch 2">Overwatch 2</option>
-              <option value="Dota 2">Dota 2</option>
-              <option value="Call of Duty: Warzone">
-                Call of Duty: Warzone
-              </option>
-              <option value="Brawlhalla">Brawlhalla</option>
-              <option value="Clash Royale">Clash Royale</option>
-              <option value="Rainbow Six Siege">Rainbow Six Siege</option>
+              <option value="ALGS">ALGS</option>
+              <option value="League">League</option>
+              <option value="International">International</option>
+              <option value="BCX">BCX</option>
+              <option value="Six Invitational">Six Invitational</option>
             </select>
           </li>
           <li class="col-4 filtro">
@@ -242,12 +233,13 @@
   <section class="container mt-2">
     <div class="row g-3">
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card bg-dark h-100">
+        <div class="card bg-dark h-100 leagueoflegends">
           <img class="rounded-3" src="./static/img/thumbs/lol_thumb.jpg" alt="lol_thumb" />
           <h5 class="pt-3 ps-3 text-white fw-bold">League of Legends</h5>
           <h6 class="pb-3 ps-3 text-white">Worlds 2025</h6>
         </div>
       </div>
+
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card bg-dark h-100">
           <img class="rounded-3" src="./static/img/thumbs/cs2_thumb.jpg" alt="cs_go2_thumb" />
@@ -257,7 +249,7 @@
       </div>
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card bg-dark h-100">
-          <img class="rounded-3" src="./static/img/thumbs/valorant_thumb2.jpg" alt="valorant_thumb" />
+          <img class="rounded-3" src="./static/img/thumbs/valorant_thumb.jpg" alt="valorant_thumb" />
           <h5 class="pt-3 ps-3 text-white fw-bold">Valorant</h5>
           <h6 class="pb-3 ps-3 text-white">Champions 2025</h6>
         </div>
@@ -329,11 +321,10 @@
       <!-- sequencia de jogos 1 -->
 
       <div class="visivel-1 d-none">
-        <div class="row">
+        <div class="row g-3">
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Apex+Legends"
-                alt="apex_legends_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/apexlegend.jpg" alt="apex_legends_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Apex Legends</h5>
               <h6 class="pb-3 ps-3 text-white">ALGS 2025</h6>
             </div>
@@ -341,17 +332,19 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Rocket+League"
-                alt="rocket_league_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/rocketleague.jpg" alt="rocket_league_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Rocket League</h5>
               <h6 class="pb-3 ps-3 text-white">World Championship</h6>
             </div>
           </div>
 
+         
+
+          
+
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Overwatch+2"
-                alt="overwatch2_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/overwatch2.jpg" alt="overwatch2_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Overwatch 2</h5>
               <h6 class="pb-3 ps-3 text-white">Overwatch League 2025</h6>
             </div>
@@ -359,7 +352,7 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Dota+2" alt="dota2_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/dota2.jpg" alt="dota2_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Dota 2</h5>
               <h6 class="pb-3 ps-3 text-white">The International 2025</h6>
             </div>
@@ -367,8 +360,7 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=CoD+Warzone"
-                alt="cod_warzone_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/codwarzone.jpg" alt="cod_warzone_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">
                 Call of Duty: Warzone
               </h5>
@@ -378,7 +370,7 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Brawlhalla" alt="brawlhalla_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/brawlhalla.jpg" alt="brawlhalla_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Brawlhalla</h5>
               <h6 class="pb-3 ps-3 text-white">BCX 2025</h6>
             </div>
@@ -386,8 +378,7 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Clash+Royale"
-                alt="clash_royale_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/clashroyale.jpg" alt="clash_royale_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Clash Royale</h5>
               <h6 class="pb-3 ps-3 text-white">Clash Royale League 2025</h6>
             </div>
@@ -395,28 +386,34 @@
 
           <div class="col-12 col-md-6 col-lg-3">
             <div class="card bg-dark h-100">
-              <img class="rounded-3" src="https://via.placeholder.com/300x150?text=Rainbow+Six"
-                alt="rainbow_six_thumb" />
+              <img class="rounded-3" src="./static/img/thumbs/rainbowsixsiege.jpg" alt="rainbow_six_thumb" />
               <h5 class="pt-3 ps-3 text-white fw-bold">Rainbow Six Siege</h5>
               <h6 class="pb-3 ps-3 text-white">Six Invitational 2025</h6>
             </div>
           </div>
+
+          <!-- col  -->
         </div>
+        <!-- row -->
       </div>
+      <!-- visivel-1 -->
     </div>
+    <!-- row -->
+
     <!-- blocos -->
 
-    <div class="container text-center mt-4 mb-5">
-
+    <div class="container text-center my-5">
       <!-- Ativo ao clicar em saiba mais -->
-      <h5 class="text-center ver-menos cursor-pointer d-none my-5" onclick="EsconderJogos()">Ver menos</h5>
+      <h5 class="text-center ver-menos cursor-pointer d-none my-5" onclick="EsconderJogos()">
+        Ver menos
+      </h5>
 
       <!-- Botão para alternar a visibilidade dos jogos -->
-      <h5 class="text-center ver-mais cursor-pointer" onclick="ExibirJogos()">Ver mais</h5>
-
+      <h5 class="text-center ver-mais cursor-pointer" onclick="ExibirJogos()">
+        Ver mais
+      </h5>
     </div>
     <!-- ver-mais  -->
-
   </section>
   <!-- conteúdo -->
 
