@@ -1,48 +1,118 @@
-// Função para alternar a visibilidade dos jogos
-// Última data de alteração: 18/04/2025
-// Descrição: Esta função alterna a visibilidade de uma lista de jogos, exibindo
-// ou ocultando os jogos conforme a interação do usuário no botão "Ver mais" ou "Ver menos".
+let contador = 1;
+const total_Divs = document.querySelectorAll("[class*='visivel-']").length;
+const { btn_VerMais, btn_VerMenos } = PegarSelector(contador);
 
-let contador = 1; // Usado para controlar o número de cliques no "Ver mais"
+/* AUXILIARES */
 
+// Seleciona a div, o botão "Ver mais" e o botão "Ver menos" com base no contador
+function PegarSelector(contador) {
+  return {
+    div_Visivel: document.querySelector(".visivel-" + contador),
+    btn_VerMais: document.querySelector(".ver-mais"),
+    btn_VerMenos: document.querySelector(".ver-menos"),
+  };
+}
+
+function EsconderBtn() {
+  btn_VerMais.classList.add("d-none");
+  btn_VerMenos.classList.add("d-none");
+}
+
+function btnVerMais() {
+  btn_VerMais.classList.remove("d-none");
+  btn_VerMais.innerHTML = "Ver mais";
+  btn_VerMais.classList.add("cursor-pointer");
+  btn_VerMais.style.cursor = "pointer";
+}
+
+function btnVerMaisFim() {
+  btn_VerMais.innerHTML = "Em breve";
+  btn_VerMais.classList.remove("cursor-pointer");
+  btn_VerMais.style.cursor = "default";
+}
+
+function AlinharFiltros() {
+  const rows = document.querySelectorAll(".row.g-3");
+  rows.forEach(row => { row.style.flexWrap = "nowrap"; });
+}
+
+function AlinharInicial() {
+  const rows = document.querySelectorAll(".row.g-3");
+  rows.forEach(row => { row.style.flexWrap = "wrap"; });
+}
+
+/* FUNÇÕES PRINCIPAIS */
+
+// Exibir mais jogos
 function ExibirJogos() {
-  // Seleciona os elementos necessários
-  var div_Jogos = document.querySelector(".visivel-" + contador); // Seleciona a div correspondente ao contador
-  var btn_VerMais = document.querySelector(".ver-mais");
-  var btn_VerMenos = document.querySelector(".ver-menos");
+  const div_Visivel = document.querySelector(".visivel-" + contador);
 
-  // Verifica se a div de jogos está oculta
-  if (div_Jogos.classList.contains("d-none")) {
-    // Se estiver oculta, remove a classe 'd-none' para exibi-la
-    div_Jogos.classList.remove("d-none");
-    // Altera o texto do botão para "Em breve"
-    btn_VerMais.innerHTML = "Em breve";
-    btn_VerMenos.classList.remove("d-none"); // Exibe o botão "Ver menos"
+  if (div_Visivel.classList.contains("d-none")) {
     contador++;
+    div_Visivel.classList.remove("d-none");
+    btn_VerMenos.classList.remove("d-none");
+
+     // Se o contador for maior que o total de divs, esconde o botão "Ver mais"
+     contador > total_Divs && btnVerMaisFim();
   }
 }
 
-// Função para alternar a visibilidade dos jogos
-// Última data de alteração: 18/04/2025
-
+// Ocultar jogos
 function EsconderJogos() {
-  // Abaixa o contador para pegar a ultima div de jogos que foi exibida e faz a busca dela
+  const div_Visivel = document.querySelector(".visivel-" + contador);
   contador--;
 
-  var div_Jogos = document.querySelector(".visivel-" + contador);
-
-  // Adiciona a classe 'd-none' para esconder a div de jogos
-  div_Jogos.classList.add("d-none");
-
-  // Seleciona os botões "Ver mais" e "Ver menos"
-  var btn_VerMais = document.querySelector(".ver-mais");
-  var btn_VerMenos = document.querySelector(".ver-menos");
-
-  // Altera o texto do botão "Ver mais" para o texto original
+  div_Visivel.classList.add("d-none");
   btn_VerMais.innerHTML = "Ver mais";
+  btn_VerMais.classList.add("cursor-pointer");
+  btn_VerMais.style.cursor = "pointer";
 
-  // Se o contator foi adicionado somente 1 vez, esconde o botão "Ver menos"
   if (contador == 1) {
     btn_VerMenos.classList.add("d-none");
   }
 }
+
+// Função principal para aplicar ambos os filtros
+function AplicarFiltros() {
+  const cards = document.querySelectorAll(".card");
+  const jogo_Escolhido = document.getElementById("jogos").value.toLowerCase();
+  const campeonato_Escolhido = document.getElementById("campeonatos").value.toLowerCase();
+
+  let filtroAtivo = false;
+
+  cards.forEach((card) => {
+    const tituloJogo = card.querySelector("h5").innerText.toLowerCase();
+    const tituloCampeonato = card.querySelector("h6").innerText.toLowerCase();
+
+    let mostrar = true;
+
+    if (jogo_Escolhido !== "todos" && jogo_Escolhido !== "jogos") {mostrar = mostrar && tituloJogo.includes(jogo_Escolhido);filtroAtivo = true;}
+
+    /* True se aplicar filtro */
+    if (campeonato_Escolhido !== "todos" && campeonato_Escolhido !== "campeonatos") {
+      mostrar = mostrar && tituloCampeonato.includes(campeonato_Escolhido);
+      filtroAtivo = true;
+    }
+
+    card.parentElement.style.display = mostrar ? "block" : "none";
+  });
+
+  if (filtroAtivo) {
+    EsconderBtn();
+    AlinharFiltros();
+    for (let i = 1; i <= total_Divs; i++) {
+      document.querySelector(".visivel-" + i).classList.remove("d-none");
+    }
+  } else {
+    btnVerMais();
+    AlinharInicial();
+    for (let i = 1; i <= total_Divs; i++) {
+      document.querySelector(".visivel-" + i).classList.add("d-none");
+    }
+    contador = 1;
+  }
+}
+
+// Eventos que ocorre quando o usuario escolher um jogo ou campeonato
+document.getElementById("jogos").addEventListener("change", AplicarFiltros);
+document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
