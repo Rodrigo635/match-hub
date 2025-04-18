@@ -13,6 +13,10 @@
   gap: 1%;
 }
 
+.cor-redondo {
+  color: var(--cor-vermelho) !important;
+}
+
 .cards {
   position: relative;
   width: 6%;
@@ -140,7 +144,7 @@ input:checked + label .descricao {
 }
 
 /* Ver mais */
-.ver-mais {
+.ver-mais, .ver-menos {
   color: var(--cor-azul) !important;
   transition: 0.3s ease-in-out;
 }
