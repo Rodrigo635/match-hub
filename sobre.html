@@ -44,19 +44,26 @@
           </button>
 
           <!-- Links and form -->
-          <div
-            class="collapse nav-links navbar-collapse"
-            id="mainNavbar"
-          >
-            <!-- Left nav links -->
-            <ul class="navbar-nav me-auto d-flex justify-content-center w-100 mb-2 mb-lg-0 text-center">
+          <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
+            <!-- Search form -->
+            <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
+              <input
+                class="form-control bg-dark text-white rounded-5 border-2"
+                type="search"
+                placeholder="Pesquisar..."
+                aria-label="Search"
+              />
+              <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px" alt="pesquisar">
+            </form>
+            
+            <ul class="navbar-nav d-flex  mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
               <li class="nav-item">
                 <a class="nav-link text-white px-2" href="index.html"
                   >Início</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link px-2 text-secondary" href="sobre.html">Sobre</a>
+                <a class="nav-link text-primary px-2" href="sobre.html">Sobre</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white px-2" href="contato.html"
@@ -64,23 +71,12 @@
                 >
               </li>
             </ul>
-
-            <!-- Search form -->
-            <form class="d-flex mb-2 mb-lg-0 me-lg-3" role="search">
-              <input
-                class="form-control"
-                type="search"
-                placeholder="Search..."
-                aria-label="Search"
-              />
-            </form>
-
             <!-- Login button -->
             <div class="d-flex">
               <a
                 href="cadastro.html"
                 type="button"
-                class="btn btn-primary w-100 text-white"
+                class="btn btn-entrar btn-primary w-100 px-4 text-white"
               >
                 Entrar
               </a>
@@ -89,7 +85,6 @@
         </div>
       </nav>
     </header>
-
 
     <main class="text-white">
       <!-- Hero Banner -->
@@ -539,7 +534,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a href="sobre.html" class="nav-link px-2 text-secondary">Sobre</a>
+                <a href="sobre.html" class="nav-link px-2 text-primary">Sobre</a>
               </li>
               <li class="nav-item">
                 <a href="contato.html" class="nav-link px-2 text-white"
