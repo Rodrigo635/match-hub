@@ -62,7 +62,7 @@ function ExibirJogos() {
     btn_VerMenos.classList.remove("d-none");
 
      // Se o contador for maior que o total de divs, esconde o botão "Ver mais"
-     contador > total_Divs && SelecionarTipo("btnVerMaisFim");
+     contador > total_Divs && btnVerMaisFim();
   }
 }
 
