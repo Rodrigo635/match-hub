@@ -13,6 +13,21 @@ header {
   z-index: 999;
 }
 
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.6;
+  left: 0;
+  background-color: black !important; /* opcional: para cobrir o conteúdo atrás */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* opcional: só pra visual */
+  z-index: 1000;
+  transition: 0.3s ease;
+}
+
+.fixed:hover {
+  opacity: 1;
+}
 
 .nav-links a{
   position: relative;
@@ -52,4 +67,10 @@ header {
 
 .nav-links ul a:hover:after {
   width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .fixed{
+    opacity: 1;
+  }
 }
