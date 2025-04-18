@@ -8,17 +8,16 @@
   background-size: cover;
 }
 
-.btn-login{
+.btn-continuar{
   width:100%;
   margin:0;
+  text-decoration: none;
 }
 
-/* Ativar hover */
-@media screen and (min-width: 991px) {
-  .btn-login:hover {
-    width:100%;
-    background-color: var(--bg-dark) !important;
-    border-color: var(--cor-azul) !important;
-    color: var(--cor-azul) !important;
-  }
+.btn-continuar:hover {
+  transition: 0.2s ease;
+  width:100%;
+  background-color: var(--bg-dark) !important;
+  color: var(--cor-azul) !important;
+  border: 1px solid var(--cor-azul) !important;
 }
