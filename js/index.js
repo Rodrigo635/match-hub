@@ -19,8 +19,9 @@ function EsconderBtn() {
 }
 
 function btnVerMais() {
+
   btn_VerMais.classList.remove("d-none");
-  btn_VerMais.innerHTML = "Ver mais";
+  btn_VerMais.innerHTML = "Ver maisaaaaa";
   btn_VerMais.classList.add("cursor-pointer");
   btn_VerMais.style.cursor = "pointer";
 }
@@ -60,8 +61,8 @@ function ExibirJogos() {
 
 // Ocultar jogos
 function EsconderJogos() {
-  const div_Visivel = document.querySelector(".visivel-" + contador);
   contador--;
+  const div_Visivel = document.querySelector(".visivel-" + contador);
 
   div_Visivel.classList.add("d-none");
   btn_VerMais.innerHTML = "Ver mais";
@@ -71,6 +72,7 @@ function EsconderJogos() {
   if (contador == 1) {
     btn_VerMenos.classList.add("d-none");
   }
+  
 }
 
 // Função principal para aplicar ambos os filtros
@@ -105,6 +107,7 @@ function AplicarFiltros() {
       document.querySelector(".visivel-" + i).classList.remove("d-none");
     }
   } else {
+
     btnVerMais();
     AlinharInicial();
     for (let i = 1; i <= total_Divs; i++) {
@@ -112,6 +115,7 @@ function AplicarFiltros() {
     }
     contador = 1;
   }
+
 }
 
 // Eventos que ocorre quando o usuario escolher um jogo ou campeonato
