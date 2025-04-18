@@ -1,4 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
 
+:target {
+  scroll-margin-top: .8em;
+}
 
 /* HEADER */
 header {
@@ -7,57 +13,8 @@ header {
   z-index: 999;
 }
 
-/* Logo */
-.logo {
-  text-wrap: nowrap;
-  transition: 0.3s ease;
-}
 
-.logo a > span {
-  color: var(--cor-azul);
-}
-
-/* Links de navegação */
-.nav-links {
-  order: 1;
-}
-
-.nav > a {
-  order: 2;
-}
-
-.nav-links ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  flex-wrap: nowrap;
-}
-
-.pesquisa {
-  display: flex;
-  width: 200px;
-  min-width: 150px;
-  padding: 8px 12px;
-  border: 2px solid var(--cor-cinza);
-  background-color: transparent;
-  border-radius: 20px;
-  font-size: var(--font-size-small);
-  transition: 0.3s ease;
-  padding-left: 35px;
-  background-image: url("../static/icons/search.png");
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-position-x: 10px;
-  color: var(--cor-cinza);
-}
-
-.pesquisa::placeholder {
-  color: var(--cor-cinza);
-}
-
-.nav-links a,
-.footer-links a {
+.nav-links a{
   position: relative;
   text-decoration: none;
   color: var(--cor-cinza);
@@ -65,169 +22,34 @@ header {
   transition: 0.2s ease;
 }
 
-.nav-links ul a:after,
-.footer-links ul a:after {
+.nav-links ul a:after {
   content: "";
   position: absolute;
   background-color: var(--cor-azul);
   height: 2px;
   width: 0;
   left: 0;
-  bottom: -5px;
+  bottom: 0px;
   transition: 0.2s ease;
 }
 
-
-.btn-login {
-  display: flex;
-  padding: 9px 20px;
-  background-color: var(--cor-azul) !important;
-  color: var(--cor-branco) !important;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  border: 2px solid transparent;
-  box-sizing: border-box;
+#menu {
+  background-image: url("../static/icons/hamburguer.png");
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  transition: all 0.5s ease-in-out; /* Mesmo tempo do setTimeout */
 }
 
-.btn-login::after {
-  height: 0px !important;
+#menu.active {
+  background-image: url("../static/icons/close.png");
 }
 
-/* MENU HAMBURGUER */
-.menu {
-  display: none;
-  max-width: fit-content;
-  cursor: pointer;
+/* Nav-bar */
+.nav-links a:hover {
+  color: var(--cor-azul);
 }
 
-/* Oculta o input checkbox (q é usado para controlar o menu) */
-#menu-toggle {
-  display: none;
-}
-
-/* Estilos para o ícone do menu (hamburger) */
-.menu .hamburger {
-  min-width: 40px;
-  min-height: 29px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.menu .hamburger span {
-  display: block;
-  height: 4px;
-  background: var(--cor-branco);
-  transition: 0.3s ease;
-  transform-origin: center;
-}
-
-#menu-toggle:checked + label.menu .hamburger span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 9px);
-}
-
-#menu-toggle:checked + label.menu .hamburger span:nth-child(2) {
-  opacity: 0;
-  display: none;
-}
-
-#menu-toggle:checked + label.menu .hamburger span:nth-child(3) {
-  transform: rotate(-45deg) translate(8px, -9px);
-}
-
-/* FOOTER */
-.footer-links ul {
-  list-style: none;
-}
-
-.footer-links a {
-  transition: color 0.3s ease;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-  /* Responsividade da navegação do menu hamburguer */
-  .nav {
-    justify-content: center;
-  }
-
-  .nav-links {
-    justify-content: flex-end;
-    width: 100%;
-  }
-
-  /* Oculta os links de navegação e o botão de login por padrão */
-  .nav-links ul {
-    display: none;
-  }
-
-  .nav-links ul li {
-    padding: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .nav-links .btn-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .nav-links ul li a {
-    width: 100%;
-    margin: 0 !important;
-    display: flex;
-    justify-content: center;
-  }
-
-  /* Exibe o ícone do menu */
-  .menu {
-    display: flex;
-    cursor: pointer;
-  }
-
-  .hamburger {
-    cursor: pointer;
-    z-index: 20;
-  }
-
-  /* Quando o checkbox estiver marcado, exibe o menu */
-  #menu-toggle:checked ~ ul {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--cor-bg);
-    position: absolute;
-    z-index: 20;
-    top: 60px;
-    left: 0;
-    justify-content: center;
-    width: 100%;
-    padding: 10px 0;
-    list-style-type: none;
-  }
-}
-
-/* Ativar hover */
-@media (min-width: 991px) {
-  /* Nav-bar */
-  .nav-links a:hover {
-    color: var(--cor-azul);
-  }
-
-  .nav-links ul a:hover:after,
-  .footer-links ul a:hover:after {
-    width: 100%;
-  }
-
-  .btn-login:hover {
-    background-color: var(--cor-bg) !important;
-    border-color: var(--cor-azul) !important;
-    color: var(--cor-azul) !important;
-  }
-
-  /* Footer */
-  .footer-links a:hover {
-    color: var(--cor-azul);
-  }
+.nav-links ul a:hover:after {
+  width: 100%;
 }
