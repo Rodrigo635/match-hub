@@ -36,14 +36,11 @@ header {
   width: 100%;
 }
 
-
-
 /* QUEM SOMOS */
 .quem-somos {
   width: 100%;
   background-color: var(--cor-bg);
 }
-
 
 /* figura */
 figure {
@@ -57,10 +54,6 @@ figure img {
   transition: 0.3s ease-in-out;
 }
 
-figure img:hover {
-  filter: brightness(1);
-}
-
 /* FRASE ESPECIAL */
 .frase {
   display: flex;
@@ -69,11 +62,9 @@ figure img:hover {
   background-color: var(--cor-cinzaEscuro);
 }
 
-
-
 /* BANNER */
 .container-card {
-  height: 65vh;
+  height: 57vh;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -90,7 +81,7 @@ figure img:hover {
   overflow: hidden;
   display: flex;
   align-items: flex-start;
-  transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+  transition: 1s cubic-bezier(0.28, -0.03, 0, 0.99); /* QUANDO PASSA MOUSE EM CIMA TA BUGANDO CARD AS CORES */
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
@@ -101,7 +92,7 @@ figure img:hover {
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  background: linear-gradient(to top, rgba(19, 19, 19, 0.927), transparent);
   pointer-events: none;
 }
 
@@ -125,20 +116,11 @@ figure img:hover {
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  margin: 15px;
+  margin: 11px;
   border: 2px solid transparent;
   box-sizing: border-box;
   z-index: 1;
   transition: 0.2s ease;
-}
-
-.cards:hover {
-  transform: scale(1.02);
-  .icon {
-    background-color: var(--cor-bg);
-    color: var(--cor-branco);
-    border-color: var(--cor-branco);
-  }
 }
 
 .cards .conteudo-card .descricao {
@@ -172,14 +154,10 @@ input:checked + label .descricao {
   transform: translateY(0) !important;
 }
 
-input:checked + label:hover {
-  transform: scale(1);
-}
-
-
-
 /* FORMULÁRIO DE CONTATO */
-.form fieldset, .form textarea, .contate-nos {
+.form fieldset,
+.form textarea,
+.contate-nos {
   width: 100%;
 }
 
@@ -198,7 +176,10 @@ input:checked + label:hover {
   padding-inline: 5px;
 }
 
-.container-input input:focus + label, .container-input input:not(:placeholder-shown) + label, .container-input textarea:focus + label, .container-input textarea:not(:placeholder-shown) + label {
+.container-input input:focus + label,
+.container-input input:not(:placeholder-shown) + label,
+.container-input textarea:focus + label,
+.container-input textarea:not(:placeholder-shown) + label {
   top: 0;
 }
 
@@ -215,7 +196,7 @@ input:checked + label:hover {
   }
 
   .cards .conteudo-card .icon {
-    margin: 15px 10px;
+    margin-left: 8px !important; /* Mantem o icon centralizado */
   }
 }
 
@@ -227,14 +208,16 @@ input:checked + label:hover {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    gap: 2%;
+  }
+  .dados {
+    display: grid;
   }
 
   input:checked + label {
     width: 100%;
     height: auto;
   }
-  
+
   .cards .conteudo-card .icon {
     margin: 10px;
   }
@@ -255,11 +238,57 @@ input:checked + label:hover {
     background-position: center;
     width: 100%;
     height: 80px;
+    justify-content: center;
+    margin-top: 20px;
   }
 
   .foto {
     display: none;
   }
+
+  figure img {
+    height: 300px;
+    filter: brightness(0.7);
+    transition: 0.3s ease-in-out;
+  }
+
+  .frase {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .frase h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .frase p {
+    font-size: 1.2rem;
+    text-align: center;
+  }
 }
 
+/* Ativar Hover */
+@media (min-width: 991px) {
+  /* Figura */
+  figure img:hover {
+    filter: brightness(1);
+  }
 
+  /* Cards */
+  input:checked + label:hover {
+    transform: scale(1);
+  }
+
+  .cards:hover {
+    transform: scale(1.02);
+    .icon {
+      background-color: var(--cor-bg);
+      color: var(--cor-branco);
+      border-color: var(--cor-branco);
+    }
+  }
+}

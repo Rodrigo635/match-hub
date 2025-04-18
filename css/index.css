@@ -11,7 +11,7 @@ header {
   transition: 0.3s ease;
 }
 
-.logo a > span{
+.logo a > span {
   color: var(--cor-azul);
 }
 
@@ -63,10 +63,6 @@ header {
   transition: 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: var(--cor-azul);
-}
-
 .nav-links ul a:after,
 .footer-links ul a:after {
   content: "";
@@ -79,10 +75,6 @@ header {
   transition: 0.2s ease;
 }
 
-.nav-links ul a:hover:after,
-.footer-links ul a:hover:after {
-  width: 100%;
-}
 
 .btn-login {
   display: flex;
@@ -95,17 +87,9 @@ header {
   box-sizing: border-box;
 }
 
-.btn-login::after{
+.btn-login::after {
   height: 0px !important;
 }
-
-.btn-login:hover {
-  background-color: var(--cor-bg) !important;
-  border-color: var(--cor-azul) !important;
-  color: var(--cor-azul) !important;
-}
-
-
 
 /* MENU HAMBURGUER */
 .menu {
@@ -149,8 +133,6 @@ header {
   transform: rotate(-45deg) translate(8px, -9px);
 }
 
-
-
 /* FOOTER */
 .footer-links ul {
   list-style: none;
@@ -160,45 +142,39 @@ header {
   transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
-  color: var(--cor-azul);
-}
-
-
-
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   /* Responsividade da navegação do menu hamburguer */
   .nav {
     justify-content: center;
   }
-  
-  .nav-links{
+
+  .nav-links {
     justify-content: flex-end;
     width: 100%;
   }
-  
+
   /* Oculta os links de navegação e o botão de login por padrão */
   .nav-links ul {
     display: none;
   }
 
-  .nav-links ul li{
+  .nav-links ul li {
     padding: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .nav-links .btn-login{
+  .nav-links .btn-login {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .nav-links ul li a{
+  .nav-links ul li a {
     width: 100%;
-    margin: 0 !important; 
+    margin: 0 !important;
     display: flex;
     justify-content: center;
   }
@@ -230,5 +206,26 @@ header {
   }
 }
 
+/* Ativar hover */
+@media (min-width: 991px) {
+  /* Nav-bar */
+  .nav-links a:hover {
+    color: var(--cor-azul);
+  }
 
+  .nav-links ul a:hover:after,
+  .footer-links ul a:hover:after {
+    width: 100%;
+  }
 
+  .btn-login:hover {
+    background-color: var(--cor-bg) !important;
+    border-color: var(--cor-azul) !important;
+    color: var(--cor-azul) !important;
+  }
+
+  /* Footer */
+  .footer-links a:hover {
+    color: var(--cor-azul);
+  }
+}

@@ -95,9 +95,7 @@ main {
   filter: invert(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
-.container-input button:hover .eye-icon {
-  opacity: 0.8;
-}
+
 
 /* Termos e condições */
 .termos-input  {
@@ -106,22 +104,11 @@ main {
   cursor: pointer;
 }
 
-/* Decoração de link */
-.link:hover {
-  text-decoration: underline;
-}
-
 /* Botão de login */
 .btn-primary {
   transition: 0.2s ease;
   box-sizing: border-box;
   border: 2px solid var(--cor-branco);
-}
-
-.btn-primary:hover {
-  border: 2px solid var(--cor-branco);
-  background-color: transparent;
-  color: var(--cor-branco);
 }
 
 .btn-primary img {
@@ -151,5 +138,26 @@ main {
     align-items: end;
     justify-content: end;
   }
+}
+
+
+/* Ativar hover */
+@media screen and (min-width: 991px) {
+
+  /* Formulário */
+  .container-input button:hover .eye-icon {
+    opacity: 0.8;
+  }
   
+  /* Decoração de link */
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  /* Botão de login */
+  .btn-primary:hover {
+    border: 2px solid var(--cor-branco);
+    background-color: transparent;
+    color: var(--cor-branco);
+  }
 }

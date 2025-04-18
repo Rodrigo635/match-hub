@@ -13,9 +13,12 @@
   margin:0;
 }
 
-.btn-login:hover {
-  width:100%;
-  background-color: var(--bg-dark) !important;
-  border-color: var(--cor-azul) !important;
-  color: var(--cor-azul) !important;
+/* Ativar hover */
+@media screen and (min-width: 991px) {
+  .btn-login:hover {
+    width:100%;
+    background-color: var(--bg-dark) !important;
+    border-color: var(--cor-azul) !important;
+    color: var(--cor-azul) !important;
+  }
 }
