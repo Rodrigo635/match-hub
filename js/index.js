@@ -24,7 +24,7 @@ function btnVerMaisAtivo() {
 }
 
 function btnVerMaisDesativado() {
-  btn_VerMais.innerHTML = "Em breve";
+  btn_VerMais.innerHTML = "";
   btn_VerMais.style.cursor = "default";
 }
 
