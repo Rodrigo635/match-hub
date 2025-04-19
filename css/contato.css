@@ -298,12 +298,12 @@ input:checked + label .descricao {
     }
   }
 
-  .btn-primary{
+  #btn-enviar{
     border: 2px solid var(--cor-branco);
   }
 
   /* Botão de login */
-  .btn-primary:hover {
+  #btn-enviar:hover {
     border: 2px solid var(--cor-branco);
     background-color: transparent;
     color: var(--cor-branco);
