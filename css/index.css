@@ -95,4 +95,12 @@ header {
   .fixed{
     opacity: 1;
   }
+
+  .nav-links a:hover {
+    color: transparent;
+  }
+
+  .nav-links ul a:after {
+    background-color: transparent;
+  }
 }
