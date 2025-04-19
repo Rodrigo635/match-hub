@@ -82,7 +82,7 @@
         >
           <button
             class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
-            id="btn-cadastro"
+            id="auth-toggle-cadastrar"
             style="background-color: var(--cor-bg)"
             onclick="toggleEnter('form-cadastro')"
           >
@@ -91,7 +91,7 @@
           <button
             class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
             style="background-color: var(--cor-bgEscuro)"
-            id="btn-entrar"
+            id="auth-toggle-entrar"
             onclick="toggleEnter('form-login')"
           >
             <h5 class="mb-0">Entrar</h5>
@@ -184,7 +184,8 @@
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
+                  id="btn-cadastro"
                 >
                   <h5 class="mb-0">Cadastrar</h5>
                 </button>
@@ -200,8 +201,9 @@
 
               <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
-                  type="submit"
+                  type="button"
                   class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
+                  id="btn-google"
                 >
                   <img src="static/icons/google.png" alt="Google Icon" />
                   <h5 class="mb-0 ms-2">Cadastrar com Google</h5>
@@ -232,7 +234,7 @@
                   type="email"
                   class="form-control bg-dark text-white rounded-2"
                   placeholder="Digite seu e-mail..."
-                  id="email"
+                  id="loginEmail"
                 />
                 <label for="email" class="form-label text-light">E-mail</label>
               </div>
@@ -266,7 +268,8 @@
               <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
                 <button
                   type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light"
+                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
+                  id="btn-entrar"
                 >
                   <h5 class="mb-0">Entrar</h5>
                 </button>
