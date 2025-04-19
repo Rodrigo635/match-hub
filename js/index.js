@@ -18,28 +18,14 @@ function EsconderBtn() {
   btn_VerMenos.classList.add("d-none");
 }
 
-function btnVerMais() {
-
-  btn_VerMais.classList.remove("d-none");
-  btn_VerMais.innerHTML = "Ver maisaaaaa";
-  btn_VerMais.classList.add("cursor-pointer");
+function btnVerMaisAtivo() {
+  btn_VerMais.innerHTML = "Ver mais";
   btn_VerMais.style.cursor = "pointer";
 }
 
-function btnVerMaisFim() {
+function btnVerMaisDesativado() {
   btn_VerMais.innerHTML = "Em breve";
-  btn_VerMais.classList.remove("cursor-pointer");
   btn_VerMais.style.cursor = "default";
-}
-
-function AlinharFiltros() {
-  const rows = document.querySelectorAll(".row.g-3");
-  rows.forEach(row => { row.style.flexWrap = "nowrap"; });
-}
-
-function AlinharInicial() {
-  const rows = document.querySelectorAll(".row.g-3");
-  rows.forEach(row => { row.style.flexWrap = "wrap"; });
 }
 
 /* FUNÇÕES PRINCIPAIS */
@@ -53,25 +39,25 @@ function ExibirJogos() {
     div_Visivel.classList.remove("d-none");
     btn_VerMenos.classList.remove("d-none");
 
-     // Se o contador for maior que o total de divs, esconde o botão "Ver mais"
-     contador > total_Divs && btnVerMaisFim();
+    // Se o contador for maior que o total de divs, esconde o botão "Ver mais"
+    contador > total_Divs && btnVerMaisDesativado();
   }
 }
 
 // Ocultar jogos
 function EsconderJogos() {
+  //Contador diminuido para acessar a ultima div visivel
   contador--;
   const div_Visivel = document.querySelector(".visivel-" + contador);
 
+  //Pega a div atual e esconde ela
   div_Visivel.classList.add("d-none");
-  btn_VerMais.innerHTML = "Ver mais";
-  btn_VerMais.classList.add("cursor-pointer");
-  btn_VerMais.style.cursor = "pointer";
+  btnVerMaisAtivo();
 
+  // Se a lista de jogos estiver no inicio, esconde o botão "Ver menos"
   if (contador == 1) {
     btn_VerMenos.classList.add("d-none");
   }
-  
 }
 
 // Função principal para aplicar ambos os filtros
@@ -82,39 +68,49 @@ function AplicarFiltros() {
 
   let filtroAtivo = false;
 
+  // Percorre todos os cards um por um e verifica se o título do jogo ou do campeonato corresponde ao filtro selecionado
   cards.forEach((card) => {
     const tituloJogo = card.querySelector("h5").innerText.toLowerCase();
     const tituloCampeonato = card.querySelector("h6").innerText.toLowerCase();
+    let ExibirCard = true; // Variável para controlar a exibição do card
 
-    let mostrar = true;
-
-    if (jogo_Escolhido !== "todos" && jogo_Escolhido !== "jogos") {mostrar = mostrar && tituloJogo.includes(jogo_Escolhido);filtroAtivo = true;}
-
-    /* True se aplicar filtro */
-    if (campeonato_Escolhido !== "todos" && campeonato_Escolhido !== "campeonatos") {
-      mostrar = mostrar && tituloCampeonato.includes(campeonato_Escolhido);
+    if (jogo_Escolhido !== "todos" && jogo_Escolhido !== "jogos") {
+      // Verifica se o título do jogo contém o texto selecionado
+      ExibirCard = ExibirCard && tituloJogo.includes(jogo_Escolhido);
       filtroAtivo = true;
     }
 
-    card.parentElement.style.display = mostrar ? "block" : "none";
+    /* True se aplicar filtro */
+    if (campeonato_Escolhido !== "todos" && campeonato_Escolhido !== "campeonatos") {
+      // Verifica se o título do campeonato contém o texto selecionado
+      ExibirCard = ExibirCard && tituloCampeonato.includes(campeonato_Escolhido);
+      filtroAtivo = true;
+    }
+
+    // Se o card não corresponder a nenhum dos filtros, esconde o card
+    card.parentElement.style.display = ExibirCard ? "block" : "none";
   });
 
+  // Se tiver filtro ativo, esconde o botão "Ver mais" e "Ver menos" e exibe os todos os cards filtrados
   if (filtroAtivo) {
     EsconderBtn();
-    AlinharFiltros();
+
+    // Percorre todas as divs e deixa todas visiveis
     for (let i = 1; i <= total_Divs; i++) {
       document.querySelector(".visivel-" + i).classList.remove("d-none");
     }
-  } else {
+  }
+  // Volta ao estado inicial caso nao tenha filtro ativo
+  else {
+    btn_VerMais.classList.remove("d-none");
+    btnVerMaisAtivo();
 
-    btnVerMais();
-    AlinharInicial();
+    // Esconde todas as divs, exceto a primeira
     for (let i = 1; i <= total_Divs; i++) {
       document.querySelector(".visivel-" + i).classList.add("d-none");
     }
     contador = 1;
   }
-
 }
 
 // Eventos que ocorre quando o usuario escolher um jogo ou campeonato
