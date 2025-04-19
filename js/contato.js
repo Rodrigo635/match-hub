@@ -4,6 +4,7 @@
 
   function ajustarAlturaBaseadaNoAtivo() {
     const cardAtivo = [...cards].find((label, index) => radios[index].checked);
+    if (window.innerWidth < 991) return;
     if (!cardAtivo) return;
 
     // Resetar alturas para pegar altura real do conteúdo
