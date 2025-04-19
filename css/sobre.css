@@ -98,7 +98,7 @@ header {
 /* Ativar hover */
 @media (min-width: 991px) {
   .card-item:hover, .card-item2:hover {
-    transform: translateY(-15px);
+    transform: translateY(-10px);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
   }
    

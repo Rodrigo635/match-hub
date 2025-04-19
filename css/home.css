@@ -135,6 +135,7 @@ input:checked + label .descricao {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card img {
@@ -369,6 +370,12 @@ input:checked + label .descricao {
     /* Ver mais */
     .ver-mais:hover {
       color: var(--cor-azul2) !important;
+    }
+  }
+
+  @media (min-width: 991px) {
+    .card:hover {
+      transform: translateY(-10px);
     }
   }
 }

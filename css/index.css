@@ -90,7 +90,7 @@ header {
 }
 
 
-
+/* RESPONSIVIDADE */
 @media screen and (max-width: 991px) {
   .fixed{
     opacity: 1;
