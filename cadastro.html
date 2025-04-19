@@ -137,6 +137,21 @@
                 Faça seu cadastro
               </h2>
 
+              <!-- Campo de nome -->
+              <div
+                class="container-input mb-3 position-relative w-75 my-2 col-12"
+              >
+                <input
+                  type="nome"
+                  class="form-control text-white rounded-2"
+                  placeholder="Digite seu nome..."
+                  id="nome"
+                  required
+                />
+
+                <label for="nome" class="form-label text-light">Nome</label>
+              </div>
+
               <!-- Campo de email -->
               <div
                 class="container-input mb-3 position-relative w-75 my-2 col-12"
@@ -173,10 +188,11 @@
                   aria-label="Mostrar senha"
                 >
                   <span class="eye-icon" id="eyeIconMain"
-                    ><img src="static/icons/eye-solid.svg" alt=""
+                    ><img src="static/icons/eye-slash-solid.svg" alt=""
                   /></span>
                 </button>
               </div>
+              <span> </span>
 
               <!-- Campo de Confirmação de Senha -->
               <div
@@ -199,10 +215,12 @@
                   aria-label="Mostrar senha"
                 >
                   <span class="eye-icon" id="eyeIconConfirm"
-                    ><img src="static/icons/eye-solid.svg" alt=""
+                    ><img src="static/icons/eye-slash-solid.svg" alt=""
                   /></span>
                 </button>
               </div>
+
+              <span id="errorMessage" class="text-danger col-12 text-justify w-75 mt-1 mb-2"> </span>
 
               <div
                 class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12"
