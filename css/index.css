@@ -79,6 +79,9 @@ header {
   border: 2px solid var(--cor-azul) !important;
 }
 
+
+
+
 @media screen and (max-width: 991px) {
   .fixed{
     opacity: 1;

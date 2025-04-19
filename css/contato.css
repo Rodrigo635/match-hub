@@ -64,7 +64,7 @@ figure img {
 
 /* BANNER */
 .container-card {
-  height: 57vh;
+  min-height: 57dvh;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -75,13 +75,15 @@ figure img {
 .cards {
   position: relative;
   width: 6%;
+  min-height: 300px;
+  height: fit-content;
   border-radius: 2rem;
   background-size: cover;
   cursor: pointer;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
-  transition: 1s cubic-bezier(0.28, -0.03, 0, 0.99); /* QUANDO PASSA MOUSE EM CIMA TA BUGANDO CARD AS CORES */
+  transition: 1s cubic-bezier(0.28, -0.03, 0, 0.99); 
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
@@ -91,7 +93,7 @@ figure img {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 100%;
   background: linear-gradient(to top, rgba(19, 19, 19, 0.927), transparent);
   pointer-events: none;
 }
@@ -143,6 +145,7 @@ input {
 
 input:checked + label {
   width: 79%;
+  height: 100%;
 }
 
 input:checked + label .icon {
