@@ -17,7 +17,6 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  opacity: 0.6;
   left: 0;
   background-color: black !important; /* opcional: para cobrir o conteúdo atrás */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* opcional: só pra visual */
@@ -73,12 +72,22 @@ header {
   padding-left: 35px !important;
 }
 
+.btn-entrar{
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cor-azul);
+  border: 2px solid var(--cor-azul);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
 .btn-entrar:hover{
   background-color: transparent;
   color: var(--cor-azul) !important;
   border: 2px solid var(--cor-azul) !important;
 }
-
 
 
 

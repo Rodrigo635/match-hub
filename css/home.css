@@ -89,6 +89,10 @@ input:checked + label {
   width: 79%;
 }
 
+input:checked + label:hover {
+  transform: scale(1);
+}
+
 input:checked + label .descricao {
   opacity: 1 !important;
   transform: translateY(0) !important;
