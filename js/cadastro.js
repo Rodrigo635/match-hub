@@ -2,6 +2,7 @@ const email = document.getElementById('email');
 const password = document.getElementById('mainPassword');
 const confirmPassword = document.getElementById('confirmPassword');
 const loginEmail = document.getElementById('loginEmail');
+const errorMessage = document.getElementById('errorMessage');
 
 const btnCadastro = document.getElementById('btn-cadastro');
 const btnGoogle = document.getElementById('btn-google');
@@ -22,10 +23,10 @@ function togglePassword(inputId, iconId) {
   const iconPath = 'static/icons/';
   if (passwordInput.type === 'password') {
     passwordInput.type = 'text';
-    eyeIcon.querySelector('img').src = `${iconPath}eye-slash-solid.svg`;
+    eyeIcon.querySelector('img').src = `${iconPath}eye-solid.svg`;
   } else {
     passwordInput.type = 'password';
-    eyeIcon.querySelector('img').src = `${iconPath}eye-solid.svg`;
+    eyeIcon.querySelector('img').src = `${iconPath}eye-slash-solid.svg`;
   }
 }
 
@@ -53,7 +54,7 @@ function toggleCadastrar() {
   btnCadastro.disabled = !(boolEmail && boolPassword && boolConfirmPassword);
 }
 
-//Função comum para validar campos de input e desabilitar o botão de cadastro se algum campo estiver vazio
+// Função comum para validar campos de input e desabilitar o botão de cadastro se algum campo estiver vazio
 function validarCampo(input, condition, boolVar) {
   const isEmpty = input.value === '';
   const isValid = !isEmpty && condition;
@@ -79,15 +80,20 @@ function validarCampo(input, condition, boolVar) {
 }
 
 // Funções de validação de Email
-function validarEmail(input) {
+function validarEmail(input, type) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validarCampo(input, regex.test(input.value), 'boolEmail');
 }
 
 // Funções de validação de Senha
-function validarPassword(input) {
+function validarPassword(input, type) {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   validarCampo(input, regex.test(input.value), 'boolPassword');
+  if (type === 'blur' && !boolPassword) {
+    errorMessage.innerText = "Senha deve conter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial.";
+  } else {
+    errorMessage.innerText = '';
+  }
   validarConfirmPassword();
 }
 
@@ -103,8 +109,8 @@ function validarConfirmPassword() {
 
 // Funções para iniciar os fofoqueiros de validação
 function setupValidation(input, validationFn) {
-  input.addEventListener('input', () => validationFn(input));
-  input.addEventListener('blur', () => validationFn(input));
+  input.addEventListener('input', () => validationFn(input), 'input');
+  input.addEventListener('blur', () => validationFn(input, 'blur'));
 }
 
 // Função para inicializar as validações quando a pagina carregar, não sei porque mas funciona
