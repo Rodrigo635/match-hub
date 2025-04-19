@@ -1,654 +1,466 @@
 <html lang="pt">
-  <head>
-    <!-- Configurações de codificação e responsividade -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Links para os arquivos CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.css" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/cadastro.css" />
-    <link rel="stylesheet" href="./css/variaveis.css" />
+<head>
+  <!-- Configurações de codificação e responsividade -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
-    <link
-      rel="shortcut icon"
-      href="./static/icons/gamepad.png"
-      type="image/x-icon"
-    />
-    <title>MATCH HUB - Cadastrar</title>
-  </head>
+  <!-- Links para os arquivos CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link rel="stylesheet" href="./css/variaveis.css" />
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark p-3">
-        <div class="container d-flex w-100 justify-content-between">
-          <!-- Brand -->
-          <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <span class="h4 text-azul fw-bold mb-0">MATCH</span>
-            <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
-          </a>
+  <!-- Título da página -->
+  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
+  <title>MATCH HUB - Cadastrar</title>
+</head>
 
-          <!-- Toggler/collapsing button -->
-          <button
-            class="navbar-toggler border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onclick="openMenu()"
-          >
-            <span class="border-0 navbar-toggler-icon" id="menu"></span>
-          </button>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+      <div class="container d-flex w-100 justify-content-between">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <span class="h4 text-azul fw-bold mb-0">MATCH</span>
+          <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
+        </a>
 
-          <!-- Links and form -->
-          <div
-            class="collapse nav-links navbar-collapse justify-content-end"
-            id="mainNavbar"
-          >
-            <!-- Search form -->
-            <form
-              class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0"
-              role="search"
-            >
-              <input
-                class="form-control bg-dark text-white rounded-5 border-2"
-                type="search"
-                placeholder="Pesquisar..."
-                aria-label="Search"
-              />
-              <img
-                src="./static/icons/search.png"
-                class="position-absolute ms-2"
-                width="25px"
-                height="25px"
-                alt="pesquisar"
-              />
-            </form>
+        <!-- Toggler/collapsing button -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="openMenu()">
+          <span class="border-0 navbar-toggler-icon" id="menu"></span>
+        </button>
 
-            <ul
-              class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3"
-            >
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="index.html"><h5 class="mb-0">Início</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="sobre.html"><h5 class="mb-0">Sobre</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="contato.html"
-                  ><h5 class="mb-0">Contato</h5></a
-                >
-              </li>
-            </ul>
-          </div>
+        <!-- Links and form -->
+        <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
+          <!-- Search form -->
+          <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
+            <input class="form-control bg-dark text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
+              aria-label="Search" />
+            <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
+              alt="pesquisar" />
+          </form>
+
+          <ul class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="index.html">
+                <h5 class="mb-0">Início</h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="sobre.html">
+                <h5 class="mb-0">Sobre</h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="contato.html">
+                <h5 class="mb-0">Contato</h5>
+              </a>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <main>
-      <div class="auth-container">
-        <!-- Nossos inputs pra alternar entre cadastro e login -->
-        <div
-          class="d-flex w-100 justify-content-center align-content-center z-1 order-1 order-md-0"
-        >
-          <button
-            class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
-            id="auth-toggle-cadastrar"
-            style="background-color: var(--cor-bg)"
-            onclick="toggleEnter('form-cadastro')"
-          >
-            <h5 class="mb-0">Cadastrar</h5>
-          </button>
-          <button
-            class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
-            style="background-color: var(--cor-bgEscuro)"
-            id="auth-toggle-entrar"
-            onclick="toggleEnter('form-login')"
-          >
-            <h5 class="mb-0">Entrar</h5>
-          </button>
-        </div>
+  <main>
+    <div class="auth-container">
+      <!-- Nossos inputs pra alternar entre cadastro e login -->
+      <div class="d-flex w-100 justify-content-center align-content-center z-1 order-1 order-md-0">
+        <button class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white" id="auth-toggle-cadastrar"
+          style="background-color: var(--cor-bg)" onclick="toggleEnter('form-cadastro')">
+          <h5 class="mb-0">Cadastrar</h5>
+        </button>
+        <button class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
+          style="background-color: var(--cor-bgEscuro)" id="auth-toggle-entrar" onclick="toggleEnter('form-login')">
+          <h5 class="mb-0">Entrar</h5>
+        </button>
+      </div>
 
-        <!-- cadastro-e-entrar -->
+      <!-- cadastro-e-entrar -->
 
-        <div class="bg-dark mb-5 w-100 h-auto rounded-bottom-4">
-          <form
-            class="form-cadastro flex-column justify-content-center align-items-center w-100"
-            id="form-cadastro"
-            style="display: flex"
-            action="cadastro_concluido.html"
-          >
-            <div class="row d-flex justify-content-center align-items-center">
-              <div
-                class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12"
-              >
-                <img
-                  class="image-fluid w-100 rounded-5"
-                  src="static/icons/podio.gif"
-                  alt="Podio GIF"
-                />
-              </div>
-              <!-- gif-container -->
-
-              <h2 class="text-white fw-bold text text-center mt-5 mb-3 col-12">
-                Faça seu cadastro
-              </h2>
-
-              <!-- Campo de email -->
-              <div
-                class="container-input mb-3 position-relative w-75 my-2 col-12"
-              >
-                <input
-                  type="email"
-                  class="form-control text-white rounded-2"
-                  placeholder="Digite seu e-mail..."
-                  id="email"
-                  required
-                />
-
-                <label for="email" class="form-label text-light">E-mail</label>
-              </div>
-
-              <!-- Campo de Senha -->
-              <div
-                class="container-input mb-3 position-relative w-75 my-2 col-12"
-              >
-                <input
-                  type="password"
-                  class="form-control text-white rounded-2"
-                  placeholder="Digite sua senha..."
-                  id="mainPassword"
-                  required
-                />
-                <label for="mainPassword" class="form-label text-light"
-                  >Senha</label
-                >
-                <button
-                  class="btn btn-outline-light eye"
-                  type="button"
-                  onclick="togglePassword('mainPassword', 'eyeIconMain')"
-                  aria-label="Mostrar senha"
-                >
-                  <span class="eye-icon" id="eyeIconMain"
-                    ><img src="static/icons/eye-solid.svg" alt=""
-                  /></span>
-                </button>
-              </div>
-
-              <!-- Campo de Confirmação de Senha -->
-              <div
-                class="container-input mb-3 position-relative w-75 my-2 col-12"
-              >
-                <input
-                  type="password"
-                  class="form-control text-white rounded-2"
-                  placeholder="Confirme sua senha..."
-                  id="confirmPassword"
-                  required
-                />
-                <label for="confirmPassword" class="form-label text-light"
-                  >Confirmar Senha</label
-                >
-                <button
-                  class="btn btn-outline-light eye"
-                  type="button"
-                  onclick="togglePassword('confirmPassword', 'eyeIconConfirm')"
-                  aria-label="Mostrar senha"
-                >
-                  <span class="eye-icon" id="eyeIconConfirm"
-                    ><img src="static/icons/eye-solid.svg" alt=""
-                  /></span>
-                </button>
-              </div>
-
-              <div
-                class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12"
-              >
-                <input
-                  class="termos-input"
-                  type="checkbox"
-                  id="termos"
-                  name="termos"
-                  required
-                />
-                <h6 class="text-center text-white m-0">
-                  Aceito os
-                  <button
-                    type="button"
-                    class="link text-white opacity-75 mx-1 bg-transparent border-0"
-                    data-bs-toggle="modal"
-                    data-bs-target="#termosModal"
-                  >
-                    Termos de Uso
-                  </button>
-                  e
-                  <button
-                    type="button"
-                    class="link text-white opacity-75 mx-1 bg-transparent border-0"
-                    data-bs-toggle="modal"
-                    data-bs-target="#condicoesModal"
-                  >
-                    Condições
-                  </button>
-                </h6>
-              </div><!-- termos-container -->
-
-              <div
-                class="d-flex w-75 align-items-center justify-content-center mb-2 col-12"
-              >
-                <button
-                  type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
-                  id="btn-cadastro"
-                >
-                  <h5 class="mb-0">Cadastrar</h5>
-                </button>
-              </div><!-- btn-cadastro-container -->
-
-              <div
-                class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12"
-              >
-                <hr
-                  class="flex-grow-1 m-0 border-top-1 border-light opacity-50"
-                />
-                <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
-                <hr
-                  class="flex-grow-1 m-0 border-top-1 border-light opacity-50"
-                />
-              </div><!-- ou-container -->
-
-              <div
-                class="d-flex w-75 align-items-center justify-content-center mb-2 col-12"
-              >
-                <button
-                  type="button"
-                  class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
-                  id="btn-google"
-                >
-                  <img src="static/icons/google.png" alt="Google Icon" />
-                  <h5 class="mb-0 ms-2">Cadastrar com Google</h5>
-                </button><!-- google-button -->
-              </div><!-- cadastrar-com-google -->
+      <div class="bg-dark mb-5 w-100 h-auto rounded-bottom-4">
+        <form class="form-cadastro flex-column justify-content-center align-items-center w-100" id="form-cadastro"
+          style="display: flex" action="cadastro_concluido.html">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
+              <img class="image-fluid w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
             </div>
-          </form><!-- form-cadastro -->
+            <!-- gif-container -->
 
-          <form
-            class="form-login flex-column justify-content-center align-items-center w-100"
-            id="form-login"
-            style="display: none"
-            action="index.html"
-          >
-            <div class="row justify-content-center align-items-center">
-              <div
-                class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12"
-              >
-                <img
-                  class="w-100 rounded-5"
-                  src="static/icons/podio.gif"
-                  alt="Podio GIF"
-                />
-              </div><!-- gif-container -->
+            <h2 class="text-white fw-bold text text-center mt-5 mb-3 col-12">
+              Faça seu cadastro
+            </h2>
 
-              <h2 class="text-white fw-bold mt-5 mb-3 text-center col-12">
-                Faça Login
-              </h2>
+            <!-- Campo de email -->
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="email" class="form-control text-white rounded-2" placeholder="Digite seu e-mail..."
+                id="email" required />
 
-              <div
-                class="container-input mb-3 position-relative w-75 my-2 col-12"
-              >
-                <input
-                  type="email"
-                  class="form-control bg-dark text-white rounded-2"
-                  placeholder="Digite seu e-mail..."
-                  id="loginEmail"
-                />
-                <label for="email" class="form-label text-light">E-mail</label>
-              </div><!-- input-group de email -->
+              <label for="email" class="form-label text-light">E-mail</label>
+            </div>
 
-              <!-- Campo de Senha -->
-              <div
-                class="container-input mb-3 position-relative w-75 my-2 col-12"
-              >
-                <input
-                  type="password"
-                  class="form-control bg-dark text-white rounded-2"
-                  placeholder="Digite sua senha..."
-                  id="loginPassword"
-                />
-                <label for="loginPassword" class="form-label text-light"
-                  >Senha</label
-                >
-                <button
-                  class="btn btn-outline-light eye"
-                  type="button"
-                  onclick="togglePassword('loginPassword', 'eyeIconLogin')"
-                  aria-label="Mostrar senha"
-                >
-                  <span class="eye-icon" id="eyeIconLogin"
-                    ><img src="static/icons/eye-solid.svg" alt=""
-                  /></span>
+            <!-- Campo de Senha -->
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="password" class="form-control text-white rounded-2" placeholder="Digite sua senha..."
+                id="mainPassword" required />
+              <label for="mainPassword" class="form-label text-light">Senha</label>
+              <button class="btn btn-outline-light eye" type="button"
+                onclick="togglePassword('mainPassword', 'eyeIconMain')" aria-label="Mostrar senha">
+                <span class="eye-icon" id="eyeIconMain"><img src="static/icons/eye-solid.svg" alt="" /></span>
+              </button>
+            </div>
+
+            <!-- Campo de Confirmação de Senha -->
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="password" class="form-control text-white rounded-2" placeholder="Confirme sua senha..."
+                id="confirmPassword" required />
+              <label for="confirmPassword" class="form-label text-light">Confirmar Senha</label>
+              <button class="btn btn-outline-light eye" type="button"
+                onclick="togglePassword('confirmPassword', 'eyeIconConfirm')" aria-label="Mostrar senha">
+                <span class="eye-icon" id="eyeIconConfirm"><img src="static/icons/eye-solid.svg" alt="" /></span>
+              </button>
+            </div>
+
+            <div class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12">
+              <input class="termos-input" type="checkbox" id="termos" name="termos" required />
+              <h6 class="text-center text-white m-0">
+                Aceito os
+                <button type="button" class="link text-white opacity-75 mx-1 bg-transparent border-0"
+                  data-bs-toggle="modal" data-bs-target="#termosModal">
+                  Termos de Uso
                 </button>
-              </div>
-
-              <a
-                class="text-white opacity-75 mt-1 mb-4 text-center col-12 link"
-                href="#"
-                ><h6>Esqueceu a senha?</h6></a
-              >
-
-              <div
-                class="-flex w-75 align-items-center justify-content-center mb-2 col-12"
-              >
-                <button
-                  type="submit"
-                  class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
-                  id="btn-entrar"
-                >
-                  <h5 class="mb-0">Entrar</h5>
+                e
+                <button type="button" class="link text-white opacity-75 mx-1 bg-transparent border-0"
+                  data-bs-toggle="modal" data-bs-target="#condicoesModal">
+                  Condições
                 </button>
-              </div><!-- btn-cadastro-container -->
+              </h6>
+            </div><!-- termos-container -->
 
-              <div
-                class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12"
-              >
-                <hr
-                  class="flex-grow-1 m-0 border-top-1 border-light opacity-50"
-                />
-                <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
-                <hr
-                  class="flex-grow-1 m-0 border-top-1 border-light opacity-50"
-                />
-              </div><!-- ou-container -->
+            <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
+              <button type="submit"
+                class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
+                id="btn-cadastro">
+                <h5 class="mb-0">Cadastrar</h5>
+              </button>
+            </div><!-- btn-cadastro-container -->
 
-              <div
-                class="-flex w-75 align-items-center justify-content-center mb-2 col-12"
-              >
-                <button
-                  type="submit"
-                  class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
-                >
-                  <img src="static/icons/google.png" alt="Google Icon" />
-                  <h5 class="mb-0 ms-2">Entrar com Google</h5>
-                </button>
-              </div>
+            <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
+              <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+              <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
+              <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+            </div><!-- ou-container -->
+
+            <div class="d-flex w-75 align-items-center justify-content-center mb-2 col-12">
+              <button type="button"
+                class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light"
+                id="btn-google">
+                <img src="static/icons/google.png" alt="Google Icon" />
+                <h5 class="mb-0 ms-2">Cadastrar com Google</h5>
+              </button><!-- google-button -->
             </div><!-- cadastrar-com-google -->
-          </form><!-- form-login -->
-        </div><!-- container-form -->
-      </div><!-- container -->
+          </div>
+        </form><!-- form-cadastro -->
 
-      <div
-        class="modal fade"
-        id="condicoesModal"
-        tabindex="-1"
-        aria-labelledby="termosModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <!-- modal-lg para deixar maior -->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="termosModalLabel">Condições</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
-            </div>
-            <div class="modal-body" style="max-height: 60vh; overflow-y: auto">
-              <h5>1. Uso Permitido</h5>
-              <p>
-                O site está disponível para uso pessoal, informativo e não
-                comercial. Você se compromete a utilizar os recursos oferecidos
-                de forma ética e legal, respeitando os princípios da boa-fé e a
-                legislação vigente.
-              </p>
+        <form class="form-login flex-column justify-content-center align-items-center w-100" id="form-login"
+          style="display: none" action="index.html">
+          <div class="row justify-content-center align-items-center">
+            <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
+              <img class="w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
+            </div><!-- gif-container -->
 
-              <h5>2. Cadastro de Usuário (se aplicável)</h5>
-              <p>
-                Para acessar determinadas funcionalidades, pode ser necessário
-                criar uma conta. Ao se cadastrar, você concorda em fornecer
-                informações verdadeiras, completas e atualizadas. É de sua
-                responsabilidade manter a confidencialidade dos dados de acesso.
-              </p>
+            <h2 class="text-white fw-bold mt-5 mb-3 text-center col-12">
+              Faça Login
+            </h2>
 
-              <h5>3. Condutas Proibidas</h5>
-              <p>Ao utilizar o site, você concorda em não:</p>
-              <ul>
-                <li>
-                  Utilizar qualquer conteúdo de forma indevida, fraudulenta ou
-                  ilegal;
-                </li>
-                <li>
-                  Transmitir vírus, malware, ou qualquer outro código de
-                  natureza destrutiva;
-                </li>
-                <li>
-                  Tentar obter acesso não autorizado a qualquer parte do site ou
-                  sistemas relacionados;
-                </li>
-                <li>
-                  Realizar cópia, modificação ou distribuição do conteúdo do
-                  site sem autorização prévia;
-                </li>
-                <li>
-                  Utilizar linguagem ofensiva, discriminatória ou difamatória em
-                  áreas de interação (se houver).
-                </li>
-              </ul>
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="email" class="form-control bg-dark text-white rounded-2" placeholder="Digite seu e-mail..."
+                id="loginEmail" />
+              <label for="email" class="form-label text-light">E-mail</label>
+            </div><!-- input-group de email -->
 
-              <h5>4. Responsabilidades do Usuário</h5>
-              <p>
-                Você é o único responsável pelas ações realizadas durante o uso
-                do site. Qualquer violação a estas condições pode resultar na
-                suspensão ou cancelamento do acesso, sem aviso prévio.
-              </p>
-
-              <h5>5. Coleta de Cookies</h5>
-              <p>
-                Ao utilizar este site, você autoriza o uso de cookies para
-                melhorar sua experiência de navegação, analisar o tráfego e
-                personalizar conteúdo. Esses cookies podem armazenar informações
-                sobre suas preferências e atividades de navegação.
-              </p>
-              <p>
-                Você pode, a qualquer momento, configurar seu navegador para
-                bloquear os cookies ou alertar quando estiverem sendo enviados.
-                No entanto, a desativação dos cookies pode afetar o
-                funcionamento correto de algumas funcionalidades do site.
-              </p>
-
-              <h5>6. Disponibilidade e Alterações</h5>
-              <p>
-                Nos reservamos o direito de, a qualquer momento e sem aviso
-                prévio, alterar, suspender ou descontinuar, temporária ou
-                permanentemente, qualquer parte do site, assim como restringir o
-                acesso a determinados conteúdos.
-              </p>
-
-              <h5>7. Violação das Condições</h5>
-              <p>
-                O descumprimento destas Condições de Uso poderá resultar em
-                medidas legais e/ou suspensão do seu acesso ao site.
-                Cooperaremos com as autoridades, se necessário, para
-                investigação de violações.
-              </p>
-
-              <p class="text-muted mt-4">
-                <small>Última atualização: 19 de abril de 2025</small>
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-outline-primary"
-                data-bs-dismiss="modal"
-              >
-                Fechar
+            <!-- Campo de Senha -->
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="password" class="form-control bg-dark text-white rounded-2" placeholder="Digite sua senha..."
+                id="loginPassword" />
+              <label for="loginPassword" class="form-label text-light">Senha</label>
+              <button class="btn btn-outline-light eye" type="button"
+                onclick="togglePassword('loginPassword', 'eyeIconLogin')" aria-label="Mostrar senha">
+                <span class="eye-icon" id="eyeIconLogin"><img src="static/icons/eye-solid.svg" alt="" /></span>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div
-        class="modal fade"
-        id="termosModal"
-        tabindex="-1"
-        aria-labelledby="termosModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <!-- modal-lg para deixar maior -->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="termosModalLabel">Termos de Uso</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
-            </div>
-            <div class="modal-body" style="max-height: 60vh; overflow-y: auto">
-              <h5>1. Aceitação dos Termos</h5>
-              <p>
-                Ao acessar e utilizar este site, você concorda com os presentes
-                Termos e Condições de Uso. Caso não concorde com algum dos
-                termos, por favor, não utilize o site.
-              </p>
-
-              <h5>2. Modificações</h5>
-              <p>
-                Reservamo-nos o direito de modificar ou atualizar estes termos a
-                qualquer momento, sem aviso prévio. Recomendamos que você revise
-                esta página periodicamente para estar ciente de quaisquer
-                alterações.
-              </p>
-
-              <h5>3. Uso do Site</h5>
-              <ul>
-                <li>
-                  Você se compromete a utilizar este site apenas para fins
-                  legais e de maneira que não infrinja os direitos de terceiros.
-                </li>
-                <li>
-                  É proibida a utilização de qualquer conteúdo do site para fins
-                  comerciais sem autorização prévia.
-                </li>
-                <li>
-                  Não é permitido tentar acessar áreas restritas do sistema,
-                  realizar engenharia reversa ou uso de bots ou automações não
-                  autorizadas.
-                </li>
-              </ul>
-
-              <h5>4. Propriedade Intelectual</h5>
-              <p>
-                Todo o conteúdo presente neste site, incluindo textos, imagens,
-                logotipos, ícones, vídeos e códigos, é de propriedade exclusiva
-                do site ou de seus licenciadores e é protegido por leis de
-                direitos autorais e propriedade intelectual.
-              </p>
-
-              <h5>5. Isenção de Responsabilidade</h5>
-              <p>
-                Nos esforçamos para manter as informações deste site sempre
-                atualizadas e corretas. No entanto, não garantimos a exatidão,
-                integridade ou atualidade do conteúdo. O uso das informações é
-                de sua inteira responsabilidade.
-              </p>
-
-              <h5>6. Links Externos</h5>
-              <p>
-                Este site pode conter links para sites de terceiros. Não nos
-                responsabilizamos pelo conteúdo, políticas de privacidade ou
-                práticas de sites externos.
-              </p>
-
-              <h5>7. Privacidade</h5>
-              <p>
-                Ao utilizar este site, você concorda com a coleta e uso das suas
-                informações conforme descrito em nossa
-                <a href="#">Política de Privacidade</a>.
-              </p>
-
-              <h5>8. Contato</h5>
-              <p>
-                Se você tiver qualquer dúvida sobre estes Termos e Condições,
-                entre em contato conosco pelo e-mail:
-                <a href="mailto:contato@seusite.com.br"
-                  >contato@matchhub.com.br</a
-                >.
-              </p>
-
-              <p class="text-muted mt-4">
-                <small>Última atualização: 19 de abril de 2025</small>
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-outline-primary"
-                data-bs-dismiss="modal"
-              >
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <footer class="footer bg-black py-5">
-      <div class="container">
-        <div class="row">
-          <!-- Logo Section -->
-          <div
-            class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0"
-          >
-            <a href="index.html" class="d-inline-block">
-              <span class="h4 text-azul fw-bold">MATCH </span>
-              <span class="h4 fw-bold text-white">HUB</span>
+            <a class="text-white opacity-75 mt-1 mb-4 text-center col-12 link" href="#">
+              <h6>Esqueceu a senha?</h6>
             </a>
-          </div>
 
-          <!-- Navigation Links -->
-          <nav class="col-12 col-md-6 nav-links">
-            <ul
-              class="nav justify-content-center justify-content-md-end flex-md-row gap-2"
-            >
-              <li class="nav-item">
-                <a href="index.html" class="nav-link px-2 text-white"><h5 class="mb-0">Início</h5></a>
+            <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
+              <button type="submit"
+                class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
+                id="btn-entrar">
+                <h5 class="mb-0">Entrar</h5>
+              </button>
+            </div><!-- btn-cadastro-container -->
+
+            <div class="d-flex align-items-center w-75 justify-content-center gap-2 mb-3 col-12">
+              <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+              <h6 class="ou d-flex m-0 text-white opacity-75">Ou</h6>
+              <hr class="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
+            </div><!-- ou-container -->
+
+            <div class="-flex w-75 align-items-center justify-content-center mb-2 col-12">
+              <button type="submit"
+                class="btn-primary d-flex btn align-items-center justify-content-center w-100 mb-5 fw-bold p-2 rounded-3 btn-light">
+                <img src="static/icons/google.png" alt="Google Icon" />
+                <h5 class="mb-0 ms-2">Entrar com Google</h5>
+              </button>
+            </div>
+          </div><!-- cadastrar-com-google -->
+        </form><!-- form-login -->
+      </div><!-- container-form -->
+    </div><!-- container -->
+
+    <div class="modal fade" id="condicoesModal" tabindex="-1" aria-labelledby="termosModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <!-- modal-lg para deixar maior -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="termosModalLabel">Condições</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body" style="max-height: 60vh; overflow-y: auto">
+            <h5>1. Uso Permitido</h5>
+            <p>
+              O site está disponível para uso pessoal, informativo e não
+              comercial. Você se compromete a utilizar os recursos oferecidos
+              de forma ética e legal, respeitando os princípios da boa-fé e a
+              legislação vigente.
+            </p>
+
+            <h5>2. Cadastro de Usuário (se aplicável)</h5>
+            <p>
+              Para acessar determinadas funcionalidades, pode ser necessário
+              criar uma conta. Ao se cadastrar, você concorda em fornecer
+              informações verdadeiras, completas e atualizadas. É de sua
+              responsabilidade manter a confidencialidade dos dados de acesso.
+            </p>
+
+            <h5>3. Condutas Proibidas</h5>
+            <p>Ao utilizar o site, você concorda em não:</p>
+            <ul>
+              <li>
+                Utilizar qualquer conteúdo de forma indevida, fraudulenta ou
+                ilegal;
               </li>
-              <li class="nav-item">
-                <a href="sobre.html" class="nav-link px-2 text-white"><h5 class="mb-0">Sobre</h5></a>
+              <li>
+                Transmitir vírus, malware, ou qualquer outro código de
+                natureza destrutiva;
               </li>
-              <li class="nav-item">
-                <a href="contato.html" class="nav-link px-2 text-white"
-                  ><h5 class="mb-0">Contato</h5></a
-                >
+              <li>
+                Tentar obter acesso não autorizado a qualquer parte do site ou
+                sistemas relacionados;
+              </li>
+              <li>
+                Realizar cópia, modificação ou distribuição do conteúdo do
+                site sem autorização prévia;
+              </li>
+              <li>
+                Utilizar linguagem ofensiva, discriminatória ou difamatória em
+                áreas de interação (se houver).
               </li>
             </ul>
-          </nav>
-        </div>
 
-        <!-- Copyright Section -->
-        <div class="row mt-4">
-          <div class="col-12">
-            <h6 class="text-white text-center text-md-start mb-0">
-              Todos os direitos reservados. Match Hub ©, 2025.
-            </h6>
+            <h5>4. Responsabilidades do Usuário</h5>
+            <p>
+              Você é o único responsável pelas ações realizadas durante o uso
+              do site. Qualquer violação a estas condições pode resultar na
+              suspensão ou cancelamento do acesso, sem aviso prévio.
+            </p>
+
+            <h5>5. Coleta de Cookies</h5>
+            <p>
+              Ao utilizar este site, você autoriza o uso de cookies para
+              melhorar sua experiência de navegação, analisar o tráfego e
+              personalizar conteúdo. Esses cookies podem armazenar informações
+              sobre suas preferências e atividades de navegação.
+            </p>
+            <p>
+              Você pode, a qualquer momento, configurar seu navegador para
+              bloquear os cookies ou alertar quando estiverem sendo enviados.
+              No entanto, a desativação dos cookies pode afetar o
+              funcionamento correto de algumas funcionalidades do site.
+            </p>
+
+            <h5>6. Disponibilidade e Alterações</h5>
+            <p>
+              Nos reservamos o direito de, a qualquer momento e sem aviso
+              prévio, alterar, suspender ou descontinuar, temporária ou
+              permanentemente, qualquer parte do site, assim como restringir o
+              acesso a determinados conteúdos.
+            </p>
+
+            <h5>7. Violação das Condições</h5>
+            <p>
+              O descumprimento destas Condições de Uso poderá resultar em
+              medidas legais e/ou suspensão do seu acesso ao site.
+              Cooperaremos com as autoridades, se necessário, para
+              investigação de violações.
+            </p>
+
+            <p class="text-muted mt-4">
+              <small>Última atualização: 19 de abril de 2025</small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+              Fechar
+            </button>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
 
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/cadastro.js"></script>
-    <script src="./js/global.js"></script>
-  </body>
+    <div class="modal fade" id="termosModal" tabindex="-1" aria-labelledby="termosModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <!-- modal-lg para deixar maior -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="termosModalLabel">Termos de Uso</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body" style="max-height: 60vh; overflow-y: auto">
+            <h5>1. Aceitação dos Termos</h5>
+            <p>
+              Ao acessar e utilizar este site, você concorda com os presentes
+              Termos e Condições de Uso. Caso não concorde com algum dos
+              termos, por favor, não utilize o site.
+            </p>
+
+            <h5>2. Modificações</h5>
+            <p>
+              Reservamo-nos o direito de modificar ou atualizar estes termos a
+              qualquer momento, sem aviso prévio. Recomendamos que você revise
+              esta página periodicamente para estar ciente de quaisquer
+              alterações.
+            </p>
+
+            <h5>3. Uso do Site</h5>
+            <ul>
+              <li>
+                Você se compromete a utilizar este site apenas para fins
+                legais e de maneira que não infrinja os direitos de terceiros.
+              </li>
+              <li>
+                É proibida a utilização de qualquer conteúdo do site para fins
+                comerciais sem autorização prévia.
+              </li>
+              <li>
+                Não é permitido tentar acessar áreas restritas do sistema,
+                realizar engenharia reversa ou uso de bots ou automações não
+                autorizadas.
+              </li>
+            </ul>
+
+            <h5>4. Propriedade Intelectual</h5>
+            <p>
+              Todo o conteúdo presente neste site, incluindo textos, imagens,
+              logotipos, ícones, vídeos e códigos, é de propriedade exclusiva
+              do site ou de seus licenciadores e é protegido por leis de
+              direitos autorais e propriedade intelectual.
+            </p>
+
+            <h5>5. Isenção de Responsabilidade</h5>
+            <p>
+              Nos esforçamos para manter as informações deste site sempre
+              atualizadas e corretas. No entanto, não garantimos a exatidão,
+              integridade ou atualidade do conteúdo. O uso das informações é
+              de sua inteira responsabilidade.
+            </p>
+
+            <h5>6. Links Externos</h5>
+            <p>
+              Este site pode conter links para sites de terceiros. Não nos
+              responsabilizamos pelo conteúdo, políticas de privacidade ou
+              práticas de sites externos.
+            </p>
+
+            <h5>7. Privacidade</h5>
+            <p>
+              Ao utilizar este site, você concorda com a coleta e uso das suas
+              informações conforme descrito em nossa
+              <a href="#">Política de Privacidade</a>.
+            </p>
+
+            <h5>8. Contato</h5>
+            <p>
+              Se você tiver qualquer dúvida sobre estes Termos e Condições,
+              entre em contato conosco pelo e-mail:
+              <a href="mailto:contato@seusite.com.br">contato@matchhub.com.br</a>.
+            </p>
+
+            <p class="text-muted mt-4">
+              <small>Última atualização: 19 de abril de 2025</small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer bg-black py-5">
+    <div class="container">
+      <div class="row">
+        <!-- Logo Section -->
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
+          <a href="index.html" class="d-inline-block">
+            <span class="h4 text-azul fw-bold">MATCH </span>
+            <span class="h4 fw-bold text-white">HUB</span>
+          </a>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="col-12 col-md-6 nav-links">
+          <ul class="nav justify-content-center justify-content-md-end flex-md-row gap-2">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Início</h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="sobre.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Sobre</h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="contato.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Contato</h5>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Copyright Section -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <h6 class="text-white text-center text-md-start mb-0">
+            Todos os direitos reservados. Match Hub ©, 2025.
+          </h6>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/cadastro.js"></script>
+  <script src="./js/global.js"></script>
+</body>
+
 </html>

@@ -169,10 +169,10 @@ input:checked + label .descricao {
 
 .container-input label {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 15px;
   transform: translateY(-50%);
-  background: #222; /* cor do input (bg escuro) */
+  background: var(--cor-bg); /* cor do input (bg escuro) */
   padding-inline: 5px;
 }
 
