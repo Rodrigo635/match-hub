@@ -243,7 +243,7 @@ input:checked + label .descricao {
     margin-top: 20px;
   }
 
-  .infos{
+  .infos {
     order: 2;
     width: 100%;
   }
@@ -296,5 +296,16 @@ input:checked + label .descricao {
       color: var(--cor-branco);
       border-color: var(--cor-branco);
     }
+  }
+
+  .btn-primary{
+    border: 2px solid var(--cor-branco);
+  }
+
+  /* Botão de login */
+  .btn-primary:hover {
+    border: 2px solid var(--cor-branco);
+    background-color: transparent;
+    color: var(--cor-branco);
   }
 }
