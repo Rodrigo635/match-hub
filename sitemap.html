@@ -1,138 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Match Hub - Mapa do Site</title>
-    <link rel="stylesheet" href="./css/bootstrap.css" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/variaveis.css" />
-    <link rel="stylesheet" href="./css/sitemap.css" />
-    <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
-  </head>
 
-  <body>
-    <!-- Barra de Navegação -->
-     
-    <header>
-      <nav class="navbar bg-black navbar-expand-lg p-3">
-        <div class="container d-flex w-100 justify-content-between">
-          <!-- Brand -->
-          <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <span class="h4 text-azul fw-bold mb-0">MATCH</span>
-            <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
-          </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Match Hub - Mapa do Site</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/variaveis.css" />
+  <link rel="stylesheet" href="./css/sitemap.css" />
+  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
+</head>
 
-          <!-- Toggler/collapsing button -->
-          <button
-            class="navbar-toggler border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onclick="openMenu()"
-          >
-            <span class="border-0 navbar-toggler-icon" id="menu"></span>
-          </button>
+<body>
 
-          <!-- Links and form -->
-          <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
-            <!-- Search form -->
-            <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
-              <input
-                class="form-control bg-dark text-white rounded-5 border-2"
-                type="search"
-                placeholder="Pesquisar..."
-                aria-label="Search"
-              />
-              <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px" alt="pesquisar">
-            </form>
-            
-            
-            <ul class="navbar-nav d-flex mb-2 mb-lg-0 text-center me-lg-3">
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="index.html"><h5 class="mb-0">Início</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="sobre.html"><h5 class="mb-0">Sobre</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white px-2" href="contato.html"><h5 class="mb-0">Contato</h5></a>
-              </li>
-            </ul>
-            <!-- Login button -->
-            <div class="d-flex">
-              <a href="cadastro.html" type="button" class="btn-entrar btn-primary w-100 px-4 text-white">
-                <h5 class="mb-0">Entrar</h5>
+  <header class="fixed-top">
+    <nav class="navbar bg-black navbar-expand-lg p-3">
+      <div class="container d-flex w-100 justify-content-between">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <span class="h4 text-azul fw-bold mb-0">MATCH</span>
+          <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
+        </a>
+
+        <!-- Toggler/collapsing button -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="openMenu()">
+          <span class="border-0 navbar-toggler-icon" id="menu"></span>
+        </button>
+
+        <!-- Links and form -->
+        <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
+          <!-- Search form -->
+          <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
+            <input class="form-control bg-dark text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
+              aria-label="Search" />
+            <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
+              alt="pesquisar">
+          </form>
+
+
+          <ul class="navbar-nav d-flex mb-2 mb-lg-0 text-center me-lg-3">
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="index.html">
+                <h5 class="mb-0">Início</h5>
               </a>
-            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="sobre.html">
+                <h5 class="mb-0">Sobre</h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" href="contato.html">
+                <h5 class="mb-0">Contato</h5>
+              </a>
+            </li>
+          </ul>
+          <!-- Login button -->
+          <div class="d-flex">
+            <a href="cadastro.html" type="button" class="btn-entrar btn-primary w-100 px-4 text-white">
+              <h5 class="mb-0">Entrar</h5>
+            </a>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Conteúdo do Mapa do Site -->
-    <main class="container py-5 text-white sitemap-main">
-      <div class="text-center mb-5">
-        <h1 class="fw-bold mb-3 display-4">Mapa do Site</h1>
-        <p class="lead text-white-50">
+  <!-- Conteúdo do Mapa do Site -->
+  <main class="mapa pb-5 pt-5 pt-lg-0">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h1 class="fw-bold mb-3 text-white">Mapa do Site</h1>
+        <h5 class="text-white-50">
           Explore todas as seções do Match Hub e encontre o que você precisa rapidamente!
-        </p>
+        </h5>
       </div>
       <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-          <div class="card bg-dark text-white border border-azul shadow-lg rounded-3">
-            <div class="card-body p-4 p-md-5">
-              <ul class="list-unstyled mb-0">
-                <li class="mb-4">
-                  <h5>
-                    <a href="index.html" class="text-azul sitemap-link">Início</a>
-                  </h5>
-                </li>
-                <li class="mb-4">
-                  <h5>
-                    <a href="sobre.html" class="text-azul sitemap-link">Sobre</a>
-                  </h5>
-                </li>
-                <li class="mb-4">
-                  <h5>
-                    <a href="contato.html" class="text-azul sitemap-link">Contato</a>
-                  </h5>
-                </li>
-                <li class="mb-">
-                  <h5>
-                    <a href="cadastro.html" class="text-azul sitemap-link">Cadastro</a>
-                  </h5>
-                  <ul class="list-unstyled ms-4">
-                    <li class="mt-2">
-                      <h6>
-                        <a href="cadastro_concluido.html" class="text-white sitemap-sublink">Cadastro Concluído</a>
-                      </h6>
-                    </li>
-                  </ul>
-                </li>
-                <li class="mt-4">
-                  <h5>
-                    <a href="cadastro.html#form-login" class="text-azul sitemap-link">Entrar</a>
-                  </h5>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+        <div class="col-12 col-md-8 col-lg-3">
+            <ul class="list-unstyled h-100 bg-dark text-white border p-4 rounded-3 mb-0">
+              <li class="mb-3">
+                <h5>
+                  <a href="index.html" class="text-azul sitemap-link">Início</a>
+                </h5>
+              </li>
+              <li class="mb-3">
+                <h5>
+                  <a href="sobre.html" class="text-azul sitemap-link">Sobre</a>
+                </h5>
+              </li>
+              <li class="mb-3">
+                <h5>
+                  <a href="contato.html" class="text-azul sitemap-link">Contato</a>
+                </h5>
+              </li>
+              <li class="mb-3">
+                <h5>
+                  <a href="cadastro.html" class="text-azul sitemap-link">Cadastro / Entrar</a>
+                </h5>
+              </li>
+              <li class="mb-3">
+                <h5>
+                  <a href="cadastro_concluido.html" class="text-azul sitemap-link">Cadastro Concluído</a>
+                </h5>
+              </li>
+            </ul>
+        </div><!-- col -->
+        <div class="col-12 col-md-8 col-lg-6 mt-3 mt-lg-0 text-white">
+          <img class="img-fluid rounded-4" src="./static/img/sitemap.png" alt="Imagem do mapa do site">
+        </div><!-- col -->
+      </div><!-- row -->
+    </div>
+  </main>
 
-     <!-- Rodapé -->
-  <footer class="footer bg-black py-5 fixed-bottom">
+  <footer class="footer bg-black py-5">
     <div class="container">
       <div class="row">
         <!-- Logo Section -->
-        <div
-          class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0"
-        >
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
           <a href="index.html" class="d-inline-block">
             <span class="h4 text-azul fw-bold">MATCH </span>
             <span class="h4 fw-bold text-white">HUB</span>
@@ -141,21 +127,21 @@
 
         <!-- Navigation Links -->
         <nav class="col-12 col-md-6 nav-links">
-          <ul
-            class="nav justify-content-center justify-content-md-end flex-md-row gap-2"
-          >
+          <ul class="nav justify-content-center justify-content-md-end flex-md-row gap-2">
             <li class="nav-item">
-              <a href="index.html" class="nav-link px-2 text-white"
-                ><h5 class="mb-0">Início</h5></a
-              >
+              <a href="index.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Início</h5>
+              </a>
             </li>
             <li class="nav-item">
-              <a href="sobre.html" class="nav-link px-2 text-white"><h5 class="mb-0">Sobre</h5></a>
+              <a href="sobre.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Sobre</h5>
+              </a>
             </li>
             <li class="nav-item">
-              <a href="contato.html" class="nav-link px-2 text-white"
-                ><h5 class="mb-0">Contato</h5></a
-              >
+              <a href="contato.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Contato</h5>
+              </a>
             </li>
 
             <li class="nav-item">
@@ -177,7 +163,8 @@
     </div>
   </footer>
 
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/global.js"></script>
-  </body>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/global.js"></script>
+</body>
+
 </html>
