@@ -44,10 +44,6 @@ function toggleEnter(inputId) {
   }
 }
 
-// Não faço muita coisa aqui porque ainda estou estudando JavaScript
-// mas vou deixar comentado o que fiz
-// Se não funcionar algo aqui, por favor, não me avise, tenho muitos problemas
-
 // Desabilita o botão de cadastro se algum campo estiver vazio
 function toggleCadastrar() {
   console.log(boolEmail, boolPassword, boolConfirmPassword);
@@ -107,13 +103,13 @@ function validarConfirmPassword() {
   toggleCadastrar();
 }
 
-// Funções para iniciar os fofoqueiros de validação
+// Funções para iniciar a validação
 function setupValidation(input, validationFn) {
   input.addEventListener('input', () => validationFn(input), 'input');
   input.addEventListener('blur', () => validationFn(input, 'blur'));
 }
 
-// Função para inicializar as validações quando a pagina carregar, não sei porque mas funciona
+// Função para inicializar as validações quando a pagina carregar
 function inicializarValidacoes() {
   setupValidation(email, validarEmail);
   setupValidation(password, validarPassword);
@@ -135,6 +131,5 @@ function inicializarValidacoes() {
   toggleCadastrar();
 }
 
-// Começa a  rodar essa bomba de validação quando a pagina carregar
 document.addEventListener('DOMContentLoaded', inicializarValidacoes);
 
