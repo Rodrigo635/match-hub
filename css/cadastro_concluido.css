@@ -3,7 +3,7 @@
   }
 
 .main-teste {
-  background-image: url(../static/img/cadastro-img.png);
+  background-image: url(../static/img/cadastro/cadastro-img.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
