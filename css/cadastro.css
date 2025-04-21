@@ -16,7 +16,7 @@ main {
   height: auto;
   justify-content: center;
   align-items: center;
-  background-image: url('../static/img/cadastro-img.png');
+  background-image: url('../static/img/cadastro/cadastro-img.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
