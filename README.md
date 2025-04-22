@@ -1,6 +1,6 @@
 # MATCH HUB
 
-Este é nosso projeto Happy Game da fase 1 proposta pela FIAP.
+Este é nosso projeto Happy Game proposta pela FIAP.
 
 ## Vídeo apresentando o site:
 Fase 1 -
