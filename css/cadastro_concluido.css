@@ -20,14 +20,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--branco);
   background-color: var(--cor-azul);
   border: 2px solid var(--cor-azul);
   box-sizing: border-box;
   border-radius: 10px;
+  transition: 0.2s ease;
 }
 
 .btn-continuar:hover {
-  transition: 0.2s ease;
-  background-color: var(--bg-dark) !important;
+  background-color: transparent !important;
   color: var(--cor-azul) !important;
 }

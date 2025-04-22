@@ -162,7 +162,8 @@ input:checked + label .descricao {
 /* LISTA DE FUNÇÕES */
 .lista-funcoes-bg {
   display: flex;
-  background-image: linear-gradient(to right,var(--cor-azul-bg),rgba(0, 0, 0, 0.9));
+  background-image: linear-gradient(to right,var(--cor-azul-bg),rgba(0, 0, 0, 0.9)),
+    url("../static/img/index/haven1.jpg");
   background-size: cover;
   background-position: bottom;
   justify-content: center;

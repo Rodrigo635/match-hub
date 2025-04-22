@@ -55,6 +55,7 @@ header {
 
 /* Imagens */
 .img-custom {
+  filter: brightness(0.8);
   object-fit: cover;
   object-position: center;
   border-radius: 15px;
@@ -108,6 +109,6 @@ header {
   }
   
   .img-custom:hover {
-    filter: brightness(0.8);
+    filter: brightness(1);
   }
 }
