@@ -7,7 +7,7 @@ header {
   color: var(--cor-azul);
 }
 
-/* Banner hero */
+/* Seções de Background */
 .imagem-bg {
   background-image: linear-gradient(
       to right,
@@ -20,7 +20,14 @@ header {
   background-repeat: no-repeat;
 }
 
-.imagem-bg-funcionalidades {
+.video-apresentacao {
+  background-image: url("../static/img/sobre/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.imagem-bg-extra {
   background-image: linear-gradient(
       to left,
       rgba(0, 0, 0, 1),
@@ -32,7 +39,17 @@ header {
   background-repeat: no-repeat;
 }
 
-/* Seções com fundo */
+.lista-alvos-bg {
+  display: flex;
+  background-image: linear-gradient(to right, #1e1e1e, rgba(30, 30, 30, 1), transparent, transparent),
+    url("../static/img/sobre/ashe.jpg");
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .bg-cinza {
   background-color: var(--cor-cinzaEscuro);
 }
@@ -46,17 +63,6 @@ header {
 }
 
 /* Lista de alvos */
-.lista-alvos-bg {
-  display: flex;
-  background-image: linear-gradient(to right, #1e1e1e, rgba(30, 30, 30, 1), transparent, transparent),
-    url("../static/img/sobre/ashe.jpg");
-  background-size: cover;
-  background-position: center;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
 .texto-alvos ul {
   list-style: none;
   padding-left: 0;
