@@ -51,7 +51,7 @@ header {
   background-image: linear-gradient(to right, #1e1e1e, rgba(30, 30, 30, 1), transparent, transparent),
     url("../static/img/sobre/ashe.jpg");
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   justify-content: center;
   align-items: center;
   width: 100%;
