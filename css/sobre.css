@@ -11,15 +11,25 @@ header {
 .imagem-bg {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.5),
-      rgba(58, 68, 211, 0.5)
+      rgba(0, 0, 0, 1),
+      rgba(21, 21, 85, 0.6)
     ),
     url("../static/img/sobre/background-sobre.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 300px;
+}
+
+.imagem-bg-funcionalidades {
+  background-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("../static/img/sobre/publico.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Seções com fundo */
@@ -31,26 +41,52 @@ header {
   background: var(--gradient-azul);
 }
 
+.bg-azul-solido {
+  background-color: var(--cor-azul);
+}
+
+/* Lista de alvos */
+.lista-alvos-bg {
+  display: flex;
+  background-image: linear-gradient(to right, #1e1e1e, rgba(30, 30, 30, 1), transparent, transparent),
+    url("../static/img/sobre/ashe.jpg");
+  background-size: cover;
+  background-position: bottom;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.texto-alvos ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.texto-alvos li i{
+  padding-right: 15px;
+
+}
+
 /* Cards */
+.alvo-card {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: 0.2s ease-in-out;
+}
+
 .card-item {
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: 0.2s ease-in-out;
   min-height: 300px;
 }
 
 .card-item2 {
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: 0.2s ease-in-out;
   min-height: 400px;
 }
 
 .icon-card {
   font-size: 2.5rem;
-}
-
-/* Tabelas */
-.tabela-arredondada {
-  border-radius: 15px;
 }
 
 /* Imagens */
@@ -67,6 +103,83 @@ header {
   height: 60vh;
   object-fit: cover;
   object-position: center;
+}
+
+/* Tabela */
+.table {
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.table th {
+  background-color: var(--cor-azul);
+  color: var(--branco);
+  text-align: center;
+}
+
+/* Botoes */
+.btn-ir-para-docs {
+  width: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  color: var(--cor-azul);
+  background-color: transparent;
+  border: 2px solid var(--cor-azul);
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.btn-ir-para-docs:hover{
+  background-color: var(--cor-azul);
+  color: var(--branco) !important;
+  border: 2px solid var(--cor-azul) !important;
+}
+
+.doc-btn {
+  width:100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  color: var(--branco);
+  background-color: var(--cor-azul);
+  border: 2px solid var(--cor-azul);
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.doc-btn:hover{
+  background-color: transparent;
+  color: var(--cor-azul) !important;
+  border: 2px solid var(--cor-azul) !important;
+}
+
+.doc-btn-disabled {
+  width:100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  color: var(--cor-cinza);
+  background-color: transparent;
+  border: 2px solid var(--cor-cinza);
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  cursor: initial;
+}
+
+.doc-btn i, .doc-btn-disabled i {
+  margin-left: 10px;
 }
 
 @media (max-width: 1399px) {
@@ -100,7 +213,7 @@ header {
 @media (min-width: 991px) {
   .card-item:hover, .card-item2:hover {
     transform: translateY(-10px);
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
    
   .table tr:hover {

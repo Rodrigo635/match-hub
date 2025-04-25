@@ -209,6 +209,7 @@ input:checked + label .descricao {
     justify-content: start;
     align-items: center;
   }
+  
   .dados {
     display: grid;
   }

@@ -44,4 +44,11 @@ body {
 .text-rosa-fiap {
     color: var(--cor-rosa);
 }
+
+.text-cinza {
+    color: var(--cor-cinza);
+}
   
+.texto-justificado {
+    text-align: justify;
+  }

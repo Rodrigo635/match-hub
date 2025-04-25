@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="./css/home.css" />
   <link rel="stylesheet" href="./css/variaveis.css" />
 
+  <!-- CDN para o fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Título da página -->
   <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
   <title>MATCH HUB</title>
@@ -37,13 +42,13 @@
         <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
           <!-- Search form -->
           <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
-            <input class="form-control bg-dark text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
+            <input class="form-control bg-transparent text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
               aria-label="Search" />
             <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
               alt="pesquisar">
           </form>
 
-          <ul class="navbar-nav d-flex  mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
+          <ul class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
             <li class="nav-item">
               <a class="nav-link text-primary px-2" href="index.html">
                 <h5 class="mb-0">Início</h5>
@@ -62,8 +67,8 @@
           </ul>
           <!-- Login button -->
           <div class="d-flex">
-            <a href="cadastro.html" type="button" class="btn-entrar w-100 px-4 text-white">
-              <h5 class="mb-0">Entrar</h5>
+            <a href="cadastro.html" type="button" class="btn-entrar text-white">
+              <h5 class="mb-0">Entrar<i class="fa-solid fa-arrow-right-to-bracket"></i></h5>
             </a>
           </div>
         </div>
@@ -149,7 +154,7 @@
   <section class="container mt-5 mb-3">
     <div class="row align-items-center">
       <div class="col-12 col-md-12 col-lg-6 filtros-titulo">
-        <h2 class="text-white fw-bold">Campeonatos</h2>
+        <h1 class="text-white fw-bold">Campeonatos</h1>
       </div>
       <!-- titulo -->
 
@@ -281,7 +286,8 @@
 
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card bg-dark h-100">
-          <img class="rounded-3" src="./static/img/index/thumbs/tekken8_thumb.jpg" alt="tekken8_thumb" /> <!-- Mudar foto -->
+          <img class="rounded-3" src="./static/img/index/thumbs/tekken8_thumb.jpg" alt="tekken8_thumb" />
+          <!-- Mudar foto -->
           <h5 class="pt-3 ps-3 text-white fw-bold">Tekken 8</h5>
           <h6 class="pb-3 ps-3 text-white">World Tour Finals 2025</h6>
         </div>
@@ -402,7 +408,7 @@
     <div class="container">
       <div class="row my-5">
         <div class="col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao">
-          <h2 class="text-white fw-bold">Construído para você!</h2>
+          <h1 class="text-white fw-bold">Construído para você!</h1>
           <div class="tracinho"></div>
           <ul class="text-white">
             <li class="mt-4">
@@ -435,8 +441,8 @@
         </div>
         <!-- col do texto -->
         <div class="col-12 col-md-7 imagem-funcao">
-          <img class="img-fluid d-flex align-items-end justify-content-end" src="./static/img/index/Neon_Artwork_Full.png"
-            alt="logo do match hub" />
+          <img class="img-fluid d-flex align-items-end justify-content-end"
+            src="./static/img/index/Neon_Artwork_Full.png" alt="logo do match hub" />
         </div>
         <!-- col da imagem -->
       </div>
@@ -476,8 +482,9 @@
             </li>
 
             <li class="nav-item">
-              <a href="sitemap.html" class="nav-link px-2 text-white"
-                ><h5 class="mb-0">Mapa do site</h5></a>
+              <a href="sitemap.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Mapa do site</h5>
+              </a>
             </li>
           </ul>
         </nav>

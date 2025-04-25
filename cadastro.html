@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="./css/cadastro.css" />
   <link rel="stylesheet" href="./css/variaveis.css" />
 
+  <!-- CDN para o fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Título da página -->
   <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
   <title>MATCH HUB - Cadastrar</title>
@@ -36,7 +41,7 @@
         <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
           <!-- Search form -->
           <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
-            <input class="form-control bg-dark text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
+            <input class="form-control bg-transparent text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
               aria-label="Search" />
             <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
               alt="pesquisar" />
@@ -108,7 +113,8 @@
               <label for="mainPassword" class="form-label text-light">Senha</label>
               <button class="btn btn-outline-light eye" type="button"
                 onclick="togglePassword('mainPassword', 'eyeIconMain')" aria-label="Mostrar senha">
-                <span class="eye-icon" id="eyeIconMain"><img src="static/icons/eye-slash-solid.svg" alt="Visibilidade da senha" /></span>
+                <span class="eye-icon" id="eyeIconMain"><img src="static/icons/eye-slash-solid.svg"
+                    alt="Visibilidade da senha" /></span>
               </button>
             </div>
 
@@ -119,10 +125,11 @@
               <label for="confirmPassword" class="form-label text-light">Confirmar Senha</label>
               <button class="btn btn-outline-light eye" type="button"
                 onclick="togglePassword('confirmPassword', 'eyeIconConfirm')" aria-label="Mostrar senha">
-                <span class="eye-icon" id="eyeIconConfirm"><img src="static/icons/eye-slash-solid.svg" alt="Visibilidade da senha" /></span>
+                <span class="eye-icon" id="eyeIconConfirm"><img src="static/icons/eye-slash-solid.svg"
+                    alt="Visibilidade da senha" /></span>
               </button>
             </div>
-            
+
             <span id="errorMessage" class="text-danger col-12 text-justify w-75 mt-1 mb-2"> </span>
 
             <div class="d-flex align-items-center mt-1 mb-4 justify-content-center gap-2 col-12">
@@ -447,8 +454,9 @@
             </li>
 
             <li class="nav-item">
-              <a href="sitemap.html" class="nav-link px-2 text-white"
-                ><h5 class="mb-0">Mapa do site</h5></a>
+              <a href="sitemap.html" class="nav-link px-2 text-white">
+                <h5 class="mb-0">Mapa do site</h5>
+              </a>
             </li>
           </ul>
         </nav>

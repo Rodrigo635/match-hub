@@ -73,7 +73,7 @@ header {
 }
 
 .btn-entrar{
-  padding: 8px 16px;
+  padding: 7px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,6 +87,10 @@ header {
   background-color: transparent;
   color: var(--cor-azul) !important;
   border: 2px solid var(--cor-azul) !important;
+}
+
+.btn-entrar i {
+  margin-left: 10px;
 }
 
 
