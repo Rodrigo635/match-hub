@@ -100,8 +100,6 @@ main {
   filter: invert(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
-
-
 /* Termos e condições */
 .termos-input  {
   width: 16px;
@@ -127,6 +125,25 @@ main {
   width: 20px;
   height: 20px;
 }
+.auth-toggle-btn{
+  background-color: var(--cor-bg);
+}
+
+.auth-toggle-btn:last-child{
+  background-color: var(--cor-bgEscuro);
+}
+.form-cadastro{
+  display: flex;
+}
+
+.form-login{
+  display: none;
+}
+
+.modal-body {
+  max-height: 76vh;
+  overflow-y: auto;
+}
 
 /* RESPONSIVIDADE */
 @media screen and (max-width: 768px) {
@@ -151,7 +168,6 @@ main {
     justify-content: end;
   }
 }
-
 
 /* Ativar hover */
 @media screen and (min-width: 991px) {
