@@ -32,46 +32,39 @@ function btnVerMaisDesativado() {
   btn_VerMais.style.cursor = "default";
 }
 
-/* FUNÇÕES PRINCIPAIS */
 
-function animarExibirCard(card, delayEmSegundos) {
-  const delayEmMs = delayEmSegundos * 1000; // Converte segundos para milissegundos
+/* ANIMAÇÕES */
 
-  setTimeout(() => {
-    card.style.setProperty("--card-delay", delayEmSegundos);
-    const img = card.querySelector("img");
-    const h5 = card.querySelector("h5");
-    const h6 = card.querySelector("h6");
-
-    img.classList.add("card-reveal-img");
-    h5.classList.add("card-reveal-h5");
-    h6.classList.add("card-reveal-h6");
-
-    // Depois de 2 segundos, remove as classes
-    setTimeout(() => {
-      img.classList.remove("card-reveal-img");
-      h5.classList.remove("card-reveal-h5");
-      h6.classList.remove("card-reveal-h6");
-    }, 2000);
-  }, delayEmMs);
-}
-
-function animarEsconderCard(card, delay) {
-  card.style.setProperty("--card-delay", delay);
+function animarElementosDoCard(card, modo, delay = 0) {
   const img = card.querySelector("img");
   const h5 = card.querySelector("h5");
   const h6 = card.querySelector("h6");
 
-  img.classList.add("card-hide-img");
-  h5.classList.add("card-hide-h5");
-  h6.classList.add("card-hide-h6");
+  // Limpar classes antigas
+  img.classList.remove("card-reveal-img", "card-hide-img");
+  h5.classList.remove("card-reveal-h5", "card-hide-h5");
+  h6.classList.remove("card-reveal-h6", "card-hide-h6");
 
-  setTimeout(() => {
-    img.classList.remove("card-hide-img");
-    h5.classList.remove("card-hide-h5");
-    h6.classList.remove("card-hide-h6");
-  }, 1500);
+  // Sempre aplicar delay, tanto no modo 1 (revelar) quanto no modo 2 (esconder)
+  img.style.animationDelay = `${delay}s`;
+  h5.style.animationDelay = `${delay}s`;
+  h6.style.animationDelay = `${delay}s`;
+
+  if (modo === 1) {
+    // Revelar
+    img.classList.add("card-reveal-img");
+    h5.classList.add("card-reveal-h5");
+    h6.classList.add("card-reveal-h6");
+  } 
+  else if (modo === 2) {
+    // Esconder
+    img.classList.add("card-hide-img");
+    h5.classList.add("card-hide-h5");
+    h6.classList.add("card-hide-h6");
+  }
 }
+
+/* FUNÇÕES PRINCIPAIS */
 
 function ExibirJogos() {
   // Calcula a quantidade de cards a serem exibidos (máximo 8 por vez)
@@ -79,7 +72,7 @@ function ExibirJogos() {
   // Contador = Número de cards que estão sendo exibidos
   const quantidadeCards = Math.min(8, total_Divs.length - contador);
 
-  const tempoAnimacao = 650; //Tempo de exibição de cada card
+  const tempoAnimacao = 450; //Tempo de exibição de cada card
   const tempoTotal = quantidadeCards * tempoAnimacao; // Tempo para exibir todos cards
 
   // Loop para exibir os novos cards um por um com delay
@@ -88,11 +81,12 @@ function ExibirJogos() {
 
     // Looping da animação
     setTimeout(() => {
-      // Confere os cards 1 por 1 tirando o "d-none"
-      total_Divs[i].classList.remove("d-none");
+      
 
       // Chama a animação
-      animarExibirCard(card);
+      animarElementosDoCard(card, 1);
+      // Confere os cards 1 por 1 tirando o "d-none"
+      total_Divs[i].classList.remove("d-none");
     }, (i - contador) * tempoAnimacao); // Delay de cada thumb
   }
 
@@ -109,58 +103,63 @@ function ExibirJogos() {
   setTimeout(() => {
     btn_VerMenos.classList.remove("d-none");
     btn_VerMenos.style.cursor = "pointer";
-  }, tempoTotal);
+  }, tempoTotal + 200);
 }
 
 function EsconderJogos() {
   const { btn_VerMais, btn_VerMenos } = PegarSelector(contador);
 
-  // Esconde o botão "Ver Menos" ao começar a esconder os cards
+  // Esconde o botão "Ver Menos" enquanto a animação de esconder os cards é executada
   btn_VerMenos.classList.add("d-none");
 
-  // Calcula a quantidade de cards a serem escondidos (máximo 8 por vez)
-  const quantidadeCards = Math.min(8, contador - 12); 
+  // Calcula a quantidade de cards a serem escondidos, com limite máximo de 8
+  const quantidadeCards = Math.min(8, contador - 12);
 
-  // Só executa se o contador for maior que 12 (significa que há cards a serem escondidos)
+  // Verifica se há mais de 12 cards para esconder
   if (contador > 12) {
-    const tempoAnimacao = 250; // Tempo de animação de cada card
-    let tempoTotal = 0; // Tempo total para esconder todos os cards
+    const tempoAnimacao = 250; // Tempo de animação para esconder os cards, em milissegundos
+    let tempoTotal = 0; // Variável para armazenar o tempo total da animação
 
-    // Loop para esconder os cards um por um com delay
-    for (let i = contador - quantidadeCards; i < contador; i++) {
-      const card = total_Divs[i].querySelector(".card"); // Seleciona a thumb a ser escondida
+    // Loop para esconder os cards, de trás para frente (começando do último card exibido)
+    for (let i = contador - 1; i >= contador - quantidadeCards; i--) {
+      const card = total_Divs[i].querySelector(".card"); // Seleciona o card
 
-      // Chama a animação para esconder o card
-      animarEsconderCard(card, contador - 1 - i);
+      // Calcula a posição do card atual em relação ao contador
+      const posicao = (contador - 1) - i; 
+      const delayEmSegundos = posicao * (tempoAnimacao / 1000); // Calcula o delay baseado na posição
 
-      // Atualiza o tempo total considerando o delay de animação
-      tempoTotal += tempoAnimacao;
+      // Chama a função para animar o card, passando o modo de esconder (2) e o delay
+      animarElementosDoCard(card, 2, delayEmSegundos);
+
+      tempoTotal += tempoAnimacao; // Acumula o tempo total da animação
     }
 
-    // Após todas as animações, esconde os cards e atualiza os botões
+    // Após a animação, esconde os cards e atualiza o contador
     setTimeout(() => {
-      // Esconde os cards com "d-none"
-      for (let i = contador - quantidadeCards; i < contador; i++) {
-        total_Divs[i].classList.add("d-none");
+      for (let i = contador - 1; i >= contador - quantidadeCards; i--) {
+        total_Divs[i].classList.add("d-none"); // Esconde o card
+
+        // Limpa as classes de animação do card
+        const card = total_Divs[i].querySelector(".card");
       }
 
-      // Atualiza o contador de cards exibidos após o esconder
+      // Atualiza o contador de cards exibidos
       contador -= quantidadeCards;
 
-      // Atualiza os botões "Ver Mais" e "Ver Menos"
+      // Se o contador for menor ou igual a 12, esconde o botão "Ver Menos"
       if (contador <= 12) {
         btn_VerMenos.classList.add("d-none");
-        btn_VerMenos.style.cursor = "default";
+        btn_VerMenos.style.cursor = "default"; // Restaura o cursor padrão
       }
 
+      // Se houver mais cards a serem exibidos, exibe o botão "Ver Mais"
       if (contador < total_Divs.length) {
         btn_VerMais.classList.remove("d-none");
-        btnVerMaisAtivo(); // Ativa o botão
+        btnVerMaisAtivo(); // Ativa a função de "Ver Mais"
       }
-    }, tempoTotal - 650); // Tempo total das animações de esconder
+    }, tempoTotal + 500); // Um pequeno ajuste de tempo para finalizar a animação
   }
 }
-
 
 // Função principal para aplicar ambos os filtros
 function AplicarFiltros() {
