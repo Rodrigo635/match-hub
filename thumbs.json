@@ -1,0 +1,103 @@
+[
+    {
+      "game": "League of Legends",
+      "tournament": "Worlds 2025",
+      "image": "./static/img/index/thumbs/lol_thumb.jpg"
+    },
+    {
+      "game": "Counter Strike 2",
+      "tournament": "Major 2025",
+      "image": "./static/img/index/thumbs/cs2_thumb.jpg"
+    },
+    {
+      "game": "Valorant",
+      "tournament": "Champions 2025",
+      "image": "./static/img/index/thumbs/valorant_thumb.jpg"
+    },
+    {
+      "game": "Fortnite",
+      "tournament": "World Cup 2025",
+      "image": "./static/img/index/thumbs/fortnite_thumb2.jpg"
+    },
+    {
+      "game": "EA Sports FC 24",
+      "tournament": "Global Series 2025",
+      "image": "./static/img/index/thumbs/fifa24_thumb.jpg"
+    },
+    {
+      "game": "EVO",
+      "tournament": "Championship Series 2025",
+      "image": "./static/img/index/thumbs/evo_thumb.jpg"
+    },
+    {
+      "game": "Street Fighter 6",
+      "tournament": "Capcom Cup 11",
+      "image": "./static/img/index/thumbs/street_fighter6_thumb.jpg"
+    },
+    {
+      "game": "Mortal Kombat 1",
+      "tournament": "Pro Kompetition 2025",
+      "image": "./static/img/index/thumbs/mk1_thumb.jpg"
+    },
+    {
+      "game": "Tekken 8",
+      "tournament": "World Tour Finals 2025",
+      "image": "./static/img/index/thumbs/tekken8_thumb.jpg"
+    },
+    {
+      "game": "Free Fire",
+      "tournament": "Worlds 2025",
+      "image": "./static/img/index/thumbs/free_fire_thumb.jpg"
+    },
+    {
+      "game": "PUBG Battlegrounds",
+      "tournament": "Global Series 7 2025",
+      "image": "./static/img/index/thumbs/pubg_thumb.jpg"
+    },
+    {
+      "game": "PUBG Mobile",
+      "tournament": "Global Championship 2025",
+      "image": "./static/img/index/thumbs/pubg_mobile_thumb.jpg"
+    },
+    {
+      "game": "Apex Legends",
+      "tournament": "ALGS 2025",
+      "image": "./static/img/index/thumbs/apexlegend.jpg"
+    },
+    {
+      "game": "Rocket League",
+      "tournament": "World Championship",
+      "image": "./static/img/index/thumbs/rocketleague.jpg"
+    },
+    {
+      "game": "Overwatch 2",
+      "tournament": "Overwatch League 2025",
+      "image": "./static/img/index/thumbs/overwatch2.jpg"
+    },
+    {
+      "game": "Dota 2",
+      "tournament": "The International 2025",
+      "image": "./static/img/index/thumbs/dota2.jpg"
+    },
+    {
+      "game": "Call of Duty: Warzone",
+      "tournament": "World Series 2025",
+      "image": "./static/img/index/thumbs/codwarzone.jpg"
+    },
+    {
+      "game": "Brawlhalla",
+      "tournament": "BCX 2025",
+      "image": "./static/img/index/thumbs/brawlhalla.jpg"
+    },
+    {
+      "game": "Clash Royale",
+      "tournament": "Clash Royale League 2025",
+      "image": "./static/img/index/thumbs/clashroyale.jpg"
+    },
+    {
+      "game": "Rainbow Six Siege",
+      "tournament": "Six Invitational 2025",
+      "image": "./static/img/index/thumbs/rainbowsixsiege.jpg"
+    }
+  ]
+  
