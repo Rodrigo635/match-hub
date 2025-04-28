@@ -1,346 +1,401 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- Configurações de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <!-- Configurações de codificação e responsividade -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Links para os arquivos CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/variaveis.css" />
 
-  <!-- Links para os arquivos CSS -->
-  <link rel="stylesheet" href="./css/bootstrap.css" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/home.css" />
-  <link rel="stylesheet" href="./css/variaveis.css" />
+    <!-- CDN para o fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- CDN para o fontawesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Título da página -->
+    <link
+      rel="shortcut icon"
+      href="./static/icons/gamepad.png"
+      type="image/x-icon"
+    />
+    <title>MATCH HUB</title>
+  </head>
 
-  <!-- Título da página -->
-  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
-  <title>MATCH HUB</title>
-</head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container d-flex w-100 justify-content-between">
+          <!-- Brand -->
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <span class="h4 text-azul fw-bold mb-0">MATCH</span>
+            <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
+          </a>
 
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3">
-      <div class="container d-flex w-100 justify-content-between">
-        <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <span class="h4 text-azul fw-bold mb-0">MATCH</span>
-          <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
-        </a>
+          <!-- Toggler/collapsing button -->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onclick="openMenu()"
+          >
+            <span class="border-0 navbar-toggler-icon" id="menu"></span>
+          </button>
 
-        <!-- Toggler/collapsing button -->
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="openMenu()">
-          <span class="border-0 navbar-toggler-icon" id="menu"></span>
-        </button>
+          <!-- Links and form -->
+          <div
+            class="collapse nav-links navbar-collapse justify-content-end"
+            id="mainNavbar"
+          >
+            <!-- Search form -->
+            <form
+              class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0"
+              role="search"
+            >
+              <input
+                class="form-control bg-transparent text-white rounded-5 border-2"
+                type="search"
+                placeholder="Pesquisar..."
+                aria-label="Search"
+              />
+              <img
+                src="./static/icons/search.png"
+                class="position-absolute ms-2"
+                width="25px"
+                height="25px"
+                alt="pesquisar"
+              />
+            </form>
 
-        <!-- Links and form -->
-        <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
-          <!-- Search form -->
-          <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
-            <input class="form-control bg-transparent text-white rounded-5 border-2" type="search" placeholder="Pesquisar..."
-              aria-label="Search" />
-            <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
-              alt="pesquisar">
-          </form>
-
-          <ul class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
-            <li class="nav-item">
-              <a class="nav-link text-primary px-2" href="index.html">
-                <h5 class="mb-0">Início</h5>
+            <ul
+              class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3"
+            >
+              <li class="nav-item">
+                <a class="nav-link text-primary px-2" href="index.html">
+                  <h5 class="mb-0">Início</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white px-2" href="sobre.html">
+                  <h5 class="mb-0">Sobre</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white px-2" href="contato.html">
+                  <h5 class="mb-0 text-white">Contato</h5>
+                </a>
+              </li>
+            </ul>
+            <!-- Login button -->
+            <div class="d-flex">
+              <a
+                href="cadastro.html"
+                type="button"
+                class="btn-entrar text-white"
+              >
+                <h5 class="mb-0">
+                  Entrar<i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </h5>
               </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mt-3 mb-5">
+      <div class="container d-flex align-items-center justify-content-center">
+        <div class="container-card">
+          <input type="radio" name="slide" id="c1" checked />
+          <label for="c1" class="cards">
+            <div class="conteudo-card">
+              <div class="icon">1</div>
+              <div class="descricao">
+                <h1 class="text-white fw-bold">
+                  Acompanhe E-sports como nunca antes!
+                </h1>
+                <h5 class="text-white mb-3">
+                  Esteja sempre ligado nas novidades de seus jogos favoritos.
+                </h5>
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- conteudo-card --> </label
+          ><!-- card -->
+
+          <input type="radio" name="slide" id="c2" />
+          <label for="c2" class="cards">
+            <div class="conteudo-card">
+              <div class="icon">2</div>
+              <div class="descricao p-3">
+                <h1 class="text-white fw-bold">Campeonatos de CS</h1>
+                <h5 class="text-white mb-3">
+                  Cobertura completa da BLAST Premier e PGL Major. Agenda de
+                  torneios, highlights das jogadas épicas e rankings atualizados
+                  das equipes TOP.
+                </h5>
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- conteudo-card --> </label
+          ><!-- card -->
+
+          <input type="radio" name="slide" id="c3" />
+          <label for="c3" class="cards">
+            <div class="conteudo-card">
+              <div class="icon">3</div>
+              <div class="descricao">
+                <h1 class="text-white fw-bold">Ligas do LOL</h1>
+                <h5 class="text-white mb-3">
+                  Perfis de jogadores profissionais, meta do patch atual e
+                  cronograma do Campeonato Mundial.
+                </h5>
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- conteudo-card --> </label
+          ><!-- card -->
+
+          <input type="radio" name="slide" id="c4" />
+          <label for="c4" class="cards">
+            <div class="conteudo-card">
+              <div class="icon">4</div>
+              <div class="descricao">
+                <h1 class="text-white fw-bold">E MUITO MAIS!</h1>
+                <h5 class="text-white mb-3">
+                  Destaques de VALORANT Champions, cobertura de Rocket League
+                  Championship Series e novidades de jogos emergentes como
+                  Rainbow Six Siege e Apex Legends.
+                </h5>
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- conteudo-card --> </label
+          ><!-- card -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- banner -->
+    </main>
+
+    <section class="container mt-5 mb-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-12 col-lg-6 filtros-titulo">
+          <h1 class="text-white fw-bold">Campeonatos</h1>
+        </div>
+        <!-- titulo -->
+
+        <div class="col-12 col-md-12 col-lg-6">
+          <ul class="row m-0 p-0 list-style-none gx-2">
+            <li class="col-6 filtro">
+              <select
+                class="form-select rounded-5 fw-bold cursor-pointer"
+                name="jogos"
+                id="jogos"
+                onchange="AplicarFiltros()"
+              >
+                <option value="Jogos" selected disabled>Jogos</option>
+                <option value="Todos">Todos</option>
+                <option value="League of Legends">League of Legends</option>
+                <option value="Counter Strike 2">Counter Strike</option>
+                <option value="Valorant">Valorant</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="EA Sports FC">EA Sports FC</option>
+                <option value="Street Fighter">Street Fighter 6</option>
+                <option value="Mortal Kombat">Mortal Kombat 1</option>
+                <option value="Tekken 8">Tekken 8</option>
+                <option value="Free Fire">Free Fire</option>
+                <option value="PUBG">PUBG Battlegrounds</option>
+                <option value="PUBG Mobile">PUBG Mobile</option>
+                <option value="Apex Legends">Apex Legends</option>
+                <option value="Rocket League">Rocket League</option>
+                <option value="Overwatch 2">Overwatch 2</option>
+                <option value="Dota 2">Dota 2</option>
+                <option value="Call of Duty: Warzone">
+                  Call of Duty: Warzone
+                </option>
+                <option value="Brawlhalla">Brawlhalla</option>
+                <option value="Clash Royale">Clash Royale</option>
+                <option value="Rainbow Six Siege">Rainbow Six Siege</option>
+              </select>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white px-2" href="sobre.html">
-                <h5 class="mb-0">Sobre</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white px-2" href="contato.html">
-                <h5 class="mb-0 text-white">Contato</h5>
-              </a>
+            <li class="col-6 filtro">
+              <select
+                class="form-select rounded-5 fw-bold cursor-pointer"
+                name="campeonatos"
+                id="campeonatos"
+                onchange="AplicarFiltros()"
+              >
+                <option value="Campeonatos" selected disabled>
+                  Campeonatos
+                </option>
+                <option value="Todos">Todos</option>
+                <option value="Champions ">Champions</option>
+                <option value="Championship">Championship</option>
+                <option value="Major">Major</option>
+                <option value="World ">World</option>
+                <option value="Worlds">Worlds</option>
+                <option value="Global Series">Global Series</option>
+                <option value="Capcom Cup 11">Capcom Cup 11</option>
+                <option value="Pro Kompetition">Pro Kompetition</option>
+                <option value="World Tour Finals">World Tour Finals</option>
+                <option value="ALGS">ALGS</option>
+                <option value="League">League</option>
+                <option value="International">International</option>
+                <option value="BCX">BCX</option>
+                <option value="Six Invitational">Six Invitational</option>
+              </select>
             </li>
           </ul>
-          <!-- Login button -->
-          <div class="d-flex">
-            <a href="cadastro.html" type="button" class="btn-entrar text-white">
-              <h5 class="mb-0">Entrar<i class="fa-solid fa-arrow-right-to-bracket"></i></h5>
+        </div>
+        <!-- filtros -->
+      </div>
+      <!-- titulo-filtros -->
+    </section>
+    <!-- conteudo -->
+
+    <section class="container mt-2">
+      <div class="row g-3"></div>
+      <!-- row -->
+      <!-- blocos -->
+
+      <div class="container text-center my-5">
+        <!-- Ativo ao clicar em saiba mais -->
+        <h5
+          class="text-center ver-menos cursor-pointer d-none my-5"
+          onclick="EsconderJogos()"
+        >
+          Ver menos
+        </h5>
+
+        <!-- Botão para alternar a visibilidade dos jogos -->
+        <h5 class="text-center ver-mais cursor-pointer" onclick="ExibirJogos()">
+          Ver mais
+        </h5>
+      </div>
+      <!-- ver-mais  -->
+    </section>
+    <!-- conteúdo -->
+
+    <section class="lista-funcoes-bg">
+      <div class="container">
+        <div class="row my-5">
+          <div
+            class="col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao"
+          >
+            <h1 class="text-white fw-bold">Construído para você!</h1>
+            <div class="tracinho"></div>
+            <ul class="text-white">
+              <li class="mt-4">
+                <h5>
+                  Nunca mais perca a chance de assistir os campeonatos ao vivo.
+                </h5>
+              </li>
+              <li class="mt-4">
+                <h5>
+                  Acompanhe os seus torneios e jogadores favoritos de uma forma
+                  fácil.
+                </h5>
+              </li>
+              <li class="mt-4">
+                <h5>
+                  Sempre esteja atualizado das notícias mais importantes de seus
+                  jogos favoritos.
+                </h5>
+              </li>
+              <li class="mt-4">
+                <h5>Saiba onde comprar ingressos e merchandises.</h5>
+              </li>
+              <li class="mt-4">
+                <h5>
+                  Fique por dentro do meta e aprenda a jogar os jogos mais
+                  competitivos do mercado.
+                </h5>
+              </li>
+            </ul>
+          </div>
+          <!-- col do texto -->
+          <div class="col-12 col-md-7 imagem-funcao">
+            <img
+              class="img-fluid d-flex align-items-end justify-content-end"
+              src="./static/img/index/Neon_Artwork_Full.png"
+              alt="logo do match hub"
+            />
+          </div>
+          <!-- col da imagem -->
+        </div>
+        <!-- row -->
+      </div>
+    </section>
+    <!-- lista-funcoes -->
+
+    <footer class="footer bg-black py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Logo Section -->
+          <div
+            class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0"
+          >
+            <a href="index.html" class="d-inline-block">
+              <span class="h4 text-azul fw-bold">MATCH </span>
+              <span class="h4 fw-bold text-white">HUB</span>
             </a>
           </div>
-        </div>
-      </div>
-    </nav>
-  </header>
 
-  <main class="mt-3 mb-5">
-    <div class="container d-flex align-items-center justify-content-center">
-      <div class="container-card">
-        <input type="radio" name="slide" id="c1" checked />
-        <label for="c1" class="cards">
-          <div class="conteudo-card">
-            <div class="icon">1</div>
-            <div class="descricao">
-              <h1 class="text-white fw-bold">
-                Acompanhe E-sports como nunca antes!
-              </h1>
-              <h5 class="text-white mb-3">
-                Esteja sempre ligado nas novidades de seus jogos favoritos.
-              </h5>
-            </div>
-            <!-- descricao -->
+          <!-- Navigation Links -->
+          <nav class="col-12 col-md-6 nav-links">
+            <ul
+              class="nav justify-content-center justify-content-md-end flex-md-row gap-2"
+            >
+              <li class="nav-item">
+                <a href="index.html" class="nav-link px-2 text-primary">
+                  <h5 class="mb-0">Início</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="sobre.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Sobre</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="contato.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Contato</h5>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="sitemap.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Mapa do site</h5>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="row mt-4">
+          <div class="col-12">
+            <h6 class="text-white text-center text-md-start mb-0">
+              Todos os direitos reservados. Match Hub ©, 2025.
+            </h6>
           </div>
-          <!-- conteudo-card -->
-        </label><!-- card -->
-
-        <input type="radio" name="slide" id="c2" />
-        <label for="c2" class="cards">
-          <div class="conteudo-card">
-            <div class="icon">2</div>
-            <div class="descricao p-3">
-              <h1 class="text-white fw-bold">Campeonatos de CS</h1>
-              <h5 class="text-white mb-3">
-                Cobertura completa da BLAST Premier e PGL Major. Agenda de
-                torneios, highlights das jogadas épicas e rankings atualizados
-                das equipes TOP.
-              </h5>
-            </div>
-            <!-- descricao -->
-          </div>
-          <!-- conteudo-card -->
-        </label><!-- card -->
-
-        <input type="radio" name="slide" id="c3" />
-        <label for="c3" class="cards">
-          <div class="conteudo-card">
-            <div class="icon">3</div>
-            <div class="descricao">
-              <h1 class="text-white fw-bold">Ligas do LOL</h1>
-              <h5 class="text-white mb-3">
-                Perfis de jogadores profissionais, meta do patch atual e
-                cronograma do Campeonato Mundial.
-              </h5>
-            </div>
-            <!-- descricao -->
-          </div>
-          <!-- conteudo-card -->
-        </label><!-- card -->
-
-        <input type="radio" name="slide" id="c4" />
-        <label for="c4" class="cards">
-          <div class="conteudo-card">
-            <div class="icon">4</div>
-            <div class="descricao">
-              <h1 class="text-white fw-bold">E MUITO MAIS!</h1>
-              <h5 class="text-white mb-3">
-                Destaques de VALORANT Champions, cobertura de Rocket League
-                Championship Series e novidades de jogos emergentes como
-                Rainbow Six Siege e Apex Legends.
-              </h5>
-            </div>
-            <!-- descricao -->
-          </div>
-          <!-- conteudo-card -->
-        </label><!-- card -->
-      </div>
-      <!-- container -->
-    </div>
-    <!-- banner -->
-  </main>
-
-  <section class="container mt-5 mb-3">
-    <div class="row align-items-center">
-      <div class="col-12 col-md-12 col-lg-6 filtros-titulo">
-        <h1 class="text-white fw-bold">Campeonatos</h1>
-      </div>
-      <!-- titulo -->
-
-      <div class="col-12 col-md-12 col-lg-6">
-        <ul class="row m-0 p-0 list-style-none gx-2">
-          <li class="col-6 filtro">
-            <select class="form-select rounded-5 fw-bold cursor-pointer" name="jogos" id="jogos"
-              onchange="AplicarFiltros()">
-              <option value="Jogos" selected disabled>Jogos</option>
-              <option value="Todos">Todos</option>
-              <option value="League of Legends">League of Legends</option>
-              <option value="Counter Strike 2">Counter Strike</option>
-              <option value="Valorant">Valorant</option>
-              <option value="Fortnite">Fortnite</option>
-              <option value="EA Sports FC">EA Sports FC</option>
-              <option value="Street Fighter">Street Fighter 6</option>
-              <option value="Mortal Kombat">Mortal Kombat 1</option>
-              <option value="Tekken 8">Tekken 8</option>
-              <option value="Free Fire">Free Fire</option>
-              <option value="PUBG">PUBG Battlegrounds</option>
-              <option value="PUBG Mobile">PUBG Mobile</option>
-              <option value="Apex Legends">Apex Legends</option>
-              <option value="Rocket League">Rocket League</option>
-              <option value="Overwatch 2">Overwatch 2</option>
-              <option value="Dota 2">Dota 2</option>
-              <option value="Call of Duty: Warzone">
-                Call of Duty: Warzone
-              </option>
-              <option value="Brawlhalla">Brawlhalla</option>
-              <option value="Clash Royale">Clash Royale</option>
-              <option value="Rainbow Six Siege">Rainbow Six Siege</option>
-            </select>
-          </li>
-          <li class="col-6 filtro">
-            <select class="form-select rounded-5 fw-bold cursor-pointer" name="campeonatos" id="campeonatos"
-              onchange="AplicarFiltros()">
-              <option value="Campeonatos" selected disabled>
-                Campeonatos
-              </option>
-              <option value="Todos">Todos</option>
-              <option value="Champions ">Champions</option>
-              <option value="Championship">Championship</option>
-              <option value="Major">Major</option>
-              <option value="World ">World</option>
-              <option value="Worlds">Worlds</option>
-              <option value="Global Series">Global Series</option>
-              <option value="Capcom Cup 11">Capcom Cup 11</option>
-              <option value="Pro Kompetition">Pro Kompetition</option>
-              <option value="World Tour Finals">World Tour Finals</option>
-              <option value="ALGS">ALGS</option>
-              <option value="League">League</option>
-              <option value="International">International</option>
-              <option value="BCX">BCX</option>
-              <option value="Six Invitational">Six Invitational</option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <!-- filtros -->
-    </div>
-    <!-- titulo-filtros -->
-  </section>
-  <!-- conteudo -->
-
-  <section class="container mt-2">
-    <div class="row g-3">
-  
-    </div>
-    <!-- row -->
-    <!-- blocos -->
-
-    <div class="container text-center my-5">
-      <!-- Ativo ao clicar em saiba mais -->
-      <h5 class="text-center ver-menos cursor-pointer d-none my-5" onclick="EsconderJogos()">
-        Ver menos
-      </h5>
-
-      <!-- Botão para alternar a visibilidade dos jogos -->
-      <h5 class="text-center ver-mais cursor-pointer" onclick="ExibirJogos()">
-        Ver mais
-      </h5>
-    </div>
-    <!-- ver-mais  -->
-  </section>
-  <!-- conteúdo -->
-
-  <section class="lista-funcoes-bg">
-    <div class="container">
-      <div class="row my-5">
-        <div class="col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao">
-          <h1 class="text-white fw-bold">Construído para você!</h1>
-          <div class="tracinho"></div>
-          <ul class="text-white">
-            <li class="mt-4">
-              <h5>
-                Nunca mais perca a chance de assistir os campeonatos ao vivo.
-              </h5>
-            </li>
-            <li class="mt-4">
-              <h5>
-                Acompanhe os seus torneios e jogadores favoritos de uma forma
-                fácil.
-              </h5>
-            </li>
-            <li class="mt-4">
-              <h5>
-                Sempre esteja atualizado das notícias mais importantes de seus
-                jogos favoritos.
-              </h5>
-            </li>
-            <li class="mt-4">
-              <h5>Saiba onde comprar ingressos e merchandises.</h5>
-            </li>
-            <li class="mt-4">
-              <h5>
-                Fique por dentro do meta e aprenda a jogar os jogos mais
-                competitivos do mercado.
-              </h5>
-            </li>
-          </ul>
-        </div>
-        <!-- col do texto -->
-        <div class="col-12 col-md-7 imagem-funcao">
-          <img class="img-fluid d-flex align-items-end justify-content-end"
-            src="./static/img/index/Neon_Artwork_Full.png" alt="logo do match hub" />
-        </div>
-        <!-- col da imagem -->
-      </div>
-      <!-- row -->
-    </div>
-  </section>
-  <!-- lista-funcoes -->
-
-  <footer class="footer bg-black py-5">
-    <div class="container">
-      <div class="row">
-        <!-- Logo Section -->
-        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-          <a href="index.html" class="d-inline-block">
-            <span class="h4 text-azul fw-bold">MATCH </span>
-            <span class="h4 fw-bold text-white">HUB</span>
-          </a>
-        </div>
-
-        <!-- Navigation Links -->
-        <nav class="col-12 col-md-6 nav-links">
-          <ul class="nav justify-content-center justify-content-md-end flex-md-row gap-2">
-            <li class="nav-item">
-              <a href="index.html" class="nav-link px-2 text-primary">
-                <h5 class="mb-0">Início</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="sobre.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Sobre</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="contato.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Contato</h5>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="sitemap.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Mapa do site</h5>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <!-- Copyright Section -->
-      <div class="row mt-4">
-        <div class="col-12">
-          <h6 class="text-white text-center text-md-start mb-0">
-            Todos os direitos reservados. Match Hub ©, 2025.
-          </h6>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./js/index.js"></script>
-  <script src="./js/global.js"></script>
-</body>
-
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/global.js"></script>
+  </body>
 </html>
