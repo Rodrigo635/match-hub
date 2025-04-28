@@ -321,7 +321,7 @@ function AplicarFiltros() {
       }
     });
 
-    if (cards.length > contador) {
+    if (cards.length >= contador) {
       btn_VerMais.classList.remove("d-none");
       btnVerMaisAtivo();
     } else {
