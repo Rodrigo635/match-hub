@@ -1,56 +1,19 @@
-// Carrega os cards iniciais 
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("thumbs.json") // Faz a requisição para o arquivo JSON
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((data) => {
-      const container = document.querySelector(".row.g-3");
-      container.innerHTML = ""; // Limpa os cards existentes
-
-      // Determina o intervalo de cards a exibir (próximos 12)
-      const inicio = contador; // O contador define de onde começa a exibição
-      const fim = Math.min(inicio + 12, data.length); // Define o fim do intervalo
-      const jogosExibidos = data.slice(inicio, fim); // Exibe até o fim ou 12 itens
-      const tempoAnimacao = 300; // Tempo de animação de cada card
-
-      let tempoTotal = 0;
-
-      jogosExibidos.forEach((item, index) => {
-        const div = document.createElement("div");
-
-        div.className = "col-12 col-md-6 col-lg-3"; // Responsividade dos cards
-        div.innerHTML = `<div class="card bg-dark h-100">
-                         <img class="rounded-3" src="${item.image}" alt="${item.game}" />
-                         <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
-                         <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6></div>`;
-
-        container.appendChild(div); // Adiciona o card ao container
-
-        // Animação dos cards
-        const posicao = index;
-        const delayEmSegundos = posicao * (tempoAnimacao / 1000); // Define o delay da animação
-        animarElementosDoCard(div, 1, delayEmSegundos); // Função de animação
-        tempoTotal += tempoAnimacao;
-      });
-
-      // Atualiza o contador para o próximo intervalo
-      contador = fim;
-
-      btn_VerMenos.classList.add("d-none"); // Sempre exibe o botão "Ver Menos"
-      btn_VerMenos.style.cursor = "pointer"; // Altera o cursor para "pointer"
-    })
-    .catch((error) => console.error("Erro ao carregar o JSON:", error)); // Tratamento de erro
-});
-
-// Eventos que ocorrem quando o usuário escolhe um jogo ou campeonato
-document.getElementById("jogos").addEventListener("change", AplicarFiltros);
-document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
-
 
 /* VÁRIAVEIS GLOBAIS */
 
 let contador = 0; //total de jogos que estão sendo exibidos
 let totalItens = 0; // Para armazenar o total de itens no JSON
+
+
+// Carrega os cards iniciais
+document.addEventListener("DOMContentLoaded", () => {
+  contador = 0;
+  ThumbsInciais();
+});
+
+// Eventos que ocorrem quando o usuário escolhe um jogo ou campeonato
+document.getElementById("jogos").addEventListener("change", AplicarFiltros);
+document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
 
 /* AUXILIARES */
 
@@ -67,7 +30,7 @@ function PegarSelector() {
 function EsconderBtn() {
   // Chama a função PegarSelector para pegar os botões
   const { btn_VerMais, btn_VerMenos } = PegarSelector();
-  
+
   // Adiciona a classe 'd-none' para esconder os botões
   btn_VerMais.classList.add("d-none");
   btn_VerMenos.classList.add("d-none");
@@ -77,10 +40,10 @@ function EsconderBtn() {
 function btnVerMaisAtivo() {
   // Chama a função PegarSelector para pegar o botão "Ver Mais"
   const { btn_VerMais } = PegarSelector();
-  
+
   // Altera o texto do botão para "Ver mais"
   btn_VerMais.innerHTML = "Ver mais";
-  
+
   // Altera o estilo do cursor para indicar que o botão é clicável
   btn_VerMais.style.cursor = "pointer";
 }
@@ -89,15 +52,69 @@ function btnVerMaisAtivo() {
 function btnVerMaisDesativado() {
   // Chama a função PegarSelector para pegar o botão "Ver Mais"
   const { btn_VerMais } = PegarSelector();
-  
+
   // Limpa o texto do botão
   btn_VerMais.innerHTML = "";
-  
+
   // Altera o estilo do cursor para indicar que o botão não é clicável
   btn_VerMais.style.cursor = "default";
 }
 
+// Função responsável por criar as thumbs na tela
+function CriarHtml(div, item, container){
+  div.className = "col-12 col-md-6 col-lg-3";
+  div.innerHTML = `
+    <div class="card bg-dark h-100">
+      <img class="rounded-3" src="${item.image}" alt="${item.game}" />
+      <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
+      <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6>
+    </div>
+  `;
+  container.appendChild(div);
+}
 
+// Função responsável a retornar as thumbs no modo inicial
+function ThumbsInciais() {
+  contador = 0; // Reinicia o contador
+  fetch("thumbs.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const container = document.querySelector(".row.g-3");
+      container.innerHTML = ""; // Limpa os cards existentes
+
+      // Determina o intervalo de cards a exibir (sempre os primeiros 12)
+      const inicio = 0; // Sempre começa do início
+      const fim = Math.min(12, data.length); // Exibe até 12 cards ou o total disponível
+      const jogosExibidos = data.slice(inicio, fim);
+      const tempoAnimacao = 300;
+
+      jogosExibidos.forEach((item, index) => {
+        const div = document.createElement("div");
+        CriarHtml(div, item, container);
+
+        // Aplica animação
+        const delayEmSegundos = index * (tempoAnimacao / 1000);
+        animarElementosDoCard(div, 1, delayEmSegundos);
+      });
+
+      // Atualiza o contador para o próximo intervalo
+      contador = fim;
+
+      // Gerencia a visibilidade dos botões
+      const { btn_VerMais, btn_VerMenos } = PegarSelector();
+      btn_VerMenos.classList.add("d-none"); // Esconde "Ver Menos" inicialmente
+      btn_VerMenos.style.cursor = "pointer";
+
+      if (fim < data.length) {
+        btn_VerMais.classList.remove("d-none");
+        btnVerMaisAtivo();
+      } else {
+        btn_VerMais.classList.add("d-none");
+        btnVerMaisDesativado();
+      }
+    })
+    .catch((error) => console.error("Erro ao carregar o JSON:", error));
+}
 /* ANIMAÇÕES */
 
 // Anima os elementos do card (imagem, título do jogo, e título do campeonato)
@@ -137,37 +154,27 @@ function ExibirJogos() {
       const container = document.querySelector(".row.g-3");
       container.innerHTML = ""; // Limpa os cards existentes
 
-      // Determina o intervalo de cards a exibir (próximos 8)
+      // Determina o intervalo de cards a exibir (próximos 12)
       const inicio = contador;
-      const fim = Math.min(inicio + 8, data.length);
-      const jogosExibidos = data.slice(0, fim); // Exibe até o fim
+      const fim = Math.min(inicio + 12, data.length);
+      const jogosExibidos = data.slice(0, fim); // Exibe todos até o fim
 
-      let tempoTotal = 0;
       const tempoAnimacao = 300;
 
       jogosExibidos.forEach((item, index) => {
         const div = document.createElement("div");
-        div.className = "col-12 col-md-6 col-lg-3";
-        div.innerHTML = `
-          <div class="card bg-dark h-100">
-            <img class="rounded-3" src="${item.image}" alt="${item.game}" />
-            <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
-            <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6>
-          </div>
-        `;
-        container.appendChild(div);
+        CriarHtml(div, item, container);
 
-        // Anima apenas os novos cards (os últimos 8)
+        // Aplica animação apenas aos novos cards
         if (index >= inicio) {
           const posicao = index - inicio;
           const delayEmSegundos = posicao * (tempoAnimacao / 1000);
           animarElementosDoCard(div, 1, delayEmSegundos);
-          tempoTotal += tempoAnimacao;
         }
       });
 
       // Atualiza o contador
-      contador = jogosExibidos.length;
+      contador = fim;
 
       // Gerencia a visibilidade dos botões
       setTimeout(() => {
@@ -180,8 +187,12 @@ function ExibirJogos() {
           btnVerMaisDesativado();
         }
 
-        btn_VerMenos.classList.remove("d-none");
-        btn_VerMenos.style.cursor = "pointer";
+        if (contador > 12) {
+          btn_VerMenos.classList.remove("d-none");
+          btn_VerMenos.style.cursor = "pointer";
+        } else {
+          btn_VerMenos.classList.add("d-none");
+        }
       }, tempoAnimacao + 450);
     })
     .catch((error) => console.error("Erro ao carregar o JSON:", error));
@@ -201,7 +212,9 @@ function EsconderJogos() {
       const jogosExibidos = data.slice(0, novosJogosExibidos); // Jogos que vão permanecer
 
       // Primeiro, animar a remoção dos últimos cards
-      const cardsAtuais = container.querySelectorAll(".col-12.col-md-6.col-lg-3");
+      const cardsAtuais = container.querySelectorAll(
+        ".col-12.col-md-6.col-lg-3"
+      );
       const cardsParaRemover = Array.from(cardsAtuais).slice(-8); // Pega os últimos 8 cards
       const tempoAnimacao = 300; // Ajuste o tempo de animação conforme necessário
 
@@ -220,24 +233,17 @@ function EsconderJogos() {
 
       // Após a animação, limpa o container e re-renderiza apenas os jogos que devem permanecer
       setTimeout(() => {
-         // Atualiza o contador
-         contador = jogosExibidos.length;
+        // Atualiza o contador
+        contador = jogosExibidos.length;
 
         // Limpa todos os cards após a animação
-        container.innerHTML = ""; 
+        container.innerHTML = "";
 
         // Renderiza os jogos que devem permanecer (sem animação)
         jogosExibidos.forEach((item) => {
           const div = document.createElement("div");
           div.className = "col-12 col-md-6 col-lg-3";
-          div.innerHTML = `
-            <div class="card bg-dark h-100">
-              <img class="rounded-3" src="${item.image}" alt="${item.game}" />
-              <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
-              <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6>
-            </div>
-          `;
-          container.appendChild(div);
+         CriarHtml(div, item, container);
         });
 
         // Gerencia a visibilidade dos botões
@@ -263,74 +269,53 @@ function EsconderJogos() {
 }
 
 // Função principal para aplicar ambos os filtros
-function AplicarFiltros() {
-  const cards = document.querySelectorAll(".col-12.col-md-6.col-lg-3");
+async function AplicarFiltros() {
   const jogo_Escolhido = document.getElementById("jogos").value.toLowerCase();
-  const campeonato_Escolhido = document
-    .getElementById("campeonatos")
-    .value.toLowerCase();
+  const campeonato_Escolhido = document.getElementById("campeonatos").value.toLowerCase();
+  
+  try {
+    // Carrega o JSON
+    const resposta = await fetch('thumbs.json');
+    const dados = await resposta.json();
 
-  // Variável para verificar se algum filtro está ativo
-  let filtroAtivo = false;
-  let cardsVisiveis = 0;
+    // Filtra os dados
+    const filtrados = dados.filter(item => {
+      const jogo = item.game.toLowerCase();
+      const campeonato = item.tournament.toLowerCase();
 
-  cards.forEach((card) => {
-    const tituloJogo = card.querySelector("h5").innerText.toLowerCase();
-    const tituloCampeonato = card.querySelector("h6").innerText.toLowerCase();
-    let ExibirCard = true;
+      const jogoOK = (jogo_Escolhido === "todos" || jogo_Escolhido === "jogos") || jogo.includes(jogo_Escolhido);
+      const campeonatoOK = (campeonato_Escolhido === "todos" || campeonato_Escolhido === "campeonatos") || campeonato.includes(campeonato_Escolhido);
 
-    // Verifica se o título do jogo contém o valor do filtro
-    if (jogo_Escolhido !== "todos" && jogo_Escolhido !== "jogos") {
-      ExibirCard = ExibirCard && tituloJogo.includes(jogo_Escolhido);
-      filtroAtivo = true;
-    }
-
-    // Verifica se o título do campeonato contém o valor do filtro
-    if (
-      campeonato_Escolhido !== "todos" &&
-      campeonato_Escolhido !== "campeonatos"
-    ) {
-      ExibirCard =
-        ExibirCard && tituloCampeonato.includes(campeonato_Escolhido);
-      filtroAtivo = true;
-    }
-
-    // Aplica d-none para esconder ou remove para exibir
-    if (ExibirCard) {
-      card.classList.remove("d-none");
-      cardsVisiveis++;
-    } else {
-      card.classList.add("d-none");
-    }
-  });
-
-  // Gerencia os botões com base nos filtros
-  const { btn_VerMais, btn_VerMenos } = PegarSelector();
-  if (filtroAtivo) {
-    btn_VerMais.classList.add("d-none");
-    btnVerMaisDesativado();
-    btn_VerMenos.classList.add("d-none");
-  } else {
-    // Se não houver filtro, volta ao estado padrão
-    contador = 12;
-    cards.forEach((card, index) => {
-      if (index < 12) {
-        card.classList.remove("d-none");
-      } else {
-        card.classList.add("d-none");
-      }
+      return jogoOK && campeonatoOK;
     });
 
-    if (cards.length >= contador) {
-      btn_VerMais.classList.remove("d-none");
-      btnVerMaisAtivo();
-    } else {
-      btn_VerMais.classList.add("d-none");
-      btnVerMaisDesativado();
-    }
+    const container = document.querySelector(".row.g-3");
+    container.innerHTML = ""; // Limpa o container
 
-    btn_VerMenos.classList.add("d-none");
+    // Chama ResetarThumbs() se AMBOS os filtros estiverem no estado padrão
+    if (
+      (jogo_Escolhido === "todos" || jogo_Escolhido === "jogos") &&
+      (campeonato_Escolhido === "todos" || campeonato_Escolhido === "campeonatos")
+    ) {
+      ThumbsInciais(); // Exibe os primeiros 12 cards com paginação
+    } else {
+      // Adiciona os novos cards filtrados
+      filtrados.forEach((item, index) => {
+        const card = document.createElement("div");
+        CriarHtml(card, item, container);
+
+        // Aplica animação aos cards filtrados
+        const tempoAnimacao = 300;
+        const delayEmSegundos = index * (tempoAnimacao / 1000);
+        animarElementosDoCard(card, 1, delayEmSegundos);
+      });
+
+      // Esconde os botões de paginação para filtros
+      const { btn_VerMais, btn_VerMenos } = PegarSelector();
+      btn_VerMais.classList.add("d-none");
+      btn_VerMenos.classList.add("d-none");
+    }
+  } catch (erro) {
+    console.error("Erro ao carregar os dados:", erro);
   }
 }
-
-
