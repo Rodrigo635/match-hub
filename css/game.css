@@ -1,0 +1,24 @@
+.jogo {
+    min-height: 65dvh;
+}
+
+.btn-voltar {
+    padding: 7px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-azul);
+    border: 2px solid var(--cor-azul);
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  
+  .btn-voltar:hover {
+    background-color: transparent;
+    color: var(--cor-azul) !important;
+    border: 2px solid var(--cor-azul) !important;
+  }
+  
+  .btn-voltar i {
+    margin-right: 10px;
+  }

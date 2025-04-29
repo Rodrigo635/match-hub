@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
                          <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
                          <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6></div>`;
 
+        div.addEventListener("click", () => {
+          localStorage.setItem("selectedGame", JSON.stringify(item));
+          window.location.href = "game.html";
+        });
+
         container.appendChild(div); // Adiciona o card ao container
 
         // Animação dos cards
@@ -155,6 +160,12 @@ function ExibirJogos() {
             <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6>
           </div>
         `;
+
+        div.addEventListener("click", () => {
+          localStorage.setItem("selectedGame", JSON.stringify(item));
+          window.location.href = "game.html";
+        });
+
         container.appendChild(div);
 
         // Anima apenas os novos cards (os últimos 8)
