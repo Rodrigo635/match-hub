@@ -81,19 +81,16 @@
   z-index: 1;
 }
 
-input {
-  display: none;
-}
-
-input:checked + label {
+.card-width {
   width: 79%;
+
 }
 
-input:checked + label:hover {
-  transform: scale(1);
+.card-width .icon{
+  display: none !important;
 }
 
-input:checked + label .descricao {
+.card-width .descricao{
   opacity: 1 !important;
   transform: translateY(0) !important;
   padding: 10px;

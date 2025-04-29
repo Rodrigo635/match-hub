@@ -363,3 +363,28 @@ async function AplicarFiltros() {
     console.error("Erro ao carregar os dados:", erro);
   }
 }
+
+// IDs dos cards que terão o mesmo comportamento
+const cardIds = ['c1', 'c2', 'c3', 'c4'];
+
+function handleCardClick(clickedId) {
+  console.log("Card clicado:", clickedId);
+  
+  // Remove a classe de todos os cards
+  cardIds.forEach(id => {
+    const card = document.getElementById(id);
+    card.classList.remove('card-width');
+  });
+  
+  // Adiciona a classe apenas ao card clicado
+  const clickedCard = document.getElementById(clickedId);
+  clickedCard.classList.add('card-width');
+  
+  console.log("Elemento ativo:", clickedCard);
+}
+
+cardIds.forEach(id => {
+  document.getElementById(id).addEventListener('click', () => {
+    handleCardClick(id);
+  });
+});
