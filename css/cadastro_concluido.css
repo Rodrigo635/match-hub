@@ -1,6 +1,6 @@
-  header {
-    background: var(--cor-preto);
-  }
+header {
+  background: var(--cor-preto);
+}
 
 .main-teste {
   background-image: url(../static/img/cadastro/cadastro-img.png);
@@ -8,14 +8,14 @@
   background-size: cover;
 }
 
-.btn-continuar{
-  width:100%;
-  margin:0;
+.btn-continuar {
+  width: 100%;
+  margin: 0;
   text-decoration: none;
   box-sizing: border-box !important;
 }
 
-.btn-continuar{
+.btn-continuar {
   padding: 10px 16px;
   display: flex;
   justify-content: center;
@@ -31,4 +31,17 @@
 .btn-continuar:hover {
   background-color: transparent !important;
   color: var(--cor-azul) !important;
+}
+
+#gif-concluido {
+  display: none;
+}
+
+#gif-concluido {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#gif-concluido.loaded {
+  opacity: 1;
 }
