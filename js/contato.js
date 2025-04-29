@@ -1,41 +1,87 @@
-const cards = document.querySelectorAll('.cards');
-const radios = document.querySelectorAll('input[name="slide"]');
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = canvas.offsetWidth;
+let height = canvas.height = canvas.offsetHeight;
 
-function ajustarAlturaBaseadaNoAtivo() {
-  const cardAtivo = [...cards].find((label, index) => radios[index].checked);
-  
-  if (window.innerWidth < 991) {
-    // Quando a largura da tela for menor que 991px, resetar as alturas
-    cards.forEach(card => {
-      card.style.height = 'auto';
-    });
-    return;
+const particleCount = 100;
+const particles = [];
+const maxVelocity = 0.5;
+const mouse = { x: null, y: null, radius: 150 };
+
+window.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+});
+
+window.addEventListener('mouseleave', () => {
+  mouse.x = null;
+  mouse.y = null;
+});
+
+window.addEventListener('resize', () => {
+  width = canvas.width = canvas.offsetWidth;
+  height = canvas.height = canvas.offsetHeight;
+});
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * maxVelocity;
+    this.vy = (Math.random() - 0.5) * maxVelocity;
+    this.radius = Math.random() * 2 + 1;
   }
 
-  if (!cardAtivo) return;
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
 
-  // Resetar alturas para pegar altura real do conteúdo
-  cards.forEach(card => {
-    card.style.height = 'auto';
-  });
+    if (this.x <= 0 || this.x >= width) this.vx *= -1;
+    if (this.y <= 0 || this.y >= height) this.vy *= -1;
+  }
 
-  const alturaConteudo = cardAtivo.querySelector('.conteudo-card').offsetHeight;
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = '#c4c4c4';
+    ctx.fill();
+  }
+}
 
-  // Aplicar altura a todos
-  cards.forEach(card => {
-    card.style.height = `${alturaConteudo}px`;
+function initParticles() {
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function connectParticles() {
+  particles.forEach((p) => {
+    if (mouse.x !== null) {
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < mouse.radius) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(136, 136, 136, ${(1 - dist / mouse.radius)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
   });
 }
 
-// Escutar transição de width (quando o card se expande)
-cards.forEach(card => {
-  card.addEventListener('transitionend', (e) => {
-    if (e.propertyName === 'width') {
-      ajustarAlturaBaseadaNoAtivo();
-    }
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  particles.forEach((p) => {
+    p.update();
+    p.draw();
   });
-});
+  connectParticles();
+  requestAnimationFrame(animate);
+}
 
-// Chamar a função ao carregar e redimensionar
-window.addEventListener('load', ajustarAlturaBaseadaNoAtivo);
-window.addEventListener('resize', ajustarAlturaBaseadaNoAtivo);
+initParticles();
+animate();

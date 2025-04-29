@@ -88,7 +88,7 @@ header {
 .card-item2 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: 0.2s ease-in-out;
-  min-height: 400px;
+  min-height: 340px;
 }
 
 .icon-card {
@@ -186,6 +186,16 @@ header {
 
 .doc-btn i, .doc-btn-disabled i {
   margin-left: 10px;
+}
+
+.frase {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.6),  transparent),
+    url("../static/img/sobre/3n3vfno25j0g8.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
 }
 
 @media (max-width: 1399px) {
