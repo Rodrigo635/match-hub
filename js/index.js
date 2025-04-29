@@ -1,5 +1,4 @@
-// Carrega os cards iniciais 
-
+// Carrega os cards iniciais
 document.addEventListener("DOMContentLoaded", () => {
   fetch("thumbs.json") // Faz a requisição para o arquivo JSON
     .then((response) => response.json()) // Converte a resposta para JSON
@@ -7,31 +6,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const container = document.querySelector(".row.g-3");
       container.innerHTML = ""; // Limpa os cards existentes
 
-      // Determina o intervalo de cards a exibir (próximos 12)
+      //// Determina o intervalo de cards a exibir (próximos 12)
       const inicio = contador; // O contador define de onde começa a exibição
       const fim = Math.min(inicio + 12, data.length); // Define o fim do intervalo
       const jogosExibidos = data.slice(inicio, fim); // Exibe até o fim ou 12 itens
-      const tempoAnimacao = 300; // Tempo de animação de cada card
 
       let tempoTotal = 0;
 
       jogosExibidos.forEach((item, index) => {
         const div = document.createElement("div");
 
-        div.className = "col-12 col-md-6 col-lg-3"; // Responsividade dos cards
-        div.innerHTML = `<div class="card bg-dark h-100">
-                         <img class="rounded-3" src="${item.image}" alt="${item.game}" />
-                         <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
-                         <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6></div>`;
-
-        div.addEventListener("click", () => {
-          localStorage.setItem("selectedGame", JSON.stringify(item));
-          window.location.href = "game.html";
-        });
-
-        container.appendChild(div); // Adiciona o card ao container
+        AlterarExibicao(div, item, container);
 
         // Animação dos cards
+        const tempoAnimacao = 300; // Tempo de animação de cada card
         const posicao = index;
         const delayEmSegundos = posicao * (tempoAnimacao / 1000); // Define o delay da animação
         animarElementosDoCard(div, 1, delayEmSegundos); // Função de animação
@@ -51,22 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("jogos").addEventListener("change", AplicarFiltros);
 document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
 
-
 /* VÁRIAVEIS GLOBAIS */
 
 let contador = 0; //total de jogos que estão sendo exibidos
 let totalItens = 0; // Para armazenar o total de itens no JSON
-
-
-// Carrega os cards iniciais
-document.addEventListener("DOMContentLoaded", () => {
-  contador = 0;
-  ThumbsInciais();
-});
-
-// Eventos que ocorrem quando o usuário escolhe um jogo ou campeonato
-document.getElementById("jogos").addEventListener("change", AplicarFiltros);
-document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
 
 /* AUXILIARES */
 
@@ -114,7 +90,7 @@ function btnVerMaisDesativado() {
 }
 
 // Função responsável por criar as thumbs na tela
-function AlterarExibicao(div, item, container){
+function AlterarExibicao(div, item, container) {
   div.className = "col-12 col-md-6 col-lg-3";
   div.innerHTML = `
     <div class="card bg-dark h-100">
@@ -127,8 +103,37 @@ function AlterarExibicao(div, item, container){
 
   div.addEventListener("click", () => {
     localStorage.setItem("selectedGame", JSON.stringify(item));
-    window.location.href = "game.html"});
+    window.location.href = "game.html";
+  });
 }
+
+/* ANIMAÇÕES */
+
+// Anima os elementos do card (imagem, título do jogo, e título do campeonato)
+function animarElementosDoCard(card, modo, delay = 0) {
+  const img = card.querySelector("img");
+  const h5 = card.querySelector("h5");
+  const h6 = card.querySelector("h6");
+
+  // Limpar classes antigas
+  img.classList.remove("card-reveal-img", "card-hide-img");
+  h5.classList.remove("card-reveal-h5", "card-hide-h5");
+  h6.classList.remove("card-reveal-h6", "card-hide-h6");
+
+  if (modo === 1) {
+    // Revelar
+    img.classList.add("card-reveal-img");
+    h5.classList.add("card-reveal-h5");
+    h6.classList.add("card-reveal-h6");
+  } else if (modo === 2) {
+    // Esconder
+    img.classList.add("card-hide-img");
+    h5.classList.add("card-hide-h5");
+    h6.classList.add("card-hide-h6");
+  }
+}
+
+/* FUNÇÕES PRINCIPAIS */
 
 // Função responsável a retornar as thumbs no modo inicial
 function ThumbsInciais() {
@@ -172,33 +177,6 @@ function ThumbsInciais() {
     })
     .catch((error) => console.error("Erro ao carregar o JSON:", error));
 }
-/* ANIMAÇÕES */
-
-// Anima os elementos do card (imagem, título do jogo, e título do campeonato)
-function animarElementosDoCard(card, modo, delay = 0) {
-  const img = card.querySelector("img");
-  const h5 = card.querySelector("h5");
-  const h6 = card.querySelector("h6");
-
-  // Limpar classes antigas
-  img.classList.remove("card-reveal-img", "card-hide-img");
-  h5.classList.remove("card-reveal-h5", "card-hide-h5");
-  h6.classList.remove("card-reveal-h6", "card-hide-h6");
-
-  if (modo === 1) {
-    // Revelar
-    img.classList.add("card-reveal-img");
-    h5.classList.add("card-reveal-h5");
-    h6.classList.add("card-reveal-h6");
-  } else if (modo === 2) {
-    // Esconder
-    img.classList.add("card-hide-img");
-    h5.classList.add("card-hide-h5");
-    h6.classList.add("card-hide-h6");
-  }
-}
-
-/* FUNÇÕES PRINCIPAIS */
 
 // Função para exibir os jogos
 function ExibirJogos() {
@@ -221,8 +199,6 @@ function ExibirJogos() {
       jogosExibidos.forEach((item, index) => {
         const div = document.createElement("div");
         AlterarExibicao(div, item, container);
-
-        
 
         // Aplica animação apenas aos novos cards
         if (index >= inicio) {
@@ -330,20 +306,28 @@ function EsconderJogos() {
 // Função principal para aplicar ambos os filtros
 async function AplicarFiltros() {
   const jogo_Escolhido = document.getElementById("jogos").value.toLowerCase();
-  const campeonato_Escolhido = document.getElementById("campeonatos").value.toLowerCase();
-  
+  const campeonato_Escolhido = document
+    .getElementById("campeonatos")
+    .value.toLowerCase();
+
   try {
     // Carrega o JSON
-    const resposta = await fetch('thumbs.json');
+    const resposta = await fetch("thumbs.json");
     const dados = await resposta.json();
 
     // Filtra os dados
-    const filtrados = dados.filter(item => {
+    const filtrados = dados.filter((item) => {
       const jogo = item.game.toLowerCase();
       const campeonato = item.tournament.toLowerCase();
 
-      const jogoOK = (jogo_Escolhido === "todos" || jogo_Escolhido === "jogos") || jogo.includes(jogo_Escolhido);
-      const campeonatoOK = (campeonato_Escolhido === "todos" || campeonato_Escolhido === "campeonatos") || campeonato.includes(campeonato_Escolhido);
+      const jogoOK =
+        jogo_Escolhido === "todos" ||
+        jogo_Escolhido === "jogos" ||
+        jogo.includes(jogo_Escolhido);
+      const campeonatoOK =
+        campeonato_Escolhido === "todos" ||
+        campeonato_Escolhido === "campeonatos" ||
+        campeonato.includes(campeonato_Escolhido);
 
       return jogoOK && campeonatoOK;
     });
@@ -354,7 +338,8 @@ async function AplicarFiltros() {
     // Chama ResetarThumbs() se AMBOS os filtros estiverem no estado padrão
     if (
       (jogo_Escolhido === "todos" || jogo_Escolhido === "jogos") &&
-      (campeonato_Escolhido === "todos" || campeonato_Escolhido === "campeonatos")
+      (campeonato_Escolhido === "todos" ||
+        campeonato_Escolhido === "campeonatos")
     ) {
       ThumbsInciais(); // Exibe os primeiros 12 cards com paginação
     } else {
