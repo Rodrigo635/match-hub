@@ -1,5 +1,9 @@
 .jogo {
-    min-height: 65dvh;
+    min-height: 75dvh;
+}
+
+.game-image {
+    display: flex;
 }
 
 .btn-voltar {
