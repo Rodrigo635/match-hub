@@ -77,8 +77,8 @@
           onclick="toggleEnter('form-cadastro')">
           <h5 class="mb-0">Cadastrar</h5>
         </button>
-        <button class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white"
-           id="auth-toggle-entrar" onclick="toggleEnter('form-login')">
+        <button class="auth-toggle-btn border-0 w-100 py-3 fs-5 rounded-top-4 text-white" id="auth-toggle-entrar"
+          onclick="toggleEnter('form-login')">
           <h5 class="mb-0">Entrar</h5>
         </button>
       </div>
@@ -87,7 +87,7 @@
 
       <div class="bg-dark mb-5 w-100 h-auto rounded-bottom-4">
         <form class="form-cadastro flex-column justify-content-center align-items-center w-100" id="form-cadastro"
-           action="cadastro_concluido.html">
+          action="cadastro_concluido.html">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="w-50 rounded-5 mb-2 mt-5 justify-content-center d-md-none col-12">
               <img class="image-fluid w-100 rounded-5" src="static/icons/podio.gif" alt="Podio GIF" />
@@ -97,6 +97,14 @@
             <h2 class="text-white fw-bold text text-center mt-5 mb-3 col-12">
               Faça seu cadastro
             </h2>
+
+            <!-- Campo de nome -->
+            <div class="container-input mb-3 position-relative w-75 my-2 col-12">
+              <input type="text" class="form-control text-white rounded-2" placeholder="Digite seu nome..."
+                id="nome" required />
+
+              <label for="nome" class="form-label text-light">Nome</label>
+            </div>
 
             <!-- Campo de email -->
             <div class="container-input mb-3 position-relative w-75 my-2 col-12">

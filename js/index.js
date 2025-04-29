@@ -37,7 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Eventos que ocorrem quando o usuário escolhe um jogo ou campeonato
 document.getElementById("jogos").addEventListener("change", AplicarFiltros);
-document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
+document
+  .getElementById("campeonatos")
+  .addEventListener("change", AplicarFiltros);
 
 /* VÁRIAVEIS GLOBAIS */
 
