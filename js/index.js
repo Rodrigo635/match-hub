@@ -1,3 +1,56 @@
+// Carrega os cards iniciais 
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("thumbs.json") // Faz a requisição para o arquivo JSON
+    .then((response) => response.json()) // Converte a resposta para JSON
+    .then((data) => {
+      const container = document.querySelector(".row.g-3");
+      container.innerHTML = ""; // Limpa os cards existentes
+
+      // Determina o intervalo de cards a exibir (próximos 12)
+      const inicio = contador; // O contador define de onde começa a exibição
+      const fim = Math.min(inicio + 12, data.length); // Define o fim do intervalo
+      const jogosExibidos = data.slice(inicio, fim); // Exibe até o fim ou 12 itens
+      const tempoAnimacao = 300; // Tempo de animação de cada card
+
+      let tempoTotal = 0;
+
+      jogosExibidos.forEach((item, index) => {
+        const div = document.createElement("div");
+
+        div.className = "col-12 col-md-6 col-lg-3"; // Responsividade dos cards
+        div.innerHTML = `<div class="card bg-dark h-100">
+                         <img class="rounded-3" src="${item.image}" alt="${item.game}" />
+                         <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
+                         <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6></div>`;
+
+        div.addEventListener("click", () => {
+          localStorage.setItem("selectedGame", JSON.stringify(item));
+          window.location.href = "game.html";
+        });
+
+        container.appendChild(div); // Adiciona o card ao container
+
+        // Animação dos cards
+        const posicao = index;
+        const delayEmSegundos = posicao * (tempoAnimacao / 1000); // Define o delay da animação
+        animarElementosDoCard(div, 1, delayEmSegundos); // Função de animação
+        tempoTotal += tempoAnimacao;
+      });
+
+      // Atualiza o contador para o próximo intervalo
+      contador = fim;
+
+      btn_VerMenos.classList.add("d-none"); // Sempre exibe o botão "Ver Menos"
+      btn_VerMenos.style.cursor = "pointer"; // Altera o cursor para "pointer"
+    })
+    .catch((error) => console.error("Erro ao carregar o JSON:", error)); // Tratamento de erro
+});
+
+// Eventos que ocorrem quando o usuário escolhe um jogo ou campeonato
+document.getElementById("jogos").addEventListener("change", AplicarFiltros);
+document.getElementById("campeonatos").addEventListener("change", AplicarFiltros);
+
 
 /* VÁRIAVEIS GLOBAIS */
 
@@ -61,7 +114,7 @@ function btnVerMaisDesativado() {
 }
 
 // Função responsável por criar as thumbs na tela
-function CriarHtml(div, item, container){
+function AlterarExibicao(div, item, container){
   div.className = "col-12 col-md-6 col-lg-3";
   div.innerHTML = `
     <div class="card bg-dark h-100">
@@ -71,6 +124,10 @@ function CriarHtml(div, item, container){
     </div>
   `;
   container.appendChild(div);
+
+  div.addEventListener("click", () => {
+    localStorage.setItem("selectedGame", JSON.stringify(item));
+    window.location.href = "game.html"});
 }
 
 // Função responsável a retornar as thumbs no modo inicial
@@ -90,7 +147,7 @@ function ThumbsInciais() {
 
       jogosExibidos.forEach((item, index) => {
         const div = document.createElement("div");
-        CriarHtml(div, item, container);
+        AlterarExibicao(div, item, container);
 
         // Aplica animação
         const delayEmSegundos = index * (tempoAnimacao / 1000);
@@ -163,7 +220,9 @@ function ExibirJogos() {
 
       jogosExibidos.forEach((item, index) => {
         const div = document.createElement("div");
-        CriarHtml(div, item, container);
+        AlterarExibicao(div, item, container);
+
+        
 
         // Aplica animação apenas aos novos cards
         if (index >= inicio) {
@@ -243,7 +302,7 @@ function EsconderJogos() {
         jogosExibidos.forEach((item) => {
           const div = document.createElement("div");
           div.className = "col-12 col-md-6 col-lg-3";
-         CriarHtml(div, item, container);
+          AlterarExibicao(div, item, container);
         });
 
         // Gerencia a visibilidade dos botões
@@ -302,7 +361,7 @@ async function AplicarFiltros() {
       // Adiciona os novos cards filtrados
       filtrados.forEach((item, index) => {
         const card = document.createElement("div");
-        CriarHtml(card, item, container);
+        AlterarExibicao(card, item, container);
 
         // Aplica animação aos cards filtrados
         const tempoAnimacao = 300;
