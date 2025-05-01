@@ -21,6 +21,56 @@ header {
   background-attachment: fixed;
 }
 
+.foto-jogo-gabriel {
+  background-image: linear-gradient(
+  to right, #1e1e1e, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0.5),  rgba(30, 30, 30, 0.3)),
+  url("../static/img/contato/foto-jogo-gabriel.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;
+}
+
+.foto-jogo-miguel {
+  background-image: linear-gradient(
+  to right, #1e1e1e, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0.5),  rgba(30, 30, 30, 0.3)),
+  url("../static/img/contato/foto-jogo-miguel.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;
+}
+
+.foto-jogo-luis {
+  background-image: linear-gradient(
+  to right, #1e1e1e, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0.1), transparent),
+  url("../static/img/contato/foto-jogo-luis3.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;
+}
+
+.foto-jogo-michel {
+  background-image: linear-gradient(
+  to right, #1e1e1e, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0.5),  rgba(30, 30, 30, 0.3)),
+  url("../static/img/contato/foto-jogo-michel.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;
+}
+
+.foto-jogo-rodrigo {
+  background-image: linear-gradient(
+  to right, #1e1e1e, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0.5),  rgba(30, 30, 30, 0.3)),
+  url("../static/img/contato/foto-jogo-rodrigo.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 300px;
+}
+
 .container-imagem {
   background-image: linear-gradient(
       to right,
@@ -30,6 +80,14 @@ header {
     url("../static/img/contato/background-contato.jpg");
   width: 100%;
   min-height: 300px;
+}
+
+.imagem-bg-contato {
+  background-image: linear-gradient(
+  to top,
+  rgba(30, 30, 30, 0.6), rgba(30, 30, 30, 0.4)), url("../static/img/contato/contato-form-background.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .container-imagem > div {
@@ -42,19 +100,26 @@ header {
   background-color: var(--cor-bg);
 }
 
-/* figura */
-figure {
-  width: 100%;
-}
-
-figure img {
-  width: 100%;
-  height: 700px;
-  filter: brightness(0.7);
-  transition: 0.3s ease-in-out;
+.img-custom {
+  filter: brightness(0.8);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+  transition: 0.5s ease;
 }
 
 /* FRASE ESPECIAL */
+.frase {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.2),  transparent),
+    url("../static/img/contato/tecnologia.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 90vh;
+}
+
 .frase {
   display: flex;
   width: 100%;
@@ -62,96 +127,24 @@ figure img {
   background-color: var(--cor-cinzaEscuro);
 }
 
-/* BANNER */
-.container-card {
-  min-height: 57vh;
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: start;
-  gap: 1%;
-}
-
-.cards {
+.particles-section {
   position: relative;
-  width: 6%;
-  border-radius: 2rem;
-  background-size: cover;
-  cursor: pointer;
+  min-height: 90vh;
   overflow: hidden;
-  display: flex;
-  align-items: flex-start;
-  transition: 1s cubic-bezier(0.28, -0.03, 0, 0.99);
-  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
 }
 
-.cards::after {
-  content: "";
+.particles-section canvas#particles-canvas {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
-  background: linear-gradient(to top, rgba(19, 19, 19, 0.927), transparent);
-  pointer-events: none;
-}
-
-.cards .conteudo-card {
-  color: white;
-  display: flex;
-  justify-content: start;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-}
-
-.cards .conteudo-card .icon {
-  background: var(--cor-branco);
-  color: var(--cor-bg);
-  font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  margin: 11px;
-  border: 2px solid transparent;
-  box-sizing: border-box;
-  z-index: 1;
-  transition: 0.2s ease;
-}
-
-.cards .conteudo-card .descricao {
-  display: flex;
-  margin-left: 10px;
-  flex-direction: column;
-  overflow: hidden;
-  height: auto;
-  width: 100%;
   height: 100%;
-  transform: translateY(30px);
-  transition-delay: 0.3s;
-  transition: all 0.3s ease;
   z-index: 1;
 }
 
-input {
-  display: none;
-}
-
-input:checked + label {
-  width: 79%;
-}
-
-input:checked + label .icon {
-  display: none !important;
-}
-
-input:checked + label .descricao {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+.particles-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* FORMULÁRIO DE CONTATO */
@@ -172,7 +165,7 @@ input:checked + label .descricao {
   top: 0;
   left: 15px;
   transform: translateY(-50%);
-  background: var(--cor-bg); /* cor do input (bg escuro) */
+  background: var(--cor-bg);
   padding-inline: 5px;
 }
 
@@ -184,97 +177,39 @@ input:checked + label .descricao {
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 1399px) {
-  .cards {
-    width: 7%;
-  }
-}
-
-@media (max-width: 1199px) {
-  .cards {
-    width: 8%;
-  }
-
-  .cards .conteudo-card .icon {
-    margin-left: 8px !important; /* Mantem o icon centralizado */
-  }
-}
-
 @media (max-width: 991px) {
-  .container-card {
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-  }
-  
-  .dados {
-    display: grid;
-  }
-
-  input:checked + label {
-    width: 100%;
-    height: auto;
-  }
-
-  .cards .conteudo-card .icon {
-    margin: 10px;
-  }
-
-  .cards .conteudo-card .descricao {
-    width: 100%;
-    display: none;
-    padding: 0 10px 10px 10px;
-  }
-
-  input:checked + label .descricao {
-    display: flex !important;
-    transform: translateY(0) !important;
-  }
-
-  .cards {
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 80px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .infos {
-    order: 2;
-    width: 100%;
-  }
-
   .foto {
     display: none;
   }
 
-  figure img {
-    height: 300px;
-    filter: brightness(0.7);
-    transition: 0.3s ease-in-out;
+  .foto-jogo-gabriel {
+    background-image: linear-gradient(
+    to top, #1e1e1e, rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.6)),
+    url("../static/img/contato/foto-jogo-gabriel.png");
   }
 
-  .frase {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 10px;
+  .foto-jogo-miguel {
+    background-image: linear-gradient(
+    to top, #1e1e1e, rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.6)),
+    url("../static/img/contato/foto-jogo-miguel.png");
   }
-
-  .frase h1 {
-    font-size: 2rem;
-    text-align: center;
+  
+  .foto-jogo-luis {
+    background-image: linear-gradient(
+    to top, #1e1e1e, rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.6)),
+    url("../static/img/contato/foto-jogo-luis3.png");
   }
-
-  .frase p {
-    font-size: 1.2rem;
-    text-align: center;
+  
+  .foto-jogo-michel {
+    background-image: linear-gradient(
+    to top, #1e1e1e, rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.6)),
+    url("../static/img/contato/foto-jogo-michel.png");
+  }
+  
+  .foto-jogo-rodrigo {
+    background-image: linear-gradient(
+    to top, #1e1e1e, rgba(30, 30, 30, 0.8), rgba(30, 30, 30, 0.6)),
+    url("../static/img/contato/foto-jogo-rodrigo.png");
   }
 }
 
@@ -283,20 +218,6 @@ input:checked + label .descricao {
   /* Figura */
   figure img:hover {
     filter: brightness(1);
-  }
-
-  /* Cards */
-  input:checked + label:hover {
-    transform: scale(1);
-  }
-
-  .cards:hover {
-    transform: scale(1.02);
-    .icon {
-      background-color: var(--cor-bg);
-      color: var(--cor-branco);
-      border-color: var(--cor-branco);
-    }
   }
 
   #btn-enviar{
@@ -308,5 +229,9 @@ input:checked + label .descricao {
     border: 2px solid var(--cor-branco);
     background-color: transparent;
     color: var(--cor-branco);
+  }
+
+  .img-custom:hover {
+    filter: brightness(1);
   }
 }
