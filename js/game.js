@@ -24,8 +24,12 @@ function carregarJogo(game){
 
   const video = document.getElementById("game-video");
   const source = document.getElementById("game-video-source");
+  
   source.src = game.video; 
   video.load(); // recarrega o vídeo com a nova fonte
+
+
+
 
   // Se você quiser, pode esconder a imagem antiga
   const img = document.getElementById("game-image");
