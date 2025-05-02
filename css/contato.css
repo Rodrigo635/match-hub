@@ -176,6 +176,10 @@ header {
   top: 0;
 }
 
+#returnForm{
+  border: 2px solid white;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 991px) {
   .foto {
@@ -225,11 +229,14 @@ header {
   }
 
   /* Botão de login */
-  #btn-enviar:hover {
+  #btn-enviar:hover,
+  #returnForm:hover {
     border: 2px solid var(--cor-branco);
     background-color: transparent;
     color: var(--cor-branco);
   }
+
+  
 
   .img-custom:hover {
     filter: brightness(1);

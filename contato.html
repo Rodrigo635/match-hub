@@ -1,558 +1,854 @@
 <html>
+  <head>
+    <!-- Configurações de codificação e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <!-- Configurações de codificação e responsividade -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Links para os arquivos CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/contato.css" />
+    <link rel="stylesheet" href="./css/variaveis.css" />
 
-  <!-- Links para os arquivos CSS -->
-  <link rel="stylesheet" href="./css/bootstrap.css" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/contato.css" />
-  <link rel="stylesheet" href="./css/variaveis.css" />
+    <!-- CDN para o fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- CDN para o fontawesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Título da página -->
+    <link
+      rel="shortcut icon"
+      href="./static/icons/gamepad.png"
+      type="image/x-icon"
+    />
+    <title>MATCH HUB - Contato</title>
+  </head>
 
-  <!-- Título da página -->
-  <link rel="shortcut icon" href="./static/icons/gamepad.png" type="image/x-icon" />
-  <title>MATCH HUB - Contato</title>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3">
-      <div class="container d-flex w-100 justify-content-between">
-        <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <span class="h4 text-azul fw-bold mb-0">MATCH</span>
-          <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
-        </a>
-
-        <!-- Toggler/collapsing button -->
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="openMenu()">
-          <span class="border-0 navbar-toggler-icon" id="menu"></span>
-        </button>
-
-        <!-- Links and form -->
-        <div class="collapse nav-links navbar-collapse justify-content-end" id="mainNavbar">
-          <!-- Search form -->
-
-          <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0" role="search">
-            <input class="form-control bg-transparent text-white rounded-5 border-2" type="search"
-              placeholder="Pesquisar..." aria-label="Search" />
-            <img src="./static/icons/search.png" class="position-absolute ms-2" width="25px" height="25px"
-              alt="pesquisar">
-          </form>
-
-          <ul class="navbar-nav d-flex  mb-2 mb-lg-0 text-center md-lg-5 me-lg-3">
-            <li class="nav-item">
-              <a class="nav-link text-white px-2" href="index.html">
-                <h5 class="mb-0">Início</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white px-2" href="sobre.html">
-                <h5 class="mb-0">Sobre</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-primary px-2" href="contato.html">
-                <h5 class="mb-0">Contato</h5>
-              </a>
-            </li>
-          </ul>
-          <!-- Login button -->
-
-          <a href="cadastro.html" type="button" class="btn-entrar text-white">
-            <h5 class="mb-0">Entrar<i class="fa-solid fa-arrow-right-to-bracket"></i></h5>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container d-flex w-100 justify-content-between">
+          <!-- Brand -->
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <span class="h4 text-azul fw-bold mb-0">MATCH</span>
+            <span class="h4 fw-bold text-white mb-0 ms-1">HUB</span>
           </a>
 
+          <!-- Toggler/collapsing button -->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onclick="openMenu()"
+          >
+            <span class="border-0 navbar-toggler-icon" id="menu"></span>
+          </button>
+
+          <!-- Links and form -->
+          <div
+            class="collapse nav-links navbar-collapse justify-content-end"
+            id="mainNavbar"
+          >
+            <!-- Search form -->
+
+            <form
+              class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 mt-3 mt-lg-0"
+              role="search"
+            >
+              <input
+                class="form-control bg-transparent text-white rounded-5 border-2"
+                type="search"
+                placeholder="Pesquisar..."
+                aria-label="Search"
+              />
+              <img
+                src="./static/icons/search.png"
+                class="position-absolute ms-2"
+                width="25px"
+                height="25px"
+                alt="pesquisar"
+              />
+            </form>
+
+            <ul
+              class="navbar-nav d-flex mb-2 mb-lg-0 text-center md-lg-5 me-lg-3"
+            >
+              <li class="nav-item">
+                <a class="nav-link text-white px-2" href="index.html">
+                  <h5 class="mb-0">Início</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white px-2" href="sobre.html">
+                  <h5 class="mb-0">Sobre</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-primary px-2" href="contato.html">
+                  <h5 class="mb-0">Contato</h5>
+                </a>
+              </li>
+            </ul>
+            <!-- Login button -->
+
+            <a href="cadastro.html" type="button" class="btn-entrar text-white">
+              <h5 class="mb-0">
+                Entrar<i class="fa-solid fa-arrow-right-to-bracket"></i>
+              </h5>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="4"
+            aria-label="Slide 5"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="foto-jogo-gabriel py-md-5">
+              <div class="container descricao py-5">
+                <div class="dados row justify-content-between">
+                  <div class="infos col col-lg-9">
+                    <div class="row justify-content-md-center">
+                      <div class="foto col">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="./static/img/contato/gabriel2.png"
+                          alt="Foto do Gabriel"
+                        />
+                      </div>
+                      <div class="col-md-8 col-lg-9">
+                        <h1 class="text-azul fw-bold text-center text-lg-start">
+                          Gabriel Vilela Peixoto
+                        </h1>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Função - Desenvolvimento do site, design e
+                          documentação.
+                        </h5>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Curso - Sistemas de Informação - FIAP (1° Ano).
+                        </h5>
+                        <h5 class="text-white text-center text-lg-start">
+                          Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou
+                          formado em Técnico de Informática, nasci em Cajuru-SP
+                          mas moro em Ribeirão Preto-SP. Atualmente estou
+                          cursando Sistema de Informação pela FIAP.
+                        </h5>
+                        <h5
+                          class="text-rosa-fiap my-4 text-center text-lg-start"
+                        >
+                          RM: 562125
+                        </h5>
+                        <div
+                          class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3"
+                        >
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://github.com/gabrielvilela12"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">GitHub</h5>
+                            </a>
+                            <a
+                              href="https://github.com/gabrielvilela12"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/github.png"
+                                alt="Logo do GitHub"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">Linkedin</h5>
+                            </a>
+                            <a
+                              href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/linkedin.jpeg"
+                                alt="Logo do Linkedin"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <!-- rede -->
+                        </div>
+                        <!-- redes -->
+                      </div>
+                      <!-- col -->
+                    </div>
+                    <!-- row -->
+                  </div>
+                  <!-- infos -->
+                </div>
+                <!-- dados -->
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- foto-jogo-gabriel -->
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="foto-jogo-miguel py-md-5">
+              <div class="container descricao py-5">
+                <div class="dados row justify-content-between">
+                  <div class="infos col col-lg-9">
+                    <div class="row justify-content-md-center">
+                      <div class="foto col">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="./static/img/contato/miguel.png"
+                          alt="Foto do Miguel"
+                        />
+                      </div>
+                      <div class="col-md-8 col-lg-9">
+                        <h1 class="text-azul fw-bold text-center text-lg-start">
+                          Miguel Kawe Dos Anjos Assis
+                        </h1>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Função - Desenvolvimento do site, design e
+                          documentação.
+                        </h5>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Curso - Sistemas de Informação - FIAP (1° Ano).
+                        </h5>
+                        <h5 class="text-white text-center text-lg-start">
+                          Me chamo Miguel Kawe Dos Anjos Assis, tenho 18 anos,
+                          sou formado como Técnico em Desenvolvimento de
+                          Sistemas, nasci e moro em Caçapava-SP. Atualmente
+                          estou cursando Sistemas de Informação pela FIAP.
+                        </h5>
+                        <h5
+                          class="text-rosa-fiap my-4 text-center text-lg-start"
+                        >
+                          RM: 562196
+                        </h5>
+                        <div
+                          class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3"
+                        >
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://github.com/MiguelAssis0"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">GitHub</h5>
+                            </a>
+                            <a
+                              href="https://github.com/MiguelAssis0"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/github.png"
+                                alt="Logo do GitHub"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://www.linkedin.com/in/miguel-anjoss/"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">Linkedin</h5>
+                            </a>
+                            <a
+                              href="https://www.linkedin.com/in/miguel-anjoss/"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/linkedin.jpeg"
+                                alt="Logo do Linkedin"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <!-- rede -->
+                        </div>
+                        <!-- redes -->
+                      </div>
+                      <!-- col -->
+                    </div>
+                    <!-- row -->
+                  </div>
+                  <!-- infos -->
+                </div>
+                <!-- dados -->
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- foto-jogo-miguel -->
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="foto-jogo-luis py-md-5">
+              <div class="container descricao py-5">
+                <div class="dados row justify-content-between">
+                  <div class="infos col col-lg-9">
+                    <div class="row justify-content-md-center">
+                      <div class="foto col">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="./static/img/contato/luis.png"
+                          alt="Foto do Luis"
+                        />
+                      </div>
+                      <div class="col-md-8 col-lg-9">
+                        <h1 class="text-azul fw-bold text-center text-lg-start">
+                          Luis Gustavo Fernandes Rivalta
+                        </h1>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Função - Desenvolvimento do site, design e
+                          documentação.
+                        </h5>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Curso - Sistemas de Informação - FIAP (1° Ano).
+                        </h5>
+                        <h5 class="text-white text-center text-lg-start">
+                          Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20
+                          anos, nasci em Ribeirão Preto-SP e atualmente moro em
+                          Cajuru-SP, gosto de programar e quero ser um
+                          desenvolvedor FullStack. Atualmente curso Sistemas de
+                          informação na FIAP.
+                        </h5>
+                        <h5
+                          class="text-rosa-fiap my-4 text-center text-lg-start"
+                        >
+                          RM: 561742
+                        </h5>
+                        <div
+                          class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3"
+                        >
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://github.com/LuisRivalta"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">GitHub</h5>
+                            </a>
+                            <a
+                              href="https://github.com/LuisRivalta"
+                              target="_blank"
+                              ><img
+                                src="./static/img/contato/github.png"
+                                alt="Logo do GitHub"
+                                width="50px"
+                            /></a>
+                          </div>
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://www.linkedin.com/in/luisrivalta/"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">Linkedin</h5>
+                            </a>
+                            <a
+                              href="https://www.linkedin.com/in/luisrivalta/"
+                              target="_blank"
+                              ><img
+                                src="./static/img/contato/linkedin.jpeg"
+                                alt="Logo do Linkedin"
+                                width="50px"
+                            /></a>
+                          </div>
+                          <!-- rede -->
+                        </div>
+                        <!-- redes -->
+                      </div>
+                      <!-- col -->
+                    </div>
+                    <!-- row -->
+                  </div>
+                  <!-- infos -->
+                </div>
+                <!-- dados -->
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- foto-jogo-luis -->
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="foto-jogo-michel py-md-5">
+              <div class="container descricao py-5">
+                <div class="dados row justify-content-between">
+                  <div class="infos col col-lg-9">
+                    <div class="row justify-content-md-center">
+                      <div class="foto col">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="./static/img/contato/michel.png"
+                          alt="Foto do Michel"
+                        />
+                      </div>
+                      <div class="col-md-8 col-lg-9">
+                        <h1 class="text-azul fw-bold text-center text-lg-start">
+                          Michel Pereira Dos Santos
+                        </h1>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Função - Desenvolvimento do site, design e
+                          documentação.
+                        </h5>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Curso - Sistemas de Informação - FIAP (1° Ano).
+                        </h5>
+                        <h5 class="text-white text-center text-lg-start">
+                          Meu nome é Michel Pereira Dos Santos, tenho 21 anos e
+                          moro em São Paulo. Sou formado em Segurança da
+                          Informação pela Fatec SCS e quero me tornar um
+                          desenvolvedor backend. Atualmente curso Sistemas de
+                          Informação na FIAP.
+                        </h5>
+                        <h5
+                          class="text-rosa-fiap my-4 text-center text-lg-start"
+                        >
+                          RM: 564919
+                        </h5>
+                        <div
+                          class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3"
+                        >
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://github.com/DarkFoxV"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">GitHub</h5>
+                            </a>
+                            <a
+                              href="https://github.com/DarkFoxV"
+                              target="_blank"
+                              ><img
+                                src="./static/img/contato/github.png"
+                                alt="Logo do GitHub"
+                                width="50px"
+                            /></a>
+                          </div>
+                          <!-- rede -->
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://www.linkedin.com/in/michel-pereira42/"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">Linkedin</h5>
+                            </a>
+                            <a
+                              href="https://www.linkedin.com/in/michel-pereira42/"
+                              target="_blank"
+                              ><img
+                                src="./static/img/contato/linkedin.jpeg"
+                                alt="Logo do Linkedin"
+                                width="50px"
+                            /></a>
+                          </div>
+                          <!-- rede -->
+                        </div>
+                        <!-- redes -->
+                      </div>
+                      <!-- col -->
+                    </div>
+                    <!-- row -->
+                  </div>
+                  <!-- infos -->
+                </div>
+                <!-- dados -->
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- foto-jogo-michel -->
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <div class="foto-jogo-rodrigo py-md-5">
+              <div class="container descricao py-5">
+                <div class="dados row justify-content-between">
+                  <div class="infos col col-lg-9">
+                    <div class="row justify-content-md-center">
+                      <div class="foto col">
+                        <img
+                          class="img-fluid rounded-3"
+                          src="./static/img/contato/rodrigo.png"
+                          alt="Foto do Rodrigo"
+                        />
+                      </div>
+                      <div class="col-md-8 col-lg-9">
+                        <h1 class="text-azul fw-bold text-center text-lg-start">
+                          Rodrigo Froehlich Machado
+                        </h1>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Função - Desenvolvimento do site, design e
+                          documentação.
+                        </h5>
+                        <h5 class="text-white mb-3 text-center text-lg-start">
+                          Curso - Sistemas de Informação - FIAP (1° Ano).
+                        </h5>
+                        <h5 class="text-white text-center text-lg-start">
+                          Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou
+                          natural de São Gabriel-RS e também sou formado em
+                          inglês pela FISK. Trabalho como desenvolvedor full
+                          stack e estou cursando Sistemas de Informação na FIAP.
+                        </h5>
+                        <h5
+                          class="text-rosa-fiap my-4 text-center text-lg-start"
+                        >
+                          RM: 562196
+                        </h5>
+                        <div
+                          class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3"
+                        >
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://github.com/Rodrigo635"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">GitHub</h5>
+                            </a>
+                            <a
+                              href="https://github.com/Rodrigo635"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/github.png"
+                                alt="Logo do GitHub"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <!-- rede -->
+                          <div
+                            class="rede d-flex flex-column align-items-center"
+                          >
+                            <a
+                              href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/"
+                              target="_blank"
+                            >
+                              <h5 class="text-azul fw-bold">Linkedin</h5>
+                            </a>
+                            <a
+                              href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/"
+                              target="_blank"
+                            >
+                              <img
+                                src="./static/img/contato/linkedin.jpeg"
+                                alt="Logo do Linkedin"
+                                width="50px"
+                              />
+                            </a>
+                          </div>
+                          <!-- rede -->
+                        </div>
+                        <!-- redes -->
+                      </div>
+                      <!-- col -->
+                    </div>
+                    <!-- row -->
+                  </div>
+                  <!-- infos -->
+                </div>
+                <!-- dados -->
+              </div>
+              <!-- descricao -->
+            </div>
+            <!-- foto-jogo-rodrigo -->
+          </div>
         </div>
       </div>
-    </nav>
-  </header>
-  <main>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-          aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
-          aria-label="Slide 5"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
+      <!-- container-imagem -->
 
-          <div class="foto-jogo-gabriel py-md-5">
-            <div class="container descricao py-5">
-              <div class="dados row justify-content-between">
-                <div class="infos col col-lg-9">
-                  <div class="row justify-content-md-center">
-                    <div class="foto col">
-                      <img class="img-fluid rounded-3" src="./static/img/contato/gabriel2.png" alt="Foto do Gabriel" />
-                    </div>
-                    <div class="col-md-8 col-lg-9">
-                      <h1 class="text-azul fw-bold text-center text-lg-start">
-                        Gabriel Vilela Peixoto
-                      </h1>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Função - Desenvolvimento do site, design e documentação.
-                      </h5>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Curso - Sistemas de Informação - FIAP (1° Ano).
-                      </h5>
-                      <h5 class="text-white text-center text-lg-start">
-                        Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou
-                        formado em Técnico de Informática, nasci em Cajuru-SP
-                        mas moro em Ribeirão Preto-SP. Atualmente estou cursando
-                        Sistema de Informação pela FIAP.
-                      </h5>
-                      <h5 class="text-rosa-fiap my-4 text-center text-lg-start">
-                        RM: 562125
-                      </h5>
-                      <div
-                        class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3">
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://github.com/gabrielvilela12" target="_blank">
-                            <h5 class="text-azul fw-bold">GitHub</h5>
-                          </a>
-                          <a href="https://github.com/gabrielvilela12" target="_blank">
-                            <img src="./static/img/contato/github.png" alt="Logo do GitHub" width="50px" />
-                          </a>
-                        </div>
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/" target="_blank">
-                            <h5 class="text-azul fw-bold">Linkedin</h5>
-                          </a>
-                          <a href="https://www.linkedin.com/in/gabriel-vilela-6a02a72b7/" target="_blank">
-                            <img src="./static/img/contato/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
-                          </a>
-                        </div><!-- rede -->
-                      </div><!-- redes -->
-                    </div><!-- col -->
-                  </div><!-- row -->
-                </div><!-- infos -->
-              </div><!-- dados -->
-            </div><!-- descricao -->
-          </div><!-- foto-jogo-gabriel -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row gap-4 my-4">
+            <div class="col mb-4 mb-lg-0 order-lg-2">
+              <img
+                src="static/img/contato/place-work.jpg"
+                alt="Equipe de e-sports competindo"
+                class="img-fluid img-custom h-100"
+              />
+            </div>
 
+            <div class="col-lg-6 order-lg-1">
+              <h1 class="mb-4 text-white fw-bold">Quem somos nós?</h1>
+              <h5 class="text-white mb-4 texto-justificado">
+                Somos cinco estudantes do primeiro módulo de Sistemas de
+                Informação da FIAP e desenvolvemos este site como parte de um
+                trabalho acadêmico.
+              </h5>
+              <h5 class="text-white mb-4 texto-justificado">
+                Nosso objetivo é criar uma plataforma que centralize as datas
+                dos principais campeonatos de e-sports, facilitando o acesso às
+                informações para os fãs e entusiastas dos jogos eletrônicos.
+              </h5>
+              <h5 class="text-white mb-4 texto-justificado">
+                Este projeto reforça nossos conhecimentos em desenvolvimento
+                web, colaboração em equipe e boas práticas de tecnologia,
+                entregando uma solução útil para a comunidade gamer.
+              </h5>
+            </div>
+          </div>
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
+      </section>
 
-          <div class="foto-jogo-miguel py-md-5">
-            <div class="container descricao py-5">
-              <div class="dados row justify-content-between">
-                <div class="infos col col-lg-9">
-                  <div class="row justify-content-md-center">
-                    <div class="foto col">
-                      <img class="img-fluid rounded-3" src="./static/img/contato/miguel.png" alt="Foto do Miguel" />
-                    </div>
-                    <div class="col-md-8 col-lg-9">
-                      <h1 class="text-azul fw-bold text-center text-lg-start">
-                        Miguel Kawe Dos Anjos Assis
-                      </h1>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Função - Desenvolvimento do site, design e documentação.
-                      </h5>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Curso - Sistemas de Informação - FIAP (1° Ano).
-                      </h5>
-                      <h5 class="text-white text-center text-lg-start">
-                        Me chamo Miguel Kawe Dos Anjos Assis, tenho 18 anos, sou formado como Técnico
-                        em Desenvolvimento de Sistemas, nasci e moro em Caçapava-SP. Atualmente estou cursando Sistemas
-                        de Informação
-                        pela FIAP.
-                      </h5>
-                      <h5 class="text-rosa-fiap my-4 text-center text-lg-start">
-                        RM: 562196
-                      </h5>
-                      <div
-                        class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3">
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://github.com/MiguelAssis0" target="_blank">
-                            <h5 class="text-azul fw-bold">GitHub</h5>
-                          </a>
-                          <a href="https://github.com/MiguelAssis0" target="_blank">
-                            <img src="./static/img/contato/github.png" alt="Logo do GitHub" width="50px" />
-                          </a>
-                        </div>
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://www.linkedin.com/in/miguel-anjoss/" target="_blank">
-                            <h5 class="text-azul fw-bold">Linkedin</h5>
-                          </a>
-                          <a href="https://www.linkedin.com/in/miguel-anjoss/" target="_blank">
-                            <img src="./static/img/contato/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
-                          </a>
-                        </div><!-- rede -->
-                      </div><!-- redes -->
-                    </div><!-- col -->
-                  </div><!-- row -->
-                </div><!-- infos -->
-              </div><!-- dados -->
-            </div><!-- descricao -->
-          </div><!-- foto-jogo-miguel -->
+      <section class="particles-section frase">
+        <canvas id="particles-canvas"></canvas>
 
+        <div class="container my-5 position-relative">
+          <div class="row d-flex align-items-center h-100">
+            <div class="col-md-12 col-lg-6">
+              <h1 class="text-center text-white">
+                "A tecnologia nos une, os e-sports nos inspiram, e a inovação
+                nos move!"
+              </h1>
+            </div>
+          </div>
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
+      </section>
 
-          <div class="foto-jogo-luis py-md-5">
-            <div class="container descricao py-5">
-              <div class="dados row justify-content-between">
-                <div class="infos col col-lg-9">
-                  <div class="row justify-content-md-center">
-                    <div class="foto col">
-                      <img class="img-fluid rounded-3" src="./static/img/contato/luis.png" alt="Foto do Luis" />
-                    </div>
-                    <div class="col-md-8 col-lg-9">
-                      <h1 class="text-azul fw-bold text-center text-lg-start">
-                        Luis Gustavo Fernandes Rivalta
-                      </h1>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Função - Desenvolvimento do site, design e documentação.
-                      </h5>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Curso - Sistemas de Informação - FIAP (1° Ano).
-                      </h5>
-                      <h5 class="text-white text-center text-lg-start">
-                        Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20
-                        anos, nasci em Ribeirão Preto-SP e atualmente moro em
-                        Cajuru-SP, gosto de programar e quero ser um
-                        desenvolvedor FullStack. Atualmente curso Sistemas de
-                        informação na FIAP.
-                      </h5>
-                      <h5 class="text-rosa-fiap my-4 text-center text-lg-start">
-                        RM: 561742
-                      </h5>
-                      <div
-                        class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3">
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://github.com/LuisRivalta" target="_blank">
-                            <h5 class="text-azul fw-bold">GitHub</h5>
-                          </a>
-                          <a href="https://github.com/LuisRivalta" target="_blank"><img
-                              src="./static/img/contato/github.png" alt="Logo do GitHub" width="50px" /></a>
-                        </div>
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://www.linkedin.com/in/luisrivalta/" target="_blank">
-                            <h5 class="text-azul fw-bold">Linkedin</h5>
-                          </a>
-                          <a href="https://www.linkedin.com/in/luisrivalta/" target="_blank"><img
-                              src="./static/img/contato/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
-                        </div><!-- rede -->
-                      </div><!-- redes -->
-                    </div><!-- col -->
-                  </div><!-- row -->
-                </div><!-- infos -->
-              </div><!-- dados -->
-            </div><!-- descricao -->
-          </div><!-- foto-jogo-luis -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row gap-4 my-4">
+            <div class="col mb-4 mb-lg-0">
+              <img
+                src="static/img/contato/busca.jpg"
+                alt="Equipe de e-sports competindo"
+                class="img-fluid img-custom h-100"
+              />
+            </div>
 
+            <div class="col-lg-6">
+              <h1 class="mb-4 text-white fw-bold">O que estamos buscando?</h1>
+              <h5 class="text-white mb-4 texto-justificado">
+                Buscamos aprimorar nossas habilidades em trabalho em equipe,
+                pesquisa, design e usabilidade, garantindo que a experiência do
+                usuário seja completa.
+              </h5>
+              <h5 class="text-white mb-4 texto-justificado">
+                Nos preocupamos em criar uma interface acessível e responsiva,
+                para que os nossos usuários encontrem facilmente as informações
+                que buscam, independentemente do dispositivo utilizado.
+              </h5>
+              <h5 class="text-white mb-4 texto-justificado">
+                Exploramos conceitos de UX/UI para tornar a navegação fluida,
+                nos desafiando a pensar em soluções inovadoras para trazer mais
+                interação.
+              </h5>
+            </div>
+          </div>
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
+      </section>
 
-          <div class="foto-jogo-michel py-md-5">
-            <div class="container descricao py-5">
-              <div class="dados row justify-content-between">
-                <div class="infos col col-lg-9">
-                  <div class="row justify-content-md-center">
-                    <div class="foto col">
-                      <img class="img-fluid rounded-3" src="./static/img/contato/michel.png" alt="Foto do Michel" />
-                    </div>
-                    <div class="col-md-8 col-lg-9">
-                      <h1 class="text-azul fw-bold text-center text-lg-start">
-                        Michel Pereira Dos Santos
-                      </h1>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Função - Desenvolvimento do site, design e documentação.
-                      </h5>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Curso - Sistemas de Informação - FIAP (1° Ano).
-                      </h5>
-                      <h5 class="text-white text-center text-lg-start">
-                        Meu nome é Michel Pereira Dos Santos, tenho 21 anos e
-                        moro em São Paulo. Sou formado em Segurança da
-                        Informação pela Fatec SCS e quero me tornar
-                        um desenvolvedor backend. Atualmente curso
-                        Sistemas de Informação na FIAP.
-                      </h5>
-                      <h5 class="text-rosa-fiap my-4 text-center text-lg-start">
-                        RM: 564919
-                      </h5>
-                      <div
-                        class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3">
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://github.com/DarkFoxV" target="_blank">
-                            <h5 class="text-azul fw-bold">GitHub</h5>
-                          </a>
-                          <a href="https://github.com/DarkFoxV" target="_blank"><img
-                              src="./static/img/contato/github.png" alt="Logo do GitHub" width="50px" /></a>
-                        </div>
-                        <!-- rede -->
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://www.linkedin.com/in/michel-pereira42/" target="_blank">
-                            <h5 class="text-azul fw-bold">Linkedin</h5>
-                          </a>
-                          <a href="https://www.linkedin.com/in/michel-pereira42/" target="_blank"><img
-                              src="./static/img/contato/linkedin.jpeg" alt="Logo do Linkedin" width="50px" /></a>
-                        </div><!-- rede -->
-                      </div><!-- redes -->
-                    </div><!-- col -->
-                  </div><!-- row -->
-                </div><!-- infos -->
-              </div><!-- dados -->
-            </div><!-- descricao -->
-          </div><!-- foto-jogo-michel -->
+      <!-- Formulário de Contato -->
+      <section class="contate-nos imagem-bg-contato py-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <form
+              class="form d-none col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5"
+              id="form-contato"
+            >
+              <h1 class="fw-bold text-center mb-4">Contate-nos</h1>
 
+              <input type="hidden" name="_captcha" value="false">
+              <fieldset class="mb-4 mt-3 rounded-3">
+                <div class="container-input position-relative">
+                  <input
+                    class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2"
+                    type="text"
+                    name="nome"
+                    id="nome"
+                    required
+                    pattern="[A-Za-z\s]+"
+                    placeholder="Digite seu nome..."
+                  />
+                  <label for="nome">Nome</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <div class="container-input position-relative">
+                  <input
+                    class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2"
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder="Digite seu email..."
+                  />
+                  <label for="email">E-mail</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <div class="container-input position-relative">
+                  <label for="titulo">Título</label>
+                  <input
+                    type="text"
+                    class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2"
+                    id="titulo"
+                    required
+                    placeholder="Digite um título..."
+                    name="_subject"
+                  />
+                </div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <div class="container-input position-relative">
+                  <textarea
+                    class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2"
+                    name="mensagem"
+                    id="mensagem"
+                    rows="5"
+                    required
+                    placeholder="Digite uma mensagem..."
+                  ></textarea>
+                  <label for="mensagem">Mensagem</label>
+                </div>
+              </fieldset>
+              <button
+                type="submit"
+                class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
+                id="btn-enviar"
+              >
+                <h5 class="mb-0">Enviar</h5>
+              </button>
+            </form>
+
+            <div class="bg-dark p-5 col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5" id="success-message">
+              <h1 class="text-center">Formulário enviado com sucesso!</h1>
+              <img src="./static/icons/caveira.gif" alt="">
+              <button class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light my-4" id="returnForm">Enviar outra mensagem</button>
+            </div>
+
+          </div>
+          <!-- row -->
         </div>
-        <div class="carousel-item" data-bs-interval="10000">
+        <!-- container -->
+      </section>
+      <!-- contate-nos -->
+    </main>
 
-          <div class="foto-jogo-rodrigo py-md-5">
-            <div class="container descricao py-5">
-              <div class="dados row justify-content-between">
-                <div class="infos col col-lg-9">
-                  <div class="row justify-content-md-center">
-                    <div class="foto col">
-                      <img class="img-fluid rounded-3" src="./static/img/contato/rodrigo.png" alt="Foto do Rodrigo" />
-                    </div>
-                    <div class="col-md-8 col-lg-9">
-                      <h1 class="text-azul fw-bold text-center text-lg-start">
-                        Rodrigo Froehlich Machado
-                      </h1>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Função - Desenvolvimento do site, design e documentação.
-                      </h5>
-                      <h5 class="text-white mb-3 text-center text-lg-start">
-                        Curso - Sistemas de Informação - FIAP (1° Ano).
-                      </h5>
-                      <h5 class="text-white text-center text-lg-start">
-                        Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou
-                        natural de São Gabriel-RS e também sou formado em
-                        inglês pela FISK. Trabalho como desenvolvedor
-                        full stack e estou cursando Sistemas de Informação na
-                        FIAP.
-                      </h5>
-                      <h5 class="text-rosa-fiap my-4 text-center text-lg-start">
-                        RM: 562196
-                      </h5>
-                      <div
-                        class="redes d-flex align-items-start justify-content-center justify-content-lg-start mb-4 gap-3">
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://github.com/Rodrigo635" target="_blank">
-                            <h5 class="text-azul fw-bold">GitHub</h5>
-                          </a>
-                          <a href="https://github.com/Rodrigo635" target="_blank">
-                            <img src="./static/img/contato/github.png" alt="Logo do GitHub" width="50px" />
-                          </a>
-                        </div><!-- rede -->
-                        <div class="rede d-flex flex-column align-items-center">
-                          <a href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/" target="_blank">
-                            <h5 class="text-azul fw-bold">Linkedin</h5>
-                          </a>
-                          <a href="https://www.linkedin.com/in/rodrigo-froehlich-machado-7080b3234/" target="_blank">
-                            <img src="./static/img/contato/linkedin.jpeg" alt="Logo do Linkedin" width="50px" />
-                          </a>
-                        </div><!-- rede -->
-                      </div><!-- redes -->
-                    </div><!-- col -->
-                  </div><!-- row -->
-                </div><!-- infos -->
-              </div><!-- dados -->
-            </div><!-- descricao -->
-          </div><!-- foto-jogo-rodrigo -->
-
-        </div>
-      </div>
-    </div>
-    <!-- container-imagem -->
-
-    <section class="py-5">
+    <!-- Rodapé -->
+    <footer class="footer bg-black py-5">
       <div class="container">
-        <div class="row gap-4 my-4">
-          <div class="col mb-4 mb-lg-0 order-lg-2">
-            <img src="static/img/contato/place-work.jpg" alt="Equipe de e-sports competindo"
-              class="img-fluid img-custom h-100" />
+        <div class="row">
+          <div
+            class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0"
+          >
+            <a href="index.html" class="d-inline-block">
+              <span class="h4 text-azul fw-bold">MATCH </span>
+              <span class="h4 fw-bold text-white">HUB</span>
+            </a>
           </div>
+          <!-- Logo Section -->
 
-          <div class="col-lg-6 order-lg-1">
-            <h1 class="mb-4 text-white fw-bold">Quem somos nós?</h1>
-            <h5 class="text-white mb-4 texto-justificado">
-              Somos cinco estudantes do primeiro módulo de Sistemas de
-              Informação da FIAP e desenvolvemos este site como parte de um
-              trabalho acadêmico.
-            </h5>
-            <h5 class="text-white mb-4 texto-justificado">
-              Nosso objetivo é criar uma plataforma que
-              centralize as datas dos principais campeonatos de e-sports,
-              facilitando o acesso às informações para os fãs e entusiastas dos
-              jogos eletrônicos.
-            </h5>
-            <h5 class="text-white mb-4 texto-justificado">
-              Este projeto reforça nossos conhecimentos em
-              desenvolvimento web, colaboração em equipe e boas práticas de
-              tecnologia, entregando uma solução útil para a comunidade gamer.
-            </h5>
+          <!-- Navigation Links -->
+          <nav class="col-12 col-md-6 nav-links">
+            <ul
+              class="nav justify-content-center justify-content-md-end flex-md-row gap-2"
+            >
+              <li class="nav-item">
+                <a href="index.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Início</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="sobre.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Sobre</h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="contato.html" class="nav-link px-2 text-primary">
+                  <h5 class="mb-0">Contato</h5>
+                </a>
+              </li>
 
-          </div>
+              <li class="nav-item">
+                <a href="sitemap.html" class="nav-link px-2 text-white">
+                  <h5 class="mb-0">Mapa do site</h5>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </div>
-    </section>
 
-    <section class="particles-section frase">
-      <canvas id="particles-canvas"></canvas>
-
-      <div class="container my-5 position-relative">
-        <div class="row d-flex align-items-center h-100">
-          <div class="col-md-12 col-lg-6">
-            <h1 class="text-center text-white">
-              "A tecnologia nos une, os e-sports nos inspiram, e a inovação nos move!"
-            </h1>
+        <div class="row mt-4">
+          <div class="col-12">
+            <h6 class="text-white text-center text-md-start mb-0">
+              Todos os direitos reservados. Match Hub ©, 2025.
+            </h6>
           </div>
+          <!-- col -->
         </div>
+        <!-- row -->
       </div>
-    </section>
+      <!-- container -->
+    </footer>
 
-    <section class="py-5">
-      <div class="container">
-        <div class="row gap-4 my-4">
-          <div class="col mb-4 mb-lg-0">
-            <img src="static/img/contato/busca.jpg" alt="Equipe de e-sports competindo"
-              class="img-fluid img-custom h-100" />
-          </div>
-
-          <div class="col-lg-6">
-            <h1 class="mb-4 text-white fw-bold">O que estamos buscando?</h1>
-            <h5 class="text-white mb-4 texto-justificado">
-              Buscamos aprimorar nossas habilidades em trabalho em equipe, pesquisa,
-              design e usabilidade, garantindo que a experiência do usuário seja
-              completa.
-            </h5>
-            <h5 class="text-white mb-4 texto-justificado">
-              Nos preocupamos
-              em criar uma interface acessível e responsiva, para que os nossos
-              usuários encontrem facilmente as informações que buscam, independentemente do
-              dispositivo utilizado.
-            </h5>
-            <h5 class="text-white mb-4 texto-justificado">
-              Exploramos conceitos de UX/UI para tornar a
-              navegação fluida, nos desafiando a pensar em soluções inovadoras
-              para trazer mais interação.
-            </h5>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Formulário de Contato -->
-    <section class="contate-nos imagem-bg-contato py-5">
-      <div class="container">
-        <div class="row justify-content-center">
-          <form class="form col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5"
-            action="https://formsubmit.co/matchhub00@gmail.com" method="POST">
-            <h1 class="fw-bold text-center mb-4">Contate-nos</h1>
-
-            <fieldset class="mb-4 mt-3 rounded-3">
-              <div class="container-input position-relative">
-                <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="text"
-                  name="nome" id="nome" required pattern="[A-Za-z\s]+" placeholder="Digite seu nome..." />
-                <label for="nome">Nome</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-              <div class="container-input position-relative">
-                <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="email"
-                  name="email" id="email" required placeholder="Digite seu email..." />
-                <label for="email">E-mail</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-              <div class="container-input position-relative">
-                <label for="titulo">Título</label>
-                <input type="text" class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" id="titulo" required placeholder="Digite um título..." name="_subject" value="New submission!">
-              </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-              <div class="container-input position-relative">
-                <textarea class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" name="mensagem"
-                  id="mensagem" rows="5" required placeholder="Digite uma mensagem..."></textarea>
-                <label for="mensagem">Mensagem</label>
-              </div>
-            </fieldset>
-            <button type="submit"
-              class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
-              id="btn-enviar">
-              <h5 class="mb-0">Enviar</h5>
-            </button>
-          </form>
-        </div><!-- row -->
-      </div><!-- container -->
-    </section><!-- contate-nos -->
-  </main>
-
-  <!-- Rodapé -->
-  <footer class="footer bg-black py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-          <a href="index.html" class="d-inline-block">
-            <span class="h4 text-azul fw-bold">MATCH </span>
-            <span class="h4 fw-bold text-white">HUB</span>
-          </a>
-        </div><!-- Logo Section -->
-
-        <!-- Navigation Links -->
-        <nav class="col-12 col-md-6 nav-links">
-          <ul class="nav justify-content-center justify-content-md-end flex-md-row gap-2">
-            <li class="nav-item">
-              <a href="index.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Início</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="sobre.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Sobre</h5>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="contato.html" class="nav-link px-2 text-primary">
-                <h5 class="mb-0">Contato</h5>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="sitemap.html" class="nav-link px-2 text-white">
-                <h5 class="mb-0">Mapa do site</h5>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="row mt-4">
-        <div class="col-12">
-          <h6 class="text-white text-center text-md-start mb-0">
-            Todos os direitos reservados. Match Hub ©, 2025.
-          </h6>
-        </div><!-- col -->
-      </div><!-- row -->
-    </div><!-- container -->
-  </footer>
-
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./js/global.js"></script>
-  <script src="./js/contato.js"></script>
-</body>
-
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/global.js"></script>
+    <script src="./js/contato.js"></script>
+  </body>
 </html>
