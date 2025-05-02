@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("game-title").textContent      = game.game;
   document.getElementById("game-tournament").textContent = game.tournament;
 
-  // Aqui você define a imagem como background da seção
-  const section = document.querySelector(".jogo");
-  section.style.backgroundImage = `linear-gradient(to right, #1e1e1e, rgba(30, 30, 30, 0.9), transparent, transparent), url(${game.image})`;
-  section.style.backgroundSize = "cover";
-  section.style.backgroundPosition = "center";
-  section.style.backgroundRepeat = "no-repeat";
+  const video = document.getElementById("game-video");
+  const source = document.getElementById("game-video-source");
+  source.src = game.video; 
+  video.load(); // recarrega o vídeo com a nova fonte
 
   // Se você quiser, pode esconder a imagem antiga
   const img = document.getElementById("game-image");
