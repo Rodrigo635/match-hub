@@ -1,5 +1,5 @@
 function carregarCampeonatos(game) {
-  if(!game.jogos) return;
+  if(!game.partidas) return;
 
   const campeonato = document.getElementById("campeonato");
   const time1 = document.getElementById("time1");
@@ -8,7 +8,7 @@ function carregarCampeonatos(game) {
   const horario = document.getElementById("horario");
   const link = document.getElementById("link-jogo");
 
-  game.jogos.forEach(element => {
+  game.partidas.forEach(element => {
     campeonato.textContent = element.campeonato;
     time1.textContent = element.time1;
     time2.textContent = element.time2;

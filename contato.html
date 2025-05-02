@@ -408,7 +408,7 @@
 
     <section class="particles-section frase">
       <canvas id="particles-canvas"></canvas>
-    
+
       <div class="container my-5 position-relative">
         <div class="row d-flex align-items-center h-100">
           <div class="col-md-12 col-lg-6">
@@ -456,7 +456,8 @@
     <section class="contate-nos imagem-bg-contato py-5">
       <div class="container">
         <div class="row justify-content-center">
-          <form class="form col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5">
+          <form class="form col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5"
+            action="https://formsubmit.co/matchhub00@gmail.com" method="POST">
             <h1 class="fw-bold text-center mb-4">Contate-nos</h1>
 
             <fieldset class="mb-4 mt-3 rounded-3">
@@ -477,9 +478,8 @@
 
             <fieldset class="mb-4">
               <div class="container-input position-relative">
-                <input class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" type="text"
-                  name="titulo" id="titulo" required placeholder="Digite um título..." />
                 <label for="titulo">Título</label>
+                <input type="text" class="form-control bg-dark text-white border border-2 rounded-2 p-3 mb-2" id="titulo" required placeholder="Digite um título..." name="_subject" value="New submission!">
               </div>
             </fieldset>
 
@@ -490,7 +490,6 @@
                 <label for="mensagem">Mensagem</label>
               </div>
             </fieldset>
-
             <button type="submit"
               class="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light btn-disabled"
               id="btn-enviar">

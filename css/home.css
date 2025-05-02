@@ -85,6 +85,7 @@
   width: 79%;
 }
 
+
 .card-width .descricao{
   opacity: 1 !important;
   transform: translateY(0) !important;
@@ -359,38 +360,33 @@
 @media (min-width: 991px) {
   /* Cards */
   .cards:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
     .icon {
       background-color: var(--cor-bg);
       color: var(--cor-branco);
       border-color: var(--cor-branco);
     }
-
-    /* input:checked + label:hover {
-      transform: scale(1);
-    } */
-
-    .card-width:hover {
-      transform: scale(1);
-    }
-    
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card img:hover {
-      filter: opacity(1);
-    }
-
-    /* Ver mais */
-    .ver-mais:hover {
-      color: var(--cor-azul2) !important;
-    }
   }
 
-  @media (min-width: 991px) {
-    .card:hover {
-      transform: translateY(-10px);
-    }
+  .card-width:hover {
+    transform: scale(1);
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  .card img:hover {
+    filter: opacity(1);
+  }
+  /* Ver mais */
+  .ver-mais:hover {
+    color: var(--cor-azul2) !important;
   }
 }
+
+@media (min-width: 991px) {
+  .card:hover {
+    transform: translateY(-10px);
+  }
+}
+

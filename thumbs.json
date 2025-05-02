@@ -4,7 +4,7 @@
     "tournament": "Worlds 2025",
     "image": "./static/img/index/thumbs/lol_thumb.jpg",
     "video": "./static/videos/lol.mp4",
-    "jogos": [
+    "partidas": [
       {
         "campeonato": "Worlds 2025",
         "time1": "Team Liquid",
