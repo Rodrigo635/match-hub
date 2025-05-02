@@ -1,123 +1,132 @@
 [
-    {
-      "game": "League of Legends",
-      "tournament": "Worlds 2025",
-      "image": "./static/img/index/thumbs/lol_thumb.jpg",
-      "video": "./static/videos/lol.mp4"
-    },
-    {
-      "game": "Counter Strike 2",
-      "tournament": "Major 2025",
-      "image": "./static/img/index/thumbs/cs2_thumb.jpg",
-      "video": "./static/videos/cs2.mp4"
-    },
-    {
-      "game": "Valorant",
-      "tournament": "Champions 2025",
-      "image": "./static/img/index/thumbs/valorant_thumb.jpg",
-      "video": "./static/videos/valorant.mp4"
-    },
-    {
-      "game": "Fortnite",
-      "tournament": "World Cup 2025",
-      "image": "./static/img/index/thumbs/fortnite_thumb2.jpg",
-      "video": "./static/videos/fortnite.mp4"
-    },
-    {
-      "game": "EA Sports FC 24",
-      "tournament": "Global Series 2025",
-      "image": "./static/img/index/thumbs/fifa24_thumb.jpg",
-      "video": "./static/videos/eaSports.mp4"
-    },
-    {
-      "game": "EVO",
-      "tournament": "Championship Series 2025",
-      "image": "./static/img/index/thumbs/evo_thumb.jpg",
-      "video": "./static/videos/EVO.mp4"
-    },
-    {
-      "game": "Street Fighter 6",
-      "tournament": "Capcom Cup 11",
-      "image": "./static/img/index/thumbs/street_fighter6_thumb.jpg",
-      "video": "./static/videos/StreetFighter.mp4"
-    },
-    {
-      "game": "Mortal Kombat 1",
-      "tournament": "Pro Kompetition 2025",
-      "image": "./static/img/index/thumbs/mk1_thumb.jpg",
-      "video": "./static/videos/MortalKombat.mp4"
-    },
-    {
-      "game": "Tekken 8",
-      "tournament": "World Tour Finals 2025",
-      "image": "./static/img/index/thumbs/tekken8_thumb.jpg",
-      "video": "./static/videos/Tekken.mp4"
-    },
-    {
-      "game": "Free Fire",
-      "tournament": "Worlds 2025",
-      "image": "./static/img/index/thumbs/free_fire_thumb.jpg",
-      "video": "./static/videos/FreeFire.mp4"
-    },
-    {
-      "game": "PUBG Battlegrounds",
-      "tournament": "Global Series 7 2025",
-      "image": "./static/img/index/thumbs/pubg_thumb.jpg",
-      "video": "./static/videos/pubgBattlegrounds.mp4"
-    },
-    {
-      "game": "PUBG Mobile",
-      "tournament": "Global Championship 2025",
-      "image": "./static/img/index/thumbs/pubg_mobile_thumb.jpg",
-      "video": "./static/videos/pubgMobile.mp4"
-    },
-    {
-      "game": "Apex Legends",
-      "tournament": "ALGS 2025",
-      "image": "./static/img/index/thumbs/apexlegend.jpg",
-      "video": "./static/videos/apex.mp4"
-    },
-    {
-      "game": "Rocket League",
-      "tournament": "World Championship",
-      "image": "./static/img/index/thumbs/rocketleague.jpg",
-      "video": "./static/videos/rocketLeague.mp4"
-    },
-    {
-      "game": "Overwatch 2",
-      "tournament": "Overwatch League 2025",
-      "image": "./static/img/index/thumbs/overwatch2.jpg",
-      "video": "./static/videos/overwatch.mp4"
-    },
-    {
-      "game": "Dota 2",
-      "tournament": "The International 2025",
-      "image": "./static/img/index/thumbs/dota2.jpg",
-      "video": "./static/videos/dota2.mp4"
-    },
-    {
-      "game": "Call of Duty: Warzone",
-      "tournament": "World Series 2025",
-      "image": "./static/img/index/thumbs/codwarzone.jpg",
-      "video": "./static/videos/warzone.mp4"
-    },
-    {
-      "game": "Brawlhalla",
-      "tournament": "BCX 2025",
-      "image": "./static/img/index/thumbs/brawlhalla.jpg",
-      "video": "./static/videos/brawlhalla.mp4"
-    },
-    {
-      "game": "Clash Royale",
-      "tournament": "Clash Royale League 2025",
-      "image": "./static/img/index/thumbs/clashroyale.jpg",
-      "video": "./static/videos/clashRoyale.mp4"
-    },
-    {
-      "game": "Rainbow Six Siege",
-      "tournament": "Six Invitational 2025",
-      "image": "./static/img/index/thumbs/rainbowsixsiege.jpg",
-      "video": "./static/videos/rainbowSix.mp4"
-    }
-  ]
-  
+  {
+    "game": "League of Legends",
+    "tournament": "Worlds 2025",
+    "image": "./static/img/index/thumbs/lol_thumb.jpg",
+    "video": "./static/videos/lol.mp4",
+    "jogos": [
+      {
+        "campeonato": "Worlds 2025",
+        "time1": "Team Liquid",
+        "time2": "TSM",
+        "data": "05/05/2023",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/leagueoflegends"
+      }
+    ]
+  },
+  {
+    "game": "Counter Strike 2",
+    "tournament": "Major 2025",
+    "image": "./static/img/index/thumbs/cs2_thumb.jpg",
+    "video": "./static/videos/cs2.mp4"
+  },
+  {
+    "game": "Valorant",
+    "tournament": "Champions 2025",
+    "image": "./static/img/index/thumbs/valorant_thumb.jpg",
+    "video": "./static/videos/valorant.mp4"
+  },
+  {
+    "game": "Fortnite",
+    "tournament": "World Cup 2025",
+    "image": "./static/img/index/thumbs/fortnite_thumb2.jpg",
+    "video": "./static/videos/fortnite.mp4"
+  },
+  {
+    "game": "EA Sports FC 24",
+    "tournament": "Global Series 2025",
+    "image": "./static/img/index/thumbs/fifa24_thumb.jpg",
+    "video": "./static/videos/eaSports.mp4"
+  },
+  {
+    "game": "EVO",
+    "tournament": "Championship Series 2025",
+    "image": "./static/img/index/thumbs/evo_thumb.jpg",
+    "video": "./static/videos/EVO.mp4"
+  },
+  {
+    "game": "Street Fighter 6",
+    "tournament": "Capcom Cup 11",
+    "image": "./static/img/index/thumbs/street_fighter6_thumb.jpg",
+    "video": "./static/videos/StreetFighter.mp4"
+  },
+  {
+    "game": "Mortal Kombat 1",
+    "tournament": "Pro Kompetition 2025",
+    "image": "./static/img/index/thumbs/mk1_thumb.jpg",
+    "video": "./static/videos/MortalKombat.mp4"
+  },
+  {
+    "game": "Tekken 8",
+    "tournament": "World Tour Finals 2025",
+    "image": "./static/img/index/thumbs/tekken8_thumb.jpg",
+    "video": "./static/videos/Tekken.mp4"
+  },
+  {
+    "game": "Free Fire",
+    "tournament": "Worlds 2025",
+    "image": "./static/img/index/thumbs/free_fire_thumb.jpg",
+    "video": "./static/videos/FreeFire.mp4"
+  },
+  {
+    "game": "PUBG Battlegrounds",
+    "tournament": "Global Series 7 2025",
+    "image": "./static/img/index/thumbs/pubg_thumb.jpg",
+    "video": "./static/videos/pubgBattlegrounds.mp4"
+  },
+  {
+    "game": "PUBG Mobile",
+    "tournament": "Global Championship 2025",
+    "image": "./static/img/index/thumbs/pubg_mobile_thumb.jpg",
+    "video": "./static/videos/pubgMobile.mp4"
+  },
+  {
+    "game": "Apex Legends",
+    "tournament": "ALGS 2025",
+    "image": "./static/img/index/thumbs/apexlegend.jpg",
+    "video": "./static/videos/apex.mp4"
+  },
+  {
+    "game": "Rocket League",
+    "tournament": "World Championship",
+    "image": "./static/img/index/thumbs/rocketleague.jpg",
+    "video": "./static/videos/rocketLeague.mp4"
+  },
+  {
+    "game": "Overwatch 2",
+    "tournament": "Overwatch League 2025",
+    "image": "./static/img/index/thumbs/overwatch2.jpg",
+    "video": "./static/videos/overwatch.mp4"
+  },
+  {
+    "game": "Dota 2",
+    "tournament": "The International 2025",
+    "image": "./static/img/index/thumbs/dota2.jpg",
+    "video": "./static/videos/dota2.mp4"
+  },
+  {
+    "game": "Call of Duty: Warzone",
+    "tournament": "World Series 2025",
+    "image": "./static/img/index/thumbs/codwarzone.jpg",
+    "video": "./static/videos/warzone.mp4"
+  },
+  {
+    "game": "Brawlhalla",
+    "tournament": "BCX 2025",
+    "image": "./static/img/index/thumbs/brawlhalla.jpg",
+    "video": "./static/videos/brawlhalla.mp4"
+  },
+  {
+    "game": "Clash Royale",
+    "tournament": "Clash Royale League 2025",
+    "image": "./static/img/index/thumbs/clashroyale.jpg",
+    "video": "./static/videos/clashRoyale.mp4"
+  },
+  {
+    "game": "Rainbow Six Siege",
+    "tournament": "Six Invitational 2025",
+    "image": "./static/img/index/thumbs/rainbowsixsiege.jpg",
+    "video": "./static/videos/rainbowSix.mp4"
+  }
+]
