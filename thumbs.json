@@ -4,14 +4,63 @@
     "tournament": "Worlds 2025",
     "image": "./static/img/index/thumbs/lol_thumb.jpg",
     "video": "./static/videos/lol.mp4",
+    "gif": "./static/gifs/lol.gif",
+    "descricao": "O LOL (League of legends) é um MOBA (Multiplayer Online Battle Arena), onde duas equipes de 5 jogadores se enfrentam, podendo escolher entre mais de 170 campeões para jogar, com o objetivo de destruir o Nexus da equipe adversária.",
+    "campeonatos": ["LCK", "LPL", "LCP"],
+    "tags": ["MOBA", "RPG", "Estratégia", "Competitivo", "Multiplayer"],
+    "lancamento": "27/10/2009",
+    "genero": "MOBA",
+    "desenvolvedora": "Riot Games",
+    "distribuidora": "Riot Games",
+    "idade_recomendada": 13,
     "partidas": [
       {
-        "campeonato": "Worlds 2025",
-        "time1": "Team Liquid",
-        "time2": "TSM",
-        "data": "05/05/2023",
-        "horario": "19:00",
+        "campeonato": "LCK",
+        "time1": "KT",
+        "time2": "T1",
+        "data": "04/05/2025",
+        "horario": "03:00",
         "link": "https://www.twitch.tv/leagueoflegends"
+      },
+      {
+        "campeonato": "LPL",
+        "time1": "WE",
+        "time2":"NIP",
+        "data":"04/05/2025",
+        "horario":"04:00",
+        "link": "https://www.twitch.tv/leagueoflegends"
+      },
+      {
+        "campeonato": "LCK",
+        "time1":"DRX",
+        "time2":"BFX",
+        "data":"04/05/2025",
+        "horario":"05:00",
+         "link": "https://www.twitch.tv/leagueoflegends"
+      },
+      {
+        "campeonato": "LPL",
+        "time1":"OMG",
+        "time2":"UP",
+        "data":"04/05/2025",
+        "horario":"06:00",
+        "link": "https://www.twitch.tv/leagueoflegends"
+      },
+      {
+        "campeonato": "LCP",
+        "time1":"CHF",
+        "time2":"MVKE",
+        "data":"04/05/2025",
+        "horario":"06:30",
+        "link": "https://www.twitch.tv/leagueoflegends"
+      },
+      {
+        "campeonato": "LPL",
+        "time1":"TES",
+        "time2":"AL",
+        "data":"04/05/2025",
+        "horario":"08:00",
+         "link": "https://www.twitch.tv/leagueoflegends"
       }
     ]
   },
@@ -19,114 +68,1092 @@
     "game": "Counter Strike 2",
     "tournament": "Major 2025",
     "image": "./static/img/index/thumbs/cs2_thumb.jpg",
-    "video": "./static/videos/cs2.mp4"
+    "video": "./static/videos/cs2.mp4",
+    "descricao": "CS2 é um jogo FPS lançado em 2023 pela Valve, onde o objetivo é proteger o local ou atacá-lo. Ele veio para substituir o CSGO trazendo uma melhoria gráfica e novas funcionalidade, deixando o jogo muito mais competitivo.",
+    "campeonatos": ["MESA Nomadic Masters Spring 2025", "ESL Challenger League Season 49 Europe"],
+    "tags": ["FPS", "Multijogador", "Tiro", "Competitivo", "CS2"],
+    "lancamento": "27/09/2023",
+    "genero": "FPS",
+    "desenvolvedora": "Valve Corporation",
+    "distribuidora": "Valve Corporation",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "MESA Nomadic Masters Spring 2025",
+        "time1": "B8",
+        "time2": "BIG",
+        "data": "03/05/2025",
+        "horario": "04:00",
+        "link": " "
+      },
+      {
+        "campeonato": "MESA Nomadic Masters Spring 2025",
+        "time1": "Lynn Vision",
+        "time2": "TYLOO",
+        "data": "03/05/2025",
+        "horario": "06:30",
+        "link": " "
+      },
+      {
+        "campeonato": "MESA Nomadic Masters Spring 2025",
+        "time1": "HEROIC",
+        "time2": "Chinggins Warriors",
+        "data": "03/05/2025",
+        "horario": "07:00",
+        "link": " "
+      },
+      {
+        "campeonato": "MESA Nomadic Masters Spring 2025",
+        "time1": "OG",
+        "time2": "Spirit Acade",
+        "data": "03/05/2025",
+        "horario": "08:30",
+        "link": " "
+      },
+      {
+        "campeonato": "ESL Challenger League Season 49 Europe",
+        "time1": "B8",
+        "time2": "Zero Tenacity",
+        "data": "06/05/2025",
+        "horario": "15:00",
+        "link": " "
+      }
+    ]
   },
   {
     "game": "Valorant",
     "tournament": "Champions 2025",
     "image": "./static/img/index/thumbs/valorant_thumb.jpg",
-    "video": "./static/videos/valorant.mp4"
+    "video": "./static/videos/valorant.mp4",
+    "descricao": "Valorant é um FPS tático desenvolvido pela Riot Games, lançado em 2020. Equipes de 5 jogadores competem em modos como Bomb Defusal, usando agentes com habilidades únicas. Disponível gratuitamente no PC.",
+    "campeonatos": ["VCT Americas", "VCT Pacific", "VCT CN", "Challengers DACH", "Challengers France"],
+    "tags": ["FPS", "Multijogador", "Tiro", "Competitivo", "VCT", "RiotGames"],
+    "lancamento": "02/06/2020",
+    "genero": "FPS",
+    "desenvolvedora": "Riot Games",
+    "distribuidora": "Riot Games",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "VCT Americas",
+        "time1": "SEN",
+        "time2": "MIBR",
+        "data": "02/05/2023",
+        "horario": "18:00",
+        "link": " "
+      },
+      {
+        "campeonato": "VCT Americas",
+        "time1": "EG",
+        "time2": "G2",
+        "data": "02/05/2023",
+        "horario": "21:00",
+        "link": " "
+      },
+      {
+        "campeonato": "VCT Pacific",
+        "time1": "TLN",
+        "time2": "NS",
+        "data": "03/05/2023",
+        "horario": "05:00",
+        "link": " "
+      },
+      {
+        "campeonato": "VCT CN",
+        "time1": "BLG",
+        "time2": "WOL",
+        "data": "03/05/2023",
+        "horario": "06:00",
+        "link": " "
+      },
+      {
+        "campeonato": "Challengers DACH",
+        "time1": "CGN",
+        "time2": "MOUZ",
+        "data": "03/05/2023",
+        "horario": "10:00",
+        "link": " "
+      },
+      {
+        "campeonato": "Challengers France",
+        "time1": "VLNT",
+        "time2": "KCBS",
+        "data": "03/05/2023",
+        "horario": "12:00",
+        "link": " "
+      }
+    ]
   },
   {
     "game": "Fortnite",
     "tournament": "World Cup 2025",
     "image": "./static/img/index/thumbs/fortnite_thumb2.jpg",
-    "video": "./static/videos/fortnite.mp4"
+    "video": "./static/videos/fortnite.mp4",
+    "descricao": "Fortnite é um jogo de batalha royale desenvolvido pela Epic Games, lançado em 2017. Oferece combate, construção e exploração, disponível gratuitamente em diversas plataformas.",
+    "campeonatos": ["Fortnite World Cup 2025"],
+    "tags": ["BattleRoyale", "FNCS", "EpicGames", "Competitivo"],
+    "lancamento": "25/07/2017",
+    "genero": "Battle Royale",
+    "desenvolvedora": "Epic Games",
+    "distribuidora": "Epic Games",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Fortnite World Cup 2025",
+        "time1": "Ninja",
+        "time2": "Bugha",
+        "data": "10/07/2025",
+        "horario": "17:00",
+        "link": "https://www.twitch.tv/fortnite"
+      },
+      {
+        "campeonato": "Fortnite World Cup 2025",
+        "time1": "Mongraal",
+        "time2": "Benjyfishy",
+        "data": "11/07/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/fortnite"
+      },
+      {
+        "campeonato": "Fortnite World Cup 2025",
+        "time1": "Aqua",
+        "time2": "Skite",
+        "data": "12/07/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/fortnite"
+      },
+      {
+        "campeonato": "Fortnite World Cup 2025",
+        "time1": "Clix",
+        "time2": "Mero",
+        "data": "13/07/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/fortnite"
+      },
+      {
+        "campeonato": "Fortnite World Cup 2025",
+        "time1": "Tfue",
+        "time2": "CourageJD",
+        "data": "14/07/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/fortnite"
+      }
+    ]
   },
   {
     "game": "EA Sports FC 24",
     "tournament": "Global Series 2025",
     "image": "./static/img/index/thumbs/fifa24_thumb.jpg",
-    "video": "./static/videos/eaSports.mp4"
+    "video": "./static/videos/eaSports.mp4",
+    "descricao": "EA Sports FC 24 é um jogo de futebol desenvolvido pela EA Sports, lançado em 2023. Oferece jogabilidade realista, modos variados e equipes licenciadas, substituindo a franquia FIFA.",
+    "campeonatos": ["EA SPORTS FC 25 Championship 2025"],
+    "tags": ["Futebol", "Fifa", "FC24", "EASports"],
+    "lancamento": "29/09/2023",
+    "genero": "Esporte",
+    "desenvolvedora": "EA Canada e EA Romania",
+    "distribuidora": "Eletronic Arts.",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "EA SPORTS FC 25 Championship 2025",
+        "time1": "Paris Saint-Germain",
+        "time2": "Manchester City",
+        "data": "15/06/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/easportsfc"
+      },
+      {
+        "campeonato": "EA SPORTS FC 25 Championship 2025",
+        "time1": "Bayern Munich",
+        "time2": "Liverpool",
+        "data": "16/06/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/easportsfc"
+      },
+      {
+        "campeonato": "EA SPORTS FC 25 Championship 2025",
+        "time1": "Real Madrid",
+        "time2": "Juventus",
+        "data": "17/06/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/easportsfc"
+      },
+      {
+        "campeonato": "EA SPORTS FC 25 Championship 2025",
+        "time1": "Chelsea",
+        "time2": "Arsenal",
+        "data": "18/06/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/easportsfc"
+      },
+      {
+        "campeonato": "EA SPORTS FC 25 Championship 2025",
+        "time1": "Barcelona",
+        "time2": "AC Milan",
+        "data": "19/06/2025",
+        "horario": "22:00",
+        "link": "https://www.twitch.tv/easportsfc"
+      }
+    ]
   },
   {
     "game": "EVO",
     "tournament": "Championship Series 2025",
     "image": "./static/img/index/thumbs/evo_thumb.jpg",
-    "video": "./static/videos/EVO.mp4"
+    "video": "./static/videos/EVO.mp4",
+    "descricao": "O EVO (Evolution Championship Series) é o maior torneio de jogos de luta do mundo, reunindo competidores globais para disputar títulos em jogos como Street Fighter e Tekken.",
+    "campeonatos": ["EVO 2025"],
+    "tags": ["EVO", "Takken8", "StreetFighter6", "FGC", "FGCBrasil"],
+    "lancamento": "1996",
+    "genero": "Luta",
+    "desenvolvedora": "Endeavor",
+    "distribuidora": "Endeavor",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "EVO 2025",
+        "time1": "Daigo Umehara",
+        "time2": "Tokido",
+        "data": "25/07/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/evo"
+      },
+      {
+        "campeonato": "EVO 2025",
+        "time1": "Smug",
+        "time2": "Punk",
+        "data": "26/07/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/evo"
+      },
+      {
+        "campeonato": "EVO 2025",
+        "time1": "MenaRD",
+        "time2": "Fujimura",
+        "data": "27/07/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/evo"
+      },
+      {
+        "campeonato": "EVO 2025",
+        "time1": "Kawano",
+        "time2": "Xian",
+        "data": "28/07/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/evo"
+      },
+      {
+        "campeonato": "EVO 2025",
+        "time1": "Shadaloo",
+        "time2": "iDom",
+        "data": "29/07/2025",
+        "horario": "22:00",
+        "link": "https://www.twitch.tv/evo"
+      }
+    ]
   },
   {
     "game": "Street Fighter 6",
     "tournament": "Capcom Cup 11",
     "image": "./static/img/index/thumbs/street_fighter6_thumb.jpg",
-    "video": "./static/videos/StreetFighter.mp4"
+    "video": "./static/videos/StreetFighter.mp4",
+    "descricao": "Street Fighter 6 é um jogo de luta com 18 personagens e três modos de controle (Clássico, Moderno e Dinâmico). O sistema Drive Gauge adiciona técnicas especiais às batalhas. Inclui modos como World Tour, para explorar com um avatar, e Battle Hub, para competir online. Disponível para PS4, PS5, Xbox e PC.",
+    "campeonatos": ["Street Fighter 6 World Championship 2025"],
+    "tags": ["SF6", "Capcom", "CapcomCup", "FGCBrasil"],
+    "lancamento": "02/07/2023",
+    "genero": "Luta",
+    "desenvolvedora": "Capcom",
+    "distribuidora": "Capcom",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Street Fighter 6 World Championship 2025",
+        "time1": "Daigo Umehara",
+        "time2": "Punk",
+        "data": "15/06/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/streetfighter"
+      },
+      {
+        "campeonato": "Street Fighter 6 World Championship 2025",
+        "time1": "Tokido",
+        "time2": "iDom",
+        "data": "16/06/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/streetfighter"
+      },
+      {
+        "campeonato": "Street Fighter 6 World Championship 2025",
+        "time1": "Smug",
+        "time2": "Xian",
+        "data": "17/06/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/streetfighter"
+      },
+      {
+        "campeonato": "Street Fighter 6 World Championship 2025",
+        "time1": "Fujimura",
+        "time2": "Kawano",
+        "data": "18/06/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/streetfighter"
+      },
+      {
+        "campeonato": "Street Fighter 6 World Championship 2025",
+        "time1": "MenaRD",
+        "time2": "Shadaloo",
+        "data": "19/06/2025",
+        "horario": "22:00",
+        "link": "https://www.twitch.tv/streetfighter"
+      }
+    ]
   },
   {
     "game": "Mortal Kombat 1",
     "tournament": "Pro Kompetition 2025",
     "image": "./static/img/index/thumbs/mk1_thumb.jpg",
-    "video": "./static/videos/MortalKombat.mp4"
+    "video": "./static/videos/MortalKombat.mp4",
+    "descricao": "Mortal Kombat 1 é um jogo de luta que reinicia a famosa franquia, trazendo uma nova linha do tempo criada por Liu Kang. O jogo introduz o sistema de Kameo Fighters, onde personagens assistentes ajudam durante os combates. Ele oferece modos como o tradicional modo história, Invasões e Kombat League para disputas online. Com gráficos incríveis e jogabilidade refinada, Mortal Kombat 1 está disponível para PS5, Xbox Series X/S, Nintendo Switch e PC.",
+    "campeonatos": ["Mortal Kombat 1 World Championship 2025"],
+    "tags": ["MK1", "Luta", "Subzero", "Scorpion"],
+    "lancamento": "19/09/2023",
+    "genero": "Luta",
+    "desenvolvedora": "NetherRealm Studios",
+    "distribuidora": "Warner Bros. Games",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Mortal Kombat 1 World Championship 2025",
+        "time1": "SonicFox",
+        "time2": "Tekken Master",
+        "data": "10/06/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/mortalkombat"
+      },
+      {
+        "campeonato": "Mortal Kombat 1 World Championship 2025",
+        "time1": "Rewind",
+        "time2": "Scar",
+        "data": "11/06/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/mortalkombat"
+      },
+      {
+        "campeonato": "Mortal Kombat 1 World Championship 2025",
+        "time1": "Dragon",
+        "time2": "Ninjakilla",
+        "data": "12/06/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/mortalkombat"
+      },
+      {
+        "campeonato": "Mortal Kombat 1 World Championship 2025",
+        "time1": "DizzyTT",
+        "time2": "KillerKai",
+        "data": "13/06/2025",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/mortalkombat"
+      },
+      {
+        "campeonato": "Mortal Kombat 1 World Championship 2025",
+        "time1": "FoxyGrandpa",
+        "time2": "ForeverKing",
+        "data": "14/06/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/mortalkombat"
+      }
+    ]
   },
   {
     "game": "Tekken 8",
     "tournament": "World Tour Finals 2025",
     "image": "./static/img/index/thumbs/tekken8_thumb.jpg",
-    "video": "./static/videos/Tekken.mp4"
+    "video": "./static/videos/Tekken.mp4",
+    "descricao": "Tekken 8 é um jogo de luta 3D onde Jin Kazama e Kazuya Mishima continuam sua rivalidade. O jogo traz novos sistemas como o 'Heat', que dá poder extra aos lutadores, e o 'Heat Smash'. Com mais de 30 personagens e modos como o 'Arcade Quest', Tekken 8 oferece combates intensos e gráficos incríveis, além de suporte a crossplay entre plataformas.",
+    "campeonatos": ["Tekken 8 World Championship 2025"],
+    "tags": ["Luta", "TK8", "FGC", "TekkenBrasil"],
+    "lancamento": "26/01/2024",
+    "genero": "Luta",
+    "desenvolvedora": "Bandai Namco Studios",
+    "distribuidora": "Bandai Namco Entertainment",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Tekken 8 World Championship 2025",
+        "time1": "Arslan Ash",
+        "time2": "Knee",
+        "data": "15/05/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/tekken"
+      },
+      {
+        "campeonato": "Tekken 8 World Championship 2025",
+        "time1": "Ulsan",
+        "time2": "JDCR",
+        "data": "16/05/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/tekken"
+      },
+      {
+        "campeonato": "Tekken 8 World Championship 2025",
+        "time1": "Qudans",
+        "time2": "Katarina",
+        "data": "17/05/2025",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/tekken"
+      },
+      {
+        "campeonato": "Tekken 8 World Championship 2025",
+        "time1": "Chanel",
+        "time2": "Nobi",
+        "data": "18/05/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/tekken"
+      },
+      {
+        "campeonato": "Tekken 8 World Championship 2025",
+        "time1": "Saint",
+        "time2": "LowHigh",
+        "data": "19/05/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/tekken"
+      }
+    ]
   },
   {
     "game": "Free Fire",
     "tournament": "Worlds 2025",
     "image": "./static/img/index/thumbs/free_fire_thumb.jpg",
-    "video": "./static/videos/FreeFire.mp4"
+    "video": "./static/videos/FreeFire.mp4",
+    "descricao": "Free Fire é um jogo de battle royale mobile, onde até 50 jogadores são lançados em uma ilha e competem para ser o último sobrevivente. Os jogadores podem escolher entre diferentes personagens com habilidades únicas, coletar armas, armaduras e suprimentos enquanto exploram o mapa. O jogo é rápido, com partidas de cerca de 10 minutos, e a área segura vai encolhendo ao longo do tempo, forçando os jogadores a se enfrentarem em espaços mais apertados. Free Fire é conhecido pela sua jogabilidade acessível e estilo visual vibrante.",
+    "campeonatos": ["Free Fire World Series 2025"],
+    "tags": ["BattleRoyale", "Competitivo", "Tiro", "Squad", "Garena"],
+    "lancamento": "04/12/2017",
+    "genero": "Battle Royale",
+    "desenvolvedora": "111 Dots Studio",
+    "distribuidora": "Garena",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Free Fire World Series 2025",
+        "time1": "LOUD",
+        "time2": "Team Liquid",
+        "data": "10/05/2023",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/freefire"
+      },
+      {
+        "campeonato": "Free Fire World Series 2025",
+        "time1": "INTZ",
+        "time2": "Gamelanders",
+        "data": "11/05/2023",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/freefire"
+      },
+      {
+        "campeonato": "Free Fire World Series 2025",
+        "time1": "Keyd Stars",
+        "time2": "Red Canids",
+        "data": "12/05/2023",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/freefire"
+      },
+      {
+        "campeonato": "Free Fire World Series 2025",
+        "time1": "Fluxo",
+        "time2": "Black Dragons",
+        "data": "13/05/2023",
+        "horario": "19:30",
+        "link": "https://www.twitch.tv/freefire"
+      },
+      {
+        "campeonato": "Free Fire World Series 2025",
+        "time1": "Los Grandes",
+        "time2": "FURIA",
+        "data": "14/05/2023",
+        "horario": "20:30",
+        "link": "https://www.twitch.tv/freefire"
+      }
+    ]
   },
   {
     "game": "PUBG Battlegrounds",
     "tournament": "Global Series 7 2025",
     "image": "./static/img/index/thumbs/pubg_thumb.jpg",
-    "video": "./static/videos/pubgBattlegrounds.mp4"
+    "video": "./static/videos/pubgBattlegrounds.mp4",
+    "descricao": "PUBG Battlegrounds é um jogo de battle royale onde até 100 jogadores são lançados em uma ilha e competem para ser o último sobrevivente. Os jogadores devem explorar o mapa, coletar armas, armaduras e recursos enquanto enfrentam outros jogadores, com a área de jogo encolhendo gradualmente. O objetivo é sobreviver, eliminar adversários e dominar a batalha em um cenário realista e dinâmico. O jogo oferece modos solo, duo ou em equipes, com foco em estratégias de combate e sobrevivência.",
+    "campeonatos": ["PUBG Global Championship 2025"],
+    "tags": ["BattleRoyale", "Competitivo", "Tiro", "Squad", "PUBG"],
+    "lancamento": "23/03/2017",
+    "genero": "Battle Royale",
+    "desenvolvedora": "PUBG Corporation",
+    "distribuidora": "TKrafton",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Team Liquid",
+        "time2": "TSM",
+        "data": "05/05/2023",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "FaZe Clan",
+        "time2": "Natus Vincere",
+        "data": "06/05/2023",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Gen.G Esports",
+        "time2": "G2 Esports",
+        "data": "07/05/2023",
+        "horario": "21:30",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Cloud9",
+        "time2": "T1",
+        "data": "08/05/2023",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "XSET",
+        "time2": "Four Angry Men",
+        "data": "09/05/2023",
+        "horario": "17:00",
+        "link": "https://www.twitch.tv/pubg"
+      }
+    ]
   },
   {
     "game": "PUBG Mobile",
     "tournament": "Global Championship 2025",
     "image": "./static/img/index/thumbs/pubg_mobile_thumb.jpg",
-    "video": "./static/videos/pubgMobile.mp4"
+    "video": "./static/videos/pubgMobile.mp4",
+    "descricao": "PUBG Mobile é um jogo de battle royale onde até 100 jogadores competem para ser o último sobrevivente em um vasto mapa. Os jogadores começam sem equipamentos e devem procurar por armas, armaduras e suprimentos enquanto enfrentam outros jogadores. O mapa encolhe com o tempo, forçando os jogadores a se moverem e lutarem em áreas mais restritas. O jogo combina estratégia, ação e sobrevivência, com suporte para modos solo, duo ou em equipes.",
+    "campeonatos": ["PUBG Global Championship 2025"],
+    "tags": ["BattleRoyale", "Competitivo", "Tiro", "Squad", "PUBG"],
+    "lancamento": "19/03/2018",
+    "genero": "Battle Royale",
+    "desenvolvedora": "PUBG Corporation",
+    "distribuidora": "Tencent Games",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Team Liquid",
+        "time2": "TSM",
+        "data": "05/05/2023",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Natus Vincere",
+        "time2": "FaZe Clan",
+        "data": "06/05/2023",
+        "horario": "20:30",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "Gen.G Esports",
+        "time2": "Four Angry Men",
+        "data": "07/05/2023",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "C9 Esports",
+        "time2": "G2 Esports",
+        "data": "08/05/2023",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/pubg"
+      },
+      {
+        "campeonato": "PUBG Global Championship 2025",
+        "time1": "XSET",
+        "time2": "T1",
+        "data": "09/05/2023",
+        "horario": "17:30",
+        "link": "https://www.twitch.tv/pubg"
+      }
+    ]
   },
   {
     "game": "Apex Legends",
     "tournament": "ALGS 2025",
     "image": "./static/img/index/thumbs/apexlegend.jpg",
-    "video": "./static/videos/apex.mp4"
+    "video": "./static/videos/apex.mp4",
+    "descricao": "Apex Legends é um jogo de battle royale gratuito, onde equipes de 3 jogadores competem para ser a última sobrevivente em um mapa dinâmico. Os jogadores escolhem entre uma variedade de Lendas, cada uma com habilidades únicas que influenciam a estratégia da equipe. O jogo combina ação rápida, combate intenso e táticas de equipe, com o objetivo de coletar equipamentos e eliminar os oponentes enquanto a zona segura do mapa vai encolhendo.",
+    "campeonatos": ["Apex Legends Global Series 2025"],
+    "tags": ["BattleRoyale", "Competitivo", "Tiro", "Squad", "Apex"],
+    "lancamento": "04/02/2019",
+    "genero": "Battle Royale",
+    "desenvolvedora": "Respawn Entertainment",
+    "distribuidora": "Electronic Arts (EA)",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Apex Legends Global Series 2025",
+        "time1": "Team Liquid",
+        "time2": "TSM",
+        "data": "05/05/2023",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/apexlegends"
+      },
+      {
+        "campeonato": "Apex Legends Global Series 2025",
+        "time1": "Sentinels",
+        "time2": "NRG Esports",
+        "data": "06/05/2023",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/apexlegends"
+      },
+      {
+        "campeonato": "Apex Legends Global Series 2025",
+        "time1": "FURIA Esports",
+        "time2": "Cloud9",
+        "data": "07/05/2023",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/apexlegends"
+      },
+      {
+        "campeonato": "Apex Legends Global Series 2025",
+        "time1": "G2 Esports",
+        "time2": "XSET",
+        "data": "08/05/2023",
+        "horario": "19:30",
+        "link": "https://www.twitch.tv/apexlegends"
+      },
+      {
+        "campeonato": "Apex Legends Global Series 2025",
+        "time1": "Alliance",
+        "time2": "Pioneer Esports",
+        "data": "09/05/2023",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/apexlegends"
+      }
+      
+    ]
   },
   {
     "game": "Rocket League",
-    "tournament": "World Championship",
+    "tournament": "Rocket League World Championship 2025",
     "image": "./static/img/index/thumbs/rocketleague.jpg",
-    "video": "./static/videos/rocketLeague.mp4"
+    "video": "./static/videos/rocketLeague.mp4",
+    "descricao": "Rocket League é um jogo de futebol com carros, onde equipes de 1 a 4 jogadores controlam veículos para marcar gols em uma arena com uma bola gigante. Com mecânicas de aceleração, saltos e movimentação aérea, os jogadores devem usar suas habilidades de direção e estratégia para vencer os adversários. O jogo é rápido, dinâmico e oferece vários modos de jogo, incluindo partidas competitivas e eventos sazonais.",
+    "campeonatos": ["Rocket League World Championship"],
+    "tags": ["Futebol", "Carros", "Multiplayer", "Competitivo"],
+    "lancamento": "2015/07/07",
+    "genero": "Esporte / Corrida",
+    "desenvolvedora": "Psyonix",
+    "distribuidora": "Psyonix / Epic Games",
+    "idade_recomendada": 3,
+    "partidas": [
+      {
+        "campeonato": "Rocket League World Championship 2025",
+        "time1": "Team Vitality",
+        "time2": "G2 Esports",
+        "data": "10/08/2025",
+        "horario": "17:00",
+        "link": "https://www.twitch.tv/rocketleague"
+      },
+      {
+        "campeonato": "Rocket League World Championship 2025",
+        "time1": "NRG Esports",
+        "time2": "BDS",
+        "data": "11/08/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/rocketleague"
+      },
+      {
+        "campeonato": "Rocket League World Championship 2025",
+        "time1": "FURIA Esports",
+        "time2": "Dignitas",
+        "data": "12/08/2025",
+        "horario": "16:00",
+        "link": "https://www.twitch.tv/rocketleague"
+      },
+      {
+        "campeonato": "Rocket League World Championship 2025",
+        "time1": "Solary",
+        "time2": "Sandrock Gaming",
+        "data": "13/08/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/rocketleague"
+      },
+      {
+        "campeonato": "Rocket League World Championship 2025",
+        "time1": "Version1",
+        "time2": "Karmine Corp",
+        "data": "14/08/2025",
+        "horario": "17:30",
+        "link": "https://www.twitch.tv/rocketleague"
+      }
+    ]
   },
   {
     "game": "Overwatch 2",
     "tournament": "Overwatch League 2025",
     "image": "./static/img/index/thumbs/overwatch2.jpg",
-    "video": "./static/videos/overwatch.mp4"
+    "video": "./static/videos/overwatch.mp4",
+    "descricao": "Overwatch 2 é um jogo de tiro em equipe gratuito, ambientado em um futuro otimista, onde equipes de 5 jogadores competem em batalhas dinâmicas. Com mais de 40 heróis únicos, cada um com habilidades distintas, os jogadores devem trabalhar em conjunto para alcançar objetivos como capturar pontos ou escoltar cargas. O jogo apresenta modos variados, mapas globais e atualizações sazonais que introduzem novos conteúdos e mecânicas.",
+    "campeonatos": ["Overwatch League"],
+    "tags": ["FPS", "Hero Shooter", "Multiplayer", "Competitivo"],
+    "lancamento": "2022/10/04",
+    "genero": "FPS / Hero Shooter",
+    "desenvolvedora": "Blizzard Entertainment",
+    "distribuidora": "Blizzard Entertainment",
+    "idade_recomendada": 14,
+    "partidas": [
+      {
+        "campeonato": "Overwatch League",
+        "time1": "OG",
+        "time2": "PSG.LGD",
+        "data": "15/08/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "Overwatch League",
+        "time1": "Team Secret",
+        "time2": "Virtus.pro",
+        "data": "16/08/2025",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "Overwatch League",
+        "time1": "Evil Geniuses",
+        "time2": "Team Liquid",
+        "data": "17/08/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "Overwatch League",
+        "time1": "Vici Gaming",
+        "time2": "TNC Predator",
+        "data": "18/08/2025",
+        "horario": "20:30",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "Overwatch League",
+        "time1": "PSG.LGD",
+        "time2": "OG",
+        "data": "19/08/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      }
+    ]
   },
   {
     "game": "Dota 2",
     "tournament": "The International 2025",
     "image": "./static/img/index/thumbs/dota2.jpg",
-    "video": "./static/videos/dota2.mp4"
-  },
+    "video": "./static/videos/dota2.mp4",
+    "descricao": "Dota 2 é um MOBA (Multiplayer Online Battle Arena) onde duas equipes de 5 jogadores competem para destruir a Ancient (base) inimiga. Cada jogador escolhe um herói com habilidades únicas, e o objetivo é trabalhar em equipe para derrotar os adversários e conquistar o mapa, dominando torres e objetivos estratégicos. O jogo é conhecido por sua profundidade estratégica, exigindo habilidades de coordenação, tomada de decisões rápidas e controle preciso dos heróis.",
+    "campeonatos": ["The International"],
+    "tags": ["MOBA", "E-sports", "Multiplayer", "Gratuito"],
+    "lancamento": "2013/07/09",
+    "genero": "MOBA",
+    "desenvolvedora": "Valve Corporation",
+    "distribuidora": "Valve Corporation",
+    "idade_recomendada": 14,
+    "partidas": [
+      {
+        "campeonato": "The International",
+        "time1": "OG",
+        "time2": "PSG.LGD",
+        "data": "15/08/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "The International",
+        "time1": "Team Secret",
+        "time2": "Virtus.pro",
+        "data": "16/08/2025",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "The International",
+        "time1": "Evil Geniuses",
+        "time2": "Team Liquid",
+        "data": "17/08/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "The International",
+        "time1": "Vici Gaming",
+        "time2": "TNC Predator",
+        "data": "18/08/2025",
+        "horario": "20:30",
+        "link": "https://www.twitch.tv/dota2ti"
+      },
+      {
+        "campeonato": "The International",
+        "time1": "PSG.LGD",
+        "time2": "OG",
+        "data": "19/08/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/dota2ti"
+      }
+    ]
+  }
+  ,
   {
-    "game": "Call of Duty: Warzone",
-    "tournament": "World Series 2025",
-    "image": "./static/img/index/thumbs/codwarzone.jpg",
-    "video": "./static/videos/warzone.mp4"
-  },
+  "game": "Call of Duty: Warzone",
+  "tournament": "World Series 2025",
+  "image": "./static/img/index/thumbs/codwarzone.jpg",
+  "video": "./static/videos/warzone.mp4",
+  "descricao": "Call of Duty: Warzone é um jogo de battle royale gratuito, onde até 150 jogadores competem em um vasto mapa para ser o último sobrevivente. Os jogadores começam sem armas e devem explorar o mapa para encontrar equipamentos, enfrentar inimigos e evitar a área de gás que diminui com o tempo. Warzone também inclui modos de jogo como 'Plunder', onde o objetivo é coletar dinheiro, e possui mecânicas de respawn, como o sistema de gulag, que permite aos jogadores uma segunda chance após serem eliminados.",
+  "campeonatos": ["World Series 2025"],
+  "tags": ["Battle Royale", "FPS", "Multiplayer", "Competitivo", "Gratuito"],
+  "lancamento": "2020/03/10",
+  "genero": "Battle Royale",
+  "desenvolvedora": "Infinity Ward, Raven Software",
+  "distribuidora": "Activision",
+  "idade_recomendada": 18,
+  "partidas": [
+    {
+      "campeonato": "World Series 2025",
+      "time1": "FaZe Clan",
+      "time2": "OpTic Gaming",
+      "data": "10/07/2025",
+      "horario": "21:00",
+      "link": "https://www.twitch.tv/callofduty"
+    },
+    {
+      "campeonato": "World Series 2025",
+      "time1": "Team Envy",
+      "time2": "100 Thieves",
+      "data": "11/07/2025",
+      "horario": "20:30",
+      "link": "https://www.twitch.tv/callofduty"
+    },
+    {
+      "campeonato": "World Series 2025",
+      "time1": "Sentinels",
+      "time2": "Phase Gaming",
+      "data": "12/07/2025",
+      "horario": "19:00",
+      "link": "https://www.twitch.tv/callofduty"
+    },
+    {
+      "campeonato": "World Series 2025",
+      "time1": "Luminosity",
+      "time2": "G2 Esports",
+      "data": "13/07/2025",
+      "horario": "21:30",
+      "link": "https://www.twitch.tv/callofduty"
+    },
+    {
+      "campeonato": "World Series 2025",
+      "time1": "XSET",
+      "time2": "Natus Vincere",
+      "data": "14/07/2025",
+      "horario": "20:00",
+      "link": "https://www.twitch.tv/callofduty"
+    },
+    {
+      "campeonato": "World Series 2025",
+      "time1": "Rise Nation",
+      "time2": "EUnited",
+      "data": "15/07/2025",
+      "horario": "19:30",
+      "link": "https://www.twitch.tv/callofduty"
+    }
+  ]
+},
   {
     "game": "Brawlhalla",
     "tournament": "BCX 2025",
     "image": "./static/img/index/thumbs/brawlhalla.jpg",
-    "video": "./static/videos/brawlhalla.mp4"
-  },
+    "video": "./static/videos/brawlhalla.mp4",
+    "descricao": "Brawlhalla é um jogo de luta 2D gratuito, onde até 8 jogadores competem em batalhas em plataformas flutuantes. Os jogadores escolhem entre diversos personagens, cada um com armas e habilidades únicas. O objetivo é lançar os adversários para fora da arena, sendo o último jogador restante o vencedor. O jogo oferece modos variados, como partidas classificadas e eventos sazonais, com suporte para jogo cruzado entre plataformas.",
+    "campeonatos": ["BCX 2025"],
+    "tags": ["Luta", "Plataforma", "Multiplayer", "Competitivo", "Gratuito"],
+    "lancamento": "2017/10/17",
+    "genero": "Luta em plataforma",
+    "desenvolvedora": "Blue Mammoth Games",
+    "distribuidora": "Ubisoft",
+    "idade_recomendada": 10,
+    "partidas": [
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Boomie",
+        "time2": "Sandstorm",
+        "data": "12/10/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/brawlhalla"
+      },
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Doggz",
+        "time2": "Lethul",
+        "data": "13/10/2025",
+        "horario": "19:30",
+        "link": "https://www.twitch.tv/brawlhalla"
+      },
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Samsora",
+        "time2": "Wrench",
+        "data": "14/10/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/brawlhalla"
+      },
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Hyperx",
+        "time2": "FaZe Clan",
+        "data": "15/10/2025",
+        "horario": "18:00",
+        "link": "https://www.twitch.tv/brawlhalla"
+      },
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Pugsy",
+        "time2": "Zatman",
+        "data": "16/10/2025",
+        "horario": "20:30",
+        "link": "https://www.twitch.tv/brawlhalla"
+      },
+      {
+        "campeonato": "BCX 2025",
+        "time1": "Booby",
+        "time2": "Bert",
+        "data": "17/10/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/brawlhalla"
+      }
+    ]
+  }
+  ,
   {
     "game": "Clash Royale",
     "tournament": "Clash Royale League 2025",
     "image": "./static/img/index/thumbs/clashroyale.jpg",
-    "video": "./static/videos/clashRoyale.mp4"
+    "video": "./static/videos/clashRoyale.mp4",
+    "descricao": "Clash Royale é um jogo de estratégia em tempo real, onde jogadores competem em batalhas 1v1 usando cartas para invocar tropas, feitiços e construções. O objetivo é destruir as torres inimigas e proteger a sua, com a vitória sendo garantida ao destruir a Torre do Rei do adversário ou ao ter mais torres destruídas ao fim do tempo. O jogo combina elementos de tower defense com mecânicas de cartas colecionáveis.",
+    "campeonatos": ["Clash Royale League 2025"],
+    "tags": ["Estratégia", "Mobile", "Multiplayer"],
+    "lancamento": "2016/03/02",
+    "genero": "Estratégia em tempo real",
+    "desenvolvedora": "Supercell",
+    "distribuidora": "Supercell",
+    "idade_recomendada": 10,
+    "partidas": [
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "Team Queso",
+        "time2": "SK Gaming",
+        "data": "10/08/2025",
+        "horario": "17:00",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      },
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "Nova Esports",
+        "time2": "Tribe Gaming",
+        "data": "11/08/2025",
+        "horario": "18:00",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      },
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "KSOX",
+        "time2": "Fury eSports",
+        "data": "12/08/2025",
+        "horario": "20:00",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      },
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "Dignitas",
+        "time2": "Immortals",
+        "data": "13/08/2025",
+        "horario": "19:00",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      },
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "Misfits Gaming",
+        "time2": "Counter Logic Gaming",
+        "data": "14/08/2025",
+        "horario": "17:30",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      },
+      {
+        "campeonato": "Clash Royale League 2025",
+        "time1": "Cloud9",
+        "time2": "G2 Esports",
+        "data": "15/08/2025",
+        "horario": "16:00",
+        "link": "https://www.youtube.com/clashroyaleesports"
+      }
+    ]
   },
   {
     "game": "Rainbow Six Siege",
     "tournament": "Six Invitational 2025",
     "image": "./static/img/index/thumbs/rainbowsixsiege.jpg",
-    "video": "./static/videos/rainbowSix.mp4"
+    "video": "./static/videos/rainbowSix.mp4",
+    "descricao": "Rainbow Six Siege é um jogo de tiro tático online, onde duas equipes de 5 jogadores enfrentam-se em missões de resgatar reféns, desativar bombas ou proteger áreas. Cada jogador escolhe um operador com habilidades únicas, e a destruição ambiental desempenha um papel importante nas estratégias. O objetivo é trabalhar em equipe para vencer a equipe adversária.",
+    "campeonatos": ["Six Invitational 2025"],
+    "tags": ["FPS", "Tático", "Multiplayer", "Tiro"],
+    "lancamento": "2015/12/01",
+    "genero": "Tiro tático",
+    "desenvolvedora": "Ubisoft Montreal",
+    "distribuidora": "Ubisoft",
+    "idade_recomendada": 18,
+    "partidas": [
+      {
+        "campeonato": "Six Invitational 2025",
+        "time1": "Team Liquid",
+        "time2": "TSM",
+        "data": "05/05/2025",
+        "horario": "19:00",
+        "link": "https://www.twitch.tv/rainbow6"
+      },
+      {
+        "campeonato": "Six Invitational 2025",
+        "time1": "MIBR",
+        "time2": "FaZe Clan",
+        "data": "06/05/2025",
+        "horario": "20:00",
+        "link": "https://www.twitch.tv/rainbow6"
+      },
+      {
+        "campeonato": "Six Invitational 2025",
+        "time1": "Ninjas in Pyjamas",
+        "time2": "BDS Esport",
+        "data": "07/05/2025",
+        "horario": "18:30",
+        "link": "https://www.twitch.tv/rainbow6"
+      },
+      {
+        "campeonato": "Six Invitational 2025",
+        "time1": "G2 Esports",
+        "time2": "Virtus.pro",
+        "data": "08/05/2025",
+        "horario": "21:00",
+        "link": "https://www.twitch.tv/rainbow6"
+      }
+    ]
   }
+  
 ]

@@ -1,11 +1,26 @@
+header {
+  background: var(--cor-preto);
+}
+
 .jogo {
-    height: 75dvh;
+    min-height: 75dvh;
     position: relative;
 }
 
 .game-image {
     display: flex;
 }
+
+.disabled{
+  border: 2px solid var(-cor-cinzaTexto) !important;
+  color: var(-cor-cinzaTexto) !important;
+}
+
+.disabled:hover{
+  border: 2px solid var(-cor-cinzaTexto) !important;
+  color: var(-cor-cinzaTexto) !important;
+}
+
 
 .btn-voltar {
     padding: 7px 16px;
@@ -56,4 +71,35 @@
 
 .card{
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CONTAINER FILTROS */
+.list-style-none {
+  list-style: none;
+}
+
+.cursor-pointer {
+  list-style: none;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 991px) {
+  /* Responsividade dos filtros */
+  .filtros-titulo {
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Responsividade dos filtros */
+  .col-4.filtro {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .col-4.filtro:last-child {
+    margin-bottom: 0px;
+  }
 }

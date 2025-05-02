@@ -15,6 +15,7 @@
 
 .cor-redondo {
   color: var(--cor-vermelho) !important;
+
 }
 
 .cards {
@@ -130,6 +131,56 @@
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
   cursor: pointer;
+}
+
+.gif-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.5s ease-in-out; /* Transição de 0.5s */
+}
+
+.static-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.gif-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(30, 30, 30, 0.9) 0%,
+    rgba(50, 50, 50, 0.5) 50%,    
+    rgba(68, 68, 68, 0) 100%     
+  );
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.card:hover .static-image {
+  opacity: 0;
+}
+
+.card:hover .gif-container {
+  opacity: 1;
 }
 
 .card img {

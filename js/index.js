@@ -96,7 +96,12 @@ function AlterarExibicao(div, item, container) {
   div.className = "col-12 col-md-6 col-lg-3";
   div.innerHTML = `
     <div class="card bg-dark h-100">
-      <img class="rounded-3" src="${item.image}" alt="${item.game}" />
+      <img class="rounded-3 static-image" src="${item.image}" alt="${item.game}" />
+        <!-- GIF animado (hidden por padrão) -->
+      <div class="gif-container">
+        <img class="rounded-3 gif-image" src="${item.gif}" alt="${item.game} GIF"/>
+        <div class="gradient"></div>
+      </div>
       <h5 class="pt-3 ps-3 text-white fw-bold">${item.game}</h5>
       <h6 class="pb-3 ps-3 text-white">${item.tournament}</h6>
     </div>
