@@ -90,7 +90,7 @@
             <div class="video-jogo">
               <video autoplay loop muted id="game-video">
                 <source src=" " type="video/mp4" id="game-video-source">
-                Seu navegador não suporta videos.
+                Your browser does not support the video tag.
               </video>
               <div class="gradient"></div>
             </div>
@@ -98,6 +98,41 @@
         </div>
       </div>
     </section>
+
+    <section class="container py-5">
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 rounded-4 bg-dark">
+            <div class="card-body bg-light p-4 rounded-5 bg-dark text-white">
+              <h5 class="card-title text-primary fw-bold mb-3" id="campeonato">
+              
+              </h5>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="text-center">
+                  <img src="https://via.placeholder.com/60" class="rounded-circle mb-1">
+                  <p class="mb-0 fw-semibold" id="time1"></p>
+                </div>
+                <div class="fw-bold fs-4">VS</div>
+                <div class="text-center">
+                  <img src="https://via.placeholder.com/60" class="rounded-circle mb-1">
+                  <p class="mb-0 fw-semibold" id="time2"></p>
+                </div>
+              </div>
+              <p class="mb-1">
+                <strong>Data:</strong> <span id="data"></span> às <span id="horario"></span>
+              </p>
+              <div class="d-grid mt-4">
+                <a href="" id="link-jogo" target="_blank" class="btn btn-outline-primary rounded-pill">
+                  Assistir Transmissão
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
 
     <footer class="footer bg-black py-5">
         <div class="container">
