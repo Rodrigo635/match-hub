@@ -63,9 +63,7 @@ function carregarListaCampeonatos(game){
     `;
     container.appendChild(card);
   })
-
 }
-
 
 function carregarJogo(game) {
 
@@ -263,6 +261,7 @@ function carregarPagina() {
   carregarCampeonatos(game);
   bloquearBtnLink(game);
   carregarJogo(game);
+  carregarListaCampeonatos(game);
   carregarFiltros(game);
 
   // Adiciona evento de filtro
