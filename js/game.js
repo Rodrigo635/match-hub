@@ -200,8 +200,59 @@ function addTimesFiltro(time1, time2) {
   });
 }
 
+function aplicarFiltros(game) {
+  const campeonatoSelecionado = document.getElementById("campeonatos-game").value;
+  const timeSelecionado = document.getElementById("campeonatos-time").value;
 
+  // Filtra as partidas com base nos filtros selecionados
+  const partidasFiltradas = game.partidas.filter(partida => {
+    const campeonatoOk = campeonatoSelecionado === "Todos" || campeonatoSelecionado === "Campeonatos" || partida.campeonato === campeonatoSelecionado;
+    const timeOk = timeSelecionado === "Todos" || timeSelecionado === "Times" || partida.time1 === timeSelecionado || partida.time2 === timeSelecionado;
+    return campeonatoOk && timeOk;
+  });
 
+  // Limpa os cards anteriores
+  const container = document.getElementById("cards-container");
+  container.innerHTML = "";
+
+  // Recarrega os cards com as partidas filtradas
+  partidasFiltradas.forEach(partida => {
+    const card = document.createElement("div");
+    card.className = "col-12 col-md-6 col-lg-4";
+    card.innerHTML = `
+     <div class="card border-0 rounded-4 bg-dark">
+  <div class="card-body bg-light p-4 rounded-5 bg-dark text-white">
+    <h5 class="card-title text-primary fw-bold mb-3">
+      ${partida.campeonato}
+    </h5>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <div class="text-center">
+        <img src="https://via.placeholder.com/60" class="rounded-circle mb-1" alt="${partida.time1}">
+        <p class="mb-0 fw-semibold">${partida.time1}</p>
+      </div>
+      <div class="fw-bold fs-4">VS</div>
+      <div class="text-center">
+        <img src="https://via.placeholder.com/60" class="rounded-circle mb-1" alt="${partida.time2}">
+        <p class="mb-0 fw-semibold">${partida.time2}</p>
+      </div>
+    </div>
+    <p class="my-2">
+      <span class="fw-bold">Data:</span> ${partida.data} às ${partida.horario}
+    </p>
+    <div class="d-grid mt-4">
+      <a href="${partida.link}" target="_blank" class="btn btn-live btn-outline-primary rounded-pill">
+        <h5 class="mb-0 h5-btn-trasmissao"></h5>
+      </a>
+    </div>
+  </div>
+</div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Reaplica regras de botão
+  bloquearBtnLink({ partidas: partidasFiltradas });
+}
 
 function carregarPagina() {
   const raw = localStorage.getItem("selectedGame");
@@ -209,15 +260,18 @@ function carregarPagina() {
 
   const game = JSON.parse(raw);
 
-
   carregarCampeonatos(game);
   bloquearBtnLink(game);
   carregarJogo(game);
   carregarFiltros(game);
 
+  // Adiciona evento de filtro
+  document.getElementById("campeonatos-game").addEventListener("change", () => aplicarFiltros(game));
+  document.getElementById("campeonatos-time").addEventListener("change", () => aplicarFiltros(game));
 
   localStorage.removeItem("selectedGame");
 }
+
 
 
 
