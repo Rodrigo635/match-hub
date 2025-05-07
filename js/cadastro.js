@@ -23,10 +23,10 @@ function togglePassword(inputId, iconId) {
   const iconPath = 'static/icons/';
   if (passwordInput.type === 'password') {
     passwordInput.type = 'text';
-    eyeIcon.querySelector('img').src = `${iconPath}shulker_eye_aberto.png`;
+    eyeIcon.querySelector('img').src = `${iconPath}eye-solid.svg`;
   } else {
     passwordInput.type = 'password';
-    eyeIcon.querySelector('img').src = `${iconPath}shulker_eye_closed.png`;
+    eyeIcon.querySelector('img').src = `${iconPath}eye-slash-solid.svg`;
   }
 }
 
