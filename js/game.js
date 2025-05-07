@@ -126,6 +126,83 @@ function bloquearBtnLink(game) {
   });
 }
 
+function carregarFiltros(game){
+  addJogosFiltro(game.campeonatos);  
+  console.log(game.partidas);
+  console.log(game.partidas);
+  addTimesFiltro(game.partidas.map((partida) => partida.time1), game.partidas.map((partida) => partida.time2));
+
+}
+
+function addJogosFiltro(data) {
+  const select = document.getElementById("campeonatos-game");
+
+  // Limpa o select
+  select.innerHTML = '';
+
+  // Adiciona a opção padrão
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "Campeonatos";
+  defaultOption.textContent = "Campeonatos";
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  select.appendChild(defaultOption);
+
+  const allGames = document.createElement("option");
+  allGames.value = "Todos";
+  allGames.textContent = "Todos";
+  select.appendChild(allGames);
+
+  // Adiciona as opções de jogos
+  data.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    select.appendChild(option);
+  });
+}
+
+function addTimesFiltro(time1, time2) {
+  const select = document.getElementById("campeonatos-time");
+  console.log(time1);
+  console.log(time2);
+  // Limpa o select
+  select.innerHTML = '';
+
+  // Adiciona a opção padrão
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "Times";
+  defaultOption.textContent = "Times";
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  select.appendChild(defaultOption);
+
+  const allGames = document.createElement("option");
+  allGames.value = "Todos";
+  allGames.textContent = "Todos";
+  select.appendChild(allGames);
+
+  // Usar Set para evitar duplicados
+  const uniqueItems = new Set();
+
+  const times = [...time1, ...time2];
+  
+
+  times.forEach((item) => {
+    if (!uniqueItems.has(item)) {
+      uniqueItems.add(item);
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      select.appendChild(option);
+      console.log(item);
+    }
+  });
+}
+
+
+
+
 function carregarPagina() {
   const raw = localStorage.getItem("selectedGame");
   if (!raw) window.location.href = "index.html";
@@ -136,12 +213,11 @@ function carregarPagina() {
   carregarCampeonatos(game);
   bloquearBtnLink(game);
   carregarJogo(game);
-  carregarListaCampeonatos(game);
+  carregarFiltros(game);
 
 
   localStorage.removeItem("selectedGame");
 }
-
 
 
 
