@@ -310,6 +310,77 @@ function EsconderJogos() {
     .catch((error) => console.error("Erro ao carregar o JSON:", error));
 }
 
+async function getListaDeGames() {
+  try{
+    const response = await fetch("thumbs.json");
+    const data = await response.json();
+    addJogosFiltro(data);
+    addCampeonatosFiltro(data);
+  }catch(error){
+    console.error("Erro ao carregar o JSON:", error);
+  }
+}
+
+function addJogosFiltro(data) {
+  const select = document.getElementById("jogos");
+
+  // Limpa o select
+  select.innerHTML = '';
+
+  // Adiciona a opção padrão
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "Jogos";
+  defaultOption.textContent = "Jogos";
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  select.appendChild(defaultOption);
+
+  const allGames = document.createElement("option");
+  allGames.value = "Todos";
+  allGames.textContent = "Todos";
+  select.appendChild(allGames);
+
+  // Adiciona as opções de jogos
+  data.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.game;
+    option.textContent = item.game;
+    select.appendChild(option);
+  });
+}
+
+function addCampeonatosFiltro(data) {
+  const select = document.getElementById("campeonatos");
+
+  // Limpa o select
+  select.innerHTML = '';
+
+  // Adiciona a opção padrão
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "Campeonatos";
+  defaultOption.textContent = "Campeonatos";
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  select.appendChild(defaultOption);
+
+  const allCampeonatos = document.createElement("option");
+  allCampeonatos.value = "Todos";
+  allCampeonatos.textContent = "Todos";
+  select.appendChild(allCampeonatos);
+
+  // Adiciona as opções de jogos
+  data.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.tournament;
+    option.textContent = item.tournament;
+    select.appendChild(option);
+  });
+}
+
+
+
+getListaDeGames();
+
 // Função principal para aplicar ambos os filtros
 async function AplicarFiltros() {
   const jogo_Escolhido = document.getElementById("jogos").value.toLowerCase();
