@@ -46,20 +46,21 @@ function carregarCampeonatos(game) {
 
 function carregarListaCampeonatos(game) {
   const container = document.getElementById("campeonatos-container");
-  game.campeonatos.forEach((element) => {
+  game.campeonatos.forEach((element, index) => {
     const card = document.createElement("div");
     card.className = "col-12 col-md-6 col-lg-4";
     card.innerHTML = `
-       <div class="card bg-dark rounded-3 text-white mb-3"">
-          <img class="card-img-top" src="./static/img/sobre/background-sobre.jpg" alt="Imagem de capa do card">
-          <div class="card-body">
-            <h4 class="fs-4 fw-bold camp text-center">${element}</h4>
-          </div>
+      <div class="card bg-dark rounded-3 text-white mb-3">
+        <img class="card-img-top" src="${game.imgCamps[index]}" height="200px" alt="Imagem de capa do card">
+        <div class="card-body">
+          <h4 class="fs-4 fw-bold camp text-center">${element}</h4>
         </div>
+      </div>
     `;
     container.appendChild(card);
   });
 }
+
 
 function carregarJogo(game) {
   const gameTitleElements = document.querySelectorAll(".game-title");
@@ -102,11 +103,10 @@ function bloquearBtnLink(game) {
     const partidaData = new Date(`${dataISO}T${element.horario}`);
 
     const diffMin = (partidaData - agora) / 60000; // diferença em minutos
-    
+
     console.log(diffMin);
 
     const mesmoDia = agora.toDateString() === partidaData.toDateString();
-
 
     if (!mesmoDia) {
       if (diffMin > 0) {
@@ -231,12 +231,12 @@ function aplicarFiltros(game) {
     </h5>
     <div class="d-flex justify-content-between align-items-center mb-2">
       <div class="text-center">
-        <img src="https://via.placeholder.com/60" class="rounded-circle mb-1" alt="${partida.time1}">
+        <img src="${partida.imgTime1}" class="rounded-circle mb-1" width="48px" alt="${partida.time1}">
         <p class="mb-0 fw-semibold">${partida.time1}</p>
       </div>
       <div class="fw-bold fs-4">VS</div>
       <div class="text-center">
-        <img src="https://via.placeholder.com/60" class="rounded-circle mb-1" alt="${partida.time2}">
+        <img src="${partida.imgTime2}" width="48px" class="rounded-circle mb-1" alt="${partida.time2}">
         <p class="mb-0 fw-semibold">${partida.time2}</p>
       </div>
     </div>

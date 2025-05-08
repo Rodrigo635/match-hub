@@ -7,6 +7,7 @@
     "gif": "./static/gifs/lol.gif",
     "descricao": "O LOL (League of legends) é um MOBA (Multiplayer Online Battle Arena), onde duas equipes de 5 jogadores se enfrentam, podendo escolher entre mais de 170 campeões para jogar, com o objetivo de destruir o Nexus da equipe adversária.",
     "campeonatos": ["LCK", "LPL", "LCP"],
+    "imgCamps": ["./static/img/game/LOL/camps/camp1.jpg", "./static/img/game/LOL/camps/camp2.jpg", "./static/img/game/LOL/camps/camp3.png"],
     "tags": ["MOBA", "RPG", "Estratégia", "Competitivo", "Multiplayer"],
     "lancamento": "27/10/2009",
     "genero": "MOBA",
@@ -16,12 +17,12 @@
     "partidas": [
       {
         "campeonato": "LCK",
-        "time1": "CNV",
-        "imgTime1": "./static/img/game/LOL/CNV.png",
-        "time2": "CCG",
-        "imgTime2": "./static/img/game/LOL/CCG.png",
-        "data": "08/05/2025",
-        "horario": "21:00",
+        "time1": "KT",
+        "imgTime1": "./static/img/game/LOL/KT.png",
+        "time2": "T1",
+        "imgTime2": "./static/img/game/LOL/T1.png",
+        "data": "04/05/2025",
+        "horario": "03:00",
         "link": "https://www.twitch.tv/leagueoflegends"
       },
       {
@@ -30,7 +31,7 @@
         "imgTime1": "./static/img/game/LOL/WE.png",
         "time2":"NIP",
         "imgTime2":"./static/img/game/LOL/NIP.png",
-        "data":"08/05/2025",
+        "data":"04/05/2025",
         "horario":"04:00",
         "link": "https://www.twitch.tv/leagueoflegends"
       },
