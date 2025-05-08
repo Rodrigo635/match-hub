@@ -16,12 +16,12 @@
     "partidas": [
       {
         "campeonato": "LCK",
-        "time1": "KT",
-        "imgTime1": "./static/img/game/LOL/KT.png",
-        "time2": "T1",
-        "imgTime2": "./static/img/game/LOL/T1.png",
-        "data": "04/05/2025",
-        "horario": "03:00",
+        "time1": "CNV",
+        "imgTime1": "./static/img/game/LOL/CNV.png",
+        "time2": "CCG",
+        "imgTime2": "./static/img/game/LOL/CCG.png",
+        "data": "08/05/2025",
+        "horario": "21:00",
         "link": "https://www.twitch.tv/leagueoflegends"
       },
       {
@@ -30,7 +30,7 @@
         "imgTime1": "./static/img/game/LOL/WE.png",
         "time2":"NIP",
         "imgTime2":"./static/img/game/LOL/NIP.png",
-        "data":"04/05/2025",
+        "data":"08/05/2025",
         "horario":"04:00",
         "link": "https://www.twitch.tv/leagueoflegends"
       },

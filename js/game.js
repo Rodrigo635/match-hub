@@ -20,12 +20,12 @@ function carregarCampeonatos(game) {
     </h5>
     <div class="d-flex justify-content-between align-items-center mb-2">
       <div class="text-center">
-        <img src="${element.imgTime1}" class="rounded-circle mb-1" alt="${element.time1}">
+        <img src="${element.imgTime1}" class="rounded-circle mb-1" width="48px" alt="${element.time1}">
         <p class="mb-0 fw-semibold">${element.time1}</p>
       </div>
       <div class="fw-bold fs-4">VS</div>
       <div class="text-center">
-        <img src="${element.imgTime2}" class="rounded-circle mb-1" alt="${element.time2}">
+        <img src="${element.imgTime2}" class="rounded-circle mb-1" width="48px" alt="${element.time2}">
         <p class="mb-0 fw-semibold">${element.time2}</p>
       </div>
     </div>
