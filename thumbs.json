@@ -7,6 +7,7 @@
     "gif": "./static/gifs/lol.gif",
     "descricao": "O LOL (League of legends) é um MOBA (Multiplayer Online Battle Arena), onde duas equipes de 5 jogadores se enfrentam, podendo escolher entre mais de 170 campeões para jogar, com o objetivo de destruir o Nexus da equipe adversária.",
     "campeonatos": ["LCK", "LPL", "LCP"],
+    "imgCamps": ["./static/img/game/LOL/camps/camp1.jpg", "./static/img/game/LOL/camps/camp2.jpg", "./static/img/game/LOL/camps/camp3.png"],
     "tags": ["MOBA", "RPG", "Estratégia", "Competitivo", "Multiplayer"],
     "lancamento": "27/10/2009",
     "genero": "MOBA",
@@ -17,7 +18,9 @@
       {
         "campeonato": "LCK",
         "time1": "KT",
+        "imgTime1": "./static/img/game/LOL/KT.png",
         "time2": "T1",
+        "imgTime2": "./static/img/game/LOL/T1.png",
         "data": "04/05/2025",
         "horario": "03:00",
         "link": "https://www.twitch.tv/leagueoflegends"
@@ -25,7 +28,9 @@
       {
         "campeonato": "LPL",
         "time1": "WE",
+        "imgTime1": "./static/img/game/LOL/WE.png",
         "time2":"NIP",
+        "imgTime2":"./static/img/game/LOL/NIP.png",
         "data":"04/05/2025",
         "horario":"04:00",
         "link": "https://www.twitch.tv/leagueoflegends"
@@ -33,7 +38,9 @@
       {
         "campeonato": "LCK",
         "time1":"DRX",
+        "imgTime1":"./static/img/game/LOL/DRX.png",
         "time2":"BFX",
+        "imgTime2":"./static/img/game/LOL/BFX.png",
         "data":"04/05/2025",
         "horario":"05:00",
          "link": "https://www.twitch.tv/leagueoflegends"
@@ -41,7 +48,9 @@
       {
         "campeonato": "LPL",
         "time1":"OMG",
+        "imgTime1":"./static/img/game/LOL/OMG.png",
         "time2":"UP",
+        "imgTime2":"./static/img/game/LOL/UP.png",
         "data":"04/05/2025",
         "horario":"06:00",
         "link": "https://www.twitch.tv/leagueoflegends"
@@ -49,7 +58,9 @@
       {
         "campeonato": "LCP",
         "time1":"CHF",
+        "imgTime1":"./static/img/game/LOL/CHF.png",
         "time2":"MVKE",
+        "imgTime2":"./static/img/game/LOL/MVKE.png",
         "data":"04/05/2025",
         "horario":"06:30",
         "link": "https://www.twitch.tv/leagueoflegends"
@@ -57,7 +68,9 @@
       {
         "campeonato": "LPL",
         "time1":"TES",
+        "imgTime1":"./static/img/game/LOL/TES.png",
         "time2":"AL",
+        "imgTime2":"./static/img/game/LOL/AL.png",	
         "data":"04/05/2025",
         "horario":"08:00",
          "link": "https://www.twitch.tv/leagueoflegends"
@@ -139,48 +152,60 @@
       {
         "campeonato": "VCT Americas",
         "time1": "SEN",
+        "imgTime1": "./static/img/game/Valorant/SEN.png",
         "time2": "MIBR",
-        "data": "02/05/2023",
+        "imgTime2": "./static/img/game/Valorant/MIBR.png",
+        "data": "02/05/2025",
         "horario": "18:00",
         "link": " "
       },
       {
         "campeonato": "VCT Americas",
         "time1": "EG",
+        "imgTime1": "./static/img/game/Valorant/EG.png",
         "time2": "G2",
-        "data": "02/05/2023",
+        "imgTime2": "./static/img/game/Valorant/G2.png",
+        "data": "02/05/2025",
         "horario": "21:00",
         "link": " "
       },
       {
         "campeonato": "VCT Pacific",
         "time1": "TLN",
+        "imgTime1": "./static/img/game/Valorant/TLN.png",
         "time2": "NS",
-        "data": "03/05/2023",
+        "imgTime2": "./static/img/game/Valorant/NS.png",
+        "data": "03/05/2025",
         "horario": "05:00",
         "link": " "
       },
       {
         "campeonato": "VCT CN",
         "time1": "BLG",
+        "imgTime1": "./static/img/game/Valorant/BLG.png",
         "time2": "WOL",
-        "data": "03/05/2023",
+        "imgTime2": "./static/img/game/Valorant/WOL.png",
+        "data": "03/05/2025",
         "horario": "06:00",
         "link": " "
       },
       {
         "campeonato": "Challengers DACH",
         "time1": "CGN",
+        "imgTime1": "./static/img/game/Valorant/CGN.png",
         "time2": "MOUZ",
-        "data": "03/05/2023",
+        "imgTime2": "./static/img/game/Valorant/MOUZ.png",
+        "data": "03/05/2025",
         "horario": "10:00",
         "link": " "
       },
       {
         "campeonato": "Challengers France",
         "time1": "VLNT",
+        "imgTime1": "./static/img/game/Valorant/VLNT.png",
         "time2": "KCBS",
-        "data": "03/05/2023",
+        "imgTime2": "./static/img/game/Valorant/KCBS.png",
+        "data": "04/05/2025",
         "horario": "12:00",
         "link": " "
       }

@@ -96,8 +96,7 @@ main {
 
 .container-input .eye-icon img {
   width: 25px;
-  height: 18px;
-  filter: invert(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+  height: 25px;
 }
 
 /* Termos e condições */
