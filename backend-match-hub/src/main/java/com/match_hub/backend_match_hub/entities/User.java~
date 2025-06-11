@@ -1,4 +1,0 @@
-package com.match_hub.backend_match_hub.entities;
-
-public class User {
-}
