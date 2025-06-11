@@ -1,0 +1,24 @@
+{
+  "name": "grupo-nao-sei",
+  "version": "1.0.0",
+  "description": "Este é nosso projeto Happy Game proposta pela FIAP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rodrigo635/match-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rodrigo635/match-hub/issues"
+  },
+  "homepage": "https://github.com/Rodrigo635/match-hub#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  }
+}
