@@ -83,13 +83,19 @@ header {
   cursor: pointer;
 }
 
-
+#campeonatos-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Para suavidade no scroll */
+}
 
 @media (max-width: 991px) {
   /* Responsividade dos filtros */
   .filtros-titulo {
     margin-bottom: 5px;
   }
+  
 }
 
 @media (max-width: 520px) {
