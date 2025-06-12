@@ -107,6 +107,20 @@ main {
 }
 
 /* Botão de login */
+.btn-entrar {
+  transition: 0.2s ease;
+  box-sizing: border-box;
+  background-color: var(--cor-azul) !important;
+  border: 2px solid var(--cor-azul) !important;
+  color: var(--cor-branco) !important;
+}
+
+.btn-entrar:hover {
+  background-color: transparent !important;
+  border: 2px solid var(--cor-azul) !important;
+  color: var(--cor-azul) !important;
+}
+
 .btn-primary {
   transition: 0.2s ease;
   box-sizing: border-box;
@@ -142,6 +156,10 @@ main {
 .modal-body {
   max-height: 76vh;
   overflow-y: auto;
+}
+
+.eye-icon img {
+  color: white;
 }
 
 /* RESPONSIVIDADE */
