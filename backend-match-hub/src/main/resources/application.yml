@@ -1,0 +1,60 @@
+# Configurações padrão (ativas quando nenhum perfil está especificado)
+spring:
+  application:
+    name: backend-match-hub-default
+
+---
+# Configurações compartilhadas entre os perfis 'dev' e 'dev1'
+spring:
+  config:
+    activate:
+      on-profile: [dev, dev1]  # Ativa em ambos os perfis
+  application:
+    name: backend-match-hub-dev
+
+  # DEVTOOLS
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  # TEST DATASOURCE
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # H2 CLIENT
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  flyway:
+    enabled: false
+
+# LOGGING (opcional, descomente se necessário)
+# logging:
+#   level:
+#     org.springframework: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev1
+  application:
+    name: backend-match-hub-dev1

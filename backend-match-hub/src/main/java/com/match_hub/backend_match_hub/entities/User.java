@@ -1,29 +1,23 @@
 package com.match_hub.backend_match_hub.entities;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.match_hub.backend_match_hub.dtos.UserDTO;
+import com.match_hub.backend_match_hub.enums.UserRole;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.Instant;
 import java.time.LocalDate;
 
-import javax.management.relation.Role;
-
-import com.match_hub.backend_match_hub.dtos.UserDTO;
-
-import com.match_hub.backend_match_hub.enums.UserRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-
-
+@NoArgsConstructor
 @Table(name = "users")
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String username;
     private String password;
@@ -34,12 +28,10 @@ public class User {
     @Enumerated
     private UserRole role = UserRole.USER;
 
-    private Date createdAt = new Date(System.currentTimeMillis());
-
-
-    public User(){
-
-    }
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    private Instant createdAt;
 
     public User(UserDTO dto){
         this.username = dto.username();

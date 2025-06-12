@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,22 +17,30 @@ import java.util.List;
 @Setter
 @Getter
 @EqualsAndHashCode
-@Table(name = "championships")
+@Table(name = "matches")
 @Entity
-public class Championship {
+public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String imageChampionship;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "championship_id")
+    private Championship championship;
 
-    @OneToMany(mappedBy = "championship", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Match> matches = new ArrayList<>();
+
+    @OneToMany(mappedBy = "id.match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MatchTeam> matchTeams = new ArrayList<>();
+
+    @Column(name = "match_hour")
+    private LocalTime hour;
+    private String link;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
+
+
 }
