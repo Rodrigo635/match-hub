@@ -1,19 +1,19 @@
 // src/app/layout.js
-import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Script from 'next/script';
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Script from "next/script";
 
 export const metadata = {
-  title: 'MATCH HUB',
-  description: 'Site Match Hub - E-sports, campeonatos, notícias',
+  title: "MATCH HUB",
+  description: "Site Match Hub - E-sports, campeonatos, notícias",
   icons: {
-    shortcut: '/static/icons/gamepad.png',
+    shortcut: "/static/icons/gamepad.png",
   },
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1.0,
 };
 
@@ -39,9 +39,9 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+
         {/* Scripts globais */}
-        <Script src="/js/bootstrap.bundle.min.js" strategy="afterInteractive" />
-        <Script src="/js/index.js" strategy="afterInteractive" />
+        <Script src="/js/bootstrap.bundle.min.js" strategy="beforeInteractive"/>
         <Script src="/js/global.js" strategy="afterInteractive" />
         <Script src="/js/api.js" strategy="afterInteractive" />
       </body>

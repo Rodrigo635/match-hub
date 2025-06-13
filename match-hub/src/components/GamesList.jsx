@@ -1,36 +1,36 @@
 // src/components/GamesList.jsx
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function GamesList() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [selectedGame, setSelectedGame] = useState('Todos');
-  const [selectedTournament, setSelectedTournament] = useState('Todos');
+  const [selectedGame, setSelectedGame] = useState("Todos");
+  const [selectedTournament, setSelectedTournament] = useState("Todos");
   const [page, setPage] = useState(0);
   const ITEMS_PER_PAGE = 12;
 
   // Fetch inicial
   useEffect(() => {
-    fetch('/thumbs.json')
-      .then(res => res.json())
-      .then(json => {
+    fetch("/thumbs.json")
+      .then((res) => res.json())
+      .then((json) => {
         setData(json);
         setFiltered(json);
       })
-      .catch(err => console.error('Erro ao carregar thumbs.json:', err));
+      .catch((err) => console.error("Erro ao carregar thumbs.json:", err));
   }, []);
 
   // Atualiza filtered quando filtros mudam
   useEffect(() => {
     if (!data.length) return;
-    const f = data.filter(item => {
+    const f = data.filter((item) => {
       const gameMatch =
-        selectedGame === 'Todos' ||
+        selectedGame === "Todos" ||
         item.game.toLowerCase() === selectedGame.toLowerCase();
       const tourMatch =
-        selectedTournament === 'Todos' ||
+        selectedTournament === "Todos" ||
         item.tournament.toLowerCase() === selectedTournament.toLowerCase();
       return gameMatch && tourMatch;
     });
@@ -39,36 +39,40 @@ export default function GamesList() {
   }, [selectedGame, selectedTournament, data]);
 
   // Opções de selects
-  const gameOptions = ['Todos', ...Array.from(new Set(data.map(i => i.game)))];
+  const gameOptions = [
+    "Todos",
+    ...Array.from(new Set(data.map((i) => i.game))),
+  ];
   const tournamentOptions = [
-    'Todos',
-    ...Array.from(new Set(data.map(i => i.tournament))),
+    "Todos",
+    ...Array.from(new Set(data.map((i) => i.tournament))),
   ];
 
   // Paginação
-  const start = page * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
-  const pageItems = filtered.slice(start, end);
-  const hasNext = end < filtered.length;
-  const hasPrev = page > 0;
+  const INITIAL_ITEMS = 12;
+  const ADDITIONAL_ITEMS = 8;
+  const visibleCount = INITIAL_ITEMS + page * ADDITIONAL_ITEMS;
+  const pageItems = filtered.slice(0, visibleCount);
+  const hasNext = visibleCount < filtered.length;
+  const hasPrev = page > 0 && visibleCount > INITIAL_ITEMS;
 
   // Handlers
-  const handleGameChange = e => {
+  const handleGameChange = (e) => {
     setSelectedGame(e.target.value);
   };
-  const handleTournamentChange = e => {
+  const handleTournamentChange = (e) => {
     setSelectedTournament(e.target.value);
   };
   const handleNext = () => {
-    if (hasNext) setPage(p => p + 1);
+    if (hasNext) setPage((p) => p + 1);
   };
   const handlePrev = () => {
-    if (hasPrev) setPage(p => p - 1);
+    if (hasPrev) setPage((p) => p - 1);
   };
-  const handleCardClick = item => {
-    localStorage.setItem('selectedGame', JSON.stringify(item));
+  const handleCardClick = (item) => {
+    localStorage.setItem("selectedGame", JSON.stringify(item));
     // se usar rota /game, adapte:
-    window.location.href = '/game';
+    window.location.href = "/game";
   };
 
   return (
@@ -87,7 +91,7 @@ export default function GamesList() {
                   value={selectedGame}
                   onChange={handleGameChange}
                 >
-                  {gameOptions.map(opt => (
+                  {gameOptions.map((opt) => (
                     <option key={opt} value={opt}>
                       {opt}
                     </option>
@@ -100,7 +104,7 @@ export default function GamesList() {
                   value={selectedTournament}
                   onChange={handleTournamentChange}
                 >
-                  {tournamentOptions.map(opt => (
+                  {tournamentOptions.map((opt) => (
                     <option key={opt} value={opt}>
                       {opt}
                     </option>
@@ -124,13 +128,13 @@ export default function GamesList() {
               <div className="card bg-dark h-100">
                 <img
                   className="rounded-3 static-image"
-                  src={item.image.replace('./static', '/static')}
+                  src={item.image.replace("./static", "/static")}
                   alt={item.game}
                 />
                 <div className="gif-container">
                   <img
                     className="rounded-3 gif-image"
-                    src={item.gif.replace('./static', '/static')}
+                    src={item.gif.replace("./static", "/static")}
                     alt={`${item.game} GIF`}
                   />
                   <div className="gradient"></div>

@@ -44,3 +44,4 @@ function initializeVLibras() {
   
   // Executa a inicialização do VLibras quando a página carrega
   document.addEventListener('DOMContentLoaded', initializeVLibras);
+

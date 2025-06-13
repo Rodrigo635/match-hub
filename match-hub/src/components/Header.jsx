@@ -1,10 +1,11 @@
-// src/components/Header.jsx
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark p-3">
@@ -46,10 +47,10 @@ export default function Header() {
               />
               <img
                 src="/static/icons/search.png"
-                className="position-absolute ms-2"
+                className="position-absolute"
                 style={{ left: '0.75rem' }}
-                width="25"
-                height="25"
+                width="20"
+                height="20"
                 alt="pesquisar"
               />
             </form>
@@ -57,17 +58,32 @@ export default function Header() {
             {/* Nav items */}
             <ul className="navbar-nav d-flex mb-2 mb-lg-0 text-center me-lg-3">
               <li className="nav-item">
-                <Link href="/" className="nav-link text-primary px-2">
+                <Link
+                  href="/"
+                  className={`nav-link px-2 ${
+                    pathname === '/' ? 'text-primary' : 'text-white'
+                  }`}
+                >
                   <h5 className="mb-0">Início</h5>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/sobre" className="nav-link text-white px-2">
+                <Link
+                  href="/sobre"
+                  className={`nav-link px-2 ${
+                    pathname === '/sobre' ? 'text-primary' : 'text-white'
+                  }`}
+                >
                   <h5 className="mb-0">Sobre</h5>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/contato" className="nav-link text-white px-2">
+                <Link
+                  href="/contato"
+                  className={`nav-link px-2 ${
+                    pathname === '/contato' ? 'text-primary' : 'text-white'
+                  }`}
+                >
                   <h5 className="mb-0">Contato</h5>
                 </Link>
               </li>

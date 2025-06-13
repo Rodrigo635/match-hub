@@ -1,7 +1,11 @@
-// src/components/Footer.jsx
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="footer bg-black py-5">
       <div className="container">
@@ -18,22 +22,42 @@ export default function Footer() {
           <nav className="col-12 col-md-6 nav-links">
             <ul className="nav justify-content-center justify-content-md-end flex-md-row gap-2">
               <li className="nav-item">
-                <Link href="/" className="nav-link px-2 text-primary">
+                <Link
+                  href="/"
+                  className={`nav-link px-2 ${
+                    pathname === "/" ? "text-primary" : "text-white"
+                  }`}
+                >
                   <h5 className="mb-0">Início</h5>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/sobre" className="nav-link px-2 text-white">
+                <Link
+                  href="/sobre"
+                  className={`nav-link px-2 ${
+                    pathname === "/sobre" ? "text-primary" : "text-white"
+                  }`}
+                >
                   <h5 className="mb-0">Sobre</h5>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/contato" className="nav-link px-2 text-white">
+                <Link
+                  href="/contato"
+                  className={`nav-link px-2 ${
+                    pathname === "/contato" ? "text-primary" : "text-white"
+                  }`}
+                >
                   <h5 className="mb-0">Contato</h5>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/sitemap" className="nav-link px-2 text-white">
+                <Link
+                  href="/sitemap"
+                  className={`nav-link px-2 ${
+                    pathname === "/sitemap" ? "text-primary" : "text-white"
+                  }`}
+                >
                   <h5 className="mb-0">Mapa do site</h5>
                 </Link>
               </li>

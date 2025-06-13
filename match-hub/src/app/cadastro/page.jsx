@@ -355,9 +355,9 @@ export default function CadastroPage() {
               </div>
 
               {/* Ou com Google */}
-              <div className="d-flex align-items-center w-75 justify-content-center mb-3">
+              <div className="d-flex align-items-center w-75 justify-content-center mb-4">
                 <hr className="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
-                <h6 className="ou d-flex m-0 text-white opacity-75 mx-2">Ou</h6>
+                <h6 className="d-flex m-0 text-white opacity-75 mx-2">Ou</h6>
                 <hr className="flex-grow-1 m-0 border-top-1 border-light opacity-50" />
               </div>
               <div className="d-flex w-75 justify-content-center mb-5">

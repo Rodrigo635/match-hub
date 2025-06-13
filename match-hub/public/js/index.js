@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       //// Determina o intervalo de cards a exibir (próximos 12)
       const inicio = contador; // O contador define de onde começa a exibição
-      const fim = Math.min(inicio + 12, data.length); // Define o fim do intervalo
-      const jogosExibidos = data.slice(inicio, fim); // Exibe até o fim ou 12 itens
+   
 
       let tempoTotal = 0;
 
