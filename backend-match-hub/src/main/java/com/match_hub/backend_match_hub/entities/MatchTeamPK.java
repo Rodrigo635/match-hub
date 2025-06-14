@@ -5,6 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Setter
@@ -12,6 +13,9 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable
 public class MatchTeamPK implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @ManyToOne
     @JoinColumn(name = "match_id")

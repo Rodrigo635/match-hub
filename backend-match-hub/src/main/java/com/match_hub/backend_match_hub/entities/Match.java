@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -19,7 +21,10 @@ import java.util.List;
 @EqualsAndHashCode
 @Table(name = "matches")
 @Entity
-public class Match {
+public class Match implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
