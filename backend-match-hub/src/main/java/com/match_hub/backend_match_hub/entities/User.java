@@ -4,16 +4,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.match_hub.backend_match_hub.dtos.UserDTO;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @Table(name = "users")
 @Entity
-public class User {
+public class User implements UserDetails, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,61 +55,19 @@ public class User {
         this.profilePicture = dto.profilePicture();
     }
 
-
-    public String getUsername() {
-        return username;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-
+    @Override
     public String getPassword() {
         return password;
     }
 
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public String getEmail() {
+    @Override
+    public String getUsername() {
         return email;
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public UserRole getRole(){
-        return role;
-    }
-
-    public void setRole(UserRole role){
-        this.role = role;
-    }
-
-
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
     }
 }

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.management.relation.Role;
 
 public record UserDTO(
+    Long id,
 
     @NotBlank(message = "O nome de usuário é obrigatório")
     String username,

@@ -1,3 +1,8 @@
+api:
+  security:
+    token:
+      secret: "MatchHub"
+
 # Configurações padrão (ativas quando nenhum perfil está especificado)
 spring:
   application:
@@ -50,11 +55,4 @@ spring:
 #   level:
 #     org.springframework: DEBUG
 
----
 
-spring:
-  config:
-    activate:
-      on-profile: dev1
-  application:
-    name: backend-match-hub-dev1

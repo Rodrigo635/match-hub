@@ -1,11 +1,13 @@
-package com.match_hub.backend_match_hub.config;
+package com.match_hub.backend_match_hub.infra.config;
 
 import com.match_hub.backend_match_hub.entities.*;
+import com.match_hub.backend_match_hub.enums.UserRole;
 import com.match_hub.backend_match_hub.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -13,6 +15,9 @@ import java.util.Arrays;
 @Configuration
 @Profile({"dev","dev1"})
 public class Mocks implements CommandLineRunner {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ChampionshipRepository championshipRepository;
@@ -36,6 +41,20 @@ public class Mocks implements CommandLineRunner {
         Championship championship = new Championship();
         championship.setName("Campeonato Brasileiro Série A");
         championship.setImageChampionship("https://example.com/brasileirao-logo.png");
+
+        User user = new User();
+        user.setUsername("admin");
+        user.setEmail("admin@admin.com");
+        user.setPassword(new BCryptPasswordEncoder().encode("admin"));
+        user.setRole(UserRole.ADMIN);
+        userRepository.save(user);
+
+        User user2 = new User();
+        user2.setUsername("user");
+        user2.setEmail("user@user.com");
+        user2.setPassword(new BCryptPasswordEncoder().encode("user"));
+        user2.setRole(UserRole.USER);
+        userRepository.save(user2);
 
         // Salvando no banco de dados
         Championship savedChampionship = championshipRepository.save(championship);

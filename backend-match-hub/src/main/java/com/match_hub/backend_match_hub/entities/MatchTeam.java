@@ -5,12 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @NoArgsConstructor
 @Setter
 @Getter
 @Entity
 @Table(name = "match_teams")
-public class MatchTeam {
+public class MatchTeam implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private MatchTeamPK id;
