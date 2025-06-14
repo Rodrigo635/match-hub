@@ -5,16 +5,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 @Table(name = "games")
 @Entity
 public class Game implements Serializable {
@@ -35,7 +38,7 @@ public class Game implements Serializable {
     @ElementCollection
     private List<String> tags;
 
-    private String release;
+    private Date release;
     private String genre;
     private String developer;
     private String publisher;
@@ -48,6 +51,6 @@ public class Game implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "championship_id")
-    private Championship championshipId;
+    private Championship championship;
 
 }
