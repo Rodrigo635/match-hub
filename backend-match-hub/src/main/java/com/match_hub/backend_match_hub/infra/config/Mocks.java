@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Date;
 
 @Configuration
 @Profile({"dev","dev1"})
@@ -70,12 +71,12 @@ public class Mocks implements CommandLineRunner {
         game.setGif("https://example.com/fifa24-gameplay.gif");
         game.setDescription("O mais recente simulador de futebol da EA Sports com gráficos realistas e jogabilidade aprimorada.");
         game.setTags(Arrays.asList("Esporte", "Futebol", "Simulação", "Multiplayer"));
-        game.setRelease("2023-09-29");
+        game.setRelease(new Date(2023-29-6));
         game.setGenre("Esporte");
         game.setDeveloper("EA Sports");
         game.setPublisher("Electronic Arts");
         game.setAgeRating(12);
-        game.setChampionshipId(savedChampionship);
+        game.setChampionship(savedChampionship);
 
         gameRepository.save(game);
 
