@@ -54,11 +54,8 @@ public class UserController {
     @GetMapping("/details")
     public ResponseEntity<UserDTO> getUser(HttpServletRequest request) {
         String token = tokenService.getToken(request);
-        System.out.println(token);
         String email = tokenService.getSubject(token);
-        System.out.println(email);
         UserDTO user = userService.findByEmail(email);
-        System.out.println(user);
         return ResponseEntity.ok(user);
     }
 
