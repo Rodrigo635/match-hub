@@ -44,13 +44,13 @@ public class Game implements Serializable {
     private String publisher;
     private Integer ageRating;
 
+    @ManyToOne
+    @JoinColumn(name = "championship_id")
+    private Championship championship;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
-
-    @ManyToOne
-    @JoinColumn(name = "championship_id")
-    private Championship championship;
 
 }

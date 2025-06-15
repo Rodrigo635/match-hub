@@ -8,7 +8,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ChampionshipMapper.class, PageMapper.class})
+@Mapper(componentModel = "spring", uses = ChampionshipMapper.class)
 public interface GameMapper {
 
     // Conversão para resposta completa
@@ -20,7 +20,6 @@ public interface GameMapper {
     // Conversão de CreateGameDto para Entity
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "championship", ignore = true)
     Game toEntity(CreateGameDto createGameDto);
 
     // Conversão de UpdateGameDto para Entity (para merge)

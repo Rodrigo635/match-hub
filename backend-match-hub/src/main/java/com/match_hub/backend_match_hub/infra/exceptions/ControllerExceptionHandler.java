@@ -1,9 +1,10 @@
 package com.match_hub.backend_match_hub.infra.exceptions;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.match_hub.backend_match_hub.services.exceptions.ObjectAlreadyExistsException;
-import com.match_hub.backend_match_hub.services.exceptions.ObjectNotAvailableException;
-import com.match_hub.backend_match_hub.services.exceptions.ObjectNotFoundException;
+import com.match_hub.backend_match_hub.infra.exceptions.Championship.CreateChampionshipException;
+import com.match_hub.backend_match_hub.infra.exceptions.User.EmailNotFoundException;
+import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
+import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<StandardError> handleObjectNotFoundException(ObjectNotFoundException e, HttpServletRequest request) {
@@ -84,6 +85,26 @@ public class ResourceExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<StandardError> handleNoResourceFoundException(NoResourceFoundException e, HttpServletRequest request) {
         return handleException("Invalid Url", HttpStatus.BAD_REQUEST, e, request);
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<StandardError> handleUserAlreadyExistsException(UserAlreadyExistsException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new StandardError(Instant.now(), HttpStatus.CONFLICT.value(), "Usuário já cadastrado", ex.getMessage(), request.getRequestURI()));
+    }
+
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ResponseEntity<StandardError> handleEmailNotFoundException(EmailNotFoundException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new StandardError(Instant.now(), HttpStatus.NOT_FOUND.value(), "Email não encontrado", ex.getMessage(), request.getRequestURI()));
+    }
+
+    @ExceptionHandler(TokenInvalidException.class)
+    public ResponseEntity<StandardError> handleTokenInvalidException(TokenInvalidException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new StandardError(Instant.now(), HttpStatus.UNAUTHORIZED.value(), "Token inválido", ex.getMessage(), request.getRequestURI()));
+    }
+
+    @ExceptionHandler(CreateChampionshipException.class)
+    public ResponseEntity<StandardError> handleCreateChampionshipException(CreateChampionshipException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new StandardError(Instant.now(), HttpStatus.CONFLICT.value(), "Championship already exists", ex.getMessage(), request.getRequestURI()));
     }
 
     private ResponseEntity<StandardError> handleException(String error, HttpStatus status, Exception e, HttpServletRequest request) {

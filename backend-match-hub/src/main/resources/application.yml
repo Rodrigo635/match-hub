@@ -3,6 +3,10 @@ api:
     token:
       secret: "MatchHub"
 
+server:
+  error:
+    include-stacktrace: never
+
 # Configurações padrão (ativas quando nenhum perfil está especificado)
 spring:
   application:

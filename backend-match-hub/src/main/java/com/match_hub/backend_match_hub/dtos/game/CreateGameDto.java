@@ -20,6 +20,5 @@ public record CreateGameDto(
         @NotBlank String genre,
         @NotBlank String developer,
         @NotBlank String publisher,
-        @NotNull @Min(0) @Max(18) Integer ageRating,
-        @NotNull Long championshipId
+        @NotNull @Min(0) @Max(18) Integer ageRating
 ) {}

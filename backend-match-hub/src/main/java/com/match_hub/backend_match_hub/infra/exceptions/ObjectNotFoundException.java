@@ -1,4 +1,4 @@
-package com.match_hub.backend_match_hub.services.exceptions;
+package com.match_hub.backend_match_hub.infra.exceptions;
 
 import java.io.Serial;
 

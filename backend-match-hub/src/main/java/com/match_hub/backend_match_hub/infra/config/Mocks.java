@@ -38,10 +38,7 @@ public class Mocks implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // Criando um objeto Championship
-        Championship championship = new Championship();
-        championship.setName("Campeonato Brasileiro Série A");
-        championship.setImageChampionship("https://example.com/brasileirao-logo.png");
+
 
         User user = new User();
         user.setUsername("admin");
@@ -58,9 +55,14 @@ public class Mocks implements CommandLineRunner {
         userRepository.save(user2);
 
         // Salvando no banco de dados
+
+        // Criando um objeto Championship
+        Championship championship = new Championship();
+
+        championship.setName("Campeonato Brasileiro Série A");
+        championship.setImageChampionship("https://example.com/brasileirao-logo.png");
         Championship savedChampionship = championshipRepository.save(championship);
 
-        System.out.println("Championship criado: " + championship.getName());
 
         // Criando um objeto Game
         Game game = new Game();
@@ -79,6 +81,11 @@ public class Mocks implements CommandLineRunner {
         game.setChampionship(savedChampionship);
 
         gameRepository.save(game);
+
+
+
+
+
 
         System.out.println("Game criado: " + game.getName());
 
