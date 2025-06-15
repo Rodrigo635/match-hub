@@ -3,6 +3,7 @@ package com.match_hub.backend_match_hub.infra.security;
 
 
 import com.match_hub.backend_match_hub.entities.User;
+import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
 import com.match_hub.backend_match_hub.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,35 +15,45 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
 @Component
 public class Filter extends OncePerRequestFilter {
 
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
     @Autowired
     private TokenService tokenService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    public Filter(HandlerExceptionResolver handlerExceptionResolver) {
+        this.handlerExceptionResolver = handlerExceptionResolver;
+    }
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String token = getToken(request);
+        try {
+            if (token != null) {
 
-        if (token != null) {
+                var userLogin = tokenService.getSubject(token);
+                User user = userRepository.findByEmail(userLogin)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            var userLogin = tokenService.getSubject(token);
-            User user = userRepository.findByEmail(userLogin)
-                    .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+                var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(auth);
 
-            var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            }
 
+            filterChain.doFilter(request, response);
+        }catch (Exception e) {
+            handlerExceptionResolver.resolveException(request, response, null, e);
         }
-
-        filterChain.doFilter(request, response);
     }
 
     private String getToken(HttpServletRequest request) {

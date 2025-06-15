@@ -1,6 +1,7 @@
 package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,12 +27,17 @@ public class Championship implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(unique = true)
     private String name;
     private String imageChampionship;
 
     @OneToMany(mappedBy = "championship", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Match> matches = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    @JsonIgnore
+    private Game game;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
