@@ -1,15 +1,15 @@
 package com.match_hub.backend_match_hub.controllers;
 
+import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.game.CreateGameDto;
 import com.match_hub.backend_match_hub.dtos.game.GameResponseDto;
+import com.match_hub.backend_match_hub.dtos.game.UpdateGameDto;
 import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/games")
@@ -19,8 +19,8 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<GameResponseDto>> findAll() {
-        List<GameResponseDto> games = gameService.findAll();
+    public ResponseEntity<PageResponseDTO<GameResponseDto>> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        PageResponseDTO<GameResponseDto> games = gameService.findAll(page, size);
         return ResponseEntity.ok(games);
     }
 
@@ -32,8 +32,20 @@ public class GameController {
 
     @PostMapping
     public ResponseEntity<Game> save(@RequestBody CreateGameDto createGameDto) {
-        Game savedGame = gameService.save(createGameDto);
+        gameService.save(createGameDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GameResponseDto> update(@PathVariable Long id, @RequestBody UpdateGameDto updateGameDto) {
+        GameResponseDto game = gameService.update(id, updateGameDto);
+        return ResponseEntity.ok(game);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        gameService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 

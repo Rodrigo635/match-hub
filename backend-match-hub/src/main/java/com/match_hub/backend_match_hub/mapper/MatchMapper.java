@@ -10,8 +10,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MatchMapper {
 
-    MatchDto toDto(Match match);
+    MatchDto toResponseDto(Match match);
 
-    List<MatchDto> toSummaryDtoList(List<Match> matches);
+    List<MatchDto> toResponseDtoList(List<Match> matches);
 }
 

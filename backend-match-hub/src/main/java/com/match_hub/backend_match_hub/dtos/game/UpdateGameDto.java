@@ -3,6 +3,7 @@ package com.match_hub.backend_match_hub.dtos.game;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
+import java.util.Date;
 import java.util.List;
 
 public record UpdateGameDto(
@@ -13,7 +14,7 @@ public record UpdateGameDto(
         String gif,
         String description,
         List<String> tags,
-        String release,
+        Date release,
         String genre,
         String developer,
         String publisher,
