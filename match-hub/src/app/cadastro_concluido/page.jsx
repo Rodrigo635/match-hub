@@ -1,26 +1,19 @@
 'use client';
-import { useEffect } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
-import Script from 'next/script';
-import Image from 'next/image';
+import Gif from '@/components/Gif';  // <-- Importa o componente Gif
 
 export default function CadastroConcluido() {
-
   return (
     <>
-    <link rel="stylesheet" href="/css/cadastro.css" />
-    <link rel="stylesheet" href="/css/cadastro_concluido.css" />
+      <link rel="stylesheet" href="/css/cadastro.css" />
+      <link rel="stylesheet" href="/css/cadastro_concluido.css" />
 
       <main className="bg-image py-5 main-teste">
         <div className="container">
           <div className="card bg-dark text-white rounded-4 mx-auto p-4 p-md-5 col-12 col-md-10 col-lg-6">
-            <img
-              id="gif-concluido"
-              alt="GIF concluido"
-              className="img-fluid rounded-4 mx-auto d-block mb-4"
-              style={{ maxHeight: '250px', minHeight: '250px', objectFit: 'contain' }}
-            />
+            
+            {/* Aqui renderiza o GIF aleatório */}
+            <Gif />
 
             <div className="card-body text-center">
               <h2 className="titulo fw-bold text-center">Cadastro concluído com sucesso!</h2>

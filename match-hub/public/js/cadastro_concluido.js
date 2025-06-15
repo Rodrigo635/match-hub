@@ -13,6 +13,7 @@ const gifs = [
 ];
 
 function carregarGifAleatorio() {
+  alert("GIF carregado com sucesso!");
   const gifEscolhido = gifs[Math.floor(Math.random() * gifs.length)];
   const gifElement = document.getElementById("gif-concluido");
   if (gifElement) {
