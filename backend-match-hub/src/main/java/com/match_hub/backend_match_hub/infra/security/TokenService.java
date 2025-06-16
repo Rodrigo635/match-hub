@@ -34,12 +34,12 @@ public class TokenService {
 
     public String getSubject(String token) {
         try{
-        Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
-        return JWT.require(algorithm)
-                .withIssuer(ISSUER)
-                .build()
-                .verify(token)
-                .getSubject();
+            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+            return JWT.require(algorithm)
+                    .withIssuer(ISSUER)
+                    .build()
+                    .verify(token)
+                    .getSubject();
         }catch (JWTVerificationException e){
             throw new TokenInvalidException("Token invalid or expired");
         }

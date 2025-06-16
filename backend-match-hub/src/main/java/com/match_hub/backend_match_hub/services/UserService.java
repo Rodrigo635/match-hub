@@ -7,7 +7,7 @@ import com.match_hub.backend_match_hub.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.match_hub.backend_match_hub.dtos.UserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserDTO;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.repositories.UserRepository;
 
@@ -31,6 +31,7 @@ public class UserService {
         if (userRepository.findByEmail(userDTO.email()).isPresent()) throw new UserAlreadyExistsException("Email is already in use");
 
         User user = userMapper.toEntity(userDTO);
+        user.setHasPassword(true);
         userRepository.save(user);
 
         return new UserDTO(null, user.getUsername(), null, user.getEmail(), user.getBirthDate(),

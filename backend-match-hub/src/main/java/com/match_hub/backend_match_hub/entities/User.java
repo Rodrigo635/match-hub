@@ -1,7 +1,8 @@
 package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.match_hub.backend_match_hub.dtos.UserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,6 +43,11 @@ public class User implements UserDetails, Serializable {
     @Enumerated
     private UserRole role = UserRole.USER;
 
+    @Column(name = "google_id")
+    private String googleId;
+    private String provider;
+    private boolean hasPassword;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
@@ -53,6 +59,18 @@ public class User implements UserDetails, Serializable {
         this.email = dto.email();
         this.birthDate = dto.birthDate();
         this.profilePicture = dto.profilePicture();
+    }
+
+    public User(UserResponseDTO dto){
+        this.id = dto.id();
+        this.username = dto.username();
+        this.email = dto.email();
+        this.birthDate = dto.birthDate();
+        this.profilePicture = dto.profilePicture();
+        this.role = dto.role();
+        this.provider = dto.provider();
+        this.googleId = dto.googleId();
+        this.hasPassword = dto.hasPassword();
     }
 
     @Override
