@@ -1,0 +1,69 @@
+header {
+    background: var(--cor-preto);
+}
+
+.profile-page {
+    background-color: var(--cor-bg);
+    color: var(--cor-branco);
+    min-height: 100vh;
+}
+
+/* Sidebar pra desktop */
+.profile-sidebar {
+    background-color: transparent;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding-top: 24px;
+}
+
+.profile-sidebar .nav-link {
+    color: var(--cor-cinzaTexto);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.profile-sidebar .nav-link:hover {
+    background-color: var(--cor-cinzaTexto);
+    color: var(--cor-branco);
+}
+
+.profile-sidebar .nav-link.active {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+}
+
+.profile-sidebar .nav-link i {
+    margin-right: 0.5rem;
+}
+
+/* Navegação pra mobile */
+.profile-tabs-mobile {
+    padding: 0.5rem 0;
+    background-color: transparent;
+    overflow-x: auto;
+}
+
+.profile-tabs-mobile .nav-link.active {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    border: none;
+}
+
+/* Conteúdo principal */
+.profile-content {
+    padding: 1.5rem;
+    padding-right: 0;
+    background-color: var(--cor-bg);
+}
+
+.card:hover {
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        padding-left: 0;
+    }
+}

@@ -19,7 +19,7 @@ export default function SitemapPage() {
         </div>
         <div className="row justify-content-center">
           <div className="col-12 col-md-12 col-lg-3">
-            <ul className="list-unstyled h-100 bg-dark text-white border p-4 rounded-3 mb-0">
+            <ul className="list-unstyled h-100 bg-dark text-white shadow p-4 rounded-3 mb-0">
               <li className="mb-3">
                 <h5>
                   <Link href="/" className="text-azul sitemap-link">
@@ -55,7 +55,20 @@ export default function SitemapPage() {
                   </Link>
                 </h5>
               </li>
-              {/* Adicione aqui outras rotas ou links conforme existirem em seu site */}
+              <li className="mb-3">
+                <h5>
+                  <Link href="/admin" className="text-azul sitemap-link">
+                    Painel administrativo
+                  </Link>
+                </h5>
+              </li>
+              <li className="mb-3">
+                <h5>
+                  <Link href="/perfil" className="text-azul sitemap-link">
+                    Perfil
+                  </Link>
+                </h5>
+              </li>
             </ul>
           </div>
           <div className="col-12 col-md-12 col-lg-6 mt-3 mt-lg-0 text-white">
