@@ -1,68 +1,63 @@
 // src/app/cadastro/page.js
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-
-// removi o export do metadata, pois não é compatível com arquivos client-side (.jsx)
-// Se você quiser usar isso, mova para `layout.js` ou transforme este arquivo em `.tsx` e remova o 'use client'
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function CadastroPage() {
   // Estado para alternar entre 'cadastrar' e 'entrar'
-  const [activeTab, setActiveTab] = useState('cadastrar');
+  const [activeTab, setActiveTab] = useState("cadastrar");
 
   // Estados do formulário
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmSenha, setConfirmSenha] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmSenha, setConfirmSenha] = useState("");
   const [aceitaTermos, setAceitaTermos] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Estados do login
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginSenha, setLoginSenha] = useState('');
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginSenha, setLoginSenha] = useState("");
+
+  // Estados para controle dos ícones de senha
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
 
   const handleToggle = (tab) => {
     setActiveTab(tab);
-    setErrorMessage('');
-  };
-
-  const togglePasswordVisibility = (inputId) => {
-    const input = document.getElementById(inputId);
-    if (input) {
-      input.type = input.type === 'password' ? 'text' : 'password';
-    }
+    setErrorMessage("");
   };
 
   const handleCadastroSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage("");
     if (!nome.trim() || !email.trim() || !senha || !confirmSenha) {
-      setErrorMessage('Preencha todos os campos.');
+      setErrorMessage("Preencha todos os campos.");
       return;
     }
     if (senha !== confirmSenha) {
-      setErrorMessage('As senhas não coincidem.');
+      setErrorMessage("As senhas não coincidem.");
       return;
     }
     if (!aceitaTermos) {
-      setErrorMessage('Você deve aceitar os termos e condições.');
+      setErrorMessage("Você deve aceitar os termos e condições.");
       return;
     }
 
-    console.log('Cadastro válido:', { nome, email });
-    window.location.href = '/cadastro_concluido';
+    console.log("Cadastro válido:", { nome, email });
+    window.location.href = "/cadastro_concluido";
   };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage("");
     if (!loginEmail.trim() || !loginSenha) {
-      setErrorMessage('Preencha email e senha.');
+      setErrorMessage("Preencha email e senha.");
       return;
     }
-    console.log('Login tentado:', { loginEmail, loginSenha });
+    console.log("Login tentado:", { loginEmail, loginSenha });
   };
 
   useEffect(() => {
@@ -77,29 +72,31 @@ export default function CadastroPage() {
         <div className="d-flex w-100 justify-content-center align-content-center mb-0">
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === 'cadastrar' ? 'bg-dark' : 'bg-secondary opacity-75'
+              activeTab === "cadastrar" ? "bg-dark" : "bg-secondary opacity-75"
             }`}
-            onClick={() => handleToggle('cadastrar')}
+            onClick={() => handleToggle("cadastrar")}
           >
             <h5 className="mb-0">Cadastrar</h5>
           </button>
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === 'entrar' ? 'bg-dark' : 'bg-secondary opacity-75'
+              activeTab === "entrar" ? "bg-dark" : "bg-secondary opacity-75"
             }`}
-            onClick={() => handleToggle('entrar')}
+            onClick={() => handleToggle("entrar")}
           >
             <h5 className="mb-0">Entrar</h5>
           </button>
         </div>
 
         <div className="bg-dark w-100 rounded-bottom-4 p-4">
-          {activeTab === 'cadastrar' ? (
+          {activeTab === "cadastrar" ? (
             <form
               className="form-cadastro d-flex flex-column align-items-center"
               onSubmit={handleCadastroSubmit}
             >
-              <h2 className="text-white fw-bold text-center mt-3 mb-4">Faça seu cadastro</h2>
+              <h2 className="text-white fw-bold text-center mt-3 mb-4">
+                Faça seu cadastro
+              </h2>
 
               {/* GIF ou imagem opcional */}
               <div className="w-50 rounded-5 mb-3 d-md-none">
@@ -118,7 +115,7 @@ export default function CadastroPage() {
                   placeholder="Digite seu nome..."
                   id="nome"
                   value={nome}
-                  onChange={e => setNome(e.target.value)}
+                  onChange={(e) => setNome(e.target.value)}
                   required
                 />
                 <label htmlFor="nome" className="form-label text-light">
@@ -134,10 +131,13 @@ export default function CadastroPage() {
                   placeholder="Digite seu e-mail..."
                   id="emailCadastro"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <label htmlFor="emailCadastro" className="form-label text-light">
+                <label
+                  htmlFor="emailCadastro"
+                  className="form-label text-light"
+                >
                   E-mail
                 </label>
               </div>
@@ -145,12 +145,12 @@ export default function CadastroPage() {
               {/* Senha */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   className="form-control text-white bg-dark"
                   placeholder="Digite sua senha..."
                   id="mainPassword"
                   value={senha}
-                  onChange={e => setSenha(e.target.value)}
+                  onChange={(e) => setSenha(e.target.value)}
                   required
                 />
                 <label htmlFor="mainPassword" className="form-label text-light">
@@ -159,12 +159,16 @@ export default function CadastroPage() {
                 <button
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
-                  onClick={() => togglePasswordVisibility('mainPassword')}
-                  aria-label="Mostrar/esconder senha"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Esconder senha" : "Mostrar senha"}
                 >
-                  <span className="eye-icon" id="eyeIconMain">
+                  <span className="eye-icon">
                     <img
-                      src="/static/icons/eye-slash-solid.svg"
+                      src={
+                        showPassword
+                          ? "/static/icons/eye-solid.png"
+                          : "/static/icons/eye-slash-solid.png"
+                      }
                       alt="Visibilidade da senha"
                       width="20"
                     />
@@ -175,26 +179,35 @@ export default function CadastroPage() {
               {/* Confirmar Senha */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   className="form-control text-white bg-dark"
                   placeholder="Confirme sua senha..."
                   id="confirmPassword"
                   value={confirmSenha}
-                  onChange={e => setConfirmSenha(e.target.value)}
+                  onChange={(e) => setConfirmSenha(e.target.value)}
                   required
                 />
-                <label htmlFor="confirmPassword" className="form-label text-light">
+                <label
+                  htmlFor="confirmPassword"
+                  className="form-label text-light"
+                >
                   Confirmar Senha
                 </label>
                 <button
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
-                  onClick={() => togglePasswordVisibility('confirmPassword')}
-                  aria-label="Mostrar/esconder senha"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  aria-label={
+                    showConfirmPassword ? "Esconder senha" : "Mostrar senha"
+                  }
                 >
-                  <span className="eye-icon" id="eyeIconConfirm">
+                  <span className="eye-icon">
                     <img
-                      src="/static/icons/eye-slash-solid.svg"
+                      src={
+                        showConfirmPassword
+                          ? "/static/icons/eye-solid.png"
+                          : "/static/icons/eye-slash-solid.png"
+                      }
                       alt="Visibilidade da senha"
                       width="20"
                     />
@@ -216,7 +229,7 @@ export default function CadastroPage() {
                   type="checkbox"
                   id="termos"
                   checked={aceitaTermos}
-                  onChange={e => setAceitaTermos(e.target.checked)}
+                  onChange={(e) => setAceitaTermos(e.target.checked)}
                   required
                 />
                 <label htmlFor="termos" className="text-white m-0">
@@ -262,11 +275,14 @@ export default function CadastroPage() {
                   type="button"
                   className="btn-primary d-flex btn align-items-center justify-content-center w-100 fw-bold p-2 rounded-3 btn-light"
                   onClick={() => {
-                    // lógica de OAuth Google, se houver
-                    console.log('Cadastrar com Google');
+                    console.log("Cadastrar com Google");
                   }}
                 >
-                  <img src="/static/icons/google.png" alt="Google Icon" width="24" />
+                  <img
+                    src="/static/icons/google.png"
+                    alt="Google Icon"
+                    width="24"
+                  />
                   <h5 className="mb-0 ms-2">Cadastrar com Google</h5>
                 </button>
               </div>
@@ -276,7 +292,9 @@ export default function CadastroPage() {
               className="form-login d-flex flex-column align-items-center"
               onSubmit={handleLoginSubmit}
             >
-              <h2 className="text-white fw-bold text-center mt-3 mb-4">Faça Login</h2>
+              <h2 className="text-white fw-bold text-center mt-3 mb-4">
+                Faça Login
+              </h2>
               <div className="w-50 rounded-5 mb-3 d-md-none">
                 <img
                   className="img-fluid rounded-5"
@@ -293,7 +311,7 @@ export default function CadastroPage() {
                   placeholder="Digite seu e-mail..."
                   id="loginEmail"
                   value={loginEmail}
-                  onChange={e => setLoginEmail(e.target.value)}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                   required
                 />
                 <label htmlFor="loginEmail" className="form-label text-light">
@@ -304,26 +322,35 @@ export default function CadastroPage() {
               {/* Senha login */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type="password"
+                  type={showLoginPassword ? "text" : "password"}
                   className="form-control text-white bg-dark"
                   placeholder="Digite sua senha..."
                   id="loginPassword"
                   value={loginSenha}
-                  onChange={e => setLoginSenha(e.target.value)}
+                  onChange={(e) => setLoginSenha(e.target.value)}
                   required
                 />
-                <label htmlFor="loginPassword" className="form-label text-light">
+                <label
+                  htmlFor="loginPassword"
+                  className="form-label text-light"
+                >
                   Senha
                 </label>
                 <button
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
-                  onClick={() => togglePasswordVisibility('loginPassword')}
-                  aria-label="Mostrar/esconder senha"
+                  onClick={() => setShowLoginPassword(!showLoginPassword)}
+                  aria-label={
+                    showLoginPassword ? "Esconder senha" : "Mostrar senha"
+                  }
                 >
-                  <span className="eye-icon" id="eyeIconLogin">
+                  <span className="eye-icon">
                     <img
-                      src="/static/icons/eye-slash-solid.svg"
+                      src={
+                        showLoginPassword
+                          ? "/static/icons/eye-solid.png"
+                          : "/static/icons/eye-slash-solid.png"
+                      }
                       alt="Visibilidade da senha"
                       width="20"
                     />
@@ -365,10 +392,14 @@ export default function CadastroPage() {
                   type="button"
                   className="btn-primary d-flex btn align-items-center justify-content-center w-100 fw-bold p-2 rounded-3 btn-light"
                   onClick={() => {
-                    console.log('Login com Google');
+                    console.log("Login com Google");
                   }}
                 >
-                  <img src="/static/icons/google.png" alt="Google Icon" width="24" />
+                  <img
+                    src="/static/icons/google.png"
+                    alt="Google Icon"
+                    width="24"
+                  />
                   <h5 className="mb-0 ms-2">Entrar com Google</h5>
                 </button>
               </div>
@@ -400,7 +431,6 @@ export default function CadastroPage() {
               ></button>
             </div>
             <div className="modal-body">
-              {/* Conteúdo das condições, igual ao original */}
               <h5>1. Uso Permitido</h5>
               <p>
                 O site está disponível para uso pessoal, informativo e não
@@ -408,7 +438,6 @@ export default function CadastroPage() {
                 de forma ética e legal, respeitando os princípios da boa-fé e a
                 legislação vigente.
               </p>
-              {/* ... restante do conteúdo ... */}
               <p className="text-muted mt-4">
                 <small>Última atualização: 19 de abril de 2025</small>
               </p>
@@ -448,14 +477,12 @@ export default function CadastroPage() {
               ></button>
             </div>
             <div className="modal-body">
-              {/* Conteúdo dos termos, igual ao original */}
               <h5>1. Aceitação dos Termos</h5>
               <p>
                 Ao acessar e utilizar este site, você concorda com os presentes
                 Termos e Condições de Uso. Caso não concorde com algum dos
                 termos, por favor, não utilize o site.
               </p>
-              {/* ... restante ... */}
               <p className="text-muted mt-4">
                 <small>Última atualização: 19 de abril de 2025</small>
               </p>
