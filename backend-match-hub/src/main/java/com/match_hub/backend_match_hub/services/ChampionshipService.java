@@ -1,9 +1,9 @@
 package com.match_hub.backend_match_hub.services;
 
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
-import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDto;
-import com.match_hub.backend_match_hub.dtos.championship.CreateChampionshipDto;
-import com.match_hub.backend_match_hub.dtos.championship.UpdateChampionshipDto;
+import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDTO;
+import com.match_hub.backend_match_hub.dtos.championship.CreateChampionshipDTO;
+import com.match_hub.backend_match_hub.dtos.championship.UpdateChampionshipDTO;
 import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.infra.exceptions.ObjectNotFoundException;
@@ -36,7 +36,7 @@ public class ChampionshipService {
     @Autowired
     private GameRepository gameRepository;
 
-    public ChampionshipResponseDto createChampionship(CreateChampionshipDto championshipDto) {
+    public ChampionshipResponseDTO createChampionship(CreateChampionshipDTO championshipDto) {
         Game game = gameRepository.findById(championshipDto.gameId()).orElseThrow(() -> new ObjectNotFoundException("Game not found"));
 
         Championship championship = mapper.toEntity(championshipDto);
@@ -45,7 +45,7 @@ public class ChampionshipService {
         return mapper.toResponseDto(championship);
     }
 
-    public ChampionshipResponseDto updateChampionship(Long id, UpdateChampionshipDto championshipDto) {
+    public ChampionshipResponseDTO updateChampionship(Long id, UpdateChampionshipDTO championshipDto) {
         Championship championship = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
         if(championshipDto.name() != null) championship.setName(championshipDto.name());
         if(championshipDto.imageChampionship() != null) championship.setImageChampionship(championshipDto.imageChampionship());
@@ -58,13 +58,13 @@ public class ChampionshipService {
         repository.delete(championship);
     }
 
-    public PageResponseDTO<ChampionshipResponseDto> findAll(int page, int size) {
+    public PageResponseDTO<ChampionshipResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Championship> championship = repository.findAll(pageable);
         return pageMapper.toPageResponseDto(championship, mapper::toResponseDto);
     }
 
-    public ChampionshipResponseDto findById(Long id) {
+    public ChampionshipResponseDTO findById(Long id) {
         Championship championship = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
         return mapper.toResponseDto(championship);
     }

@@ -1,11 +1,11 @@
 package com.match_hub.backend_match_hub.dtos.game;
 
-import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDto;
+import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDTO;
 
 import java.time.Instant;
 import java.util.List;
 
-public record GameResponseDto(
+public record GameResponseDTO(
         Long id,
         String name,
         String tournament,
@@ -19,6 +19,6 @@ public record GameResponseDto(
         String developer,
         String publisher,
         Integer ageRating,
-        ChampionshipResponseDto championship,
+        ChampionshipResponseDTO championship,
         Instant createdAt
 ) {}

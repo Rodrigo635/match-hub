@@ -1,10 +1,9 @@
 package com.match_hub.backend_match_hub.services;
 
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
-import com.match_hub.backend_match_hub.dtos.game.CreateGameDto;
-import com.match_hub.backend_match_hub.dtos.game.GameResponseDto;
-import com.match_hub.backend_match_hub.dtos.game.UpdateGameDto;
-import com.match_hub.backend_match_hub.entities.Championship;
+import com.match_hub.backend_match_hub.dtos.game.CreateGameDTO;
+import com.match_hub.backend_match_hub.dtos.game.GameResponseDTO;
+import com.match_hub.backend_match_hub.dtos.game.UpdateGameDTO;
 import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.mapper.GameMapper;
 import com.match_hub.backend_match_hub.mapper.PageMapper;
@@ -38,20 +37,20 @@ public class GameService {
     private PageMapper pageMapper;
 
 
-    public GameResponseDto findById(Long id) {
+    public GameResponseDTO findById(Long id) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Game not found"));
         return gameMapper.toResponseDto(game);
     }
 
     // Usando PageResponseDto Record, não sei como funciona mais funciona 👍
-    public PageResponseDTO<GameResponseDto> findAll(int page, int size) {
+    public PageResponseDTO<GameResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Game> games = gameRepository.findAll(pageable);
         return pageMapper.toPageResponseDto(games, gameMapper::toResponseDto);
     }
 
-    public void save(CreateGameDto game) {
+    public void save(CreateGameDTO game) {
         try {
             Game savedGame = gameMapper.toEntity(game);
             gameRepository.save(savedGame);
@@ -60,7 +59,7 @@ public class GameService {
         }
     }
 
-    public GameResponseDto update(Long id, UpdateGameDto updateGameDto) {
+    public GameResponseDTO update(Long id, UpdateGameDTO updateGameDto) {
         Game existingGame = gameRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
 

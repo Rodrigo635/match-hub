@@ -1,13 +1,12 @@
 package com.match_hub.backend_match_hub.dtos.game;
 
-import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
 import java.util.Date;
 import java.util.List;
 
-public record UpdateGameDto(
+public record UpdateGameDTO(
         String name,
         String tournament,
         String image,

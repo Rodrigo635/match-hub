@@ -1,17 +1,31 @@
 package com.match_hub.backend_match_hub.mapper;
 
-import com.match_hub.backend_match_hub.dtos.MatchDto;
+import com.match_hub.backend_match_hub.dtos.match.CreateMatchDTO;
+import com.match_hub.backend_match_hub.dtos.match.MatchDTO;
+import com.match_hub.backend_match_hub.dtos.match.UpdateMatchDTO;
+import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Match;
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
 
 import java.util.List;
 
-// Mapper para Match (básico para evitar dependência circular)
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {MatchTeamMapper.class})
 public interface MatchMapper {
 
-    MatchDto toResponseDto(Match match);
+    @Mapping(target = "championshipId", source = "championship")
+    MatchDTO toResponseDto(Match Match);
 
-    List<MatchDto> toResponseDtoList(List<Match> matches);
+    List<MatchDTO> toResponseDtoList(List<Match> Matches);
+
+    Match toEntity(CreateMatchDTO createMatchDTO);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateEntityFromDto(UpdateMatchDTO updateMatchDto, @MappingTarget Match Match);
+
+    default Long map (Championship championship){
+        return championship.getId();
+    }
 }
 

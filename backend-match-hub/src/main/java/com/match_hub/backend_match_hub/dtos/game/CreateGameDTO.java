@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.List;
 
-public record CreateGameDto(
+public record CreateGameDTO(
         @NotBlank String name,
         @NotBlank String tournament,
         @NotBlank String image,

@@ -1,5 +1,6 @@
 package com.match_hub.backend_match_hub.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class Team implements Serializable {
     private Long id;
 
     @OneToMany(mappedBy = "id.team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<MatchTeam> matchTeams = new ArrayList<>();
 
     private String name;
