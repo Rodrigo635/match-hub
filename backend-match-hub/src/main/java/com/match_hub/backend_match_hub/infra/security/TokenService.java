@@ -32,6 +32,8 @@ public class TokenService {
                 .sign(algorithm);
     }
 
+
+
     public String getSubject(String token) {
         try{
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);

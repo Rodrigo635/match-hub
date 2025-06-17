@@ -62,7 +62,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     private User registerNewUser(GoogleOAuth2UserInfo userInfo) {
-        System.out.println("Registering new user: " + userInfo);
         User user = new User();
         user.setEmail(userInfo.getEmail());
         user.setUsername(userInfo.getName());

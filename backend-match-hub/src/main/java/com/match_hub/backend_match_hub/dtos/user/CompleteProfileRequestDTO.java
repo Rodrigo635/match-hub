@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @Schema(description = "Request para completar perfil do usuário OAuth2")
 public record CompleteProfileRequestDTO(
 
-        @Past(message = "Birth date must be in the past")
-        LocalDate birthDate
+    @Past(message = "Birth date must be in the past")
+    LocalDate birthDate
 
 ) {
 

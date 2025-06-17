@@ -9,7 +9,7 @@ public class GoogleOAuth2UserInfo {
         this.attributes = attributes;
     }
 
-    public String getId() { return (String) attributes.get("id"); }
+    public String getId() { return (String) attributes.get("sub"); }
 
     public String getName() {
         return (String) attributes.get("name");
