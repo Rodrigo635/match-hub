@@ -28,7 +28,7 @@ export default function Footer() {
                     pathname === "/" ? "text-primary" : "text-white"
                   }`}
                 >
-                  <h5 className="mb-0">Início</h5>
+                  <p className="mb-0">Início</p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -38,7 +38,7 @@ export default function Footer() {
                     pathname === "/sobre" ? "text-primary" : "text-white"
                   }`}
                 >
-                  <h5 className="mb-0">Sobre</h5>
+                  <p className="mb-0">Sobre</p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -48,7 +48,7 @@ export default function Footer() {
                     pathname === "/contato" ? "text-primary" : "text-white"
                   }`}
                 >
-                  <h5 className="mb-0">Contato</h5>
+                  <p className="mb-0">Contato</p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -58,7 +58,7 @@ export default function Footer() {
                     pathname === "/sitemap" ? "text-primary" : "text-white"
                   }`}
                 >
-                  <h5 className="mb-0">Mapa do site</h5>
+                  <p className="mb-0">Mapa do site</p>
                 </Link>
               </li>
             </ul>

@@ -40,7 +40,7 @@ export default function Header() {
               role="search"
             >
               <input
-                className="form-control bg-transparent text-white rounded-5 border-2 ps-4"
+                className="form-control bg-transparent text-white rounded-5 border-1 p-1"
                 type="search"
                 placeholder="Pesquisar..."
                 aria-label="Search"
@@ -49,8 +49,8 @@ export default function Header() {
                 src="/static/icons/search.png"
                 className="position-absolute"
                 style={{ left: '0.75rem' }}
-                width="20"
-                height="20"
+                width="17"
+                height="17"
                 alt="pesquisar"
               />
             </form>
@@ -64,7 +64,7 @@ export default function Header() {
                     pathname === '/' ? 'text-primary' : 'text-white'
                   }`}
                 >
-                  <h5 className="mb-0">Início</h5>
+                  <p className="mb-0">Início</p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -74,7 +74,7 @@ export default function Header() {
                     pathname === '/sobre' ? 'text-primary' : 'text-white'
                   }`}
                 >
-                  <h5 className="mb-0">Sobre</h5>
+                  <p className="mb-0">Sobre</p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -84,16 +84,16 @@ export default function Header() {
                     pathname === '/contato' ? 'text-primary' : 'text-white'
                   }`}
                 >
-                  <h5 className="mb-0">Contato</h5>
+                  <p className="mb-0">Contato</p>
                 </Link>
               </li>
             </ul>
 
             {/* Botão Entrar */}
             <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center">
-              <h5 className="mb-0">
+              <p className="mb-0">
                 Entrar<i className="fa-solid fa-arrow-right-to-bracket ms-2"></i>
-              </h5>
+              </p>
             </Link>
           </div>
         </div>
