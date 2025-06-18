@@ -1,6 +1,7 @@
 package com.match_hub.backend_match_hub.controllers;
 
 
+import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
 import com.match_hub.backend_match_hub.dtos.user.CompleteProfileRequestDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserDTO;
@@ -18,6 +19,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,10 +35,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private UserService userService;
 
@@ -78,6 +77,13 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @Operation(summary = "Get all users", description = "Returns all users")
+    @GetMapping
+    public ResponseEntity<PageResponseDTO<UserResponseDTO>> getAllUsers(Integer page, Integer size) {
+        PageResponseDTO<UserResponseDTO> users = userService.findAll(page, size);
+        return ResponseEntity.ok(users);
+    }
+
 
     //Autenticação OAuth2 --> Google
 
@@ -94,9 +100,9 @@ public class UserController {
 
     @GetMapping("/oauth2/users")
     @Operation(summary = "Get all users OAuth2", description = "Return all users OAuth2")
-    public ResponseEntity<?> getOAuth2Users() {
-        List<User> googleUsers = userRepository.findByProvider("GOOGLE");
-        return ResponseEntity.ok(googleUsers.stream().map(UserResponseDTO::fromEntity).collect(Collectors.toList()));
+    public ResponseEntity<?> getOAuth2Users(@RequestParam Integer page,@RequestParam Integer size) {
+        PageResponseDTO<UserResponseDTO> googleUsers = customOAuth2UserService.findByProvider("GOOGLE", page, size);
+        return ResponseEntity.ok(googleUsers);
     }
 
     @PostMapping("/simulate-token")
