@@ -19,10 +19,11 @@ export default function CreateEntityPage({ params }) {
   return (
     <>
       <Head>
+
         <title>Criar {title} - Admin</title>
       </Head>
       {/* A estrutura de sidebar + conteúdo está sendo fornecida pelo AdminLayout */}
-      <h1 className="text-azul mb-4">Criar {title}</h1>
+      <h1 className="text-azul mb-4" style={{ paddingTop: '24px' }}>Criar {title}</h1>
       <AdminCreateForm entity={entity} />
     </>
   );
