@@ -1,10 +1,15 @@
 package com.match_hub.backend_match_hub.services;
 
+import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.infra.exceptions.User.EmailNotFoundException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsException;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
+import com.match_hub.backend_match_hub.mapper.PageMapper;
 import com.match_hub.backend_match_hub.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.match_hub.backend_match_hub.dtos.user.UserDTO;
@@ -22,6 +27,9 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PageMapper pageMapper;
 
 
 
@@ -43,6 +51,11 @@ public class UserService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException("Email not found"));
         return new UserDTO(user.getId(), user.getUsername(), null, user.getEmail(), user.getBirthDate(),
             user.getProfilePicture());
+    }
+
+    public PageResponseDTO<UserResponseDTO> findAll(Integer page, Integer size) {
+        Page<User> user = userRepository.findAll(PageRequest.of(page, size));
+        return pageMapper.toPageResponseDto(user, userMapper::toResponseDto);
     }
 
 

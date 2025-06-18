@@ -1,5 +1,6 @@
 package  com.match_hub.backend_match_hub.services;
 
+import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.user.CompleteProfileRequestDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.User;
@@ -8,15 +9,21 @@ import com.match_hub.backend_match_hub.infra.GoogleAuth.GoogleOAuth2UserInfo;
 import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundException;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
+import com.match_hub.backend_match_hub.mapper.PageMapper;
+import com.match_hub.backend_match_hub.mapper.UserMapper;
 import com.match_hub.backend_match_hub.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.web.webauthn.management.UserCredentialRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,6 +35,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private PageMapper pageMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -117,5 +130,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 "user", UserResponseDTO.fromEntity(user),
                 "message", "Token generated for an existing user"
         );
+    }
+
+    public PageResponseDTO<UserResponseDTO> findByProvider(String provider, Integer page, Integer size) {
+        Page<User> user = userRepository.findByProvider(provider, PageRequest.of(page, size));
+        if(user.isEmpty()) throw new UserNotFoundException("User not found");
+        return pageMapper.toPageResponseDto(user, userMapper::toResponseDto);
     }
 }
