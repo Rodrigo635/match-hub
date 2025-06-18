@@ -1,0 +1,22 @@
+/* Inputs e selects escuros (reúso do tema do perfil) */
+.form-control-dark,
+.form-select-dark,
+.form-textarea-dark {
+  background-color: var(--cor-bgEscuro);
+  color: var(--cor-branco);
+  border: 1px solid var(--cor-cinzaEscuro);
+}
+.form-control-dark::placeholder {
+  color: var(--cor-cinzaTexto);
+}
+.form-control-dark:focus,
+.form-select-dark:focus,
+.form-textarea-dark:focus {
+  background-color: var(--cor-bgEscuro);
+  color: var(--cor-branco);
+  border-color: var(--cor-azul);
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.25);
+}
+.form-label-dark {
+  color: var(--cor-branco);
+}
