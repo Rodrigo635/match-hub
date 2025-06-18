@@ -78,6 +78,9 @@ spring:
 
 ---
 spring:
+  config:
+    activate:
+      on-profile: [ prod ]
   datasource:
     url: jdbc:postgresql://ep-wild-recipe-act8y5wy-pooler.sa-east-1.aws.neon.tech:5432/neondb?sslmode=require
     username: neondb_owner
