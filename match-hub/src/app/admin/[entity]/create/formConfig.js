@@ -1,5 +1,4 @@
 // src/app/admin/[entity]/create/formConfig.js
-// (ou, se preferir, em components ou pasta utils)
 
 // Mocks para selects (em produção, busque via API em useEffect)
 export const mockChampionships = [
@@ -25,7 +24,7 @@ export const formFieldsConfig = {
   ],
   team: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do time' },
-    { name: 'logo', label: 'Logo', type: 'file' },
+    { name: 'logo', label: 'Logo', type: 'text' },
   ],
   championship: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do campeonato' },
@@ -34,7 +33,7 @@ export const formFieldsConfig = {
   game: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do jogo' },
     { name: 'tournament', label: 'Tournament', type: 'text', placeholder: 'Torneio associado' },
-    { name: 'image', label: 'Image', type: 'file' },
+    { name: 'image', label: 'Image', type: 'text' },
     { name: 'video', label: 'Video URL', type: 'text', placeholder: 'URL do vídeo' },
     { name: 'gif', label: 'GIF URL', type: 'text', placeholder: 'URL do GIF' },
     { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Descrição do jogo' },

@@ -10,7 +10,6 @@ export default function AdminSidebar() {
     { key: 'championship', label: 'Campeonatos', iconClass: 'fa-solid fa-trophy' },
     { key: 'team', label: 'Times', iconClass: 'fa-solid fa-users' },
     { key: 'matches', label: 'Partidas', iconClass: 'fa-solid fa-calendar-days' },
-    { key: 'matches_teams', label: 'Partidas de Times', iconClass: 'fa-solid fa-link' },
   ];
   const pathname = usePathname() || '';
 
