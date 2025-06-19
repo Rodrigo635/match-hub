@@ -3,6 +3,7 @@ package com.match_hub.backend_match_hub.dtos.game;
 import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDTO;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 public record GameResponseDTO(
@@ -14,7 +15,7 @@ public record GameResponseDTO(
         String gif,
         String description,
         List<String> tags,
-        String release,
+        LocalDate release,
         String genre,
         String developer,
         String publisher,

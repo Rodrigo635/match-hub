@@ -1,7 +1,7 @@
 package com.match_hub.backend_match_hub.mapper;
 
 import com.match_hub.backend_match_hub.dtos.match.CreateMatchDTO;
-import com.match_hub.backend_match_hub.dtos.match.MatchDTO;
+import com.match_hub.backend_match_hub.dtos.match.MatchResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.UpdateMatchDTO;
 import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Match;
@@ -13,10 +13,9 @@ import java.util.List;
 public interface MatchMapper {
 
     @Mapping(target = "championshipId", source = "championship")
-    MatchDTO toResponseDto(Match Match);
+    MatchResponseDTO toResponseDto(Match Match);
 
-    List<MatchDTO> toResponseDtoList(List<Match> Matches);
-
+    List<MatchResponseDTO> toResponseDtoList(List<Match> Matches);
     Match toEntity(CreateMatchDTO createMatchDTO);
 
     @Mapping(target = "id", ignore = true)

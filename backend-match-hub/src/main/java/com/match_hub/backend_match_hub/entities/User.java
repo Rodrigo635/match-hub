@@ -1,8 +1,8 @@
 package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.match_hub.backend_match_hub.dtos.user.UserDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
+import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +25,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Table(name = "users")
 @Entity
-public class User implements UserDetails, Serializable {
+public class User implements UserDetails, Serializable, HasProfileImage {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class User implements UserDetails, Serializable {
     private Long id;
 
     @Column(unique = true)
-    private String username;
+    private String name;
     private String password;
     @Column(unique = true)
     private String email;
@@ -53,17 +53,9 @@ public class User implements UserDetails, Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
 
-    public User(UserDTO dto){
-        this.username = dto.username();
-        this.password = dto.password();
-        this.email = dto.email();
-        this.birthDate = dto.birthDate();
-        this.profilePicture = dto.profilePicture();
-    }
-
     public User(UserResponseDTO dto){
         this.id = dto.id();
-        this.username = dto.username();
+        this.name = dto.name();
         this.email = dto.email();
         this.birthDate = dto.birthDate();
         this.profilePicture = dto.profilePicture();
@@ -87,5 +79,15 @@ public class User implements UserDetails, Serializable {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public void setProfilePicture(String url) {
+        this.profilePicture = url;
+    }
+
+    @Override
+    public Long getId() {
+        return this.id;
     }
 }

@@ -3,7 +3,10 @@ api:
     token:
       secret: "MatchHub"
 
-
+app:
+  upload:
+    dir: "${user.home}/uploads"
+    base-url: "http://localhost:8080/uploads"
 
 
 server:
@@ -11,6 +14,7 @@ server:
     include-stacktrace: never
 
 # Configurações padrão (ativas quando nenhum perfil está especificado)
+
 spring:
   security:
     oauth2:
@@ -30,6 +34,7 @@ spring:
             user-name-attribute: sub
 
 ---
+
 # Configurações compartilhadas entre os perfis 'dev' e 'dev1'
 spring:
   config:
@@ -77,6 +82,7 @@ spring:
 #     org.springframework: DEBUG
 
 ---
+
 spring:
   config:
     activate:

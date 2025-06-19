@@ -2,6 +2,7 @@ package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,7 +20,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Table(name = "championships")
 @Entity
-public class Championship implements Serializable {
+public class Championship implements Serializable, HasProfileImage {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -43,4 +44,9 @@ public class Championship implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
+
+    @Override
+    public void setProfilePicture(String url) {
+        this.imageChampionship = url;
+    }
 }

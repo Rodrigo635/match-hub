@@ -9,7 +9,6 @@ import java.util.List;
 public record UpdateGameDTO(
         String name,
         String tournament,
-        String image,
         String video,
         String gif,
         String description,

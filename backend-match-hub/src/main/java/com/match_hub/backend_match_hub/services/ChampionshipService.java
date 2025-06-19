@@ -17,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
@@ -26,9 +27,11 @@ public class ChampionshipService {
     @Autowired
     private PageMapper pageMapper;
 
+    @Autowired
+    private ChampionshipRepository championshipRepository;
 
     @Autowired
-    private ChampionshipRepository repository;
+    private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
     private ChampionshipMapper mapper;
@@ -36,48 +39,52 @@ public class ChampionshipService {
     @Autowired
     private GameRepository gameRepository;
 
-    public ChampionshipResponseDTO createChampionship(CreateChampionshipDTO championshipDto) {
-        Game game = gameRepository.findById(championshipDto.gameId()).orElseThrow(() -> new ObjectNotFoundException("Game not found"));
-
-        Championship championship = mapper.toEntity(championshipDto);
-        championship.setGame(game);
-        repository.save(championship);
-        return mapper.toResponseDto(championship);
-    }
-
-    public ChampionshipResponseDTO updateChampionship(Long id, UpdateChampionshipDTO championshipDto) {
-        Championship championship = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        if(championshipDto.name() != null) championship.setName(championshipDto.name());
-        if(championshipDto.imageChampionship() != null) championship.setImageChampionship(championshipDto.imageChampionship());
-        Championship updatedChampionship = repository.save(championship);
-        return mapper.toResponseDto(updatedChampionship);
-    }
-
-    public void deleteById(Long id) {
-        Championship championship = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        repository.delete(championship);
-    }
-
     public PageResponseDTO<ChampionshipResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Championship> championship = repository.findAll(pageable);
+        Page<Championship> championship = championshipRepository.findAll(pageable);
         return pageMapper.toPageResponseDto(championship, mapper::toResponseDto);
     }
 
     public ChampionshipResponseDTO findById(Long id) {
-        Championship championship = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
+        Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
         return mapper.toResponseDto(championship);
     }
 
+    public ChampionshipResponseDTO save(CreateChampionshipDTO championshipDto) {
+        Game game = gameRepository.findById(championshipDto.gameId()).orElseThrow(() -> new ObjectNotFoundException("Game not found"));
+        Championship championship = mapper.toEntity(championshipDto);
+        championship.setGame(game);
+        championshipRepository.save(championship);
+        return mapper.toResponseDto(championship);
+    }
+
+    public void update(Long id, UpdateChampionshipDTO championshipDto) {
+        Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
+        mapper.updateEntityFromDto(championshipDto, championship);
+        championshipRepository.save(championship);
+    }
+
+    public void delete(Long id) {
+        Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
+        championshipRepository.delete(championship);
+    }
+
     public void addGame(Long championshipId, Long gameId) {
-        Championship championship = repository.findById(championshipId)
+        Championship championship = championshipRepository.findById(championshipId)
                 .orElseThrow(() -> new ObjectNotFoundException("Championship not found with ID: " + championshipId));
 
         Game game = gameRepository.findById(gameId)
                 .orElseThrow(() -> new ObjectNotFoundException("Game not found with ID: " + gameId));
 
         championship.setGame(game);
-        repository.save(championship);
+        championshipRepository.save(championship);
+    }
+
+    public String uploadProfileImage(Long id, MultipartFile file) {
+        Championship championship = championshipRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
+
+        return profileImageUploaderService.uploadProfileImage(championship, file, championshipRepository, "championships");
     }
 
 

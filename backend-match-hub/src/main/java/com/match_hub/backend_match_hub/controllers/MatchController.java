@@ -3,11 +3,10 @@ package com.match_hub.backend_match_hub.controllers;
 
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.CreateMatchDTO;
-import com.match_hub.backend_match_hub.dtos.match.MatchDTO;
+import com.match_hub.backend_match_hub.dtos.match.MatchResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.UpdateMatchDTO;
-import com.match_hub.backend_match_hub.entities.Match;
-import com.match_hub.backend_match_hub.mapper.MatchMapper;
 import com.match_hub.backend_match_hub.services.MatchService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,36 +20,30 @@ public class MatchController {
     @Autowired
     private MatchService matchService;
 
-    @Autowired
-    private MatchMapper matchMapper;
-
-
     @GetMapping
-    public ResponseEntity<PageResponseDTO<MatchDTO>> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
-        PageResponseDTO<MatchDTO> matches = matchService.findAll(page, size);
+    public ResponseEntity<PageResponseDTO<MatchResponseDTO>> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        PageResponseDTO<MatchResponseDTO> matches = matchService.findAll(page, size);
         return ResponseEntity.ok(matches);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MatchDTO> findById(@PathVariable Long id) {
-        Match match = matchService.findById(id);
-        MatchDTO MatchDTO = matchMapper.toResponseDto(match);
-        return ResponseEntity.ok(MatchDTO);
+    public ResponseEntity<MatchResponseDTO> findById(@PathVariable Long id) {
+        MatchResponseDTO match = matchService.findById(id);
+        return ResponseEntity.ok(match);
     }
 
     @PostMapping
-    public ResponseEntity<MatchDTO> save(@RequestBody CreateMatchDTO createMatchDTO) {
-        Match Match = matchMapper.toEntity(createMatchDTO);
-        Match savedMatch = matchService.save(Match);
-        MatchDTO savedMatchDTO = matchMapper.toResponseDto(savedMatch);
-        URI address = URI.create("/api/matches/" + savedMatchDTO.id());
+    @Operation(summary = "Create a match", description = "Complete profile for an existing user")
+    public ResponseEntity<?> save(@RequestBody CreateMatchDTO createMatchDTO) {
+        MatchResponseDTO match = matchService.save(createMatchDTO);
+        URI address = URI.create("/api/matches/" + match.id());
         return ResponseEntity.created(address).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MatchDTO> update(@PathVariable Long id, @RequestBody UpdateMatchDTO updateMatchDTO) {
-        MatchDTO updatedMatch = matchService.update(id, updateMatchDTO);
-        return ResponseEntity.ok(updatedMatch);
+    public ResponseEntity<MatchResponseDTO> update(@PathVariable Long id, @RequestBody UpdateMatchDTO updateMatchDTO) {
+        MatchResponseDTO updatedMatch = matchService.update(id, updateMatchDTO);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

@@ -40,6 +40,7 @@ public class Match implements Serializable {
 
     @Column(name = "match_hour")
     private LocalTime hour;
+
     private String link;
 
     @CreationTimestamp

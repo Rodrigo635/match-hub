@@ -1,6 +1,6 @@
 package com.match_hub.backend_match_hub.dtos.championship;
 
-import com.match_hub.backend_match_hub.dtos.match.MatchDTO;
+import com.match_hub.backend_match_hub.dtos.match.MatchResponseDTO;
 
 import java.time.Instant;
 import java.util.List;
@@ -10,6 +10,6 @@ public record ChampionshipResponseDTO(
         String name,
         String imageChampionship,
         Instant createdAt,
-        List<MatchDTO> matches,
+        List<MatchResponseDTO> matches,
         Integer totalMatches
 ) {}

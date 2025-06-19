@@ -4,11 +4,12 @@ import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.Enumerated;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 public record UserResponseDTO(
         Long id,
-        String username,
+        String name,
         String email,
         LocalDate birthDate,
         String profilePicture,
@@ -16,6 +17,7 @@ public record UserResponseDTO(
         UserRole role,
         String provider,
         String googleId,
+        Instant createdAt,
         boolean hasPassword
 ) {
     public static UserResponseDTO fromEntity(User user) {
@@ -28,6 +30,7 @@ public record UserResponseDTO(
                 user.getRole(),
                 user.getProvider(),
                 user.getGoogleId(),
+                user.getCreatedAt(),
                 user.getPassword() != null
         );
     }

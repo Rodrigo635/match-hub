@@ -6,10 +6,17 @@ import com.match_hub.backend_match_hub.dtos.game.GameResponseDTO;
 import com.match_hub.backend_match_hub.dtos.game.UpdateGameDTO;
 import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.services.GameService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/games")
@@ -32,20 +39,48 @@ public class GameController {
 
     @PostMapping
     public ResponseEntity<Game> save(@RequestBody CreateGameDTO createGameDto) {
-        gameService.save(createGameDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Game savedGame = gameService.save(createGameDto);
+        URI address = URI.create("/api/games/" + savedGame.getId());
+        return ResponseEntity.created(address).build();
+    }
+
+    @Operation(
+            summary = "Upload user profile picture",
+            description = "Uploads a profile picture for an existing user"
+    )
+    @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> uploadProfileImage(
+            @PathVariable("id")
+            @Parameter(description = "User ID", example = "123")
+            Long id,
+
+            @RequestParam("file")
+            @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
+            MultipartFile file) {
+
+        // Processar upload
+        String imageUrl = gameService.uploadProfileImage(id, file);
+
+        // Resposta
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Image uploaded successfully");
+        response.put("imageUrl", imageUrl);
+        response.put("gameId", id.toString());
+
+        return ResponseEntity.ok(response);
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GameResponseDTO> update(@PathVariable Long id, @RequestBody UpdateGameDTO updateGameDto) {
-        GameResponseDTO game = gameService.update(id, updateGameDto);
-        return ResponseEntity.ok(game);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UpdateGameDTO updateGameDto) {
+        gameService.update(id, updateGameDto);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         gameService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok().build();
     }
 
 

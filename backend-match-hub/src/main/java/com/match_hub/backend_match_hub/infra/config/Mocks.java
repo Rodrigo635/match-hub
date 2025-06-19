@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.Date;
 
 @Configuration
 @Profile({"dev","dev1"})
@@ -41,7 +41,7 @@ public class Mocks implements CommandLineRunner {
 
 
         User user = new User();
-        user.setUsername("admin");
+        user.setName("admin");
         user.setEmail("admin@admin.com");
         user.setPassword(new BCryptPasswordEncoder().encode("admin"));
         user.setRole(UserRole.ADMIN);
@@ -49,7 +49,7 @@ public class Mocks implements CommandLineRunner {
         userRepository.save(user);
 
         User user2 = new User();
-        user2.setUsername("user");
+        user2.setName("user");
         user2.setEmail("user@user.com");
         user2.setPassword(new BCryptPasswordEncoder().encode("user"));
         user2.setRole(UserRole.USER);
@@ -75,7 +75,7 @@ public class Mocks implements CommandLineRunner {
         game.setGif("https://example.com/fifa24-gameplay.gif");
         game.setDescription("O mais recente simulador de futebol da EA Sports com gráficos realistas e jogabilidade aprimorada.");
         game.setTags(Arrays.asList("Esporte", "Futebol", "Simulação", "Multiplayer"));
-        game.setRelease(new Date(2023-29-6));
+        game.setRelease(LocalDate.of(2023, 6, 29));
         game.setGenre("Esporte");
         game.setDeveloper("EA Sports");
         game.setPublisher("Electronic Arts");
@@ -83,11 +83,6 @@ public class Mocks implements CommandLineRunner {
         game.setChampionship(savedChampionship);
 
         gameRepository.save(game);
-
-
-
-
-
 
         System.out.println("Game criado: " + game.getName());
 

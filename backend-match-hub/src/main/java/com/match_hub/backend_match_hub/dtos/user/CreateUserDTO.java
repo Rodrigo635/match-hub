@@ -3,11 +3,9 @@ package com.match_hub.backend_match_hub.dtos.user;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
-public record UserDTO(
-    Long id,
-
+public record CreateUserDTO(
     @NotBlank(message = "O nome de usuário é obrigatório")
-    String username,
+    String name,
 
     @NotBlank(message = "A senha é obrigatória")
     @Pattern(
@@ -22,7 +20,6 @@ public record UserDTO(
 
     @NotNull(message = "A data de nascimento é obrigatória")
     @Past(message = "A data de nascimento deve estar no passado")
-    LocalDate birthDate,
-    String profilePicture
+    LocalDate birthDate
 
 ) {}

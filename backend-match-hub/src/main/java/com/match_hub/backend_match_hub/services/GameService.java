@@ -5,12 +5,12 @@ import com.match_hub.backend_match_hub.dtos.game.CreateGameDTO;
 import com.match_hub.backend_match_hub.dtos.game.GameResponseDTO;
 import com.match_hub.backend_match_hub.dtos.game.UpdateGameDTO;
 import com.match_hub.backend_match_hub.entities.Game;
+import com.match_hub.backend_match_hub.infra.exceptions.ObjectAlreadyExistsException;
+import com.match_hub.backend_match_hub.infra.exceptions.ObjectNotFoundException;
 import com.match_hub.backend_match_hub.mapper.GameMapper;
 import com.match_hub.backend_match_hub.mapper.PageMapper;
 import com.match_hub.backend_match_hub.repositories.ChampionshipRepository;
 import com.match_hub.backend_match_hub.repositories.GameRepository;
-import com.match_hub.backend_match_hub.infra.exceptions.ObjectAlreadyExistsException;
-import com.match_hub.backend_match_hub.infra.exceptions.ObjectNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,9 +19,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-@Transactional
 @Service
+@Transactional
 public class GameService {
 
     @Autowired
@@ -29,6 +30,9 @@ public class GameService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
     private GameMapper gameMapper;
@@ -50,10 +54,10 @@ public class GameService {
         return pageMapper.toPageResponseDto(games, gameMapper::toResponseDto);
     }
 
-    public void save(CreateGameDTO game) {
+    public Game save(CreateGameDTO game) {
         try {
             Game savedGame = gameMapper.toEntity(game);
-            gameRepository.save(savedGame);
+            return gameRepository.save(savedGame);
         } catch (DataIntegrityViolationException e) {
             throw new ObjectAlreadyExistsException("Game already exists");
         }
@@ -76,5 +80,12 @@ public class GameService {
 
     public void deleteById(Long id) {
         gameRepository.deleteById(id);
+    }
+
+    public String uploadProfileImage(Long id, MultipartFile file) {
+        Game game = gameRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
+
+        return profileImageUploaderService.uploadProfileImage(game, file, gameRepository, "games");
     }
 }

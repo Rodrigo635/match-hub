@@ -2,9 +2,9 @@ package com.match_hub.backend_match_hub.mapper;
 
 import com.match_hub.backend_match_hub.dtos.championship.ChampionshipResponseDTO;
 import com.match_hub.backend_match_hub.dtos.championship.CreateChampionshipDTO;
+import com.match_hub.backend_match_hub.dtos.championship.UpdateChampionshipDTO;
 import com.match_hub.backend_match_hub.entities.Championship;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -18,8 +18,6 @@ public interface ChampionshipMapper {
         championship.setId(id);
         return championship;
     }
-
-
 
     // Conversão para resposta completa com matches
     @Mapping(target = "totalMatches", expression = "java(championship.getMatches() != null ? championship.getMatches().size() : 0)")
@@ -35,4 +33,9 @@ public interface ChampionshipMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "matches", ignore = true)
     Championship toEntity(CreateChampionshipDTO createDto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateEntityFromDto(UpdateChampionshipDTO updateChampionshipDTO, @MappingTarget Championship championship);
 }

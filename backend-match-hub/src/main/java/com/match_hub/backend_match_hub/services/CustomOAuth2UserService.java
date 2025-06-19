@@ -20,14 +20,14 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.security.web.webauthn.management.UserCredentialRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
@@ -77,7 +77,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private User registerNewUser(GoogleOAuth2UserInfo userInfo) {
         User user = new User();
         user.setEmail(userInfo.getEmail());
-        user.setUsername(userInfo.getName());
+        user.setName(userInfo.getName());
         user.setPassword(null);
         user.setBirthDate(null);
         user.setProfilePicture(userInfo.getImageUrl()); // Foto do perfil do Google
@@ -100,7 +100,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // Garantir que username existe para OAuth2
         if (existingUser.getUsername() == null) {
-            existingUser.setUsername(existingUser.getEmail());
+            existingUser.setName(existingUser.getEmail());
         }
 
         return userRepository.save(existingUser);
