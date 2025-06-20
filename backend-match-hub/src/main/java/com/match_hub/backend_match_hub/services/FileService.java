@@ -49,7 +49,9 @@ public class FileService {
             file.transferTo(target.toFile());
 
             // retorna URL de acesso
+
             return "http://" + ipv4 + "/uploads/" + dir + "/" + id + "/" + filename;
+
 
         } catch (IOException e) {
             throw new ObjectNotFoundException("Falha ao salvar imagem");
