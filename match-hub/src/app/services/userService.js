@@ -64,7 +64,7 @@ export async function updateUser(id, userData) {
     };
     options.body = JSON.stringify(userData);
   }
-  const res = await fetch(`${BASE_URL}/${id}`, options);
+  const res = await fetch(`${BASE_URL}/admin/${id}`, options);
   if (!res.ok) {
     const text = await res.text();
     console.error('updateUser: erro status', res.status, text);
