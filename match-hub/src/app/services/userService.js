@@ -41,7 +41,6 @@ export async function createUser(userData) {
       'Content-Type': 'application/json',
     };
     options.body = JSON.stringify(userData);
-    console.log(userData);
   }
   const res = await fetch(`${BASE_URL}/register`, options);
   if (!res.ok) {
@@ -49,7 +48,7 @@ export async function createUser(userData) {
     console.error('createUser: erro status', res.status, text);
     throw new Error(`Erro ao criar usuário: ${res.status}`);
   }
-  return;
+  return res.json();
 }
 
 export async function updateUser(id, userData) {
