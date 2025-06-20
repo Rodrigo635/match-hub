@@ -17,6 +17,9 @@ public record UserResponseDTO(
         String provider,
         String googleId,
         Instant createdAt,
-        boolean hasPassword
+        Boolean hasPassword,
+        Integer fontSize,
+        Boolean vLibrasActive,
+        Boolean isDarkMode
 ) {}
 

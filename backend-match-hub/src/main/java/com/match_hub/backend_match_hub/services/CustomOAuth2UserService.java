@@ -106,19 +106,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         return userRepository.save(existingUser);
     }
 
-    // Metodo no controller deletado, porque o put do usuario comum já atualiza birthdate
-    public UserResponseDTO completeOAuth2Profile(HttpServletRequest request, CompleteProfileRequestDTO dto) {
-        String token = tokenService.getToken(request);
-        if (token == null) throw new TokenInvalidException("Token not found");
-
-        String email = tokenService.getSubject(token);
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        if (dto.birthDate() != null) user.setBirthDate(dto.birthDate());
-        return userMapper.toResponseDto(userRepository.save(user));
-    }
-
     public Map<String, Object> simulateOAuth2Token(String email) {
         User user = userRepository.findByEmailAndProvider(email, "GOOGLE")
                 .orElseThrow(() -> new UserNotFoundException("User OAuth2 not found"));

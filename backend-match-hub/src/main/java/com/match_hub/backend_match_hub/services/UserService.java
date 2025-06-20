@@ -15,6 +15,7 @@ import com.match_hub.backend_match_hub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -74,6 +75,9 @@ public class UserService {
 
     public UserResponseDTO update(Long id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        if(updateUserDTO.password() != null){
+            user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));
+        }
         userMapper.updateEntityFromDto(updateUserDTO, user);
         User updatedUser = userRepository.save(user);
         return userMapper.toResponseDto(updatedUser);

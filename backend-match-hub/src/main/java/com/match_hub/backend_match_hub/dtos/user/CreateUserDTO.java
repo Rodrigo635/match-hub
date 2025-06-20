@@ -5,7 +5,9 @@ import java.time.LocalDate;
 
 public record CreateUserDTO(
     @NotBlank(message = "O nome de usuário é obrigatório")
+    @Size(min = 3, message = "O nome deve ter no mínimo 3 caracteres")
     String name,
+
 
     @NotBlank(message = "A senha é obrigatória")
     @Pattern(

@@ -56,7 +56,12 @@ public class User implements UserDetails, Serializable, HasProfileImage {
 
     private String provider;
 
-    private boolean hasPassword;
+    private Boolean hasPassword;
+
+    private Boolean isDarkMode = true;
+    private Integer fontSize = 16;
+    private Boolean vLibrasActive = false;
+
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
