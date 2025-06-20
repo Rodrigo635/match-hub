@@ -9,7 +9,7 @@ export default function AdminSidebar() {
     { key: 'game', label: 'Jogos', iconClass: 'fa-solid fa-gamepad' },
     { key: 'championship', label: 'Campeonatos', iconClass: 'fa-solid fa-trophy' },
     { key: 'team', label: 'Times', iconClass: 'fa-solid fa-users' },
-    { key: 'matches', label: 'Partidas', iconClass: 'fa-solid fa-calendar-days' },
+    { key: 'match', label: 'Partidas', iconClass: 'fa-solid fa-calendar-days' },
   ];
   const pathname = usePathname() || '';
 

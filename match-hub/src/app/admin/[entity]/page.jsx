@@ -203,7 +203,7 @@ export default function AdminEntityPage({ params }) {
                         <td>{item.genre}</td>
                         <td>{item.developer}</td>
                         <td>{item.publisher}</td>
-                        <td>{item.age_rating}</td>
+                        <td>{item.ageRating}</td>
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
@@ -239,13 +239,14 @@ export default function AdminEntityPage({ params }) {
                       <>
                         <td>{item.id}</td>
                         <td>{item.data ?? item.date}</td>
-                        <td>{item.horario ?? item.time}</td>
+                        <td>{item.hour ?? item.time}</td>
                         <td>
                           {item.link? (
                             <a href={item.link} target="_blank" rel="noopener noreferrer">Ver</a>
                           ) : <span>—</span>}
                         </td>
-                        <td>{item.id_championship ?? (item.championship?.id)}</td>
+                        <td>{item.championshipId ?? (item.championship?.id)}</td>
+                        <td>{item.teamDTOS}</td>
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}

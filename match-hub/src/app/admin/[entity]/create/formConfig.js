@@ -44,7 +44,7 @@ export const formFieldsConfig = {
     { name: 'publisher', label: 'Publisher', type: 'text', placeholder: 'Publicadora' },
     { name: 'age_rating', label: 'Age Rating', type: 'text', placeholder: 'e.g. 16+' },
   ],
-  matches: [
+  match: [
     { name: 'data', label: 'Date', type: 'date' },
     { name: 'horario', label: 'Time', type: 'time' },
     { name: 'link', label: 'Link', type: 'text', placeholder: 'URL da partida' },
