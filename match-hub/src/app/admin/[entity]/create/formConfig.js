@@ -20,7 +20,7 @@ export const formFieldsConfig = {
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome completo' },
     { name: 'email', label: 'Email', type: 'email', placeholder: 'email@exemplo.com' },
     // { name: 'password', label: 'Password', type: 'password', placeholder: 'Senha' },
-    { name: 'born', label: 'Born', type: 'date' },
+    { name: 'birthDate', label: 'Born', type: 'date' },
   ],
   team: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do time' },

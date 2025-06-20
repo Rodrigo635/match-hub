@@ -170,7 +170,7 @@ export default function AdminEntityPage({ params }) {
             <tbody>
               {items.map(item => {
                 // Normaliza imagens se existir
-                const imgChamp = normalizeImageSrc(item.image_championship ?? item.image);
+                const imgChamp = normalizeImageSrc(item.imageChampionship ?? item.image);
                 const imgTeam = normalizeImageSrc(item.logo);
                 return (
                   <tr key={item.id}>
@@ -237,7 +237,7 @@ export default function AdminEntityPage({ params }) {
                     {entity === 'match' && (
                       <>
                         <td>{item.id}</td>
-                        <td>{item.data ?? item.date}</td>
+                        <td>{item.date ?? item.date}</td>
                         <td>{item.hour ?? item.time}</td>
                         <td>
                           {item.link? (

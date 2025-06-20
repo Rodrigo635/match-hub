@@ -1,63 +1,82 @@
 // src/app/cadastro/page.js
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { createUser } from '../services/userService';
 
 export default function CadastroPage() {
   // Estado para alternar entre 'cadastrar' e 'entrar'
-  const [activeTab, setActiveTab] = useState("cadastrar");
+  const [activeTab, setActiveTab] = useState('cadastrar');
 
   // Estados do formulário
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmSenha, setConfirmSenha] = useState("");
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [confirmSenha, setConfirmSenha] = useState('');
   const [aceitaTermos, setAceitaTermos] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Estados do login
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginSenha, setLoginSenha] = useState("");
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginSenha, setLoginSenha] = useState('');
 
   // Estados para controle dos ícones de senha
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
 
-  const handleToggle = (tab) => {
+  const handleToggle = tab => {
     setActiveTab(tab);
-    setErrorMessage("");
+    setErrorMessage('');
   };
 
-  const handleCadastroSubmit = (e) => {
+  const handleCadastroSubmit = e => {
     e.preventDefault();
-    setErrorMessage("");
-    if (!nome.trim() || !email.trim() || !senha || !confirmSenha) {
-      setErrorMessage("Preencha todos os campos.");
+    setErrorMessage('');
+
+    if (!nome.trim() || !email.trim() || !senha || !confirmSenha || !birthDate) {
+      setErrorMessage('Preencha todos os campos.');
       return;
     }
+
     if (senha !== confirmSenha) {
-      setErrorMessage("As senhas não coincidem.");
-      return;
-    }
-    if (!aceitaTermos) {
-      setErrorMessage("Você deve aceitar os termos e condições.");
+      setErrorMessage('As senhas não coincidem.');
       return;
     }
 
-    console.log("Cadastro válido:", { nome, email });
-    window.location.href = "/cadastro_concluido";
+    if (!aceitaTermos) {
+      setErrorMessage('Você deve aceitar os termos e condições.');
+      return;
+    }
+
+    const userData = {
+      name: nome,
+      email: email,
+      password: senha,
+      birthDate: birthDate,
+    };
+
+    createUser(userData)
+      .then(() => {
+        console.log('Cadastro válido:', userData);
+        window.location.href = '/cadastro_concluido';
+      })
+      .catch(error => {
+        console.error('Erro ao criar usuário:', error);
+        setErrorMessage('Erro ao criar usuário. Tente novamente.');
+      });
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = e => {
     e.preventDefault();
-    setErrorMessage("");
+    setErrorMessage('');
     if (!loginEmail.trim() || !loginSenha) {
-      setErrorMessage("Preencha email e senha.");
+      setErrorMessage('Preencha email e senha.');
       return;
     }
-    console.log("Login tentado:", { loginEmail, loginSenha });
+    console.log('Login tentado:', { loginEmail, loginSenha });
   };
 
   useEffect(() => {
@@ -72,31 +91,29 @@ export default function CadastroPage() {
         <div className="d-flex w-100 justify-content-center align-content-center mb-0">
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === "cadastrar" ? "bg-dark" : "bg-secondary opacity-75"
+              activeTab === 'cadastrar' ? 'bg-dark' : 'bg-secondary opacity-75'
             }`}
-            onClick={() => handleToggle("cadastrar")}
+            onClick={() => handleToggle('cadastrar')}
           >
             <h5 className="mb-0">Cadastrar</h5>
           </button>
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === "entrar" ? "bg-dark" : "bg-secondary opacity-75"
+              activeTab === 'entrar' ? 'bg-dark' : 'bg-secondary opacity-75'
             }`}
-            onClick={() => handleToggle("entrar")}
+            onClick={() => handleToggle('entrar')}
           >
             <h5 className="mb-0">Entrar</h5>
           </button>
         </div>
 
         <div className="bg-dark w-100 rounded-bottom-4 p-4">
-          {activeTab === "cadastrar" ? (
+          {activeTab === 'cadastrar' ? (
             <form
               className="form-cadastro d-flex flex-column align-items-center"
               onSubmit={handleCadastroSubmit}
             >
-              <h2 className="text-white fw-bold text-center mt-3 mb-4">
-                Faça seu cadastro
-              </h2>
+              <h2 className="text-white fw-bold text-center mt-3 mb-4">Faça seu cadastro</h2>
 
               {/* GIF ou imagem opcional */}
               <div className="w-50 rounded-5 mb-3 d-md-none">
@@ -115,7 +132,7 @@ export default function CadastroPage() {
                   placeholder="Digite seu nome..."
                   id="nome"
                   value={nome}
-                  onChange={(e) => setNome(e.target.value)}
+                  onChange={e => setNome(e.target.value)}
                   required
                 />
                 <label htmlFor="nome" className="form-label text-light">
@@ -131,26 +148,39 @@ export default function CadastroPage() {
                   placeholder="Digite seu e-mail..."
                   id="emailCadastro"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   required
                 />
-                <label
-                  htmlFor="emailCadastro"
-                  className="form-label text-light"
-                >
+                <label htmlFor="emailCadastro" className="form-label text-light">
                   E-mail
+                </label>
+              </div>
+
+              {/* Birth Date */}
+              <div className="container-input mb-3 position-relative w-75">
+                <input
+                  type="date"
+                  className="form-control text-white bg-dark"
+                  placeholder="Digite sua data de nascimento..."
+                  id="birthDateCadastro"
+                  value={birthDate}
+                  onChange={e => setBirthDate(e.target.value)}
+                  required
+                />
+                <label htmlFor="birthDateCadastro" className="form-label text-light">
+                  Data de nascimento
                 </label>
               </div>
 
               {/* Senha */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   className="form-control text-white bg-dark"
                   placeholder="Digite sua senha..."
                   id="mainPassword"
                   value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
+                  onChange={e => setSenha(e.target.value)}
                   required
                 />
                 <label htmlFor="mainPassword" className="form-label text-light">
@@ -160,14 +190,14 @@ export default function CadastroPage() {
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Esconder senha" : "Mostrar senha"}
+                  aria-label={showPassword ? 'Esconder senha' : 'Mostrar senha'}
                 >
                   <span className="eye-icon">
                     <img
                       src={
                         showPassword
-                          ? "/static/icons/eye-solid.png"
-                          : "/static/icons/eye-slash-solid.png"
+                          ? '/static/icons/eye-solid.png'
+                          : '/static/icons/eye-slash-solid.png'
                       }
                       alt="Visibilidade da senha"
                       width="20"
@@ -179,34 +209,29 @@ export default function CadastroPage() {
               {/* Confirmar Senha */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
+                  type={showConfirmPassword ? 'text' : 'password'}
                   className="form-control text-white bg-dark"
                   placeholder="Confirme sua senha..."
                   id="confirmPassword"
                   value={confirmSenha}
-                  onChange={(e) => setConfirmSenha(e.target.value)}
+                  onChange={e => setConfirmSenha(e.target.value)}
                   required
                 />
-                <label
-                  htmlFor="confirmPassword"
-                  className="form-label text-light"
-                >
+                <label htmlFor="confirmPassword" className="form-label text-light">
                   Confirmar Senha
                 </label>
                 <button
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  aria-label={
-                    showConfirmPassword ? "Esconder senha" : "Mostrar senha"
-                  }
+                  aria-label={showConfirmPassword ? 'Esconder senha' : 'Mostrar senha'}
                 >
                   <span className="eye-icon">
                     <img
                       src={
                         showConfirmPassword
-                          ? "/static/icons/eye-solid.png"
-                          : "/static/icons/eye-slash-solid.png"
+                          ? '/static/icons/eye-solid.png'
+                          : '/static/icons/eye-slash-solid.png'
                       }
                       alt="Visibilidade da senha"
                       width="20"
@@ -217,9 +242,7 @@ export default function CadastroPage() {
 
               {/* Mensagem de erro */}
               {errorMessage && (
-                <span className="text-danger col-12 text-center w-75 mb-2">
-                  {errorMessage}
-                </span>
+                <span className="text-danger col-12 text-center w-75 mb-2">{errorMessage}</span>
               )}
 
               {/* Termos */}
@@ -229,7 +252,7 @@ export default function CadastroPage() {
                   type="checkbox"
                   id="termos"
                   checked={aceitaTermos}
-                  onChange={(e) => setAceitaTermos(e.target.checked)}
+                  onChange={e => setAceitaTermos(e.target.checked)}
                   required
                 />
                 <label htmlFor="termos" className="text-white m-0">
@@ -275,14 +298,10 @@ export default function CadastroPage() {
                   type="button"
                   className="btn-primary d-flex btn align-items-center justify-content-center w-100 fw-bold p-2 rounded-3 btn-light"
                   onClick={() => {
-                    console.log("Cadastrar com Google");
+                    console.log('Cadastrar com Google');
                   }}
                 >
-                  <img
-                    src="/static/icons/google.png"
-                    alt="Google Icon"
-                    width="24"
-                  />
+                  <img src="/static/icons/google.png" alt="Google Icon" width="24" />
                   <h5 className="mb-0 ms-2">Cadastrar com Google</h5>
                 </button>
               </div>
@@ -292,9 +311,7 @@ export default function CadastroPage() {
               className="form-login d-flex flex-column align-items-center"
               onSubmit={handleLoginSubmit}
             >
-              <h2 className="text-white fw-bold text-center mt-3 mb-4">
-                Faça Login
-              </h2>
+              <h2 className="text-white fw-bold text-center mt-3 mb-4">Faça Login</h2>
               <div className="w-50 rounded-5 mb-3 d-md-none">
                 <img
                   className="img-fluid rounded-5"
@@ -311,7 +328,7 @@ export default function CadastroPage() {
                   placeholder="Digite seu e-mail..."
                   id="loginEmail"
                   value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
+                  onChange={e => setLoginEmail(e.target.value)}
                   required
                 />
                 <label htmlFor="loginEmail" className="form-label text-light">
@@ -322,34 +339,29 @@ export default function CadastroPage() {
               {/* Senha login */}
               <div className="container-input mb-3 position-relative w-75">
                 <input
-                  type={showLoginPassword ? "text" : "password"}
+                  type={showLoginPassword ? 'text' : 'password'}
                   className="form-control text-white bg-dark"
                   placeholder="Digite sua senha..."
                   id="loginPassword"
                   value={loginSenha}
-                  onChange={(e) => setLoginSenha(e.target.value)}
+                  onChange={e => setLoginSenha(e.target.value)}
                   required
                 />
-                <label
-                  htmlFor="loginPassword"
-                  className="form-label text-light"
-                >
+                <label htmlFor="loginPassword" className="form-label text-light">
                   Senha
                 </label>
                 <button
                   className="btn btn-outline-light eye position-absolute end-0 top-50 translate-middle-y me-2"
                   type="button"
                   onClick={() => setShowLoginPassword(!showLoginPassword)}
-                  aria-label={
-                    showLoginPassword ? "Esconder senha" : "Mostrar senha"
-                  }
+                  aria-label={showLoginPassword ? 'Esconder senha' : 'Mostrar senha'}
                 >
                   <span className="eye-icon">
                     <img
                       src={
                         showLoginPassword
-                          ? "/static/icons/eye-solid.png"
-                          : "/static/icons/eye-slash-solid.png"
+                          ? '/static/icons/eye-solid.png'
+                          : '/static/icons/eye-slash-solid.png'
                       }
                       alt="Visibilidade da senha"
                       width="20"
@@ -360,9 +372,7 @@ export default function CadastroPage() {
 
               {/* Mensagem de erro */}
               {errorMessage && (
-                <span className="text-danger col-12 text-center w-75 mb-2">
-                  {errorMessage}
-                </span>
+                <span className="text-danger col-12 text-center w-75 mb-2">{errorMessage}</span>
               )}
 
               <div className="w-75 mb-3">
@@ -392,14 +402,10 @@ export default function CadastroPage() {
                   type="button"
                   className="btn-primary d-flex btn align-items-center justify-content-center w-100 fw-bold p-2 rounded-3 btn-light"
                   onClick={() => {
-                    console.log("Login com Google");
+                    console.log('Login com Google');
                   }}
                 >
-                  <img
-                    src="/static/icons/google.png"
-                    alt="Google Icon"
-                    width="24"
-                  />
+                  <img src="/static/icons/google.png" alt="Google Icon" width="24" />
                   <h5 className="mb-0 ms-2">Entrar com Google</h5>
                 </button>
               </div>
@@ -433,10 +439,9 @@ export default function CadastroPage() {
             <div className="modal-body">
               <h5>1. Uso Permitido</h5>
               <p>
-                O site está disponível para uso pessoal, informativo e não
-                comercial. Você se compromete a utilizar os recursos oferecidos
-                de forma ética e legal, respeitando os princípios da boa-fé e a
-                legislação vigente.
+                O site está disponível para uso pessoal, informativo e não comercial. Você se
+                compromete a utilizar os recursos oferecidos de forma ética e legal, respeitando os
+                princípios da boa-fé e a legislação vigente.
               </p>
               <p className="text-muted mt-4">
                 <small>Última atualização: 19 de abril de 2025</small>
@@ -479,9 +484,8 @@ export default function CadastroPage() {
             <div className="modal-body">
               <h5>1. Aceitação dos Termos</h5>
               <p>
-                Ao acessar e utilizar este site, você concorda com os presentes
-                Termos e Condições de Uso. Caso não concorde com algum dos
-                termos, por favor, não utilize o site.
+                Ao acessar e utilizar este site, você concorda com os presentes Termos e Condições
+                de Uso. Caso não concorde com algum dos termos, por favor, não utilize o site.
               </p>
               <p className="text-muted mt-4">
                 <small>Última atualização: 19 de abril de 2025</small>
@@ -502,3 +506,4 @@ export default function CadastroPage() {
     </main>
   );
 }
+
