@@ -17,12 +17,12 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @Table(name = "users")
 @Entity
 public class User implements UserDetails, Serializable, HasProfileImage {
@@ -86,7 +86,14 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     }
 
     @Override
-    public Long getId() {
-        return this.id;
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

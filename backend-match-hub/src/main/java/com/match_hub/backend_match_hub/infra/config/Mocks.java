@@ -99,7 +99,7 @@ public class Mocks implements CommandLineRunner {
 
         // Criando Match
         Match match = new Match();
-        match.setChampionship(savedChampionship);
+        match.setChampionshipId(savedChampionship);
         match.setHour(LocalTime.of(20, 0)); // 20:00
         match.setLink("https://twitch.tv/matchhub");
 
@@ -116,7 +116,7 @@ public class Mocks implements CommandLineRunner {
         matchTeamRepository.save(matchTeam2);
 
         // Adicionando as relações à partida
-        match.setMatchTeams(Arrays.asList(matchTeam1, matchTeam2));
+        match.getMatchTeams().addAll(Arrays.asList(matchTeam1, matchTeam2));
         matchRepository.save(match); // Atualizando a partida com as relações
 
         System.out.println("Match criado: " + savedMatch.getId() + " entre " +

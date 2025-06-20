@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,13 +12,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @NoArgsConstructor
 @Setter
 @Getter
-@EqualsAndHashCode
 @Table(name = "teams")
 @Entity
 public class Team implements Serializable, HasProfileImage {
@@ -33,7 +32,7 @@ public class Team implements Serializable, HasProfileImage {
 
     @OneToMany(mappedBy = "id.team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<MatchTeam> matchTeams = new ArrayList<>();
+    private final Set<MatchTeam> matchTeams = new HashSet<>();
 
     private String name;
 
@@ -47,5 +46,17 @@ public class Team implements Serializable, HasProfileImage {
     @Override
     public void setProfilePicture(String url) {
         this.logo = url;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(id, team.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

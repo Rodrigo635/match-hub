@@ -65,7 +65,7 @@ public class TeamController {
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
         response.put("imageUrl", imageUrl);
-        response.put("teamId", id.toString());
+        response.put("teamDTOS", id.toString());
 
         return ResponseEntity.ok(response);
 

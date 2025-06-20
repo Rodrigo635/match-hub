@@ -12,10 +12,10 @@ import java.util.List;
 public interface ChampionshipMapper {
 
     // Conversões básicas para ID
-    default Championship map(Long id) {
-        if (id == null) return null;
+    default Championship map(Long value) {
+        if (value == null) return null;
         Championship championship = new Championship();
-        championship.setId(id);
+        championship.setId(value);
         return championship;
     }
 

@@ -1,9 +1,7 @@
 package com.match_hub.backend_match_hub.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,8 +9,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity
+@EqualsAndHashCode
 @Table(name = "match_teams")
+@Entity
 public class MatchTeam implements Serializable {
 
     @Serial

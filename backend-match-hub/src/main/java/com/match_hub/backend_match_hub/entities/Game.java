@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Setter
@@ -59,4 +60,17 @@ public class Game implements Serializable, HasProfileImage {
     public void setProfilePicture(String url) {
         this.image = url;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return Objects.equals(id, game.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
 }

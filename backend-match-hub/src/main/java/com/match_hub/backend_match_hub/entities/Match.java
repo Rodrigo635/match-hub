@@ -2,7 +2,6 @@ package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +11,13 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @NoArgsConstructor
 @Setter
 @Getter
-@EqualsAndHashCode
 @Table(name = "matches")
 @Entity
 public class Match implements Serializable {
@@ -32,11 +31,11 @@ public class Match implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "championship_id")
-    private Championship championship;
+    private Championship championshipId;
 
 
     @OneToMany(mappedBy = "id.match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<MatchTeam> matchTeams = new ArrayList<>();
+    private final Set<MatchTeam> matchTeams = new HashSet<>();
 
     @Column(name = "match_hour")
     private LocalTime hour;
@@ -48,5 +47,15 @@ public class Match implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Match match = (Match) o;
+        return Objects.equals(id, match.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

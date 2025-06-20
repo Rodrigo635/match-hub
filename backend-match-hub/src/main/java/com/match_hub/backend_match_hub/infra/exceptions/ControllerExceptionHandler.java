@@ -107,6 +107,11 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new StandardError(Instant.now(), HttpStatus.CONFLICT.value(), "Championship already exists", ex.getMessage(), request.getRequestURI()));
     }
 
+    @ExceptionHandler(InvalidHourFormatException.class)
+    public ResponseEntity<StandardError> handleInvalidHourFormatException(InvalidHourFormatException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StandardError(Instant.now(), HttpStatus.BAD_REQUEST.value(), "Invalid hour format", ex.getMessage(), request.getRequestURI()));
+    }
+
     private ResponseEntity<StandardError> handleException(String error, HttpStatus status, Exception e, HttpServletRequest request) {
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);

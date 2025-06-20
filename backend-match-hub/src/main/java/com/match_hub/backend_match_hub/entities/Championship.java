@@ -12,12 +12,11 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
-@EqualsAndHashCode
 @Table(name = "championships")
 @Entity
 public class Championship implements Serializable, HasProfileImage {
@@ -32,7 +31,7 @@ public class Championship implements Serializable, HasProfileImage {
     private String name;
     private String imageChampionship;
 
-    @OneToMany(mappedBy = "championship", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "championshipId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Match> matches = new ArrayList<>();
 
     @ManyToOne
@@ -48,5 +47,29 @@ public class Championship implements Serializable, HasProfileImage {
     @Override
     public void setProfilePicture(String url) {
         this.imageChampionship = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Championship{" +
+                "id=" + id +
+                ", game=" + game +
+                ", createdAt=" + createdAt +
+                ", matches=" + matches +
+                ", imageChampionship='" + imageChampionship + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Championship that = (Championship) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
