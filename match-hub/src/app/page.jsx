@@ -1,5 +1,4 @@
 import GamesList from '@/components/GamesList';
-import VLibras from '@/components/VLibras';
 
 export const metadata = {
   title: 'Home - MATCH HUB',
@@ -10,8 +9,6 @@ export default function HomePage() {
     <>
 
       <main className="mt-3 mb-5">
-      
-        <VLibras />
         <div className="container d-flex align-items-center justify-content-center">
           <div className="container-card">
             <input type="radio" name="card" id="c1" className="d-none" defaultChecked />

@@ -113,7 +113,7 @@ export default function GamePage() {
 
               {/* Vídeo de fundo ou apresentação */}
               {gameData.video && (
-                <div className="video-jogo position-relative">
+                <div className="video-jogo position-absolute">
                   <video
                     autoPlay
                     loop
