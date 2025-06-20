@@ -18,6 +18,7 @@ public interface GameMapper {
     /**
      * Converte Game para GameResponseDTO (single).
      */
+    @Mapping(target = "championship", source = "championship")
     GameResponseDTO toResponseDto(Game game);
 
     /**
