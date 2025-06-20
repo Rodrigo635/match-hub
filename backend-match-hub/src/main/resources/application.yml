@@ -1,21 +1,39 @@
+# Configurações padrão (ativas quando nenhum perfil está especificado)
 api:
   security:
     token:
-      secret: "MatchHub"
+      secret: ${JWT_SECRET:my-secret}
+      expiration: ${JWT_TIME:2}
 
 app:
   upload:
     dir: "${user.home}/uploads"
     base-url: "http://localhost:8080/uploads"
 
-
 server:
   error:
     include-stacktrace: never
 
-# Configurações padrão (ativas quando nenhum perfil está especificado)
-
 spring:
+  mail:
+    host: ${SPRING_EMAIL_HOST:smtp.gmail.com}
+    port: ${SPRING_EMAIL_PORT:587}
+    username: ${SPRING_EMAIL:smtp@gmail.com}
+    password: ${SPRING_EMAIL_PASSWORD:password}
+    expiration_hours: ${PASSWORD_EXPIRE_HOURS:24}
+    ipv4: ${SPRING_EMAIL_IPV4:127.0.0.1}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+
   security:
     oauth2:
       client:

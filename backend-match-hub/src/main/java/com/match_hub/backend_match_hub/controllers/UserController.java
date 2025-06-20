@@ -1,6 +1,8 @@
 package com.match_hub.backend_match_hub.controllers;
 
+import com.match_hub.backend_match_hub.dtos.EmailDTO;
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
+import com.match_hub.backend_match_hub.dtos.ResetPasswordDTO;
 import com.match_hub.backend_match_hub.dtos.user.*;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
@@ -8,6 +10,7 @@ import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundExcepti
 import com.match_hub.backend_match_hub.infra.security.Filter;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.services.CustomOAuth2UserService;
+import com.match_hub.backend_match_hub.services.PasswordResetService;
 import com.match_hub.backend_match_hub.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,11 +34,15 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @Autowired
     private UserService userService;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private PasswordResetService passwordResetService;
 
     @Autowired
     private TokenService tokenService;
@@ -73,16 +80,13 @@ public class UserController {
     public ResponseEntity<String> userCredentials(@Valid @RequestBody UserCredentialDTO userDTO) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password());
         Authentication auth = authenticationManager.authenticate(token);
-
         return ResponseEntity.ok(tokenService.generateToken((User) auth.getPrincipal()));
     }
 
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns a JWT token")
     @PostMapping(path = "/register")
-    public ResponseEntity<CreateUserDTO> save(@RequestPart("user") @Valid CreateUserDTO userDTO) {
-        // delega para o service: dto + arquivo (pode ser null)
+    public ResponseEntity<CreateUserDTO> save(@Valid @RequestBody CreateUserDTO userDTO) {
         User registeredUser = userService.save(userDTO);
-
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
     }
@@ -114,7 +118,6 @@ public class UserController {
 
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody UpdateUserDTO updateUserDTO) {
         String token = tokenService.getToken(request);
@@ -135,6 +138,18 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> initiatePasswordReset(@Valid @RequestBody EmailDTO emailDTO) {
+        passwordResetService.initiatePasswordReset(emailDTO.email());
+        return ResponseEntity.ok("Password reset email sent");
+    }
+
+    @PostMapping("/reset-password/confirm")
+    public ResponseEntity<String> resetPassword(@RequestParam String token, @Valid @RequestBody ResetPasswordDTO resetPasswordDTO) {
+        passwordResetService.resetPassword(token, resetPasswordDTO.password());
+        return ResponseEntity.ok("Password reset successful");
     }
 
 //Autenticação OAuth2 --> Google

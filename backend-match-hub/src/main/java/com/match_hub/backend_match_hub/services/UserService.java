@@ -15,7 +15,6 @@ import com.match_hub.backend_match_hub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,6 +61,7 @@ public class UserService {
             throw new UserAlreadyExistsException("Email is already in use");
 
         User user = userMapper.toEntity(userDTO);
+
         user.setHasPassword(true);
         userRepository.save(user);
 
@@ -71,10 +71,7 @@ public class UserService {
 
     public UserResponseDTO update(Long id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
-        String password = updateUserDTO.password();
-        String newPassword = new BCryptPasswordEncoder().encode(password);
         userMapper.updateEntityFromDto(updateUserDTO, user);
-        user.setPassword(newPassword);
         User updatedUser = userRepository.save(user);
         return userMapper.toResponseDto(updatedUser);
     }
@@ -84,6 +81,9 @@ public class UserService {
         userRepository.delete(user);
     }
 
+    public void resetPassword(User user) {
+        userRepository.save(user);
+    }
 
     public String uploadProfileImage(Long id, MultipartFile file) {
         User user = userRepository.findById(id)

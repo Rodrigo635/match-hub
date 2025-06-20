@@ -18,9 +18,7 @@ public interface UserMapper {
         return user;
     }
 
-    User toEntity(CreateUserDTO userDTO);
-
-    CreateUserDTO toDto(User user);
+    User toEntity(CreateUserDTO CreateUserDTO);
 
     UserResponseDTO toResponseDto(User user);
 
