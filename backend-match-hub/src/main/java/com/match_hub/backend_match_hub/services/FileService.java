@@ -50,7 +50,7 @@ public class FileService {
 
             // retorna URL de acesso
 
-            return "http://" + ipv4 + "8080:/uploads/" + dir + "/" + id + "/" + filename;
+            return "http://" + ipv4 + ":8080/uploads/" + dir + "/" + id + "/" + filename;
 
         } catch (IOException e) {
             throw new ObjectNotFoundException("Falha ao salvar imagem");
