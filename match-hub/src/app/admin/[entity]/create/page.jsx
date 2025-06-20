@@ -5,7 +5,7 @@ import React from 'react';
 
 export default function CreateEntityPage({ params }) {
   const { entity } = React.use(params);
-  const allowed = ['user', 'game', 'championship', 'team', 'matches', 'matches_teams'];
+  const allowed = ['user', 'game', 'championship', 'team', 'match'];
   if (!allowed.includes(entity)) {
     return (
       <div className="container py-4">

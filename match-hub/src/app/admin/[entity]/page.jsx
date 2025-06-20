@@ -8,11 +8,11 @@ import { getUsers, deleteUser } from '@/app/services/userService';
 import { getGames, deleteGame } from '@/app/services/gameService';
 import { getChampionships, deleteChampionship } from '@/app/services/championshipService';
 import { getTeams, deleteTeam } from '@/app/services/teamService';
-import { getMatches, deleteMatches } from '@/app/services/matchService';
+import { getMatches, deleteMatch } from '@/app/services/matchService';
 
 export default function AdminEntityPage({ params }) {
   const { entity } = React.use(params);
-  const allowed = ['user','game','championship','team','matches'];
+  const allowed = ['user','game','championship','team','match'];
   if (!allowed.includes(entity)) {
     return (
       <div className="container py-4">
@@ -26,7 +26,7 @@ export default function AdminEntityPage({ params }) {
   const [games, setGames] = useState([]);
   const [championships, setChampionships] = useState([]);
   const [teams, setTeams] = useState([]);
-  const [matches, setMatches] = useState([]);
+  const [match, setMatch] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -65,9 +65,9 @@ export default function AdminEntityPage({ params }) {
           setError('Erro ao carregar times');
         })
         .finally(() => setLoading(false));
-    } else if (entity === 'matches') {
+    } else if (entity === 'match') {
       getMatches()
-        .then(data => setMatches(data.content ?? data))
+        .then(data => setMatch(data.content ?? data))
         .catch(err => {
           console.error('Erro ao carregar partidas:', err);
           setError('Erro ao carregar partidas');
@@ -98,8 +98,8 @@ export default function AdminEntityPage({ params }) {
       items = teams;
       columns = ['ID','Nome','Logo','Data de Criação'];
       break;
-    case 'matches':
-      items = matches;
+    case 'match':
+      items = match;
       columns = ['ID','Data','Horário','Link','ID do Campeonato','Data de Criação'];
       break;
   }
@@ -121,9 +121,9 @@ export default function AdminEntityPage({ params }) {
       } else if (entity === 'team') {
         await deleteTeam(id);
         setTeams(prev => prev.filter(t => t.id !== id));
-      } else if (entity === 'matches') {
-        await deleteMatches(id);
-        setMatches(prev => prev.filter(m => m.id !== id));
+      } else if (entity === 'match') {
+        await deleteMatch(id);
+        setMatch(prev => prev.filter(m => m.id !== id));
       }
     } catch (err) {
       console.error('Erro ao deletar:', err);
@@ -235,7 +235,7 @@ export default function AdminEntityPage({ params }) {
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
-                    {entity === 'matches' && (
+                    {entity === 'match' && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.data ?? item.date}</td>

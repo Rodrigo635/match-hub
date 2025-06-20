@@ -27,9 +27,9 @@ import {
 } from '@/app/services/teamService';
 // Atenção: importe com os nomes corretos definidos em matchService.js
 import {
-  getMatchesById,
-  createMatches,
-  updateMatches
+  getMatchById,
+  createMatch,
+  updateMatch
 } from '@/app/services/matchService';
 
 export default function AdminCreateForm({ entity, id }) {
@@ -59,10 +59,10 @@ export default function AdminCreateForm({ entity, id }) {
       create: createTeam,
       update: updateTeam,
     },
-    matches: {
-      getById: getMatchesById,
-      create: createMatches,
-      update: updateMatches,
+    match: {
+      getById: getMatchById,
+      create: createMatch,
+      update: updateMatch,
     },
     // Adicione outras entidades se houver
   };

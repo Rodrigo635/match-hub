@@ -6,7 +6,7 @@ import AdminCreateForm from '@/components/AdminCreateForm';
 
 export default function EditEntityPage({ params }) {
   const { entity, id } = React.use(params);
-  const allowed = ['user', 'game', 'championship', 'team', 'matches'];
+  const allowed = ['user', 'game', 'championship', 'team', 'match'];
   if (!allowed.includes(entity)) {
     return (
       <div className="container py-4">

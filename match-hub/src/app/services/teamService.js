@@ -16,9 +16,6 @@ export async function getTeams(page = 0, size = 5) {
   return data;
 }
 
-/**
- * Busca um team por ID.
- */
 export async function getTeamById(id) {
   const res = await fetch(`${BASE_URL}/${id}`, {
     method: 'GET',
@@ -32,11 +29,6 @@ export async function getTeamById(id) {
   return res.json();
 }
 
-/**
- * Cria um novo team.
- * Se `teamData` for FormData (para upload de arquivo), enviará multipart/form-data.
- * Caso contrário, se for objeto puro, enviará JSON.
- */
 export async function createTeam(teamData) {
   let options = {
     method: 'POST',
@@ -44,7 +36,6 @@ export async function createTeam(teamData) {
   };
   if (teamData instanceof FormData) {
     options.body = teamData;
-    // Não setar Content-Type: o browser define boundary automaticamente
   } else {
     options.headers = {
       'Content-Type': 'application/json',
@@ -60,10 +51,6 @@ export async function createTeam(teamData) {
   return res.json();
 }
 
-/**
- * Atualiza um team por ID.
- * Se `teamData` for FormData, faz multipart/form-data, caso contrário JSON.
- */
 export async function updateTeam(id, teamData) {
   let options = {
     method: 'PUT',
@@ -86,9 +73,6 @@ export async function updateTeam(id, teamData) {
   return res.json();
 }
 
-/**
- * Deleta um team por ID.
- */
 export async function deleteTeam(id) {
   const res = await fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
