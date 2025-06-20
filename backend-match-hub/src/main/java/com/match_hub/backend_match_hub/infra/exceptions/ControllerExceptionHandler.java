@@ -1,13 +1,11 @@
 package com.match_hub.backend_match_hub.infra.exceptions;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.match_hub.backend_match_hub.infra.exceptions.Championship.CreateChampionshipException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.EmailNotFoundException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,11 +38,6 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(JWTVerificationException.class)
     public ResponseEntity<StandardError> handleJWTVerificationException(JWTVerificationException e, HttpServletRequest request) {
         return handleException("JWT Verification Exception", HttpStatus.BAD_REQUEST, e, request);
-    }
-
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<StandardError> handleDataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest request) {
-        return handleException("Cannot delete object because it is associated with existing object", HttpStatus.CONFLICT, e, request);
     }
 
     @ExceptionHandler(ObjectAlreadyExistsException.class)
@@ -100,11 +93,6 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(TokenInvalidException.class)
     public ResponseEntity<StandardError> handleTokenInvalidException(TokenInvalidException ex, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new StandardError(Instant.now(), HttpStatus.UNAUTHORIZED.value(), "Token inválido", ex.getMessage(), request.getRequestURI()));
-    }
-
-    @ExceptionHandler(CreateChampionshipException.class)
-    public ResponseEntity<StandardError> handleCreateChampionshipException(CreateChampionshipException ex, HttpServletRequest request) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(new StandardError(Instant.now(), HttpStatus.CONFLICT.value(), "Championship already exists", ex.getMessage(), request.getRequestURI()));
     }
 
     @ExceptionHandler(InvalidHourFormatException.class)

@@ -28,6 +28,9 @@ public class TeamService {
     private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private TeamMapper teamMapper;
 
     @Autowired
@@ -61,13 +64,15 @@ public class TeamService {
     }
 
     public void delete(Long id) {
-        teamRepository.deleteById(id);
+        Team team = teamRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Team not found"));
+        fileService.deleteImageFolder("teams", id);
+        teamRepository.delete(team);
     }
 
     public String uploadProfileImage(Long id, MultipartFile file) {
         Team team = teamRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Team not found"));
-
+        profileImageUploaderService.deleteProfileImage(team, teamRepository, "teams");
         return profileImageUploaderService.uploadProfileImage(team, file, teamRepository, "teams");
     }
 }

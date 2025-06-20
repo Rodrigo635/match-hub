@@ -5,7 +5,6 @@ import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.CreateMatchDTO;
 import com.match_hub.backend_match_hub.dtos.match.MatchResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.UpdateMatchDTO;
-import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Match;
 import com.match_hub.backend_match_hub.entities.MatchTeam;
 import com.match_hub.backend_match_hub.entities.Team;
@@ -24,7 +23,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -66,8 +64,10 @@ public class MatchService {
     }
 
     public MatchResponseDTO save(CreateMatchDTO createMatchDTO) {
-
-        LocalTime hour = hourConverterUtil.convert(createMatchDTO.hour());
+        // Verifica se o campeonato existe
+        if (championshipRepository.findById(createMatchDTO.championshipId()).isEmpty()) {
+            throw new ObjectNotFoundException("Championship not found with ID: " + createMatchDTO.championshipId());
+        }
 
         // Buscar times
         List<Team> teams = createMatchDTO.teamDTOS().stream()
@@ -75,15 +75,8 @@ public class MatchService {
                         .orElseThrow(() -> new ObjectNotFoundException("Team not found with ID: " + matchTeamDTO.teamId())))
                 .toList();
 
-        // Buscar campeonato
-        Championship championship = championshipRepository.findById(createMatchDTO.championshipId())
-                .orElseThrow(() -> new ObjectNotFoundException("Championship not found with ID: " + createMatchDTO.championshipId()));
-
         // Criar partida
         Match match = matchMapper.toEntity(createMatchDTO);
-
-        match.setHour(hour);
-        match.setChampionshipId(championship);
 
         // Salvar partida
         Match savedMatch = matchRepository.save(match);
@@ -105,39 +98,29 @@ public class MatchService {
 
 
     public MatchResponseDTO update(Long id, UpdateMatchDTO updateMatchDTO) {
+        // Verifica se o campeonato existe
+        if (championshipRepository.findById(updateMatchDTO.championshipId()).isEmpty()) {
+            throw new ObjectNotFoundException("Championship not found with ID: " + updateMatchDTO.championshipId());
+        }
+
+        // Verifica se o match existe
         Match existingMatch = matchRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Match not found with ID: " + id));
 
-        // Atualizar championship se informado
-        if (updateMatchDTO.championshipId() != null) {
-            Championship championship = championshipRepository.findById(updateMatchDTO.championshipId())
-                    .orElseThrow(() -> new ObjectNotFoundException("Championship not found with ID: " + updateMatchDTO.championshipId()));
-            existingMatch.setChampionshipId(championship);
-        }
+        // Atualiza campos simples (championshipId e hour já convertidos pelo mapper)
+        matchMapper.updateEntityFromDto(updateMatchDTO, existingMatch);
 
-        // Atualizar hora convertendo String -> LocalTime
-        if (updateMatchDTO.hour() != null && !updateMatchDTO.hour().isBlank()) {
-            LocalTime hour = hourConverterUtil.convert(updateMatchDTO.hour());
-            existingMatch.setHour(hour);
-        }
-
-        // Atualizar link, se informado
-        if (updateMatchDTO.link() != null) {
-            existingMatch.setLink(updateMatchDTO.link());
-        }
-
-        // Atualizar lista de MatchTeams
-        if (updateMatchDTO.teamDTOS() != null && !updateMatchDTO.teamDTOS().isEmpty()) {
-            // Buscar todos os times informados
+        // Atualizar lista de MatchTeams separadamente (pois é uma coleção complexa)
+        if (updateMatchDTO.teamDTOS() != null) {
             List<Team> teams = updateMatchDTO.teamDTOS().stream()
                     .map(teamDTO -> teamRepository.findById(teamDTO.teamId())
                             .orElseThrow(() -> new ObjectNotFoundException("Team not found with ID: " + teamDTO.teamId())))
                     .toList();
 
-            // Remover MatchTeams que não estão mais na lista
+            // Remove MatchTeams não presentes mais no DTO
             existingMatch.getMatchTeams().removeIf(mt -> teams.stream().noneMatch(t -> t.getId().equals(mt.getTeam().getId())));
 
-            // Adicionar novos MatchTeams que ainda não existem
+            // Adiciona novos MatchTeams que não existem
             for (Team team : teams) {
                 boolean exists = existingMatch.getMatchTeams().stream()
                         .anyMatch(mt -> mt.getTeam().getId().equals(team.getId()));

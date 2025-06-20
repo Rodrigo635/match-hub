@@ -34,7 +34,10 @@ public class ChampionshipService {
     private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
-    private ChampionshipMapper mapper;
+    private FileService fileService;
+
+    @Autowired
+    private ChampionshipMapper championshipMapper;
 
     @Autowired
     private GameRepository gameRepository;
@@ -42,30 +45,31 @@ public class ChampionshipService {
     public PageResponseDTO<ChampionshipResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Championship> championship = championshipRepository.findAll(pageable);
-        return pageMapper.toPageResponseDto(championship, mapper::toResponseDto);
+        return pageMapper.toPageResponseDto(championship, championshipMapper::toResponseDto);
     }
 
     public ChampionshipResponseDTO findById(Long id) {
         Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        return mapper.toResponseDto(championship);
+        return championshipMapper.toResponseDto(championship);
     }
 
     public ChampionshipResponseDTO save(CreateChampionshipDTO championshipDto) {
         Game game = gameRepository.findById(championshipDto.gameId()).orElseThrow(() -> new ObjectNotFoundException("Game not found"));
-        Championship championship = mapper.toEntity(championshipDto);
+        Championship championship = championshipMapper.toEntity(championshipDto);
         championship.setGame(game);
         championshipRepository.save(championship);
-        return mapper.toResponseDto(championship);
+        return championshipMapper.toResponseDto(championship);
     }
 
     public void update(Long id, UpdateChampionshipDTO championshipDto) {
         Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        mapper.updateEntityFromDto(championshipDto, championship);
+        championshipMapper.updateEntityFromDto(championshipDto, championship);
         championshipRepository.save(championship);
     }
 
     public void delete(Long id) {
         Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
+        fileService.deleteImageFolder("championships", id);
         championshipRepository.delete(championship);
     }
 
@@ -83,9 +87,8 @@ public class ChampionshipService {
     public String uploadProfileImage(Long id, MultipartFile file) {
         Championship championship = championshipRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-
+        profileImageUploaderService.deleteProfileImage(championship, championshipRepository, "championships");
         return profileImageUploaderService.uploadProfileImage(championship, file, championshipRepository, "championships");
     }
-
 
 }

@@ -49,6 +49,11 @@ public class Team implements Serializable, HasProfileImage {
     }
 
     @Override
+    public String getProfilePicture() {
+        return logo;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Team team = (Team) o;

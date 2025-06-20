@@ -26,19 +26,22 @@ public class ChampionshipController {
     @Autowired
     private ChampionshipService championshipService;
 
+    @Operation(summary = "Get all championships", description = "Retrieves a paginated list of all championships.")
     @GetMapping("")
     public ResponseEntity<PageResponseDTO<ChampionshipResponseDTO>> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         PageResponseDTO<ChampionshipResponseDTO> championships = championshipService.findAll(page, size);
         return ResponseEntity.ok(championships);
     }
 
+    @Operation(summary = "Get championship by ID", description = "Retrieves the details of a championship by its unique ID.")
     @GetMapping("/{id}")
     public ResponseEntity<ChampionshipResponseDTO> findById(@PathVariable Long id) {
         ChampionshipResponseDTO championship = championshipService.findById(id);
         return ResponseEntity.ok(championship);
     }
 
-    @PostMapping("/create")
+    @Operation(summary = "Create a new championship", description = "Creates a new championship with the provided data.")
+    @PostMapping("")
     public ResponseEntity<Void> save(@RequestBody @Valid CreateChampionshipDTO championshipDto) {
         ChampionshipResponseDTO createdChampionship = championshipService.save(championshipDto);
         URI address = URI.create("/api/championships/" + createdChampionship.id());
@@ -46,45 +49,44 @@ public class ChampionshipController {
     }
 
     @Operation(
-            summary = "Upload user profile picture",
-            description = "Uploads a profile picture for an existing user"
+            summary = "Upload championship image",
+            description = "Uploads an image for an existing championship."
     )
     @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
             @PathVariable("id")
             @Parameter(description = "Championship ID", example = "123")
             Long id,
-
             @RequestParam("file")
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        // Processar upload
         String imageUrl = championshipService.uploadProfileImage(id, file);
 
-        // Resposta
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
         response.put("imageUrl", imageUrl);
         response.put("championshipId", id.toString());
 
         return ResponseEntity.ok(response);
-
     }
 
+    @Operation(summary = "Update a championship", description = "Updates an existing championship by ID.")
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid UpdateChampionshipDTO championshipDto) {
         championshipService.update(id, championshipDto);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Delete a championship", description = "Deletes a championship by its unique ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         championshipService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/addGame/{id}/{gameId}")
+    @Operation(summary = "Add a game to championship", description = "Adds an existing game to a championship.")
+    @PostMapping("/addgame/{id}/{gameId}")
     public ResponseEntity<Void> addGame(@PathVariable Long id, @PathVariable Long gameId) {
         championshipService.addGame(id, gameId);
         return ResponseEntity.noContent().build();

@@ -33,6 +33,9 @@ public class UserService {
     private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private UserMapper userMapper;
 
     @Autowired
@@ -78,6 +81,7 @@ public class UserService {
 
     public void delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        fileService.deleteImageFolder("users", id);
         userRepository.delete(user);
     }
 
@@ -88,7 +92,7 @@ public class UserService {
     public String uploadProfileImage(Long id, MultipartFile file) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found"));
-
+        profileImageUploaderService.deleteProfileImage(user, userRepository, "users");
         return profileImageUploaderService.uploadProfileImage(user, file, userRepository, "users");
     }
 }

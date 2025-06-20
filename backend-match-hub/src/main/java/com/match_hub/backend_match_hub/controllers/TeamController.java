@@ -25,18 +25,21 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
+    @Operation(summary = "Get all teams", description = "Retrieves a paginated list of all teams.")
     @GetMapping
     public ResponseEntity<PageResponseDTO<TeamResponseDTO>> findAll(@RequestParam(required = false, defaultValue = "0") int page, @RequestParam(required = false, defaultValue = "10") int size) {
         PageResponseDTO<TeamResponseDTO> teams = teamService.findAll(page, size);
         return ResponseEntity.ok(teams);
     }
 
+    @Operation(summary = "Get team by ID", description = "Retrieves the details of a team by its unique ID.")
     @GetMapping("/{id}")
     public ResponseEntity<TeamResponseDTO> findById(@PathVariable Long id) {
         TeamResponseDTO team = teamService.findById(id);
         return ResponseEntity.ok(team);
     }
 
+    @Operation(summary = "Create a new team", description = "Creates a new team with the provided data.")
     @PostMapping
     public ResponseEntity<TeamResponseDTO> save(@RequestBody CreateTeamDTO createTeamDTO) {
         Team savedTeam = teamService.save(createTeamDTO);
@@ -45,8 +48,8 @@ public class TeamController {
     }
 
     @Operation(
-            summary = "Upload user profile picture",
-            description = "Uploads a profile picture for an existing user"
+            summary = "Upload team image",
+            description = "Uploads an image for an existing team."
     )
     @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
@@ -58,29 +61,27 @@ public class TeamController {
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        // Processar upload
         String imageUrl = teamService.uploadProfileImage(id, file);
 
-        // Resposta
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
         response.put("imageUrl", imageUrl);
-        response.put("teamDTOS", id.toString());
+        response.put("teamId", id.toString());
 
         return ResponseEntity.ok(response);
-
     }
 
+    @Operation(summary = "Update a team", description = "Updates an existing team by ID.")
     @PutMapping("/{id}")
     public ResponseEntity<TeamResponseDTO> update(@PathVariable Long id, @RequestBody UpdateTeamDTO updateTeamDTO) {
         TeamResponseDTO updatedTeam = teamService.update(id, updateTeamDTO);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Delete a team", description = "Deletes a team by its unique ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         teamService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

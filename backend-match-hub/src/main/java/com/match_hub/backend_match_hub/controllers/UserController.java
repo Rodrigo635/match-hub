@@ -3,9 +3,12 @@ package com.match_hub.backend_match_hub.controllers;
 import com.match_hub.backend_match_hub.dtos.EmailDTO;
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.ResetPasswordDTO;
-import com.match_hub.backend_match_hub.dtos.user.*;
+import com.match_hub.backend_match_hub.dtos.TokenDTO;
+import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.User;
-import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundException;
 import com.match_hub.backend_match_hub.infra.security.Filter;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
@@ -53,20 +56,23 @@ public class UserController {
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
 
-    @Operation(summary = "Get all users", description = "Returns all users")
+    @Operation(summary = "Retrieve paginated list of users", description = "Returns a paginated list of users with their basic information. Supports pagination with page number and page size.")
     @GetMapping
-    public ResponseEntity<PageResponseDTO<UserResponseDTO>> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<PageResponseDTO<UserResponseDTO>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         PageResponseDTO<UserResponseDTO> users = userService.findAll(page, size);
         return ResponseEntity.ok(users);
     }
 
+    @Operation(summary = "Get user by ID", description = "Retrieves a user by their unique ID.")
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
         UserResponseDTO user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
 
-    @Operation(summary = "Get user details", description = "Returns user details")
+    @Operation(summary = "Get authenticated user details", description = "Returns details of the authenticated user based on the JWT token.")
     @GetMapping("/details")
     public ResponseEntity<?> getDetail(HttpServletRequest request) {
         String token = tokenService.getToken(request);
@@ -75,15 +81,15 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @Operation(summary = "User login", description = "Logs in a user and returns a JWT token")
+    @Operation(summary = "User login", description = "Authenticates a user with email and password, and returns a JWT token.")
     @PostMapping("/login")
-    public ResponseEntity<String> userCredentials(@Valid @RequestBody UserCredentialDTO userDTO) {
+    public ResponseEntity<TokenDTO> userCredentials(@Valid @RequestBody UserCredentialDTO userDTO) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password());
         Authentication auth = authenticationManager.authenticate(token);
-        return ResponseEntity.ok(tokenService.generateToken((User) auth.getPrincipal()));
+        return ResponseEntity.ok(new TokenDTO(tokenService.generateToken((User) auth.getPrincipal())));
     }
 
-    @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns a JWT token")
+    @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
     public ResponseEntity<CreateUserDTO> save(@Valid @RequestBody CreateUserDTO userDTO) {
         User registeredUser = userService.save(userDTO);
@@ -91,35 +97,29 @@ public class UserController {
         return ResponseEntity.created(address).build();
     }
 
-    @Operation(
-            summary = "Upload user profile picture",
-            description = "Uploads a profile picture for an existing user"
-    )
+    @Operation(summary = "Upload user profile picture", description = "Uploads a profile picture for an existing user.")
     @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadProfileImage(
             @PathVariable("id")
             @Parameter(description = "User ID", example = "123")
             Long id,
-
             @RequestParam("file")
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        // Processar upload
         String imageUrl = userService.uploadProfileImage(id, file);
 
-        // Resposta
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
         response.put("imageUrl", imageUrl);
         response.put("userId", id.toString());
 
         return ResponseEntity.ok(response);
-
     }
 
+    @Operation(summary = "Update authenticated user", description = "Updates the authenticated user using data from the JWT token.")
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody UpdateUserDTO updateUserDTO) {
+    public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
         String token = tokenService.getToken(request);
         String email = tokenService.getSubject(token);
         UserResponseDTO user = userService.findByEmail(email);
@@ -127,72 +127,58 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Admin update user by ID", description = "Allows an admin to update any user by ID.")
     @PutMapping("/admin/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<UserResponseDTO> adminUpdate(@PathVariable Long id, @RequestBody UpdateUserDTO updateUserDTO) {
+    public ResponseEntity<UserResponseDTO> adminUpdate(@PathVariable Long id, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
         userService.update(id, updateUserDTO);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Delete user by ID", description = "Deletes a user by their unique ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.ok().build();
     }
 
+    @Operation(summary = "Initiate password reset", description = "Sends a password reset email to the user.")
     @PostMapping("/reset-password")
-    public ResponseEntity<String> initiatePasswordReset(@Valid @RequestBody EmailDTO emailDTO) {
+    public ResponseEntity<String> initiatePasswordReset(@RequestBody @Valid EmailDTO emailDTO) {
         passwordResetService.initiatePasswordReset(emailDTO.email());
         return ResponseEntity.ok("Password reset email sent");
     }
 
+    @Operation(summary = "Confirm password reset", description = "Confirms and completes the password reset process.")
     @PostMapping("/reset-password/confirm")
-    public ResponseEntity<String> resetPassword(@RequestParam String token, @Valid @RequestBody ResetPasswordDTO resetPasswordDTO) {
+    public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody @Valid ResetPasswordDTO resetPasswordDTO) {
         passwordResetService.resetPassword(token, resetPasswordDTO.password());
         return ResponseEntity.ok("Password reset successful");
     }
 
-//Autenticação OAuth2 --> Google
-
+    @Operation(summary = "Get Google login URL", description = "Returns the Google OAuth2 login URL.")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved Google login URL.")
     @GetMapping("/google/login-url")
-    @Operation(summary = "Get Google Login URL", description = "Returns Google login URL")
-    @ApiResponse(responseCode = "200", description = "Successfully retrieved Google login URL")
     public ResponseEntity<?> getGoogleLoginUrl() {
         String loginUrl = "http://localhost:8080/oauth2/authorization/google";
         return ResponseEntity.ok(Map.of("loginUrl", loginUrl));
     }
 
+    @Operation(summary = "Get all OAuth2 users", description = "Returns all users authenticated via OAuth2 (Google).")
     @GetMapping("/oauth2/users")
-    @Operation(summary = "Get all users OAuth2", description = "Return all users OAuth2")
     public ResponseEntity<?> getOAuth2Users(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         PageResponseDTO<UserResponseDTO> googleUsers = customOAuth2UserService.findByProvider("GOOGLE", page, size);
         return ResponseEntity.ok(googleUsers);
     }
 
+    @Operation(summary = "Simulate OAuth2 token", description = "Simulates an OAuth2 token for an existing user.")
     @PostMapping("/simulate-token")
-    @Operation(summary = "Simulate token OAuth2", description = "Simulate token for an existing user")
     public ResponseEntity<?> simulateOAuth2Token(@RequestParam String email) {
         try {
             var response = customOAuth2UserService.simulateOAuth2Token(email);
             return ResponseEntity.ok(response);
         } catch (UserNotFoundException e) {
-            return ResponseEntity.badRequest().body(Map.of("error", "User OAuth2 not found", "suggestion", "Make login with Google: /api/auth/google/login-url"));
-        }
-    }
-
-    @PutMapping("/profile/complete")
-    @Operation(summary = "Complete profile OAuth2", description = "Complete profile for an existing user")
-    public ResponseEntity<?> completeOAuth2Profile(@RequestBody @Valid CompleteProfileRequestDTO request, HttpServletRequest httpRequest) {
-        try {
-            User updatedUser = customOAuth2UserService.completeOAuth2Profile(httpRequest, request);
-
-            return ResponseEntity.ok(Map.of("message", "Profile updated successfully", "user", UserResponseDTO.fromEntity(updatedUser)));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
-        } catch (TokenInvalidException e) {
-            return ResponseEntity.status(401).body(Map.of("error", e.getMessage()));
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(Map.of("error", "Unexpected error"));
+            return ResponseEntity.badRequest().body(Map.of("error", "User OAuth2 not found", "suggestion", "Please log in with Google: /api/auth/google/login-url"));
         }
     }
 }

@@ -7,6 +7,7 @@ api:
 
 app:
   upload:
+    ipv4: ${SPRING_IPV4:127.0.0.1}
     dir: "${user.home}/uploads"
     base-url: "http://localhost:8080/uploads"
 
@@ -21,7 +22,8 @@ spring:
     username: ${SPRING_EMAIL:smtp@gmail.com}
     password: ${SPRING_EMAIL_PASSWORD:password}
     expiration_hours: ${PASSWORD_EXPIRE_HOURS:24}
-    ipv4: ${SPRING_EMAIL_IPV4:127.0.0.1}
+    frontend:
+      link: ${SPRING_FRONTEND_LINK:localhost:3000}
     properties:
       mail:
         smtp:
@@ -57,7 +59,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: [dev, dev1]  # Ativa em ambos os perfis
+      on-profile: [ dev, dev1 ]  # Ativa em ambos os perfis
   application:
     name: backend-match-hub-dev
 

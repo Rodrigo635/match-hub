@@ -10,21 +10,35 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    // Conversões básicas para ID
-    default User map(Long id) {
-        if (id == null) return null;
-        User user = new User();
-        user.setId(id);
-        return user;
-    }
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (CREATE)
+    // -----------------------------------------
 
+    /**
+     * Converte CreateUserDTO para entidade User.
+     */
+    User toEntity(CreateUserDTO createUserDTO);
 
-    User toEntity(CreateUserDTO CreateUserDTO);
+    // -----------------------------------------
+    // MÉTODOS DE MAPEAMENTO -> RESPONSE DTO
+    // -----------------------------------------
 
+    /**
+     * Converte User para UserResponseDTO (single).
+     */
     UserResponseDTO toResponseDto(User user);
 
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (UPDATE)
+    // -----------------------------------------
+
+    /**
+     * Atualiza entidade User com campos do UpdateUserDTO.
+     * Apenas campos não-nulos do DTO sobrescrevem a entidade.
+     */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromDto(UpdateUserDTO updateUserDTO, @MappingTarget User user);
+
 }

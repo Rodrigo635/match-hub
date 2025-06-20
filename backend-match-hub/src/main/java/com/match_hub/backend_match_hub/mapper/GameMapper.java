@@ -11,18 +11,40 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = ChampionshipMapper.class)
 public interface GameMapper {
 
-    // Conversão para resposta completa
+    // -----------------------------------------
+    // MÉTODOS DE MAPEAMENTO -> RESPONSE DTO
+    // -----------------------------------------
+
+    /**
+     * Converte Game para GameResponseDTO (single).
+     */
     GameResponseDTO toResponseDto(Game game);
 
-    // Conversão de lista
+    /**
+     * Converte lista de Game para lista de GameResponseDTO.
+     */
     List<GameResponseDTO> toResponseDtoList(List<Game> games);
 
-    // Conversão de CreateGameDto para Entity
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (CREATE)
+    // -----------------------------------------
+
+    /**
+     * Converte CreateGameDTO para entidade Game.
+     * Ignora campo id e createdAt (serão gerados pelo banco).
+     */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     Game toEntity(CreateGameDTO createGameDto);
 
-    // Conversão de UpdateGameDto para Entity (para merge)
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (UPDATE)
+    // -----------------------------------------
+
+    /**
+     * Atualiza entidade Game com campos do UpdateGameDTO.
+     * Apenas campos não-nulos do DTO sobrescrevem a entidade.
+     */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
