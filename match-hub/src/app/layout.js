@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import VLibras from "@/components/vLibras";
 
 export const metadata = {
   title: "MATCH HUB",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
+        <VLibras forceOnload/>
         {children}
         <Footer />
 
