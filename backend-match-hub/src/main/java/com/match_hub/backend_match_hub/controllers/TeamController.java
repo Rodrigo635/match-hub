@@ -8,6 +8,7 @@ import com.match_hub.backend_match_hub.entities.Team;
 import com.match_hub.backend_match_hub.services.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -72,7 +73,7 @@ public class TeamController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TeamResponseDTO> update(@PathVariable Long id, @RequestBody UpdateTeamDTO updateTeamDTO) {
+    public ResponseEntity<TeamResponseDTO> update(@PathVariable Long id, @RequestBody @Valid UpdateTeamDTO updateTeamDTO) {
         TeamResponseDTO updatedTeam = teamService.update(id, updateTeamDTO);
         return ResponseEntity.noContent().build();
     }

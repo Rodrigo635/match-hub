@@ -8,6 +8,7 @@ import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.services.GameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<Game> save(@RequestBody CreateGameDTO createGameDto) {
+    public ResponseEntity<Game> save(@RequestBody @Valid CreateGameDTO createGameDto) {
         Game savedGame = gameService.save(createGameDto);
         URI address = URI.create("/api/games/" + savedGame.getId());
         return ResponseEntity.created(address).build();
@@ -72,7 +73,7 @@ public class GameController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UpdateGameDTO updateGameDto) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid UpdateGameDTO updateGameDto) {
         gameService.update(id, updateGameDto);
         return ResponseEntity.noContent().build();
     }
