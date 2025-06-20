@@ -1,65 +1,87 @@
-const API_URL = 'http://82.112.245.100:8080/api/users?page=0&size=5';
+// src/app/services/userService.js
+const BASE_URL = 'http://82.112.245.100:8080/api/users';
 
-export async function getUsers() {
-  const res = await fetch(API_URL, {
+export async function getUsers(page = 0, size = 5) {
+  const url = `${BASE_URL}?page=${page}&size=${size}`;
+  const res = await fetch(url, {
     method: 'GET',
-    credentials: 'include' 
+    credentials: 'include',
   });
-
   if (!res.ok) {
-    throw new Error('Erro ao buscar usuários');
+    const text = await res.text();
+    console.error('getUsers: erro status', res.status, text);
+    throw new Error(`Erro ao buscar usuários: ${res.status}`);
   }
-
   const data = await res.json();
   return data;
 }
 
 export async function getUserById(id) {
-  const res = await fetch(`${API_URL}/${id}`);
-  
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
   if (!res.ok) {
-    throw new Error(`Erro ao buscar usuário com id ${id}`);
+    const text = await res.text();
+    console.error('getUserById: erro status', res.status, text);
+    throw new Error(`Erro ao buscar usuário com id ${id}: ${res.status}`);
   }
   return res.json();
 }
 
 export async function createUser(userData) {
-  const res = await fetch(API_URL, {
+  let options = {
     method: 'POST',
-    headers: {
+    credentials: 'include',
+  };
+  if (userData instanceof FormData) {
+    options.body = userData;
+  } else {
+    options.headers = {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
-
+    };
+    options.body = JSON.stringify(userData);
+  }
+  const res = await fetch(BASE_URL, options);
   if (!res.ok) {
-    throw new Error('Erro ao criar usuário');
+    const text = await res.text();
+    console.error('createUser: erro status', res.status, text);
+    throw new Error(`Erro ao criar usuário: ${res.status}`);
   }
   return res.json();
 }
 
 export async function updateUser(id, userData) {
-  const res = await fetch(`${API_URL}/${id}`, {
+  let options = {
     method: 'PUT',
-    headers: {
+    credentials: 'include',
+  };
+  if (userData instanceof FormData) {
+    options.body = userData;
+  } else {
+    options.headers = {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
-
+    };
+    options.body = JSON.stringify(userData);
+  }
+  const res = await fetch(`${BASE_URL}/admin/${id}`, options);
   if (!res.ok) {
-    throw new Error(`Erro ao atualizar usuário com id ${id}`);
+    const text = await res.text();
+    console.error('updateUser: erro status', res.status, text);
+    throw new Error(`Erro ao atualizar usuário com id ${id}: ${res.status}`);
   }
   return res.json();
 }
 
 export async function deleteUser(id) {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
+    credentials: 'include',
   });
-
   if (!res.ok) {
-    throw new Error(`Erro ao deletar usuário com id ${id}`);
+    const text = await res.text();
+    console.error('deleteUser: erro status', res.status, text);
+    throw new Error(`Erro ao deletar usuário com id ${id}: ${res.status}`);
   }
   return true;
 }

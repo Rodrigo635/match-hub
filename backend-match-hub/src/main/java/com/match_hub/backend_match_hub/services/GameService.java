@@ -35,6 +35,9 @@ public class GameService {
     private ProfileImageUploaderService profileImageUploaderService;
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private GameMapper gameMapper;
 
     @Autowired
@@ -79,13 +82,16 @@ public class GameService {
     }
 
     public void deleteById(Long id) {
-        gameRepository.deleteById(id);
+        Game game = gameRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
+        fileService.deleteImageFolder("games", id);
+        gameRepository.delete(game);
     }
 
     public String uploadProfileImage(Long id, MultipartFile file) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
-
+        profileImageUploaderService.deleteProfileImage(game, gameRepository, "games");
         return profileImageUploaderService.uploadProfileImage(game, file, gameRepository, "games");
     }
 }

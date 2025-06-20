@@ -1,6 +1,5 @@
 package com.match_hub.backend_match_hub.dtos.user;
 
-import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.Enumerated;
 
@@ -19,20 +18,5 @@ public record UserResponseDTO(
         String googleId,
         Instant createdAt,
         boolean hasPassword
-) {
-    public static UserResponseDTO fromEntity(User user) {
-        return new UserResponseDTO(
-                user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getBirthDate(),
-                user.getProfilePicture(),
-                user.getRole(),
-                user.getProvider(),
-                user.getGoogleId(),
-                user.getCreatedAt(),
-                user.getPassword() != null
-        );
-    }
-}
+) {}
 

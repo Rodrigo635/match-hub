@@ -16,15 +16,15 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    @Value("${spring.mail.ipv4}")
-    private String ipv4;
+    @Value("${spring.mail.frontend.link}")
+    private String frontendLink;
 
     public void sendResetToken(String toEmail, String token) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(toEmail);
             message.setSubject("Password Reset Request");
-            message.setText("Ola, " + toEmail + " notamos que vocé solicitou um reset de senha\nTo reset your password, click on the link: http://" + ipv4 + ":8080/api/users/reset-password/confirm?token=" + token);
+            message.setText("Ola, " + toEmail + " notamos que vocé solicitou um reset de senha\nTo reset your password, click on the link: http://" + frontendLink + "/api/users/reset-password/confirm?token=" + token);
             message.setFrom(fromEmail);
 
             mailSender.send(message);

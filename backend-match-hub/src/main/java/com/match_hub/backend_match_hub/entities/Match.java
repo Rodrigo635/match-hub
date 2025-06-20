@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -36,6 +37,9 @@ public class Match implements Serializable {
 
     @OneToMany(mappedBy = "id.match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private final Set<MatchTeam> matchTeams = new HashSet<>();
+
+    @Column(name = "match_date")
+    private LocalDate date;
 
     @Column(name = "match_hour")
     private LocalTime hour;

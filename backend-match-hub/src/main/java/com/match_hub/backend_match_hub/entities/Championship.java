@@ -50,6 +50,11 @@ public class Championship implements Serializable, HasProfileImage {
     }
 
     @Override
+    public String getProfilePicture() {
+        return imageChampionship;
+    }
+
+    @Override
     public String toString() {
         return "Championship{" +
                 "id=" + id +

@@ -106,7 +106,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         return userRepository.save(existingUser);
     }
 
-    public User completeOAuth2Profile(HttpServletRequest request, CompleteProfileRequestDTO dto) {
+    // Metodo no controller deletado, porque o put do usuario comum já atualiza birthdate
+    public UserResponseDTO completeOAuth2Profile(HttpServletRequest request, CompleteProfileRequestDTO dto) {
         String token = tokenService.getToken(request);
         if (token == null) throw new TokenInvalidException("Token not found");
 
@@ -115,8 +116,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         if (dto.birthDate() != null) user.setBirthDate(dto.birthDate());
-
-        return userRepository.save(user);
+        return userMapper.toResponseDto(userRepository.save(user));
     }
 
     public Map<String, Object> simulateOAuth2Token(String email) {
@@ -127,7 +127,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return Map.of(
                 "token", token,
-                "user", UserResponseDTO.fromEntity(user),
+                "user", userMapper.toResponseDto(userRepository.save(user)),
                 "message", "Token generated for an existing user"
         );
     }

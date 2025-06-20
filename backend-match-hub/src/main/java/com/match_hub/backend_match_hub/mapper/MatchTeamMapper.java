@@ -8,6 +8,14 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {TeamMapper.class})
 public interface MatchTeamMapper {
 
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> RESPONSE DTO
+    // -----------------------------------------
+
+    /**
+     * Converte MatchTeam para MatchTeamDTO.
+     * Extrai o id do Team (team.id) e coloca em teamId no DTO.
+     */
     @Mapping(target = "teamId", source = "team.id")
     MatchTeamDTO toResponseDto(MatchTeam matchTeam);
 

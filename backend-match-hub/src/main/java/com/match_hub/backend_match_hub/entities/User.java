@@ -1,11 +1,13 @@
 package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,18 +55,6 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Instant createdAt;
 
-    public User(UserResponseDTO dto){
-        this.id = dto.id();
-        this.name = dto.name();
-        this.email = dto.email();
-        this.birthDate = dto.birthDate();
-        this.profilePicture = dto.profilePicture();
-        this.role = dto.role();
-        this.provider = dto.provider();
-        this.googleId = dto.googleId();
-        this.hasPassword = dto.hasPassword();
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -83,6 +73,11 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     @Override
     public void setProfilePicture(String url) {
         this.profilePicture = url;
+    }
+
+    @Override
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
     @Override

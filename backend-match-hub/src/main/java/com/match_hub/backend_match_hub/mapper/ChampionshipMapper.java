@@ -11,31 +11,45 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {MatchMapper.class})
 public interface ChampionshipMapper {
 
-    // Conversões básicas para ID
-    default Championship map(Long value) {
-        if (value == null) return null;
-        Championship championship = new Championship();
-        championship.setId(value);
-        return championship;
-    }
+    // -----------------------------------------
+    // MÉTODOS DE MAPEAMENTO -> RESPONSE DTO
+    // -----------------------------------------
 
-    // Conversão para resposta completa com matches
+    /**
+     * Converte Championship para ChampionshipResponseDTO (single),
+     * incluindo cálculo de totalMatches.
+     */
     @Mapping(target = "totalMatches", expression = "java(championship.getMatches() != null ? championship.getMatches().size() : 0)")
     ChampionshipResponseDTO toResponseDto(Championship championship);
 
-    // Conversão de lista para DTOs simples
-    List<ChampionshipResponseDTO> toDtoList(List<Championship> championships);
-
-    // Conversão de lista para resposta completa
+    /**
+     * Converte lista de Championship para lista de ChampionshipResponseDTO (completo).
+     */
     List<ChampionshipResponseDTO> toResponseDtoList(List<Championship> championships);
 
-    // Conversão de CreateDto para Entity
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (CREATE)
+    // -----------------------------------------
+
+    /**
+     * Converte CreateChampionshipDTO para entidade Championship.
+     * Ignora campo createdAt e matches.
+     */
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "matches", ignore = true)
     Championship toEntity(CreateChampionshipDTO createDto);
 
+    // -----------------------------------------
+    // MÉTODO DE MAPEAMENTO -> ENTITY (UPDATE)
+    // -----------------------------------------
+
+    /**
+     * Atualiza entidade Championship com campos do UpdateChampionshipDTO.
+     * Apenas campos não-nulos do DTO sobrescrevem a entidade.
+     */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromDto(UpdateChampionshipDTO updateChampionshipDTO, @MappingTarget Championship championship);
+
 }

@@ -62,6 +62,11 @@ public class Game implements Serializable, HasProfileImage {
     }
 
     @Override
+    public String getProfilePicture() {
+        return image;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
