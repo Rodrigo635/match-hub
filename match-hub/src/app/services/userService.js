@@ -42,7 +42,7 @@ export async function createUser(userData) {
     };
     options.body = JSON.stringify(userData);
   }
-  const res = await fetch(BASE_URL, options);
+  const res = await fetch(`${BASE_URL}/register`, options);
   if (!res.ok) {
     const text = await res.text();
     console.error('createUser: erro status', res.status, text);
