@@ -170,7 +170,6 @@ export default function AdminEntityPage({ params }) {
             <tbody>
               {items.map(item => {
                 // Normaliza imagens se existir
-                const imgGame = normalizeImageSrc(item.image);
                 const imgChamp = normalizeImageSrc(item.image_championship ?? item.image);
                 const imgTeam = normalizeImageSrc(item.logo);
                 return (
@@ -191,9 +190,9 @@ export default function AdminEntityPage({ params }) {
                         <td>{item.name}</td>
                         <td>{typeof item.tournament === 'object' ? item.tournament.name : item.tournament}</td>
                         <td>
-                          {imgGame? (
+                          {item.image? (
                             <div style={{ width: '40px', height: '40px', position: 'relative' }}>
-                              <Image src={imgGame} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded"/>
+                              <Image src={item.image} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded"/>
                             </div>
                           ) : <span>—</span>}
                         </td>
