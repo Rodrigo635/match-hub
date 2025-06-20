@@ -99,7 +99,7 @@ public class MatchService {
 
     public MatchResponseDTO update(Long id, UpdateMatchDTO updateMatchDTO) {
         // Verifica se o campeonato existe
-        if (championshipRepository.findById(updateMatchDTO.championshipId()).isEmpty()) {
+        if (updateMatchDTO.championshipId() != null && championshipRepository.findById(updateMatchDTO.championshipId()).isEmpty()) {
             throw new ObjectNotFoundException("Championship not found with ID: " + updateMatchDTO.championshipId());
         }
 

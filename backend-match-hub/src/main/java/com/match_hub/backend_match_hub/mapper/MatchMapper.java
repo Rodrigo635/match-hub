@@ -56,7 +56,7 @@ public interface MatchMapper {
      * Atualiza entidade Match com campos do UpdateMatchDTO.
      * Apenas campos não-nulos do DTO sobrescrevem a entidade.
      */
-    @Mapping(target = "championshipId", source = "championshipId", qualifiedByName = "LongToChampionship")
+    @Mapping(target = "championshipId", source = "championshipId", qualifiedByName = "LongToChampionship", conditionQualifiedByName = "isNotNull")
     @Mapping(target = "hour", source = "hour", qualifiedByName = "stringToLocalTime")
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -90,6 +90,7 @@ public interface MatchMapper {
      * Converte String hour ("HH:mm") para LocalTime.
      * Lança IllegalArgumentException em caso de formato inválido.
      */
+
     @Named("stringToLocalTime")
     default LocalTime stringToLocalTime(String hour) {
         if (hour == null || hour.isBlank()) return null;
@@ -98,6 +99,11 @@ public interface MatchMapper {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Hora inválida, formato esperado HH:mm: " + hour);
         }
+    }
+
+    @Condition
+    default boolean isNotNull(Long value) {
+        return value != null;
     }
 
 }

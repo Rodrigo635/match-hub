@@ -28,6 +28,7 @@ import java.util.Objects;
 @Table(name = "users")
 @Entity
 public class User implements UserDetails, Serializable, HasProfileImage {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -37,17 +38,24 @@ public class User implements UserDetails, Serializable, HasProfileImage {
 
     @Column(unique = true)
     private String name;
+
     private String password;
+
     @Column(unique = true)
     private String email;
+
     private LocalDate birthDate;
+
     private String profilePicture;
+
     @Enumerated
     private UserRole role = UserRole.USER;
 
     @Column(name = "google_id")
     private String googleId;
+
     private String provider;
+
     private boolean hasPassword;
 
     @CreationTimestamp
