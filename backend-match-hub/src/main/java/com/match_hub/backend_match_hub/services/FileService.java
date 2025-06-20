@@ -52,7 +52,6 @@ public class FileService {
 
             return "http://" + ipv4 + "8080:/uploads/" + dir + "/" + id + "/" + filename;
 
-
         } catch (IOException e) {
             throw new ObjectNotFoundException("Falha ao salvar imagem");
         }
