@@ -60,6 +60,10 @@ main {
   box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25) !important;
 }
 
+.bg-dark-less{
+  background-color: var(--cor-bg-less) !important;
+}
+
 .container-input label {
   position: absolute !important;
   top: 0;

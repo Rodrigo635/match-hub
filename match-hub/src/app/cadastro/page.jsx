@@ -91,7 +91,7 @@ export default function CadastroPage() {
         <div className="d-flex w-100 justify-content-center align-content-center mb-0">
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === 'cadastrar' ? 'bg-dark' : 'bg-secondary opacity-75'
+              activeTab === 'cadastrar' ? 'bg-dark' : 'bg-dark-less'
             }`}
             onClick={() => handleToggle('cadastrar')}
           >
@@ -99,7 +99,7 @@ export default function CadastroPage() {
           </button>
           <button
             className={`auth-toggle-btn border-0 w-50 py-3 fs-5 rounded-top-4 text-white ${
-              activeTab === 'entrar' ? 'bg-dark' : 'bg-secondary opacity-75'
+              activeTab === 'entrar' ? 'bg-dark' : 'bg-dark-less'
             }`}
             onClick={() => handleToggle('entrar')}
           >
