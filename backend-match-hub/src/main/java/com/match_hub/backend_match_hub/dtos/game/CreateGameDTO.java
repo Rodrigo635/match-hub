@@ -8,19 +8,37 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record CreateGameDTO(
-        @NotBlank String name,
-        @NotBlank String tournament,
-        @NotBlank String video,
-        @NotBlank String gif,
-        @NotBlank String description,
+
+        @NotBlank(message = "O nome do jogo é obrigatório")
+        String name,
+
+        @NotBlank(message = "O nome do torneio é obrigatório")
+        String tournament,
+
+        @NotBlank(message = "A descrição do jogo é obrigatória")
+        String description,
+
+        @NotEmpty(message = "As tags do jogo é obrigatória")
         List<String> tags,
-        @PastOrPresent
-        @NotNull
+
+        @NotNull(message = "A data de lançamento é obrigatória")
+        @PastOrPresent(message = "A data de lançamento não pode ser no futuro")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate release,
-        @NotBlank String genre,
-        @NotBlank String developer,
-        @NotBlank String publisher,
-        @NotNull @Min(0) @Max(18) Integer ageRating
+
+        @NotBlank(message = "O gênero do jogo é obrigatório")
+        String genre,
+
+        @NotBlank(message = "O desenvolvedor do jogo é obrigatório")
+        String developer,
+
+        @NotBlank(message = "A publicadora do jogo é obrigatória")
+        String publisher,
+
+        @NotNull(message = "A classificação etária é obrigatória")
+        @Min(value = 0, message = "A classificação etária mínima é 0")
+        @Max(value = 18, message = "A classificação etária máxima é 18")
+        Integer ageRating
+
 ) {}

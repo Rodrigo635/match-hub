@@ -7,6 +7,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
+
       <main className="mt-3 mb-5">
         <div className="container d-flex align-items-center justify-content-center">
           <div className="container-card">

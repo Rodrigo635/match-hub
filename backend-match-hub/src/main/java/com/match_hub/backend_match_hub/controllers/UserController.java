@@ -118,7 +118,7 @@ public class UserController {
     }
 
     @Operation(summary = "Update authenticated user", description = "Updates the authenticated user using data from the JWT token.")
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
         String token = tokenService.getToken(request);
         String email = tokenService.getSubject(token);

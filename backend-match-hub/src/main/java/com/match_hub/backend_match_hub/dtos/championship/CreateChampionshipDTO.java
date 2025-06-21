@@ -5,10 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record CreateChampionshipDTO(
-        @NotBlank(message = "Name is required")
-        @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+        @NotBlank(message = "Nome é necessário")
+        @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
         String name,
 
-        @NotNull (message = "Game is required")
+        @NotNull (message = "Jogo é necessário")
         Long gameId
 ) {}
