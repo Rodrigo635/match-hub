@@ -1,10 +1,26 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getUserByToken } from "@/app/services/userService";
+import Image from "next/image";
 
 export default function Header() {
+  const [user, setUser] = useState([]);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token == undefined) {
+      setUser(null);
+    } else {
+      getUserByToken(token).then((response) => {
+        setUser(response);
+      });
+    }
+  }, []);
 
   return (
     <header>
@@ -48,7 +64,7 @@ export default function Header() {
               <img
                 src="/static/icons/search.png"
                 className="position-absolute"
-                style={{ left: '0.75rem' }}
+                style={{ left: "0.75rem" }}
                 width="17"
                 height="17"
                 alt="pesquisar"
@@ -61,7 +77,7 @@ export default function Header() {
                 <Link
                   href="/"
                   className={`nav-link px-2 ${
-                    pathname === '/' ? 'text-primary' : 'text-white'
+                    pathname === "/" ? "text-primary" : "text-white"
                   }`}
                 >
                   <p className="mb-0">Início</p>
@@ -71,7 +87,7 @@ export default function Header() {
                 <Link
                   href="/sobre"
                   className={`nav-link px-2 ${
-                    pathname === '/sobre' ? 'text-primary' : 'text-white'
+                    pathname === "/sobre" ? "text-primary" : "text-white"
                   }`}
                 >
                   <p className="mb-0">Sobre</p>
@@ -81,7 +97,7 @@ export default function Header() {
                 <Link
                   href="/contato"
                   className={`nav-link px-2 ${
-                    pathname === '/contato' ? 'text-primary' : 'text-white'
+                    pathname === "/contato" ? "text-primary" : "text-white"
                   }`}
                 >
                   <p className="mb-0">Contato</p>
@@ -89,12 +105,29 @@ export default function Header() {
               </li>
             </ul>
 
-            {/* Botão Entrar */}
-            <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center">
-              <p className="mb-0">
-                Entrar<i className="fa-solid fa-arrow-right-to-bracket ms-2"></i>
-              </p>
-            </Link>
+            {user ? (
+              <Image
+                src={user.profilePicture ?? "/static/icons/profileIcon.jpg"}
+                width={35}
+                height={35}
+                alt="Imagem de perfil"
+                className="rounded-circle"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  window.location.href = "/perfil";
+                }}
+              />
+            ) : (
+              <Link
+                href="/cadastro"
+                className="btn-entrar text-white d-flex align-items-center"
+              >
+                <p className="mb-0">
+                  Entrar
+                  <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i>
+                </p>
+              </Link>
+            )}
           </div>
         </div>
       </nav>

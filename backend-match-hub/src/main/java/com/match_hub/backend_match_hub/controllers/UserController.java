@@ -91,7 +91,7 @@ public class UserController {
 
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
-    public ResponseEntity<CreateUserDTO> save(@Valid @RequestBody CreateUserDTO userDTO) {
+    public ResponseEntity<Void> save(@Valid @RequestBody CreateUserDTO userDTO) {
         User registeredUser = userService.save(userDTO);
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
@@ -124,8 +124,11 @@ public class UserController {
         String email = tokenService.getSubject(token);
         UserResponseDTO user = userService.findByEmail(email);
         userService.update(user.id(), updateUserDTO);
-        return ResponseEntity.noContent().build();
+
+        UserResponseDTO updatedUser = userService.findByEmail(email);
+        return ResponseEntity.ok(updatedUser);
     }
+
 
     @Operation(summary = "Admin update user by ID", description = "Allows an admin to update any user by ID.")
     @PutMapping("/admin/{id}")

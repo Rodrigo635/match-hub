@@ -19,7 +19,7 @@ public record UserResponseDTO(
         Instant createdAt,
         Boolean hasPassword,
         Integer fontSize,
-        Boolean vLibrasActive,
+        Boolean librasActive,
         Boolean isDarkMode
 ) {}
 

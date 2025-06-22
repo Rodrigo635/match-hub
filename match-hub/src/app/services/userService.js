@@ -1,5 +1,5 @@
 // src/app/services/userService.js
-const BASE_URL = 'http://82.112.245.100:8080/api/users';
+const BASE_URL = 'http://localhost:8080/api/users';
 
 export async function getUsers(page = 0, size = 5) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;
@@ -30,25 +30,24 @@ export async function getUserById(id) {
 }
 
 export async function createUser(userData) {
-  let options = {
+  const options = {
     method: 'POST',
     credentials: 'include',
-  };
-  if (userData instanceof FormData) {
-    options.body = userData;
-  } else {
-    options.headers = {
+    headers: userData instanceof FormData ? undefined : {
       'Content-Type': 'application/json',
-    };
-    options.body = JSON.stringify(userData);
-  }
+    },
+    body: userData instanceof FormData ? userData : JSON.stringify(userData),
+  };
+
   const res = await fetch(`${BASE_URL}/register`, options);
+
   if (!res.ok) {
     const text = await res.text();
     console.error('createUser: erro status', res.status, text);
     throw new Error(`Erro ao criar usuário: ${res.status}`);
   }
-  return res.json();
+
+  return res;
 }
 
 export async function updateUser(id, userData) {
@@ -84,4 +83,73 @@ export async function deleteUser(id) {
     throw new Error(`Erro ao deletar usuário com id ${id}: ${res.status}`);
   }
   return true;
+}
+
+export  async function login(email, password){
+  const res = await fetch(`${BASE_URL}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+    credentials: 'include',
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    console.error('login: erro status', res.status, text);
+    throw new Error(`Erro ao fazer login: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function getUserByToken(token){
+  const res = await fetch(`${BASE_URL}/details`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+  if (!res.ok) {
+    const text = await res.text();
+    console.error('getUserByToken: erro status', res.status, text);
+    throw new Error(`Erro ao buscar usuário: ${res.status}, ${res}`);
+  }
+  return res.json();
+}
+
+export async function toggleColorMode(isDarkMode, token) {
+  const res = await fetch(`${BASE_URL}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ isDarkMode }),
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao ativar modo escuro: ${res.status}, ${res}`);
+  }
+  return res.json();
+}
+
+export async function toggleVLibrasMode(librasActive, token) {
+  const res = await fetch(`${BASE_URL}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ librasActive }),
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao ativar vLibras: ${res.status}, ${res}`);
+  }
+  return res.json();
 }

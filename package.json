@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Rodrigo635/match-hub#readme",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.8",
+    "js-cookie": "^3.0.5",
     "tailwindcss": "^4.1.8"
   }
 }

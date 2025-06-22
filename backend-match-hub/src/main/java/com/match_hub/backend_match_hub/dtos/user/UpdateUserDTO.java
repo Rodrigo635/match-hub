@@ -27,6 +27,6 @@ public record UpdateUserDTO(
         @Max(value = 30, message = "O tamanho máximo da fonte é 30")
         Integer fontSize,
 
-        Boolean vLibrasActive
+        Boolean librasActive
 
 ) {}
