@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { getUserByToken } from "@/app/services/userService";
 
 const isReadyStateMatch = (expected) => {
   if (!expected) {
@@ -36,6 +38,26 @@ const useReadyStateEffect = (effect, deps = [], onState = "complete") => {
 };
 
 function VLibras({ forceOnload }) {
+  const [shouldForceOnload, setShouldForceOnload] = useState(false);
+
+  useEffect(() => {
+    const checkUserLibrasActive = async () => {
+      try {
+        const token = Cookies.get("token");
+        if (token) {
+          const user = await getUserByToken(token);
+          if (user && user.librasActive === true) {
+            setShouldForceOnload(true);
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao verificar configuração do usuário:", error);
+      }
+    };
+
+    checkUserLibrasActive();
+  }, []);
+
   useReadyStateEffect(
     () => {
       const script = document.createElement("script");
@@ -45,14 +67,14 @@ function VLibras({ forceOnload }) {
       
       script.onload = () => {
         new window.VLibras.Widget(widgetUrl);
-        if (forceOnload) {
+        if (forceOnload && shouldForceOnload) {
           window.onload();
         }
       };
       
       document.head.appendChild(script);
     },
-    [forceOnload],
+    [forceOnload, shouldForceOnload],
     "complete"
   );
 

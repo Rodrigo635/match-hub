@@ -60,7 +60,7 @@ public class User implements UserDetails, Serializable, HasProfileImage {
 
     private Boolean isDarkMode = true;
     private Integer fontSize = 16;
-    private Boolean vLibrasActive = false;
+    private Boolean librasActive = false;
 
 
     @CreationTimestamp
