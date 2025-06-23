@@ -64,17 +64,25 @@ public class UserService {
         if (userRepository.findByEmail(userDTO.email()).isPresent())
             throw new UserAlreadyExistsException("Email is already in use");
 
-
         User user = userMapper.toEntity(userDTO);
         user.setPassword(new BCryptPasswordEncoder().encode(userDTO.password()));
         user.setHasPassword(true);
         userRepository.save(user);
 
         return user;
-
     }
 
-    public UserResponseDTO update(Long id, UpdateUserDTO updateUserDTO) {
+    public UserResponseDTO updateByEmail(String email, UpdateUserDTO updateUserDTO) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        if(updateUserDTO.password() != null){
+            user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));
+        }
+        userMapper.updateEntityFromDto(updateUserDTO, user);
+        User updatedUser = userRepository.save(user);
+        return userMapper.toResponseDto(updatedUser);
+    }
+
+    public UserResponseDTO updateById(Long id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         if(updateUserDTO.password() != null){
             user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));

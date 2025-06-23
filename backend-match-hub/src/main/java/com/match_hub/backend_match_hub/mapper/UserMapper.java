@@ -17,6 +17,7 @@ public interface UserMapper {
     /**
      * Converte CreateUserDTO para entidade User.
      */
+    @Mapping(target = "password", ignore = true)
     User toEntity(CreateUserDTO createUserDTO);
 
     // -----------------------------------------

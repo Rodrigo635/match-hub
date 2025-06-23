@@ -83,7 +83,7 @@ public class UserController {
 
     @Operation(summary = "User login", description = "Authenticates a user with email and password, and returns a JWT token.")
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> userCredentials(@Valid @RequestBody UserCredentialDTO userDTO) {
+    public ResponseEntity<TokenDTO> userCredentials(@RequestBody @Valid UserCredentialDTO userDTO) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password());
         Authentication auth = authenticationManager.authenticate(token);
         return ResponseEntity.ok(new TokenDTO(tokenService.generateToken((User) auth.getPrincipal())));
@@ -91,7 +91,7 @@ public class UserController {
 
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
-    public ResponseEntity<Void> save(@Valid @RequestBody CreateUserDTO userDTO) {
+    public ResponseEntity<Void> save(@RequestBody @Valid CreateUserDTO userDTO) {
         User registeredUser = userService.save(userDTO);
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
@@ -122,11 +122,8 @@ public class UserController {
     public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
         String token = tokenService.getToken(request);
         String email = tokenService.getSubject(token);
-        UserResponseDTO user = userService.findByEmail(email);
-        userService.update(user.id(), updateUserDTO);
-
-        UserResponseDTO updatedUser = userService.findByEmail(email);
-        return ResponseEntity.ok(updatedUser);
+        userService.updateByEmail(email, updateUserDTO);
+        return ResponseEntity.noContent().build();
     }
 
 
@@ -134,7 +131,7 @@ public class UserController {
     @PutMapping("/admin/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<UserResponseDTO> adminUpdate(@PathVariable Long id, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
-        userService.update(id, updateUserDTO);
+        userService.updateById(id, updateUserDTO);
         return ResponseEntity.noContent().build();
     }
 
