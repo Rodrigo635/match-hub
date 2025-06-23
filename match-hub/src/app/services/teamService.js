@@ -1,5 +1,5 @@
 // src/app/services/teamService.js
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/teams`;
 
 export async function getTeams(page = 0, size = 5) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;

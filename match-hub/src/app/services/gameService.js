@@ -1,5 +1,5 @@
 // src/app/services/gameService.js
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/games`;
 
 export async function getGames(page = 0, size = 5) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;

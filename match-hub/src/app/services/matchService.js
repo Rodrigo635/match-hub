@@ -1,5 +1,5 @@
 // src/app/services/matchService.js
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/matches`;
 
 export async function getMatches(page = 0, size = 10) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;

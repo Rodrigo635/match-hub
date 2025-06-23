@@ -1,5 +1,5 @@
 // src/app/services/userService.js
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
 
 export async function getUsers(page = 0, size = 5) {
   console.log(BASE_URL);
