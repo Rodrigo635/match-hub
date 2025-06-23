@@ -16,12 +16,10 @@ export default function Configuracoes({ user: initialUser }) {
 
       const newDarkMode = !user.isDarkMode;
       
-      const res = await toggleColorMode(newDarkMode, token);
+      await toggleColorMode(newDarkMode, token);
       
-      setUser(prevUser => ({
-        ...prevUser,
-        isDarkMode: res.isDarkMode
-      }));
+      window.location.reload();
+      
       
     } catch (error) {
       console.error("Erro ao alterar modo de cor:", error);

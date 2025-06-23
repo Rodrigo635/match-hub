@@ -1,18 +1,34 @@
 // src/app/admin/[entity]/page.jsx
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { getUsers, deleteUser } from '@/app/services/userService';
-import { getGames, deleteGame } from '@/app/services/gameService';
-import { getChampionships, deleteChampionship } from '@/app/services/championshipService';
-import { getTeams, deleteTeam } from '@/app/services/teamService';
-import { getMatches, deleteMatch } from '@/app/services/matchService';
+"use client";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
+import {
+  getUsers,
+  deleteUser,
+  getUserByToken,
+} from "@/app/services/userService";
+import { getGames, deleteGame } from "@/app/services/gameService";
+import {
+  getChampionships,
+  deleteChampionship,
+} from "@/app/services/championshipService";
+import { getTeams, deleteTeam } from "@/app/services/teamService";
+import { getMatches, deleteMatch } from "@/app/services/matchService";
 
 export default function AdminEntityPage({ params }) {
+  const [users, setUsers] = useState([]);
+  const [games, setGames] = useState([]);
+  const [championships, setChampionships] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [match, setMatch] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const { entity } = React.use(params);
-  const allowed = ['user','game','championship','team','match'];
+  const allowed = ["user", "game", "championship", "team", "match"];
   if (!allowed.includes(entity)) {
     return (
       <div className="container py-4">
@@ -22,55 +38,60 @@ export default function AdminEntityPage({ params }) {
     );
   }
 
-  const [users, setUsers] = useState([]);
-  const [games, setGames] = useState([]);
-  const [championships, setChampionships] = useState([]);
-  const [teams, setTeams] = useState([]);
-  const [match, setMatch] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const getUser = async () => {
+    const token = Cookies.get("token");
+    if (!token) window.location.href = "/cadastro";
+    const user = await getUserByToken(token);
+    
+    if (user.role !== "ADMIN") {
+      window.location.href = "/";
+    }
+  };
 
   useEffect(() => {
+    getUser();
     setError(null);
     setLoading(true);
-    if (entity === 'user') {
+
+
+    if (entity === "user") {
       getUsers()
-        .then(data => setUsers(data.content ?? data))
-        .catch(err => {
-          console.error('Erro ao carregar usuários:', err);
-          setError('Erro ao carregar usuários');
+        .then((data) => setUsers(data.content ?? data))
+        .catch((err) => {
+          console.error("Erro ao carregar usuários:", err);
+          setError("Erro ao carregar usuários");
         })
         .finally(() => setLoading(false));
-    } else if (entity === 'game') {
+    } else if (entity === "game") {
       getGames()
-        .then(data => setGames(data.content ?? data))
-        .catch(err => {
-          console.error('Erro ao carregar jogos:', err);
-          setError('Erro ao carregar jogos');
+        .then((data) => setGames(data.content ?? data))
+        .catch((err) => {
+          console.error("Erro ao carregar jogos:", err);
+          setError("Erro ao carregar jogos");
         })
         .finally(() => setLoading(false));
-    } else if (entity === 'championship') {
+    } else if (entity === "championship") {
       getChampionships()
-        .then(data => setChampionships(data.content ?? data))
-        .catch(err => {
-          console.error('Erro ao carregar campeonatos:', err);
-          setError('Erro ao carregar campeonatos');
+        .then((data) => setChampionships(data.content ?? data))
+        .catch((err) => {
+          console.error("Erro ao carregar campeonatos:", err);
+          setError("Erro ao carregar campeonatos");
         })
         .finally(() => setLoading(false));
-    } else if (entity === 'team') {
+    } else if (entity === "team") {
       getTeams()
-        .then(data => setTeams(data.content ?? data))
-        .catch(err => {
-          console.error('Erro ao carregar times:', err);
-          setError('Erro ao carregar times');
+        .then((data) => setTeams(data.content ?? data))
+        .catch((err) => {
+          console.error("Erro ao carregar times:", err);
+          setError("Erro ao carregar times");
         })
         .finally(() => setLoading(false));
-    } else if (entity === 'match') {
+    } else if (entity === "match") {
       getMatches()
-        .then(data => setMatch(data.content ?? data))
-        .catch(err => {
-          console.error('Erro ao carregar partidas:', err);
-          setError('Erro ao carregar partidas');
+        .then((data) => setMatch(data.content ?? data))
+        .catch((err) => {
+          console.error("Erro ao carregar partidas:", err);
+          setError("Erro ao carregar partidas");
         })
         .finally(() => setLoading(false));
     } else {
@@ -82,60 +103,92 @@ export default function AdminEntityPage({ params }) {
   let columns = [];
 
   switch (entity) {
-    case 'user':
+    case "user":
       items = users;
-      columns = ['ID','Nome','E-mail','Role','Data de Nascimento','Data de Criação'];
+      columns = [
+        "ID",
+        "Nome",
+        "E-mail",
+        "Role",
+        "Data de Nascimento",
+        "Data de Criação",
+      ];
       break;
-    case 'game':
+    case "game":
       items = games;
-      columns = ['ID','Nome','Torneio','Imagem','Descrição','Tags','Lançamento','Gênero','Desenvolvedora','Distribuidora','PEGI','Data de Criação'];
+      columns = [
+        "ID",
+        "Nome",
+        "Torneio",
+        "Imagem",
+        "Descrição",
+        "Tags",
+        "Lançamento",
+        "Gênero",
+        "Desenvolvedora",
+        "Distribuidora",
+        "PEGI",
+        "Data de Criação",
+      ];
       break;
-    case 'championship':
+    case "championship":
       items = championships;
-      columns = ['ID','Nome','Imagem','Data de Criação'];
+      columns = ["ID", "Nome", "Imagem", "Data de Criação"];
       break;
-    case 'team':
+    case "team":
       items = teams;
-      columns = ['ID','Nome','Logo','Data de Criação'];
+      columns = ["ID", "Nome", "Logo", "Data de Criação"];
       break;
-    case 'match':
+    case "match":
       items = match;
-      columns = ['ID','Data','Horário','Link','ID do Campeonato','Data de Criação'];
+      columns = [
+        "ID",
+        "Data",
+        "Horário",
+        "Link",
+        "ID do Campeonato",
+        "Data de Criação",
+      ];
       break;
   }
 
-  const title = entity.charAt(0).toUpperCase() + entity.slice(1).replace('_',' ');
+  const title =
+    entity.charAt(0).toUpperCase() + entity.slice(1).replace("_", " ");
 
   const handleDelete = async (id) => {
-    if (!confirm('Confirma exclusão?')) return;
+    if (!confirm("Confirma exclusão?")) return;
     try {
-      if (entity === 'user') {
+      if (entity === "user") {
         await deleteUser(id);
-        setUsers(prev => prev.filter(u => u.id !== id));
-      } else if (entity === 'game') {
+        setUsers((prev) => prev.filter((u) => u.id !== id));
+      } else if (entity === "game") {
         await deleteGame(id);
-        setGames(prev => prev.filter(g => g.id !== id));
-      } else if (entity === 'championship') {
+        setGames((prev) => prev.filter((g) => g.id !== id));
+      } else if (entity === "championship") {
         await deleteChampionship(id);
-        setChampionships(prev => prev.filter(c => c.id !== id));
-      } else if (entity === 'team') {
+        setChampionships((prev) => prev.filter((c) => c.id !== id));
+      } else if (entity === "team") {
         await deleteTeam(id);
-        setTeams(prev => prev.filter(t => t.id !== id));
-      } else if (entity === 'match') {
+        setTeams((prev) => prev.filter((t) => t.id !== id));
+      } else if (entity === "match") {
         await deleteMatch(id);
-        setMatch(prev => prev.filter(m => m.id !== id));
+        setMatch((prev) => prev.filter((m) => m.id !== id));
       }
     } catch (err) {
-      console.error('Erro ao deletar:', err);
-      alert('Falha ao deletar. Veja o console.');
+      console.error("Erro ao deletar:", err);
+      alert("Falha ao deletar. Veja o console.");
     }
   };
 
   // Auxiliar para imagens (caso haja coluna imagem); similar ao exemplo anterior:
   const normalizeImageSrc = (src) => {
     if (!src) return null;
-    if (typeof src !== 'string') return null;
-    if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('/')) {
+    if (typeof src !== "string") return null;
+    if (
+      src.startsWith("http://") ||
+      src.startsWith("https://") ||
+      src.startsWith("/")
+    ) {
       return src;
     }
     return `/${src}`;
@@ -163,41 +216,72 @@ export default function AdminEntityPage({ params }) {
           <table className="table table-dark table-striped align-middle">
             <thead>
               <tr>
-                {columns.map(col => <th key={col}>{col}</th>)}
+                {columns.map((col) => (
+                  <th key={col}>{col}</th>
+                ))}
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {items.map(item => {
+              {items.map((item) => {
                 // Normaliza imagens se existir
-                const imgChamp = normalizeImageSrc(item.imageChampionship ?? item.image);
+                const imgChamp = normalizeImageSrc(
+                  item.imageChampionship ?? item.image
+                );
                 const imgTeam = normalizeImageSrc(item.logo);
                 return (
                   <tr key={item.id}>
-                    {entity === 'user' && (
+                    {entity === "user" && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.name ?? item.username}</td>
                         <td>{item.email}</td>
-                        <td>{item.role ?? '—'}</td>
-                        <td>{item.born ?? item.birthDate ?? ''}</td>
-                        <td>{item.createdAt ?? item.date_creation ?? ''}</td>
+                        <td>{item.role ?? "—"}</td>
+                        <td>{item.born ?? item.birthDate ?? ""}</td>
+                        <td>{item.createdAt ?? item.date_creation ?? ""}</td>
                       </>
                     )}
-                    {entity === 'game' && (
+                    {entity === "game" && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
-                        <td>{typeof item.tournament === 'object' ? item.tournament.name : item.tournament}</td>
                         <td>
-                          {item.image? (
-                            <div style={{ width: '40px', height: '40px', position: 'relative' }}>
-                              <Image src={item.image} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded"/>
-                            </div>
-                          ) : <span>—</span>}
+                          {typeof item.tournament === "object"
+                            ? item.tournament.name
+                            : item.tournament}
                         </td>
-                        <td style={{ maxWidth:'150px' }} className="texto-justificado">{item.description}</td>
-                        <td>{Array.isArray(item.tags)? item.tags.join(', '): item.tags}</td>
+                        <td>
+                          {item.image ? (
+                            <div
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                                position: "relative",
+                              }}
+                            >
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                style={{ objectFit: "cover" }}
+                                className="rounded"
+                              />
+                            </div>
+                          ) : (
+                            <span>—</span>
+                          )}
+                        </td>
+                        <td
+                          style={{ maxWidth: "150px" }}
+                          className="texto-justificado"
+                        >
+                          {item.description}
+                        </td>
+                        <td>
+                          {Array.isArray(item.tags)
+                            ? item.tags.join(", ")
+                            : item.tags}
+                        </td>
                         <td>{item.release}</td>
                         <td>{item.genre}</td>
                         <td>{item.developer}</td>
@@ -206,51 +290,90 @@ export default function AdminEntityPage({ params }) {
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
-                    {entity === 'championship' && (
+                    {entity === "championship" && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>
-                          {imgChamp? (
-                            <div style={{ width: '40px', height: '40px', position: 'relative' }}>
-                              <Image src={imgChamp} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded"/>
+                          {imgChamp ? (
+                            <div
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                                position: "relative",
+                              }}
+                            >
+                              <Image
+                                src={imgChamp}
+                                alt={item.name}
+                                fill
+                                style={{ objectFit: "cover" }}
+                                className="rounded"
+                              />
                             </div>
-                          ) : <span>—</span>}
+                          ) : (
+                            <span>—</span>
+                          )}
                         </td>
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
-                    {entity === 'team' && (
+                    {entity === "team" && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>
-                          {imgTeam? (
-                            <div style={{ width: '40px', height: '40px', position: 'relative' }}>
-                              <Image src={imgTeam} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded"/>
+                          {imgTeam ? (
+                            <div
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                                position: "relative",
+                              }}
+                            >
+                              <Image
+                                src={imgTeam}
+                                alt={item.name}
+                                fill
+                                style={{ objectFit: "cover" }}
+                                className="rounded"
+                              />
                             </div>
-                          ) : <span>—</span>}
+                          ) : (
+                            <span>—</span>
+                          )}
                         </td>
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
-                    {entity === 'match' && (
+                    {entity === "match" && (
                       <>
                         <td>{item.id}</td>
                         <td>{item.date ?? item.date}</td>
                         <td>{item.hour ?? item.time}</td>
                         <td>
-                          {item.link? (
-                            <a href={item.link} target="_blank" rel="noopener noreferrer">Ver</a>
-                          ) : <span>—</span>}
+                          {item.link ? (
+                            <a
+                              href={item.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Ver
+                            </a>
+                          ) : (
+                            <span>—</span>
+                          )}
                         </td>
-                        <td>{item.championshipId ?? (item.championship?.id)}</td>
+                        <td>{item.championshipId ?? item.championship?.id}</td>
                         <td>{item.teamDTOS}</td>
                         <td>{item.date_creation ?? item.createdAt}</td>
                       </>
                     )}
                     <td>
-                      <Link href={`/admin/${entity}/${item.id}/edit`} className="btn btn-sm btn-outline-secondary me-1">
+                      <Link
+                        href={`/admin/${entity}/${item.id}/edit`}
+                        className="btn btn-sm btn-outline-secondary me-1"
+                      >
                         Editar <i className="fa-solid fa-pen-to-square"></i>
                       </Link>
                       <button
