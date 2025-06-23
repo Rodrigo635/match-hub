@@ -18,6 +18,7 @@ import com.match_hub.backend_match_hub.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @Operation(summary = "Get authenticated user details", description = "Returns details of the authenticated user based on the JWT token.")
+    @Operation(summary = "Get authenticated user details", security = @SecurityRequirement(name = "bearer-key"), description = "Returns details of the authenticated user based on the JWT token.")
     @GetMapping("/details")
     public ResponseEntity<?> getDetail(HttpServletRequest request) {
         String token = tokenService.getToken(request);
@@ -117,7 +118,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "Update authenticated user", description = "Updates the authenticated user using data from the JWT token.")
+    @Operation(summary = "Update authenticated user", security = @SecurityRequirement(name = "bearer-key"), description = "Updates the authenticated user using data from the JWT token.")
     @PutMapping
     public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
         String token = tokenService.getToken(request);
