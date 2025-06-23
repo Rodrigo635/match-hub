@@ -6,8 +6,10 @@ import Configuracoes from "@/components/perfil/Configuracoes";
 import Seguranca from "@/components/perfil/Seguranca";
 import PerfilDefault from "@/components/perfil/PerfilDefault";
 import Ajuda from "@/components/perfil/Ajuda";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const [user, setUser] = useState([]);
   const [token, setToken] = useState(null);
   const [activeSection, setActiveSection] = useState("perfil");
@@ -37,13 +39,11 @@ export default function ProfilePage() {
     }
   };
 
-  
-
   useEffect(() => {
     async function fetchUser() {
       const user = await handleGetUser();
       if (!user) {
-        window.location.href = "/cadastro";
+        router.push("/cadastro");
       }
 
       setUser(user);

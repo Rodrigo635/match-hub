@@ -2,8 +2,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function GamesList() {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [selectedGame, setSelectedGame] = useState("Todos");
@@ -72,7 +74,7 @@ export default function GamesList() {
   const handleCardClick = (item) => {
     localStorage.setItem("selectedGame", JSON.stringify(item));
     // se usar rota /game, adapte:
-    window.location.href = "/game";
+    router.push(`/game`);
   };
 
   return (

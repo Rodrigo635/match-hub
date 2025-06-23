@@ -3,8 +3,10 @@ import Image from "next/image";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import EditPerfil from "./edit/EditPerfil";
+import { useRouter } from "next/navigation";
 
 export default function PerfilDefault({ user }) {
+  const router = useRouter();
   const [showEdit, setShowEdit] = useState(false);
 
   const handleGetAge = () => {
@@ -24,7 +26,7 @@ export default function PerfilDefault({ user }) {
 
   const logout = () => {
     Cookies.remove("token");
-    window.location.href = "/";
+    router.push("/");
   };
 
   return (

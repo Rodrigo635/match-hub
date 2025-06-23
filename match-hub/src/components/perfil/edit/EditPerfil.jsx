@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { updateInfoUser } from "@/app/services/userService";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function EditPerfil({ user, onClose, token }) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -25,6 +27,7 @@ export default function EditPerfil({ user, onClose, token }) {
     }));
   };
 
+
   const handleSubmit = async (e) => {
     console.log(formData)
     e.preventDefault();
@@ -40,9 +43,9 @@ export default function EditPerfil({ user, onClose, token }) {
         Cookies.remove("token");
       }
 
-      const res = updateInfoUser(formData, token);
-      console.log(res)
+      await updateInfoUser(formData, token);
       window.location.reload();
+      onClose();
     } catch (error) {
       console.error("Erro ao alterar dados do usuário:", error);
     }
