@@ -46,6 +46,7 @@ public class Mocks implements CommandLineRunner {
         user.setPassword(new BCryptPasswordEncoder().encode("admin"));
         user.setRole(UserRole.ADMIN);
         user.setHasPassword(true);
+        user.setBirthDate(LocalDate.of(2000, 1, 1));
         userRepository.save(user);
 
         User user2 = new User();
@@ -54,6 +55,7 @@ public class Mocks implements CommandLineRunner {
         user2.setPassword(new BCryptPasswordEncoder().encode("user"));
         user2.setRole(UserRole.USER);
         user2.setHasPassword(true);
+        user2.setBirthDate(LocalDate.of(2000, 1, 1));
         userRepository.save(user2);
 
         // Salvando no banco de dados
