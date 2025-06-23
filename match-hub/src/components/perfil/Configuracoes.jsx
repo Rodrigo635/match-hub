@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { toggleColorMode, toggleVLibrasMode } from '@/app/services/userService';
+import { useRouter } from 'next/navigation';
 
 export default function Configuracoes({ user: initialUser }) {
+  const router = useRouter();
   const [user, setUser] = useState(initialUser);
 
   const changeColor = async (e) => {
@@ -18,7 +20,7 @@ export default function Configuracoes({ user: initialUser }) {
       
       await toggleColorMode(newDarkMode, token);
       
-      window.location.reload();
+      router.refresh();
       
       
     } catch (error) {
@@ -45,7 +47,7 @@ export default function Configuracoes({ user: initialUser }) {
         librasActive: newVLibrasState
       }));
 
-      window.location.reload();
+      router.refresh();
       
     } catch (error) {
       console.error("Erro ao alterar V-Libras:", error);

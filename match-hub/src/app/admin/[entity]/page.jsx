@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   getUsers,
   deleteUser,
@@ -19,6 +20,7 @@ import { getTeams, deleteTeam } from "@/app/services/teamService";
 import { getMatches, deleteMatch } from "@/app/services/matchService";
 
 export default function AdminEntityPage({ params }) {
+  const router = useRouter();
   const [users, setUsers] = useState([]);
   const [games, setGames] = useState([]);
   const [championships, setChampionships] = useState([]);
@@ -40,11 +42,11 @@ export default function AdminEntityPage({ params }) {
 
   const getUser = async () => {
     const token = Cookies.get("token");
-    if (!token) window.location.href = "/cadastro";
+    if (!token) router.push("/cadastro")
     const user = await getUserByToken(token);
     
     if (user.role !== "ADMIN") {
-      window.location.href = "/";
+      router.push("/");
     }
   };
 

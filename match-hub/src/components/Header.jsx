@@ -6,8 +6,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getUserByToken } from "@/app/services/userService";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+  const router = useRouter();
   const [user, setUser] = useState([]);
   const pathname = usePathname();
 
@@ -106,7 +108,7 @@ export default function Header() {
             </ul>
 
             {user != null ? (
-              <div className="d-flex align-items-center w-md-0 w-lg-0 w-sm-100 justify-content-center mt-3 mt-lg-0">
+              <div className="d-flex align-items-center w-md-0 w-lg-0 justify-content-center mt-3 mt-lg-0">
                 <Image
                   src={user.profilePicture ?? "/static/icons/profileIcon.jpg"}
                   width={35}
@@ -115,7 +117,7 @@ export default function Header() {
                   className="rounded-circle "
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    window.location.href = "/perfil";
+                    router.push("/perfil");
                   }}
                 />
               </div>

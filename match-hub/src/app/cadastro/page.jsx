@@ -4,9 +4,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createUser, login } from "../services/userService";
+import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 export default function CadastroPage() {
+  const router = useRouter();
   // Estado para alternar entre 'cadastrar' e 'entrar'
   const [activeTab, setActiveTab] = useState("cadastrar");
 
@@ -70,7 +72,7 @@ export default function CadastroPage() {
         login(email, senha).then((res) => {
           Cookies.set("token", res.token);
         });
-        window.location.href = "/cadastro_concluido";
+        router.push("/cadastro_concluido");
       })
       .catch((err) => {
         console.error("Erro no cadastro:", err);
@@ -92,7 +94,7 @@ export default function CadastroPage() {
     try {
       const res = await login(loginEmail, loginSenha);
       Cookies.set("token", res.token);
-      window.location.href = "/perfil";
+      router.push("/perfil");
     } catch (err) {
       console.error("Erro no login:", err);
       setErrorMessage("Falha no login. Verifique os dados.");
@@ -102,7 +104,7 @@ export default function CadastroPage() {
   useEffect(() => {
     const token = Cookies.get("token")
     if(token !== undefined){
-      window.location.href = "/perfil"
+      router.push("/perfil")
     }
   }, []);
 
