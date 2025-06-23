@@ -100,7 +100,10 @@ export default function CadastroPage() {
   };
 
   useEffect(() => {
-    // Nenhuma lógica extra por enquanto
+    const token = Cookies.get("token")
+    if(token !== undefined){
+      window.location.href = "/perfil"
+    }
   }, []);
 
   return (

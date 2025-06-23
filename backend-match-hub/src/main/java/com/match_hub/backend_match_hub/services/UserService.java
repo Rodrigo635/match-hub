@@ -79,6 +79,10 @@ public class UserService {
     public UserResponseDTO updateByEmail(String email, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         if(updateUserDTO.password() != null){
+            if(!new BCryptPasswordEncoder().matches(updateUserDTO.currentPassword(), user.getPassword())){ // Verifica se a senha atual corresponde ao hash armazenado no banco de dados
+                throw new IllegalArgumentException("Incorrect password"); // Se a senha atual for inválida, lançamos uma exceção
+            }
+
             user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));
         }
         userMapper.updateEntityFromDto(updateUserDTO, user);

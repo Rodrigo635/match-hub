@@ -18,6 +18,8 @@ public record UpdateUserDTO(
         )
         String password,
 
+        String currentPassword,
+
         @Past(message = "A data de nascimento deve estar no passado")
         LocalDate birthDate,
 

@@ -1,10 +1,6 @@
 // src/app/admin/layout.jsx
 import AdminSidebar from '@/components/AdminSidebar';
 
-export const metadata = {
-  title: 'Admin - Match Hub',
-};
-
 export default function AdminLayout({ children }) {
   return (
     <div className="container py-4">

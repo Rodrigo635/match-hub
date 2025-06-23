@@ -9,9 +9,9 @@ import Ajuda from "@/components/perfil/Ajuda";
 
 export default function ProfilePage() {
   const [user, setUser] = useState([]);
+  const [token, setToken] = useState(null);
   const [activeSection, setActiveSection] = useState("perfil");
 
-  console.log(user);
 
   // Seções
   const sections = [
@@ -28,7 +28,7 @@ export default function ProfilePage() {
       if (!token) {
         throw new Error("Token não encontrado.");
       }
-
+      setToken(token);
       const userData = await getUserByToken(token);
       return userData;
     } catch (error) {
@@ -57,7 +57,7 @@ export default function ProfilePage() {
     switch (activeSection) {
       case "perfil":
         return (
-          <PerfilDefault user={user} />
+          <PerfilDefault user={user} token={token} />
         );
       case "seguranca":
         return (

@@ -121,10 +121,17 @@ public class UserController {
     @Operation(summary = "Update authenticated user", security = @SecurityRequirement(name = "bearer-key"), description = "Updates the authenticated user using data from the JWT token.")
     @PutMapping
     public ResponseEntity<UserResponseDTO> update(HttpServletRequest request, @RequestBody @Valid UpdateUserDTO updateUserDTO) {
-        String token = tokenService.getToken(request);
-        String email = tokenService.getSubject(token);
-        userService.updateByEmail(email, updateUserDTO);
-        return ResponseEntity.noContent().build();
+        try{
+            String token = tokenService.getToken(request);
+            String email = tokenService.getSubject(token);
+            userService.updateByEmail(email, updateUserDTO);
+            return ResponseEntity.noContent().build();
+        }catch (IllegalArgumentException e){
+            return e.getMessage().equals("User not found") ?
+                    ResponseEntity.notFound().build() :
+                    ResponseEntity.badRequest().build();
+        }
+
     }
 
 

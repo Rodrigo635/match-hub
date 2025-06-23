@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
 import Cookies from "js-cookie";
+import { useState } from "react";
+import EditPerfil from "./edit/EditPerfil";
 
 export default function PerfilDefault({ user }) {
+  const [showEdit, setShowEdit] = useState(false);
+
   const handleGetAge = () => {
     const birthDate = new Date(user.birthDate);
     const today = new Date();
@@ -11,20 +16,9 @@ export default function PerfilDefault({ user }) {
 
   const handleFormatCreatedAt = () => {
     const createdAt = new Date(user.createdAt);
-    const day = createdAt.getDate();
-    const month = createdAt.getMonth() + 1;
+    const day = createdAt.getDate().toString().padStart(2, '0');
+    const month = (createdAt.getMonth() + 1).toString().padStart(2, '0');
     const year = createdAt.getFullYear();
-
-    if (day < 10 && month < 10) {
-      return `0${day}/0${month}/${year}`;
-    }
-    if (day < 10) {
-      return `0${day}0/${month}/${year}`;
-    }
-    if (month < 10) {
-      return `${day}/0${month}/${year}`;
-    }
-
     return `${day}/${month}/${year}`;
   };
 
@@ -43,21 +37,15 @@ export default function PerfilDefault({ user }) {
         <div className="card-body">
           <div className="d-flex align-items-center mb-4">
             <div
-              style={{
-                width: "80px",
-                height: "80px",
-                position: "relative",
-                marginRight: "1rem",
-              }}
+             className="me-3"
             >
-            
               <Image
                 src={user.profilePicture ?? "/static/icons/profileIcon.jpg"}
                 width={80}
                 height={80}
+                style={{ width: "80px", height: "80px" }}
                 alt="Imagem de perfil"
                 className="rounded-circle"
-                style={{ width: "80px", height: "80px" }}
               />
             </div>
             <div>
@@ -76,11 +64,16 @@ export default function PerfilDefault({ user }) {
           <p className="text-white">
             <strong>Membro desde:</strong> {handleFormatCreatedAt()}
           </p>
-          <button className="btn btn-outline-primary">Gerenciar conta</button>
-          
-          <button className="btn ms-2 btn-outline-danger" onClick={logout}>Sair</button>
+          <button className="btn btn-outline-primary" onClick={() => setShowEdit(true)}>
+            Gerenciar conta
+          </button>
+          <button className="btn ms-2 btn-outline-danger" onClick={logout}>
+            Sair
+          </button>
         </div>
       </div>
+
+      {showEdit && <EditPerfil user={user} onClose={() => setShowEdit(false)} />}
     </div>
   );
 }
