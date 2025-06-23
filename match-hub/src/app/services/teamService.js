@@ -1,5 +1,5 @@
 // src/app/services/teamService.js
-const BASE_URL = 'http://82.112.245.100:8080/api/teams';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getTeams(page = 0, size = 5) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;

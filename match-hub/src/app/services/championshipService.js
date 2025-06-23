@@ -1,5 +1,5 @@
 // src/app/services/championshipService.js
-const BASE_URL = 'http://82.112.245.100:8080/api/championships';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getChampionships(page = 0, size = 10) {
   const url = `${BASE_URL}?page=${page}&size=${size}`;

@@ -3,7 +3,6 @@ package com.match_hub.backend_match_hub.infra.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.User.TokenInvalidException;
