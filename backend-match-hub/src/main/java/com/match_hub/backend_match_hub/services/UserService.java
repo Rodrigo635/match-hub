@@ -11,6 +11,7 @@ import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsEx
 import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.mapper.PageMapper;
 import com.match_hub.backend_match_hub.mapper.UserMapper;
+import com.match_hub.backend_match_hub.repositories.PasswordResetTokenRepository;
 import com.match_hub.backend_match_hub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
 
     @Autowired
     private TokenService tokenService;
@@ -94,6 +98,7 @@ public class UserService {
 
     public void delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        passwordResetTokenRepository.deleteAllByUserId(id);
         fileService.deleteImageFolder("users", id);
         userRepository.delete(user);
     }
