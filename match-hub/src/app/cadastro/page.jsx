@@ -30,6 +30,14 @@ export default function CadastroPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
 
+
+  useEffect(() => {
+    const token = Cookies.get("token")
+    if(token !== undefined){
+      router.push("/perfil")
+    }
+  }, []);
+
   const handleToggle = (tab) => {
     setActiveTab(tab);
     setErrorMessage("");
@@ -100,12 +108,7 @@ export default function CadastroPage() {
     }
   };
 
-  useEffect(() => {
-    const token = Cookies.get("token")
-    if(token !== undefined){
-      router.push("/perfil")
-    }
-  }, []);
+  
 
   return (
     <main className="text-white">
