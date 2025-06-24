@@ -23,8 +23,6 @@ export default function ProfilePage() {
     { key: "ajuda", label: "Ajuda", iconClass: "fa-solid fa-circle-question" },
   ];
 
-  
-
   useEffect(() => {
     async function fetchUser() {
       const user = await handleGetUser({ setToken, setUser });
