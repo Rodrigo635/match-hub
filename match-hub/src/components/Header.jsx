@@ -7,22 +7,23 @@ import { useEffect, useState } from "react";
 import { getUserByToken } from "@/app/services/userService";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { handleGetUser } from "@/app/global/global";
 
 export default function Header() {
   const router = useRouter();
   const [user, setUser] = useState([]);
   const pathname = usePathname();
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token == undefined) {
-      setUser(null);
-    } else {
-      getUserByToken(token).then((response) => {
-        setUser(response);
-      });
-    }
-  }, []);
+  async function fetchUser() {
+    const user = await handleGetUser({ setToken, setUser });
+    setUser(user);
+  }
+
+  fetchUser();
+}, [pathname]);
+
 
   return (
     <header>

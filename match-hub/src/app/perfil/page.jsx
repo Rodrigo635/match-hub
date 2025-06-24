@@ -7,13 +7,13 @@ import Seguranca from "@/components/perfil/Seguranca";
 import PerfilDefault from "@/components/perfil/PerfilDefault";
 import Ajuda from "@/components/perfil/Ajuda";
 import { useRouter } from "next/navigation";
+import { handleGetUser } from "../global/global";
 
 export default function ProfilePage() {
   const router = useRouter();
   const [user, setUser] = useState([]);
   const [token, setToken] = useState(null);
   const [activeSection, setActiveSection] = useState("perfil");
-
 
   // Seções
   const sections = [
@@ -23,27 +23,14 @@ export default function ProfilePage() {
     { key: "ajuda", label: "Ajuda", iconClass: "fa-solid fa-circle-question" },
   ];
 
-  const handleGetUser = async () => {
-    try {
-      const token = Cookies.get("token");
-
-      if (!token) {
-        throw new Error("Token não encontrado.");
-      }
-      setToken(token);
-      const userData = await getUserByToken(token);
-      return userData;
-    } catch (error) {
-      console.error("Erro ao buscar usuário:", error);
-      return null;
-    }
-  };
+  
 
   useEffect(() => {
     async function fetchUser() {
-      const user = await handleGetUser();
+      const user = await handleGetUser({ setToken, setUser });
       if (!user) {
         router.push("/cadastro");
+        return;
       }
 
       setUser(user);

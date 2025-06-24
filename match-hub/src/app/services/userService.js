@@ -100,7 +100,6 @@ export async function login(email, password) {
   });
   if (!res.ok) {
     const text = await res.text();
-    console.error("login: erro status", res.status, text);
     throw new Error(`Erro ao fazer login: ${res.status}`);
   }
   return res.json();
@@ -172,7 +171,7 @@ export async function updateInfoUser(formData, token) {
   });
 
   if(formData.password !== undefined && !res.ok){
-    alert("Senha atual incorreta");
+    return "Senha atual não confere!";
   }
   if(formData.password !== undefined && res.ok){
     alert("Senha alterada com sucesso!");

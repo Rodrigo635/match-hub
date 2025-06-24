@@ -96,7 +96,6 @@ export default function CadastroPage() {
       Cookies.set("token", res.token);
       router.push("/perfil");
     } catch (err) {
-      console.error("Erro no login:", err);
       setErrorMessage("Falha no login. Verifique os dados.");
     }
   };
