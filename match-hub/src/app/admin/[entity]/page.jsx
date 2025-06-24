@@ -18,6 +18,7 @@ import {
 } from "@/app/services/championshipService";
 import { getTeams, deleteTeam } from "@/app/services/teamService";
 import { getMatches, deleteMatch } from "@/app/services/matchService";
+import { handleGetUser } from "@/app/global/global";
 
 export default function AdminEntityPage({ params }) {
   const router = useRouter();
@@ -28,6 +29,8 @@ export default function AdminEntityPage({ params }) {
   const [match, setMatch] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
+  const [user, setUser] = useState([]);
 
   const { entity } = React.use(params);
   const allowed = ["user", "game", "championship", "team", "match"];
@@ -40,21 +43,28 @@ export default function AdminEntityPage({ params }) {
     );
   }
 
-  const getUser = async () => {
-    const token = Cookies.get("token");
-    if (!token) router.push("/cadastro")
-    const user = await getUserByToken(token);
-    
-    if (user.role !== "ADMIN") {
-      router.push("/");
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await handleGetUser({ setToken, setUser });
+      if (!user) {
+        router.push("/cadastro");
+        return;
+      }
+
+      if (user.role !== "ADMIN") {
+        router.push("/perfil");
+        return;
+      }
+
+      setUser(user);
     }
-  };
+
+    fetchUser();
+  }, []);
 
   useEffect(() => {
-    getUser();
     setError(null);
     setLoading(true);
-
 
     if (entity === "user") {
       getUsers()

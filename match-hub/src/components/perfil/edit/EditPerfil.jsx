@@ -11,6 +11,7 @@ export default function EditPerfil({ user, onClose, token }) {
     email: user.email,
     birthDate: user.birthDate
   });
+  const [error, setError] = useState(null);
 
   // Para evitar o scroll do fundo enquanto o modal está aberto
   useEffect(() => {
@@ -29,15 +30,9 @@ export default function EditPerfil({ user, onClose, token }) {
 
 
   const handleSubmit = async (e) => {
-    console.log(formData)
     e.preventDefault();
     try {
       const token = Cookies.get("token");
-
-      if (!token) {
-        console.error("Token não encontrado");
-        return;
-      }
 
       if(formData.email !== user.email){
         Cookies.remove("token");
@@ -46,8 +41,8 @@ export default function EditPerfil({ user, onClose, token }) {
       await updateInfoUser(formData, token);
       window.location.reload();
       onClose();
-    } catch (error) {
-      console.error("Erro ao alterar dados do usuário:", error);
+    } catch (e) {
+      setError("Erro ao alterar dados do usuário");
     }
   };
 
@@ -114,6 +109,8 @@ export default function EditPerfil({ user, onClose, token }) {
                     required
                   />
                 </div>
+
+                <p className="text-danger mt-2">{error}</p>
 
                 <button type="submit" className="btn btn-primary">
                   Salvar

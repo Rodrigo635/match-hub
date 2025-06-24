@@ -10,6 +10,7 @@ export default function EditPassword({ user, onClose }) {
   });
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   // Para evitar o scroll do fundo enquanto o modal está aberto
   useEffect(() => {
@@ -32,9 +33,6 @@ export default function EditPassword({ user, onClose }) {
 
     const { password } = formData;
 
-    console.log(formData)
-    console.log(currentPassword)
-
     // Expressão regular para validar:
     // - Pelo menos 8 caracteres
     // - Pelo menos uma letra maiúscula
@@ -43,9 +41,7 @@ export default function EditPassword({ user, onClose }) {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!passwordRegex.test(password)) {
-      alert(
-        "A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial."
-      );
+      setError("A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial.");
       return;
     }
 
@@ -55,7 +51,11 @@ export default function EditPassword({ user, onClose }) {
         return;
       }
 
-      await updateInfoUser(formData, token);
+      const res = await updateInfoUser(formData, token);
+      if (res === "Senha atual não confere!") {
+        setError("Senha atual não confere!");
+        return;
+      }
       onClose();
     } catch (error) {
       console.error("Erro ao alterar dados do usuário:", error);
@@ -168,6 +168,7 @@ export default function EditPassword({ user, onClose }) {
                       </span>
                     </button>
                   </div>
+                  <p className="subtitle text-danger mt-2">{error}</p>
                 </div>
 
                 <button type="submit" className="btn btn-primary">
