@@ -73,7 +73,6 @@ function VLibras({ forceOnload }) {
 
           // Inicializar o widget
           new window.VLibras.Widget('https://vlibras.gov.br/app');
-          
           setIsLoaded(true);
           
           // Forçar onload se necessário
