@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
-        <VLibras forceOnload/>
+        <VLibras forceOnload />
         {children}
         <Footer />
 
