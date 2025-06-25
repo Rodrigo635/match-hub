@@ -23,7 +23,5 @@ public class GoogleOAuth2UserInfo {
         return (String) attributes.get("picture");
     }
 
-    public Boolean getEmailVerified() {
-        return (Boolean) attributes.get("email_verified");
-    }
+    public Boolean getEmailVerified() { return (Boolean) attributes.get("email_verified"); }
 }
