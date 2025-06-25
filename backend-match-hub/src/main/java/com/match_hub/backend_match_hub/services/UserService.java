@@ -5,6 +5,7 @@ import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
 import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.User;
+import com.match_hub.backend_match_hub.infra.exceptions.AuthPasswordException;
 import com.match_hub.backend_match_hub.infra.exceptions.ObjectNotFoundException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.EmailNotFoundException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsException;
@@ -76,28 +77,26 @@ public class UserService {
         return user;
     }
 
-    public UserResponseDTO updateByEmail(String email, UpdateUserDTO updateUserDTO) {
+    public void updateByEmail(String email, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         if(updateUserDTO.password() != null){
             if(!new BCryptPasswordEncoder().matches(updateUserDTO.currentPassword(), user.getPassword())){ // Verifica se a senha atual corresponde ao hash armazenado no banco de dados
-                throw new IllegalArgumentException("Incorrect password"); // Se a senha atual for inválida, lançamos uma exceção
+                throw new AuthPasswordException("Incorrect password"); // Se a senha atual for inválida, lançamos uma exceção
             }
 
             user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));
         }
         userMapper.updateEntityFromDto(updateUserDTO, user);
-        User updatedUser = userRepository.save(user);
-        return userMapper.toResponseDto(updatedUser);
+        userRepository.save(user);
     }
 
-    public UserResponseDTO updateById(Long id, UpdateUserDTO updateUserDTO) {
+    public void updateById(Long id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         if(updateUserDTO.password() != null){
             user.setPassword(new BCryptPasswordEncoder().encode(updateUserDTO.password()));
         }
         userMapper.updateEntityFromDto(updateUserDTO, user);
-        User updatedUser = userRepository.save(user);
-        return userMapper.toResponseDto(updatedUser);
+        userRepository.save(user);
     }
 
     public void delete(Long id) {

@@ -112,6 +112,11 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StandardError(Instant.now(), HttpStatus.BAD_REQUEST.value(), "Invalid hour format", ex.getMessage(), request.getRequestURI()));
     }
 
+    @ExceptionHandler(AuthPasswordException.class)
+    public ResponseEntity<StandardError> handleAuthPasswordException(AuthPasswordException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new StandardError(Instant.now(), HttpStatus.BAD_REQUEST.value(), "Password not match", ex.getMessage(), request.getRequestURI()));
+    }
+
     private ResponseEntity<StandardError> handleException(String error, HttpStatus status, Exception e, HttpServletRequest request) {
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
