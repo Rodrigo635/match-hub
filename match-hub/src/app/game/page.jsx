@@ -177,6 +177,7 @@ export default function GamePage() {
       </section>
 
       {/* Filtros de próximos jogos */}
+      <main className='page-game'>
       <section className="container mt-5 mb-3">
         <div className="row align-items-center">
           <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
@@ -372,6 +373,8 @@ export default function GamePage() {
           </div>
         </div>
       </section>
+        </main>
+
     </>
   );
 }

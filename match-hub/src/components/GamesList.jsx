@@ -83,13 +83,13 @@ export default function GamesList() {
       <div className="container mt-5 mb-3">
         <div className="row align-items-center">
           <div className="col-12 col-md-6 filtros-titulo">
-            <h1 className="text-white fw-bold">Campeonatos</h1>
+            <h1 className="title-campeonato text-white fw-bold">Campeonatos</h1>
           </div>
           <div className="col-12 col-md-6">
             <div className="row gx-2">
               <div className="col-6 filtro">
                 <select
-                  className="form-select rounded-5 fw-bold cursor-pointer"
+                  className="form-select rounded-5 fw-bold cursor-pointer bg-dark text-white"
                   value={selectedGame}
                   onChange={handleGameChange}
                 >
@@ -102,7 +102,7 @@ export default function GamesList() {
               </div>
               <div className="col-6 filtro">
                 <select
-                  className="form-select rounded-5 fw-bold cursor-pointer"
+                  className="form-select rounded-5 fw-bold cursor-pointer bg-dark text-white"
                   value={selectedTournament}
                   onChange={handleTournamentChange}
                 >
@@ -142,7 +142,7 @@ export default function GamesList() {
                   <div className="gradient"></div>
                 </div>
                 <h5 className="pt-3 ps-3 text-white fw-bold">{item.game}</h5>
-                <h6 className="pb-3 ps-3 text-white">{item.tournament}</h6>
+                <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
               </div>
             </div>
           ))}

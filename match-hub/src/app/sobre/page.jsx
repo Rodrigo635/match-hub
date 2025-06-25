@@ -6,27 +6,27 @@ export const metadata = {
 
 export default function SobrePage() {
   return (
-    <main className="text-white">
+    <main className="page-sobre">
       {/* Sobre o Match Hub */}
       <link rel="stylesheet" href="/css/sobre.css" />
       <section className="imagem-bg py-5">
         <div className="container">
           <div className="row my-4 gap-4">
             <div className="col-lg-6 h-100">
-              <h1 className="fw-bold mb-4 mt-md-4">Se é e-sport, está no Match Hub!</h1>
-              <h5 className="mb-4 mt-md-0 texto-justificado">
+              <h1 className="fw-bold mb-4 mt-md-4 text-white">Se é e-sport, está no Match Hub!</h1>
+              <h5 className="mb-4 mt-md-0 texto-justificado text-white">
                 O Match Hub é a plataforma definitiva para os
                 fãs de e-sports! Centralizamos todas as informações sobre os
                 principais campeonatos, incluindo
                 League of Legends, CS:GO, Dota 2, Valorant e
                 muito mais.
               </h5>
-              <h5 className="mb-4 mt-md-0 texto-justificado">
+              <h5 className="mb-4 mt-md-0 texto-justificado text-white">
                 Nossa missão é tornar o acompanhamento dos jogos mais fácil e
                 acessível, oferecendo uma visão clara dos
                 próximos eventos, horários e detalhes essenciais.
               </h5>
-              <h5 className="mb-4 mt-md-0 texto-justificado">
+              <h5 className="mb-4 mt-md-0 texto-justificado text-white">
                 Clique no botão abaixo e conheça mais sobre nosso projeto
                 através da nossa documentação disponível para
                 download!
@@ -94,7 +94,7 @@ export default function SobrePage() {
         <div className="container my-4">
           <h1 className="text-center text-azul fw-bold">Funcionalidades Principais</h1>
           <h3 className="text-center mb-4 mb-lg-5 text-white">O que oferecemos em uma plataforma?</h3>
-          <div className="row g-3">
+          <div className="funcionalidades row g-3">
             <div className="col-12 col-md-6 col-lg-3">
               <div className="card-item2 text-center p-4 rounded-4 bg-dark text-white">
                 <div className="icon-card">🏆</div>

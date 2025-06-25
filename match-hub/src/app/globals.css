@@ -1,0 +1,122 @@
+/* variaveis.css */
+
+/* =====================================
+   APLICAÇÃO DE FUNDO NO BODY E DIVS (Light)
+   ===================================== */
+html[data-theme="light"] body {
+  /* Variáveis dinâmicas para Light */
+  --bg-color:    #1e1e1e; /* Fundo principal (escuro) */
+  --text-color:  #1e1e1e; /* Texto padrão (escuro) */
+  --white-bg:    #e7e5e5; /* Fundo claro de cards/seções */
+  --btn-bg:      #1a73e8; /* Fundo de botões */
+  --text-active: #3e8ff8; /* Texto ativo */
+
+  /* Fundo claro no body */
+  background-color: var(--white-bg) !important;
+  /* Cor de texto padrão para o body */
+  color:           black !important;
+}
+
+html[data-theme="light"] body > div {
+  /* Fundo claro apenas nas divs diretas do body */
+  background-color: var(--white-bg) !important;
+}
+
+/* ============================
+   CUSTOMIZAÇÕES ESPECÍFICAS
+   ============================ */
+html[data-theme="light"] .navbar * {
+  background-color: black !important;
+}
+
+html[data-theme="light"] .profile-content h5,
+html[data-theme="light"] .profile-sidebar .nav-link,
+html[data-theme="light"] p,
+html[data-theme="light"] .title-campeonato {
+  color: black !important;
+}
+
+html[data-theme="light"] .lista-funcoes-bg * {
+  background-color: transparent !important;
+  color:           var(--white-bg) !important;
+}
+
+html[data-theme="light"] .tracinho {
+  color:            var(--btn-bg) !important;
+  background-color: var(--btn-bg) !important;
+}
+
+html[data-theme="light"] .gif-container * {
+  background-color: transparent !important;
+}
+
+/* Página Sobre */
+
+html[data-theme="light"] .page-sobre .text-white  {
+  color: rgb(0, 0, 0) !important;
+}
+html[data-theme="light"] .page-sobre section:first-of-type .text-white{
+  color: rgb(255, 255, 255) !important;
+}
+
+html[data-theme="light"] .page-sobre .ratio {
+  background-color: transparent !important;
+}
+html[data-theme="light"] .page-sobre .funcionalidades *,
+html[data-theme="light"] .page-sobre .text-cinza,
+html[data-theme="light"] .page-sobre h4,
+html[data-theme="light"] .page-sobre .lista-alvos-bg h3 {
+  color: white !important;
+}
+html[data-theme="light"] .page-sobre .lista-alvos-bg * {
+  background-color: transparent !important;
+}
+html[data-theme="light"] .page-sobre .frase *, section {
+  background-color: transparent !important;
+  color:            white !important;
+}
+
+html[data-theme="light"] #docs * {
+  color: rgb(0, 0, 0) ;
+}
+
+
+/*  Página Perfil */
+
+html[data-theme="light"] .page-perfil *:not(a) {
+  background-color: transparent !important;
+  color:            rgb(0, 0, 0) !important;
+}
+
+/*  Página Game */
+
+html[data-theme="light"] .page-game .container * {
+  background-color: transparent !important;
+  color:            rgb(0, 0, 0) !important;
+}
+
+/* ============================
+   HEADER E FOOTER (Light)
+   ============================ */
+html[data-theme="light"] header *,
+html[data-theme="light"] footer * {
+  background-color: black !important;
+  color:            var(--white-bg) !important;
+}
+html[data-theme="light"] header span:first-child,
+html[data-theme="light"] footer span:first-child {
+  color: var(--btn-bg) !important;
+}
+
+/* ============================
+   EXCEÇÕES E TRANSPARÊNCIAS
+   ============================ */
+.conteudo-card,
+.descricao,
+.descricao h1,
+h5,
+h4,
+.icon-card,
+i {
+  background-color: transparent !important;
+}

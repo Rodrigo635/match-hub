@@ -62,7 +62,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="container">
+    <div className="page-perfil container">
       <div className="profile-page d-flex flex-column flex-md-row">
         <link rel="stylesheet" href="/css/perfil.css" />
         {/* Sidebar desktop */}

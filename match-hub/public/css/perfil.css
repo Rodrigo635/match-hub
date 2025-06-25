@@ -13,7 +13,7 @@ header {
     background-color: transparent;
     min-height: 100vh;
     overflow-y: auto;
-    padding-top: 24px;
+    padding-top: 2.5rem;
 }
 
 .profile-sidebar .nav-link {
@@ -53,7 +53,7 @@ header {
 
 /* Conteúdo principal */
 .profile-content {
-    padding: 1.5rem;
+    padding: 2.5rem;
     padding-right: 0;
     background-color: var(--cor-bg);
 }

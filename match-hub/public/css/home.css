@@ -423,3 +423,4 @@ input[name="card"]:not(:checked) + .cards .descricao {
     color: var(--cor-azul2) !important;
   }
 }
+

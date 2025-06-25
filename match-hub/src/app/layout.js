@@ -1,5 +1,3 @@
-// src/app/layout.js
-
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,11 +29,30 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+
         {/* CSS globais via public/css */}
         <link rel="stylesheet" href="/css/bootstrap.css" />
         <link rel="stylesheet" href="/css/index.css" />
         <link rel="stylesheet" href="/css/home.css" />
         <link rel="stylesheet" href="/css/variaveis.css" />
+
+        {/* Script para aplicar tema antes do React renderizar */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (!theme) {
+                    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    theme = dark ? 'dark' : 'light';
+                  }
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         <Header />
@@ -44,7 +61,7 @@ export default function RootLayout({ children }) {
         <Footer />
 
         {/* Scripts globais */}
-        <Script src="/js/bootstrap.bundle.min.js" strategy="beforeInteractive"/>
+        <Script src="/js/bootstrap.bundle.min.js" strategy="beforeInteractive" />
         <Script src="/js/global.js" strategy="afterInteractive" />
         <Script src="/js/api.js" strategy="afterInteractive" />
       </body>

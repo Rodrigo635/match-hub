@@ -7,26 +7,27 @@ export default function Configuracoes({ user: initialUser }) {
   const router = useRouter();
   const [user, setUser] = useState(initialUser);
 
-  const changeColor = async (e) => {
-    try {
-      const token = Cookies.get("token");
-      
-      if (!token) {
-        console.error("Token não encontrado");
-        return;
-      }
-
-      const newDarkMode = !user.isDarkMode;
-      
-      await toggleColorMode(newDarkMode, token);
-      
-      router.refresh();
-      
-      
-    } catch (error) {
-      console.error("Erro ao alterar modo de cor:", error);
+const changeColor = async () => {
+  try {
+    const token = Cookies.get("token");
+    if (!token) {
+      console.error("Token não encontrado");
+      return;
     }
-  };
+    const newDarkMode = !user.isDarkMode;
+    await toggleColorMode(newDarkMode, token);
+
+    setUser(prev => ({ ...prev, isDarkMode: newDarkMode }));
+
+    // Atualiza o atributo no html para mudar o tema globalmente
+    document.documentElement.setAttribute("data-theme", newDarkMode ? "dark" : "light");
+  } catch (error) {
+    console.error("Erro ao alterar modo de cor:", error);
+  }
+};
+
+
+  
 
   const toggleVLibras = async () => {
     try {

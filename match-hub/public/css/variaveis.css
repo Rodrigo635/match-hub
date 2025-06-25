@@ -39,7 +39,7 @@ body {
 }
 
 .text-azul {
-    color: var(--cor-azul);
+    color: var(--cor-azul) !important;
 }
   
 .text-rosa-fiap {
