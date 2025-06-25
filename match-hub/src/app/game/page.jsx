@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 
 export default function GamePage() {
@@ -76,6 +77,45 @@ export default function GamePage() {
     if (!str) return '';
     return str.replace(/^\.?\//, '/').replace('./static', '/static');
   };
+
+  function isFuture(data, horario) {
+    const [dia, mes, ano] = data.split('/');
+    const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
+    return new Date() < partidaData;
+  }
+
+  function getBotaoTexto(data, horario) {
+    const [dia, mes, ano] = data.split('/');
+    const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
+    const agora = new Date();
+
+    const mesmoDia = agora.toDateString() === partidaData.toDateString();
+
+    if (mesmoDia) {
+      return (
+        <>
+          Assistir Transmissão <i className="fas fa-circle-play"></i>
+        </>
+      );
+    }
+
+    if (agora > partidaData) {
+      return (
+        <>
+          Assistir Gravação <i className="fas fa-play"></i>
+        </>
+      );
+    }
+
+    return (
+      <>
+        Transmissão não disponível <i className="fas fa-lock"></i>
+        {/* ou "fa-solid fa-lock" dependendo do seu setup */}
+      </>
+    );
+  }
+
+
 
   return (
     <>
@@ -192,17 +232,54 @@ export default function GamePage() {
                   if (item.link) window.open(item.link, '_blank');
                 }}
               >
-                <div className="card bg-dark text-white h-100 p-3">
-                  <h5 className="fw-bold">{item.campeonato}</h5>
-                  <div className="d-flex justify-content-between">
-                    <div className="text-truncate">
-                      <span>{item.time1}</span> vs <span>{item.time2}</span>
+                <div className="card border-0 rounded-4 bg-dark text-white h-100">
+                  <div className="card-body bg-dark p-4 rounded-5">
+                    <h5 className="card-title text-primary fw-bold mb-3">
+                      {item.campeonato}
+                    </h5>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <div className="text-center">
+                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                          <Image
+                            src={normalizePath(item.imgTime1)}
+                            alt={item.time1}
+                            fill
+                            sizes="48px"
+                          />
+                        </div>
+                        <p className="mb-0 fw-semibold">{item.time1}</p>
+                      </div>
+                      <div className="fw-bold fs-4">VS</div>
+                      <div className="text-center">
+                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                          <Image
+                            src={normalizePath(item.imgTime2)}
+                            alt={item.time2}
+                            fill
+                            sizes="48px"
+                          />
+                        </div>
+                        <p className="mb-0 fw-semibold">{item.time2}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span>{item.data}</span> <span>{item.horario}</span>
+                    <p className="my-2">
+                      <span className="fw-bold">Data:</span> {item.data} às {item.horario}
+                    </p>
+                    <div className="d-grid mt-4">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`btn btn-live btn-outline-primary rounded-pill ${isFuture(item.data, item.horario) ? 'disabled' : ''}`}
+                      >
+                        <h5 className="mb-0 h5-btn-trasmissao">
+                          {getBotaoTexto(item.data, item.horario)}
+                        </h5>
+                      </a>
                     </div>
                   </div>
                 </div>
+
               </div>
             ))
           ) : (

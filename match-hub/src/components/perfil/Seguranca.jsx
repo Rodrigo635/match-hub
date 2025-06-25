@@ -65,13 +65,14 @@ export default function Seguranca({ user }) {
           <p>Status: Desabilitado</p>
           <button className="btn btn-outline-primary">Habilitar 2FA</button>
         </div>
-      </div>
+      </div> 
+      {/*
       <h2 className="text-azul mt-4">Dispositivos</h2>
       <div
         className="list-group"
         style={{ backgroundColor: "var(--cor-bgEscuro)" }}
       >
-        {/* {userMock.devices.map((device) => (
+         {userMock.devices.map((device) => (
                     <div
                       key={device.id}
                       className="list-group-item"
@@ -96,8 +97,8 @@ export default function Seguranca({ user }) {
                         </button>
                       </div>
                     </div>
-                  ))} */}
-      </div>
+                  ))} 
+      </div> */}
     </div>
   );
 }
