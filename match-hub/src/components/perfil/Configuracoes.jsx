@@ -47,7 +47,8 @@ export default function Configuracoes({ user: initialUser }) {
         librasActive: newVLibrasState
       }));
 
-      router.refresh();
+      window.location.reload();
+
       
     } catch (error) {
       console.error("Erro ao alterar V-Libras:", error);
