@@ -1,15 +1,16 @@
 // src/app/contato/page.js
-import Script from 'next/script';
+import Script from "next/script";
 
 export const metadata = {
-  title: 'Contato - MATCH HUB',
-  description: 'Página de contato do Match Hub. Conheça nossa equipe e envie sua mensagem.',
+  title: "Contato - MATCH HUB",
+  description:
+    "Página de contato do Match Hub. Conheça nossa equipe e envie sua mensagem.",
 };
 
 export default function ContatoPage() {
   return (
     <>
-      <main>
+      <main className="page-contato">
         <link rel="stylesheet" href="/css/contato.css" />
         {/* Carousel com membros */}
         <div
@@ -75,16 +76,17 @@ export default function ContatoPage() {
                             Gabriel Vilela Peixoto
                           </h1>
                           <h5 className="text-white mb-3 text-center text-lg-start">
-                            Função - Desenvolvimento do site, design e documentação.
+                            Função - Desenvolvimento do site, design e
+                            documentação.
                           </h5>
                           <h5 className="text-white mb-3 text-center text-lg-start">
                             Curso - Sistemas de Informação - FIAP (1° Ano).
                           </h5>
                           <h5 className="text-white text-center text-lg-start">
-                            Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou formado
-                            em Técnico de Informática, nasci em Cajuru-SP mas moro em
-                            Ribeirão Preto-SP. Atualmente estou cursando Sistemas de
-                            Informação pela FIAP.
+                            Me chamo Gabriel Vilela Peixoto, tenho 20 anos, sou
+                            formado em Técnico de Informática, nasci em
+                            Cajuru-SP mas moro em Ribeirão Preto-SP. Atualmente
+                            estou cursando Sistemas de Informação pela FIAP.
                           </h5>
                           <h5 className="text-rosa-fiap my-4 text-center text-lg-start">
                             RM: 562125
@@ -157,16 +159,17 @@ export default function ContatoPage() {
                             Miguel Kawe Dos Anjos Assis
                           </h1>
                           <h5 className="text-white mb-3 text-center text-lg-start">
-                            Função - Desenvolvimento do site, design e documentação.
+                            Função - Desenvolvimento do site, design e
+                            documentação.
                           </h5>
                           <h5 className="text-white mb-3 text-center text-lg-start">
                             Curso - Sistemas de Informação - FIAP (1° Ano).
                           </h5>
                           <h5 className="text-white text-center text-lg-start">
                             Me chamo Miguel Kawe Dos Anjos Assis, tenho 18 anos,
-                            sou formado como Técnico em Desenvolvimento de Sistemas,
-                            nasci e moro em Caçapava-SP. Atualmente estou cursando
-                            Sistemas de Informação pela FIAP.
+                            sou formado como Técnico em Desenvolvimento de
+                            Sistemas, nasci e moro em Caçapava-SP. Atualmente
+                            estou cursando Sistemas de Informação pela FIAP.
                           </h5>
                           <h5 className="text-rosa-fiap my-4 text-center text-lg-start">
                             RM: 562196
@@ -239,16 +242,18 @@ export default function ContatoPage() {
                             Luis Gustavo Fernandes Rivalta
                           </h1>
                           <h5 className="text-white mb-3 text-center text-lg-start">
-                            Função - Desenvolvimento do site, design e documentação.
+                            Função - Desenvolvimento do site, design e
+                            documentação.
                           </h5>
                           <h5 className="text-white mb-3 text-center text-lg-start">
                             Curso - Sistemas de Informação - FIAP (1° Ano).
                           </h5>
                           <h5 className="text-white text-center text-lg-start">
-                            Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20 anos,
-                            nasci em Ribeirão Preto-SP e atualmente moro em Cajuru-SP,
-                            gosto de programar e quero ser um desenvolvedor FullStack.
-                            Atualmente curso Sistemas de informação na FIAP.
+                            Meu nome é Luis Gustavo Fernandes Rivalta, tenho 20
+                            anos, nasci em Ribeirão Preto-SP e atualmente moro
+                            em Cajuru-SP, gosto de programar e quero ser um
+                            desenvolvedor FullStack. Atualmente curso Sistemas
+                            de informação na FIAP.
                           </h5>
                           <h5 className="text-rosa-fiap my-4 text-center text-lg-start">
                             RM: 561742
@@ -321,16 +326,18 @@ export default function ContatoPage() {
                             Michel Pereira Dos Santos
                           </h1>
                           <h5 className="text-white mb-3 text-center text-lg-start">
-                            Função - Desenvolvimento do site, design e documentação.
+                            Função - Desenvolvimento do site, design e
+                            documentação.
                           </h5>
                           <h5 className="text-white mb-3 text-center text-lg-start">
                             Curso - Sistemas de Informação - FIAP (1° Ano).
                           </h5>
                           <h5 className="text-white text-center text-lg-start">
-                            Meu nome é Michel Pereira Dos Santos, tenho 21 anos e
-                            moro em São Paulo. Sou formado em Segurança da Informação
-                            pela Fatec SCS e quero me tornar um desenvolvedor backend.
-                            Atualmente curso Sistemas de Informação na FIAP.
+                            Meu nome é Michel Pereira Dos Santos, tenho 21 anos
+                            e moro em São Paulo. Sou formado em Segurança da
+                            Informação pela Fatec SCS e quero me tornar um
+                            desenvolvedor backend. Atualmente curso Sistemas de
+                            Informação na FIAP.
                           </h5>
                           <h5 className="text-rosa-fiap my-4 text-center text-lg-start">
                             RM: 564919
@@ -403,16 +410,18 @@ export default function ContatoPage() {
                             Rodrigo Froehlich Machado
                           </h1>
                           <h5 className="text-white mb-3 text-center text-lg-start">
-                            Função - Desenvolvimento do site, design e documentação.
+                            Função - Desenvolvimento do site, design e
+                            documentação.
                           </h5>
                           <h5 className="text-white mb-3 text-center text-lg-start">
                             Curso - Sistemas de Informação - FIAP (1° Ano).
                           </h5>
                           <h5 className="text-white text-center text-lg-start">
-                            Me chamo Rodrigo Froehlich Machado, tenho 22 anos. Sou
-                            natural de São Gabriel-RS e também sou formado em inglês
-                            pela FISK. Trabalho como desenvolvedor full stack e estou
-                            cursando Sistemas de Informação na FIAP.
+                            Me chamo Rodrigo Froehlich Machado, tenho 22 anos.
+                            Sou natural de São Gabriel-RS e também sou formado
+                            em inglês pela FISK. Trabalho como desenvolvedor
+                            full stack e estou cursando Sistemas de Informação
+                            na FIAP.
                           </h5>
                           <h5 className="text-rosa-fiap my-4 text-center text-lg-start">
                             RM: 562196
@@ -474,7 +483,10 @@ export default function ContatoPage() {
             data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev"
           >
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Anterior</span>
           </button>
           <button
@@ -483,7 +495,10 @@ export default function ContatoPage() {
             data-bs-target="#carouselExampleIndicators"
             data-bs-slide="next"
           >
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Próximo</span>
           </button>
         </div>
@@ -508,8 +523,9 @@ export default function ContatoPage() {
                 </h5>
                 <h5 className="text-white mb-4 texto-justificado">
                   Nosso objetivo é criar uma plataforma que centralize as datas
-                  dos principais campeonatos de e-sports, facilitando o acesso às
-                  informações para os fãs e entusiastas dos jogos eletrônicos.
+                  dos principais campeonatos de e-sports, facilitando o acesso
+                  às informações para os fãs e entusiastas dos jogos
+                  eletrônicos.
                 </h5>
                 <h5 className="text-white mb-4 texto-justificado">
                   Este projeto reforça nossos conhecimentos em desenvolvimento
@@ -548,21 +564,24 @@ export default function ContatoPage() {
                 />
               </div>
               <div className="col-lg-6">
-                <h1 className="mb-4 text-white fw-bold">O que estamos buscando?</h1>
+                <h1 className="mb-4 text-white fw-bold">
+                  O que estamos buscando?
+                </h1>
                 <h5 className="text-white mb-4 texto-justificado">
                   Buscamos aprimorar nossas habilidades em trabalho em equipe,
-                  pesquisa, design e usabilidade, garantindo que a experiência do
-                  usuário seja completa.
+                  pesquisa, design e usabilidade, garantindo que a experiência
+                  do usuário seja completa.
                 </h5>
                 <h5 className="text-white mb-4 texto-justificado">
                   Nos preocupamos em criar uma interface acessível e responsiva,
-                  para que os nossos usuários encontrem facilmente as informações
-                  que buscam, independentemente do dispositivo utilizado.
+                  para que os nossos usuários encontrem facilmente as
+                  informações que buscam, independentemente do dispositivo
+                  utilizado.
                 </h5>
                 <h5 className="text-white mb-4 texto-justificado">
                   Exploramos conceitos de UX/UI para tornar a navegação fluida,
-                  nos desafiando a pensar em soluções inovadoras para trazer mais
-                  interação.
+                  nos desafiando a pensar em soluções inovadoras para trazer
+                  mais interação.
                 </h5>
               </div>
             </div>
@@ -572,7 +591,7 @@ export default function ContatoPage() {
         {/* Formulário de Contato */}
         <section className="contate-nos imagem-bg-contato py-5">
           <div className="container">
-            <div className="row justify-content-center">
+            <div className="row justify-content-center" id="row-contato">
               {/* Formulário */}
               <form
                 className="form col-12 col-md-8 col-lg-6 d-flex flex-column align-items-center text-white rounded-4 px-5"
