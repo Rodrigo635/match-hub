@@ -1,13 +1,28 @@
-# MATCH HUB
+# 🎮 MATCH HUB
 
-Este é nosso projeto Happy Game proposta pela FIAP.
+Projeto desenvolvido para a disciplina *Happy Game* da **FIAP**.
 
-## Vídeo apresentando o site:
-Fase 1 -
-https://www.youtube.com/watch?v=hsEQwwoEEK0
-Fase 2 -
-https://www.youtube.com/watch?v=IAaclmrmPZU
+## 📺 Vídeos das fases do projeto
 
-## Rodar o projeto:
-É possível iniciar ele pela extensão live server do Visual Studio Code
-Ou pelo link do projeto no Vercel - https://match-hub-rodrigos-projects-210ad9b4.vercel.app/
+- **Fase 1**: [Apresentação Fase 1](https://www.youtube.com/watch?v=hsEQwwoEEK0)
+- **Fase 2**: [Apresentação Fase 2](https://www.youtube.com/watch?v=IAaclmrmPZU)
+- **Fase 3**: [Apresentação Fase 3](https://www.youtube.com/watch?v=xgC5VPvFw4w)
+- **Fase 4**: [Apresentação Fase 4](https://www.youtube.com/watch?v=iK2lrtsPago&feature=youtu.be)
+
+---
+
+## 🚀 Como rodar o projeto localmente
+
+### 📦 Frontend (Next.js)
+
+> Local: `./match-hub`
+
+#### Pré-requisitos
+- Node.js 18+
+- NPM
+
+#### Passos para iniciar:
+```bash
+cd match-hub
+npm install        # instala as dependências
+npm run dev        # inicia o servidor de desenvolvimento
