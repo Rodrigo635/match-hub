@@ -77,8 +77,8 @@ Após a inicialização, a API REST estará disponível em:
 
 ## 📁 Estrutura do Repositório
 
-/
-├── match-hub              # Frontend (Next.js)
+| <br/>
+├── match-hub              # Frontend (Next.js) <br/>
 └── backend-match-hub      # Backend (Spring Boot / Java 21)
 
 ---
