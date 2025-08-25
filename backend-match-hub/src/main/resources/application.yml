@@ -103,9 +103,9 @@ spring:
     activate:
       on-profile: [ prod ]
   datasource:
-    url: jdbc:postgresql://ep-wild-recipe-act8y5wy-pooler.sa-east-1.aws.neon.tech:5432/neondb?sslmode=require
-    username: neondb_owner
-    password: npg_ZrjK43nviBls
+    url: ${SPRINGBD_URL}
+    username: ${SPRINGDB_USER}
+    password: ${SPRINGDB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
