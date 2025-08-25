@@ -110,17 +110,7 @@ export default function Header() {
 
             {user != null ? (
               <div className="d-flex align-items-center w-md-0 w-lg-0 justify-content-center mt-3 mt-lg-0">
-                <Image
-                  src={user.profilePicture ?? "/static/icons/profileIcon.jpg"}
-                  width={35}
-                  height={35}
-                  alt="Imagem de perfil"
-                  className="rounded-circle "
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    router.push("/perfil");
-                  }}
-                />
+                <a href="/perfil"><i className="fa-solid fa-user-circle text-white fs-3"></i></a>
               </div>
             ) : (
               <Link

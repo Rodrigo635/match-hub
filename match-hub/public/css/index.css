@@ -93,6 +93,34 @@ header {
   margin-left: 10px;
 }
 
+/* Scroll to top */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bs-primary, #dc3545); /* pode trocar por sua cor */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
 /* Animação para revelar o conteúdo de cima para baixo (Ver mais) */
 @keyframes RevelarCards {
   0% {

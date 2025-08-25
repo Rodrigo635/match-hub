@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "@/components/Header";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import VLibras from "@/components/vLibras";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
         <Header />
         <VLibras forceOnload />
         {children}
+        <ScrollToTopButton />
         <Footer />
 
         {/* Scripts globais */}

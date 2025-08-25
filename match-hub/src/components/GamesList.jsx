@@ -127,23 +127,25 @@ export default function GamesList() {
               className="col-12 col-md-6 col-lg-3"
               onClick={() => handleCardClick(item)}
             >
-              <div className="card bg-dark h-100">
-                <img
-                  className="rounded-3 static-image"
-                  src={item.image.replace("./static", "/static")}
-                  alt={item.game}
-                />
-                <div className="gif-container">
+              <a href="#">
+                <div className="card bg-dark h-100">
                   <img
-                    className="rounded-3 gif-image"
-                    src={item.gif.replace("./static", "/static")}
-                    alt={`${item.game} GIF`}
+                    className="rounded-3 static-image"
+                    src={item.image.replace("./static", "/static")}
+                    alt={item.game}
                   />
-                  <div className="gradient"></div>
+                  <div className="gif-container">
+                    <img
+                      className="rounded-3 gif-image"
+                      src={item.gif.replace("./static", "/static")}
+                      alt={`${item.game} GIF`}
+                    />
+                    <div className="gradient"></div>
+                  </div>
+                  <h5 className="pt-3 ps-3 text-white fw-bold">{item.game}</h5>
+                  <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
                 </div>
-                <h5 className="pt-3 ps-3 text-white fw-bold">{item.game}</h5>
-                <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
-              </div>
+              </a>
             </div>
           ))}
         </div>
@@ -155,7 +157,9 @@ export default function GamesList() {
               className="text-center ver-menos cursor-pointer"
               onClick={handlePrev}
             >
+          <a href="#" className="text-azul">
               Ver menos
+          </a>
             </h5>
           )}
           {hasNext && (
@@ -163,7 +167,9 @@ export default function GamesList() {
               className="text-center ver-mais cursor-pointer"
               onClick={handleNext}
             >
+            <a href="#" className="text-azul">
               Ver mais
+            </a>
             </h5>
           )}
         </div>
