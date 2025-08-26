@@ -45,7 +45,7 @@ main {
   border: 2px solid var(--cor-cinza);
   background: transparent !important;
   font-size: 1rem;
-  color: var(--cor-branco);
+  color: var(--cor-branco) !important;
   outline: none;
   transition: border-color 0.3s ease-in-out;
 }
@@ -164,6 +164,16 @@ main {
 
 .eye-icon img {
   color: white;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); 
+  cursor: pointer;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }
 
 /* RESPONSIVIDADE */
