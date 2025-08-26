@@ -17,7 +17,7 @@ export default function SobrePage() {
               <h5 className="mb-4 mt-md-0 texto-justificado text-white">
                 O Match Hub é a plataforma definitiva para os
                 fãs de e-sports! Centralizamos todas as informações sobre os
-                principais campeonatos, incluindo
+                principais campeonatos, como
                 League of Legends, CS:GO, Dota 2, Valorant e
                 muito mais.
               </h5>
@@ -27,7 +27,7 @@ export default function SobrePage() {
                 próximos eventos, horários e detalhes essenciais.
               </h5>
               <h5 className="mb-4 mt-md-0 texto-justificado text-white">
-                Clique no botão abaixo e conheça mais sobre nosso projeto
+                Clique no botão abaixo e conheça tudo sobre nosso projeto
                 através da nossa documentação disponível para
                 download!
               </h5>
