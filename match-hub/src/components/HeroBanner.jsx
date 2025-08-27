@@ -27,7 +27,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
       <div className="container esports-content">
         <div className="row align-items-center">
           <div className="col-lg-7 col-md-8">
-            <h1 className="esports-title display-5">Nunca perca um campeonato<br/>Assista ao vivo e na hora certa!</h1>
+            <h1 className="esports-title display-5">Nunca perca um campeonato!<br/>Assista ao vivo e na hora certa</h1>
             <p className="esports-sub lead mt-3">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
 
             <div className="d-flex flex-wrap gap-3 align-items-center mt-4">
