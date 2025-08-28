@@ -35,6 +35,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/jogos"
+                  className={`${pathname === "/jogos" ? "text-primary" : "text-white"} text-decoration-none`}
+                >
+                  Jogos
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/sobre"
                   className={`${pathname === "/sobre" ? "text-primary" : "text-white"} text-decoration-none`}
                 >
@@ -64,18 +72,20 @@ export default function Footer() {
         {/* Divider */}
         <hr className="border-secondary my-4" />
 
-        {/* Direitos Autorais */}
         <div className="row">
+          {/* Direitos Autorais */}
           <div className="col text-start d-flex align-items-center">
             <h6 className="pb-0 mb-0">
-              Todos os direitos reservados. Match Hub © {new Date().getFullYear()}.
+              Todos os direitos reservados. Match Hub ©, 2025.
             </h6>
           </div>
+
+          {/* Redes Sociais */}
           <div className="col-12 col-md-3 text-center text-md-end">
             <div className="d-flex justify-content-center justify-content-md-end gap-3">
-              <a href="#" className="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#" className="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" className="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" className="text-white fs-5"><i className="fa-brands fa-facebook"></i></a>
+              <a href="#" className="text-white fs-5"><i className="fa-brands fa-instagram"></i></a>
+              <a href="#" className="text-white fs-5"><i className="fa-brands fa-linkedin"></i></a>
             </div>
           </div>
         </div>

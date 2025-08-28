@@ -48,7 +48,7 @@
 .shape.s1 {
     width: 220px;
     height: 220px;
-    right: -60px;
+    left: 70px;
     top: 10%;
     background: radial-gradient(circle, #2a63bf, #0D83FF);
     border-radius: 50%;
@@ -59,7 +59,7 @@
 .shape.s2 {
     width: 120px;
     height: 120px;
-    left: -30px;
+    left: 10px;
     bottom: 5%;
     background: radial-gradient(circle, #0D83FF, #2a63bf);
     border-radius: 50%;

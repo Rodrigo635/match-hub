@@ -83,7 +83,7 @@ export default function GamesList() {
       <div className="container mt-5 mb-3">
         <div className="row align-items-center">
           <div className="col-12 col-md-6 filtros-titulo">
-            <h1 className="title-campeonato text-white fw-bold">Campeonatos</h1>
+            <h1 className="title-campeonato text-white fw-bold">Lista de Jogos</h1>
           </div>
           <div className="col-12 col-md-6">
             <div className="row gx-2">

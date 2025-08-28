@@ -5,7 +5,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
   const [showNotify, setShowNotify] = useState(false);
 
   useEffect(() => {
-    // exemplo: fechar modal com Esc
+    // Fechar modal com Esc
     function onKey(e) {
       if (e.key === 'Escape') setShowNotify(false);
     }
@@ -41,11 +41,11 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
 
             <div className="mt-4 match-ticker" aria-live="polite">
               <div className="ticker-list" id="tickerList">
+                <span className="ticker-item">[18:00] Paris Saint-Germain vs Manchester City — EA SPORTS FC 25 Championship 2025 • Stream</span>
                 <span className="ticker-item">[19:30] KT vs T1 — LCK • Stream</span>
                 <span className="ticker-item">[20:00] Team Spirit vs Furia — Major 2025 • Stream</span>
                 <span className="ticker-item">[18:00] SEN vs MIBR — VCT Americas • Stream</span>
                 <span className="ticker-item">[17:00] Ninja vs Bugha — Fortnite World Cup 2025 • Stream</span>
-                <span className="ticker-item">[18:00] Paris Saint-Germain vs Manchester City — EA SPORTS FC 25 Championship 2025 • Stream</span>
               </div>
             </div>
 
@@ -67,7 +67,6 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
         </div>
       </div>
 
-      {/* Modal simples em React (sem depender de bootstrap js) */}
       {showNotify && (
         <div className="notify-modal" role="dialog" aria-modal="true">
           <div className="notify-backdrop" onClick={() => setShowNotify(false)} />
