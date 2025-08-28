@@ -1,0 +1,256 @@
+.esports-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.esports-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    min-width: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.45) saturate(1.1);
+}
+
+.esports-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      to right,
+      rgba(30, 30, 30, 1),
+      rgba(30, 30, 30, 1),
+      rgba(30, 30, 30, 0.8),
+      rgba(21, 21, 85, 0.1),
+      rgba(21, 21, 85, 0)
+    ),
+    url("../static/img/index/card1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    z-index: 1;
+    opacity: .12;
+}
+
+.shape.s1 {
+    width: 220px;
+    height: 220px;
+    left: 70px;
+    top: 10%;
+    background: radial-gradient(circle, #2a63bf, #0D83FF);
+    border-radius: 50%;
+    filter: blur(36px);
+    animation: float1 8s ease-in-out infinite;
+}
+
+.shape.s2 {
+    width: 120px;
+    height: 120px;
+    left: 10px;
+    bottom: 5%;
+    background: radial-gradient(circle, #0D83FF, #2a63bf);
+    border-radius: 50%;
+    filter: blur(28px);
+    animation: float2 10s ease-in-out infinite;
+}
+
+.video-apresentacao {
+  background-image: url("../static/img/sobre/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@keyframes float1 {
+    0% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-26px)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+@keyframes float2 {
+    0% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(20px)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+.esports-content {
+    position: relative;
+    z-index: 2;
+}
+
+.esports-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.esports-sub {
+    opacity: 0.95;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.btn-glow {
+    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.18);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.btn-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.28);
+}
+
+.bell {
+    display: inline-flex;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .15s ease;
+}
+
+.bell:hover {
+    transform: scale(1.06);
+}
+
+.bell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.12);
+    animation: ping 2s infinite;
+    z-index: 0;
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(.9);
+        opacity: .6
+    }
+
+    80% {
+        transform: scale(1.5);
+        opacity: 0
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.match-ticker {
+    background: rgba(0, 0, 0, 0.1);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+    min-width: 260px;
+}
+
+.ticker-list {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 12s linear infinite;
+}
+
+.ticker-item {
+    display: inline-block;
+    padding-right: 2rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-50%)
+    }
+}
+
+/* modal styles */
+.notify-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notify-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.notify-panel {
+    position: relative;
+    z-index: 2;
+    width: min(520px, 92%);
+    background: #111;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.notify-panel .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .esports-title {
+        font-size: 1.6rem;
+    }
+
+    .esports-hero {
+        height: 58vh;
+    }
+
+    .shape.s1,
+    .shape.s2 {
+        display: none;
+    }
+
+
+}

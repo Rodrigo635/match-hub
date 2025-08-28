@@ -38,6 +38,10 @@ body {
     background-color: var(--cor-bg);
 }
 
+.bg-escuro {
+    background-color: var(--cor-bg);
+}
+
 .text-azul {
     color: var(--cor-azul) !important;
 }

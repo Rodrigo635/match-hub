@@ -1,0 +1,176 @@
+/* calendario.css - mobile-friendly improvements */
+.nav-link Link:nth-child(3) a {
+  color: var(--cor-azul);
+}
+
+/* Wrapper */
+.calendar-wrapper {
+    background: #141414;
+    border-radius: 12px;
+    padding: 22px;
+    color: #e6e6e6;
+    margin-bottom: 10vh;
+}
+
+/* Scroll wrapper to allow horizontal scroll on very narrow screens */
+.calendar-scroll {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+/* Table styling: use border-spacing to create gaps so rounded corners are visible */
+.calendar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+    table-layout: fixed;
+    min-width: 600px; /* allows comfortable cells on narrow devices; wrapped by .calendar-scroll */
+}
+
+.calendar-table td {
+    width: calc((100% - 60px) / 7);
+    padding: 0;
+    vertical-align: top;
+}
+
+.calendar-table thead th {
+    background: transparent;
+    color: #fff;
+    padding: 10px 12px;
+    font-weight: 700;
+    text-align: left;
+}
+
+/* Each day is a dark card to improve contrast */
+.calendar-day {
+    background: #1f1f1f;
+    height: 120px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+
+.calendar-day.inactive {
+    background: #151515;
+    opacity: 0.6;
+}
+
+.calendar-day.selected {
+    box-shadow: 0 0 0 3px rgba(30, 167, 255, 0.12);
+    border-color: rgba(30, 167, 255, 0.25);
+}
+
+.day-number {
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* empty day symbol */
+.day-empty {
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 28px;
+    line-height: 1;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* event badges */
+.badge-event {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    max-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge-event .event-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.type-campeonato { background: rgba(255, 184, 107, 0.08); border-left: 4px solid #ffb86b; }
+.type-partida     { background: rgba(30, 167, 255, 0.06); border-left: 4px solid #1ea7ff; }
+.type-time        { background: rgba(139, 225, 139, 0.06); border-left: 4px solid #8be18b; }
+
+.sidebar-card {
+    background: #111;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.filter-pill {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #e6e6e6;
+}
+
+/* indicator dot in top-right */
+.event-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.35);
+}
+.event-indicator.ind-partida { background: #1ea7ff; }
+.event-indicator.ind-campeonato { background: #ffb86b; }
+.event-indicator.ind-time { background: #8be18b; }
+
+/* +N more indicator */
+.more-events {
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+}
+
+/* remove card hover transform conflicts */
+.card:hover { transform: none !important; }
+
+/* ===================== MOBILE ADJUSTMENTS ===================== */
+@media (max-width: 767px) {
+  .calendar-wrapper { padding: 14px; }
+  .calendar-table { border-spacing: 6px; min-width: 520px; }
+  .calendar-table thead th { font-size: 12px; padding: 6px 8px; }
+  .calendar-table td { width: calc((100% - 36px) / 7); } /* 6 * gap = 36 */
+  .calendar-day {
+    height: 90px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .day-number { font-size: 14px; }
+  .badge-event { padding: 4px 6px; font-size: 12px; max-height: 28px; gap: 6px; }
+  .day-empty { font-size: 20px; margin-top: 8px; }
+
+  /* make the month header fit better */
+  .calendar-wrapper .d-flex.justify-content-between { gap: 8px; align-items: flex-start; }
+
+  /* allow horizontal scroll but center month header */
+  .calendar-scroll { -webkit-overflow-scrolling: touch; }
+
+  /* Sidebar becomes full width under the calendar (Bootstrap already stacks, but ensure spacing) */
+  .sidebar-card { margin-top: 12px; }
+
+  /* Make indicator slightly larger on small */
+  .event-indicator { top: 6px; right: 6px; width: 12px; height: 12px; }
+}
+
+/* smaller tablets */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .calendar-table { min-width: 680px; }
+}
