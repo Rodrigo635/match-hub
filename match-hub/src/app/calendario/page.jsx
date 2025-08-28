@@ -221,7 +221,7 @@ export default function CalendarPage() {
                     </strong>
                   </div>
 
-                  {eventsForSelectedDate.length === 0 && <div className="text-white small">Nenhum evento filtrado para essa data.</div>}
+                  {eventsForSelectedDate.length === 0 && <div className="text-white small">Nenhum evento para essa data.</div>}
 
                   {eventsForSelectedDate.map((ev) => (
                     <div key={ev.id} className="card bg-dark text-light mb-2" style={{ border: '1px solid rgba(255,255,255,0.04)' }}>
@@ -250,7 +250,7 @@ export default function CalendarPage() {
             </div>
 
             <div className="sidebar-card">
-              <h6>Próximos eventos (filtrados)</h6>
+              <h5>Próximos eventos</h5>
               {filteredEvents.length === 0 && <div className="small text-white">Sem eventos</div>}
               {filteredEvents.slice(0, 6).map((ev) => (
                 <div key={ev.id} className="d-flex align-items-start mb-2">
