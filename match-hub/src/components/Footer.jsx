@@ -16,15 +16,15 @@ export default function Footer() {
               <span className="h4 text-azul fw-bold">MATCH </span>
               <span className="h4 fw-bold text-white">HUB</span>
             </Link>
-            <h5>
+            <h6>
               Acompanhe torneios, notícias e o mundo<br /> dos esports em um só lugar.
-            </h5>
+            </h6>
           </div>
 
           {/* Links de Navegação */}
           <div className="col-12 col-md-6 text-center text-md-end">
             <h6 className="fw-bold mb-3 text-uppercase">Links de Navegação</h6>
-            <ul className="list-unstyled d-flex gap-2 justify-content-center justify-content-md-end align-items-center align-items-md-end">
+            <ul className="list-unstyled d-flex flex-column flex-md-row gap-2 justify-content-center justify-content-md-end align-items-center align-items-md-end">
               <li>
                 <Link
                   href="/"
@@ -39,6 +39,14 @@ export default function Footer() {
                   className={`${pathname === "/jogos" ? "text-primary" : "text-white"} text-decoration-none`}
                 >
                   Jogos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/calendario"
+                  className={`${pathname === "/calendario" ? "text-primary" : "text-white"} text-decoration-none`}
+                >
+                  Calendário
                 </Link>
               </li>
               <li>

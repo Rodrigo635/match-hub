@@ -40,7 +40,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark p-3">
+      <nav className="navbar navbar-expand-lg navbar-dark py-3">
         <div className="container d-flex justify-content-between align-items-center">
           {/* Brand */}
           <Link href="/" className="navbar-brand d-flex align-items-center">
@@ -94,6 +94,11 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link href="/calendario" className={`nav-link px-2 ${pathname === "/calendario" ? "text-primary" : "text-white"}`}>
+                  Calendário
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link href="/sobre" className={`nav-link px-2 ${pathname === "/sobre" ? "text-primary" : "text-white"}`}>
                   Sobre
                 </Link>
@@ -136,6 +141,7 @@ export default function Header() {
               <ul className="navbar-nav mb-3 gap-3">
                 <li className="nav-item"><Link href="/" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-house me-2"></i>Início</p></Link></li>
                 <li className="nav-item"><Link href="/jogos" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-gamepad me-2"></i>Jogos</p></Link></li>
+                <li className="nav-item"><Link href="/calendario" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-calendar me-2"></i>Calendário</p></Link></li>
                 <li className="nav-item"><Link href="/sobre" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-circle-info me-2"></i>Sobre</p></Link></li>
                 <li className="nav-item"><Link href="/contato" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-phone me-2"></i>Contato</p></Link></li>
               </ul>

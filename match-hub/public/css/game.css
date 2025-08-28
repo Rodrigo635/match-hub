@@ -1,3 +1,7 @@
+.nav-links li:nth-child(3) a {
+  color: var(--cor-azul);
+}
+
 header {
   background: var(--cor-preto);
 }
