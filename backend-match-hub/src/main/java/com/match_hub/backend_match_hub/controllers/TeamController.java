@@ -48,6 +48,7 @@ public class TeamController {
         return ResponseEntity.created(address).build();
     }
 
+
     @Operation(
             summary = "Upload team image",
             description = "Uploads an image for an existing team."

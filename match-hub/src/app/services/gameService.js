@@ -26,6 +26,7 @@ export async function getGameById(id) {
 }
 
 export async function createGame(gameData) {
+  console.log(gameData);
   let options = {
     method: 'POST',
     credentials: 'include',
@@ -44,6 +45,7 @@ export async function createGame(gameData) {
     console.error('createGame: erro status', res.status, text);
     throw new Error(`Erro ao criar jogo: ${res.status}`);
   }
+  
   return res.json();
 }
 

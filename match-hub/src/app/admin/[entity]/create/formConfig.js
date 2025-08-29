@@ -24,7 +24,7 @@ export const formFieldsConfig = {
   ],
   team: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do time' },
-    { name: 'logo', label: 'Logo', type: 'text' },
+    { name: 'logo', label: 'Logo', type: 'file', accept: 'image/*' },
   ],
   championship: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do campeonato' },
@@ -33,9 +33,9 @@ export const formFieldsConfig = {
   game: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do jogo' },
     { name: 'tournament', label: 'Tournament', type: 'text', placeholder: 'Torneio associado' },
-    { name: 'image', label: 'Image', type: 'text' },
-    { name: 'video', label: 'Video URL', type: 'text', placeholder: 'URL do vídeo' },
-    { name: 'gif', label: 'GIF URL', type: 'text', placeholder: 'URL do GIF' },
+    { name: 'image', label: 'Image', type: 'file' },
+    { name: 'video', label: 'Video URL', type: 'file', accept: 'video/*', placeholder: 'URL do vídeo' },
+    { name: 'gif', label: 'GIF URL', type: 'file', accept: 'image/gif', placeholder: 'URL do GIF' },
     { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Descrição do jogo' },
     { name: 'tags', label: 'Tags', type: 'text', placeholder: 'e.g. Action, FPS' },
     { name: 'release', label: 'Release Date', type: 'date' },
