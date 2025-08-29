@@ -25,7 +25,7 @@ public class TeamService {
     private TeamRepository teamRepository;
 
     @Autowired
-    private ProfileImageUploaderService profileImageUploaderService;
+    private MediaUploaderService mediaUploaderService;
 
     @Autowired
     private FileService fileService;
@@ -36,6 +36,7 @@ public class TeamService {
     @Autowired
     private PageMapper pageMapper;
 
+    private static final String FOLDER = "teams";
 
     public PageResponseDTO<TeamResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -65,14 +66,16 @@ public class TeamService {
 
     public void delete(Long id) {
         Team team = teamRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Team not found"));
-        fileService.deleteImageFolder("teams", id);
+        fileService.deleteImageFolder(FOLDER, id);
         teamRepository.delete(team);
     }
 
-    public String uploadProfileImage(Long id, MultipartFile file) {
+    public String uploadMedia(Long id, MultipartFile file) {
         Team team = teamRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Team not found"));
-        profileImageUploaderService.deleteProfileImage(team, teamRepository, "teams");
-        return profileImageUploaderService.uploadProfileImage(team, file, teamRepository, "teams");
+                .orElseThrow(() -> new ObjectNotFoundException("team not found"));
+
+        // Deleta a imagem antiga e faz o upload usando MediaUploaderService
+        mediaUploaderService.deleteMedia(team, teamRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
+        return mediaUploaderService.uploadMedia(team, file, teamRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
     }
 }

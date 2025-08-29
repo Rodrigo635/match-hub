@@ -63,7 +63,7 @@ public class TeamController {
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        String imageUrl = teamService.uploadProfileImage(id, file);
+        String imageUrl = teamService.uploadMedia(id, file);
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");

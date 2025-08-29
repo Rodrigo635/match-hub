@@ -32,7 +32,7 @@ public class GameService {
     private GameRepository gameRepository;
 
     @Autowired
-    private ProfileImageUploaderService profileImageUploaderService;
+    private MediaUploaderService mediaUploaderService;
 
     @Autowired
     private FileService fileService;
@@ -43,6 +43,7 @@ public class GameService {
     @Autowired
     private PageMapper pageMapper;
 
+    private static final String FOLDER = "games";
 
     public GameResponseDTO findById(Long id) {
         Game game = gameRepository.findById(id)
@@ -84,14 +85,18 @@ public class GameService {
     public void deleteById(Long id) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
-        fileService.deleteImageFolder("games", id);
+        fileService.deleteImageFolder(FOLDER, id);
         gameRepository.delete(game);
     }
 
-    public String uploadProfileImage(Long id, MultipartFile file) {
+    public String uploadMedia(Long id, MultipartFile file, MediaUploaderService.MediaType type) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Game not found"));
-        profileImageUploaderService.deleteProfileImage(game, gameRepository, "games");
-        return profileImageUploaderService.uploadProfileImage(game, file, gameRepository, "games");
+
+        // Apaga a mídia existente antes de subir a nova
+        mediaUploaderService.deleteMedia(game, gameRepository, FOLDER, type);
+
+        // Faz o upload e retorna a URL
+        return mediaUploaderService.uploadMedia(game, file, gameRepository, FOLDER, type);
     }
 }

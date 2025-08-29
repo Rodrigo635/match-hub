@@ -6,8 +6,8 @@ import com.match_hub.backend_match_hub.dtos.game.GameResponseDTO;
 import com.match_hub.backend_match_hub.dtos.game.UpdateGameDTO;
 import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.services.GameService;
+import com.match_hub.backend_match_hub.services.MediaUploaderService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -57,31 +56,27 @@ public class GameController {
         return ResponseEntity.created(address).build();
     }
 
-    @Operation(
-            summary = "Upload game image",
-            description = "Uploads an image for an existing game."
-    )
-    @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Map<String, String>> uploadProfileImage(
-            @PathVariable("id")
-            @Parameter(description = "Game ID", example = "123")
-            Long id,
+    @PostMapping(value = "/{id}/media", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> uploadGameMedia(
+            @PathVariable Long id,
+            @RequestParam MultipartFile file,
+            @RequestParam String type // "image", "gif" ou "video"
+    ) {
+        MediaUploaderService.MediaType mediaType = switch (type.toLowerCase()) {
+            case "image" -> MediaUploaderService.MediaType.IMAGE;
+            case "gif" -> MediaUploaderService.MediaType.GIF;
+            case "video" -> MediaUploaderService.MediaType.VIDEO;
+            default -> throw new IllegalArgumentException("Tipo de mídia inválido");
+        };
 
-            @RequestParam("file")
-            @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
-            MultipartFile file) {
+        String url = gameService.uploadMedia(id, file, mediaType);
 
-        // Process upload
-        String imageUrl = gameService.uploadProfileImage(id, file);
-
-        // Response
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Image uploaded successfully");
-        response.put("imageUrl", imageUrl);
-        response.put("gameId", id.toString());
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(Map.of(
+                "message", "Upload realizado com sucesso",
+                "url", url
+        ));
     }
+
 
     @Operation(
             summary = "Update a game",

@@ -108,7 +108,7 @@ public class UserController {
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        String imageUrl = userService.uploadProfileImage(id, file);
+        String imageUrl = userService.uploadMedia(id, file);
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
@@ -117,6 +117,7 @@ public class UserController {
 
         return ResponseEntity.ok(response);
     }
+
 
     @Operation(summary = "Update authenticated user", security = @SecurityRequirement(name = "bearer-key"), description = "Updates the authenticated user using data from the JWT token.")
     @PutMapping

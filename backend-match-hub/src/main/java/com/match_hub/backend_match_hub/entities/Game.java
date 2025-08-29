@@ -1,7 +1,9 @@
 package com.match_hub.backend_match_hub.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.match_hub.backend_match_hub.entities.interfaces.HasGif;
 import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
+import com.match_hub.backend_match_hub.entities.interfaces.HasVideo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ import java.util.Objects;
 @ToString
 @Table(name = "games")
 @Entity
-public class Game implements Serializable, HasProfileImage {
+public class Game implements Serializable, HasProfileImage, HasVideo, HasGif {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -64,6 +66,16 @@ public class Game implements Serializable, HasProfileImage {
     @Override
     public String getProfilePicture() {
         return image;
+    }
+
+    @Override
+    public String getVideo() {
+        return video;
+    }
+
+    @Override
+    public void setVideo(String url) {
+        this.video = url;
     }
 
     @Override

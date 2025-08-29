@@ -31,7 +31,7 @@ public class ChampionshipService {
     private ChampionshipRepository championshipRepository;
 
     @Autowired
-    private ProfileImageUploaderService profileImageUploaderService;
+    private MediaUploaderService mediaUploaderService;
 
     @Autowired
     private FileService fileService;
@@ -41,6 +41,8 @@ public class ChampionshipService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    private static final String FOLDER = "championships";
 
     public PageResponseDTO<ChampionshipResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -69,7 +71,7 @@ public class ChampionshipService {
 
     public void delete(Long id) {
         Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        fileService.deleteImageFolder("championships", id);
+        fileService.deleteImageFolder(FOLDER, id);
         championshipRepository.delete(championship);
     }
 
@@ -84,11 +86,13 @@ public class ChampionshipService {
         championshipRepository.save(championship);
     }
 
-    public String uploadProfileImage(Long id, MultipartFile file) {
+    public String uploadMedia(Long id, MultipartFile file) {
         Championship championship = championshipRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
-        profileImageUploaderService.deleteProfileImage(championship, championshipRepository, "championships");
-        return profileImageUploaderService.uploadProfileImage(championship, file, championshipRepository, "championships");
+
+        // Deleta a imagem antiga e faz o upload usando MediaUploaderService
+        mediaUploaderService.deleteMedia(championship, championshipRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
+        return mediaUploaderService.uploadMedia(championship, file, championshipRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
     }
 
 }

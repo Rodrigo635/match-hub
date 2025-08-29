@@ -36,7 +36,7 @@ public class UserService {
     private TokenService tokenService;
 
     @Autowired
-    private ProfileImageUploaderService profileImageUploaderService;
+    private MediaUploaderService mediaUploaderService;
 
     @Autowired
     private FileService fileService;
@@ -46,6 +46,9 @@ public class UserService {
 
     @Autowired
     private PageMapper pageMapper;
+
+    private static final String FOLDER = "users";
+
 
     public PageResponseDTO<UserResponseDTO> findAll(int page, int size) {
         Page<User> user = userRepository.findAll(PageRequest.of(page, size));
@@ -102,7 +105,7 @@ public class UserService {
     public void delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         passwordResetTokenRepository.deleteAllByUserId(id);
-        fileService.deleteImageFolder("users", id);
+        fileService.deleteImageFolder(FOLDER, id);
         userRepository.delete(user);
     }
 
@@ -110,10 +113,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public String uploadProfileImage(Long id, MultipartFile file) {
+    public String uploadMedia(Long id, MultipartFile file) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found"));
-        profileImageUploaderService.deleteProfileImage(user, userRepository, "users");
-        return profileImageUploaderService.uploadProfileImage(user, file, userRepository, "users");
+
+        // Deleta a imagem antiga e faz o upload usando MediaUploaderService
+        mediaUploaderService.deleteMedia(user, userRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
+        return mediaUploaderService.uploadMedia(user, file, userRepository, FOLDER, MediaUploaderService.MediaType.IMAGE);
     }
 }
+

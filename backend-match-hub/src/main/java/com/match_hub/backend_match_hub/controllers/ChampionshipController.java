@@ -61,7 +61,7 @@ public class ChampionshipController {
             @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
             MultipartFile file) {
 
-        String imageUrl = championshipService.uploadProfileImage(id, file);
+        String imageUrl = championshipService.uploadMedia(id, file);
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
