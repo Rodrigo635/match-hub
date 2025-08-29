@@ -69,6 +69,7 @@ export default function AdminCreateForm({ entity, id }) {
 
   // Verifica se existe service para a entidade
   const service = serviceMap[entity];
+  console.log('service', service);
   if (!service) {
     // Se der o caso de chamar com entidade inválida, exiba mensagem
     return <p className="text-danger">Entidade "{entity}" não suportada.</p>;
@@ -240,10 +241,10 @@ export default function AdminCreateForm({ entity, id }) {
 
       // Chama service.create ou update
       if (isEdit) {
-        await service.update(id, payload);
+        await service.update(id, values);
         alert(`${entity} atualizado com sucesso`);
       } else {
-        await service.create(payload);
+        await service.create(values);
         alert(`${entity} criado com sucesso`);
       }
       // Redireciona para listagem genérica
