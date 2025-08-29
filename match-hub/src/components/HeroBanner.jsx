@@ -26,15 +26,15 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
 
       <div className="container esports-content">
         <div className="row align-items-center">
-          <div className="col-lg-7 col-md-8">
-            <h1 className="esports-title display-5">Nunca perca um campeonato!<br/>Assista ao vivo e na hora certa</h1>
+          <div className="col-12 col-lg-7">
+            <h1 className="esports-title fw-bold">Nunca perca um campeonato!<br/>Assista ao vivo e na hora certa</h1>
             <p className="esports-sub lead mt-3">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
 
-            <div className="d-flex flex-wrap gap-3 align-items-center mt-4">
-              <a href="/sobre" className="btn btn-lg btn-outline-primary"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
-              <a href="/calendario" className="btn btn-lg btn-outline-primary"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
+            <div className="d-flex botoes gap-2 gap-md-3 align-items-center mt-4">
+              <a href="/sobre" className="btn btn-outline-primary btn-hero btn-sm"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
+              <a href="/calendario" className="btn btn-outline-primary btn-hero btn-sm"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
 
-              <div className="bell ms-1 d-flex" title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
+              <div className="bell ms-1 d-none d-md-flex " title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
                 <i className="fas fa-bell fa-lg"></i>
               </div>
             </div>
@@ -51,7 +51,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
 
           </div>
 
-          <div className="col-lg-5 col-md-4 d-none d-md-none d-lg-block text-end">
+          <div className="col-lg-5 d-none d-lg-block text-end">
             <div className="col mb-lg-0">
               <div className="ratio ratio-16x9 h-100 video-apresentacao rounded-4">
                 <iframe

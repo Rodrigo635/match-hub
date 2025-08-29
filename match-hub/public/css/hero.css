@@ -39,6 +39,28 @@
     z-index: 1;
 }
 
+/* Botoes */
+.btn-hero {
+  width: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  color: var(--cor-azul);
+  background-color: transparent;
+  border: 2px solid var(--cor-azul);
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.btn-hero:hover{
+  background-color: var(--cor-azul);
+  color: var(--branco) !important;
+  border: 2px solid var(--cor-azul) !important;
+}
+
 .shape {
     position: absolute;
     z-index: 1;
@@ -238,13 +260,37 @@
     align-items: center;
 }
 
+@media (max-width: 1200px) {
+    .esports-title {
+        margin-top: 4rem;
+        font-size: 1.6rem;
+    }
+}
+
 @media (max-width: 768px) {
     .esports-title {
+        margin-top: 3rem;
         font-size: 1.6rem;
     }
 
+    .esports-sub {
+        font-size: 1rem;
+    }
+
     .esports-hero {
-        height: 58vh;
+        height: auto;
+    }
+
+    .match-ticker {
+        display: none;
+    }
+
+    .btn-hero {
+        width: 100%;
+    }
+
+    .botoes {
+        margin-bottom: 2rem;
     }
 
     .shape.s1,
