@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { formFieldsConfig } from '@/app/admin/[entity]/create/formConfig';
 
+import { getGames } from '@/app/services/gameService';
+
 // Importe os métodos corretos de cada service
 import {
   createUser,
@@ -34,9 +36,9 @@ import {
 
 export default function AdminCreateForm({ entity, id }) {
   const router = useRouter();
-  const fields = formFieldsConfig[entity] || [];
   const isEdit = Boolean(id);
-
+  const baseFields = formFieldsConfig[entity] || [];
+  const [fields, setFields] = useState(baseFields);
   // Mapeamento de serviços por entidade
   const serviceMap = {
     user: {
@@ -69,7 +71,6 @@ export default function AdminCreateForm({ entity, id }) {
 
   // Verifica se existe service para a entidade
   const service = serviceMap[entity];
-  console.log('service', service);
   if (!service) {
     // Se der o caso de chamar com entidade inválida, exiba mensagem
     return <p className="text-danger">Entidade "{entity}" não suportada.</p>;
@@ -81,6 +82,36 @@ export default function AdminCreateForm({ entity, id }) {
   const [existingFiles, setExistingFiles] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+
+  useEffect(() => {
+    async function loadOptions() {
+      const updatedFields = await Promise.all(
+        baseFields.map(async field => {
+          if (field.type === 'select' && field.optionsKey) {
+            try {
+              if (field.optionsKey === 'games') {
+                const data = await getGames(0, 50);
+                const options = data.content.map(g => ({ value: g.id, label: g.name }));
+                return { ...field, options };
+              }
+              if (field.optionsKey === 'championships') {
+                const data = await getChampionships(0, 50);
+                const options = data.content.map(c => ({ value: c.id, label: c.name }));
+                return { ...field, options };
+              }
+            } catch (err) {
+              console.error('Erro ao carregar opções para', field.name, err);
+              return { ...field, options: [] };
+            }
+          }
+          return field;
+        })
+      );
+      setFields(updatedFields);
+    }
+    loadOptions();
+  }, [entity]);
 
   // Carrega item para edição, se isEdit
   useEffect(() => {
@@ -244,6 +275,7 @@ export default function AdminCreateForm({ entity, id }) {
         await service.update(id, values);
         alert(`${entity} atualizado com sucesso`);
       } else {
+        console.log(values)
         await service.create(values);
         alert(`${entity} criado com sucesso`);
       }

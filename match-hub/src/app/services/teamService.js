@@ -1,122 +1,24 @@
+import { getData, getDataById, createData, updateData, deleteData } from "./globalService";
+
 // src/app/services/teamService.js
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/teams`;
 
 export async function getTeams(page = 0, size = 5) {
-  const url = `${BASE_URL}?page=${page}&size=${size}`;
-  const res = await fetch(url, {
-    method: "GET",
-    credentials: "include",
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("getTeams: erro status", res.status, text);
-    throw new Error(`Erro ao buscar times: ${res.status}`);
-  }
-  const data = await res.json();
-  return data;
+  return await getData(page, size, BASE_URL);
 }
 
 export async function getTeamById(id) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: "GET",
-    credentials: "include",
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("getTeamById: erro status", res.status, text);
-    throw new Error(`Erro ao buscar time com id ${id}: ${res.status}`);
-  }
-  return res.json();
+  return await getDataById(id, BASE_URL);
 }
 
 export async function createTeam(teamData) {
-  console.log(teamData);
-  let options = {
-    method: "POST",
-    credentials: "include",
-  };
-  if (teamData instanceof FormData) {
-    options.body = teamData;
-  } else {
-    options.headers = {
-      "Content-Type": "application/json",
-    };
-    options.body = JSON.stringify(teamData);
-  }
-  const res = await fetch(BASE_URL, options);
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("createTeam: erro status 01", res.status, text);
-    throw new Error(`Erro ao criar time: ${res.status}`);
-  }
-
-  const location = res.headers.get("location");
-  const id = location.split("/").pop();
-
-  const res2 = await uploadImage(id, teamData);
-
-  return res, res2;
-}
-
-async function uploadImage(id, formData) {
-   // 3️⃣ Enviar a imagem (se houver)
-    let imageResponse = null;
-    if (formData.logo) {
-      const file = formData.logo;
-      const fileMultipart = new FormData();
-      fileMultipart.append("file", file);
-      const res = await fetch(`${BASE_URL}/image/upload/${id}`, {
-        method: "POST",
-        credentials: "include",
-        body: fileMultipart,
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("createTeam: erro ao enviar imagem", res.status, text);
-        throw new Error(`Erro ao enviar imagem: ${res.status}`);
-      }
-
-      imageResponse = await res;
-    }
-
-    return imageResponse;
+  return await createData(teamData);
 }
 
 export async function updateTeam(id, teamData) {
-  let options = {
-    method: "PUT",
-    credentials: "include",
-  };
-  if (teamData instanceof FormData) {
-    options.body = teamData;
-  } else {
-    options.headers = {
-      "Content-Type": "application/json",
-    };
-    options.body = JSON.stringify(teamData);
-  }
-  const res = await fetch(`${BASE_URL}/${id}`, options);
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("updateTeam: erro status", res.status, text);
-    throw new Error(`Erro ao atualizar time com id ${id}: ${res.status}`);
-  }
-  
-  const res2 = await uploadImage(id, teamData);
-
-  return res, res2;
+  return await updateData(id, teamData, BASE_URL);
 }
 
 export async function deleteTeam(id) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE",
-    credentials: "include",
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("deleteTeam: erro status", res.status, text);
-    throw new Error(`Erro ao deletar time com id ${id}: ${res.status}`);
-  }
-  return true;
+  return await deleteData(id, BASE_URL);
 }
