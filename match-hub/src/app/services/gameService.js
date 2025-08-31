@@ -83,3 +83,4 @@ export async function deleteGame(id) {
   }
   return true;
 }
+

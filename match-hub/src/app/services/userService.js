@@ -158,8 +158,6 @@ export async function toggleVLibrasMode(librasActive, token) {
 }
 
 export async function updateInfoUser(formData, token) {
-  
-
   const res = await fetch(`http://localhost:8080/api/users`, {
     method: "PUT",
     headers: {
@@ -170,12 +168,30 @@ export async function updateInfoUser(formData, token) {
     credentials: "include",
   });
 
-  if(formData.password !== undefined && !res.ok){
+  if (formData.password !== undefined && !res.ok) {
     return "Senha atual não confere!";
   }
-  if(formData.password !== undefined && res.ok){
+  if (formData.password !== undefined && res.ok) {
     alert("Senha alterada com sucesso!");
   }
 
+  return;
+}
+
+export async function changeFontSize(fontSizeLevel, token) {
+  const res = await fetch(`${BASE_URL}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ fontSizeLevel }),
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao alterar tamanho da fonte: ${res.status}, ${res}`);
+  }
   return;
 }

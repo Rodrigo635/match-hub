@@ -1,10 +1,8 @@
-// src/app/game/page.js
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-
 
 export default function GamePage() {
   const router = useRouter();
@@ -12,6 +10,13 @@ export default function GamePage() {
   const [filteredMatches, setFilteredMatches] = useState([]);
   const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
   const [selectedTime, setSelectedTime] = useState('Todos');
+  const [favorites, setFavorites] = useState(new Set()); // Set de chaves únicas para partidas favoritadas
+  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1); // Multiplicador de tamanho de fonte para acessibilidade
+
+  // Função para gerar uma chave única para cada partida
+  const getMatchKey = (match) => {
+    return `${gameData.game}_${match.campeonato}_${match.time1}_${match.time2}_${match.data}_${match.horario}`;
+  };
 
   // Quando carregar: ler localStorage; se não houver, redirecionar para home
   useEffect(() => {
@@ -31,6 +36,37 @@ export default function GamePage() {
       }
     }
   }, [router]);
+
+  // Carregar favoritos do localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined' && gameData) {
+      const storedFavorites = localStorage.getItem('favoriteMatches');
+      if (storedFavorites) {
+        const favSet = new Set(JSON.parse(storedFavorites));
+        setFavorites(favSet);
+      }
+    }
+  }, [gameData]);
+
+  // Salvar favoritos no localStorage sempre que mudar
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('favoriteMatches', JSON.stringify(Array.from(favorites)));
+    }
+  }, [favorites]);
+
+  // Carregar multiplicador de fonte do localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedFontSize = localStorage.getItem('fontSizeMultiplier');
+      if (storedFontSize) {
+        const multiplier = parseFloat(storedFontSize);
+        setFontSizeMultiplier(multiplier);
+        document.documentElement.style.fontSize = `${multiplier * 100}%`;
+      }
+    }
+  }, []);
+
 
   // Extrair opções de filtro a partir de gameData.partidas
   const campeonatoOptions = ['Todos'];
@@ -61,6 +97,20 @@ export default function GamePage() {
     }
     setFilteredMatches(arr);
   }, [selectedCampeonato, selectedTime, gameData]);
+
+  // Função para toggle favorito
+  const toggleFavorite = (match) => {
+    const key = getMatchKey(match);
+    setFavorites(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
 
   // Função de voltar
   const handleBack = () => {
@@ -114,8 +164,6 @@ export default function GamePage() {
       </>
     );
   }
-
-
 
   return (
     <>
@@ -176,6 +224,8 @@ export default function GamePage() {
         </div>
       </section>
 
+     
+
       {/* Filtros de próximos jogos */}
       <main className='page-game'>
       <section className="container mt-5 mb-3">
@@ -224,65 +274,75 @@ export default function GamePage() {
       <section className="container">
         <div className="row g-4" id="cards-container">
           {filteredMatches.length > 0 ? (
-            filteredMatches.map((item, idx) => (
-              <div
-                key={idx}
-                className="col-12 col-md-6 col-lg-4"
-                // opcional: onClick para abrir link
-                onClick={() => {
-                  if (item.link) window.open(item.link, '_blank');
-                }}
-              >
-                <div className="card border-0 rounded-4 bg-dark text-white h-100">
-                  <div className="card-body bg-dark p-4 rounded-5">
-                    <h5 className="card-title text-primary fw-bold mb-3">
-                      {item.campeonato}
-                    </h5>
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                      <div className="text-center">
-                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
-                          <Image
-                            src={normalizePath(item.imgTime1)}
-                            alt={item.time1}
-                            fill
-                            sizes="48px"
-                          />
-                        </div>
-                        <p className="mb-0 fw-semibold">{item.time1}</p>
-                      </div>
-                      <div className="fw-bold fs-4">VS</div>
-                      <div className="text-center">
-                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
-                          <Image
-                            src={normalizePath(item.imgTime2)}
-                            alt={item.time2}
-                            fill
-                            sizes="48px"
-                          />
-                        </div>
-                        <p className="mb-0 fw-semibold">{item.time2}</p>
-                      </div>
-                    </div>
-                    <p className="my-2">
-                      <span className="fw-bold">Data:</span> {item.data} às {item.horario}
-                    </p>
-                    <div className="d-grid mt-4">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`btn btn-live btn-outline-primary rounded-pill ${isFuture(item.data, item.horario) ? 'disabled' : ''}`}
-                      >
-                        <h5 className="mb-0 h5-btn-trasmissao">
-                          {getBotaoTexto(item.data, item.horario)}
+            filteredMatches.map((item, idx) => {
+              const isFavorited = favorites.has(getMatchKey(item));
+              return (
+                <div
+                  key={idx}
+                  className="col-12 col-md-6 col-lg-4"
+                >
+                  <div className="card border-0 rounded-4 bg-dark text-white h-100" style={{ cursor: 'default' }}>
+                    <div className="card-body bg-dark p-4 rounded-5">
+                      <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h5 className="card-title text-primary fw-bold mb-0">
+                          {item.campeonato}
                         </h5>
-                      </a>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation(); // Evita abrir o link ao clicar no sino
+                            toggleFavorite(item);
+                          }}
+                          className="btn btn-link text-white p-0"
+                          title={isFavorited ? "Remover notificação" : "Ativar notificação"}
+                        >
+                          <i className={`fa${isFavorited ? 's' : 'r'} fa-bell fa-lg`} style={{ color: isFavorited ? 'white' : '#ccc' }}></i>
+                        </button>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <div className="text-center">
+                          <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                            <Image
+                              src={normalizePath(item.imgTime1)}
+                              alt={item.time1}
+                              fill
+                              sizes="48px"
+                            />
+                          </div>
+                          <p className="mb-0 fw-semibold">{item.time1}</p>
+                        </div>
+                        <div className="fw-bold fs-4">VS</div>
+                        <div className="text-center">
+                          <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                            <Image
+                              src={normalizePath(item.imgTime2)}
+                              alt={item.time2}
+                              fill
+                              sizes="48px"
+                            />
+                          </div>
+                          <p className="mb-0 fw-semibold">{item.time2}</p>
+                        </div>
+                      </div>
+                      <p className="my-2">
+                        <span className="fw-bold">Data:</span> {item.data} às {item.horario}
+                      </p>
+                      <div className="d-grid mt-4">
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`btn btn-live btn-outline-primary rounded-pill ${isFuture(item.data, item.horario) ? 'disabled' : ''}`}
+                        >
+                          <h5 className="mb-0 h5-btn-trasmissao">
+                            {getBotaoTexto(item.data, item.horario)}
+                          </h5>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-              </div>
-            ))
+              );
+            })
           ) : (
             <div className="col-12">
               <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
