@@ -1,4 +1,10 @@
-import { createData, deleteData, getData, getDataById, updateData } from "./globalService";
+import {
+  createData,
+  deleteData,
+  getData,
+  getDataById,
+  updateData,
+} from "./globalService";
 
 // src/app/services/matchService.js
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/matches`;
@@ -7,16 +13,45 @@ export async function getMatches(page = 0, size = 5) {
   return await getData(page, size, BASE_URL);
 }
 
+export async function getMatchesByChampionship(championshipId) {
+  const response = await fetch(`${BASE_URL}/championship/${championshipId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    console.error("getMatchesByChampionship: erro status", response.status, text);
+    throw new Error(`Erro ao buscar jogos: ${response.status}`);
+  }
+  return response.json();
+}
+
 export async function getMatchById(id) {
   return await getDataById(id, BASE_URL);
 }
 
 export async function createMatch(matchData) {
-  return await createData(matchData, BASE_URL);
+  const payload = {
+    ...matchData,
+    teamDTOS: [{ teamId: matchData.team1Id }, { teamId: matchData.team2Id }],
+  };
+
+  delete payload.team1Id;
+  delete payload.team2Id;
+
+  return await createData(payload, BASE_URL);
 }
 
 export async function updateMatch(id, matchData) {
-  return await updateData(id, matchData, BASE_URL);
+  const payload = {
+    ...matchData,
+    teamDTOS: [{ teamId: matchData.team1Id }, { teamId: matchData.team2Id }],
+  };
+
+  delete payload.team1Id;
+  delete payload.team2Id;
+
+  return await updateData(id, payload, BASE_URL);
 }
 
 export async function deleteMatch(id) {

@@ -1,62 +1,154 @@
 // src/app/game/page.js
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { getGameById } from "../services/gameService";
+import {
+  getMatchById,
+  getMatchesByChampionship,
+} from "../services/matchService";
+import {
+  getChampionshipById,
+  getChampionshipsByGame,
+} from "../services/championshipService";
 
 export default function GamePage() {
   const router = useRouter();
   const [gameData, setGameData] = useState(null);
+  const [championshipData, setChampionshipData] = useState([]);
+  const [matchesData, setMatchesData] = useState([]);
   const [filteredMatches, setFilteredMatches] = useState([]);
-  const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
-  const [selectedTime, setSelectedTime] = useState('Todos');
+  const [selectedCampeonato, setSelectedCampeonato] = useState("Todos");
+  const [selectedTime, setSelectedTime] = useState("Todos");
 
-  // Quando carregar: ler localStorage; se não houver, redirecionar para home
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('selectedGame');
-      if (!stored) {
-        router.push('/');
-        return;
-      }
-      try {
-        const item = JSON.parse(stored);
-        setGameData(item);
-        // inicialmente, todos os matches
-        setFilteredMatches(item.partidas || []);
-      } catch {
-        router.push('/');
-      }
+  const handleGetInfoGame = async (id) => {
+    try {
+      const response = await getGameById(id);
+      setGameData(response);
+      setFilteredMatches(response.championship.matches || []);
+    } catch (error) {
+      console.error("Erro ao carregar jogos:", error);
     }
-  }, [router]);
+  };
+
+  const handleGetInfoChampionships = async (gameId) => {
+    try {
+      const response = await getChampionshipsByGame(gameId);
+      // pega o array real de campeonatos
+      setChampionshipData(response.content || []);
+    } catch (error) {
+      console.error("Erro ao carregar campeonatos:", error);
+    }
+  };
+
+  const handleGetInfoMatches = async (championshipId) => {
+    try {
+      const response = await getMatchesByChampionship(championshipId);
+      // pega o array real de partidas
+      setMatchesData(response.content || []);
+    } catch (error) {
+      console.error("Erro ao carregar partidas:", error);
+    }
+  };
+
+// UseEffect 1: Inicialização e carregamento do jogo
+useEffect(() => {
+  if (typeof window === "undefined") return; // garante que só rode no browser
+
+  const stored = localStorage.getItem("selectedGame");
+  if (!stored) {
+    router.push("/");
+    return;
+  }
+
+  try {
+    const id = JSON.parse(stored);
+    if (!id) {
+      router.push("/");
+      return;
+    }
+
+    console.log("Carregando informações do jogo...");
+    handleGetInfoGame(id);
+  } catch (error) {
+    console.error("Erro ao processar dados do localStorage:", error);
+    router.push("/");
+  }
+}, [router]);
+
+// UseEffect 2: Carrega campeonatos quando gameData estiver disponível
+useEffect(() => {
+  if (gameData?.id) {
+    console.log("Carregando campeonatos para o jogo:", gameData.id);
+    handleGetInfoChampionships(gameData.id);
+  }
+}, [gameData]);
+
+// UseEffect 3: Carrega partidas quando championshipData estiver disponível
+useEffect(() => {
+  if (championshipData && championshipData.length > 0) {
+    // Se você quiser carregar partidas do primeiro campeonato
+    const firstChampionship = championshipData[0];
+    if (firstChampionship?.id) {
+      console.log("Carregando partidas para o campeonato:", matchesData);
+      handleGetInfoMatches(firstChampionship.id);
+    }
+    
+    // Ou se você quiser carregar partidas de todos os campeonatos
+    // championshipData.forEach(championship => {
+    //   if (championship?.id) {
+    //     handleGetInfoMatches(championship.id);
+    //   }
+    // });
+  }
+}, [championshipData]);
+
+// UseEffect existente para filtros (mantém como está)
+useEffect(() => {
+  if (!gameData || !Array.isArray(gameData.partidas)) return;
+  let arr = gameData.partidas;
+  if (selectedCampeonato !== "Todos") {
+    arr = arr.filter((p) => p.campeonato === selectedCampeonato);
+  }
+  if (selectedTime !== "Todos") {
+    arr = arr.filter(
+      (p) => p.time1 === selectedTime || p.time2 === selectedTime
+    );
+  }
+  setFilteredMatches(arr);
+}, [selectedCampeonato, selectedTime, gameData]);
 
   // Extrair opções de filtro a partir de gameData.partidas
-  const campeonatoOptions = ['Todos'];
-  const timeOptions = ['Todos'];
+  const campeonatoOptions = ["Todos"];
+  const timeOptions = ["Todos"];
   if (gameData && Array.isArray(gameData.partidas)) {
     const camps = new Set();
     const times = new Set();
-    gameData.partidas.forEach(p => {
+    gameData.partidas.forEach((p) => {
       if (p.campeonato) camps.add(p.campeonato);
       if (p.time1) times.add(p.time1);
       if (p.time2) times.add(p.time2);
     });
-    Array.from(camps).sort().forEach(c => campeonatoOptions.push(c));
-    Array.from(times).sort().forEach(t => timeOptions.push(t));
+    Array.from(camps)
+      .sort()
+      .forEach((c) => campeonatoOptions.push(c));
+    Array.from(times)
+      .sort()
+      .forEach((t) => timeOptions.push(t));
   }
 
   // Atualiza filteredMatches quando filtros mudam
   useEffect(() => {
     if (!gameData || !Array.isArray(gameData.partidas)) return;
     let arr = gameData.partidas;
-    if (selectedCampeonato !== 'Todos') {
-      arr = arr.filter(p => p.campeonato === selectedCampeonato);
+    if (selectedCampeonato !== "Todos") {
+      arr = arr.filter((p) => p.campeonato === selectedCampeonato);
     }
-    if (selectedTime !== 'Todos') {
+    if (selectedTime !== "Todos") {
       arr = arr.filter(
-        p => p.time1 === selectedTime || p.time2 === selectedTime
+        (p) => p.time1 === selectedTime || p.time2 === selectedTime
       );
     }
     setFilteredMatches(arr);
@@ -73,19 +165,19 @@ export default function GamePage() {
 
   // Caminhos absolutos para assets
   // As propriedades image, gif, video no JSON podem vir como "./static/...", então:
-  const normalizePath = str => {
-    if (!str) return '';
-    return str.replace(/^\.?\//, '/').replace('./static', '/static');
+  const normalizePath = (str) => {
+    if (!str) return "";
+    return str.replace(/^\.?\//, "/").replace("./static", "/static");
   };
 
   function isFuture(data, horario) {
-    const [dia, mes, ano] = data.split('/');
+    const [dia, mes, ano] = data.split("/");
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     return new Date() < partidaData;
   }
 
   function getBotaoTexto(data, horario) {
-    const [dia, mes, ano] = data.split('/');
+    const [dia, mes, ano] = data.split("/");
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     const agora = new Date();
 
@@ -114,8 +206,6 @@ export default function GamePage() {
       </>
     );
   }
-
-
 
   return (
     <>
@@ -154,13 +244,7 @@ export default function GamePage() {
               {/* Vídeo de fundo ou apresentação */}
               {gameData.video && (
                 <div className="video-jogo position-absolute">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    id="game-video"
-                    className="w-100"
-                  >
+                  <video autoPlay loop muted id="game-video" className="w-100">
                     <source
                       src={normalizePath(gameData.video)}
                       type="video/mp4"
@@ -177,204 +261,226 @@ export default function GamePage() {
       </section>
 
       {/* Filtros de próximos jogos */}
-      <main className='page-game'>
-      <section className="container mt-5 mb-3">
-        <div className="row align-items-center">
-          <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
-            <h1 className="text-white fw-bold">Próximos Jogos</h1>
+      <main className="page-game">
+        <section className="container mt-5 mb-3">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
+              <h1 className="text-white fw-bold">Próximos Jogos</h1>
+            </div>
+            <div className="col-12 col-md-12 col-lg-6">
+              <ul className="row m-0 p-0 list-style-none gx-2">
+                <li className="col-6 filtro">
+                  <select
+                    className="form-select rounded-5 fw-bold cursor-pointer"
+                    name="campeonatos-game"
+                    id="campeonatos-game"
+                    value={selectedCampeonato}
+                    onChange={(e) => setSelectedCampeonato(e.target.value)}
+                  >
+                    {campeonatoOptions.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </li>
+                <li className="col-6 filtro">
+                  <select
+                    className="form-select rounded-5 fw-bold cursor-pointer"
+                    name="campeonatos-time"
+                    id="campeonatos-time"
+                    value={selectedTime}
+                    onChange={(e) => setSelectedTime(e.target.value)}
+                  >
+                    {timeOptions.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="col-12 col-md-12 col-lg-6">
-            <ul className="row m-0 p-0 list-style-none gx-2">
-              <li className="col-6 filtro">
-                <select
-                  className="form-select rounded-5 fw-bold cursor-pointer"
-                  name="campeonatos-game"
-                  id="campeonatos-game"
-                  value={selectedCampeonato}
-                  onChange={e => setSelectedCampeonato(e.target.value)}
-                >
-                  {campeonatoOptions.map(opt => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </li>
-              <li className="col-6 filtro">
-                <select
-                  className="form-select rounded-5 fw-bold cursor-pointer"
-                  name="campeonatos-time"
-                  id="campeonatos-time"
-                  value={selectedTime}
-                  onChange={e => setSelectedTime(e.target.value)}
-                >
-                  {timeOptions.map(opt => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Lista de próximos jogos (cards) */}
-      <section className="container">
-        <div className="row g-4" id="cards-container">
-          {filteredMatches.length > 0 ? (
-            filteredMatches.map((item, idx) => (
-              <div
-                key={idx}
-                className="col-12 col-md-6 col-lg-4"
-                // opcional: onClick para abrir link
-                onClick={() => {
-                  if (item.link) window.open(item.link, '_blank');
-                }}
-              >
-                <div className="card border-0 rounded-4 bg-dark text-white h-100">
-                  <div className="card-body bg-dark p-4 rounded-5">
-                    <h5 className="card-title text-primary fw-bold mb-3">
-                      {item.campeonato}
-                    </h5>
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                      <div className="text-center">
-                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
-                          <Image
-                            src={normalizePath(item.imgTime1)}
-                            alt={item.time1}
-                            fill
-                            sizes="48px"
-                          />
+        {/* Lista de próximos jogos (cards) */}
+        <section className="container">
+          <div className="row g-4" id="cards-container">
+            {filteredMatches.length > 0 ? (
+              filteredMatches.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="col-12 col-md-6 col-lg-4"
+                  // opcional: onClick para abrir link
+                  onClick={() => {
+                    if (item.link) window.open(item.link, "_blank");
+                  }}
+                >
+                  <div className="card border-0 rounded-4 bg-dark text-white h-100">
+                    <div className="card-body bg-dark p-4 rounded-5">
+                      <h5 className="card-title text-primary fw-bold mb-3">
+                        {item.campeonato}
+                      </h5>
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <div className="text-center">
+                          <div
+                            style={{
+                              width: 48,
+                              height: 48,
+                              position: "relative",
+                              margin: "0 auto",
+                            }}
+                          >
+                            {/* <Image
+                              src={normalizePath(item.imgTime1)}
+                              alt={"será adicionado imagem"}
+                              fill
+                              sizes="48px"
+                            /> */}
+                          </div>
+                          <p className="mb-0 fw-semibold">{item.time1}</p>
                         </div>
-                        <p className="mb-0 fw-semibold">{item.time1}</p>
-                      </div>
-                      <div className="fw-bold fs-4">VS</div>
-                      <div className="text-center">
-                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
-                          <Image
-                            src={normalizePath(item.imgTime2)}
-                            alt={item.time2}
-                            fill
-                            sizes="48px"
-                          />
+                        <div className="fw-bold fs-4">VS</div>
+                        <div className="text-center">
+                          <div
+                            style={{
+                              width: 48,
+                              height: 48,
+                              position: "relative",
+                              margin: "0 auto",
+                            }}
+                          >
+                            {/* <Image
+                              src={normalizePath(item.image)}
+                              alt={item.description}
+                              fill
+                              sizes="48px"
+                            /> */}
+                          </div>
+                          <p className="mb-0 fw-semibold">{item.time2}</p>
                         </div>
-                        <p className="mb-0 fw-semibold">{item.time2}</p>
                       </div>
-                    </div>
-                    <p className="my-2">
-                      <span className="fw-bold">Data:</span> {item.data} às {item.horario}
-                    </p>
-                    <div className="d-grid mt-4">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`btn btn-live btn-outline-primary rounded-pill ${isFuture(item.data, item.horario) ? 'disabled' : ''}`}
-                      >
-                        <h5 className="mb-0 h5-btn-trasmissao">
-                          {getBotaoTexto(item.data, item.horario)}
-                        </h5>
-                      </a>
+                      <p className="my-2">
+                        <span className="fw-bold">Data:</span> {item.data} às{" "}
+                        {item.horario}
+                      </p>
+                      <div className="d-grid mt-4">
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`btn btn-live btn-outline-primary rounded-pill ${
+                            isFuture(item.date, item.hour) ? "disabled" : ""
+                          }`}
+                        >
+                          <h5 className="mb-0 h5-btn-trasmissao">
+                            {getBotaoTexto(item.date, item.hour)}
+                          </h5>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-
+              ))
+            ) : (
+              <div className="col-12">
+                <p className="text-white">
+                  Nenhum jogo encontrado para este filtro.
+                </p>
               </div>
-            ))
-          ) : (
-            <div className="col-12">
-              <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Seção de Campeonatos em destaque, se desejar */}
-      <section className="container mt-5 mb-3">
-        <div className="row align-items-center">
-          <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
-            <h1 className="text-white fw-bold">Campeonatos</h1>
+            )}
           </div>
-        </div>
-      </section>
-      <section className="container">
-        <div className="row" id="campeonatos-container">
-          {gameData.campeonatos && gameData.campeonatos.length > 0 ? (
-            gameData.campeonatos.map((camp, i) => (
-              <div key={i} className="col-12 col-md-6 col-lg-3 mb-3">
-                <div className="card bg-dark text-white p-3 h-100">
-                  <h5 className="mb-0 text-truncate">{camp}</h5>
+        </section>
+
+        {/* Seção de Campeonatos em destaque, se desejar */}
+        <section className="container mt-5 mb-3">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
+              <h1 className="text-white fw-bold">Campeonatos</h1>
+            </div>
+          </div>
+        </section>
+        <section className="container">
+          <div className="row" id="campeonatos-container">
+            {/* {championshipData.map((camp) => {
+              return (
+                <div key={camp.id} className="col-12 col-md-6 col-lg-3 mb-3">
+                  <div className="card bg-dark text-white p-3 h-100">
+                    <h5 className="mb-0 text-truncate">{camp.name}</h5>
+                  </div>
+                </div>
+              );
+            })} */}
+          </div>
+        </section>
+
+        {/* Mais Informações */}
+        <section className="bg-cinza py-5">
+          <div className="container">
+            <div className="d-flex text-center text-md-start mb-4">
+              <h1 className="fw-bold text-white">Mais Informações</h1>
+            </div>
+            <div className="row">
+              <div className="col-12 col-md-6 mb-3">
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Desenvolvedora:</h5>
+                  <h5 id="game-desenvolvedora" className="text-cinza mb-0">
+                    {gameData.developer}
+                  </h5>
+                </div>
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Gênero:</h5>
+                  <h5 id="game-genero" className="text-cinza mb-0">
+                    {gameData.genre}
+                  </h5>
+                </div>
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Lançamento:</h5>
+                  <h5 id="game-lancamento" className="text-cinza mb-0">
+                    {gameData.release}
+                  </h5>
+                </div>
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Campeonatos:</h5>
+                  <h5
+                    id="game-campeonatos"
+                    className="text-cinza mb-0 text-truncate"
+                  >
+                    {Array.isArray(championshipData.name)
+                      ? gameData.imgCamps.length + " items"
+                      : ""}
+                  </h5>
                 </div>
               </div>
-            ))
-          ) : null}
-        </div>
-      </section>
-
-      {/* Mais Informações */}
-      <section className="bg-cinza py-5">
-        <div className="container">
-          <div className="d-flex text-center text-md-start mb-4">
-            <h1 className="fw-bold text-white">Mais Informações</h1>
-          </div>
-          <div className="row">
-            <div className="col-12 col-md-6 mb-3">
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Desenvolvedora:</h5>
-                <h5 id="game-desenvolvedora" className="text-cinza mb-0">
-                  {gameData.desenvolvedora}
-                </h5>
-              </div>
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Gênero:</h5>
-                <h5 id="game-genero" className="text-cinza mb-0">
-                  {gameData.genero}
-                </h5>
-              </div>
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Lançamento:</h5>
-                <h5 id="game-lancamento" className="text-cinza mb-0">
-                  {gameData.lancamento}
-                </h5>
-              </div>
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Campeonatos:</h5>
-                <h5 id="game-campeonatos" className="text-cinza mb-0 text-truncate">
-                  {Array.isArray(gameData.imgCamps)
-                    ? gameData.imgCamps.length + ' items'
-                    : ''}
-                </h5>
-              </div>
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Tags:</h5>
-                <h5 id="game-tags" className="text-cinza mb-0">
-                  {Array.isArray(gameData.tags) ? gameData.tags.join(', ') : ''}
-                </h5>
-              </div>
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Distribuidora:</h5>
-                <h5 id="game-distribuidora" className="text-cinza mb-0">
-                  {gameData.distribuidora}
-                </h5>
-              </div>
-              <div className="d-flex">
-                <h5 className="fw-bold text-white me-2">Idade Recomendada:</h5>
-                <h5 id="game-idade-recomendada" className="text-cinza mb-0">
-                  {gameData.idade_recomendada
-                    ? `${gameData.idade_recomendada}+`
-                    : ''}
-                </h5>
+              <div className="col-12 col-md-6 mb-3">
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Tags:</h5>
+                  <h5 id="game-tags" className="text-cinza mb-0">
+                    {Array.isArray(gameData.tags)
+                      ? gameData.tags.join(", ")
+                      : ""}
+                  </h5>
+                </div>
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">Distribuidora:</h5>
+                  <h5 id="game-distribuidora" className="text-cinza mb-0">
+                    {gameData.publisher}
+                  </h5>
+                </div>
+                <div className="d-flex">
+                  <h5 className="fw-bold text-white me-2">
+                    Idade Recomendada:
+                  </h5>
+                  <h5 id="game-idade-recomendada" className="text-cinza mb-0">
+                    {gameData.ageRating}+
+                  </h5>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-        </main>
-
+        </section>
+      </main>
     </>
   );
 }

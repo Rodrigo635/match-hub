@@ -33,6 +33,18 @@ public class ChampionshipController {
         return ResponseEntity.ok(championships);
     }
 
+    @Operation(summary = "Get Championships by Game", description = "List all championships from the selected game")
+    @GetMapping("/game/{gameId}")
+    public ResponseEntity<PageResponseDTO<ChampionshipResponseDTO>> findByGame(
+            @PathVariable Long gameId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        PageResponseDTO<ChampionshipResponseDTO> championships = championshipService.findByGame(gameId, page, size);
+
+        return ResponseEntity.ok(championships);
+    }
+
     @Operation(summary = "Get championship by ID", description = "Retrieves the details of a championship by its unique ID.")
     @GetMapping("/{id}")
     public ResponseEntity<ChampionshipResponseDTO> findById(@PathVariable Long id) {

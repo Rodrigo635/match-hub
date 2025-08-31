@@ -46,9 +46,11 @@ export const formFieldsConfig = {
     { name: 'age_rating', label: 'Age Rating', type: 'text', placeholder: 'e.g. 16+' },
   ],
   match: [
-    { name: 'data', label: 'Date', type: 'date' },
-    { name: 'horario', label: 'Time', type: 'time' },
+    { name: 'date', label: 'Date', type: 'date' }, 
+    { name: 'hour', label: 'Time', type: 'time' },
     { name: 'link', label: 'Link', type: 'text', placeholder: 'URL da partida' },
-    { name: 'id_championship', label: 'Championship', type: 'select', options: mockChampionships },
+    { name: 'championshipId', label: 'Championship', type: 'select', optionsKey: 'championships' },
+    { name: 'team1Id', label: 'Team 1', type: 'select', optionsKey: 'teams' },
+    { name: 'team2Id', label: 'Team 2', type: 'select', optionsKey: 'teams' },
   ],
 };
