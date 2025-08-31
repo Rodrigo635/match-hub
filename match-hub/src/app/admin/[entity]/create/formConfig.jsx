@@ -24,11 +24,12 @@ export const formFieldsConfig = {
   ],
   team: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do time' },
-    { name: 'logo', label: 'Logo', type: 'file', accept: 'image/*' },
+    { name: 'image', label: 'Logo', type: 'file', accept: 'image/*' },
   ],
   championship: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do campeonato' },
-    { name: 'image_championship', label: 'Image', type: 'file' },
+    { name: 'image', label: 'Image', type: 'file' },
+    { name: 'gameId', label: 'Jogos', type: 'select', optionsKey: 'games' },
   ],
   game: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do jogo' },
