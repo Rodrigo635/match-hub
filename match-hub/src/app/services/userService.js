@@ -68,7 +68,7 @@ export async function toggleColorMode(isDarkMode, token) {
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Erro ao ativar modo escuro: ${res.status}, ${res}`);
+    throw new Error(`Erro ao alterar modo de cor: ${res.status}, ${res}`);
   }
   return;
 }

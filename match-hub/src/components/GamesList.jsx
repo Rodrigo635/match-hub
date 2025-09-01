@@ -19,7 +19,6 @@ export default function GamesList() {
     try {
       const response = await getGames(page, ITEMS_PER_PAGE);
       const json = response.content;
-      console.log(json);
       setData(json);
       setFiltered(json);
     } catch (error) {

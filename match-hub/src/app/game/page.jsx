@@ -1,12 +1,12 @@
 // src/app/game/page.js
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { getGameById } from '../services/gameService';
-import { getMatchesByChampionship } from '../services/matchService';
-import { getChampionshipsByGame } from '../services/championshipService';
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { getGameById } from "../services/gameService";
+import { getMatchesByChampionship } from "../services/matchService";
+import { getChampionshipsByGame } from "../services/championshipService";
 
 export default function GamePage() {
   const router = useRouter();
@@ -14,60 +14,60 @@ export default function GamePage() {
   const [championshipData, setChampionshipData] = useState([]);
   const [matchesData, setMatchesData] = useState([]);
   const [filteredMatches, setFilteredMatches] = useState([]);
-  const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
-  const [selectedTime, setSelectedTime] = useState('Todos');
+  const [selectedCampeonato, setSelectedCampeonato] = useState("Todos");
+  const [selectedTime, setSelectedTime] = useState("Todos");
   const [loading, setLoading] = useState(true);
-  
+
   // Usar useRef para evitar chamadas duplicadas
   const championshipsLoaded = useRef(false);
 
-  const handleGetInfoGame = async id => {
+  const handleGetInfoGame = async (id) => {
     try {
       setLoading(true);
       const response = await getGameById(id);
-      console.log('Game data recebido:', response);
+      console.log("Game data recebido:", response);
       setGameData(response);
     } catch (error) {
-      console.error('Erro ao carregar jogos:', error);
+      console.error("Erro ao carregar jogos:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleGetInfoChampionships = async gameId => {
+  const handleGetInfoChampionships = async (gameId) => {
     try {
       if (championshipsLoaded.current) return; // Evita chamadas duplicadas
-      
-      console.log('Carregando campeonatos para o jogo:', gameId);
+
+      console.log("Carregando campeonatos para o jogo:", gameId);
       const response = await getChampionshipsByGame(gameId);
       setChampionshipData(response.content || []);
       championshipsLoaded.current = true;
     } catch (error) {
-      console.error('Erro ao carregar campeonatos:', error);
+      console.error("Erro ao carregar campeonatos:", error);
     }
   };
 
   // UseEffect 1: Inicialização e carregamento do jogo
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const stored = localStorage.getItem('selectedGame');
+    const stored = localStorage.getItem("selectedGame");
     if (!stored) {
-      router.push('/');
+      router.push("/");
       return;
     }
 
     try {
       const id = JSON.parse(stored);
       if (!id) {
-        router.push('/');
+        router.push("/");
         return;
       }
 
       handleGetInfoGame(id);
     } catch (error) {
-      console.error('Erro ao processar dados do localStorage:', error);
-      router.push('/');
+      console.error("Erro ao processar dados do localStorage:", error);
+      router.push("/");
     }
   }, [router]);
 
@@ -81,20 +81,20 @@ export default function GamePage() {
   // UseEffect 3: Processa partidas quando championshipData estiver disponível
   useEffect(() => {
     if (championshipData && championshipData.length > 0) {
-      console.log('Processando partidas dos campeonatos...');
+      console.log("Processando partidas dos campeonatos...");
 
       const allMatches = [];
 
-      championshipData.forEach(championship => {
+      championshipData.forEach((championship) => {
         if (championship.matches && championship.matches.length > 0) {
-          const matchesWithChampionship = championship.matches.map(match => ({
+          const matchesWithChampionship = championship.matches.map((match) => ({
             ...match,
             campeonato: championship.name,
-            time1: match.matchTeams[0]?.team?.name || '',
-            time2: match.matchTeams[1]?.team?.name || '',
-            imgTime1: match.matchTeams[0]?.team?.logo || '',
-            imgTime2: match.matchTeams[1]?.team?.logo || '',
-            data: new Date(match.date).toLocaleDateString('pt-BR'),
+            time1: match.matchTeams[0]?.team?.name || "",
+            time2: match.matchTeams[1]?.team?.name || "",
+            imgTime1: match.matchTeams[0]?.team?.logo || "",
+            imgTime2: match.matchTeams[1]?.team?.logo || "",
+            data: new Date(match.date).toLocaleDateString("pt-BR"),
             horario: match.hour.substring(0, 5),
           }));
 
@@ -114,26 +114,28 @@ export default function GamePage() {
 
     let arr = matchesData;
 
-    if (selectedCampeonato !== 'Todos') {
-      arr = arr.filter(p => p.campeonato === selectedCampeonato);
+    if (selectedCampeonato !== "Todos") {
+      arr = arr.filter((p) => p.campeonato === selectedCampeonato);
     }
 
-    if (selectedTime !== 'Todos') {
-      arr = arr.filter(p => p.time1 === selectedTime || p.time2 === selectedTime);
+    if (selectedTime !== "Todos") {
+      arr = arr.filter(
+        (p) => p.time1 === selectedTime || p.time2 === selectedTime
+      );
     }
 
     setFilteredMatches(arr);
   }, [selectedCampeonato, selectedTime, matchesData]);
 
   // Extrair opções de filtro
-  const campeonatoOptions = ['Todos'];
-  const timeOptions = ['Todos'];
+  const campeonatoOptions = ["Todos"];
+  const timeOptions = ["Todos"];
 
   if (matchesData && Array.isArray(matchesData)) {
     const camps = new Set();
     const times = new Set();
 
-    matchesData.forEach(p => {
+    matchesData.forEach((p) => {
       if (p.campeonato) camps.add(p.campeonato);
       if (p.time1) times.add(p.time1);
       if (p.time2) times.add(p.time2);
@@ -141,24 +143,25 @@ export default function GamePage() {
 
     Array.from(camps)
       .sort()
-      .forEach(c => campeonatoOptions.push(c));
+      .forEach((c) => campeonatoOptions.push(c));
     Array.from(times)
       .sort()
-      .forEach(t => timeOptions.push(t));
+      .forEach((t) => timeOptions.push(t));
   }
 
   const handleBack = () => {
     router.back();
+    router.back();
   };
 
   function isFuture(data, horario) {
-    const [dia, mes, ano] = data.split('/');
+    const [dia, mes, ano] = data.split("/");
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     return new Date() < partidaData;
   }
 
   function getBotaoTexto(data, horario) {
-    const [dia, mes, ano] = data.split('/');
+    const [dia, mes, ano] = data.split("/");
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     const agora = new Date();
 
@@ -190,7 +193,10 @@ export default function GamePage() {
   // Loading state
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
         <div className="text-white text-center">
           <div className="spinner-border text-primary mb-3" role="status">
             <span className="visually-hidden">Carregando...</span>
@@ -204,10 +210,13 @@ export default function GamePage() {
   // Verificação se gameData existe
   if (!gameData) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
         <div className="text-white text-center">
           <p>Erro ao carregar dados do jogo.</p>
-          <button onClick={() => router.push('/')} className="btn btn-primary">
+          <button onClick={() => router.push("/")} className="btn btn-primary">
             Voltar ao início
           </button>
         </div>
@@ -224,7 +233,10 @@ export default function GamePage() {
             <div className="col">
               <div className="container">
                 <div className="my-4 mt-5 d-flex justify-content-center justify-content-md-start">
-                  <button onClick={handleBack} className="d-none d-md-flex btn-voltar text-white">
+                  <button
+                    onClick={handleBack}
+                    className="d-none d-md-flex btn-voltar text-white"
+                  >
                     <i className="fa-solid fa-arrow-left" />
                     <h5 className="mb-0 ms-2">Voltar</h5>
                   </button>
@@ -237,7 +249,10 @@ export default function GamePage() {
                     <h4 className="me-2">Principal Torneio:</h4>
                     <h4 id="game-tournament">{gameData.tournament}</h4>
                   </div>
-                  <h5 id="game-descricao" className="text-white texto-justificado mt-4 mb-5">
+                  <h5
+                    id="game-descricao"
+                    className="text-white texto-justificado mt-4 mb-5"
+                  >
                     {gameData.description || gameData.descricao}
                   </h5>
                 </div>
@@ -253,12 +268,20 @@ export default function GamePage() {
                     playsInline
                     id="game-video"
                     className="w-100"
-                    onLoadStart={() => console.log('Video loading started:', gameData.video)}
-                    onCanPlay={() => console.log('Video can play')}
-                    onError={e => console.error('Video error:', e, 'URL:', gameData.video)}
-                    onLoadedData={() => console.log('Video data loaded')}
+                    onLoadStart={() =>
+                      console.log("Video loading started:", gameData.video)
+                    }
+                    onCanPlay={() => console.log("Video can play")}
+                    onError={(e) =>
+                      console.error("Video error:", e, "URL:", gameData.video)
+                    }
+                    onLoadedData={() => console.log("Video data loaded")}
                   >
-                    <source src={gameData.video} type="video/mp4" id="game-video-source" />
+                    <source
+                      src={gameData.video}
+                      type="video/mp4"
+                      id="game-video-source"
+                    />
                     Seu navegador não suporta a tag de vídeo.
                   </video>
                   <div className="gradient" />
@@ -284,9 +307,9 @@ export default function GamePage() {
                     name="campeonatos-game"
                     id="campeonatos-game"
                     value={selectedCampeonato}
-                    onChange={e => setSelectedCampeonato(e.target.value)}
+                    onChange={(e) => setSelectedCampeonato(e.target.value)}
                   >
-                    {campeonatoOptions.map(opt => (
+                    {campeonatoOptions.map((opt) => (
                       <option key={opt} value={opt}>
                         {opt}
                       </option>
@@ -299,9 +322,9 @@ export default function GamePage() {
                     name="campeonatos-time"
                     id="campeonatos-time"
                     value={selectedTime}
-                    onChange={e => setSelectedTime(e.target.value)}
+                    onChange={(e) => setSelectedTime(e.target.value)}
                   >
-                    {timeOptions.map(opt => (
+                    {timeOptions.map((opt) => (
                       <option key={opt} value={opt}>
                         {opt}
                       </option>
@@ -320,77 +343,109 @@ export default function GamePage() {
               filteredMatches.map((item, idx) => (
                 <div
                   key={idx}
-                  className="col-12 col-md-6 col-lg-4"
-                  onClick={() => {
-                    if (item.link) window.open(item.link, '_blank');
-                  }}
-                  style={{ cursor: item.link ? 'pointer' : 'default' }}
+                  className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 shadow mb-4"
+                  style={{ cursor: item.link ? "pointer" : "default" }}
                 >
-                  <div className="card border-0 rounded-4 bg-dark text-white h-100">
-                    <div className="card-body bg-dark p-4 rounded-5">
-                      <h5 className="card-title text-primary fw-bold mb-3">{item.campeonato}</h5>
-                      <div className="d-flex justify-content-between align-items-center mb-2">
-                        <div className="text-center">
+                  <div className="card border-0 rounded-4 bg-dark text-white h-100 shadow-sm hover-shadow-lg transition-all">
+                    <div className="card-body p-3 p-md-4 rounded-5">
+                      {/* Título do Campeonato */}
+                      <h5 className="card-title text-primary fw-bold mb-3">
+                        {item.campeonato}
+                      </h5>
+
+                      {/* Times - Layout responsivo */}
+                      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-3 gap-3">
+                        {/* Time 1 */}
+                        <div className="text-center flex-shrink-0">
                           <div
                             style={{
-                              width: 48,
-                              height: 48,
-                              position: 'relative',
-                              margin: '0 auto',
+                              width: window.innerWidth < 576 ? 56 : 48,
+                              height: window.innerWidth < 576 ? 56 : 48,
+                              position: "relative",
+                              margin: "0 auto",
                             }}
+                            className="mb-2"
                           >
                             {item.imgTime1 && (
                               <Image
                                 src={item.imgTime1}
                                 alt={item.time1}
                                 fill
-                                sizes="48px"
-                                className="rounded-circle"
-                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 576px) 56px, 48px"
+                                style={{ objectFit: "cover" }}
                               />
                             )}
                           </div>
-                          <p className="mb-0 fw-semibold small mt-1">{item.time1}</p>
+                          <p
+                            className="mb-0 fw-semibold small text-truncate"
+                            style={{ maxWidth: "80px" }}
+                            title={item.time1}
+                          >
+                            {item.time1}
+                          </p>
                         </div>
-                        <div className="fw-bold fs-4 text-primary">VS</div>
-                        <div className="text-center">
+
+                        {/* VS */}
+                        <div className="fw-bold fs-4 fs-md-3 text-primary flex-shrink-0 order-sm-2">
+                          VS
+                        </div>
+
+                        {/* Time 2 */}
+                        <div className="text-center flex-shrink-0 order-sm-3">
                           <div
                             style={{
-                              width: 48,
-                              height: 48,
-                              position: 'relative',
-                              margin: '0 auto',
+                              width: window.innerWidth < 576 ? 56 : 48,
+                              height: window.innerWidth < 576 ? 56 : 48,
+                              position: "relative",
+                              margin: "0 auto",
                             }}
+                            className="mb-2"
                           >
                             {item.imgTime2 && (
                               <Image
                                 src={item.imgTime2}
                                 alt={item.time2}
                                 fill
-                                sizes="48px"
-                                className="rounded-circle"
-                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 576px) 56px, 48px"
+                                style={{ objectFit: "cover" }}
                               />
                             )}
                           </div>
-                          <p className="mb-0 fw-semibold small mt-1">{item.time2}</p>
+                          <p
+                            className="mb-0 fw-semibold small text-truncate"
+                            style={{ maxWidth: "80px" }}
+                            title={item.time2}
+                          >
+                            {item.time2}
+                          </p>
                         </div>
                       </div>
-                      <p className="my-2">
-                        <span className="fw-bold">Data:</span> {item.data} às {item.horario}
-                      </p>
-                      <div className="d-grid mt-4">
+
+                      {/* Data e Horário */}
+                      <div className="text-center text-md-start mb-3">
+                        <p className="mb-1 small">
+                          <span className="fw-bold">Data:</span> {item.data}
+                        </p>
+                        <p className="mb-0 small">
+                          <span className="fw-bold">Horário:</span>{" "}
+                          {item.horario}
+                        </p>
+                      </div>
+
+                      {/* Botão */}
+                      <div className="d-grid mt-auto">
                         <a
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`btn btn-live btn-outline-primary rounded-pill ${
-                            isFuture(item.data, item.horario) ? 'disabled' : ''
+                          className={`btn btn-live btn-outline-primary rounded-pill py-2 ${
+                            isFuture(item.data, item.horario) ? "disabled" : ""
                           }`}
+                          style={{ minHeight: "44px" }}
                         >
-                          <h5 className="mb-0 h5-btn-trasmissao">
+                          <span className="fw-semibold fs-6">
                             {getBotaoTexto(item.data, item.horario)}
-                          </h5>
+                          </span>
                         </a>
                       </div>
                     </div>
@@ -400,7 +455,9 @@ export default function GamePage() {
             ) : (
               <div className="col-12">
                 <div className="text-center py-5">
-                  <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
+                  <p className="text-white">
+                    Nenhum jogo encontrado para este filtro.
+                  </p>
                 </div>
               </div>
             )}
@@ -418,7 +475,7 @@ export default function GamePage() {
         <section className="container">
           <div className="row" id="campeonatos-container">
             {championshipData && championshipData.length > 0 ? (
-              championshipData.map(camp => (
+              championshipData.map((camp) => (
                 <div key={camp.id} className="col-12 col-md-6 col-lg-3 mb-3">
                   <div className="card bg-dark text-white p-3 h-100 border-0 rounded-4">
                     <div className="card-body p-2">
@@ -428,8 +485,10 @@ export default function GamePage() {
                             style={{
                               width: 80,
                               height: 80,
-                              position: 'relative',
-                              margin: '0 auto',
+                              position: "relative",
+                              objectFit: "cover",
+                              margin: "0 auto",
+                              
                             }}
                           >
                             <Image
@@ -437,8 +496,6 @@ export default function GamePage() {
                               alt={camp.name}
                               fill
                               sizes="80px"
-                              className="rounded-3"
-                              style={{ objectFit: 'cover' }}
                             />
                           </div>
                         </div>
@@ -448,21 +505,23 @@ export default function GamePage() {
                         {camp.name}
                       </h5>
 
-                      <div className="d-flex justify-content-between align-items-center mb-2">
-                        <small className="text-muted">Partidas:</small>
-                        <span className="badge bg-primary rounded-pill">
+                      <div className="d-flex text-white gap-2 align-items-center mb-2">
+                        <small className="text-white">Partidas:</small>
+                        <span className="badge text-white bg-primary rounded-pill">
                           {camp.totalMatches || 0}
                         </span>
                       </div>
 
                       {camp.matches && camp.matches.length > 0 && (
                         <div className="mb-3">
-                          <small className="text-muted d-block mb-2">Times:</small>
+                          <small className="text-white d-block mb-2">
+                            Times:
+                          </small>
                           <div className="d-flex flex-wrap gap-1">
                             {Array.from(
                               new Set(
-                                camp.matches.flatMap(match =>
-                                  match.matchTeams.map(mt => mt.team.name)
+                                camp.matches.flatMap((match) =>
+                                  match.matchTeams.map((mt) => mt.team.name)
                                 )
                               )
                             )
@@ -471,7 +530,10 @@ export default function GamePage() {
                                 <span
                                   key={idx}
                                   className="badge bg-secondary text-truncate"
-                                  style={{ maxWidth: '80px', fontSize: '0.7rem' }}
+                                  style={{
+                                    maxWidth: "80px",
+                                    fontSize: "0.7rem",
+                                  }}
                                   title={teamName}
                                 >
                                   {teamName}
@@ -482,8 +544,9 @@ export default function GamePage() {
                       )}
 
                       <div className="mt-auto">
-                        <small className="text-muted">
-                          Criado em: {new Date(camp.createdAt).toLocaleDateString('pt-BR')}
+                        <small className="text-white">
+                          Criado em:{" "}
+                          {new Date(camp.createdAt).toLocaleDateString("pt-BR")}
                         </small>
                       </div>
                     </div>
@@ -493,7 +556,9 @@ export default function GamePage() {
             ) : (
               <div className="col-12">
                 <div className="text-center py-5">
-                  <p className="text-muted">Nenhum campeonato encontrado para este jogo.</p>
+                  <p className="text-muted">
+                    Nenhum campeonato encontrado para este jogo.
+                  </p>
                 </div>
               </div>
             )}
@@ -531,7 +596,9 @@ export default function GamePage() {
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Tags:</h5>
                   <h5 className="text-cinza mb-0">
-                    {Array.isArray(gameData.tags) ? gameData.tags.join(', ') : ''}
+                    {Array.isArray(gameData.tags)
+                      ? gameData.tags.join(", ")
+                      : ""}
                   </h5>
                 </div>
                 <div className="d-flex">
@@ -539,7 +606,9 @@ export default function GamePage() {
                   <h5 className="text-cinza mb-0">{gameData.publisher}</h5>
                 </div>
                 <div className="d-flex">
-                  <h5 className="fw-bold text-white me-2">Idade Recomendada:</h5>
+                  <h5 className="fw-bold text-white me-2">
+                    Idade Recomendada:
+                  </h5>
                   <h5 className="text-cinza mb-0">{gameData.ageRating}+</h5>
                 </div>
               </div>
