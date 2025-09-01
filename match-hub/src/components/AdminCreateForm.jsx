@@ -1,38 +1,40 @@
 // src/components/AdminCreateForm.jsx
-'use client';
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { formFieldsConfig } from '@/app/admin/[entity]/create/formConfig';
+"use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { formFieldsConfig } from "@/app/admin/[entity]/create/formConfig";
 
-import { getGames } from '@/app/services/gameService';
+import { getGames } from "@/app/services/gameService";
+import { getChampionships } from "@/app/services/championshipService";
+import { getTeams } from "@/app/services/teamService";
 
 // Importe os métodos corretos de cada service
 import {
   createUser,
   getUserById,
-  updateUser
-} from '@/app/services/userService';
+  updateUser,
+} from "@/app/services/userService";
 import {
   createGame,
   getGameById,
-  updateGame
-} from '@/app/services/gameService';
+  updateGame,
+} from "@/app/services/gameService";
 import {
   createChampionship,
   getChampionshipById,
-  updateChampionship
-} from '@/app/services/championshipService';
+  updateChampionship,
+} from "@/app/services/championshipService";
 import {
   createTeam,
   getTeamById,
-  updateTeam
-} from '@/app/services/teamService';
+  updateTeam,
+} from "@/app/services/teamService";
 // Atenção: importe com os nomes corretos definidos em matchService.js
 import {
   getMatchById,
   createMatch,
-  updateMatch
-} from '@/app/services/matchService';
+  updateMatch,
+} from "@/app/services/matchService";
 
 export default function AdminCreateForm({ entity, id }) {
   const router = useRouter();
@@ -83,25 +85,38 @@ export default function AdminCreateForm({ entity, id }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     async function loadOptions() {
       const updatedFields = await Promise.all(
-        baseFields.map(async field => {
-          if (field.type === 'select' && field.optionsKey) {
+        baseFields.map(async (field) => {
+          if (field.type === "select" && field.optionsKey) {
             try {
-              if (field.optionsKey === 'games') {
+              if (field.optionsKey === "games") {
                 const data = await getGames(0, 50);
-                const options = data.content.map(g => ({ value: g.id, label: g.name }));
+                const options = data.content.map((g) => ({
+                  value: g.id,
+                  label: g.name,
+                }));
                 return { ...field, options };
               }
-              if (field.optionsKey === 'championships') {
+              if (field.optionsKey === "championships") {
                 const data = await getChampionships(0, 50);
-                const options = data.content.map(c => ({ value: c.id, label: c.name }));
+                const options = data.content.map((c) => ({
+                  value: c.id,
+                  label: c.name,
+                }));
+                return { ...field, options };
+              }
+              if (field.optionsKey === "teams") {
+                const data = await getTeams(0, 50);
+                const options = data.content.map((t) => ({
+                  value: t.id,
+                  label: t.name,
+                }));
                 return { ...field, options };
               }
             } catch (err) {
-              console.error('Erro ao carregar opções para', field.name, err);
+              console.error("Erro ao carregar opções para", field.name, err);
               return { ...field, options: [] };
             }
           }
@@ -118,40 +133,41 @@ export default function AdminCreateForm({ entity, id }) {
     if (isEdit) {
       setLoading(true);
       setError(null);
-      service.getById(id)
-        .then(data => {
+      service
+        .getById(id)
+        .then((data) => {
           // data: JSON retornado pelo backend
           // Popula `values` com campos do form e `existingFiles` com URLs para preview
           const initValues = {};
           const initExisting = {};
-          fields.forEach(field => {
+          fields.forEach((field) => {
             const fname = field.name;
-            if (field.type === 'file') {
+            if (field.type === "file") {
               // Em edição, se o backend retorna URL (string) no campo fname, salve em existingFiles
               if (data[fname]) {
                 initExisting[fname] = data[fname];
               }
               // O input file fica vazio inicialmente
-              initValues[fname] = '';
+              initValues[fname] = "";
             } else {
               // Para campos normais: se data tiver a propriedade, use; senão '', evitando undefined
               if (data[fname] !== undefined && data[fname] !== null) {
                 // Se for data do tipo date e backend retornar data-hora, talvez precise substring
-                if (field.type === 'date' && typeof data[fname] === 'string') {
+                if (field.type === "date" && typeof data[fname] === "string") {
                   // Tenta pegar 'YYYY-MM-DD' de 'YYYY-MM-DDTHH:MM:SS...'
                   initValues[fname] = data[fname].slice(0, 10);
                 } else {
                   initValues[fname] = data[fname];
                 }
               } else {
-                initValues[fname] = '';
+                initValues[fname] = "";
               }
             }
           });
           setValues(initValues);
           setExistingFiles(initExisting);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(`Erro ao buscar ${entity} para edição:`, err);
           setError(`Falha ao carregar dados de ${entity}`);
         })
@@ -159,8 +175,8 @@ export default function AdminCreateForm({ entity, id }) {
     } else {
       // Criação: inicializa todos valores como ''
       const init = {};
-      fields.forEach(field => {
-        init[field.name] = '';
+      fields.forEach((field) => {
+        init[field.name] = "";
       });
       setValues(init);
       setExistingFiles({});
@@ -169,11 +185,11 @@ export default function AdminCreateForm({ entity, id }) {
 
   const handleChange = (e) => {
     const { name, type, value, files } = e.target;
-    if (type === 'file') {
+    if (type === "file") {
       const file = files[0];
-      setValues(prev => ({ ...prev, [name]: file }));
+      setValues((prev) => ({ ...prev, [name]: file }));
     } else {
-      setValues(prev => ({ ...prev, [name]: value }));
+      setValues((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -185,7 +201,7 @@ export default function AdminCreateForm({ entity, id }) {
     for (const field of fields) {
       const fname = field.name;
       const val = values[fname];
-      if (field.type === 'file') {
+      if (field.type === "file") {
         // Em criação, val precisa existir; em edição, pode manter existente
         if (!isEdit && !val) {
           setError(`Selecione o arquivo para ${field.label}`);
@@ -211,7 +227,7 @@ export default function AdminCreateForm({ entity, id }) {
       // Se existir ao menos um campo file e o valor atual for File (upload novo), usamos FormData
       let useFormData = false;
       for (const field of fields) {
-        if (field.type === 'file' && values[field.name] instanceof File) {
+        if (field.type === "file" && values[field.name] instanceof File) {
           useFormData = true;
           break;
         }
@@ -221,10 +237,10 @@ export default function AdminCreateForm({ entity, id }) {
       if (useFormData) {
         payload = new FormData();
         // Para cada field, anexa a FormData
-        fields.forEach(field => {
+        fields.forEach((field) => {
           const fname = field.name;
           const val = values[fname];
-          if (field.type === 'file') {
+          if (field.type === "file") {
             if (val instanceof File) {
               payload.append(fname, val);
             }
@@ -232,7 +248,7 @@ export default function AdminCreateForm({ entity, id }) {
             // assume-se que backend mantém o arquivo anterior se não enviado.
           } else {
             // Alguns campos podem precisar de conversão; ex.: select que dá string, mas API espera number
-            if (field.type === 'select') {
+            if (field.type === "select") {
               // Se as opções forem value string representando número, converta:
               const intVal = parseInt(val, 10);
               if (!isNaN(intVal) && String(intVal) === String(val)) {
@@ -248,10 +264,10 @@ export default function AdminCreateForm({ entity, id }) {
       } else {
         // JSON puro
         payload = {};
-        fields.forEach(field => {
+        fields.forEach((field) => {
           const fname = field.name;
           const val = values[fname];
-          if (field.type === 'file') {
+          if (field.type === "file") {
             // Se só aceita URL: se val vazio e existingFiles[fname] existe, talvez envie existingFiles[fname]
             if (isEdit && existingFiles[fname]) {
               payload[fname] = existingFiles[fname];
@@ -260,10 +276,11 @@ export default function AdminCreateForm({ entity, id }) {
             else if (val) {
               payload[fname] = val;
             }
-          } else if (field.type === 'select') {
+          } else if (field.type === "select") {
             // tenta converter para number se fizer sentido
             const intVal = parseInt(val, 10);
-            payload[fname] = (!isNaN(intVal) && String(intVal) === String(val)) ? intVal : val;
+            payload[fname] =
+              !isNaN(intVal) && String(intVal) === String(val) ? intVal : val;
           } else {
             payload[fname] = val;
           }
@@ -275,7 +292,6 @@ export default function AdminCreateForm({ entity, id }) {
         await service.update(id, values);
         alert(`${entity} atualizado com sucesso`);
       } else {
-        console.log(values)
         await service.create(values);
         alert(`${entity} criado com sucesso`);
       }
@@ -284,7 +300,7 @@ export default function AdminCreateForm({ entity, id }) {
     } catch (err) {
       console.error(`Erro ao submeter formulário ${entity}:`, err);
       // Se o service lançar Error com mensagem, use-a; ou else mensagem genérica
-      setError(err.message || 'Falha ao salvar');
+      setError(err.message || "Falha ao salvar");
     } finally {
       setLoading(false);
     }
@@ -299,10 +315,10 @@ export default function AdminCreateForm({ entity, id }) {
     <form onSubmit={handleSubmit}>
       {error && <p className="text-danger">{error}</p>}
 
-      {fields.map(field => {
+      {fields.map((field) => {
         const { name, label, type, placeholder, options } = field;
         // Se file: mostra preview se existir existingFiles[name], e input file
-        if (type === 'file') {
+        if (type === "file") {
           return (
             <div key={name} className="mb-3">
               <label className="form-label">{label}</label>
@@ -313,7 +329,12 @@ export default function AdminCreateForm({ entity, id }) {
                   <img
                     src={existingFiles[name]}
                     alt={`${label} atual`}
-                    style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }}
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                      borderRadius: "4px",
+                    }}
                   />
                 </div>
               )}
@@ -328,35 +349,38 @@ export default function AdminCreateForm({ entity, id }) {
           );
         }
         // Se textarea
-        if (type === 'textarea') {
+        if (type === "textarea") {
           return (
             <div key={name} className="mb-3">
               <label className="form-label">{label}</label>
               <textarea
                 name={name}
                 className="form-control"
-                placeholder={placeholder || ''}
-                value={values[name] || ''}
+                placeholder={placeholder || ""}
+                value={values[name] || ""}
                 onChange={handleChange}
               />
             </div>
           );
         }
         // Se select
-        if (type === 'select') {
+        if (type === "select") {
           return (
             <div key={name} className="mb-3">
               <label className="form-label">{label}</label>
               <select
                 name={name}
                 className="form-select"
-                value={values[name] || ''}
+                value={values[name] || ""}
                 onChange={handleChange}
               >
                 <option value="">Selecione...</option>
-                {options && options.map(opt => (
-                  <option key={opt.value} value={opt.value}>{opt.label}</option>
-                ))}
+                {options &&
+                  options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
               </select>
             </div>
           );
@@ -369,8 +393,8 @@ export default function AdminCreateForm({ entity, id }) {
               type={type}
               name={name}
               className="form-control"
-              placeholder={placeholder || ''}
-              value={values[name] ?? ''}
+              placeholder={placeholder || ""}
+              value={values[name] ?? ""}
               onChange={handleChange}
             />
           </div>
@@ -378,7 +402,7 @@ export default function AdminCreateForm({ entity, id }) {
       })}
 
       <button type="submit" className="btn btn-primary" disabled={loading}>
-        {isEdit ? 'Atualizar' : 'Criar'}
+        {isEdit ? "Atualizar" : "Criar"}
       </button>
     </form>
   );

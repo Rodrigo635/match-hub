@@ -36,10 +36,10 @@ public class MatchService {
     private MatchRepository matchRepository;
 
     @Autowired
-    private TeamRepository teamRepository;
+    private ChampionshipRepository championshipRepository;
 
     @Autowired
-    private ChampionshipRepository championshipRepository;
+    private TeamRepository teamRepository;
 
     @Autowired
     private MatchMapper matchMapper;
@@ -54,6 +54,12 @@ public class MatchService {
     public PageResponseDTO<MatchResponseDTO> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Match> matches = matchRepository.findAll(pageable);
+        return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
+    }
+
+    public PageResponseDTO<MatchResponseDTO> findByChampionship(Long championshipId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Match> matches = matchRepository.findByChampionshipId(championshipId, pageable);
         return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
     }
 

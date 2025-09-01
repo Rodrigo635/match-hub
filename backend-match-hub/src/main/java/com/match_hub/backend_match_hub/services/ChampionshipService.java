@@ -50,6 +50,16 @@ public class ChampionshipService {
         return pageMapper.toPageResponseDto(championship, championshipMapper::toResponseDto);
     }
 
+    public PageResponseDTO<ChampionshipResponseDTO> findByGame(Long gameId, int page, int size) {
+        if (gameId == null || gameId <= 0) {
+            throw new IllegalArgumentException("Game ID must be a positive number");
+        }
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Championship> championships = championshipRepository.findByGameId(gameId, pageable);
+
+        return pageMapper.toPageResponseDto(championships, championshipMapper::toResponseDto);
+    }
     public ChampionshipResponseDTO findById(Long id) {
         Championship championship = championshipRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Championship not found"));
         return championshipMapper.toResponseDto(championship);

@@ -60,7 +60,6 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchUser() {
       const user = await handleGetUser({ setToken, setUser });
-      console.log(user);
       if (!user) {
         router.push("/cadastro");
         return;

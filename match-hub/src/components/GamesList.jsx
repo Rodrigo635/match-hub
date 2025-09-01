@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getGames } from "@/app/services/gameService";
 
 export default function GamesList() {
   const router = useRouter();
@@ -13,15 +14,22 @@ export default function GamesList() {
   const [page, setPage] = useState(0);
   const ITEMS_PER_PAGE = 12;
 
+
+  const handleGetGames = async () => {
+    try {
+      const response = await getGames(page, ITEMS_PER_PAGE);
+      const json = response.content;
+      console.log(json);
+      setData(json);
+      setFiltered(json);
+    } catch (error) {
+      console.error("Erro ao carregar jogos:", error);
+    }
+  };
+
   // Fetch inicial
   useEffect(() => {
-    fetch("/thumbs.json")
-      .then((res) => res.json())
-      .then((json) => {
-        setData(json);
-        setFiltered(json);
-      })
-      .catch((err) => console.error("Erro ao carregar thumbs.json:", err));
+    handleGetGames();
   }, []);
 
   // Atualiza filtered quando filtros mudam
@@ -30,7 +38,7 @@ export default function GamesList() {
     const f = data.filter((item) => {
       const gameMatch =
         selectedGame === "Todos" ||
-        item.game.toLowerCase() === selectedGame.toLowerCase();
+        item.name.toLowerCase() === selectedGame.toLowerCase();
       const tourMatch =
         selectedTournament === "Todos" ||
         item.tournament.toLowerCase() === selectedTournament.toLowerCase();
@@ -43,7 +51,7 @@ export default function GamesList() {
   // Opções de selects
   const gameOptions = [
     "Todos",
-    ...Array.from(new Set(data.map((i) => i.game))),
+    ...Array.from(new Set(data.map((i) => i.name))),
   ];
   const tournamentOptions = [
     "Todos",
@@ -72,7 +80,7 @@ export default function GamesList() {
     if (hasPrev) setPage((p) => p - 1);
   };
   const handleCardClick = (item) => {
-    localStorage.setItem("selectedGame", JSON.stringify(item));
+    localStorage.setItem("selectedGame", JSON.stringify(item.id));
     // se usar rota /game, adapte:
     router.push(`/game`);
   };
@@ -129,7 +137,7 @@ export default function GamesList() {
             >
               <a href="#">
                 <div className="card bg-dark h-100">
-                  <img
+                  {/* <img
                     className="rounded-3 static-image"
                     src={item.image.replace("./static", "/static")}
                     alt={item.game}
@@ -141,8 +149,8 @@ export default function GamesList() {
                       alt={`${item.game} GIF`}
                     />
                     <div className="gradient"></div>
-                  </div>
-                  <h5 className="pt-3 ps-3 text-white fw-bold">{item.game}</h5>
+                  </div> */}
+                  <h5 className="pt-3 ps-3 text-white fw-bold">{item.name}</h5>
                   <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
                 </div>
               </a>

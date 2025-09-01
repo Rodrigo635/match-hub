@@ -160,6 +160,8 @@ export default function AdminEntityPage({ params }) {
         "Link",
         "ID do Campeonato",
         "Data de Criação",
+        "Time 1",
+        "Time 2",
       ];
       break;
   }
@@ -231,7 +233,6 @@ export default function AdminEntityPage({ params }) {
                 {columns.map((col) => (
                   <th key={col}>{col}</th>
                 ))}
-                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -369,6 +370,7 @@ export default function AdminEntityPage({ params }) {
                               href={item.link}
                               target="_blank"
                               rel="noopener noreferrer"
+                              className="btn btn-sm btn-outline-secondary me-1"
                             >
                               Ver
                             </a>
@@ -377,8 +379,9 @@ export default function AdminEntityPage({ params }) {
                           )}
                         </td>
                         <td>{item.championshipId ?? item.championship?.id}</td>
-                        <td>{item.teamDTOS}</td>
-                        <td>{item.date_creation ?? item.createdAt}</td>
+                        <td>{item.createdAt}</td>
+                        <td>{item.matchTeams[0].team.name}</td>
+                        <td>{item.matchTeams[1].team.name}</td>
                       </>
                     )}
                     <td>

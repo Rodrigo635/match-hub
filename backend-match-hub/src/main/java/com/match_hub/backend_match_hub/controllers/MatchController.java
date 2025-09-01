@@ -28,6 +28,18 @@ public class MatchController {
         return ResponseEntity.ok(matches);
     }
 
+    @Operation(summary = "Get matches by Championship", description = "Retrieves the details of matches by Championship ID with pagination.")
+    @GetMapping("/championship/{championshipId}")
+    public ResponseEntity<PageResponseDTO<MatchResponseDTO>> findByChampionship(
+            @PathVariable Long championshipId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        PageResponseDTO<MatchResponseDTO> matches = matchService.findByChampionship(championshipId, page, size);
+        return ResponseEntity.ok(matches);
+    }
+
+
     @Operation(summary = "Get match by ID", description = "Retrieves the details of a match by its unique ID.")
     @GetMapping("/{id}")
     public ResponseEntity<MatchResponseDTO> findById(@PathVariable Long id) {

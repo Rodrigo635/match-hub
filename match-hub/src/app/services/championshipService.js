@@ -7,6 +7,19 @@ export async function getChampionships(page = 0, size = 5) {
   return await getData(page, size, BASE_URL);
 }
 
+export async function getChampionshipsByGame(gameId){
+  const response = await fetch(`${BASE_URL}/game/${gameId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    console.error("getChampionshipsByGame: erro status", response.status, text);
+    throw new Error(`Erro ao buscar jogos: ${response.status}`);
+  }
+  return response.json();
+}
+
 export async function getChampionshipById(id) {
   return await getDataById(id, BASE_URL);
 }
