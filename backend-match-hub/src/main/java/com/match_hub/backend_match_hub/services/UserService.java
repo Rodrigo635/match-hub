@@ -109,6 +109,13 @@ public class UserService {
         userRepository.delete(user);
     }
 
+    public void deleteImage(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        fileService.deleteImageFolder(FOLDER, id);
+        user.setProfilePicture(null);
+        userRepository.save(user);
+    }
+
     public void resetPassword(User user) {
         userRepository.save(user);
     }

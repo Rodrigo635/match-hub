@@ -1,4 +1,4 @@
-async function uploadImage(id, formData, endpoint) {
+export async function uploadImage(id, formData, endpoint) {
    // 3️⃣ Enviar a imagem (se houver)
     let imageResponse = null;
     if (formData.image) {

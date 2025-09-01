@@ -59,13 +59,13 @@ export default function EditPerfil({ user, onClose, token }) {
         style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       >
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
+          <div className="modal-content bg-dark text-white">
             {/* Cabeçalho */}
             <div className="modal-header">
               <h5 className="modal-title">Editar Perfil</h5>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close btn-close-white"
                 aria-label="Close"
                 onClick={onClose}
               ></button>
