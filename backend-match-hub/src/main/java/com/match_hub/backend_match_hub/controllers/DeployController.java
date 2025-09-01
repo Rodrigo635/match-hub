@@ -5,6 +5,7 @@ import com.match_hub.backend_match_hub.enums.UserRole;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class DeployController {
 
     @Operation(
             summary = "Deploy da aplicação",
+            security = @SecurityRequirement(name = "bearer-key"),
             description = "Executa script de deploy no servidor. Requer permissão de ADMIN."
     )
     @PostMapping("/start")
