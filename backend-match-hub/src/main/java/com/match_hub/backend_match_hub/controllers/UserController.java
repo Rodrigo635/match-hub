@@ -105,7 +105,7 @@ public class UserController {
             @Parameter(description = "User ID", example = "123")
             Long id,
             @RequestParam("file")
-            @Parameter(description = "Image file (JPG, PNG, GIF - max 5MB)")
+            @Parameter(description = "Image file (JPG, PNG, GIF - max 20MB)")
             MultipartFile file) {
 
         String imageUrl = userService.uploadMedia(id, file);
@@ -113,6 +113,22 @@ public class UserController {
         Map<String, String> response = new HashMap<>();
         response.put("message", "Image uploaded successfully");
         response.put("imageUrl", imageUrl);
+        response.put("userId", id.toString());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Delete user profile picture", description = "Deletes the profile picture for an existing user.")
+    @DeleteMapping(value = "/image/delete/{id}")
+    public ResponseEntity<Map<String, String>> deleteProfileImage(
+            @PathVariable("id")
+            @Parameter(description = "User ID", example = "123")
+            Long id) {
+
+        userService.deleteImage(id);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Image deleted successfully");
         response.put("userId", id.toString());
 
         return ResponseEntity.ok(response);
