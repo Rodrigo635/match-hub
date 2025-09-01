@@ -4,11 +4,11 @@ export const metadata = {
   title: 'Jogos - MATCH HUB',
 };
 
-export default function HomePage() {
+export default function JogosPage() {
   return (
     <>
       <main >
-      <GamesList />
+        <GamesList />
       </main>
     </>
   );
