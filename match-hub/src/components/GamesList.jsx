@@ -137,19 +137,19 @@ export default function GamesList() {
             >
               <a href="#">
                 <div className="card bg-dark h-100">
-                  {/* <img
+                  <img
                     className="rounded-3 static-image"
-                    src={item.image.replace("./static", "/static")}
+                    src={item.image}
                     alt={item.game}
                   />
                   <div className="gif-container">
                     <img
                       className="rounded-3 gif-image"
-                      src={item.gif.replace("./static", "/static")}
+                      src={item.gif}
                       alt={`${item.game} GIF`}
                     />
                     <div className="gradient"></div>
-                  </div> */}
+                  </div>
                   <h5 className="pt-3 ps-3 text-white fw-bold">{item.name}</h5>
                   <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
                 </div>

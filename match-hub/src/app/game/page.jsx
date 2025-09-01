@@ -1,18 +1,12 @@
 // src/app/game/page.js
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { getGameById } from "../services/gameService";
-import {
-  getMatchById,
-  getMatchesByChampionship,
-} from "../services/matchService";
-import {
-  getChampionshipById,
-  getChampionshipsByGame,
-} from "../services/championshipService";
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { getGameById } from '../services/gameService';
+import { getMatchesByChampionship } from '../services/matchService';
+import { getChampionshipsByGame } from '../services/championshipService';
 
 export default function GamePage() {
   const router = useRouter();
@@ -20,164 +14,151 @@ export default function GamePage() {
   const [championshipData, setChampionshipData] = useState([]);
   const [matchesData, setMatchesData] = useState([]);
   const [filteredMatches, setFilteredMatches] = useState([]);
-  const [selectedCampeonato, setSelectedCampeonato] = useState("Todos");
-  const [selectedTime, setSelectedTime] = useState("Todos");
+  const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
+  const [selectedTime, setSelectedTime] = useState('Todos');
+  const [loading, setLoading] = useState(true);
+  
+  // Usar useRef para evitar chamadas duplicadas
+  const championshipsLoaded = useRef(false);
 
-  const handleGetInfoGame = async (id) => {
+  const handleGetInfoGame = async id => {
     try {
+      setLoading(true);
       const response = await getGameById(id);
+      console.log('Game data recebido:', response);
       setGameData(response);
-      setFilteredMatches(response.championship.matches || []);
     } catch (error) {
-      console.error("Erro ao carregar jogos:", error);
+      console.error('Erro ao carregar jogos:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleGetInfoChampionships = async (gameId) => {
+  const handleGetInfoChampionships = async gameId => {
     try {
+      if (championshipsLoaded.current) return; // Evita chamadas duplicadas
+      
+      console.log('Carregando campeonatos para o jogo:', gameId);
       const response = await getChampionshipsByGame(gameId);
-      // pega o array real de campeonatos
       setChampionshipData(response.content || []);
+      championshipsLoaded.current = true;
     } catch (error) {
-      console.error("Erro ao carregar campeonatos:", error);
+      console.error('Erro ao carregar campeonatos:', error);
     }
   };
 
-  const handleGetInfoMatches = async (championshipId) => {
-    try {
-      const response = await getMatchesByChampionship(championshipId);
-      // pega o array real de partidas
-      setMatchesData(response.content || []);
-    } catch (error) {
-      console.error("Erro ao carregar partidas:", error);
-    }
-  };
+  // UseEffect 1: Inicialização e carregamento do jogo
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
 
-// UseEffect 1: Inicialização e carregamento do jogo
-useEffect(() => {
-  if (typeof window === "undefined") return; // garante que só rode no browser
-
-  const stored = localStorage.getItem("selectedGame");
-  if (!stored) {
-    router.push("/");
-    return;
-  }
-
-  try {
-    const id = JSON.parse(stored);
-    if (!id) {
-      router.push("/");
+    const stored = localStorage.getItem('selectedGame');
+    if (!stored) {
+      router.push('/');
       return;
     }
 
-    console.log("Carregando informações do jogo...");
-    handleGetInfoGame(id);
-  } catch (error) {
-    console.error("Erro ao processar dados do localStorage:", error);
-    router.push("/");
-  }
-}, [router]);
+    try {
+      const id = JSON.parse(stored);
+      if (!id) {
+        router.push('/');
+        return;
+      }
 
-// UseEffect 2: Carrega campeonatos quando gameData estiver disponível
-useEffect(() => {
-  if (gameData?.id) {
-    console.log("Carregando campeonatos para o jogo:", gameData.id);
-    handleGetInfoChampionships(gameData.id);
-  }
-}, [gameData]);
-
-// UseEffect 3: Carrega partidas quando championshipData estiver disponível
-useEffect(() => {
-  if (championshipData && championshipData.length > 0) {
-    // Se você quiser carregar partidas do primeiro campeonato
-    const firstChampionship = championshipData[0];
-    if (firstChampionship?.id) {
-      console.log("Carregando partidas para o campeonato:", matchesData);
-      handleGetInfoMatches(firstChampionship.id);
+      handleGetInfoGame(id);
+    } catch (error) {
+      console.error('Erro ao processar dados do localStorage:', error);
+      router.push('/');
     }
-    
-    // Ou se você quiser carregar partidas de todos os campeonatos
-    // championshipData.forEach(championship => {
-    //   if (championship?.id) {
-    //     handleGetInfoMatches(championship.id);
-    //   }
-    // });
-  }
-}, [championshipData]);
+  }, [router]);
 
-// UseEffect existente para filtros (mantém como está)
-useEffect(() => {
-  if (!gameData || !Array.isArray(gameData.partidas)) return;
-  let arr = gameData.partidas;
-  if (selectedCampeonato !== "Todos") {
-    arr = arr.filter((p) => p.campeonato === selectedCampeonato);
-  }
-  if (selectedTime !== "Todos") {
-    arr = arr.filter(
-      (p) => p.time1 === selectedTime || p.time2 === selectedTime
-    );
-  }
-  setFilteredMatches(arr);
-}, [selectedCampeonato, selectedTime, gameData]);
+  // UseEffect 2: Carrega campeonatos quando gameData estiver disponível
+  useEffect(() => {
+    if (gameData?.id && !championshipsLoaded.current) {
+      handleGetInfoChampionships(gameData.id);
+    }
+  }, [gameData?.id]);
 
-  // Extrair opções de filtro a partir de gameData.partidas
-  const campeonatoOptions = ["Todos"];
-  const timeOptions = ["Todos"];
-  if (gameData && Array.isArray(gameData.partidas)) {
+  // UseEffect 3: Processa partidas quando championshipData estiver disponível
+  useEffect(() => {
+    if (championshipData && championshipData.length > 0) {
+      console.log('Processando partidas dos campeonatos...');
+
+      const allMatches = [];
+
+      championshipData.forEach(championship => {
+        if (championship.matches && championship.matches.length > 0) {
+          const matchesWithChampionship = championship.matches.map(match => ({
+            ...match,
+            campeonato: championship.name,
+            time1: match.matchTeams[0]?.team?.name || '',
+            time2: match.matchTeams[1]?.team?.name || '',
+            imgTime1: match.matchTeams[0]?.team?.logo || '',
+            imgTime2: match.matchTeams[1]?.team?.logo || '',
+            data: new Date(match.date).toLocaleDateString('pt-BR'),
+            horario: match.hour.substring(0, 5),
+          }));
+
+          allMatches.push(...matchesWithChampionship);
+        }
+      });
+
+      // NÃO atualiza gameData - só matchesData
+      setMatchesData(allMatches);
+      setFilteredMatches(allMatches);
+    }
+  }, [championshipData]);
+
+  // UseEffect 4: Aplica filtros nas partidas
+  useEffect(() => {
+    if (!matchesData || matchesData.length === 0) return;
+
+    let arr = matchesData;
+
+    if (selectedCampeonato !== 'Todos') {
+      arr = arr.filter(p => p.campeonato === selectedCampeonato);
+    }
+
+    if (selectedTime !== 'Todos') {
+      arr = arr.filter(p => p.time1 === selectedTime || p.time2 === selectedTime);
+    }
+
+    setFilteredMatches(arr);
+  }, [selectedCampeonato, selectedTime, matchesData]);
+
+  // Extrair opções de filtro
+  const campeonatoOptions = ['Todos'];
+  const timeOptions = ['Todos'];
+
+  if (matchesData && Array.isArray(matchesData)) {
     const camps = new Set();
     const times = new Set();
-    gameData.partidas.forEach((p) => {
+
+    matchesData.forEach(p => {
       if (p.campeonato) camps.add(p.campeonato);
       if (p.time1) times.add(p.time1);
       if (p.time2) times.add(p.time2);
     });
+
     Array.from(camps)
       .sort()
-      .forEach((c) => campeonatoOptions.push(c));
+      .forEach(c => campeonatoOptions.push(c));
     Array.from(times)
       .sort()
-      .forEach((t) => timeOptions.push(t));
+      .forEach(t => timeOptions.push(t));
   }
 
-  // Atualiza filteredMatches quando filtros mudam
-  useEffect(() => {
-    if (!gameData || !Array.isArray(gameData.partidas)) return;
-    let arr = gameData.partidas;
-    if (selectedCampeonato !== "Todos") {
-      arr = arr.filter((p) => p.campeonato === selectedCampeonato);
-    }
-    if (selectedTime !== "Todos") {
-      arr = arr.filter(
-        (p) => p.time1 === selectedTime || p.time2 === selectedTime
-      );
-    }
-    setFilteredMatches(arr);
-  }, [selectedCampeonato, selectedTime, gameData]);
-
-  // Função de voltar
   const handleBack = () => {
     router.back();
   };
 
-  if (!gameData) {
-    return null; // ou um loading simples
-  }
-
-  // Caminhos absolutos para assets
-  // As propriedades image, gif, video no JSON podem vir como "./static/...", então:
-  const normalizePath = (str) => {
-    if (!str) return "";
-    return str.replace(/^\.?\//, "/").replace("./static", "/static");
-  };
-
   function isFuture(data, horario) {
-    const [dia, mes, ano] = data.split("/");
+    const [dia, mes, ano] = data.split('/');
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     return new Date() < partidaData;
   }
 
   function getBotaoTexto(data, horario) {
-    const [dia, mes, ano] = data.split("/");
+    const [dia, mes, ano] = data.split('/');
     const partidaData = new Date(`${ano}-${mes}-${dia}T${horario}`);
     const agora = new Date();
 
@@ -202,8 +183,35 @@ useEffect(() => {
     return (
       <>
         Transmissão não disponível <i className="fas fa-lock"></i>
-        {/* ou "fa-solid fa-lock" dependendo do seu setup */}
       </>
+    );
+  }
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+        <div className="text-white text-center">
+          <div className="spinner-border text-primary mb-3" role="status">
+            <span className="visually-hidden">Carregando...</span>
+          </div>
+          <p>Carregando jogo...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Verificação se gameData existe
+  if (!gameData) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+        <div className="text-white text-center">
+          <p>Erro ao carregar dados do jogo.</p>
+          <button onClick={() => router.push('/')} className="btn btn-primary">
+            Voltar ao início
+          </button>
+        </div>
+      </div>
     );
   }
 
@@ -216,10 +224,7 @@ useEffect(() => {
             <div className="col">
               <div className="container">
                 <div className="my-4 mt-5 d-flex justify-content-center justify-content-md-start">
-                  <button
-                    onClick={handleBack}
-                    className="d-none d-md-flex btn-voltar text-white"
-                  >
+                  <button onClick={handleBack} className="d-none d-md-flex btn-voltar text-white">
                     <i className="fa-solid fa-arrow-left" />
                     <h5 className="mb-0 ms-2">Voltar</h5>
                   </button>
@@ -232,24 +237,28 @@ useEffect(() => {
                     <h4 className="me-2">Principal Torneio:</h4>
                     <h4 id="game-tournament">{gameData.tournament}</h4>
                   </div>
-                  <h5
-                    id="game-descricao"
-                    className="text-white texto-justificado mt-4 mb-5"
-                  >
-                    {gameData.descricao}
+                  <h5 id="game-descricao" className="text-white texto-justificado mt-4 mb-5">
+                    {gameData.description || gameData.descricao}
                   </h5>
                 </div>
               </div>
 
-              {/* Vídeo de fundo ou apresentação */}
+              {/* Vídeo de fundo  */}
               {gameData.video && (
                 <div className="video-jogo position-absolute">
-                  <video autoPlay loop muted id="game-video" className="w-100">
-                    <source
-                      src={normalizePath(gameData.video)}
-                      type="video/mp4"
-                      id="game-video-source"
-                    />
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    id="game-video"
+                    className="w-100"
+                    onLoadStart={() => console.log('Video loading started:', gameData.video)}
+                    onCanPlay={() => console.log('Video can play')}
+                    onError={e => console.error('Video error:', e, 'URL:', gameData.video)}
+                    onLoadedData={() => console.log('Video data loaded')}
+                  >
+                    <source src={gameData.video} type="video/mp4" id="game-video-source" />
                     Seu navegador não suporta a tag de vídeo.
                   </video>
                   <div className="gradient" />
@@ -260,8 +269,8 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Filtros de próximos jogos */}
       <main className="page-game">
+        {/* Filtros e cards de partidas */}
         <section className="container mt-5 mb-3">
           <div className="row align-items-center">
             <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
@@ -275,9 +284,9 @@ useEffect(() => {
                     name="campeonatos-game"
                     id="campeonatos-game"
                     value={selectedCampeonato}
-                    onChange={(e) => setSelectedCampeonato(e.target.value)}
+                    onChange={e => setSelectedCampeonato(e.target.value)}
                   >
-                    {campeonatoOptions.map((opt) => (
+                    {campeonatoOptions.map(opt => (
                       <option key={opt} value={opt}>
                         {opt}
                       </option>
@@ -290,9 +299,9 @@ useEffect(() => {
                     name="campeonatos-time"
                     id="campeonatos-time"
                     value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
+                    onChange={e => setSelectedTime(e.target.value)}
                   >
-                    {timeOptions.map((opt) => (
+                    {timeOptions.map(opt => (
                       <option key={opt} value={opt}>
                         {opt}
                       </option>
@@ -304,7 +313,7 @@ useEffect(() => {
           </div>
         </section>
 
-        {/* Lista de próximos jogos (cards) */}
+        {/* Lista de próximos jogos */}
         <section className="container">
           <div className="row g-4" id="cards-container">
             {filteredMatches.length > 0 ? (
@@ -312,58 +321,63 @@ useEffect(() => {
                 <div
                   key={idx}
                   className="col-12 col-md-6 col-lg-4"
-                  // opcional: onClick para abrir link
                   onClick={() => {
-                    if (item.link) window.open(item.link, "_blank");
+                    if (item.link) window.open(item.link, '_blank');
                   }}
+                  style={{ cursor: item.link ? 'pointer' : 'default' }}
                 >
                   <div className="card border-0 rounded-4 bg-dark text-white h-100">
                     <div className="card-body bg-dark p-4 rounded-5">
-                      <h5 className="card-title text-primary fw-bold mb-3">
-                        {item.campeonato}
-                      </h5>
+                      <h5 className="card-title text-primary fw-bold mb-3">{item.campeonato}</h5>
                       <div className="d-flex justify-content-between align-items-center mb-2">
                         <div className="text-center">
                           <div
                             style={{
                               width: 48,
                               height: 48,
-                              position: "relative",
-                              margin: "0 auto",
+                              position: 'relative',
+                              margin: '0 auto',
                             }}
                           >
-                            {/* <Image
-                              src={normalizePath(item.imgTime1)}
-                              alt={"será adicionado imagem"}
-                              fill
-                              sizes="48px"
-                            /> */}
+                            {item.imgTime1 && (
+                              <Image
+                                src={item.imgTime1}
+                                alt={item.time1}
+                                fill
+                                sizes="48px"
+                                className="rounded-circle"
+                                style={{ objectFit: 'cover' }}
+                              />
+                            )}
                           </div>
-                          <p className="mb-0 fw-semibold">{item.time1}</p>
+                          <p className="mb-0 fw-semibold small mt-1">{item.time1}</p>
                         </div>
-                        <div className="fw-bold fs-4">VS</div>
+                        <div className="fw-bold fs-4 text-primary">VS</div>
                         <div className="text-center">
                           <div
                             style={{
                               width: 48,
                               height: 48,
-                              position: "relative",
-                              margin: "0 auto",
+                              position: 'relative',
+                              margin: '0 auto',
                             }}
                           >
-                            {/* <Image
-                              src={normalizePath(item.image)}
-                              alt={item.description}
-                              fill
-                              sizes="48px"
-                            /> */}
+                            {item.imgTime2 && (
+                              <Image
+                                src={item.imgTime2}
+                                alt={item.time2}
+                                fill
+                                sizes="48px"
+                                className="rounded-circle"
+                                style={{ objectFit: 'cover' }}
+                              />
+                            )}
                           </div>
-                          <p className="mb-0 fw-semibold">{item.time2}</p>
+                          <p className="mb-0 fw-semibold small mt-1">{item.time2}</p>
                         </div>
                       </div>
                       <p className="my-2">
-                        <span className="fw-bold">Data:</span> {item.data} às{" "}
-                        {item.horario}
+                        <span className="fw-bold">Data:</span> {item.data} às {item.horario}
                       </p>
                       <div className="d-grid mt-4">
                         <a
@@ -371,11 +385,11 @@ useEffect(() => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`btn btn-live btn-outline-primary rounded-pill ${
-                            isFuture(item.date, item.hour) ? "disabled" : ""
+                            isFuture(item.data, item.horario) ? 'disabled' : ''
                           }`}
                         >
                           <h5 className="mb-0 h5-btn-trasmissao">
-                            {getBotaoTexto(item.date, item.hour)}
+                            {getBotaoTexto(item.data, item.horario)}
                           </h5>
                         </a>
                       </div>
@@ -385,15 +399,15 @@ useEffect(() => {
               ))
             ) : (
               <div className="col-12">
-                <p className="text-white">
-                  Nenhum jogo encontrado para este filtro.
-                </p>
+                <div className="text-center py-5">
+                  <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
+                </div>
               </div>
             )}
           </div>
         </section>
 
-        {/* Seção de Campeonatos em destaque, se desejar */}
+        {/* Seção de Campeonatos */}
         <section className="container mt-5 mb-3">
           <div className="row align-items-center">
             <div className="col-12 col-md-12 col-lg-6 filtros-titulo">
@@ -403,15 +417,86 @@ useEffect(() => {
         </section>
         <section className="container">
           <div className="row" id="campeonatos-container">
-            {/* {championshipData.map((camp) => {
-              return (
+            {championshipData && championshipData.length > 0 ? (
+              championshipData.map(camp => (
                 <div key={camp.id} className="col-12 col-md-6 col-lg-3 mb-3">
-                  <div className="card bg-dark text-white p-3 h-100">
-                    <h5 className="mb-0 text-truncate">{camp.name}</h5>
+                  <div className="card bg-dark text-white p-3 h-100 border-0 rounded-4">
+                    <div className="card-body p-2">
+                      {camp.imageChampionship && (
+                        <div className="text-center mb-3">
+                          <div
+                            style={{
+                              width: 80,
+                              height: 80,
+                              position: 'relative',
+                              margin: '0 auto',
+                            }}
+                          >
+                            <Image
+                              src={camp.imageChampionship}
+                              alt={camp.name}
+                              fill
+                              sizes="80px"
+                              className="rounded-3"
+                              style={{ objectFit: 'cover' }}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      <h5 className="text-center text-primary fw-bold mb-3 text-truncate">
+                        {camp.name}
+                      </h5>
+
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <small className="text-muted">Partidas:</small>
+                        <span className="badge bg-primary rounded-pill">
+                          {camp.totalMatches || 0}
+                        </span>
+                      </div>
+
+                      {camp.matches && camp.matches.length > 0 && (
+                        <div className="mb-3">
+                          <small className="text-muted d-block mb-2">Times:</small>
+                          <div className="d-flex flex-wrap gap-1">
+                            {Array.from(
+                              new Set(
+                                camp.matches.flatMap(match =>
+                                  match.matchTeams.map(mt => mt.team.name)
+                                )
+                              )
+                            )
+                              .slice(0, 4)
+                              .map((teamName, idx) => (
+                                <span
+                                  key={idx}
+                                  className="badge bg-secondary text-truncate"
+                                  style={{ maxWidth: '80px', fontSize: '0.7rem' }}
+                                  title={teamName}
+                                >
+                                  {teamName}
+                                </span>
+                              ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="mt-auto">
+                        <small className="text-muted">
+                          Criado em: {new Date(camp.createdAt).toLocaleDateString('pt-BR')}
+                        </small>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              );
-            })} */}
+              ))
+            ) : (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <p className="text-muted">Nenhum campeonato encontrado para este jogo.</p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -425,56 +510,37 @@ useEffect(() => {
               <div className="col-12 col-md-6 mb-3">
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Desenvolvedora:</h5>
-                  <h5 id="game-desenvolvedora" className="text-cinza mb-0">
-                    {gameData.developer}
-                  </h5>
+                  <h5 className="text-cinza mb-0">{gameData.developer}</h5>
                 </div>
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Gênero:</h5>
-                  <h5 id="game-genero" className="text-cinza mb-0">
-                    {gameData.genre}
-                  </h5>
+                  <h5 className="text-cinza mb-0">{gameData.genre}</h5>
                 </div>
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Lançamento:</h5>
-                  <h5 id="game-lancamento" className="text-cinza mb-0">
-                    {gameData.release}
-                  </h5>
+                  <h5 className="text-cinza mb-0">{gameData.release}</h5>
                 </div>
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Campeonatos:</h5>
-                  <h5
-                    id="game-campeonatos"
-                    className="text-cinza mb-0 text-truncate"
-                  >
-                    {Array.isArray(championshipData.name)
-                      ? gameData.imgCamps.length + " items"
-                      : ""}
+                  <h5 className="text-cinza mb-0">
+                    {championshipData.length} campeonatos
                   </h5>
                 </div>
               </div>
               <div className="col-12 col-md-6 mb-3">
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Tags:</h5>
-                  <h5 id="game-tags" className="text-cinza mb-0">
-                    {Array.isArray(gameData.tags)
-                      ? gameData.tags.join(", ")
-                      : ""}
+                  <h5 className="text-cinza mb-0">
+                    {Array.isArray(gameData.tags) ? gameData.tags.join(', ') : ''}
                   </h5>
                 </div>
                 <div className="d-flex">
                   <h5 className="fw-bold text-white me-2">Distribuidora:</h5>
-                  <h5 id="game-distribuidora" className="text-cinza mb-0">
-                    {gameData.publisher}
-                  </h5>
+                  <h5 className="text-cinza mb-0">{gameData.publisher}</h5>
                 </div>
                 <div className="d-flex">
-                  <h5 className="fw-bold text-white me-2">
-                    Idade Recomendada:
-                  </h5>
-                  <h5 id="game-idade-recomendada" className="text-cinza mb-0">
-                    {gameData.ageRating}+
-                  </h5>
+                  <h5 className="fw-bold text-white me-2">Idade Recomendada:</h5>
+                  <h5 className="text-cinza mb-0">{gameData.ageRating}+</h5>
                 </div>
               </div>
             </div>
