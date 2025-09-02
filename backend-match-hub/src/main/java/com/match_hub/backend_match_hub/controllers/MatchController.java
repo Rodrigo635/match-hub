@@ -39,6 +39,17 @@ public class MatchController {
         return ResponseEntity.ok(matches);
     }
 
+    @Operation(summary = "Get matches by team", description = "Retrieves the details of matches by Team ID with pagination.")
+    @GetMapping("/team/{teamId}")
+    public ResponseEntity<PageResponseDTO<MatchResponseDTO>> findByTeam(
+            @PathVariable Long teamId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        PageResponseDTO<MatchResponseDTO> matches = matchService.findByTeam(teamId, page, size);
+        return ResponseEntity.ok(matches);
+    }
+
 
     @Operation(summary = "Get match by ID", description = "Retrieves the details of a match by its unique ID.")
     @GetMapping("/{id}")

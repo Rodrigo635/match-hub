@@ -11,4 +11,14 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
 
     @Query("SELECT m FROM Match m WHERE m.championshipId.id = :championshipId")
     Page<Match> findByChampionshipId(@Param("championshipId") Long championshipId, Pageable pageable);
+
+    @Query("""
+       SELECT m 
+       FROM Match m 
+       JOIN m.matchTeams mt 
+       JOIN mt.id.team t 
+       WHERE t.id = :teamId
+       """)
+    Page<Match> findByTeamId(@Param("teamId") Long teamId, Pageable pageable);
+
 }

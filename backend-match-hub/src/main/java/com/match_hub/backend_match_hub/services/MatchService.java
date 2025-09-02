@@ -64,6 +64,12 @@ public class MatchService {
         return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
     }
 
+    public PageResponseDTO<MatchResponseDTO> findByTeam(Long teamId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
+        Page<Match> matches = matchRepository.findByTeamId(teamId, pageable);
+        return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
+    }
+
     public MatchResponseDTO findById(Long id) {
         Match match = matchRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Match not found"));
         MatchResponseDTO matchDTO = matchMapper.toResponseDto(match);
