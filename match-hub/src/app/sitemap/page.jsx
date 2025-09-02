@@ -1,20 +1,33 @@
 // src/app/sitemap/page.js
-import Link from 'next/link';
-
-export const metadata = {
-  title: 'Mapa do Site - MATCH HUB',
-  description: 'Mapa do Site do Match Hub: navegue pelas seções disponíveis.',
-};
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { handleGetUser } from "../global/global";
 
 export default function SitemapPage() {
+  const [user, setUser] = useState(null); 
+  const [token, setToken] = useState(null);
+
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await handleGetUser({ setToken, setUser });
+
+      setUser(user);
+    }
+
+    fetchUser();
+  }, []);
+
   return (
     <main className="my-5 mapa">
-        <link rel="stylesheet" href="/css/sitemap.css" />
+      <link rel="stylesheet" href="/css/sitemap.css" />
       <div className="container my-5">
         <div className="text-center mb-4">
           <h1 className="fw-bold mb-3 text-white">Mapa do Site</h1>
           <h5 className="text-white-50">
-            Explore todas as seções do Match Hub e encontre o que você precisa rapidamente!
+            Explore todas as seções do Match Hub e encontre o que você precisa
+            rapidamente!
           </h5>
         </div>
         <div className="row justify-content-center">
@@ -50,18 +63,33 @@ export default function SitemapPage() {
               </li>
               <li className="mb-3">
                 <h5>
-                  <Link href="/cadastro_concluido" className="text-azul sitemap-link">
+                  <Link
+                    href="/cadastro_concluido"
+                    className="text-azul sitemap-link"
+                  >
                     Cadastro Concluído
                   </Link>
                 </h5>
               </li>
-              <li className="mb-3">
-                <h5>
-                  <Link href="/admin" className="text-azul sitemap-link">
-                    Painel administrativo
-                  </Link>
-                </h5>
-              </li>
+              {user && user.role === "ADMIN" && (
+                <>
+                  <li className="mb-3">
+                    <h5>
+                      <Link href="/admin" className="text-azul sitemap-link">
+                        Painel administrativo
+                      </Link>
+                    </h5>
+                  </li>
+                  <li>
+                    <h5>
+                      <Link href="/dashboard" className="text-azul sitemap-link">
+                        Dashboard
+                      </Link>
+                    </h5>
+                  </li>
+                </>
+              )}
+
               <li className="mb-3">
                 <h5>
                   <Link href="/perfil" className="text-azul sitemap-link">

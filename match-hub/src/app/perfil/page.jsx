@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { getUserByToken } from "../services/userService";
 import Configuracoes from "@/components/perfil/Configuracoes";
 import Seguranca from "@/components/perfil/Seguranca";
 import PerfilDefault from "@/components/perfil/PerfilDefault";
