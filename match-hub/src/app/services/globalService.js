@@ -84,6 +84,7 @@ export async function uploadImage(id, formData, endpoint) {
   return imageResponse;
 }
 
+
 export async function getData(page, size, endpoint) {
   const url = `${endpoint}?page=${page}&size=${size}`;
   const res = await fetch(url, {
