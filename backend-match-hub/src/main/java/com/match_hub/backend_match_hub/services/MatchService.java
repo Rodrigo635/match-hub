@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,13 +53,13 @@ public class MatchService {
 
 
     public PageResponseDTO<MatchResponseDTO> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         Page<Match> matches = matchRepository.findAll(pageable);
         return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
     }
 
     public PageResponseDTO<MatchResponseDTO> findByChampionship(Long championshipId, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         Page<Match> matches = matchRepository.findByChampionshipId(championshipId, pageable);
         return pageMapper.toPageResponseDto(matches, matchMapper::toResponseDto);
     }

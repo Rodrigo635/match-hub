@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,7 +46,7 @@ public class ChampionshipService {
     private static final String FOLDER = "championships";
 
     public PageResponseDTO<ChampionshipResponseDTO> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         Page<Championship> championship = championshipRepository.findAll(pageable);
         return pageMapper.toPageResponseDto(championship, championshipMapper::toResponseDto);
     }

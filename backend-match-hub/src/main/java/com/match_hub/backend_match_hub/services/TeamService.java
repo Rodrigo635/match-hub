@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +40,7 @@ public class TeamService {
     private static final String FOLDER = "teams";
 
     public PageResponseDTO<TeamResponseDTO> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         Page<Team> matches = teamRepository.findAll(pageable);
         return pageMapper.toPageResponseDto(matches, teamMapper::toResponseDto);
     }

@@ -17,6 +17,7 @@ import com.match_hub.backend_match_hub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +52,7 @@ public class UserService {
 
 
     public PageResponseDTO<UserResponseDTO> findAll(int page, int size) {
-        Page<User> user = userRepository.findAll(PageRequest.of(page, size));
+        Page<User> user = userRepository.findAll(PageRequest.of(page, size, Sort.by("id").ascending()));
         return pageMapper.toPageResponseDto(user, userMapper::toResponseDto);
     }
 
