@@ -102,17 +102,19 @@ export default function ModalUpdateImage({ user, onClose }) {
             <div className="modal-body bg-dark text-white">
               <div className="d-flex flex-column align-items-center mb-5">
                 <p>Foto atual:</p>
-                <Image
-                  src={
-                    user.profilePicture
-                      ? user.profilePicture
-                      : "/static/icons/profileIcon.jpg"
-                  }
-                  alt={user.name}
-                  width={200}
-                  height={200}
-                  className="rounded-circle bg-secondary p-1 "
-                />
+                <label htmlFor="imageProfile" className="cursor-pointer">
+                  <Image
+                    src={
+                      user.profilePicture
+                        ? user.profilePicture
+                        : "/static/icons/profileIcon.jpg"
+                    }
+                    alt={user.name}
+                    width={200}
+                    height={200}
+                    className="rounded-circle bg-secondary p-1 "
+                  />
+                </label>
               </div>
               <form onSubmit={handleSubmitUpdateImage} className="w-100">
                 <div className="mb-3">
