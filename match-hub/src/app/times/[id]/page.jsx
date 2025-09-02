@@ -1,10 +1,10 @@
-// src/app/times/[id]/page.jsx
 "use client";
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { getTeamById } from '../../services/teamService';
+import { getMatchesByTeam } from '../../services/matchService';
 
 export default function TeamDetailsPage() {
   const params = useParams();
@@ -12,6 +12,7 @@ export default function TeamDetailsPage() {
   const id = params?.id;
 
   const [team, setTeam] = useState(null);
+  const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,13 +20,17 @@ export default function TeamDetailsPage() {
     let mounted = true;
     setLoading(true);
 
-    getTeamById(id)
-      .then(res => {
+    Promise.all([
+      getTeamById(id),
+      getMatchesByTeam(id, 0, 10) // pagina 0, até 10 partidas
+    ])
+      .then(([teamRes, matchesRes]) => {
         if (!mounted) return;
-        setTeam(res);
+        setTeam(teamRes);
+        setMatches(matchesRes.content || []); // a API retorna content, totalPages, etc
       })
       .catch(err => {
-        console.error('Erro ao buscar time:', err);
+        console.error('Erro ao buscar time ou partidas:', err);
         router.push('/');
       })
       .finally(() => mounted && setLoading(false));
@@ -56,8 +61,6 @@ export default function TeamDetailsPage() {
       </div>
     );
   }
-
-  const matches = team.matches || [];
 
   return (
     <>
