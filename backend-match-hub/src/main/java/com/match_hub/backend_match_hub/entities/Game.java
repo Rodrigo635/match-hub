@@ -37,6 +37,8 @@ public class Game implements Serializable, HasProfileImage, HasVideo, HasGif {
     private String image;
     private String video;
     private String gif;
+
+    @Column(length = 500)
     private String description;
 
     @ElementCollection
