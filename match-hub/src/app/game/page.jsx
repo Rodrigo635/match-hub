@@ -243,7 +243,7 @@ export default function GamePage() {
                 </div>
                 <div className="col-12 col-md-6 col-lg-4 mb-4">
                   <h1 className="game-title fw-bold text-white text-center text-md-start mt-4">
-                    {gameData.game}
+                    {gameData.name}
                   </h1>
                   <div className="d-flex text-white justify-content-center justify-content-md-start">
                     <h4 className="me-2">Principal Torneio:</h4>
@@ -477,81 +477,48 @@ export default function GamePage() {
             {championshipData && championshipData.length > 0 ? (
               championshipData.map((camp) => (
                 <div key={camp.id} className="col-12 col-md-6 col-lg-3 mb-3">
-                  <div className="card bg-dark text-white p-3 h-100 border-0 rounded-4">
-                    <div className="card-body p-2">
-                      {camp.imageChampionship && (
-                        <div className="text-center mb-3">
-                          <div
-                            style={{
-                              width: 80,
-                              height: 80,
-                              position: "relative",
-                              objectFit: "cover",
-                              margin: "0 auto",
-                              
-                            }}
-                          >
-                            <Image
-                              src={camp.imageChampionship}
-                              alt={camp.name}
-                              fill
-                              sizes="80px"
-                            />
-                          </div>
-                        </div>
-                      )}
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={() => {
+      // opcional: guardar seleção (não obrigatório)
+      try { localStorage.setItem('selectedChampionship', JSON.stringify(camp.id)); } catch (e) {}
+      router.push(`/campeonatos/${camp.id}`);
+    }}
+    onKeyDown={(e) => { if (e.key === 'Enter') { router.push(`/campeonatos/${camp.id}`); } }}
+    className="card bg-dark text-white p-3 h-100 border-0 rounded-4 cursor-pointer"
+  >
+    <div className="card-body p-2">
+      {camp.imageChampionship && (
+        <div className="text-center mb-3" style={{ width: 80, height: 80, position: 'relative', margin: '0 auto' }}>
+          <Image src={camp.imageChampionship} alt={camp.name} fill sizes="80px" />
+        </div>
+      )}
 
-                      <h5 className="text-center text-primary fw-bold mb-3 text-truncate">
-                        {camp.name}
-                      </h5>
+      <h5 className="text-center text-primary fw-bold mb-3 text-truncate">{camp.name}</h5>
 
-                      <div className="d-flex text-white gap-2 align-items-center mb-2">
-                        <small className="text-white">Partidas:</small>
-                        <span className="badge text-white bg-primary rounded-pill">
-                          {camp.totalMatches || 0}
-                        </span>
-                      </div>
+      <div className="d-flex text-white gap-2 align-items-center mb-2">
+        <small className="text-white">Partidas:</small>
+        <span className="badge text-white bg-primary rounded-pill">{camp.totalMatches || 0}</span>
+      </div>
 
-                      {camp.matches && camp.matches.length > 0 && (
-                        <div className="mb-3">
-                          <small className="text-white d-block mb-2">
-                            Times:
-                          </small>
-                          <div className="d-flex flex-wrap gap-1">
-                            {Array.from(
-                              new Set(
-                                camp.matches.flatMap((match) =>
-                                  match.matchTeams.map((mt) => mt.team.name)
-                                )
-                              )
-                            )
-                              .slice(0, 4)
-                              .map((teamName, idx) => (
-                                <span
-                                  key={idx}
-                                  className="badge bg-secondary text-truncate"
-                                  style={{
-                                    maxWidth: "80px",
-                                    fontSize: "0.7rem",
-                                  }}
-                                  title={teamName}
-                                >
-                                  {teamName}
-                                </span>
-                              ))}
-                          </div>
-                        </div>
-                      )}
+      {camp.matches && camp.matches.length > 0 && (
+        <div className="mb-3">
+          <small className="text-white d-block mb-2">Times:</small>
+          <div className="d-flex flex-wrap gap-1">
+            {Array.from(new Set(camp.matches.flatMap((match) => match.matchTeams.map((mt) => mt.team.name)))).slice(0,4).map((teamName, idx) => (
+              <span key={idx} className="badge bg-secondary text-truncate" style={{ maxWidth: '80px', fontSize: '0.7rem' }} title={teamName}>{teamName}</span>
+            ))}
+          </div>
+        </div>
+      )}
 
-                      <div className="mt-auto">
-                        <small className="text-white">
-                          Criado em:{" "}
-                          {new Date(camp.createdAt).toLocaleDateString("pt-BR")}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div className="mt-auto">
+        <small className="text-white">Criado em: {new Date(camp.createdAt).toLocaleDateString('pt-BR')}</small>
+      </div>
+    </div>
+  </div>
+</div>
               ))
             ) : (
               <div className="col-12">
