@@ -61,8 +61,29 @@ async function uploadSingleMedia(id, file, type, endpoint) {
 
 // Função legada para compatibilidade
 export async function uploadImage(id, formData, endpoint) {
-  return await uploadGameMediaFiles(id, formData, endpoint);
+   // Enviar a imagem (se houver)
+    let imageResponse = null;
+    if (formData.image) {
+      const file = formData.image;
+      const fileMultipart = new FormData();
+      fileMultipart.append("file", file);
+      const res = await fetch(`${endpoint}/image/upload/${id}`, {
+        method: "POST",
+        credentials: "include",
+        body: fileMultipart,
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Erro ao enviar imagem", res.status, text);
+        throw new Error(`Erro ao enviar imagem: ${res.status}`);
+      }
+
+      imageResponse = await res;
+    }
+    return imageResponse;
 }
+
 
 export async function getData(page, size, endpoint) {
   const url = `${endpoint}?page=${page}&size=${size}`;
@@ -151,7 +172,7 @@ export async function createData(teamData, endpoint) {
   return res, res2;
 }
 
-export async function updateData(id, teamData, endpoint) {
+export async function updateDataWithMedia(id, teamData, endpoint) {
   let options = {
     method: "PUT",
     credentials: "include",
@@ -176,6 +197,31 @@ export async function updateData(id, teamData, endpoint) {
   const mediaUploads = await uploadGameMediaFiles(id, teamData, endpoint);
 
   return { response: res, mediaUploads };
+}
+
+export async function updateData(id, teamData, endpoint) {
+  let options = {
+    method: "PUT",
+    credentials: "include",
+  };
+  if (teamData instanceof FormData) {
+    options.body = teamData;
+  } else {
+    options.headers = {
+      "Content-Type": "application/json",
+    };
+    options.body = JSON.stringify(teamData);
+  }
+  const res = await fetch(`${endpoint}/${id}`, options);
+  if (!res.ok) {
+    const text = await res.text();
+    console.error("update: erro status", res.status, text);
+    throw new Error(`Erro ao atualizar dados com id ${id}: ${res.status}`);
+  }
+  
+  const res2 = await uploadImage(id, teamData, endpoint);
+
+  return res, res2;
 }
 
 export async function deleteData(id, endpoint) {

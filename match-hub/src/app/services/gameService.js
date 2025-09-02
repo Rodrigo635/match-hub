@@ -16,7 +16,7 @@ export async function createGame(gameData) {
 }
 
 export async function updateGame(id, gameData) {
-  return await updateData(id, gameData, BASE_URL);
+  return await updateDataWithMedia(id, gameData, BASE_URL);
 }
 
 export async function deleteGame(id) {
