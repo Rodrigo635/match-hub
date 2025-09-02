@@ -16,6 +16,7 @@ public record CreateGameDTO(
         String tournament,
 
         @NotBlank(message = "A descrição do jogo é obrigatória")
+        @Size(min = 20, max = 500, message = "A descrição do jogo deve ter entre 2 e 500 caracteres")
         String description,
 
         @NotEmpty(message = "As tags do jogo é obrigatória")

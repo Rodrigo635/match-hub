@@ -24,10 +24,24 @@ export const formFieldsConfig = {
   ],
   team: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do time' },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textarea',
+      placeholder: 'Descrição do time',
+    },
+
     { name: 'image', label: 'Logo', type: 'file', accept: 'image/*' },
   ],
   championship: [
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do campeonato' },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textarea',
+      placeholder: 'Descrição do campeonato',
+    },
+
     { name: 'image', label: 'Image', type: 'file' },
     { name: 'gameId', label: 'Jogos', type: 'select', optionsKey: 'games' },
   ],
@@ -35,9 +49,20 @@ export const formFieldsConfig = {
     { name: 'name', label: 'Name', type: 'text', placeholder: 'Nome do jogo' },
     { name: 'tournament', label: 'Tournament', type: 'text', placeholder: 'Torneio associado' },
     { name: 'image', label: 'Image', type: 'file' },
-    { name: 'video', label: 'Video URL', type: 'file', accept: 'video/*', placeholder: 'URL do vídeo' },
+    {
+      name: 'video',
+      label: 'Video URL',
+      type: 'file',
+      accept: 'video/*',
+      placeholder: 'URL do vídeo',
+    },
     { name: 'gif', label: 'GIF URL', type: 'file', accept: 'image/gif', placeholder: 'URL do GIF' },
-    { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Descrição do jogo' },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textarea',
+      placeholder: 'Descrição do jogo',
+    },
     { name: 'tags', label: 'Tags', type: 'text', placeholder: 'e.g. Action, FPS' },
     { name: 'release', label: 'Release Date', type: 'date' },
     { name: 'genre', label: 'Genre', type: 'text', placeholder: 'Gênero' },
@@ -46,7 +71,7 @@ export const formFieldsConfig = {
     { name: 'age_rating', label: 'Age Rating', type: 'text', placeholder: 'e.g. 16+' },
   ],
   match: [
-    { name: 'date', label: 'Date', type: 'date' }, 
+    { name: 'date', label: 'Date', type: 'date' },
     { name: 'hour', label: 'Time', type: 'time' },
     { name: 'link', label: 'Link', type: 'text', placeholder: 'URL da partida' },
     { name: 'championshipId', label: 'Championship', type: 'select', optionsKey: 'championships' },
@@ -54,3 +79,4 @@ export const formFieldsConfig = {
     { name: 'team2Id', label: 'Team 2', type: 'select', optionsKey: 'teams' },
   ],
 };
+

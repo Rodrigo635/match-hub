@@ -31,6 +31,9 @@ public class Championship implements Serializable, HasProfileImage {
     private String name;
     private String imageChampionship;
 
+    @Column(length = 500)
+    private String description;
+
     @OneToMany(mappedBy = "championshipId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Match> matches = new ArrayList<>();
 

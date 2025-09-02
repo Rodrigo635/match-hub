@@ -9,6 +9,7 @@ public record ChampionshipResponseDTO(
         Long id,
         String name,
         String imageChampionship,
+        String description,
         Instant createdAt,
         List<MatchResponseDTO> matches,
         Integer totalMatches

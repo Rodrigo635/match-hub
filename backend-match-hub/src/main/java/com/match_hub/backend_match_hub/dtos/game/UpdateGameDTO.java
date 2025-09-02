@@ -15,12 +15,11 @@ public record UpdateGameDTO(
         @Size(min = 1, message = "O nome do torneio deve ter pelo menos 1 caractere, se informado")
         String tournament,
 
-        @Size(min = 20, message = "A descrição deve ter pelo menos 20 caracteres, se informada")
+        @Size(min = 20, max = 500, message = "A descrição do jogo deve ter entre 2 e 500 caracteres")
         String description,
 
         @Size(min = 1, message = "A lista de tags deve conter ao menos uma tag, se informada")
         List<@Size(min = 1, message = "Cada tag deve ter pelo menos 1 caractere") String> tags,
-
 
         Date release,
 

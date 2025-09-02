@@ -8,7 +8,8 @@ public record CreateChampionshipDTO(
         @NotBlank(message = "Nome é necessário")
         @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
         String name,
-
+        @Size(min = 20, max = 500, message = "A descrição deve ter entre 20 e 500 caracteres")
+        String description,
         @NotNull (message = "Jogo é necessário")
         Long gameId
 ) {}

@@ -5,6 +5,7 @@ import java.time.Instant;
 public record TeamResponseDTO(
         Long id,
         String name,
+        String description,
         String logo,
         Instant createdAt
 ) {}
