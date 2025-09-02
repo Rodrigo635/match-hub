@@ -19,7 +19,7 @@ export async function getUserById(id) {
 }
 
 export async function createUser(userData) {
-  return await createData(userData, BASE_URL);
+  return await createData(userData, BASE_URL+"/register");
 }
 
 export async function updateUser(id, userData) {

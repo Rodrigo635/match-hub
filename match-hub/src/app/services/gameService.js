@@ -1,4 +1,4 @@
-import { createData, deleteData, getData, getDataById, updateData, uploadImage } from "./globalService.js";
+import { createData, deleteData, getData, getDataById, updateData } from "./globalService.js";
 
 // src/app/services/gameService.js
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/games`;
@@ -12,7 +12,7 @@ export async function getGameById(id) {
 }
 
 export async function createGame(gameData) {
-  return await createData(gameData, BASE_URL);
+  return await createDataWithMedia(gameData, BASE_URL);
 }
 
 export async function updateGame(id, gameData) {
