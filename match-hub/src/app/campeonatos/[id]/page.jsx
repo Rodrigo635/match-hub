@@ -54,6 +54,7 @@ export default function ChampionshipDetailsPage() {
     router.back();
   };
 
+
   // Extrai times únicos das partidas
   const getUniqueTeams = () => {
     if (!championshipData?.matches) return [];
@@ -171,10 +172,7 @@ export default function ChampionshipDetailsPage() {
       <section className="championship-header bg-dark py-5">
         <div className="container">
           <div className="my-4 d-flex justify-content-between align-items-center">
-            <button
-              onClick={handleBack}
-              className="d-none d-md-flex btn-voltar text-white"
-            >
+            <button onClick={handleBack} className="d-none d-md-flex btn-voltar text-white">
               <i className="fa-solid fa-arrow-left" />
               <h5 className="mb-0 ms-2">Voltar</h5>
             </button>

@@ -149,7 +149,6 @@ export default function GamePage() {
 
   const handleBack = () => {
     router.back();
-    router.back();
   };
 
   function isFuture(data, horario) {

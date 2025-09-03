@@ -1,6 +1,6 @@
+// src/app/services/championshipService.js
 import { getData, getDataById, createData, updateData, deleteData } from './globalService';
 
-// src/app/services/championshipService.js
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/championships`;
 
 export async function getChampionships(page = 0, size = 5) {
