@@ -3,38 +3,47 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getGames } from "@/app/services/gameService";
+import { getAllGames } from "@/app/services/gameService";
 
 export default function GamesList() {
   const router = useRouter();
-  const [data, setData] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+
+  const [allData, setAllData] = useState([]); // todos os jogos buscados
+  const [filtered, setFiltered] = useState([]); // dados após filtro
+  const [page, setPage] = useState(0);
+
+  const INITIAL_ITEMS = 12;
+  const ADDITIONAL_ITEMS = 8;
+
   const [selectedGame, setSelectedGame] = useState("Todos");
   const [selectedTournament, setSelectedTournament] = useState("Todos");
-  const [page, setPage] = useState(0);
-  const ITEMS_PER_PAGE = 12;
 
+  const visibleCount = INITIAL_ITEMS + page * ADDITIONAL_ITEMS;
+  const pageItems = filtered.slice(0, visibleCount);
+  const hasNext = visibleCount < filtered.length;
+  const hasPrev = page > 0;
 
-  const handleGetGames = async () => {
+  // Busca todos os jogos apenas uma vez
+  const handleGetAllGames = async () => {
     try {
-      const response = await getGames(page, ITEMS_PER_PAGE);
-      const json = response.content;
-      setData(json);
-      setFiltered(json);
+      const response = await getAllGames();
+      const content = response?.content ?? response ?? [];
+      setAllData(content);
+      // aplica filtro inicial (todos)
+      setFiltered(content);
     } catch (error) {
       console.error("Erro ao carregar jogos:", error);
     }
   };
 
-  // Fetch inicial
   useEffect(() => {
-    handleGetGames();
+    handleGetAllGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Atualiza filtered quando filtros mudam
+  // Atualiza filtered quando os selects mudam ou quando os dados mudam
   useEffect(() => {
-    if (!data.length) return;
-    const f = data.filter((item) => {
+    const f = allData.filter((item) => {
       const gameMatch =
         selectedGame === "Todos" ||
         item.name.toLowerCase() === selectedGame.toLowerCase();
@@ -44,34 +53,19 @@ export default function GamesList() {
       return gameMatch && tourMatch;
     });
     setFiltered(f);
-    setPage(0);
-  }, [selectedGame, selectedTournament, data]);
+    setPage(0); // resetar paginação ao mudar filtros
+  }, [selectedGame, selectedTournament, allData]);
 
-  // Opções de selects
-  const gameOptions = [
-    "Todos",
-    ...Array.from(new Set(data.map((i) => i.name))),
-  ];
+  // opções dos selects com base em toda a base
+  const gameOptions = ["Todos", ...Array.from(new Set(allData.map((i) => i.name)))];
   const tournamentOptions = [
     "Todos",
-    ...Array.from(new Set(data.map((i) => i.tournament))),
+    ...Array.from(new Set(allData.map((i) => i.tournament))),
   ];
 
-  // Paginação
-  const INITIAL_ITEMS = 12;
-  const ADDITIONAL_ITEMS = 8;
-  const visibleCount = INITIAL_ITEMS + page * ADDITIONAL_ITEMS;
-  const pageItems = filtered.slice(0, visibleCount);
-  const hasNext = visibleCount < filtered.length;
-  const hasPrev = page > 0 && visibleCount > INITIAL_ITEMS;
-
-  // Handlers
-  const handleGameChange = (e) => {
-    setSelectedGame(e.target.value);
-  };
-  const handleTournamentChange = (e) => {
-    setSelectedTournament(e.target.value);
-  };
+  // handlers
+  const handleGameChange = (e) => setSelectedGame(e.target.value);
+  const handleTournamentChange = (e) => setSelectedTournament(e.target.value);
   const handleNext = () => {
     if (hasNext) setPage((p) => p + 1);
   };
@@ -80,7 +74,6 @@ export default function GamesList() {
   };
   const handleCardClick = (item) => {
     localStorage.setItem("selectedGame", JSON.stringify(item.id));
-    // se usar rota /game, adapte:
     router.push(`/game`);
   };
 
@@ -133,26 +126,17 @@ export default function GamesList() {
               key={idx}
               className="col-12 col-md-6 col-lg-3"
               onClick={() => handleCardClick(item)}
+              style={{ cursor: "pointer" }}
             >
-              <a href="#">
-                <div className="card bg-dark h-100">
-                  <img
-                    className="rounded-3 static-image"
-                    src={item.image}
-                    alt={item.game}
-                  />
-                  <div className="gif-container">
-                    <img
-                      className="rounded-3 gif-image"
-                      src={item.gif}
-                      alt={`${item.game} GIF`}
-                    />
-                    <div className="gradient"></div>
-                  </div>
-                  <h5 className="pt-3 ps-3 text-white fw-bold">{item.name}</h5>
-                  <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
+              <div className="card bg-dark h-100">
+                <img className="rounded-3 static-image" src={item.image} alt={item.game} />
+                <div className="gif-container">
+                  <img className="rounded-3 gif-image" src={item.gif} alt={`${item.game} GIF`} />
+                  <div className="gradient"></div>
                 </div>
-              </a>
+                <h5 className="pt-3 ps-3 text-white fw-bold">{item.name}</h5>
+                <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
+              </div>
             </div>
           ))}
         </div>
@@ -160,23 +144,13 @@ export default function GamesList() {
         {/* Paginação */}
         <div className="container text-center my-5">
           {hasPrev && (
-            <h5
-              className="text-center ver-menos cursor-pointer"
-              onClick={handlePrev}
-            >
-          <a href="#" className="text-azul">
-              Ver menos
-          </a>
+            <h5 className="text-center ver-menos cursor-pointer" onClick={handlePrev}>
+              <span className="text-azul">Ver menos</span>
             </h5>
           )}
           {hasNext && (
-            <h5
-              className="text-center ver-mais cursor-pointer"
-              onClick={handleNext}
-            >
-            <a href="#" className="text-azul">
-              Ver mais
-            </a>
+            <h5 className="text-center ver-mais cursor-pointer" onClick={handleNext}>
+              <span className="text-azul">Ver mais</span>
             </h5>
           )}
         </div>

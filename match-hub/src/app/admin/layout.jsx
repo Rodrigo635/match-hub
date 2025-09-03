@@ -8,7 +8,7 @@ export default function AdminLayout({ children }) {
         <aside className="profile-sidebar d-none d-md-block col-md-3 col-lg-2">
           <AdminSidebar />
         </aside>
-        <div className="flex-grow-1 ps-md-4">
+        <div className="profile-content col-12 col-md-9 col-lg-10 pt-3 pt-md-0 ps-0 ps-md-4">
           {children}
         </div>
       </div>

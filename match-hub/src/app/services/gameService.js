@@ -1,10 +1,21 @@
-import { updateDataWithMedia, deleteData, getData, getDataById, createDataWithMedia } from "./globalService.js";
-
 // src/app/services/gameService.js
+import {
+  updateDataWithMedia,
+  deleteData,
+  getData,
+  getDataById,
+  createDataWithMedia,
+} from "./globalService.js";
+
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/games`;
 
 export async function getGames(page = 0, size = 5) {
   return await getData(page, size, BASE_URL);
+}
+
+export async function getAllGames() {
+  // tenta buscar muitos itens de uma vez.
+  return await getData(0, 100, BASE_URL);
 }
 
 export async function getGameById(id) {
