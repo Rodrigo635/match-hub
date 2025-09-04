@@ -33,3 +33,4 @@ export async function updateGame(id, gameData) {
 export async function deleteGame(id) {
   return await deleteData(id, BASE_URL);
 }
+

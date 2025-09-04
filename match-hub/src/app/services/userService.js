@@ -118,24 +118,3 @@ export async function updateInfoUser(formData, token) {
 
   return;
 }
-
-export async function uploadProfileImage(id, formData) {
-  const data = {
-    image: formData,
-  }
-  return await uploadImage(id, data, BASE_URL);
-}
-
-export async function deleteProfileImage(id) {
-  
-  const res = await fetch(`${BASE_URL}/image/delete/${id}`, {
-    method: "DELETE",
-    credentials: "include",
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("delete: erro status", res.status, text);
-    throw new Error(`Erro ao deletar imagem: ${res.status}`);
-  }
-  return res;
-}
