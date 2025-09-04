@@ -1,6 +1,6 @@
-// src/app/services/teamService.js
 import { getData, getDataById, createData, updateData, deleteData } from "./globalService";
 
+// src/app/services/teamService.js
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/teams`;
 
 export async function getTeams(page = 0, size = 5) {
