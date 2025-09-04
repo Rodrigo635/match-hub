@@ -4,7 +4,7 @@ import {
   getData,
   getDataById,
   updateData,
-  uploadImage
+  uploadImage,
 } from "./globalService";
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
@@ -133,21 +133,28 @@ export async function updateInfoUser(formData, token) {
 
 // --------------------- Imagem de Perfil ---------------------
 export async function uploadProfileImage(id, formData, token) {
-  const res = await fetch(`${BASE_URL}/${id}/profile-image`, {
+  const file = formData.image;
+  const fileMultipart = new FormData();
+  fileMultipart.append("file", file);
+
+  const res = await fetch(`${BASE_URL}/image/upload/${id}`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
-    body: formData, // precisa ser FormData com a imagem
     credentials: "include",
+    body: fileMultipart,
   });
+
 
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${text}`);
   }
+
+  return res;
 }
 
 export async function deleteProfileImage(id, token) {
-  const res = await fetch(`${BASE_URL}/${id}/profile-image`, {
+  const res = await fetch(`${BASE_URL}/image/delete/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
     credentials: "include",
@@ -157,4 +164,6 @@ export async function deleteProfileImage(id, token) {
     const text = await res.text();
     throw new Error(`Erro ao deletar imagem de perfil: ${res.status}, ${text}`);
   }
+
+  return res;
 }

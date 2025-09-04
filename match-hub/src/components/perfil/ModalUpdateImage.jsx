@@ -39,12 +39,13 @@ export default function ModalUpdateImage({ user, onClose }) {
         setError("Usuário não autenticado.");
         return;
       }
+      
+      const formData = { image: selectedFile }
 
-      // Corrigido: passa (file, token, user.id)
-const response = await uploadProfileImage(user.id, formData, token);
+      const response = await uploadProfileImage(user.id, formData, token);
 
       if (response.ok) {
-        router.refresh(); // ou window.location.reload()
+        window.location.reload();
       } else {
         setError("Erro ao atualizar imagem.");
       }
@@ -62,13 +63,9 @@ const response = await uploadProfileImage(user.id, formData, token);
         setError("Usuário não autenticado.");
         return;
       }
-
-      // Corrigido: passa (token, user.id)
       const response = await deleteProfileImage(user.id, token);
-
-
       if (response.ok) {
-        router.refresh(); // ou window.location.reload()
+        window.location.reload(); // NãO ALTERAR POR ROUTER.REFRESH()
       } else {
         setError("Erro ao deletar imagem.");
       }
