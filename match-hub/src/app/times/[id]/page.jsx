@@ -38,9 +38,7 @@ export default function TeamDetailsPage() {
     return () => (mounted = false);
   }, [id, router]);
 
-  const handleBack = () => {
-    router.back();
-  };
+  const handleBack = () => router.back();
 
   if (loading) {
     return (

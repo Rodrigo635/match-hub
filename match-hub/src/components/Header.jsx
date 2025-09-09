@@ -212,7 +212,7 @@ export default function Header() {
               <ul className="navbar-nav mb-3 gap-3">
                 <li className="nav-item">
                   <Link
-                    href="/"
+                    href="/jogos"
                     className="btn btn-outline-primary d-flex rounded-3 justify-content-center"
                     data-bs-dismiss="offcanvas"
                   >

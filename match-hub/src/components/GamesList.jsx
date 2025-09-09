@@ -89,7 +89,7 @@ export default function GamesList() {
             <div className="row gx-2">
               <div className="col-6 filtro">
                 <select
-                  className="form-select rounded-5 cursor-pointer bg-dark text-white"
+                  className="form-select rounded-5 fw-bold cursor-pointer bg-dark text-white"
                   value={selectedGame}
                   onChange={handleGameChange}
                 >
@@ -102,7 +102,7 @@ export default function GamesList() {
               </div>
               <div className="col-6 filtro">
                 <select
-                  className="form-select rounded-5 cursor-pointer bg-dark text-white"
+                  className="form-select rounded-5 fw-bold cursor-pointer bg-dark text-white"
                   value={selectedTournament}
                   onChange={handleTournamentChange}
                 >

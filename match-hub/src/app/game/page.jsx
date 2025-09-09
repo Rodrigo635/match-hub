@@ -1,4 +1,3 @@
-// src/app/game/page.js
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -16,38 +15,8 @@ export default function GamePage() {
   const [filteredMatches, setFilteredMatches] = useState([]);
   const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
   const [selectedTime, setSelectedTime] = useState('Todos');
-  const [loading, setLoading] = useState(true);
 
-  // Usar useRef para evitar chamadas duplicadas
-  const championshipsLoaded = useRef(false);
-
-  const handleGetInfoGame = async id => {
-    try {
-      setLoading(true);
-      const response = await getGameById(id);
-      console.log('Game data recebido:', response);
-      setGameData(response);
-    } catch (error) {
-      console.error('Erro ao carregar jogos:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGetInfoChampionships = async gameId => {
-    try {
-      if (championshipsLoaded.current) return; // Evita chamadas duplicadas
-
-      console.log('Carregando campeonatos para o jogo:', gameId);
-      const response = await getChampionshipsByGame(gameId);
-      setChampionshipData(response.content || []);
-      championshipsLoaded.current = true;
-    } catch (error) {
-      console.error('Erro ao carregar campeonatos:', error);
-    }
-  };
-
-  // UseEffect 1: Inicialização e carregamento do jogo
+  // Quando carregar: ler localStorage; se não houver, redirecionar para home
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -70,6 +39,37 @@ export default function GamePage() {
       router.push('/');
     }
   }, [router]);
+
+  // Carregar favoritos do localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined' && gameData) {
+      const storedFavorites = localStorage.getItem('favoriteMatches');
+      if (storedFavorites) {
+        const favSet = new Set(JSON.parse(storedFavorites));
+        setFavorites(favSet);
+      }
+    }
+  }, [gameData]);
+
+  // Salvar favoritos no localStorage sempre que mudar
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('favoriteMatches', JSON.stringify(Array.from(favorites)));
+    }
+  }, [favorites]);
+
+  // Carregar multiplicador de fonte do localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedFontSize = localStorage.getItem('fontSizeMultiplier');
+      if (storedFontSize) {
+        const multiplier = parseFloat(storedFontSize);
+        setFontSizeMultiplier(multiplier);
+        document.documentElement.style.fontSize = `${multiplier * 100}%`;
+      }
+    }
+  }, []);
+
 
   // UseEffect 2: Carrega campeonatos quando gameData estiver disponível
   useEffect(() => {
@@ -138,16 +138,28 @@ export default function GamePage() {
       if (p.time1) times.add(p.time1);
       if (p.time2) times.add(p.time2);
     });
-
-    Array.from(camps)
-      .sort()
-      .forEach(c => campeonatoOptions.push(c));
-    Array.from(times)
-      .sort()
-      .forEach(t => timeOptions.push(t));
+    Array.from(camps).sort().forEach(c => campeonatoOptions.push(c));
+    Array.from(times).sort().forEach(t => timeOptions.push(t));
   }
 
+  // Atualiza filteredMatches quando filtros mudam
+  useEffect(() => {
+    if (!gameData || !Array.isArray(gameData.partidas)) return;
+    let arr = gameData.partidas;
+    if (selectedCampeonato !== 'Todos') {
+      arr = arr.filter(p => p.campeonato === selectedCampeonato);
+    }
+    if (selectedTime !== 'Todos') {
+      arr = arr.filter(
+        p => p.time1 === selectedTime || p.time2 === selectedTime
+      );
+    }
+    setFilteredMatches(arr);
+  }, [selectedCampeonato, selectedTime, gameData]);
+
+  // Função de voltar
   const handleBack = () => {
+    router.back();
     router.back();
   };
 
@@ -187,39 +199,7 @@ export default function GamePage() {
     );
   }
 
-  // Loading state
-  if (loading) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '100vh' }}
-      >
-        <div className="text-white text-center">
-          <div className="spinner-border text-primary mb-3" role="status">
-            <span className="visually-hidden">Carregando...</span>
-          </div>
-          <p>Carregando jogo...</p>
-        </div>
-      </div>
-    );
-  }
 
-  // Verificação se gameData existe
-  if (!gameData) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '100vh' }}
-      >
-        <div className="text-white text-center">
-          <p>Erro ao carregar dados do jogo.</p>
-          <button onClick={() => router.push('/')} className="btn btn-primary">
-            Voltar ao início
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -275,6 +255,8 @@ export default function GamePage() {
         </div>
       </section>
 
+     
+
       <main className="page-game">
         {/* Filtros e cards de partidas */}
         <section className="container mt-5 mb-3">
@@ -319,128 +301,76 @@ export default function GamePage() {
           </div>
         </section>
 
-        {/* Lista de próximos jogos */}
-        <section className="container">
-          <div className="row g-4" id="cards-container">
-            {filteredMatches.length > 0 ? (
-              filteredMatches.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 shadow mb-4"
-                  style={{ cursor: item.link ? 'pointer' : 'default' }}
-                >
-                  <div className="card border-0 rounded-4 bg-dark text-white h-100 shadow-sm hover-shadow-lg transition-all">
-                    <div className="card-body p-3 p-md-4 rounded-5">
-                      {/* Título do Campeonato */}
-                      <h5 className="card-title text-primary fw-bold mb-3">{item.campeonato}</h5>
-
-                      {/* Times - Layout responsivo */}
-                      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-3 gap-3">
-                        {/* Time 1 */}
-                        <div className="text-center flex-shrink-0">
-                          <div
-                            style={{
-                              width: window.innerWidth < 576 ? 56 : 48,
-                              height: window.innerWidth < 576 ? 56 : 48,
-                              position: 'relative',
-                              margin: '0 auto',
-                            }}
-                            className="mb-2"
-                          >
-                            {item.imgTime1 && (
-                              <Image
-                                src={item.imgTime1}
-                                alt={item.time1}
-                                fill
-                                sizes="(max-width: 576px) 56px, 48px"
-                                style={{ objectFit: 'cover' }}
-                              />
-                            )}
-                          </div>
-                          <p
-                            className="mb-0 fw-semibold small text-truncate"
-                            style={{ maxWidth: '80px' }}
-                            title={item.time1}
-                          >
-                            {item.time1}
-                          </p>
+      {/* Lista de próximos jogos (cards) */}
+      <section className="container">
+        <div className="row g-4" id="cards-container">
+          {filteredMatches.length > 0 ? (
+            filteredMatches.map((item, idx) => (
+              <div
+                key={idx}
+                className="col-12 col-md-6 col-lg-4"
+                // opcional: onClick para abrir link
+                onClick={() => {
+                  if (item.link) window.open(item.link, '_blank');
+                }}
+              >
+                <div className="card border-0 rounded-4 bg-dark text-white h-100">
+                  <div className="card-body bg-dark p-4 rounded-5">
+                    <h5 className="card-title text-primary fw-bold mb-3">
+                      {item.campeonato}
+                    </h5>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <div className="text-center">
+                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                          <Image
+                            src={normalizePath(item.imgTime1)}
+                            alt={item.time1}
+                            fill
+                            sizes="48px"
+                          />
                         </div>
-
-                        {/* VS */}
-                        <div className="fw-bold fs-4 fs-md-3 text-primary flex-shrink-0 order-sm-2">
-                          VS
+                        <p className="mb-0 fw-semibold">{item.time1}</p>
+                      </div>
+                      <div className="fw-bold fs-4">VS</div>
+                      <div className="text-center">
+                        <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
+                          <Image
+                            src={normalizePath(item.imgTime2)}
+                            alt={item.time2}
+                            fill
+                            sizes="48px"
+                          />
                         </div>
-
-                        {/* Time 2 */}
-                        <div className="text-center flex-shrink-0 order-sm-3">
-                          <div
-                            style={{
-                              width: window.innerWidth < 576 ? 56 : 48,
-                              height: window.innerWidth < 576 ? 56 : 48,
-                              position: 'relative',
-                              margin: '0 auto',
-                            }}
-                            className="mb-2"
-                          >
-                            {item.imgTime2 && (
-                              <Image
-                                src={item.imgTime2}
-                                alt={item.time2}
-                                fill
-                                sizes="(max-width: 576px) 56px, 48px"
-                                style={{ objectFit: 'cover' }}
-                              />
-                            )}
-                          </div>
-                          <p
-                            className="mb-0 fw-semibold small text-truncate"
-                            style={{ maxWidth: '80px' }}
-                            title={item.time2}
-                          >
-                            {item.time2}
-                          </p>
-                        </div>
+                        <p className="mb-0 fw-semibold">{item.time2}</p>
                       </div>
-
-                      {/* Data e Horário */}
-                      <div className="text-center text-md-start mb-3">
-                        <p className="mb-1 small">
-                          <span className="fw-bold">Data:</span> {item.data}
-                        </p>
-                        <p className="mb-0 small">
-                          <span className="fw-bold">Horário:</span> {item.horario}
-                        </p>
-                      </div>
-
-                      {/* Botão */}
-                      <div className="d-grid mt-auto">
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`btn btn-live btn-outline-primary rounded-pill py-2 ${
-                            isFuture(item.data, item.horario) ? 'disabled' : ''
-                          }`}
-                          style={{ minHeight: '44px' }}
-                        >
-                          <span className="fw-semibold fs-6">
-                            {getBotaoTexto(item.data, item.horario)}
-                          </span>
-                        </a>
-                      </div>
+                    </div>
+                    <p className="my-2">
+                      <span className="fw-bold">Data:</span> {item.data} às {item.horario}
+                    </p>
+                    <div className="d-grid mt-4">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`btn btn-live btn-outline-primary rounded-pill ${isFuture(item.data, item.horario) ? 'disabled' : ''}`}
+                      >
+                        <h5 className="mb-0 h5-btn-trasmissao">
+                          {getBotaoTexto(item.data, item.horario)}
+                        </h5>
+                      </a>
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <div className="col-12">
-                <div className="text-center py-5">
-                  <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
-                </div>
+
               </div>
-            )}
-          </div>
-        </section>
+            ))
+          ) : (
+            <div className="col-12">
+              <p className="text-white">Nenhum jogo encontrado para este filtro.</p>
+            </div>
+          )}
+        </div>
+      </section>
 
         {/* Seção de Campeonatos */}
         <section className="container mt-5 mb-3">
@@ -586,4 +516,3 @@ export default function GamePage() {
     </>
   );
 }
-

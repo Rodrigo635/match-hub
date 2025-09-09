@@ -1,38 +1,42 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { toggleColorMode, toggleVLibrasMode } from "@/app/services/userService";
+import { toggleColorMode, toggleVLibrasMode, changeFontSize } from "@/app/services/userService";
 import { useRouter } from "next/navigation";
 
 export default function Configuracoes({ user: initialUser }) {
   const router = useRouter();
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState({
+    ...initialUser,
+    fontSizeLevel: initialUser.fontSizeLevel || 0 // 0: default, 1: +0.15em, 2: +0.30em
+  });
 
-  const changeColor = async () => {
-    try {
-      const token = Cookies.get("token");
-      if (!token) {
-        console.error("Token não encontrado");
-        return;
-      }
-      const newDarkMode = !user.isDarkMode;
+  useEffect(() => {
+    const level = user.fontSizeLevel;
+    const newSize = 1 + level * 0.07;
+    document.documentElement.style.fontSize = `${newSize}em`;
+  }, [user.fontSizeLevel]);
 
-      const res = await toggleColorMode(newDarkMode, token);
-      console.log(res);
-
-      setUser((prevUser) => ({
-        ...prevUser,
-        isDarkMode: newDarkMode,
-      }));
-
-      // Atualiza o atributo no html para mudar o tema globalmente
-      document.documentElement.setAttribute(
-        "data-theme",
-        newDarkMode ? "dark" : "light"
-      );
-    } catch (error) {
-      console.error("Erro ao alterar modo de cor:", error);
+const changeColor = async () => {
+  try {
+    const token = Cookies.get("token");
+    if (!token) {
+      console.error("Token não encontrado");
+      return;
     }
-  };
+    const newDarkMode = !user.isDarkMode;
+    await toggleColorMode(newDarkMode, token);
+
+    setUser(prev => ({ ...prev, isDarkMode: newDarkMode }));
+
+    // Atualiza o atributo no html para mudar o tema globalmente
+    document.documentElement.setAttribute("data-theme", newDarkMode ? "dark" : "light");
+  } catch (error) {
+    console.error("Erro ao alterar modo de cor:", error);
+  }
+};
+
+
+  
 
   const toggleVLibras = async () => {
     try {
@@ -55,6 +59,42 @@ export default function Configuracoes({ user: initialUser }) {
       window.location.reload();
     } catch (error) {
       console.error("Erro ao alterar V-Libras:", error);
+    }
+  };
+
+  const increaseFont = async () => {
+    if (user.fontSizeLevel >= 2) return;
+    const newLevel = user.fontSizeLevel + 1;
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        console.error("Token não encontrado");
+        return;
+      }
+      await changeFontSize(newLevel, token);
+      setUser(prev => ({ ...prev, fontSizeLevel: newLevel }));
+      const newSize = 1 + newLevel * 0.7;
+      document.documentElement.style.fontSize = `${newSize}em`;
+    } catch (error) {
+      console.error("Erro ao aumentar tamanho da fonte:", error);
+    }
+  };
+
+  const decreaseFont = async () => {
+    if (user.fontSizeLevel <= 0) return;
+    const newLevel = user.fontSizeLevel - 1;
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        console.error("Token não encontrado");
+        return;
+      }
+      await changeFontSize(newLevel, token);
+      setUser(prev => ({ ...prev, fontSizeLevel: newLevel }));
+      const newSize = 1 + newLevel * 0.7;
+      document.documentElement.style.fontSize = `${newSize}em`;
+    } catch (error) {
+      console.error("Erro ao diminuir tamanho da fonte:", error);
     }
   };
 
@@ -90,6 +130,36 @@ export default function Configuracoes({ user: initialUser }) {
             <button className="btn btn-outline-primary" onClick={changeColor}>
               {user.isDarkMode ? "Ativar" : "Desativar"}
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Tamanho da Fonte */}
+      <div
+        className="card mb-3"
+        style={{ backgroundColor: "var(--cor-bgEscuro)", border: "none" }}
+      >
+        <div className="card-body text-white">
+          <div className="d-flex justify-content-between align-items-center">
+            <p className="mb-0">
+              Tamanho da fonte <i className="fa-solid fa-text-size"></i>
+            </p>
+            <div>
+              <button 
+                className="btn btn-outline-primary me-2" 
+                onClick={decreaseFont}
+                disabled={user.fontSizeLevel <= 0}
+              >
+                -
+              </button>
+              <button 
+                className="btn btn-outline-primary" 
+                onClick={increaseFont}
+                disabled={user.fontSizeLevel >= 2}
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
       </div>
