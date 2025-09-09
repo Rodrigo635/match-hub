@@ -42,7 +42,7 @@ export default function SobrePage() {
               <div className="ratio ratio-16x9 h-100 video-apresentacao rounded-4">
                 <iframe
                   className="rounded-4"
-                  src="https://www.youtube.com/embed/iK2lrtsPago?si=c94xQm1tmfht0ih3"
+                  src="https://www.youtube.com/embed/9RznH5C-G8w?si=Et70iQQ4xalR8qEL"
                   title="YouTube video"
                   allowFullScreen
                 ></iframe>
@@ -426,7 +426,6 @@ export default function SobrePage() {
                 </h5>
               </a>
             </div>
-            {/* Fases não disponíveis */}
             <div className="col">
               <a className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_4.pdf"
@@ -438,7 +437,10 @@ export default function SobrePage() {
               </a>
             </div>
             <div className="col">
-              <a className="doc-btn-disabled">
+              <a className="doc-btn"
+                href="/download/Projeto_Happy_Game_Match_Hub_Fase_5.pdf"
+                download
+              >
                 <h5 className="mb-0">
                   Fase 5 <i className="fa-solid fa-download"></i>
                 </h5>

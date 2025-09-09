@@ -56,7 +56,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
               <div className="ratio ratio-16x9 h-100 video-apresentacao rounded-4">
                 <iframe
                   className="rounded-4"
-                  src="https://www.youtube.com/embed/iK2lrtsPago?si=c94xQm1tmfht0ih3"
+                  src="https://www.youtube.com/embed/FukU9cb_0vw?si=Q91XJmbce7DIdfep"
                   title="YouTube video"
                   allowFullScreen
                 ></iframe>
