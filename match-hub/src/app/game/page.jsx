@@ -200,6 +200,9 @@ export default function GamePage() {
   }
 
 
+  if (!gameData) {
+    return <p className="text-white">Carregando jogo...</p>;
+  }
 
   return (
     <>
