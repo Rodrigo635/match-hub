@@ -15,8 +15,92 @@ export default function GamePage() {
   const [filteredMatches, setFilteredMatches] = useState([]);
   const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
   const [selectedTime, setSelectedTime] = useState('Todos');
+  const [loading, setLoading] = useState(true);
+  
+  // Usar useRef para evitar chamadas duplicadas
+  const championshipsLoaded = useRef(false);
 
-  // Quando carregar: ler localStorage; se não houver, redirecionar para home
+  const handleGetInfoGame = async id => {
+    try {
+      setLoading(true);
+      const response = await getGameById(id);
+      console.log('Game data recebido:', response);
+      setGameData(response);
+    } catch (error) {
+      console.error('Erro ao carregar jogos:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGetInfoChampionships = async gameId => {
+    try {
+      if (championshipsLoaded.current) return; // Evita chamadas duplicadas
+      
+      console.log('Carregando campeonatos para o jogo:', gameId);
+      const response = await getChampionshipsByGame(gameId);
+      setChampionshipData(response.content || []);
+      championshipsLoaded.current = true;
+    } catch (error) {
+      console.error('Erro ao carregar campeonatos:', error);
+    }
+  };
+
+  // // Quando carregar: ler localStorage; se não houver, redirecionar para home
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return;
+
+  //   const stored = localStorage.getItem('selectedGame');
+  //   if (!stored) {
+  //     router.push('/');
+  //     return;
+  //   }
+
+  //   try {
+  //     const id = JSON.parse(stored);
+  //     if (!id) {
+  //       router.push('/');
+  //       return;
+  //     }
+
+  //     handleGetInfoGame(id);
+  //   } catch (error) {
+  //     console.error('Erro ao processar dados do localStorage:', error);
+  //     router.push('/');
+  //   }
+  // }, [router]);
+
+  // // Carregar favoritos do localStorage
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined' && gameData) {
+  //     const storedFavorites = localStorage.getItem('favoriteMatches');
+  //     if (storedFavorites) {
+  //       const favSet = new Set(JSON.parse(storedFavorites));
+  //       setFavorites(favSet);
+  //     }
+  //   }
+  // }, [gameData]);
+
+  // // Salvar favoritos no localStorage sempre que mudar
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     localStorage.setItem('favoriteMatches', JSON.stringify(Array.from(favorites)));
+  //   }
+  // }, [favorites]);
+
+  // Carregar multiplicador de fonte do localStorage
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const storedFontSize = localStorage.getItem('fontSizeMultiplier');
+  //     if (storedFontSize) {
+  //       const multiplier = parseFloat(storedFontSize);
+  //       setFontSizeMultiplier(multiplier);
+  //       document.documentElement.style.fontSize = `${multiplier * 100}%`;
+  //     }
+  //   }
+  // }, []);
+
+  // UseEffect 1: Inicialização e carregamento do jogo
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -39,37 +123,6 @@ export default function GamePage() {
       router.push('/');
     }
   }, [router]);
-
-  // Carregar favoritos do localStorage
-  useEffect(() => {
-    if (typeof window !== 'undefined' && gameData) {
-      const storedFavorites = localStorage.getItem('favoriteMatches');
-      if (storedFavorites) {
-        const favSet = new Set(JSON.parse(storedFavorites));
-        setFavorites(favSet);
-      }
-    }
-  }, [gameData]);
-
-  // Salvar favoritos no localStorage sempre que mudar
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('favoriteMatches', JSON.stringify(Array.from(favorites)));
-    }
-  }, [favorites]);
-
-  // Carregar multiplicador de fonte do localStorage
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedFontSize = localStorage.getItem('fontSizeMultiplier');
-      if (storedFontSize) {
-        const multiplier = parseFloat(storedFontSize);
-        setFontSizeMultiplier(multiplier);
-        document.documentElement.style.fontSize = `${multiplier * 100}%`;
-      }
-    }
-  }, []);
-
 
   // UseEffect 2: Carrega campeonatos quando gameData estiver disponível
   useEffect(() => {
@@ -202,8 +255,9 @@ export default function GamePage() {
 
   if (!gameData) {
     return <p className="text-white">Carregando jogo...</p>;
+    // ou: return null;  // se não quiser mostrar nada
   }
-
+  
   return (
     <>
       <link rel="stylesheet" href="/css/game.css" />
@@ -257,8 +311,6 @@ export default function GamePage() {
           </div>
         </div>
       </section>
-
-     
 
       <main className="page-game">
         {/* Filtros e cards de partidas */}
@@ -326,7 +378,7 @@ export default function GamePage() {
                       <div className="text-center">
                         <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
                           <Image
-                            src={normalizePath(item.imgTime1)}
+                            src={item.imgTime1}
                             alt={item.time1}
                             fill
                             sizes="48px"
@@ -338,7 +390,7 @@ export default function GamePage() {
                       <div className="text-center">
                         <div style={{ width: 48, height: 48, position: 'relative', margin: '0 auto' }}>
                           <Image
-                            src={normalizePath(item.imgTime2)}
+                            src={item.imgTime2}
                             alt={item.time2}
                             fill
                             sizes="48px"
