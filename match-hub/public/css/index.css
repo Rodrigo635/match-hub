@@ -283,3 +283,22 @@ header {
     top: calc(56px) !important;
   }
 }
+
+.notif-dropdown-body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.notif-dropdown-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notif-dropdown-body::-webkit-scrollbar-thumb {
+  background-color: var(--cor-azul);
+  border-radius: 10px;
+  border: 2px solid #0b0b0b;
+}
+
+.notif-dropdown-body::-webkit-scrollbar-thumb:hover {
+  background-color: #0d6efd;
+}
