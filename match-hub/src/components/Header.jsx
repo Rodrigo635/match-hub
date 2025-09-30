@@ -6,12 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { handleGetUser } from "@/app/global/global";
 import Image from "next/image";
 
-/*
- Header com botão de sino que abre um dropdown pequeno (estilo YouTube).
- Mostra próximas partidas mock (championshipName, gameName, TIME1 vs TIME2, date/time).
- No mobile o sino aparece ao lado do hamburger.
-*/
-
 export default function Header() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -26,7 +20,7 @@ export default function Header() {
     fetchUser();
   }, [pathname]);
 
-  // mock subscriptions com próximas partidas (campeonato, jogo, time1/time2, date,time)
+  // mockup com próximas partidas (campeonato, jogo, time1/time2, date,time)
   const [subscriptions, setSubscriptions] = useState([
     {
       id: "g-valorant",
@@ -179,7 +173,7 @@ export default function Header() {
             <span className="h4 fw-bold text-white mb-0 ms-1">HUB</span>
           </Link>
 
-          {/* Toggler - mobile (colocamos o bell próximo a ele) */}
+          {/* Toggler - mobile */}
           <div className="d-flex align-items-center d-lg-none">
             {user != null && (
               <button
@@ -201,7 +195,6 @@ export default function Header() {
               aria-controls="mainNavbarOffcanvas"
               aria-label="Toggle navigation"
             >
-              <a href="" id="menu"></a>
               <i className="fa-solid fa-bars text-white"></i>
             </button>
           </div>
@@ -251,7 +244,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Offcanvas mobile - mantive sua versão */}
+          {/* Offcanvas mobile */}
           <div className="offcanvas offcanvas-end text-bg-dark bg-black d-lg-none" tabIndex="-1" id="mainNavbarOffcanvas" aria-labelledby="mainNavbarOffcanvasLabel">
             <div className="offcanvas-header">
               <form className="d-flex align-items-center position-relative" role="search">
@@ -261,13 +254,12 @@ export default function Header() {
               <button type="button" className="btn-close btn-close-white me-1 " data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
-              {/* ...seu conteúdo offcanvas (mantido) */}
               <ul className="navbar-nav mb-3 gap-3">
-                <li className="nav-item"><Link href="/jogos" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-house me-2"></i>Início</p></Link></li>
-                <li className="nav-item"><Link href="/jogos" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-gamepad me-2"></i>Jogos</p></Link></li>
-                <li className="nav-item"><Link href="/calendario" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-calendar me-2"></i>Calendário</p></Link></li>
-                <li className="nav-item"><Link href="/sobre" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-circle-info me-2"></i>Sobre</p></Link></li>
-                <li className="nav-item"><Link href="/contato" className="btn btn-outline-primary d-flex rounded-3 justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0"><i className="fa-solid fa-phone me-2"></i>Contato</p></Link></li>
+                <li className="nav-item"><Link href="/" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-house me-2"></i>Início</p></Link></li>
+                <li className="nav-item"><Link href="/jogos" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-gamepad me-2"></i>Jogos</p></Link></li>
+                <li className="nav-item"><Link href="/calendario" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-calendar me-2"></i>Calendário</p></Link></li>
+                <li className="nav-item"><Link href="/sobre" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-circle-info me-2"></i>Sobre</p></Link></li>
+                <li className="nav-item"><Link href="/contato" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-phone me-2"></i>Contato</p></Link></li>
               </ul>
 
               {user != null ? (
@@ -275,7 +267,7 @@ export default function Header() {
                   <a href="/perfil"><Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="40" height="40" alt="Avatar" /></a>
                 </div>
               ) : (
-                <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center justify-content-center" data-bs-dismiss="offcanvas"><p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p></Link>
+                <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center justify-content-center"><p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p></Link>
               )}
             </div>
           </div>
