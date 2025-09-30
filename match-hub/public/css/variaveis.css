@@ -56,4 +56,41 @@ body {
   
 .texto-justificado {
     text-align: justify;
-  }
+}
+
+/* Botões */
+.btn-outline-azul {
+  padding: 7px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--cor-azul);
+  border: 2px solid var(--cor-azul);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.btn-outline-azul:hover {
+  background-color: var(--cor-azul);
+  color: var(--cor-branco) !important;
+  border: 2px solid var(--cor-azul) !important;
+}
+
+.btn-outline-branco {
+  padding: 7px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--cor-branco);
+  border: 2px solid var(--cor-branco);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.btn-outline-branco:hover {
+  background-color: var(--cor-branco);
+  color: var(--cor-preto) !important;
+  border: 2px solid var(--cor-branco) !important;
+}

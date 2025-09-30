@@ -39,28 +39,7 @@
     z-index: 1;
 }
 
-/* Botoes */
-.btn-hero {
-  width: auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-wrap: nowrap;
-  color: var(--cor-azul);
-  background-color: transparent;
-  border: 2px solid var(--cor-azul);
-  box-sizing: border-box;
-  border-radius: 10px;
-  transition: 0.2s ease;
-}
-
-.btn-hero:hover{
-  background-color: var(--cor-azul);
-  color: var(--branco) !important;
-  border: 2px solid var(--cor-azul) !important;
-}
-
+/* Shapes */
 .shape {
     position: absolute;
     z-index: 1;
@@ -89,6 +68,7 @@
     animation: float2 10s ease-in-out infinite;
 }
 
+/* Apresentação */
 .video-apresentacao {
   background-image: url("../static/img/sobre/logo.png");
   background-size: cover;

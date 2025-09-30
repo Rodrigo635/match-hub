@@ -66,23 +66,18 @@ export default function TeamDetailsPage() {
     <>
       <link rel="stylesheet" href="/css/championship.css" />
 
-      <section className="championship-header bg-dark py-5">
+      <section className="championship-header bg-dark time-bg py-5">
         <div className="container">
-          <div className="my-4 d-flex justify-content-between align-items-center">
-            <button onClick={handleBack} className="d-none d-md-flex btn-voltar text-white">
-              <i className="fa-solid fa-arrow-left" />
-              <h5 className="mb-0 ms-2">Voltar</h5>
+          <div className="col-12 d-flex justify-content-start gap-2 mb-4 mt-5">
+            <button onClick={handleBack} className="btn btn-voltar text-white">
+              <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
+            </button>
+            <button className="btn btn-outline-branco w-auto text-white">
+              <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
             </button>
           </div>
 
           <div className="row align-items-center">
-            <div className="col-md-3 text-center mb-4 mb-md-0">
-              {team.logo && (
-                <div style={{ width: 150, height: 150, position: 'relative', margin: '0 auto' }}>
-                  <Image src={team.logo} alt={team.name} fill style={{ objectFit: 'contain' }} />
-                </div>
-              )}
-            </div>
 
             <div className="col-md-9">
               <h1 className="display-4 fw-bold text-white mb-3">{team.name}</h1>
@@ -101,6 +96,14 @@ export default function TeamDetailsPage() {
                   <span className="fw-bold">País / Tag:</span> {team.country || team.tag || '—'}
                 </div>
               </div>
+            </div>
+
+            <div className="col-md-3 text-center mb-4 mb-md-0 order-first order-md-last">
+              {team.logo && (
+                <div style={{ width: 150, height: 150, position: 'relative', margin: '0 auto' }}>
+                  <Image src={team.logo} alt={team.name} fill style={{ objectFit: 'contain' }} />
+                </div>
+              )}
             </div>
           </div>
         </div>

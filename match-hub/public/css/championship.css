@@ -1,21 +1,65 @@
 /* public/css/championship.css */
 
-/* Header do Campeonato */
+/* banner do campeonato */
 .championship-header {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   position: relative;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  color: #fff;
   overflow: hidden;
 }
 
-.championship-header::before {
-  content: '';
+.championship-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('/path/to/pattern.png') repeat;
-  opacity: 0.05;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.championship-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.6) 30%,
+    rgba(0,0,0,0.35) 55%,
+    rgba(0,0,0,0.15) 75%,
+    rgba(0,0,0,0.0) 100%);
+}
+
+.championship-header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.championship-small-logo {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.btn-voltar {
+  background: rgba(17, 110, 255, 0.95);
+  border-radius: 10px;
+  padding: 0.45rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .championship-header {
+    min-height: 240px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+}
+
+.time-bg{
+  background: linear-gradient(to right, #1e1e1e, rgb(100, 100, 100));
 }
 
 /* Tabs Navigation */

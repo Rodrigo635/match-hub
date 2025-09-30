@@ -210,6 +210,11 @@ export default function GamePage() {
     setFilteredMatches(arr);
   }, [selectedCampeonato, selectedTime, gameData]);
 
+  useEffect(() => {
+    if (!gameData) return;
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [gameData]);
+
   // Função de voltar
   const handleBack = () => {
     router.back();
@@ -254,9 +259,24 @@ export default function GamePage() {
 
 
   if (!gameData) {
-    return <p className="text-white">Carregando jogo...</p>;
-    // ou: return null;  // se não quiser mostrar nada
+    return (
+      <>
+        <link rel="stylesheet" href="/css/game.css" />
+        <div className="game-loading d-flex align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
+          <div className="loading-wrapper text-center">
+            {/* Spinner circular */}
+            <div className="loader" role="status" aria-live="polite" aria-label="Carregando jogo" />
+
+            <h4 className="mt-3 text-white">Carregando jogo...</h4>
+
+            {/* Texto auxiliar menor */}
+            <p className="text-muted small mt-3">Se a página demorar muito, verifique sua conexão ou tente recarregar.</p>
+          </div>
+        </div>
+      </>
+    );
   }
+
   
   return (
     <>
@@ -266,23 +286,27 @@ export default function GamePage() {
           <div className="row">
             <div className="col">
               <div className="container">
-                <div className="my-4 mt-5 d-flex justify-content-center justify-content-md-start">
-                  <button onClick={handleBack} className="d-none d-md-flex btn-voltar text-white">
-                    <i className="fa-solid fa-arrow-left" />
-                    <h5 className="mb-0 ms-2">Voltar</h5>
-                  </button>
-                </div>
-                <div className="col-12 col-md-6 col-lg-4 mb-4">
-                  <h1 className="game-title fw-bold text-white text-center text-md-start mt-4">
-                    {gameData.name}
-                  </h1>
-                  <div className="d-flex text-white justify-content-center justify-content-md-start">
-                    <h4 className="me-2">Principal Torneio:</h4>
-                    <h4 id="game-tournament">{gameData.tournament}</h4>
+                <div className="row mb-3 mb-md-0">
+                  <div className="col-12 d-flex justify-content-center justify-content-md-start gap-2 order-last order-md-first mt-md-5">
+                    <button onClick={handleBack} className="btn btn-voltar text-white">
+                      <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
+                    </button>
+                    <button className="btn btn-outline-branco w-auto text-white">
+                      <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
+                    </button>
                   </div>
-                  <h5 id="game-descricao" className="text-white texto-justificado mt-4 mb-5">
-                    {gameData.description || gameData.descricao}
-                  </h5>
+
+                  <div className="col-12 col-md-6 col-lg-4 mb-4">
+                    <h1 className="game-title fw-bold text-white text-start mt-5 mt-md-4">
+                      {gameData.name}
+                    </h1>
+                    <div className="d-flex text-white justify-content-center justify-content-md-start">
+                      <h4 id="game-tournament">Principal Torneio: {gameData.tournament}</h4>
+                    </div>
+                    <h5 id="game-descricao" className="text-white texto-justificado mt-3 mb-3">
+                      {gameData.description || gameData.descricao}
+                    </h5>
+                  </div>
                 </div>
               </div>
 
@@ -530,36 +554,36 @@ export default function GamePage() {
               <h1 className="fw-bold text-white">Mais Informações</h1>
             </div>
             <div className="row">
-              <div className="col-12 col-md-6 mb-3">
-                <div className="d-flex">
+              <div className="col-12 col-md-6 mb-0 mb-md-3">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Desenvolvedora:</h5>
                   <h5 className="text-cinza mb-0">{gameData.developer}</h5>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Gênero:</h5>
                   <h5 className="text-cinza mb-0">{gameData.genre}</h5>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Lançamento:</h5>
                   <h5 className="text-cinza mb-0">{gameData.release}</h5>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Campeonatos:</h5>
                   <h5 className="text-cinza mb-0">{championshipData.length} campeonatos</h5>
                 </div>
               </div>
               <div className="col-12 col-md-6 mb-3">
-                <div className="d-flex">
+                <div className="d-flex mb-2">
                   <h5 className="fw-bold text-white me-2">Tags:</h5>
                   <h5 className="text-cinza mb-0">
                     {Array.isArray(gameData.tags) ? gameData.tags.join(', ') : ''}
                   </h5>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Distribuidora:</h5>
                   <h5 className="text-cinza mb-0">{gameData.publisher}</h5>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex mb-1">
                   <h5 className="fw-bold text-white me-2">Idade Recomendada:</h5>
                   <h5 className="text-cinza mb-0">{gameData.ageRating}+</h5>
                 </div>

@@ -168,32 +168,32 @@ export default function ChampionshipDetailsPage() {
       <link rel="stylesheet" href="/css/championship.css" />
 
       {/* Header do Campeonato */}
-      <section className="championship-header bg-dark py-5">
+      <section className="championship-header py-5">
+        {/* imagem de fundo (next/image com fill) */}
+        {championshipData.imageChampionship && (
+          <div className="championship-bg">
+            <Image
+              src={championshipData.imageChampionship}
+              alt={championshipData.name}
+              fill
+              style={{ objectFit: "cover", objectPosition: "center right" }}
+              priority
+            />
+            <div className="championship-bg-overlay" />
+          </div>
+        )}
+
         <div className="container">
-          <div className="my-4 d-flex justify-content-between align-items-center">
-            <button
-              onClick={handleBack}
-              className="d-none d-md-flex btn-voltar text-white"
-            >
-              <i className="fa-solid fa-arrow-left" />
-              <h5 className="mb-0 ms-2">Voltar</h5>
+          <div className="col-12 d-flex justify-content-start gap-2 mb-4 mt-5">
+            <button onClick={handleBack} className="btn btn-voltar text-white">
+              <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
+            </button>
+            <button className="btn btn-outline-branco w-auto text-white">
+              <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2" /> Ativar Notificações</h5>
             </button>
           </div>
 
-          <div className="row align-items-center">
-            <div className="col-md-3 text-center mb-4 mb-md-0">
-              {championshipData.imageChampionship && (
-                <div style={{ width: 150, height: 150, position: "relative", margin: "0 auto" }}>
-                  <Image
-                    src={championshipData.imageChampionship}
-                    alt={championshipData.name}
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
-                </div>
-              )}
-            </div>
-
+          <div className="row align-items-center mb-5">
             <div className="col-md-9">
               <h1 className="display-4 fw-bold text-white mb-3">{championshipData.name}</h1>
 
@@ -217,9 +217,9 @@ export default function ChampionshipDetailsPage() {
       </section>
 
       {/* Navegação por Tabs */}
-      <section className="bg-secondary sticky-top">
+      <section className="bg-black sticky-top">
         <div className="container">
-          <ul className="nav nav-tabs border-0 pt-3">
+          <ul className="nav nav-tabs border-0 shadow-0 pt-2">
             <li className="nav-item">
               <button
                 className={`nav-link ${activeTab === 'times' ? 'active bg-dark text-primary' : 'text-white'} border-0 rounded-top`}

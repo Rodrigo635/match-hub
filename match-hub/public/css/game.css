@@ -25,7 +25,6 @@ header {
   color: var(-cor-cinzaTexto) !important;
 }
 
-
 .btn-voltar {
     padding: 7px 16px;
     display: flex;
@@ -117,4 +116,41 @@ header {
   .col-4.filtro:last-child {
     margin-bottom: 0px;
   }
+}
+
+/* Loading UI */
+.game-loading {
+  background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.0));
+  padding: 2rem 1rem;
+}
+
+/* Spinner circular simples */
+.loader {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.12);
+  border-top-color: var(--cor-azul);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Texto e responsividade */
+.loading-wrapper h4 { color: #fff; font-weight: 600; }
+.loading-wrapper p.small { color: rgba(255,255,255,0.6); }
+
+/* ajustar para telas pequenas */
+@media (max-width: 768px) {
+  .loader { width: 48px; height: 48px; border-width: 5px; }
 }

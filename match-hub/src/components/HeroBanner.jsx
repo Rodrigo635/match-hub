@@ -31,8 +31,8 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
             <p className="esports-sub lead mt-3">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
 
             <div className="d-flex botoes gap-2 gap-md-3 align-items-center mt-4">
-              <a href="/sobre" className="btn btn-outline-primary btn-hero"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
-              <a href="/calendario" className="btn btn-outline-primary btn-hero"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
+              <a href="/sobre" className="btn btn-outline-azul"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
+              <a href="/calendario" className="btn btn-outline-azul"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
 
               <div className="bell ms-1 d-none d-md-flex " title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
                 <i className="fas fa-bell fa-lg"></i>
