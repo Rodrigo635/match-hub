@@ -27,6 +27,9 @@ public interface UserMapper {
     /**
      * Converte User para UserResponseDTO (single).
      */
+    @Mapping(target = "favoriteGames", source = "favoriteGames")
+    @Mapping(target = "favoriteChampionships", source = "favoriteChampionships")
+    @Mapping(target = "favoriteTeams", source = "favoriteTeams")
     UserResponseDTO toResponseDto(User user);
 
     // -----------------------------------------
@@ -40,7 +43,11 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "password", ignore = true)
+    @Mapping(target = "favoriteGames", ignore = true)
+    @Mapping(target = "favoriteChampionships", ignore = true)
+    @Mapping(target = "favoriteTeams", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromDto(UpdateUserDTO updateUserDTO, @MappingTarget User user);
+
 
 }

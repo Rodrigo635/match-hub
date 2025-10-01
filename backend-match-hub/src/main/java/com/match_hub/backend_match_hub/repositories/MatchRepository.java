@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
     @Query("SELECT m FROM Match m WHERE m.championshipId.id = :championshipId")
@@ -21,4 +24,6 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
        """)
     Page<Match> findByTeamId(@Param("teamId") Long teamId, Pageable pageable);
 
+    // Busca partidas entre duas datas
+    List<Match> findByDateBetween(LocalDate start, LocalDate end);
 }

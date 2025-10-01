@@ -3,6 +3,7 @@ package com.match_hub.backend_match_hub.dtos.user;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record UpdateUserDTO(
 
@@ -29,6 +30,12 @@ public record UpdateUserDTO(
         @Max(value = 30, message = "O tamanho máximo da fonte é 30")
         Integer fontSize,
 
-        Boolean librasActive
+        Boolean librasActive,
 
-) {}
+        // pode ser null ou lista vazia, mas se vier precisa ser de inteiros
+        List<@NotNull Integer> favoriteGames,
+        List<@NotNull Integer> favoriteChampionships,
+        List<@NotNull Integer> favoriteTeams
+
+) {
+}

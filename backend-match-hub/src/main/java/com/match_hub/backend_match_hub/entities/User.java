@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.match_hub.backend_match_hub.entities.interfaces.HasProfileImage;
 import com.match_hub.backend_match_hub.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +14,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +23,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "users")
 @Entity
 public class User implements UserDetails, Serializable, HasProfileImage {
@@ -62,6 +61,17 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     private Integer fontSize = 16;
     private Boolean librasActive = false;
 
+    @OneToMany(mappedBy = "user")
+    private final List<Notification> notifications = new ArrayList<>();
+
+    @OneToMany
+    private final List<Game> favoriteGames = new ArrayList<>();
+
+    @OneToMany
+    private final List<Championship> favoriteChampionships = new ArrayList<>();
+
+    @OneToMany
+    private final List<Team> favoriteTeams = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

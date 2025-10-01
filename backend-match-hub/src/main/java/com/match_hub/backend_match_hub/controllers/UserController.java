@@ -4,13 +4,9 @@ import com.match_hub.backend_match_hub.dtos.EmailDTO;
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.ResetPasswordDTO;
 import com.match_hub.backend_match_hub.dtos.TokenDTO;
-import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
-import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
-import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
-import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
+import com.match_hub.backend_match_hub.dtos.user.*;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundException;
-import com.match_hub.backend_match_hub.infra.security.Filter;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.services.CustomOAuth2UserService;
 import com.match_hub.backend_match_hub.services.PasswordResetService;
@@ -50,9 +46,6 @@ public class UserController {
 
     @Autowired
     private TokenService tokenService;
-
-    @Autowired
-    private Filter filter;
 
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
@@ -118,6 +111,34 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Add favorite game", security = @SecurityRequirement(name = "bearer-key"), description = "Adds a game to the user's favorites.")
+    @PatchMapping("/favorites/games/{gameId}")
+    public ResponseEntity<Void> addFavoriteGame(@PathVariable Long gameId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.addFavoriteGame(email, gameId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Add favorite championship", security = @SecurityRequirement(name = "bearer-key"), description = "Adds a championship to the user's favorites.")
+    @PatchMapping("/favorites/championships/{championshipId}")
+    public ResponseEntity<Void> addFavoriteChampionship(@PathVariable Long championshipId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.addFavoriteChampionship(email, championshipId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Add favorite team", security = @SecurityRequirement(name = "bearer-key"), description = "Adds a team to the user's favorites.")
+    @PatchMapping("/favorites/teams/{teamId}")
+    public ResponseEntity<Void> addFavoriteTeam(@PathVariable Long teamId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.addFavoriteTeam(email, teamId);
+        return ResponseEntity.noContent().build();
+    }
+
+
     @Operation(summary = "Delete user profile picture", description = "Deletes the profile picture for an existing user.")
     @DeleteMapping(value = "/image/delete/{id}")
     public ResponseEntity<Map<String, String>> deleteProfileImage(
@@ -134,6 +155,47 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Remove favorite game", security = @SecurityRequirement(name = "bearer-key"), description = "Removes a game from the user's favorites.")
+    @DeleteMapping("/favorites/games/{gameId}")
+    public ResponseEntity<Void> removeFavoriteGame(@PathVariable Long gameId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.removeFavoriteGame(email, gameId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Remove favorite championship", security = @SecurityRequirement(name = "bearer-key"), description = "Removes a championship from the user's favorites.")
+    @DeleteMapping("/favorites/championships/{championshipId}")
+    public ResponseEntity<Void> removeFavoriteChampionship(@PathVariable Long championshipId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.removeFavoriteChampionship(email, championshipId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Remove favorite team", security = @SecurityRequirement(name = "bearer-key"), description = "Removes a team from the user's favorites.")
+    @DeleteMapping("/favorites/teams/{teamId}")
+    public ResponseEntity<Void> removeFavoriteTeam(@PathVariable Long teamId, HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.removeFavoriteTeam(email, teamId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(
+            summary = "Remove all favorites",
+            security = @SecurityRequirement(name = "bearer-key"),
+            description = "Removes all favorite games, championships, and teams from the user."
+    )
+    @DeleteMapping("/favorites")
+    public ResponseEntity<Void> removeAllFavorites(HttpServletRequest request) {
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        userService.removeAllFavorites(email);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
     @Operation(summary = "Update authenticated user", security = @SecurityRequirement(name = "bearer-key"), description = "Updates the authenticated user using data from the JWT token.")
     @PutMapping
@@ -145,7 +207,6 @@ public class UserController {
         return ResponseEntity.noContent().build();
 
     }
-
 
     @Operation(summary = "Admin update user by ID", description = "Allows an admin to update any user by ID.")
     @PutMapping("/admin/{id}")

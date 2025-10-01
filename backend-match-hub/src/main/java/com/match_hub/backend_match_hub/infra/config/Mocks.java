@@ -85,6 +85,12 @@ public class Mocks implements CommandLineRunner {
         team2.setName("Palmeiras");
         Team savedTeam2 = teamRepository.save(team2);
 
+        user.getFavoriteTeams().add(savedTeam1);
+        user2.getFavoriteTeams().add(savedTeam2);
+
+        userRepository.save(user);
+        userRepository.save(user2);
+
         // Criando Match
         Match match = new Match();
         match.setChampionshipId(savedChampionship);

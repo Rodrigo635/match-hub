@@ -1,4 +1,9 @@
 # Configurações padrão (ativas quando nenhum perfil está especificado)
+logging:
+  level:
+    com.match_hub.backend_match_hub.infra.notifications: DEBUG
+    com.match_hub.backend_match_hub.services: DEBUG
+
 api:
   security:
     token:
@@ -59,11 +64,11 @@ spring:
 
 ---
 
-# Configurações compartilhadas entre os perfis 'dev' e 'dev1'
+# Configurações compartilhadas entre os perfis 'dev'
 spring:
   config:
     activate:
-      on-profile: [ dev, dev1 ]  # Ativa em ambos os perfis
+      on-profile: [ dev ]  # Ativa em ambos os perfis
   application:
     name: backend-match-hub-dev
 
