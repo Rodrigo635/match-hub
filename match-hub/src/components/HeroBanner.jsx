@@ -76,7 +76,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
               <button className="btn-close" onClick={() => setShowNotify(false)} aria-label="Fechar" />
             </div>
             <div className="modal-body">
-              <p>Na página de qualquer: jogo, campeonato, time ou jogador, você pode favoritá-lo para receber notificações e personalizar para se ajustar aos seus interesses.</p>
+              <p>Na página de qualquer: jogo, campeonato ou time você pode clicar para receber notificações e personalizar para se ajustar aos seus interesses.</p>
               <div className="d-grid gap-2">
                 <button className="btn btn-primary" onClick={() => setShowNotify(false)}>Entendi</button>
               </div>
