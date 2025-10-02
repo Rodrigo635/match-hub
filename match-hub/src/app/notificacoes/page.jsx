@@ -37,8 +37,8 @@ export default function NotificationPageMock() {
       <div className="container pb-5">
         <div className="row d-flex justify-content-between align-items-center mb-4">
           <div className="col-12 col-md-6">
-            <h1 className="fw-bold">Notificações ligadas</h1>
-            <p className="text-white mb-0">Aqui ficam as notificações dos itens que você ligou.</p>
+            <h1 className="fw-bold">Notificações ativadas</h1>
+            <p className="text-white mb-0">Aqui você gerencia as notificações do que deseja acompanhar.</p>
           </div>
 
           <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
