@@ -1,6 +1,16 @@
+/* tela maior que 991 muda o tamanho da fonte */
+@media (max-width: 991px) {
+    .display-md {
+        font-size: 2.7rem !important;
+    }
+    .display-md2 {
+        font-size: 2.2rem !important;
+    }
+}
+
 .esports-hero {
     position: relative;
-    height: 70vh;
+    height: 90vh;
     min-height: 380px;
     display: flex;
     align-items: center;

@@ -186,7 +186,6 @@ export default function Header() {
               </button>
             )}
 
-
             <button
               className="navbar-toggler border-0"
               type="button"
@@ -201,21 +200,12 @@ export default function Header() {
 
           {/* NAV desktop */}
           <div className="collapse navbar-collapse justify-content-end d-none d-lg-flex" id="mainNavbar">
-            <form className="d-flex align-items-center mb-0 me-3 position-relative" role="search">
-              <input className="form-control bg-transparent text-white rounded-5 border-1 p-1" type="search" placeholder="Pesquisar..." aria-label="Search" />
-              <img src="/static/icons/search.png" className="position-absolute" style={{ left: "0.75rem" }} width="17" height="17" alt="pesquisar" />
-            </form>
-
             <ul className="navbar-nav d-flex mb-0 text-center me-0">
               <li className="nav-item"><Link href="/" className={`nav-link px-2 ${pathname === "/" ? "text-primary" : "text-white"}`}>Início</Link></li>
               <li className="nav-item"><Link href="/jogos" className={`nav-link px-2 ${pathname === "/jogos" ? "text-primary" : "text-white"}`}>Jogos</Link></li>
               <li className="nav-item"><Link href="/calendario" className={`nav-link px-2 ${pathname === "/calendario" ? "text-primary" : "text-white"}`}>Calendário</Link></li>
               <li className="nav-item"><Link href="/sobre" className={`nav-link px-2 ${pathname === "/sobre" ? "text-primary" : "text-white"}`}>Sobre</Link></li>
               <li className="nav-item"><Link href="/contato" className={`nav-link px-2 ${pathname === "/contato" ? "text-primary" : "text-white"}`}>Contato</Link></li>
-
-              {user != null ? (
-                <li className="nav-item"><Link href="/notificacoes" className={`nav-link px-2 ${pathname === "/notificacoes" ? "text-primary" : "text-white"}`}>Notificações</Link></li>
-              ) : <div className="d-none"></div>}
             </ul>
 
             <div className="d-flex align-items-center justify-content-center gap-2">
@@ -247,10 +237,13 @@ export default function Header() {
           {/* Offcanvas mobile */}
           <div className="offcanvas offcanvas-end text-bg-dark bg-black d-lg-none" tabIndex="-1" id="mainNavbarOffcanvas" aria-labelledby="mainNavbarOffcanvasLabel">
             <div className="offcanvas-header">
-              <form className="d-flex align-items-center position-relative" role="search">
-                <input className="form-control bg-transparent text-white rounded-5 border-1 p-1" type="search" placeholder="Pesquisar..." aria-label="Search" />
-                <img src="/static/icons/search.png" className="position-absolute" style={{ left: "0.75rem" }} width="17" height="17" alt="pesquisar" />
-              </form>
+              {user != null ? (
+                <div className="d-flex align-items-center justify-content-center">
+                  <a href="/perfil"><Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="40" height="40" alt="Avatar" /></a>
+                </div>
+              ) : (
+                <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center justify-content-center"><p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p></Link>
+              )}
               <button type="button" className="btn-close btn-close-white me-1 " data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
@@ -262,13 +255,6 @@ export default function Header() {
                 <li className="nav-item"><Link href="/contato" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-phone me-2"></i>Contato</p></Link></li>
               </ul>
 
-              {user != null ? (
-                <div className="d-flex align-items-center justify-content-center">
-                  <a href="/perfil"><Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="40" height="40" alt="Avatar" /></a>
-                </div>
-              ) : (
-                <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center justify-content-center"><p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p></Link>
-              )}
             </div>
           </div>
         </div>

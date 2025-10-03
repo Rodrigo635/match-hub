@@ -26,20 +26,30 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
 
       <div className="container esports-content">
         <div className="row align-items-center">
-          <div className="col-12 col-lg-7">
-            <h1 className="esports-title fw-bold">Nunca perca um campeonato!<br/>Assista ao vivo e na hora certa</h1>
-            <p className="esports-sub lead mt-3">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
+          <div className="col-12 col-lg-12 py-5">
+            <h1 className="fw-bold display-1 display-md text-center text-md-start mb-1 mb-md-1 nowrap">Nunca perca uma live!</h1>
+            <h1 className="fw-bold display-4 display-md2 text-center text-md-start mt-0 nowrap">Assista ao vivo e na hora certa</h1>
+            <p className="text-center text-md-start lead mt-3 col-12 col-md-8">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
 
-            <div className="d-flex botoes gap-2 gap-md-3 align-items-center mt-4">
-              <a href="/sobre" className="btn btn-outline-azul"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
-              <a href="/calendario" className="btn btn-outline-azul"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
+            <div className="d-flex botoes align-items-center justify-content-center justify-content-md-start mt-4">
+              <div className="row gap-3 d-flex justify-content-center justify-content-md-start px-2">
+                <div className="col-11 col-md px-0">
+                  <a href="/sobre" className="btn btn-outline-azul"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
 
-              <div className="bell ms-1 d-none d-md-flex " title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
-                <i className="fas fa-bell fa-lg"></i>
+                </div>
+                <div className="col-11 col-md px-0">
+                  <a href="/calendario" className="btn btn-outline-azul"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
+                </div>
+                <div className="col-12 col-md-1 px-1 d-none d-md-block">
+                  <div className="bell ms-1" title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
+                    <i className="fas fa-bell fa-lg"></i>
+                  </div>
+                </div>
               </div>
+
             </div>
 
-            <div className="mt-4 match-ticker" aria-live="polite">
+            <div className="col-12 col-md-8 mt-4 match-ticker" aria-live="polite">
               <div className="ticker-list" id="tickerList">
                 <span className="ticker-item">[18:00] Paris Saint-Germain vs Manchester City — EA SPORTS FC 25 Championship 2025 • Stream</span>
                 <span className="ticker-item">[19:30] KT vs T1 — LCK • Stream</span>
@@ -51,7 +61,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
 
           </div>
 
-          <div className="col-lg-5 d-none d-lg-block text-end">
+          {/* <div className="col-lg-4 d-flex text-end">
             <div className="col mb-lg-0">
               <div className="ratio ratio-16x9 h-100 video-apresentacao rounded-4">
                 <iframe
@@ -62,7 +72,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
                 ></iframe>
               </div>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>

@@ -196,7 +196,7 @@ export default function CadastroPage() {
     try {
       const res = await login(loginEmail, loginSenha);
       Cookies.set('token', res.token);
-      router.push('/perfil');
+      router.push('/');
     } catch (err) {
       setErrorMessage('Falha no login. Verifique os dados.');
     }

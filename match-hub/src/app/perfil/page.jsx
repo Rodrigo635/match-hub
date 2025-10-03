@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Configuracoes from "@/components/perfil/Configuracoes";
 import Seguranca from "@/components/perfil/Seguranca";
 import PerfilDefault from "@/components/perfil/PerfilDefault";
+import Notificacoes from "@/components/perfil/Notificacoes";
 import Ajuda from "@/components/perfil/Ajuda";
 import { useRouter } from "next/navigation";
 import { handleGetUser } from "../global/global";
@@ -16,6 +17,7 @@ export default function ProfilePage() {
   // Seções
   const sections = [
     { key: "perfil", label: "Perfil", iconClass: "fa-solid fa-user" },
+    { key: "notificacoes", label: "Notificações", iconClass: "fa-solid fa-bell" },
     { key: "seguranca", label: "Segurança", iconClass: "fa-solid fa-lock" },
     { key: "configuracoes", label: "Configurações", iconClass: "fa-solid fa-cog" },
     { key: "ajuda", label: "Ajuda", iconClass: "fa-solid fa-circle-question" },
@@ -41,6 +43,10 @@ export default function ProfilePage() {
       case "perfil":
         return (
           <PerfilDefault user={user} token={token} />
+        );
+      case "notificacoes":
+        return (
+            <Notificacoes user={user} />
         );
       case "seguranca":
         return (
