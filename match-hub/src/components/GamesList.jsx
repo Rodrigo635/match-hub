@@ -85,7 +85,7 @@ export default function GamesList() {
           <div className="col-12 col-md-6 filtros-titulo">
             <h1 className="title-campeonato text-white fw-bold">Lista de Jogos</h1>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-6 ">
             <div className="row gx-2">
               <div className="col-6 filtro">
                 <select

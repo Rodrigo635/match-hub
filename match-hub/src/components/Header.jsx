@@ -224,7 +224,7 @@ export default function Header() {
 
               {user != null ? (
                 <a href="/perfil">
-                  <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="40" height="40" alt="Avatar" />
+                  <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="34" height="34" alt="Avatar" />
                 </a>
               ) : (
                 <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center ms-3">
