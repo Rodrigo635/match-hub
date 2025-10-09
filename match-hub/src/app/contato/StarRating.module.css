@@ -1,0 +1,65 @@
+/* components/StarRating.module.css */
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.container h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.container p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  display: none;
+}
+
+.star {
+  color: #ddd;
+  transition: color 0.2s ease;
+}
+
+.star:hover{
+  cursor: pointer;
+}
+
+.star.active {
+  color: #ffd700;
+}
+
+.feedback {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .ratingContainer {
+    font-size: 2rem;
+  }
+
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}

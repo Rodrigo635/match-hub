@@ -25,6 +25,20 @@ export default function ModalUpdateImage({ user, onClose }) {
     setSelectedFile(e.target.files[0]); // pega o arquivo
   };
 
+  const openAvatarModal = () => {
+    const avatarModal = new bootstrap.Modal(
+      document.getElementById("avatarModal")
+    );
+    avatarModal.show();
+  };
+
+  const closeAvatarModal = () => {
+    const avatarModal = bootstrap.Modal.getInstance(
+      document.getElementById("avatarModal")
+    );
+    avatarModal.hide();
+  };
+
   const handleSubmitUpdateImage = async (e) => {
     e.preventDefault();
 
@@ -39,8 +53,8 @@ export default function ModalUpdateImage({ user, onClose }) {
         setError("Usuário não autenticado.");
         return;
       }
-      
-      const formData = { image: selectedFile }
+
+      const formData = { image: selectedFile };
 
       const response = await uploadProfileImage(user.id, formData, token);
 
@@ -65,7 +79,7 @@ export default function ModalUpdateImage({ user, onClose }) {
       }
       const response = await deleteProfileImage(user.id, token);
       if (response.ok) {
-        window.location.reload(); // NãO ALTERAR POR ROUTER.REFRESH()
+        window.location.reload(); // NÃO ALTERAR POR ROUTER.REFRESH()
       } else {
         setError("Erro ao deletar imagem.");
       }
@@ -77,20 +91,20 @@ export default function ModalUpdateImage({ user, onClose }) {
 
   return (
     <>
-      {/* Backdrop */}
-      <div className="modal-backdrop show"></div>
+      {/* Backdrop do modal principal */}
+      <div className="modal-backdrop fade show"></div>
 
-      {/* Modal */}
+      {/* Modal principal */}
       <div
-        className="modal show d-block"
+        className="modal fade show d-block"
         tabIndex="-1"
         role="dialog"
         style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content bg-dark text-white">
             {/* Cabeçalho */}
-            <div className="modal-header bg-dark text-white">
+            <div className="modal-header border-0">
               <h5 className="modal-title">Alterar Foto de Perfil</h5>
               <button
                 type="button"
@@ -101,9 +115,9 @@ export default function ModalUpdateImage({ user, onClose }) {
             </div>
 
             {/* Corpo com formulário */}
-            <div className="modal-body bg-dark text-white">
-              <div className="d-flex flex-column align-items-center mb-5">
-                <p>Foto atual:</p>
+            <div className="modal-body">
+              <div className="d-flex flex-column align-items-center mb-4">
+                <p className="mb-2">Foto atual:</p>
                 <label htmlFor="imageProfile" className="cursor-pointer">
                   <Image
                     src={
@@ -114,7 +128,7 @@ export default function ModalUpdateImage({ user, onClose }) {
                     alt={user.name}
                     width={200}
                     height={200}
-                    className="rounded-circle bg-secondary p-1 "
+                    className="rounded-circle bg-secondary p-1"
                   />
                 </label>
               </div>
@@ -125,7 +139,7 @@ export default function ModalUpdateImage({ user, onClose }) {
                   </label>
                   <input
                     type="file"
-                    className="form-control w-100"
+                    className="form-control"
                     id="imageProfile"
                     name="imageProfile"
                     onChange={handleFileChange}
@@ -135,19 +149,73 @@ export default function ModalUpdateImage({ user, onClose }) {
 
                 {error && <p className="text-danger">{error}</p>}
 
-                <div className="d-flex justify-space-between w-100 gap-2">
-                  <button type="submit" className="btn btn-primary">
-                    Salvar
-                  </button>
+                <div className="d-flex justify-content-between align-items-center gap-2">
+                  <div className="d-flex gap-2">
+                    <button type="submit" className="btn btn-primary">
+                      Salvar
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={handleSubmitDeleteImage}
+                    >
+                      Remover foto
+                    </button>
+                  </div>
                   <button
                     type="button"
-                    className="btn btn-danger"
-                    onClick={handleSubmitDeleteImage}
+                    className="btn btn-secondary"
+                    onClick={openAvatarModal}
                   >
-                    Remover foto
+                    <div className="d-flex align-items-center gap-2">Selecionar Avatar <svg xmlns="http://www.w3.org/2000/svg" style={{ fill: "white" }} width="24" height="24"><path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"/></svg></div>
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal de Avatares */}
+      <div
+        className="modal fade"
+        id="avatarModal"
+        tabIndex="-1"
+        aria-labelledby="avatarModalLabel"
+        aria-hidden="true"
+        style={{ height: "100%", backgroundColor: "rgba(0,0,0,0.5)"  }}
+      >
+        <div
+          className="modal-dialog modal-dialog-centered modal-sm position-relative"
+          style={{ left: "33%", maxWidth: "30%" }}
+        >
+          <div className="modal-content bg-dark text-white" style={{ borderRadius: "10px", boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)", height: "480px" }}>
+            <div className="modal-header border-0">
+              <h5 className="modal-title" id="avatarModalLabel">
+                Selecione um avatar             
+                </h5>
+              <button
+                type="button"
+                className="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={closeAvatarModal}
+              ></button>
+            </div>
+            <div className="modal-body">
+              <div className="d-flex flex-wrap gap-3 justify-content-center">
+                  {/* TODO: Adiciona avatares vindo do database */}
+              </div>
+            </div>
+            <div className="modal-footer border-0">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+                onClick={closeAvatarModal}
+              >
+                Fechar
+              </button>
             </div>
           </div>
         </div>

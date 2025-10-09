@@ -8,7 +8,7 @@ export default function JogosPage() {
   return (
     <>
       <main >
-        <GamesList />
+        <GamesList initialItems={18} additionalItems={0} />
       </main>
     </>
   );

@@ -5,18 +5,18 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { getAllGames } from "@/app/services/gameService";
 
-export default function GamesList() {
+export default function GamesList({ initialItems, additionalItems }) {
   const router = useRouter();
 
   const [allData, setAllData] = useState([]); // todos os jogos buscados
   const [filtered, setFiltered] = useState([]); // dados após filtro
   const [page, setPage] = useState(0);
 
-  const INITIAL_ITEMS = 12;
-  const ADDITIONAL_ITEMS = 8;
+  const INITIAL_ITEMS = initialItems;
+  const ADDITIONAL_ITEMS = additionalItems;
 
-  const [selectedGame, setSelectedGame] = useState("Todos");
-  const [selectedTournament, setSelectedTournament] = useState("Todos");
+  const [selectedGame, setSelectedGame] = useState("Jogos");
+  const [selectedTournament, setSelectedTournament] = useState("Campeonatos");
 
   const visibleCount = INITIAL_ITEMS + page * ADDITIONAL_ITEMS;
   const pageItems = filtered.slice(0, visibleCount);
@@ -45,10 +45,10 @@ export default function GamesList() {
   useEffect(() => {
     const f = allData.filter((item) => {
       const gameMatch =
-        selectedGame === "Todos" ||
+        selectedGame === "Jogos" ||
         item.name.toLowerCase() === selectedGame.toLowerCase();
       const tourMatch =
-        selectedTournament === "Todos" ||
+        selectedTournament === "Campeonatos" ||
         item.tournament.toLowerCase() === selectedTournament.toLowerCase();
       return gameMatch && tourMatch;
     });
@@ -57,9 +57,9 @@ export default function GamesList() {
   }, [selectedGame, selectedTournament, allData]);
 
   // opções dos selects com base em toda a base
-  const gameOptions = ["Todos", ...Array.from(new Set(allData.map((i) => i.name)))];
+  const gameOptions = ["Jogos", ...Array.from(new Set(allData.map((i) => i.name)))];
   const tournamentOptions = [
-    "Todos",
+    "Campeonatos",
     ...Array.from(new Set(allData.map((i) => i.tournament))),
   ];
 
@@ -143,12 +143,12 @@ export default function GamesList() {
 
         {/* Paginação */}
         <div className="container text-center my-5">
-          {hasPrev && (
+          {hasPrev && additionalItems != 0 && (
             <h5 className="text-center ver-menos cursor-pointer" onClick={handlePrev}>
               <span className="text-azul">Ver menos</span>
             </h5>
           )}
-          {hasNext && (
+          {hasNext && additionalItems != 0 && (
             <h5 className="text-center ver-mais cursor-pointer" onClick={handleNext}>
               <span className="text-azul">Ver mais</span>
             </h5>
