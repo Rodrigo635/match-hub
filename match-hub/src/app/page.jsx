@@ -12,7 +12,7 @@ export default function HomePage() {
         <HeroBanner />
       </main>
 
-      <GamesList />
+      <GamesList initialItems={12} additionalItems={8} />
 
       <section className="lista-funcoes-bg">
         <div className="container">

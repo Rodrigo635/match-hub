@@ -1,13 +1,19 @@
+"use client";
+import React, { useState } from "react";
+import styles from './StarRating.module.css';
 // src/app/contato/page.js
 import Script from "next/script";
 
-export const metadata = {
-  title: "Contato - MATCH HUB",
-  description:
-    "Página de contato do Match Hub. Conheça nossa equipe e envie sua mensagem.",
-};
+
 
 export default function ContatoPage() {
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+
+  const handleRating = (value) => {
+    setRating(value);
+  };
+
   return (
     <>
       <main className="page-contato">
@@ -598,6 +604,34 @@ export default function ContatoPage() {
                 id="form-contato"
               >
                 <h1 className="fw-bold text-center mb-4">Contate-nos</h1>
+                <div
+                  className={styles.ratingContainer}
+                  role="radiogroup"
+                  aria-label="Avaliação de 1 a 5 estrelas"
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <label
+                      key={star}
+                      className={`${styles.star} ${
+                        hover >= star || rating >= star ? styles.active : ""
+                      }`}
+                      onMouseEnter={() => setHover(star)}
+                      onMouseLeave={() => setHover(0)}
+                      title={`${star} estrela${star > 1 ? "s" : ""}`}
+                    >
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={star}
+                        onChange={() => handleRating(star)}
+                        aria-label={`${star} estrela${star > 1 ? "s" : ""}`}
+                        className={styles.input}
+                      />
+                      ★
+                    </label>
+                  ))}
+                </div>
+
                 <input type="hidden" name="_captcha" value="false" />
                 <fieldset className="mb-4 mt-3 rounded-3">
                   <div className="container-input position-relative">
