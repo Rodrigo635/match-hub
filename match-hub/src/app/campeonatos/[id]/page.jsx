@@ -303,7 +303,7 @@ export default function ChampionshipDetailsPage() {
                   upcomingMatches.map((match, idx) => (
                     <div key={idx} className="col-12 col-md-6 col-lg-4">
                       <div className="card bg-dark text-white h-100 border-0 shadow">
-                        <div className="card-body p-4">
+                        <div className="card-body-campeonato p-4">
                           <div className="d-flex justify-content-between align-items-center mb-3">
                             <div className="text-center">
                               {match.matchTeams[0]?.team?.logo && (
@@ -382,7 +382,7 @@ export default function ChampionshipDetailsPage() {
                   pastMatches.map((match, idx) => (
                     <div key={idx} className="col-12 col-md-6 col-lg-4">
                       <div className="card bg-dark text-white h-100 border-0 shadow">
-                        <div className="card-body p-4">
+                        <div className="card-body-campeonato p-4">
                           <div className="d-flex justify-content-between align-items-center mb-3">
                             <div className="text-center">
                               {match.matchTeams[0]?.team?.logo && (
