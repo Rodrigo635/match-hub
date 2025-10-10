@@ -34,11 +34,11 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
             <div className="d-flex botoes align-items-center justify-content-center justify-content-md-start mt-4">
               <div className="row gap-3 d-flex justify-content-center justify-content-md-start px-2">
                 <div className="col-11 col-md px-0">
-                  <a href="/sobre" className="btn btn-outline-azul"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
+                  <a href="/sobre" className="btn btn-outline-azul btn-lg"><i className="fas fa-info-circle me-2"></i>Saiba mais</a>
 
                 </div>
                 <div className="col-11 col-md px-0">
-                  <a href="/calendario" className="btn btn-outline-azul"><i className="fas fa-calendar-alt me-2"></i> Ver calendário</a>
+                  <a href="/calendario" className="btn btn-outline-azul btn-lg"><i className="fas fa-calendar-alt me-2"></i> Calendário</a>
                 </div>
                 <div className="col-12 col-md-1 px-1 d-none d-md-block">
                   <div className="bell ms-1" title="Ativar notificações" role="button" tabIndex={0} onClick={() => setShowNotify(true)}>
