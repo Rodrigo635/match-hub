@@ -227,13 +227,13 @@ export default function CadastroPage() {
                 <label htmlFor="mainPassword" className="form-label">Confirmar senha</label>
 
                 <div className="input-group input-group-lg">
-                  <input id="confirmPassword" type={showConfirmPassword ? 'text' : 'password'} className={`form-control form-control-lg bg-dark text-white ${erros.confirmSenha ? 'is-invalid' : ''}`} placeholder="Repita a senha" value={confirmSenha} onChange={handleConfirmSenhaChange} aria-invalid={!!erros.confirmSenha} aria-describedby={erros.confirmSenha ? 'confirmSenha-error' : undefined} required />
+                  <input id="confirmPassword" type={showConfirmPassword ? 'text' : 'password'} className={`form-control bg-dark text-white ${erros.confirmSenha ? 'is-invalid' : ''}`} placeholder="Repita a senha" value={confirmSenha} onChange={handleConfirmSenhaChange} aria-invalid={!!erros.confirmSenha} aria-describedby={erros.confirmSenha ? 'confirmSenha-error' : undefined} required />
 
                   <button type="button" className="btn btn-outline-light btn-icon-group border-start-0" onClick={() => setShowConfirmPassword(!showConfirmPassword)} aria-label={showConfirmPassword ? 'Esconder senha' : 'Mostrar senha'} >
                     <i className={`fa-solid ${showConfirmPassword ? 'fa-eye' : 'fa-eye-slash'}`} aria-hidden="true"></i>
                   </button>
 
-                  {erros.confirmSenha && <div id="confirmSenha-error" className="invalid-feedback d-block">As senhas não coincidem</div>}
+                  {erros.confirmSenha && <div id="confirmSenha-error" className="invalid-feedback d-block mt-2">As senhas não coincidem</div>}
                 </div>
 
               </div>
