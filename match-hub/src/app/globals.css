@@ -23,9 +23,7 @@ html[data-theme="light"] body {
 /* ============================
    CUSTOMIZAÇÕES ESPECÍFICAS
    ============================ */
-html[data-theme="light"] .navbar * {
-  background-color: black !important;
-}
+
 
 html[data-theme="light"] .profile-content h5,
 html[data-theme="light"] .profile-sidebar .nav-link,
@@ -51,6 +49,22 @@ html[data-theme="light"] .gif-container * {
 html[data-theme="light"] #docs * {
   color: rgb(0, 0, 0);
 }
+/* ============================
+    HEADER E RODAPÉ
+   ============================ */
+html[data-theme="light"] header,
+html[data-theme="light"] header .text-white,
+html[data-theme="light"] .navbar-dark,
+html[data-theme="light"]  header i,
+html[data-theme="light"] footer,
+html[data-theme="light"] footer .text-white,
+html[data-theme="light"] #mainNavbar {
+    background-color: rgb(255, 255, 255) !important;
+    color: var(--text-color) !important;
+  }
+
+
+
 
 /* ============================
    PÁGINA INDEX
@@ -120,12 +134,13 @@ section {
   background-color: transparent !important;
 }
 
-.doc-btn * {
+html[data-theme="light"] .doc-btn i, html[data-theme="light"] .doc-btn .text-white {
   color: var(--bg-color) !important;
 }
 
-.doc-btn:hover * {
-  color: var(--text-color) !important;
+html[data-theme="light"] .doc-btn:hover{
+  background-color: var(--primary) !important;
+
 }
 
 /* ============================
@@ -133,7 +148,7 @@ section {
    ============================ */
 html[data-theme="light"] .page-perfil *:not(a) {
   background-color: transparent !important;
-  color: rgb(0, 0, 0) !important;
+  color: var(--text-color) !important;
 }
 
 html[data-theme="light"] .profile-sidebar .nav-link.active,
@@ -331,7 +346,7 @@ html[data-theme="light"] .card-body-campeonato .small {
 }
 
 /* ============================
-   Campeonatos
+   CAMPEONATOS
    ============================ */
 
 html[data-theme="light"] .section-campeonatos,
@@ -359,6 +374,25 @@ html[data-theme="light"] .page-campeonato .card-body-campeonato {
   background-color: var(--bg-color) !important;
   color: var(--text-color) !important;
   border: var(--border-color) 1px solid !important;
+}
+
+/* ============================
+   TERMOS DE USO
+   ============================ */
+
+html[data-theme="light"] .page-termos-de-uso * {
+  background-color: transparent !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+
+html[data-theme="light"] .profile-content .modal-content {
+  background-color: var(--card-bg) !important;
+}
+html[data-theme="light"] .profile-content .modal-title, 
+html[data-theme="light"] .profile-content label,html[data-theme="light"] .profile-content .form-control,
+html[data-theme="light"] .profile-content label,html[data-theme="light"] .profile-content .modal button {
+  color: var(--text-color) !important;
 }
 
 /* ============================

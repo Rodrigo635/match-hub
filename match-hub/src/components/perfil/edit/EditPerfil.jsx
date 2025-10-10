@@ -56,7 +56,6 @@ export default function EditPerfil({ user, onClose, token }) {
         className="modal show d-block"
         tabIndex="-1"
         role="dialog"
-        style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content bg-dark text-white">
