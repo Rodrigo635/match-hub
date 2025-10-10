@@ -48,12 +48,12 @@ export default function ModalUpdateImage({ user, onClose }) {
 
   const handleAvatarPublic = async () => {
     const res = await getPublicAvatar();
-    console.log(res);
+    console.log(res.avatars);
     if (!res) {
       setError("Erro ao buscar avatares.");
     }
 
-    setAvatarUrl(res);
+    setAvatarUrl(res.avatars);
   };
 
   const handleSubmitUpdateImage = async (e) => {
@@ -86,19 +86,19 @@ export default function ModalUpdateImage({ user, onClose }) {
   };
 
   const handleAvatarClick = (avatar, index) => {
-    if (!avatar) {
-      return;
-    }
+    if (!avatar) return;
 
     setSelectedAvatar(avatar);
-    const currentAvatar = document.getElementById(`${index}`);
-    currentAvatar.classList.add("selected");
+
+    // Remove a classe de todos os avatares
     const otherAvatars = document.querySelectorAll(".avatar");
-    otherAvatars.forEach((avatar) => {
-      if (avatar !== selectedAvatar) {
-        avatar.classList.remove("selected");
-      }
-    });
+    otherAvatars.forEach((element) => element.classList.remove("selected"));
+
+    // Adiciona a classe no avatar clicado
+    const currentAvatar = document.getElementById(`avatar-${index}`);
+    if (currentAvatar) {
+      currentAvatar.classList.add("selected");
+    }
   };
 
   const handleAvatarSave = async () => {
@@ -111,10 +111,13 @@ export default function ModalUpdateImage({ user, onClose }) {
       setError("Usuário não autenticado.");
       return;
     }
-
+    console.log(selectedAvatar, token)
     const response = await uploadPublicAvatar(selectedAvatar, token);
 
-    window.location.reload();
+    if(!response.ok) {
+      setError("Erro ao atualizar imagem.");
+      return;
+    }
   };
 
   const handleSubmitDeleteImage = async (e) => {
@@ -268,16 +271,23 @@ export default function ModalUpdateImage({ user, onClose }) {
               ></button>
             </div>
             <div className="modal-body">
-              <div className="d-flex flex-wrap gap-3 justify-content-center">
-                {avatarUrl.map((avatarUrl, index) => (
-                  <Image
-                    key={index}
-                    src={avatarUrl}
-                    alt={`Avatar ${index + 1}`}
-                    className="avatar"
-                    onClick={() => handleAvatarSelect(avatarUrl)}
-                  />
-                ))}
+              <div className="d-flex flex-wrap gap-3 justify-content-center rounded rounded-circle">
+                {avatarUrl.map(
+                  (avatarUrl, index) => (
+                    console.log(index),
+                    (
+                      <Image
+                        key={index}
+                        src={avatarUrl}
+                        width={80}
+                        height={80}
+                        alt={`Avatar ${index + 1}`}
+                        className="avatar rounded-circle cursor-pointer"
+                        onClick={() => handleAvatarClick(avatarUrl, index)}
+                      />
+                    )
+                  )
+                )}
               </div>
             </div>
             <div className="modal-footer border-0 d-flex justify-content-between">
@@ -285,7 +295,7 @@ export default function ModalUpdateImage({ user, onClose }) {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={handleAvatarSave}
+                onClick={() => handleAvatarSave()}
               >
                 Salvar
               </button>

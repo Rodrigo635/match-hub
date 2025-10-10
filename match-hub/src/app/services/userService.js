@@ -153,17 +153,21 @@ export async function uploadProfileImage(id, formData, token) {
   return res;
 }
 
-export async function uploadPublicAvatar(selectedAvatar, token) {
-  const res = await fetch(`${BASE_URL}/api/user/avatar`, {
+export async function uploadPublicAvatar(avatarUrl, token) {
+  const res = await fetch(`${BASE_URL}/avatar`, {
     method: "PUT",
-    headers: { Authorization: `Bearer ${token}` },
-    body: JSON.stringify(selectedAvatar),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ "avatarUrl":avatarUrl }),
     credentials: "include",
   });
 
+
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${text}`);
+    const errorText = await res.text();
+    throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${errorText}`);
   }
 
   return res;
