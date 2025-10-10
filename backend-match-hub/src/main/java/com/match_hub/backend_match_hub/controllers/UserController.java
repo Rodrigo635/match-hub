@@ -109,7 +109,9 @@ public class UserController {
         String email = tokenService.getSubject(token);
         UserResponseDTO user = userService.findByEmail(email);
 
-        if (!user.profilePicture().isBlank() && !user.profilePicture().contains("avatar")){
+        if (user.profilePicture() != null
+                && !user.profilePicture().isBlank()
+                && !user.profilePicture().contains("avatar")) {
             userService.deleteImage(user.id());
         }
 
