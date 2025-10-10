@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 /**
  * Função global para validar campos usando regex
