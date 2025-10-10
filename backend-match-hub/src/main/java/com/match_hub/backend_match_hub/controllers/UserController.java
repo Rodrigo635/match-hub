@@ -4,7 +4,10 @@ import com.match_hub.backend_match_hub.dtos.EmailDTO;
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
 import com.match_hub.backend_match_hub.dtos.ResetPasswordDTO;
 import com.match_hub.backend_match_hub.dtos.TokenDTO;
-import com.match_hub.backend_match_hub.dtos.user.*;
+import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundException;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
@@ -90,6 +93,36 @@ public class UserController {
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
     }
+
+    // Refatorar essa bomba depois, pode ser vetor de ataque. Perigoso :)
+    @Operation(
+            summary = "Atualiza o avatar do usuário",
+            security = @SecurityRequirement(name = "bearer-key"),
+            description = "Atualiza a URL do avatar do usuário autenticado utilizando o token JWT presente na requisição."
+    )
+    @PutMapping("/avatar")
+    public ResponseEntity<Map<String, String>> setAvatar(
+            HttpServletRequest request,
+            @RequestBody Map<String, String> body) {
+
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        UserResponseDTO user = userService.findByEmail(email);
+
+        if (!user.profilePicture().isBlank() && !user.profilePicture().contains("avatar")){
+            userService.deleteImage(user.id());
+        }
+
+        String avatarUrl = body.get("avatarUrl");
+        userService.setAvatar(user.id(), avatarUrl);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Avatar atualizado com sucesso!");
+        response.put("avatarUrl", avatarUrl);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     @Operation(summary = "Upload user profile picture", description = "Uploads a profile picture for an existing user.")
     @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

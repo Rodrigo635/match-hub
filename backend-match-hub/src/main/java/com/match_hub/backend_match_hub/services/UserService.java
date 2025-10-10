@@ -221,5 +221,10 @@ public class UserService {
                 .orElseThrow(() -> new ObjectNotFoundException("User not found"));
     }
 
+    public void setAvatar(long id, String avatarURL) {
+        User user = getUserOrThrow(id);
+        user.setProfilePicture(avatarURL);
+        userRepository.save(user);
+    }
 }
 

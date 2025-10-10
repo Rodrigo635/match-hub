@@ -14,6 +14,7 @@ app:
   upload:
     ipv4: ${SPRING_IPV4:127.0.0.1}
     dir: "${user.home}/uploads"
+    avatar: "${user.home}/avatar"
     base-url: "http://localhost:8080/uploads"
 
 server:
