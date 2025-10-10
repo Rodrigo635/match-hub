@@ -8,7 +8,7 @@ import {
 } from "./globalService";
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
-
+const BASE_URL2 = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 // --------------------- CRUD Usuários ---------------------
 export async function getUsers(page = 0, size = 5) {
   return await getData(page, size, BASE_URL);
@@ -153,6 +153,26 @@ export async function uploadProfileImage(id, formData, token) {
   return res;
 }
 
+export async function uploadPublicAvatar(avatarUrl, token) {
+  const res = await fetch(`${BASE_URL}/avatar`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ "avatarUrl":avatarUrl }),
+    credentials: "include",
+  });
+
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${errorText}`);
+  }
+
+  return res;
+}
+
 export async function deleteProfileImage(id, token) {
   const res = await fetch(`${BASE_URL}/image/delete/${id}`, {
     method: "DELETE",
@@ -166,4 +186,17 @@ export async function deleteProfileImage(id, token) {
   }
 
   return res;
+}
+
+export async function getPublicAvatar(){
+  const res = await fetch(`${BASE_URL2}/avatar`, {
+    method: "GET",
+    credentials: "include",
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao buscar avatar: ${res.status}, ${text}`);
+  }
+
+  return res.json();
 }

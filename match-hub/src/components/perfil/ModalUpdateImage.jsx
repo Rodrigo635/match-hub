@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import {
   uploadProfileImage,
   deleteProfileImage,
+  uploadPublicAvatar,
+  getPublicAvatar,
 } from "@/app/services/userService";
 import Image from "next/image";
 import Cookies from "js-cookie";
@@ -11,11 +13,16 @@ import { useRouter } from "next/navigation";
 export default function ModalUpdateImage({ user, onClose }) {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   // Evita scroll no fundo quando o modal está aberto
   useEffect(() => {
     document.body.classList.add("modal-open");
+
+    handleAvatarPublic();
+
     return () => {
       document.body.classList.remove("modal-open");
     };
@@ -37,6 +44,16 @@ export default function ModalUpdateImage({ user, onClose }) {
       document.getElementById("avatarModal")
     );
     avatarModal.hide();
+  };
+
+  const handleAvatarPublic = async () => {
+    const res = await getPublicAvatar();
+    console.log(res.avatars);
+    if (!res) {
+      setError("Erro ao buscar avatares.");
+    }
+
+    setAvatarUrl(res.avatars);
   };
 
   const handleSubmitUpdateImage = async (e) => {
@@ -64,8 +81,42 @@ export default function ModalUpdateImage({ user, onClose }) {
         setError("Erro ao atualizar imagem.");
       }
     } catch (error) {
-      console.error("Erro ao alterar dados do usuário:", error);
       setError("Erro inesperado. Tente novamente.");
+    }
+  };
+
+  const handleAvatarClick = (avatar, index) => {
+    if (!avatar) return;
+
+    setSelectedAvatar(avatar);
+
+    // Remove a classe de todos os avatares
+    const otherAvatars = document.querySelectorAll(".avatar");
+    otherAvatars.forEach((element) => element.classList.remove("selected"));
+
+    // Adiciona a classe no avatar clicado
+    const currentAvatar = document.getElementById(`avatar-${index}`);
+    if (currentAvatar) {
+      currentAvatar.classList.add("selected");
+    }
+  };
+
+  const handleAvatarSave = async () => {
+    if (!selectedAvatar) {
+      return;
+    }
+
+    const token = Cookies.get("token");
+    if (!token) {
+      setError("Usuário não autenticado.");
+      return;
+    }
+    console.log(selectedAvatar, token)
+    const response = await uploadPublicAvatar(selectedAvatar, token);
+
+    if(!response.ok) {
+      setError("Erro ao atualizar imagem.");
+      return;
     }
   };
 
@@ -167,7 +218,17 @@ export default function ModalUpdateImage({ user, onClose }) {
                     className="btn btn-secondary"
                     onClick={openAvatarModal}
                   >
-                    <div className="d-flex align-items-center gap-2">Selecionar Avatar <svg xmlns="http://www.w3.org/2000/svg" style={{ fill: "white" }} width="24" height="24"><path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"/></svg></div>
+                    <div className="d-flex align-items-center gap-2">
+                      Selecionar Avatar{" "}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{ fill: "white" }}
+                        width="24"
+                        height="24"
+                      >
+                        <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
+                      </svg>
+                    </div>
                   </button>
                 </div>
               </form>
@@ -183,17 +244,24 @@ export default function ModalUpdateImage({ user, onClose }) {
         tabIndex="-1"
         aria-labelledby="avatarModalLabel"
         aria-hidden="true"
-        style={{ height: "100%", backgroundColor: "rgba(0,0,0,0.5)"  }}
+        style={{ height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }}
       >
         <div
           className="modal-dialog modal-dialog-centered modal-sm position-relative"
           style={{ left: "33%", maxWidth: "30%" }}
         >
-          <div className="modal-content bg-dark text-white" style={{ borderRadius: "10px", boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)", height: "480px" }}>
+          <div
+            className="modal-content bg-dark text-white"
+            style={{
+              borderRadius: "10px",
+              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)",
+              height: "480px",
+            }}
+          >
             <div className="modal-header border-0">
               <h5 className="modal-title" id="avatarModalLabel">
-                Selecione um avatar             
-                </h5>
+                Selecione um avatar
+              </h5>
               <button
                 type="button"
                 className="btn-close btn-close-white"
@@ -203,11 +271,34 @@ export default function ModalUpdateImage({ user, onClose }) {
               ></button>
             </div>
             <div className="modal-body">
-              <div className="d-flex flex-wrap gap-3 justify-content-center">
-                  {/* TODO: Adiciona avatares vindo do database */}
+              <div className="d-flex flex-wrap gap-3 justify-content-center rounded rounded-circle">
+                {avatarUrl.map(
+                  (avatarUrl, index) => (
+                    console.log(index),
+                    (
+                      <Image
+                        key={index}
+                        src={avatarUrl}
+                        width={80}
+                        height={80}
+                        alt={`Avatar ${index + 1}`}
+                        className="avatar rounded-circle cursor-pointer"
+                        onClick={() => handleAvatarClick(avatarUrl, index)}
+                      />
+                    )
+                  )
+                )}
               </div>
             </div>
-            <div className="modal-footer border-0">
+            <div className="modal-footer border-0 d-flex justify-content-between">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={() => handleAvatarSave()}
+              >
+                Salvar
+              </button>
               <button
                 type="button"
                 className="btn btn-secondary"

@@ -8,6 +8,7 @@ module.exports = {
         hostname: "82.112.245.100",
         port: "8080",
         pathname: "/uploads/**",
+        pathname: "/avatar/**",
       },
       {
         protocol: "http",
