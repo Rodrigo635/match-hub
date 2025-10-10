@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import '../../../public/css/modalProfile.css';
 
 export default function ModalUpdateImage({ user, onClose }) {
   const router = useRouter();
@@ -48,7 +49,6 @@ export default function ModalUpdateImage({ user, onClose }) {
 
   const handleAvatarPublic = async () => {
     const res = await getPublicAvatar();
-    console.log(res.avatars);
     if (!res) {
       setError("Erro ao buscar avatares.");
     }
@@ -111,13 +111,14 @@ export default function ModalUpdateImage({ user, onClose }) {
       setError("Usuário não autenticado.");
       return;
     }
-    console.log(selectedAvatar, token)
     const response = await uploadPublicAvatar(selectedAvatar, token);
 
     if(!response.ok) {
       setError("Erro ao atualizar imagem.");
       return;
     }
+
+    window.location.reload();
   };
 
   const handleSubmitDeleteImage = async (e) => {
@@ -271,13 +272,13 @@ export default function ModalUpdateImage({ user, onClose }) {
               ></button>
             </div>
             <div className="modal-body">
-              <div className="d-flex flex-wrap gap-3 justify-content-center rounded rounded-circle">
+              <div className="avatar-container d-flex flex-wrap gap-4 justify-content-center align-items-center">
                 {avatarUrl.map(
                   (avatarUrl, index) => (
-                    console.log(index),
                     (
                       <Image
                         key={index}
+                        id={`avatar-${index}`}
                         src={avatarUrl}
                         width={80}
                         height={80}

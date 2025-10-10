@@ -154,6 +154,7 @@ export async function uploadProfileImage(id, formData, token) {
 }
 
 export async function uploadPublicAvatar(avatarUrl, token) {
+  console.log(JSON.stringify({ "avatarUrl":avatarUrl }))
   const res = await fetch(`${BASE_URL}/avatar`, {
     method: "PUT",
     headers: {
