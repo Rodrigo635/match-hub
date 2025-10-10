@@ -8,7 +8,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <main >
+      <main className='page-index'>
         <HeroBanner />
       </main>
 
@@ -18,7 +18,7 @@ export default function HomePage() {
         <div className="container">
           <div className="row my-5">
             <div
-              className="col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao"
+              className="construdo-para-voce col-12 col-md-5 d-flex align-items-start justify-content-center flex-column texto-funcao"
             >
               <h1 className="text-white fw-bold">Construído para você!</h1>
               <div className="tracinho"></div>

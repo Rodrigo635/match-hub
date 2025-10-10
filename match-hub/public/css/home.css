@@ -83,7 +83,6 @@
   border-radius: 10px;
   object-fit: cover;
   object-position: center;
-  filter: opacity(0.8);
   transition: 0.2s ease-in-out;
 }
 

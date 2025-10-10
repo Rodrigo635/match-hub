@@ -217,9 +217,9 @@ export default function ChampionshipDetailsPage() {
       </section>
 
       {/* Navegação por Tabs */}
-      <section className="bg-black sticky-top">
+      <section className="section-campeonatos bg-black sticky-top p-2">
         <div className="container">
-          <ul className="nav nav-tabs border-0 shadow-0 pt-2">
+          <ul className="nav nav-tabs border-0 shadow-0">
             <li className="nav-item">
               <button
                 className={`nav-link ${activeTab === 'times' ? 'active bg-dark text-primary' : 'text-white'} border-0 rounded-top`}
@@ -249,7 +249,7 @@ export default function ChampionshipDetailsPage() {
       </section>
 
       {/* Conteúdo das Tabs */}
-      <main className="py-5" style={{ backgroundColor: "#1a1a1a", minHeight: "60vh" }}>
+      <main className="page-campeonato py-5">
         <div className="container">
 
           {/* Tab de Times */}
@@ -269,7 +269,7 @@ export default function ChampionshipDetailsPage() {
                       onKeyDown={(e) => { if (e.key === 'Enter') { router.push(`/times/${team.id}`); } }}
                       className="card bg-dark text-white h-100 border-0 shadow cursor-pointer"
                     >
-                      <div className="card-body text-center p-4">
+                      <div className="card-body-campeonato text-center p-4">
                         {team.logo && (
                           <div style={{ width: 80, height: 80, position: 'relative', margin: '0 auto 1rem' }}>
                             <Image src={team.logo} alt={team.name} fill style={{ objectFit: 'contain' }} />
@@ -319,7 +319,7 @@ export default function ChampionshipDetailsPage() {
                               <small className="d-block mt-2">{match.matchTeams[0]?.team?.name}</small>
                             </div>
 
-                            <div className="text-primary fw-bold fs-3">VS</div>
+                            <div className="vs text-primary fw-bold fs-3">VS</div>
 
                             <div className="text-center">
                               {match.matchTeams[1]?.team?.logo && (
@@ -434,7 +434,7 @@ export default function ChampionshipDetailsPage() {
                                 rel="noopener noreferrer"
                                 className="btn btn-outline-secondary btn-sm w-100"
                               >
-                                <i className="fas fa-play me-2"></i>
+                                <i className=" fas fa-play me-2"></i>
                                 Assistir Gravação
                               </a>
                             )}

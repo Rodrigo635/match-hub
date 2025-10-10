@@ -392,7 +392,7 @@ export default function SobrePage() {
           <h3 className="text-center text-white mb-4 mb-lg-5">
             Faça download e descubra mais através da nossa documentação!
           </h3>
-          <div className="row justify-content-center gap-4">
+          <div className="documentos row justify-content-center gap-4">
             <div className="col">
               <a
                 className="doc-btn"

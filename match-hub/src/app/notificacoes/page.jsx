@@ -75,7 +75,7 @@ export default function NotificationPageMock() {
                   <div className="flex-grow-1">
                     <div className="d-flex align-items-start justify-content-between">
                       <div>
-                        <h5 className="mb-1 notif-title">{n.title}</h5>
+                        <h5 className="teste mb-1 notif-title">{n.title}</h5>
                         {n.subtitle && <div className="text-white small">{n.subtitle}</div>}
                       </div>
 

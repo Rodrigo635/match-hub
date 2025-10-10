@@ -57,7 +57,10 @@ export default function GamesList({ initialItems, additionalItems }) {
   }, [selectedGame, selectedTournament, allData]);
 
   // opções dos selects com base em toda a base
-  const gameOptions = ["Jogos", ...Array.from(new Set(allData.map((i) => i.name)))];
+  const gameOptions = [
+    "Jogos",
+    ...Array.from(new Set(allData.map((i) => i.name))),
+  ];
   const tournamentOptions = [
     "Campeonatos",
     ...Array.from(new Set(allData.map((i) => i.tournament))),
@@ -83,7 +86,9 @@ export default function GamesList({ initialItems, additionalItems }) {
       <div className="container mt-5 mb-3">
         <div className="row align-items-center">
           <div className="col-12 col-md-6 filtros-titulo">
-            <h1 className="title-campeonato text-white fw-bold">Lista de Jogos</h1>
+            <h1 className="title-campeonato text-white fw-bold">
+              Lista de Jogos
+            </h1>
           </div>
           <div className="col-12 col-md-6 ">
             <div className="row gx-2">
@@ -128,14 +133,29 @@ export default function GamesList({ initialItems, additionalItems }) {
               onClick={() => handleCardClick(item)}
               style={{ cursor: "pointer" }}
             >
-              <div className="card bg-dark h-100">
-                <img className="rounded-3 static-image" src={item.image} alt={item.game} />
+              <div className="card bg-transparent h-100">
+                <div className="img-jogo">
+                  <img
+                    className=" rounded-3 static-image"
+                    src={item.image}
+                    alt={item.game}
+                  />
+                </div>
+
                 <div className="gif-container">
-                  <img className="rounded-3 gif-image" src={item.gif} alt={`${item.game} GIF`} />
+                  <img
+                    className="rounded-3 gif-image"
+                    src={item.gif}
+                    alt={`${item.game} GIF`}
+                  />
                   <div className="gradient"></div>
                 </div>
-                <h5 className="pt-3 ps-3 text-white fw-bold">{item.name}</h5>
-                <h6 className="pb-3 ps-3 text-white bg-dark">{item.tournament}</h6>
+                <div className="info-jogo bg-dark">
+                  <h5 className="pt-4 ps-3 text-white fw-bold">{item.name}</h5>
+                  <h6 className="pt-2 pb-4 ps-3 text-white ">
+                    {item.tournament}
+                  </h6>
+                </div>
               </div>
             </div>
           ))}
@@ -144,12 +164,18 @@ export default function GamesList({ initialItems, additionalItems }) {
         {/* Paginação */}
         <div className="container text-center my-5">
           {hasPrev && additionalItems != 0 && (
-            <h5 className="text-center ver-menos cursor-pointer" onClick={handlePrev}>
+            <h5
+              className="text-center ver-menos cursor-pointer"
+              onClick={handlePrev}
+            >
               <span className="text-azul">Ver menos</span>
             </h5>
           )}
           {hasNext && additionalItems != 0 && (
-            <h5 className="text-center ver-mais cursor-pointer" onClick={handleNext}>
+            <h5
+              className="text-center ver-mais cursor-pointer"
+              onClick={handleNext}
+            >
               <span className="text-azul">Ver mais</span>
             </h5>
           )}

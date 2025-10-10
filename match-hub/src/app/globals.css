@@ -3,23 +3,21 @@
 /* =====================================
    APLICAÇÃO DE FUNDO NO BODY E DIVS (Light)
    ===================================== */
-html[data-theme="light"] body {
-  /* Variáveis dinâmicas para Light */
-  --bg-color: #1e1e1e; /* Fundo principal (escuro) */
-  --text-color: #1e1e1e; /* Texto padrão (escuro) */
-  --white-bg: #e7e5e5; /* Fundo claro de cards/seções */
-  --btn-bg: #1a73e8; /* Fundo de botões */
-  --text-active: #3e8ff8; /* Texto ativo */
-
-  /* Fundo claro no body */
-  background-color: var(--white-bg) !important;
-  /* Cor de texto padrão para o body */
-  color: black !important;
+html[data-theme="light"] {
+  --bg-color: #f5f5f5; /* Fundo geral */
+  --card-bg: #ffffff; /* Fundo de cards e seções */
+  --text-color: #1e1e1e; /* Texto principal */
+  --muted-text: #555; /* Texto secundário */
+  --border-color: #e0e0e0; /* Bordas sutis */
+  --primary: #1a73e8; /* Azul principal */
+  --primary-light: #3e8ff8;
+  --accent: #ed145b; /* Rosa de destaque */
 }
 
-html[data-theme="light"] body > div {
-  /* Fundo claro apenas nas divs diretas do body */
-  background-color: var(--white-bg) !important;
+html[data-theme="light"] body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
 }
 
 /* ============================
@@ -50,11 +48,41 @@ html[data-theme="light"] .gif-container * {
   background-color: transparent !important;
 }
 
-/* Página Sobre */
+html[data-theme="light"] #docs * {
+  color: rgb(0, 0, 0);
+}
 
+/* ============================
+   PÁGINA INDEX
+   ============================ */
+html[data-theme="light"] .page-index .plataforma-definitiv,
+html[data-theme="light"] .construdo-para-voce .text-white,
+html[data-theme="light"] .esports-hero .notify-modal *{
+  color: var(--bg-color) !important;
+}
+
+html[data-theme="light"] .card .bg-dark,
+html[data-theme="light"] .card .bg-dark .text-white,
+html[data-theme="light"] .form-select {
+  background-color: var(--bg-color) !important ;
+  color: var(--text-color) !important;
+}
+
+html[data-theme="light"] .form-select {
+  border: var(--primary) 1px solid !important;
+}
+
+html[data-theme="light"] .card {
+  border: var(--border-color) 1px solid !important;
+}
+
+/* ============================
+   PÁGINA SOBRE
+   ============================ */
 html[data-theme="light"] .page-sobre .text-white {
   color: rgb(0, 0, 0) !important;
 }
+
 html[data-theme="light"] .page-sobre section:first-of-type .text-white {
   color: rgb(255, 255, 255) !important;
 }
@@ -62,59 +90,74 @@ html[data-theme="light"] .page-sobre section:first-of-type .text-white {
 html[data-theme="light"] .page-sobre .ratio {
   background-color: transparent !important;
 }
+
 html[data-theme="light"] .page-sobre .funcionalidades *,
 html[data-theme="light"] .page-sobre .text-cinza,
 html[data-theme="light"] .page-sobre h4,
 html[data-theme="light"] .page-sobre .lista-alvos-bg h3 {
+  color: black !important;
+}
+
+html[data-theme="light"] .page-sobre .funcionalidades .card-item2 {
+  background-color: var(--bg-color) !important;
+  border: var(--primary-light) 2px solid !important;
+}
+
+html[data-theme="light"] .page-sobre .lista-alvos-bg *,
+html[data-theme="light"] .page-sobre .lista-alvos-bg h3 {
+  background-color: transparent !important;
   color: white !important;
 }
-html[data-theme="light"] .page-sobre .lista-alvos-bg * {
-  background-color: transparent !important;
+
+html[data-theme="light"] .page-sobre .lista-alvos-bg li {
+  border: var(--primary) 2px solid !important;
 }
-html[data-theme="light"] .page-sobre .frase *,
+
+html[data-theme="light"] .page-sobre .frase .text-white {
+  color: var(--bg-color) !important;
+}
 section {
   background-color: transparent !important;
-  color: white !important;
 }
 
-html[data-theme="light"] #docs * {
-  color: rgb(0, 0, 0);
+.doc-btn * {
+  color: var(--bg-color) !important;
 }
 
-/*  Página Perfil */
+.doc-btn:hover * {
+  color: var(--text-color) !important;
+}
 
+/* ============================
+   PÁGINA PERFIL
+   ============================ */
 html[data-theme="light"] .page-perfil *:not(a) {
   background-color: transparent !important;
   color: rgb(0, 0, 0) !important;
 }
 
-/*  Página Game */
+html[data-theme="light"] .profile-sidebar .nav-link.active,
+html[data-theme="light"] .profile-sidebar .nav-link.active i {
+  background-color: var(--primary) !important;
+  color: var(--bg-color) !important;
+}
 
+/* ============================
+   PÁGINA GAME
+   ============================ */
 html[data-theme="light"] .page-game .container * {
   background-color: transparent !important;
   color: rgb(0, 0, 0) !important;
 }
 
-/*  Página Contato */
-
-html[data-theme="light"] .page-contato *:not(a) {
-  background-color: transparent !important;
-  color: rgb(0, 0, 0) !important;
-}
-
-html[data-theme="light"] .page-contato .carousel-item *,
-html[data-theme="light"] .page-contato .particles-section *,
-html[data-theme="light"] .page-contato #row-contato h1,
-html[data-theme="light"] .page-contato #row-contato label {
-  color: var(--white-bg) !important;
-}
-
-html[data-theme="light"] .page-contato .carousel-item .text-azul {
-  color: var(--btn-bg) !important;
-}
-
-html[data-theme="light"] .page-contato .carousel-item .text-rosa-fiap {
-  color: #ed145b !important;
+/* ============================
+   PÁGINA CONTATO
+   ============================ */
+html[data-theme="light"] .page-contato .quem-somos .text-white,
+html[data-theme="light"] .page-contato .estamos-buscando .text-white,
+html[data-theme="light"] .page-contato .form h1,
+html[data-theme="light"] .page-contato .form label {
+  color: var(--text-color) !important;
 }
 
 html[data-theme="light"] .page-contato #row-contato * {
@@ -123,7 +166,7 @@ html[data-theme="light"] .page-contato #row-contato * {
 
 html[data-theme="light"] .page-contato #row-contato button {
   color: var(--white-bg) !important;
-  background-color: var(--white-bg) !important;
+  background-color: var(--border-color) !important;
 }
 
 html[data-theme="light"] .page-contato #row-contato button h5 {
@@ -131,17 +174,224 @@ html[data-theme="light"] .page-contato #row-contato button h5 {
   background-color: var(--white-bg) !important;
 }
 
-/* ============================ 
-   HEADER E FOOTER (Light)
+/* ============================
+   PÁGINA CALENDÁRIO
    ============================ */
-html[data-theme="light"] header *,
-html[data-theme="light"] footer * {
-  background-color: black !important;
-  color: var(--white-bg) !important;
+html[data-theme="light"] .page-calendario {
+  background-color: var(--bg-color);
+  color: var(--text-color) !important;
 }
-html[data-theme="light"] header span:first-child,
-html[data-theme="light"] footer span:first-child {
-  color: var(--btn-bg) !important;
+
+/* Contêiner geral */
+html[data-theme="light"] .page-calendario .container {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  color: var(--text-color);
+}
+
+/* Cabeçalho */
+html[data-theme="light"] .page-calendario h1,
+html[data-theme="light"] .page-calendario h5,
+html[data-theme="light"] .page-calendario .calendario_titulo {
+  color: var(--text-color) !important;
+}
+
+html[data-theme="light"] .page-calendario p {
+  color: var(--muted-text);
+}
+
+/* Botões */
+html[data-theme="light"] .page-calendario .btn-primary:hover {
+  background-color: var(--primary-light);
+}
+
+/* Filtros */
+html[data-theme="light"] .page-calendario .filter-pill {
+  background-color: #fff;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+html[data-theme="light"] .page-calendario .filter-pill:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+html[data-theme="light"] .page-calendario .card-body, html[data-theme="light"] .page-calendario .card-body .small{
+  background-color: var(--primary) !important;
+  color: var(--bg-color) !important ;
+}
+
+/* ============================
+   TABELA DO CALENDÁRIO
+   ============================ */
+html[data-theme="light"] .calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+html[data-theme="light"] .calendar-table th {
+  text-align: center;
+  padding: 10px;
+  background-color: var(--bg-color);
+  color: var(--muted-text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+html[data-theme="light"] .calendar-table small {
+  color: var(--text-color) !important;
+}
+
+html[data-theme="light"] .calendar-day {
+  min-height: 110px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+html[data-theme="light"] .calendar-day:hover {
+  background-color: #f0f6ff;
+}
+
+html[data-theme="light"] .calendar-day.inactive {
+  opacity: 0.5;
+  background-color: var(--muted-text);
+}
+
+html[data-theme="light"] .calendar-day.selected {
+  border: 2px solid var(--primary);
+  background-color: #eaf2ff;
+}
+
+html[data-theme="light"] .day-number,
+html[data-theme="light"]
+  .calendario_titulo
+  html[data-theme="light"]
+  .day-empty {
+  color: var(--text-color) !important;
+}
+
+/* Indicador de evento */
+html[data-theme="light"] .event-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+.ind-partida {
+  background-color: #3e8ff8;
+}
+.ind-campeonato {
+  background-color: #ed145b;
+}
+.ind-time {
+  background-color: #1ea7ff;
+}
+
+/* Eventos dentro do dia */
+html[data-theme="light"] .badge-event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  background-color: #f9f9f9;
+  border-left: 4px solid var(--primary);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+html[data-theme="light"] .card-body-campeonato,
+html[data-theme="light"] .card-body-campeonato .btn {
+  background-color: var(--primary);
+  color: var(--bg-color) !important;
+}
+
+html[data-theme="light"] .card-body-campeonato .small {
+  color: var(--bg-color) !important;
+}
+.type-campeonato {
+  border-color: #ed145b !important;
+}
+.type-time {
+  border-color: #1ea7ff !important;
+}
+
+/* ============================
+   Campeonatos
+   ============================ */
+
+html[data-theme="light"] .section-campeonatos,
+html[data-theme="light"] .section-campeonatos .nav-tabs .nav-link,
+html[data-theme="light"] .section-campeonatos .page-campeonatos {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+html[data-theme="light"] .lead {
+  color: var(--bg-color) !important;
+}
+
+html[data-theme="light"] .section-campeonatos .nav-tabs .nav-link.active {
+  background-color: var(--primary) !important;
+  color: var(--bg-color) !important;
+  border-color: var(--primary) !important;
+}
+
+html[data-theme="light"] .page-campeonato .text-white {
+  color: var(--text-color) !important;
+}
+
+html[data-theme="light"] .page-campeonato .card-body-campeonato {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: var(--border-color) 1px solid !important;
+}
+
+/* ============================
+   SIDEBAR E DETALHES
+   ============================ */
+html[data-theme="light"] .sidebar-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  color: var(--text-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light"] .sidebar-card h5 {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+html[data-theme="light"] .sidebar-card .small {
+  color: var(--muted-text);
+}
+
+/* ============================
+   SCROLL / DETALHES MOBILE
+   ============================ */
+html[data-theme="light"] .calendar-scroll {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+html[data-theme="light"] .calendar-table td {
+  vertical-align: top;
 }
 
 /* ============================
@@ -156,5 +406,3 @@ h4,
 i {
   background-color: transparent !important;
 }
-
-

@@ -510,7 +510,7 @@ export default function ContatoPage() {
         </div>
 
         {/* Seção “Quem somos nós?” */}
-        <section className="py-5">
+        <section className="quem-somos py-5">
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0 order-lg-2">
@@ -559,7 +559,7 @@ export default function ContatoPage() {
         </section>
 
         {/* Seção “O que estamos buscando?” */}
-        <section className="py-5">
+        <section className="estamos-buscando py-5">
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0">

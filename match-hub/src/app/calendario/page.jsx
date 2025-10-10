@@ -97,9 +97,10 @@ export default function CalendarPage() {
     <div className="container my-5">
       <link rel="stylesheet" href="/css/calendario.css" />
 
+<main className='page-calendario'>
       <div className="row mb-3 align-items-center">
         <div className="col-12 col-md-6">
-          <h1 className="fw-bold mb-1" style={{ color: '#fff' }}>Calendário de Partidas</h1>
+          <h1 className="calendario_titulo fw-bold mb-1 " style={{ color: '#fff' }}>Calendário de Partidas</h1>
           <p className="text-white">Filtre o que quer ver no calendário e clique em um dia para ver detalhes.</p>
         </div>
 
@@ -275,6 +276,7 @@ export default function CalendarPage() {
           </div>
         </div>
       </div>
+      </main>
     </div>
   );
 }

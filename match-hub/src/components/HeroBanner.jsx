@@ -29,7 +29,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
           <div className="col-12 col-lg-12 py-5">
             <h1 className="fw-bold display-1 display-md text-center text-md-start mb-1 mb-md-1 nowrap">Nunca perca uma live!</h1>
             <h1 className="fw-bold display-4 display-md2 text-center text-md-start mt-0 nowrap">Assista ao vivo e na hora certa</h1>
-            <p className="text-center text-md-start lead mt-3 col-12 col-md-8">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
+            <p className="plataforma-definitiva text-center text-md-start lead mt-3 col-12 col-md-8">A plataforma definitiva para fãs de e-sports. Notificações em tempo real, calendário completo e links para as lives dos seus jogos favoritos. Tudo num só lugar.</p>
 
             <div className="d-flex botoes align-items-center justify-content-center justify-content-md-start mt-4">
               <div className="row gap-3 d-flex justify-content-center justify-content-md-start px-2">
@@ -85,7 +85,7 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
               <h5 className="modal-title"><i className="fas fa-bell me-2"></i>Ativar notificações</h5>
               <button className="btn-close" onClick={() => setShowNotify(false)} aria-label="Fechar" />
             </div>
-            <div className="modal-body">
+            <div className="modal-body py-3">
               <p>Na página de qualquer: jogo, campeonato ou time você pode clicar para receber notificações e personalizar para se ajustar aos seus interesses.</p>
               <div className="d-grid gap-2">
                 <button className="btn btn-primary" onClick={() => setShowNotify(false)}>Entendi</button>
