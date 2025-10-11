@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import EditPerfil from "./edit/EditPerfil";
 import { useRouter } from "next/navigation";
 import ModalUpdateImage from "./ModalUpdateImage";
+import { Pencil } from "lucide-react";
 
 export default function PerfilDefault({ user }) {
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function PerfilDefault({ user }) {
       >
         <div className="card-body">
           <div className="d-flex align-items-center mb-4">
-            <div className="me-3">
+            <div className="me-3 position-relative">
               <Image
                 src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"}
                 width={80}
@@ -59,6 +60,7 @@ export default function PerfilDefault({ user }) {
                 className="rounded-circle"
                 onClick={handleOpenUpdateImage}
               />
+              <Pencil className="text-white position-absolute bottom-0 end-0 rounded-circle p-1 bg-primary" onClick={handleOpenUpdateImage}/>
             </div>
 
             <div>

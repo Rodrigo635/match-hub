@@ -145,7 +145,6 @@ export async function uploadProfileImage(id, formData, token) {
     body: fileMultipart,
   });
 
-
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${text}`);
@@ -155,21 +154,22 @@ export async function uploadProfileImage(id, formData, token) {
 }
 
 export async function uploadPublicAvatar(avatarUrl, token) {
-  console.log(JSON.stringify({ "avatarUrl":avatarUrl }))
+  console.log(JSON.stringify({ avatarUrl: avatarUrl }));
   const res = await fetch(`${BASE_URL}/avatar`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ "avatarUrl":avatarUrl }),
+    body: JSON.stringify({ avatarUrl: avatarUrl }),
     credentials: "include",
   });
 
-
   if (!res.ok) {
     const errorText = await res.text();
-    throw new Error(`Erro ao fazer upload da imagem: ${res.status}, ${errorText}`);
+    throw new Error(
+      `Erro ao fazer upload da imagem: ${res.status}, ${errorText}`
+    );
   }
 
   return res;
@@ -190,7 +190,7 @@ export async function deleteProfileImage(id, token) {
   return res;
 }
 
-export async function getPublicAvatar(){
+export async function getPublicAvatar() {
   const res = await fetch(`${BASE_URL2}/avatar`, {
     method: "GET",
     credentials: "include",
@@ -220,14 +220,14 @@ export async function login(email, password) {
   return res.json();
 }
 
-export async function verifyTwoFactor(email, code){
+export async function verifyTwoFactor(email, code) {
   try {
     const res = await fetch(`${BASE_URL}/2fa/verify`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, code }),
     });
-    
+
     const text = await res.text();
     let data;
     try {
@@ -235,23 +235,23 @@ export async function verifyTwoFactor(email, code){
     } catch (e) {
       throw new Error("Resposta inválida do servidor");
     }
-    
+
     if (!res.ok) {
       throw new Error(data?.message || "Erro na verificação");
     }
-    
+
     return data;
   } catch (error) {
     throw error;
   }
-};
+}
 
 export async function setupTwoFactor(token) {
   const res = await fetch(`${BASE_URL}/2fa/setup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}` 
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -260,7 +260,7 @@ export async function setupTwoFactor(token) {
     throw new Error(`Erro ao configurar 2FA: ${res.status}, ${text}`);
   }
 
-  return res.json(); 
+  return res.json();
 }
 
 export async function disableTwoFactor(token) {
@@ -268,12 +268,41 @@ export async function disableTwoFactor(token) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}` 
+      Authorization: `Bearer ${token}`,
     },
   });
 
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Erro ao desativar 2FA: ${res.status}, ${text}`);
+  }
+}
+
+export async function resetPassword(email) {
+  console.log(email)
+  const res = await fetch(`${BASE_URL}/reset-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }), 
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao resetar senha: ${res.status}, ${text}`);
+  }
+}
+
+export async function resetPasswordConfirm(token, password) {
+  console.log(token, password);
+
+  const res = await fetch(`${BASE_URL}/reset-password/confirm?token=${token}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password }), // apenas a senha no body
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao resetar senha: ${res.status}, ${text}`);
   }
 }
