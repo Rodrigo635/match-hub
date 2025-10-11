@@ -260,3 +260,18 @@ export async function setupTwoFactor(token) {
 
   return res.json(); 
 }
+
+export async function disableTwoFactor(token) {
+  const res = await fetch(`${BASE_URL}/2fa/disable`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}` 
+    },
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao desativar 2FA: ${res.status}, ${text}`);
+  }
+}
