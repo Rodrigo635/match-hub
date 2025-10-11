@@ -279,7 +279,6 @@ export async function disableTwoFactor(token) {
 }
 
 export async function resetPassword(email) {
-  console.log(email)
   const res = await fetch(`${BASE_URL}/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

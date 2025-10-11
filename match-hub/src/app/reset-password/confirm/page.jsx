@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { resetPasswordConfirm } from "../../services/userService";
+import Link from "next/link";
 
 export default function ResetPasswordConfirm() {
   const searchParams = useSearchParams();
@@ -114,9 +115,9 @@ export default function ResetPasswordConfirm() {
         </form>
 
         <div className="text-center mt-3">
-          <a href="/cadastro" className="link-primary">
-            Voltar para Login
-          </a>
+          <Link href="/cadastro" className="text-white text-decoration-none">
+            <i className="fas fa-arrow-left me-2"></i>Voltar 
+          </Link>
         </div>
       </div>
     </main>
