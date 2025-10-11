@@ -27,6 +27,19 @@ export default function Seguranca({ user }) {
     setShow2FASetup(true);
   };
 
+  const handleUpdateBackend = async () => {
+    const token = Cookies.get("token");
+    const res =await fetch(`http://82.112.245.100:8080/api/deploy/start`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` 
+      },
+    });
+
+    console.log(res)
+  };
+
   const handleDisable2FA = async () => {
     const token = Cookies.get("token");
     await disableTwoFactor(token);
@@ -140,6 +153,7 @@ export default function Seguranca({ user }) {
           )}
         </div>
       </div>
+      <button onClick={() => handleUpdateBackend()}>Atualizar Backend</button>
     </div>
   );
 }
