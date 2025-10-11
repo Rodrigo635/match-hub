@@ -182,7 +182,7 @@ export default function Verify2FA({ email, setStep }) {
             <button
               type="button"
               className="btn btn-outline-secondary flex-fill"
-              onClick={() => setStep('login')}
+              onClick={() => setStep("login")}
               disabled={isLoading}
             >
               <i className="fas fa-arrow-left me-2"></i>
