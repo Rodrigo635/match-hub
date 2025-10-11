@@ -117,3 +117,31 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   .btn-icon-group { width: 48px; }
 }
 
+.code-input {
+  transition: all 0.2s ease;
+}
+
+.code-input:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
+  transform: scale(1.05);
+}
+
+.btn-icon-group {
+  transition: all 0.2s ease;
+}
+
+.btn-icon-group:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Animações para o componente 2FA */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
