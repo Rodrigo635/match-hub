@@ -10,6 +10,7 @@ import {
 } from "../../components/utils/ValidaCampo";
 import Cookies from "js-cookie";
 import Verify2FA from "@/components/Verify2FA";
+import ResetPassword from "@/components/ResetPassword";
 
 export default function CadastroPage() {
   const router = useRouter();
@@ -179,7 +180,7 @@ export default function CadastroPage() {
   };
 
   if(step === "2fa") return <Verify2FA email={userEmail} setStep={setStep} />
-
+  if(step === "esqueci-senha") return <ResetPassword setStep={setStep} />
 
   return (
     <main className="min-vh-100 d-flex align-items-center justify-content-center bg-dark-custom text-white">
@@ -518,7 +519,7 @@ export default function CadastroPage() {
               )}
 
               <div className="w-75 text-end mb-2">
-                <Link href="#" className="text-primary">
+                <Link href="#" className="text-primary" onClick={() => setStep('esqueci-senha')}>
                   Esqueceu a senha?
                 </Link>
               </div>

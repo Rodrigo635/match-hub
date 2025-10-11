@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneOffset;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,16 +36,21 @@ public class PasswordResetService {
     private UserMapper userMapper;
 
     public void initiatePasswordReset(String email) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User not found"));
+        Optional<User> userOpt = userRepository.findByEmail(email);
 
-        String token = UUID.randomUUID().toString();
-        PasswordResetToken resetToken = new PasswordResetToken(token, user);
-        tokenRepository.deleteAllByUserId(user.getId()); // Limpa os tokens anteriores();
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
 
-        tokenRepository.save(resetToken);
-
-        emailService.sendResetToken(email, token);
+            String token = UUID.randomUUID().toString();
+            PasswordResetToken resetToken = new PasswordResetToken(token, user);
+            tokenRepository.deleteAllByUserId(user.getId());
+            tokenRepository.save(resetToken);
+            emailService.sendResetToken(email, token);
+        } else {
+            emailService.sendResetToken(email, null);
+        }
     }
+
 
     @Transactional
     public void resetPassword(String token, String newPassword) {

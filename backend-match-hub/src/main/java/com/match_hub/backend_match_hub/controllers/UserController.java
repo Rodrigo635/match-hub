@@ -106,7 +106,6 @@ public class UserController {
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
     public ResponseEntity<Void> save(@RequestBody @Valid CreateUserDTO userDTO) {
-        userDTO.email.toLowerCase();
         User registeredUser = userService.save(userDTO);
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();

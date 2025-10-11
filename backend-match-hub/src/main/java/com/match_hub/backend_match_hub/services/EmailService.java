@@ -24,7 +24,7 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(toEmail);
             message.setSubject("Password Reset Request");
-            message.setText("Ola, " + toEmail + " notamos que vocé solicitou um reset de senha\nTo reset your password, click on the link: http://" + frontendLink + "/api/users/reset-password/confirm?token=" + token);
+            message.setText("Ola, " + toEmail + " notamos que vocé solicitou um reset de senha\nTo reset your password, click on the link: http://" + frontendLink + "/reset-password/confirm?token=" + token);
             message.setFrom(fromEmail);
 
             mailSender.send(message);

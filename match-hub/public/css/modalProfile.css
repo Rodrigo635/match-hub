@@ -6,9 +6,7 @@
 }
 
 .avatar:hover{
-    width: 85px;
-    height: 85px;
-    transition: 0.2s ease;
+    transform: scale(1.1);
 }
 
 .avatar-container {

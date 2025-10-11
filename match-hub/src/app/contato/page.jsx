@@ -595,7 +595,7 @@ export default function ContatoPage() {
         </section>
 
         {/* Formulário de Contato */}
-        <section className="contate-nos imagem-bg-contato py-5">
+        <section className="contate-nos imagem-bg-contato py-5" id="contate-nos">
           <div className="container">
             <div className="row justify-content-center" id="row-contato">
               {/* Formulário */}

@@ -23,9 +23,10 @@ public class PasswordResetToken {
     @Column(nullable = false, unique = true)
     private String token;
 
-    @OneToOne(targetEntity = User.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = User.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+
 
     @Column(nullable = false)
     private LocalDateTime expiryDate;
