@@ -210,6 +210,8 @@ export async function login(email, password) {
     body: JSON.stringify({ email, password }),
   });
 
+  console.log(res);
+
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Erro no login: ${res.status}, ${text}`);
