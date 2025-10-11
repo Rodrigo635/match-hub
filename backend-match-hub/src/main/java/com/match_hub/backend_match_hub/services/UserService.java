@@ -1,8 +1,10 @@
 package com.match_hub.backend_match_hub.services;
 
 import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
+import com.match_hub.backend_match_hub.dtos.TokenDTO;
 import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
 import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
 import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Game;
@@ -11,6 +13,7 @@ import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.AuthPasswordException;
 import com.match_hub.backend_match_hub.infra.exceptions.ObjectNotFoundException;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserAlreadyExistsException;
+import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.mapper.PageMapper;
 import com.match_hub.backend_match_hub.mapper.UserMapper;
 import com.match_hub.backend_match_hub.repositories.*;
@@ -18,10 +21,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 @Service
 @Transactional
@@ -53,6 +61,15 @@ public class UserService {
 
     @Autowired
     private PageMapper pageMapper;
+
+    @Autowired
+    private TwoFactorService twoFactorService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenService tokenService;
 
     private static final String FOLDER = "users";
 
@@ -225,6 +242,47 @@ public class UserService {
         User user = getUserOrThrow(id);
         user.setProfilePicture(avatarURL);
         userRepository.save(user);
+    }
+
+    public String enableTwoFactor(User user) {
+        String secret = twoFactorService.generateSecretKey();
+        user.setTwoFactorSecret(secret);
+        user.setTwoFactorEnabled(true);
+        userRepository.save(user);
+
+        return twoFactorService.getOtpAuthURL(user.getEmail(), secret);
+    }
+
+    public Object login(UserCredentialDTO userDTO) {
+        Authentication auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password())
+        );
+
+        User user = (User) auth.getPrincipal();
+
+        if (user.getTwoFactorEnabled()) {
+            // Apenas retorna info que 2FA é necessário
+            return Map.of(
+                    "require2FA", true,
+                    "email", user.getEmail()
+            );
+        }
+
+        // Se não tiver 2FA, retorna token
+        String jwt = tokenService.generateToken(user);
+        return new TokenDTO(jwt);
+    }
+
+
+    public TokenDTO verifyTwoFactor(String email, String code) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        boolean valid = twoFactorService.verifyCode(user.getTwoFactorSecret(), code);
+        if (!valid) throw new RuntimeException("Invalid 2FA code");
+
+        String jwt = tokenService.generateToken(user);
+        return new TokenDTO(jwt);
     }
 }
 

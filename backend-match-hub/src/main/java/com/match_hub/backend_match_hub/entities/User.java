@@ -61,6 +61,12 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     private Integer fontSize = 16;
     private Boolean librasActive = false;
 
+    @Column(name = "two_factor_secret")
+    private String twoFactorSecret;
+
+    @Column(name = "two_factor_enabled")
+    private Boolean twoFactorEnabled = false;
+
     @OneToMany(mappedBy = "user")
     private final List<Notification> notifications = new ArrayList<>();
 
