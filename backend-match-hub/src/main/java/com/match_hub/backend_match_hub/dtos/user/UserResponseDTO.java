@@ -26,6 +26,7 @@ public record UserResponseDTO(
         Integer fontSize,
         Boolean librasActive,
         Boolean isDarkMode,
+        Boolean twoFactorEnabled,
         List<Notification> notifications,
         List<FavoriteGamesDTO> favoriteGames,
         List<FavoriteChampionshipsDTO> favoriteChampionships,

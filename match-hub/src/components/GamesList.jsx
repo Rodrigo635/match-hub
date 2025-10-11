@@ -134,22 +134,14 @@ export default function GamesList({ initialItems, additionalItems }) {
               style={{ cursor: "pointer" }}
             >
               <div className="card bg-transparent h-100">
-                <div className="img-jogo">
+                <div>
                   <img
-                    className=" rounded-3 static-image"
+                    className=" rounded-3"
                     src={item.image}
                     alt={item.game}
                   />
                 </div>
 
-                <div className="gif-container">
-                  <img
-                    className="rounded-3 gif-image"
-                    src={item.gif}
-                    alt={`${item.game} GIF`}
-                  />
-                  <div className="gradient"></div>
-                </div>
                 <div className="info-jogo bg-dark">
                   <h5 className="pt-4 ps-3 text-white fw-bold">{item.name}</h5>
                   <h6 className="pt-2 pb-4 ps-3 text-white ">

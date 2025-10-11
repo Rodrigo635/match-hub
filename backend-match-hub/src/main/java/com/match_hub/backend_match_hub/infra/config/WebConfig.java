@@ -12,11 +12,17 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${app.upload.dir}")
     private String uploadDir;
 
+    @Value("${app.upload.avatar}")
+    private String avatarDir;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // qualquer GET /uploads/** será servido do disco
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:" + uploadDir + "/");
+
+        registry.addResourceHandler("/avatar/**")
+                .addResourceLocations("file:" + avatarDir + "/");
     }
 
     @Override

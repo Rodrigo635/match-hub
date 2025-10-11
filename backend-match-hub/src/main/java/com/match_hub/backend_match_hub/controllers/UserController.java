@@ -1,15 +1,16 @@
 package com.match_hub.backend_match_hub.controllers;
 
-import com.match_hub.backend_match_hub.dtos.EmailDTO;
-import com.match_hub.backend_match_hub.dtos.PageResponseDTO;
-import com.match_hub.backend_match_hub.dtos.ResetPasswordDTO;
-import com.match_hub.backend_match_hub.dtos.TokenDTO;
-import com.match_hub.backend_match_hub.dtos.user.*;
+import com.match_hub.backend_match_hub.dtos.*;
+import com.match_hub.backend_match_hub.dtos.user.CreateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UpdateUserDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserCredentialDTO;
+import com.match_hub.backend_match_hub.dtos.user.UserResponseDTO;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.infra.exceptions.User.UserNotFoundException;
 import com.match_hub.backend_match_hub.infra.security.TokenService;
 import com.match_hub.backend_match_hub.services.CustomOAuth2UserService;
 import com.match_hub.backend_match_hub.services.PasswordResetService;
+import com.match_hub.backend_match_hub.services.TwoFactorService;
 import com.match_hub.backend_match_hub.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,13 +18,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,6 +54,9 @@ public class UserController {
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
 
+    @Autowired
+    private TwoFactorService twoFactorService;
+
     @Operation(summary = "Retrieve paginated list of users", description = "Returns a paginated list of users with their basic information. Supports pagination with page number and page size.")
     @GetMapping
     public ResponseEntity<PageResponseDTO<UserResponseDTO>> findAll(
@@ -75,21 +82,73 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @Operation(summary = "User login", description = "Authenticates a user with email and password, and returns a JWT token.")
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> userCredentials(@RequestBody @Valid UserCredentialDTO userDTO) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password());
-        Authentication auth = authenticationManager.authenticate(token);
-        return ResponseEntity.ok(new TokenDTO(tokenService.generateToken((User) auth.getPrincipal())));
+    public ResponseEntity<?> login(@RequestBody @Valid UserCredentialDTO userDTO) {
+        // Toda lógica de 2FA está no service
+        Object response = userService.login(userDTO);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/2fa/verify")
+    public ResponseEntity<TokenDTO> verifyTwoFactor(@RequestBody Verify2FARequestDTO request) {
+        TokenDTO token = userService.verifyTwoFactor(request.email(), request.code());
+        return ResponseEntity.ok(token);
+    }
+
+    // Endpoint para ativar 2FA
+    @PostMapping("/2fa/setup")
+    public ResponseEntity<Map<String, String>> setupTwoFactor(@AuthenticationPrincipal User user) {
+        // user vem do token JWT
+        String otpUrl = userService.enableTwoFactor(user);
+        return ResponseEntity.ok(Map.of("otpUrl", otpUrl));
     }
 
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
     public ResponseEntity<Void> save(@RequestBody @Valid CreateUserDTO userDTO) {
+        userDTO.email.toLowerCase();
         User registeredUser = userService.save(userDTO);
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
     }
+
+    @PutMapping("/2fa/disable")
+    public ResponseEntity<Void> disableTwoFactor(@AuthenticationPrincipal UpdateUserDTO user) {
+        userService.disableTwoFactor(user);
+        return ResponseEntity.ok().build();
+    }
+
+    // Refatorar essa bomba depois, pode ser vetor de ataque. Perigoso :)
+    @Operation(
+            summary = "Atualiza o avatar do usuário",
+            security = @SecurityRequirement(name = "bearer-key"),
+            description = "Atualiza a URL do avatar do usuário autenticado utilizando o token JWT presente na requisição."
+    )
+    @PutMapping("/avatar")
+    public ResponseEntity<Map<String, String>> setAvatar(
+            HttpServletRequest request,
+            @RequestBody Map<String, String> body) {
+
+        String token = tokenService.getToken(request);
+        String email = tokenService.getSubject(token);
+        UserResponseDTO user = userService.findByEmail(email);
+
+        if (user.profilePicture() != null
+                && !user.profilePicture().isBlank()
+                && !user.profilePicture().contains("avatar")) {
+            userService.deleteImage(user.id());
+        }
+
+        String avatarUrl = body.get("avatarUrl");
+        userService.setAvatar(user.id(), avatarUrl);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Avatar atualizado com sucesso!");
+        response.put("avatarUrl", avatarUrl);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     @Operation(summary = "Upload user profile picture", description = "Uploads a profile picture for an existing user.")
     @PostMapping(value = "/image/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
