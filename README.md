@@ -85,4 +85,4 @@ Após a inicialização, a API REST estará disponível em:
 
 ## 📬 Contato
 
-Desenvolvido por estudantes da FIAP para a disciplina *Happy Game*.
+Entre em contato comigo pelo e-mail: [matchhub00@gmail.com](mailto:matchhub00@gmail.com)
