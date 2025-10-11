@@ -164,7 +164,7 @@ export default function CadastroPage() {
 
     try {
       const res = await login(loginEmail, loginSenha);
-
+      
       if (res.require2FA) {
         setUserEmail(res.email);
         setStep("2fa");

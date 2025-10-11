@@ -260,7 +260,7 @@ public class UserService {
 
         User user = (User) auth.getPrincipal();
 
-        if (user.getTwoFactorEnabled()) {
+        if (user.getTwoFactorEnabled() != null && user.getTwoFactorEnabled()) {
             // Apenas retorna info que 2FA é necessário
             return Map.of(
                     "require2FA", true,
