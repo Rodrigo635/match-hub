@@ -1,8 +1,8 @@
-'use client';
+"use client";
 import { useState, useEffect } from "react";
 import EditPassword from "./edit/EditPassword";
 import QRCode from "react-qr-code";
-import { setupTwoFactor } from "../../app/services/userService";
+import { setupTwoFactor, disableTwoFactor } from "../../app/services/userService";
 import Cookies from "js-cookie";
 
 export default function Seguranca({ user }) {
@@ -19,17 +19,19 @@ export default function Seguranca({ user }) {
   }, [user]);
 
   const handleEnable2FA = async () => {
-    try {
-      const token = Cookies.get("token");
-      const res = await setupTwoFactor(token);
-      
-      // O backend já ativa o 2FA automaticamente
-      setOtpAuthUrl(res.otpUrl); // Note: seu backend retorna "otpUrl", não "otpauthUrl"
-      setTwoFactorEnabled(true);
-      setShow2FASetup(true);
-    } catch (err) {
-      console.error("Erro ao habilitar 2FA:", err);
-    }
+    const token = Cookies.get("token");
+    const res = await setupTwoFactor(token);
+    setOtpAuthUrl(res.otpUrl);
+    user.twoFactorEnabled = true;
+    setTwoFactorEnabled(true);
+    setShow2FASetup(true);
+  };
+
+  const handleDisable2FA = async () => {
+    const token = Cookies.get("token");
+    await disableTwoFactor(token);
+    user.twoFactorEnabled = false;
+    setTwoFactorEnabled(false);
   };
 
   return (
@@ -94,7 +96,7 @@ export default function Seguranca({ user }) {
         <div className="card-body text-white">
           <h5>Autenticação de dois fatores</h5>
           <p>Status: {twoFactorEnabled ? "Habilitado" : "Desabilitado"}</p>
-          
+
           {!twoFactorEnabled ? (
             <button
               className="btn btn-outline-primary"
@@ -107,17 +109,33 @@ export default function Seguranca({ user }) {
               <p className="text-success">✓ 2FA está ativo para sua conta</p>
               {show2FASetup && otpauthUrl && (
                 <div>
-                  <p>Escaneie este QR Code no seu app autenticador (Google Authenticator, Authy, etc):</p>
-                  <div className="d-flex justify-content-center bg-white p-3">
-                    <QRCode value={otpauthUrl} size={200} />
+                  <p>
+                    Escaneie este QR Code no seu app autenticador (Google
+                    Authenticator, Authy, etc):
+                  </p>
+                  <div className="d-flex justify-content-center">
+                    <QRCode 
+                      value={otpauthUrl} 
+                      size={200} 
+                      className="bg-white p-2"  
+                    />
                   </div>
                   <p className="mt-3 text-info">
                     <small>
-                      Após escanear o QR Code, use o código gerado no app para fazer login.
+                      Após escanear o QR Code, use o código gerado no app para
+                      fazer login.
                     </small>
                   </p>
                 </div>
               )}
+
+              <button
+                className="btn btn-outline-danger"
+                onClick={handleDisable2FA}
+              >
+                Desabilitar 2FA
+              </button>
+              
             </div>
           )}
         </div>

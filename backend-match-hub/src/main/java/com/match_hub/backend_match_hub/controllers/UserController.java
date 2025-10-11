@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -102,14 +103,18 @@ public class UserController {
         return ResponseEntity.ok(Map.of("otpUrl", otpUrl));
     }
 
-
-
     @Operation(summary = "User registration", description = "Registers a new user with optional profile picture and returns the location of the created resource.")
     @PostMapping(path = "/register")
     public ResponseEntity<Void> save(@RequestBody @Valid CreateUserDTO userDTO) {
         User registeredUser = userService.save(userDTO);
         URI address = URI.create("/api/users/" + registeredUser.getId());
         return ResponseEntity.created(address).build();
+    }
+
+    @PutMapping("/2fa/disable")
+    public ResponseEntity<Void> disableTwoFactor(@AuthenticationPrincipal UpdateUserDTO user) {
+        userService.disableTwoFactor(user);
+        return ResponseEntity.ok().build();
     }
 
     // Refatorar essa bomba depois, pode ser vetor de ataque. Perigoso :)

@@ -31,6 +31,7 @@ public record UpdateUserDTO(
         Integer fontSize,
 
         Boolean librasActive,
+        Boolean twoFactorEnabled,
 
         // pode ser null ou lista vazia, mas se vier precisa ser de inteiros
         List<@NotNull Integer> favoriteGames,

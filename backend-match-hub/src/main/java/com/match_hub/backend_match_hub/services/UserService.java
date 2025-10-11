@@ -284,5 +284,12 @@ public class UserService {
         String jwt = tokenService.generateToken(user);
         return new TokenDTO(jwt);
     }
+
+    public void disableTwoFactor(UpdateUserDTO user) {
+        User userEntity = getUserByEmailOrThrow(user.email());
+        userEntity.setTwoFactorEnabled(false);
+        userEntity.setTwoFactorSecret(null);
+        userRepository.save(userEntity);
+    }
 }
 
