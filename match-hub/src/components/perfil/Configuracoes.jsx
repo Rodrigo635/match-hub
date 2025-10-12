@@ -7,36 +7,33 @@ export default function Configuracoes({ user: initialUser }) {
   const router = useRouter();
   const [user, setUser] = useState({
     ...initialUser,
-    fontSizeLevel: initialUser.fontSizeLevel || 0 // 0: default, 1: +0.15em, 2: +0.30em
+    fontSizeLevel: initialUser.fontSize || 0 // 0: default, 1: +0.15em, 2: +0.30em
   });
 
   useEffect(() => {
-    const level = user.fontSizeLevel;
+    const level = user.fontSize;
     const newSize = 1 + level * 0.07;
     document.documentElement.style.fontSize = `${newSize}em`;
-  }, [user.fontSizeLevel]);
+  }, [user.fontSize]);
 
-const changeColor = async () => {
-  try {
-    const token = Cookies.get("token");
-    if (!token) {
-      console.error("Token não encontrado");
-      return;
+  const changeColor = async () => {
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        console.error("Token não encontrado");
+        return;
+      }
+      const newDarkMode = !user.isDarkMode;
+      await toggleColorMode(newDarkMode, token);
+
+      setUser(prev => ({ ...prev, isDarkMode: newDarkMode }));
+
+      // Atualiza o atributo no html para mudar o tema globalmente
+      document.documentElement.setAttribute("data-theme", newDarkMode ? "dark" : "light");
+    } catch (error) {
+      console.error("Erro ao alterar modo de cor:", error);
     }
-    const newDarkMode = !user.isDarkMode;
-    await toggleColorMode(newDarkMode, token);
-
-    setUser(prev => ({ ...prev, isDarkMode: newDarkMode }));
-
-    // Atualiza o atributo no html para mudar o tema globalmente
-    document.documentElement.setAttribute("data-theme", newDarkMode ? "dark" : "light");
-  } catch (error) {
-    console.error("Erro ao alterar modo de cor:", error);
-  }
-};
-
-
-  
+  };
 
   const toggleVLibras = async () => {
     try {
@@ -63,8 +60,8 @@ const changeColor = async () => {
   };
 
   const increaseFont = async () => {
-    if (user.fontSizeLevel >= 2) return;
-    const newLevel = user.fontSizeLevel + 1;
+    if (user.fontSize >= 2) return;
+    const newLevel = user.fontSize + 1;
     try {
       const token = Cookies.get("token");
       if (!token) {
@@ -81,8 +78,8 @@ const changeColor = async () => {
   };
 
   const decreaseFont = async () => {
-    if (user.fontSizeLevel <= 0) return;
-    const newLevel = user.fontSizeLevel - 1;
+    if (user.fontSize <= 0) return;
+    const newLevel = user.fontSize - 1;
     try {
       const token = Cookies.get("token");
       if (!token) {
@@ -145,17 +142,17 @@ const changeColor = async () => {
               Tamanho da fonte <i className="fa-solid fa-text-size"></i>
             </p>
             <div>
-              <button 
-                className="btn btn-outline-primary me-2" 
+              <button
+                className="btn btn-outline-primary me-2"
                 onClick={decreaseFont}
-                disabled={user.fontSizeLevel <= 0}
+                disabled={user.fontSize <= 0}
               >
                 -
               </button>
-              <button 
-                className="btn btn-outline-primary" 
+              <button
+                className="btn btn-outline-primary"
                 onClick={increaseFont}
-                disabled={user.fontSizeLevel >= 2}
+                disabled={user.fontSize >= 2}
               >
                 +
               </button>

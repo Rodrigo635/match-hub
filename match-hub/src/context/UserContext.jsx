@@ -25,6 +25,18 @@ export function UserProvider({ children }) {
     }
   };
 
+  const logout = () => {
+    console.log("User logged out");
+    setUser(null);
+    setToken(null);
+    setLoading(false);
+    // Limpe também localStorage/sessionStorage se tiver tokens lá
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+    }
+  };
+
   useEffect(() => {
     getUser();
   }, []);
@@ -41,7 +53,7 @@ export function UserProvider({ children }) {
   console.log("UserProvider rendering with:", { user, token, loading });
 
   return (
-    <UserContext.Provider value={{ user, token, loading, refreshUser: getUser }}>
+    <UserContext.Provider value={{ user, token, loading, refreshUser: getUser, logout }}>
       {children}
     </UserContext.Provider>
   );
@@ -51,5 +63,8 @@ export function UserProvider({ children }) {
 export function useUser() {
   const context = useContext(UserContext);
   console.log("useUser hook called, context:", context);
+  if (!context) {
+    throw new Error("useUser must be used within UserProvider");
+  }
   return context;
 }

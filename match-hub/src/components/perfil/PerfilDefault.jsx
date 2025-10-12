@@ -6,12 +6,13 @@ import EditPerfil from "./edit/EditPerfil";
 import { useRouter } from "next/navigation";
 import ModalUpdateImage from "./ModalUpdateImage";
 import { Pencil } from "lucide-react";
+import { useUser } from "@/context/UserContext";
 
 export default function PerfilDefault({ user }) {
   const router = useRouter();
+  const { logout: contextLogout } = useUser();
   const [showEdit, setShowEdit] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
 
   const handleGetAge = () => {
     const birthDate = new Date(user.birthDate);
@@ -38,8 +39,13 @@ export default function PerfilDefault({ user }) {
 
   const logout = () => {
     Cookies.remove("token");
+    contextLogout();
     router.push("/");
   };
+
+  if (!user) {
+    return <div className="container">Carregando...</div>;
+  }
 
   return (
     <div>
@@ -62,7 +68,6 @@ export default function PerfilDefault({ user }) {
               />
               <Pencil className="text-white position-absolute bottom-0 end-0 rounded-circle p-1 bg-primary" onClick={handleOpenUpdateImage}/>
             </div>
-
             <div>
               <p className="text-white">
                 <strong>Nome:</strong> {user.name}
@@ -90,7 +95,6 @@ export default function PerfilDefault({ user }) {
           </button>
         </div>
       </div>
-
       {showEdit && (
         <EditPerfil user={user} onClose={() => setShowEdit(false)} />
       )}
