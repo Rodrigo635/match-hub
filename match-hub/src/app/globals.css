@@ -396,6 +396,40 @@ html[data-theme="light"] .profile-content label,html[data-theme="light"] .profil
 }
 
 /* ============================
+   MAPA DO SITE
+   ============================ */
+
+html[data-theme="light"] .page-mapa-do-site * {
+  background-color: transparent !important;
+  color: var(--text-color)!important;
+}
+
+html[data-theme="light"] .page-mapa-do-site a:hover {
+  color: var(--primary-light) !important;
+}
+
+/* ============================
+   Painel ADMIN
+   ============================ */
+
+
+html[data-theme="light"] .page-admin * {
+  background-color: transparent !important;
+  color: var(--text-color) !important;
+}
+
+
+html[data-theme="light"] .page-admin .table-striped > tbody > tr:nth-of-type(odd) > * {
+  color: var(--bg-color) !important;
+  background-color: var(--primary) !important;
+}
+
+html[data-theme="light"] .page-admin .table-striped > tbody > tr:nth-of-type(odd) .btn,
+html[data-theme="light"] .page-admin .table-striped > tbody > tr:nth-of-type(odd) .btn i{
+  color: var(--bg-color) !important;
+}
+
+/* ============================
    SIDEBAR E DETALHES
    ============================ */
 html[data-theme="light"] .sidebar-card {

@@ -20,7 +20,7 @@ export default function SitemapPage() {
   }, []);
 
   return (
-    <main className="my-5 mapa">
+    <main className="page-mapa-do-site my-5 mapa">
       <link rel="stylesheet" href="/css/sitemap.css" />
       <div className="container my-5">
         <div className="text-center mb-4">
