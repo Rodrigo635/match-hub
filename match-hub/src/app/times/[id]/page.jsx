@@ -57,7 +57,7 @@ export default function TeamDetailsPage() {
     return (
       <div className="container py-5 text-center text-white">
         <h3>Time não encontrado</h3>
-        <button className="btn btn-primary mt-3" onClick={() => router.push('/')}>Voltar</button>
+        <button type="button" className="btn btn-primary mt-3" onClick={() => router.push('/')}>Voltar</button>
       </div>
     );
   }
@@ -69,10 +69,10 @@ export default function TeamDetailsPage() {
       <section className="championship-header bg-dark time-bg py-5">
         <div className="container">
           <div className="col-12 d-flex justify-content-start gap-2 mb-4 mt-5">
-            <button onClick={handleBack} className="btn btn-voltar text-white">
+            <button type="button" onClick={handleBack} className="btn btn-voltar text-white">
               <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
             </button>
-            <button className="btn btn-outline-branco w-auto text-white">
+            <button type="button" className="btn btn-outline-branco w-auto text-white">
               <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
             </button>
           </div>

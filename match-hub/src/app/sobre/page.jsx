@@ -60,7 +60,7 @@ export default function SobrePage() {
                 src="/static/img/sobre/montar-pc-gamer-shutterstock_1430140055.jpg"
                 alt="Equipe de e-sports competindo"
                 className="img-fluid img-custom h-100"
-                width={500}
+                width={600}
                 height={500}
               />
             </div>
@@ -397,7 +397,7 @@ export default function SobrePage() {
           </h3>
           <div className="documentos row justify-content-center gap-4">
             <div className="col">
-              <a
+              <Link
                 className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_1.pdf"
                 download
@@ -405,10 +405,10 @@ export default function SobrePage() {
                 <h5 className="mb-0 text-white">
                   Fase 1 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a
+              <Link
                 className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_2.pdf"
                 download
@@ -416,10 +416,10 @@ export default function SobrePage() {
                 <h5 className="mb-0 text-white">
                   Fase 2 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a
+              <Link
                 className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_3.pdf"
                 download
@@ -427,41 +427,41 @@ export default function SobrePage() {
                 <h5 className="mb-0 text-white">
                   Fase 3 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a className="doc-btn"
+              <Link className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_4.pdf"
                 download
               >
                 <h5 className="mb-0 text-white">
                   Fase 4 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a className="doc-btn"
+              <Link className="doc-btn"
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_5.pdf"
                 download
               >
                 <h5 className="mb-0 text-white">
                   Fase 5 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a className="doc-btn-disabled">
+              <Link href="#" className="doc-btn-disabled">
                 <h5 className="mb-0 text-white">
                   Fase 6 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
             <div className="col">
-              <a className="doc-btn-disabled">
+              <Link href="#" className="doc-btn-disabled">
                 <h5 className="mb-0 text-white">
                   Fase 7 <i className="fa-solid fa-download"></i>
                 </h5>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

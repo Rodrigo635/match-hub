@@ -287,10 +287,10 @@ export default function GamePage() {
               <div className="container">
                 <div className="row mb-3 mb-md-0">
                   <div className="col-12 d-flex justify-content-center justify-content-md-start gap-2 order-last order-md-first mt-md-5">
-                    <button onClick={handleBack} className="btn btn-voltar text-white">
+                    <button type="button" onClick={handleBack} className="btn btn-voltar text-white">
                       <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
                     </button>
-                    <button className="btn btn-outline-branco w-auto text-white">
+                    <button type="button" className="btn btn-outline-branco w-auto text-white">
                       <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
                     </button>
                   </div>

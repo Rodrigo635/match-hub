@@ -27,6 +27,10 @@ export default function ChampionshipDetailsPage() {
     }
   };
 
+  const handleNotifications = async () =>{
+    console.log("handleNotifications")
+  }
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -151,7 +155,7 @@ export default function ChampionshipDetailsPage() {
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
         <div className="text-white text-center">
           <p>Erro ao carregar dados do campeonato.</p>
-          <button onClick={() => router.push("/campeonatos")} className="btn btn-primary">
+          <button type="button" onClick={() => router.push("/campeonatos")} className="btn btn-primary">
             Voltar aos campeonatos
           </button>
         </div>
@@ -185,10 +189,10 @@ export default function ChampionshipDetailsPage() {
 
         <div className="container">
           <div className="col-12 d-flex justify-content-start gap-2 mb-4 mt-5">
-            <button onClick={handleBack} className="btn btn-voltar text-white">
+            <button type="button" onClick={handleBack} className="btn btn-voltar text-white">
               <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
             </button>
-            <button className="btn btn-outline-branco w-auto text-white">
+            <button type="button" onClick={handleNotifications} className="btn btn-outline-branco w-auto text-white">
               <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2" /> Ativar Notificações</h5>
             </button>
           </div>
@@ -222,6 +226,7 @@ export default function ChampionshipDetailsPage() {
           <ul className="nav nav-tabs border-0 shadow-0">
             <li className="nav-item">
               <button
+                type="button"
                 className={`nav-link ${activeTab === 'times' ? 'active bg-dark text-primary' : 'text-white'} border-0 rounded-top`}
                 onClick={() => setActiveTab('times')}
               >
@@ -230,6 +235,7 @@ export default function ChampionshipDetailsPage() {
             </li>
             <li className="nav-item">
               <button
+                type="button"
                 className={`nav-link ${activeTab === 'proximas' ? 'active bg-dark text-primary' : 'text-white'} border-0 rounded-top`}
                 onClick={() => setActiveTab('proximas')}
               >
@@ -238,6 +244,7 @@ export default function ChampionshipDetailsPage() {
             </li>
             <li className="nav-item">
               <button
+                type="button"
                 className={`nav-link ${activeTab === 'passadas' ? 'active bg-dark text-primary' : 'text-white'} border-0 rounded-top`}
                 onClick={() => setActiveTab('passadas')}
               >

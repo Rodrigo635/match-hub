@@ -48,6 +48,7 @@ export default function Seguranca({ user }) {
             <strong>Senha:</strong> ••••••••
           </p>
           <button
+            type="button"
             className="btn btn-outline-primary"
             onClick={() => setShowModal(true)}
           >
@@ -81,6 +82,7 @@ export default function Seguranca({ user }) {
 
           {!twoFactorEnabled ? (
             <button
+              type="button"
               className="btn btn-outline-primary"
               onClick={handleEnable2FA}
             >
@@ -112,6 +114,7 @@ export default function Seguranca({ user }) {
               )}
 
               <button
+                type="button"
                 className="btn btn-outline-danger"
                 onClick={handleDisable2FA}
               >

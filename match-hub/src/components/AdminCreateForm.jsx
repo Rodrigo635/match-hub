@@ -321,17 +321,17 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "file") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               {existingFiles[name] && (
                 <div className="mb-2">
                   <p className="text-white small">Arquivo atual:</p>
                   {/* Supondo que seja imagem; se for outro tipo de arquivo, ajuste preview */}
-                  <img
+                  <Image
                     src={existingFiles[name]}
                     alt={`${label} atual`}
+                    width={80}
+                    height={80}
                     style={{
-                      width: "80px",
-                      height: "80px",
                       objectFit: "cover",
                       borderRadius: "4px",
                     }}
@@ -352,7 +352,7 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "textarea") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               <textarea
                 name={name}
                 className="form-control"
@@ -367,7 +367,7 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "select") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               <select
                 name={name}
                 className="form-select"
@@ -388,7 +388,7 @@ export default function AdminCreateForm({ entity, id }) {
         // input normal: text, email, password, date, time, number etc.
         return (
           <div key={name} className="mb-3">
-            <label className="form-label">{label}</label>
+            <label htmlFor={name} className="form-label">{label}</label>
             <input
               type={type}
               name={name}

@@ -85,12 +85,13 @@ export default function PerfilDefault({ user }) {
             <strong>Membro desde:</strong> {handleFormatCreatedAt()}
           </p>
           <button
+            type="button"
             className="btn btn-outline-primary"
             onClick={() => setShowEdit(true)}
           >
             Gerenciar conta
           </button>
-          <button className="btn ms-2 btn-outline-danger" onClick={logout}>
+          <button type="button" className="btn ms-2 btn-outline-danger" onClick={logout}>
             Sair
           </button>
         </div>

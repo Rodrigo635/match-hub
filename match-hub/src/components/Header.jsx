@@ -208,6 +208,7 @@ export default function Header() {
               {/* bell desktop */}
               {user != null && (
                 <button
+                  type="button"
                   ref={bellRef}
                   className="btn btn-bell"
                   aria-label="Notificações rápidas"
@@ -223,9 +224,9 @@ export default function Header() {
               ) : (
                 <>
                   {user != null ? (
-                    <a href="/perfil">
+                    <Link href="/perfil">
                       <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="34" height="34" alt="Avatar" />
-                    </a>
+                    </Link>
                   ) : (
                     <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center ms-3">
                       <p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p>
@@ -272,7 +273,7 @@ export default function Header() {
           <div className="notif-dropdown-header d-flex justify-content-between align-items-center mb-0 px-3 py-2">
             <strong>Próximos jogos</strong>
             <div>
-              <button className="btn btn-sm btn-link text-white" onClick={() => setOpen(false)}><i className="fa-solid fa-xmark"></i></button>
+              <button type="button" className="btn btn-sm btn-link text-white" onClick={() => setOpen(false)}><i className="fa-solid fa-xmark"></i></button>
             </div>
           </div>
 

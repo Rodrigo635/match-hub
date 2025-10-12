@@ -129,9 +129,9 @@ export default function Footer() {
           {/* Redes Sociais */}
           <div className="col-12 col-md text-center text-md-end">
             <div className="d-flex justify-content-center justify-content-md-end gap-3">
-              <a href="#" className="text-white fs-5"><i className="fa-brands fa-facebook"></i></a>
-              <a href="#" className="text-white fs-5"><i className="fa-brands fa-instagram"></i></a>
-              <a href="#" className="text-white fs-5"><i className="fa-brands fa-linkedin"></i></a>
+              <Link href="#" className="text-white fs-5"><i className="fa-brands fa-facebook"></i></Link>
+              <Link href="#" className="text-white fs-5"><i className="fa-brands fa-instagram"></i></Link>
+              <Link href="#" className="text-white fs-5"><i className="fa-brands fa-linkedin"></i></Link>
             </div>
           </div>
         </div>

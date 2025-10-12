@@ -106,7 +106,7 @@ export default function Configuracoes({ user: initialUser }) {
         <div className="card-body text-white">
           <div className="d-flex justify-content-between align-items-center">
             <p className="mb-0">Habilitar V-Libras</p>
-            <button className="btn btn-outline-primary" onClick={toggleVLibras}>
+            <button type="button" className="btn btn-outline-primary" onClick={toggleVLibras}>
               {user.librasActive ? "Desativar" : "Ativar"}
             </button>
           </div>
@@ -123,7 +123,7 @@ export default function Configuracoes({ user: initialUser }) {
             <p className="mb-0">
               Modo claro <i className="fa-solid fa-sun"></i>
             </p>
-            <button className="btn btn-outline-primary" onClick={changeColor}>
+            <button type="button" className="btn btn-outline-primary" onClick={changeColor}>
               {user.isDarkMode ? "Ativar" : "Desativar"}
             </button>
           </div>
@@ -142,6 +142,7 @@ export default function Configuracoes({ user: initialUser }) {
             </p>
             <div className="d-flex align-items-center gap-2">
               <button
+                type="button"
                 className="btn btn-outline-primary"
                 onClick={decreaseFont}
                 disabled={user.fontSize <= FONT_SIZE_MIN}
@@ -152,6 +153,7 @@ export default function Configuracoes({ user: initialUser }) {
                 Nível {user.fontSize} de {FONT_SIZE_MAX}
               </span>
               <button
+                type="button"
                 className="btn btn-outline-primary"
                 onClick={increaseFont}
                 disabled={user.fontSize >= FONT_SIZE_MAX}
