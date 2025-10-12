@@ -2,19 +2,17 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { toggleColorMode, toggleVLibrasMode, changeFontSize } from "@/app/services/userService";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/UserContext";
+
+const FONT_SIZE_MIN = 0;
+const FONT_SIZE_MAX = 2;
 
 export default function Configuracoes({ user: initialUser }) {
   const router = useRouter();
+  const { refreshUser } = useUser();
   const [user, setUser] = useState({
     ...initialUser,
-    fontSizeLevel: initialUser.fontSize || 0 // 0: default, 1: +0.15em, 2: +0.30em
   });
-
-  useEffect(() => {
-    const level = user.fontSize;
-    const newSize = 1 + level * 0.07;
-    document.documentElement.style.fontSize = `${newSize}em`;
-  }, [user.fontSize]);
 
   const changeColor = async () => {
     try {
@@ -28,7 +26,6 @@ export default function Configuracoes({ user: initialUser }) {
 
       setUser(prev => ({ ...prev, isDarkMode: newDarkMode }));
 
-      // Atualiza o atributo no html para mudar o tema globalmente
       document.documentElement.setAttribute("data-theme", newDarkMode ? "dark" : "light");
     } catch (error) {
       console.error("Erro ao alterar modo de cor:", error);
@@ -60,7 +57,7 @@ export default function Configuracoes({ user: initialUser }) {
   };
 
   const increaseFont = async () => {
-    if (user.fontSize >= 2) return;
+    if (user.fontSize >= FONT_SIZE_MAX) return;
     const newLevel = user.fontSize + 1;
     try {
       const token = Cookies.get("token");
@@ -69,8 +66,9 @@ export default function Configuracoes({ user: initialUser }) {
         return;
       }
       await changeFontSize(newLevel, token);
-      setUser(prev => ({ ...prev, fontSizeLevel: newLevel }));
-      const newSize = 1 + newLevel * 0.7;
+      setUser(prev => ({ ...prev, fontSize: newLevel }));
+      refreshUser();
+      const newSize = 1 + newLevel * 0.07;
       document.documentElement.style.fontSize = `${newSize}em`;
     } catch (error) {
       console.error("Erro ao aumentar tamanho da fonte:", error);
@@ -78,7 +76,7 @@ export default function Configuracoes({ user: initialUser }) {
   };
 
   const decreaseFont = async () => {
-    if (user.fontSize <= 0) return;
+    if (user.fontSize <= FONT_SIZE_MIN) return;
     const newLevel = user.fontSize - 1;
     try {
       const token = Cookies.get("token");
@@ -87,8 +85,9 @@ export default function Configuracoes({ user: initialUser }) {
         return;
       }
       await changeFontSize(newLevel, token);
-      setUser(prev => ({ ...prev, fontSizeLevel: newLevel }));
-      const newSize = 1 + newLevel * 0.7;
+      setUser(prev => ({ ...prev, fontSize: newLevel }));
+      refreshUser();
+      const newSize = 1 + newLevel * 0.07;
       document.documentElement.style.fontSize = `${newSize}em`;
     } catch (error) {
       console.error("Erro ao diminuir tamanho da fonte:", error);
@@ -141,18 +140,21 @@ export default function Configuracoes({ user: initialUser }) {
             <p className="mb-0">
               Tamanho da fonte <i className="fa-solid fa-text-size"></i>
             </p>
-            <div>
+            <div className="d-flex align-items-center gap-2">
               <button
-                className="btn btn-outline-primary me-2"
+                className="btn btn-outline-primary"
                 onClick={decreaseFont}
-                disabled={user.fontSize <= 0}
+                disabled={user.fontSize <= FONT_SIZE_MIN}
               >
                 -
               </button>
+              <span className="text-white">
+                Nível {user.fontSize} de {FONT_SIZE_MAX}
+              </span>
               <button
                 className="btn btn-outline-primary"
                 onClick={increaseFont}
-                disabled={user.fontSize >= 2}
+                disabled={user.fontSize >= FONT_SIZE_MAX}
               >
                 +
               </button>

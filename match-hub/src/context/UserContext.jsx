@@ -44,6 +44,13 @@ export function UserProvider({ children }) {
   useEffect(() => {
     console.log("User state updated:", user);
     console.log("User is now:", user ? "SET" : "NULL");
+    
+    // Aplicar font size quando user é carregado
+    if (user && user.fontSize !== undefined) {
+      const newSize = 1 + user.fontSize * 0.07;
+      document.documentElement.style.fontSize = `${newSize}em`;
+      console.log("Font size aplicado:", newSize);
+    }
   }, [user]);
 
   useEffect(() => {

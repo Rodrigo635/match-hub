@@ -95,14 +95,14 @@ export async function toggleVLibrasMode(librasActive, token) {
   }
 }
 
-export async function changeFontSize(fontSizeLevel, token) {
+export async function changeFontSize(fontSize, token) {
   const res = await fetch(`${BASE_URL}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ fontSizeLevel }),
+    body: JSON.stringify({ fontSize }),
     credentials: "include",
   });
 
