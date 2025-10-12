@@ -25,8 +25,7 @@ public record UpdateUserDTO(
         LocalDate birthDate,
 
         Boolean isDarkMode,
-
-        @Min(value = 10, message = "O tamanho mínimo da fonte é 10")
+        
         @Max(value = 30, message = "O tamanho máximo da fonte é 30")
         Integer fontSize,
 
