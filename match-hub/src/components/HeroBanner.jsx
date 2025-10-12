@@ -83,12 +83,12 @@ export default function HeroBanner({ videoSrc = '/assets/bg-video.mp4' }) {
           <div className="notify-panel py-4">
             <div className="modal-header">
               <h5 className="modal-title"><i className="fas fa-bell me-2"></i>Ativar notificações</h5>
-              <button className="btn-close" onClick={() => setShowNotify(false)} aria-label="Fechar" />
+              <button type="button" className="btn-close" onClick={() => setShowNotify(false)} aria-label="Fechar" />
             </div>
             <div className="modal-body py-3">
               <p>Na página de qualquer: jogo, campeonato ou time você pode clicar para receber notificações e personalizar para se ajustar aos seus interesses.</p>
               <div className="d-grid gap-2">
-                <button className="btn btn-primary" onClick={() => setShowNotify(false)}>Entendi</button>
+                <button type="button" className="btn btn-primary" onClick={() => setShowNotify(false)}>Entendi</button>
               </div>
             </div>
           </div>

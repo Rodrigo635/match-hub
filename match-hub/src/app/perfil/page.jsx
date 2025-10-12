@@ -7,6 +7,7 @@ import Notificacoes from "@/components/perfil/Notificacoes";
 import Ajuda from "@/components/perfil/Ajuda";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { Link } from "lucide-react";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -92,7 +93,7 @@ export default function ProfilePage() {
             <ul className="nav nav-tabs nav-fill">
               {sections.map((sec) => (
                 <li className="nav-item" key={sec.key}>
-                  <a
+                  <Link
                     href="#"
                     className={`nav-link ${
                       activeSection === sec.key ? "active" : ""
@@ -104,7 +105,7 @@ export default function ProfilePage() {
                     style={{ display: "inline-block" }}
                   >
                     {sec.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

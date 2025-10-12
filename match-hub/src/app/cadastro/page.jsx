@@ -193,6 +193,7 @@ export default function CadastroPage() {
                 ? "bg-dark text-white"
                 : "bg-black text-white"
             }`}
+            type="button"
             onClick={() => handleToggle("cadastrar")}
             aria-pressed={activeTab === "cadastrar"}
           >
@@ -204,6 +205,7 @@ export default function CadastroPage() {
                 ? "bg-dark text-white"
                 : "bg-black text-white"
             }`}
+            type="button"
             onClick={() => handleToggle("entrar")}
             aria-pressed={activeTab === "entrar"}
           >

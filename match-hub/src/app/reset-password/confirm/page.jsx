@@ -59,9 +59,10 @@ export default function ResetPasswordConfirm() {
         <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
           {/* Nova Senha */}
           <div>
-            <label className="form-label">Nova senha</label>
+            <label htmlFor="password" className="form-label">Nova senha</label>
             <div className="input-group input-group-lg">
               <input
+                name="password"
                 type={showPassword ? "text" : "password"}
                 className="form-control bg-dark text-white border-light"
                 placeholder="Digite sua nova senha"
@@ -81,9 +82,10 @@ export default function ResetPasswordConfirm() {
 
           {/* Confirmar Senha */}
           <div>
-            <label className="form-label">Confirmar senha</label>
+            <label htmlFor="confirmPassword" className="form-label">Confirmar senha</label>
             <div className="input-group input-group-lg">
               <input
+                name="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 className="form-control bg-dark text-white border-light"
                 placeholder="Repita a senha"

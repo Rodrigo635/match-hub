@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import '../../../public/css/modalProfile.css';
+import "../../../public/css/modalProfile.css";
 
 export default function ModalUpdateImage({ user, onClose }) {
   const router = useRouter();
@@ -113,7 +113,7 @@ export default function ModalUpdateImage({ user, onClose }) {
     }
     const response = await uploadPublicAvatar(selectedAvatar, token);
 
-    if(!response.ok) {
+    if (!response.ok) {
       setError("Erro ao atualizar imagem.");
       return;
     }
@@ -226,6 +226,7 @@ export default function ModalUpdateImage({ user, onClose }) {
                         style={{ fill: "white" }}
                         width="24"
                         height="24"
+                        
                       >
                         <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
                       </svg>
@@ -273,22 +274,18 @@ export default function ModalUpdateImage({ user, onClose }) {
             </div>
             <div className="modal-body">
               <div className="avatar-container d-flex flex-wrap gap-4 justify-content-center align-items-center">
-                {avatarUrl.map(
-                  (avatarUrl, index) => (
-                    (
-                      <Image
-                        key={index}
-                        id={`avatar-${index}`}
-                        src={avatarUrl}
-                        width={80}
-                        height={80}
-                        alt={`Avatar ${index + 1}`}
-                        className="avatar rounded-circle cursor-pointer"
-                        onClick={() => handleAvatarClick(avatarUrl, index)}
-                      />
-                    )
-                  )
-                )}
+                {avatarUrl.map((avatarUrl, index) => (
+                  <Image
+                    key={index}
+                    id={`avatar-${index}`}
+                    src={avatarUrl}
+                    width={80}
+                    height={80}
+                    alt={`Avatar ${index + 1}`}
+                    className="avatar rounded-circle cursor-pointer"
+                    onClick={() => handleAvatarClick(avatarUrl, index)}
+                  />
+                ))}
               </div>
             </div>
             <div className="modal-footer border-0 d-flex justify-content-between">

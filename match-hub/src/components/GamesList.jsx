@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { getAllGames } from "@/services/gameService";
+import Image from "next/image";
 
 export default function GamesList({ initialItems, additionalItems }) {
   const router = useRouter();
@@ -135,10 +136,12 @@ export default function GamesList({ initialItems, additionalItems }) {
             >
               <div className="card bg-transparent h-100">
                 <div>
-                  <img
+                  <Image
+                    alt={item.game || "Imagem do jogo"}
                     className=" rounded-3"
+                    width={300}
+                    height={300}
                     src={item.image}
-                    alt={item.game}
                   />
                 </div>
 
@@ -155,21 +158,23 @@ export default function GamesList({ initialItems, additionalItems }) {
 
         {/* Paginação */}
         <div className="container text-center my-5">
-          {hasPrev && additionalItems != 0 && (
-            <h5
-              className="text-center ver-menos cursor-pointer"
+          {hasPrev && additionalItems !== 0 && (
+            <button
+              type="button"
+              className="text-center ver-menos cursor-pointer bg-transparent border-0"
               onClick={handlePrev}
             >
               <span className="text-azul">Ver menos</span>
-            </h5>
+            </button>
           )}
-          {hasNext && additionalItems != 0 && (
-            <h5
-              className="text-center ver-mais cursor-pointer"
+          {hasNext && additionalItems !== 0 && (
+            <button
+              type="button"
+              className="text-center ver-mais cursor-pointer bg-transparent border-0"
               onClick={handleNext}
             >
               <span className="text-azul">Ver mais</span>
-            </h5>
+            </button>
           )}
         </div>
       </section>

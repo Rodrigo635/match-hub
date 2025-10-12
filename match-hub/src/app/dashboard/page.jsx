@@ -239,10 +239,11 @@ export default function AdvancedAnalyticsDashboard() {
         <div className="card" style={{ marginBottom: '24px' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
+              <label htmlFor="timeHorizon" style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
                 Horizonte de Projeção (meses)
               </label>
               <input
+                name="timeHorizon"
                 type="range"
                 min="12"
                 max="36"
@@ -254,10 +255,12 @@ export default function AdvancedAnalyticsDashboard() {
             </div>
             
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
+              <label htmlFor="showPrediction" style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
                 Exibir Predições
               </label>
               <button
+                name="showPrediction"
+                type="button"
                 className={`toggle-btn ${showPrediction ? 'active' : ''}`}
                 onClick={() => setShowPrediction(!showPrediction)}
               >

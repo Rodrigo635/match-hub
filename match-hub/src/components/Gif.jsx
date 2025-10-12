@@ -1,6 +1,7 @@
 // components/Gif.jsx
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const gifs = [
   "/static/icons/sonic.gif",
@@ -26,7 +27,7 @@ export default function Gif() {
 
   return (
     gifEscolhido && (
-      <img
+      <Image
         id="gif-concluido"
         src={gifEscolhido}
         alt="GIF concluído"
