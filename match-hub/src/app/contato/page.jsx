@@ -604,13 +604,13 @@ export default function ContatoPage() {
                 id="form-contato"
               >
                 <h1 className="fw-bold text-center mb-4">Contate-nos</h1>
-                <div
+<div
                   className={styles.ratingContainer}
                   role="radiogroup"
                   aria-label="Avaliação de 1 a 5 estrelas"
                 >
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <label
+                    <span
                       key={star}
                       className={`${styles.star} ${
                         hover >= star || rating >= star ? styles.active : ""
@@ -618,6 +618,10 @@ export default function ContatoPage() {
                       onMouseEnter={() => setHover(star)}
                       onMouseLeave={() => setHover(0)}
                       title={`${star} estrela${star > 1 ? "s" : ""}`}
+                      role="radio"
+                      aria-checked={rating === star}
+                      onClick={() => handleRating(star)}
+                      style={{ cursor: "pointer" }}
                     >
                       <input
                         type="radio"
@@ -628,7 +632,7 @@ export default function ContatoPage() {
                         className={styles.input}
                       />
                       ★
-                    </label>
+                    </span>
                   ))}
                 </div>
 
