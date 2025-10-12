@@ -5,7 +5,7 @@ import {
   deleteProfileImage,
   uploadPublicAvatar,
   getPublicAvatar,
-} from "@/app/services/userService";
+} from "@/services/userService";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -248,11 +248,11 @@ export default function ModalUpdateImage({ user, onClose }) {
         style={{ height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }}
       >
         <div
-          className="modal-dialog modal-dialog-centered modal-sm position-relative"
-          style={{ left: "33%", maxWidth: "30%" }}
+          className="modal-dialog modal-dialog-centered modal-sm position-relative modal-avatar"
+          style={{ left: "68%", maxWidth: "30%" }}
         >
           <div
-            className="modal-content bg-dark text-white"
+            className="modal-content mt-5 bg-dark text-white"
             style={{
               borderRadius: "10px",
               boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)",

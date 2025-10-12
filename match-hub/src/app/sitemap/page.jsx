@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { handleGetUser } from "../global/global";
+import Image from "next/image";
 
 export default function SitemapPage() {
   const [user, setUser] = useState(null); 
@@ -100,10 +101,12 @@ export default function SitemapPage() {
             </ul>
           </div>
           <div className="col-12 col-md-12 col-lg-6 mt-3 mt-lg-0 text-white">
-            <img
+            <Image
               className="img-fluid rounded-4"
               src="/static/img/sitemap/sitemap.png"
               alt="Imagem do mapa do site"
+              width={1000}
+              height={1000}
             />
           </div>
         </div>

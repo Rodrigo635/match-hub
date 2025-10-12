@@ -4,37 +4,37 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { formFieldsConfig } from "@/app/admin/[entity]/create/formConfig";
 
-import { getGames } from "@/app/services/gameService";
-import { getChampionships } from "@/app/services/championshipService";
-import { getTeams } from "@/app/services/teamService";
+import { getGames } from "@/services/gameService";
+import { getChampionships } from "@/services/championshipService";
+import { getTeams } from "@/services/teamService";
 
 // Importe os métodos corretos de cada service
 import {
   createUser,
   getUserById,
   updateUser,
-} from "@/app/services/userService";
+} from "@/services/userService";
 import {
   createGame,
   getGameById,
   updateGame,
-} from "@/app/services/gameService";
+} from "@/services/gameService";
 import {
   createChampionship,
   getChampionshipById,
   updateChampionship,
-} from "@/app/services/championshipService";
+} from "@/services/championshipService";
 import {
   createTeam,
   getTeamById,
   updateTeam,
-} from "@/app/services/teamService";
+} from "@/services/teamService";
 // Atenção: importe com os nomes corretos definidos em matchService.js
 import {
   getMatchById,
   createMatch,
   updateMatch,
-} from "@/app/services/matchService";
+} from "@/services/matchService";
 
 export default function AdminCreateForm({ entity, id }) {
   const router = useRouter();

@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getGameById } from '../services/gameService';
-import { getMatchesByChampionship } from '../services/matchService';
-import { getChampionshipsByGame } from '../services/championshipService';
+import { getGameById } from '../../services/gameService';
+import { getMatchesByChampionship } from '../../services/matchService';
+import { getChampionshipsByGame } from '../../services/championshipService';
 
 export default function GamePage() {
   const router = useRouter();

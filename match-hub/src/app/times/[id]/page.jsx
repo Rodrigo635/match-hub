@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getTeamById } from '../../services/teamService';
-import { getMatchesByTeam } from '../../services/matchService';
+import { getTeamById } from '../../../services/teamService';
+import { getMatchesByTeam } from '../../../services/matchService';
 
 export default function TeamDetailsPage() {
   const params = useParams();

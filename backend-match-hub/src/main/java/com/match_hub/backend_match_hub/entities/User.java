@@ -58,7 +58,7 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     private Boolean hasPassword;
 
     private Boolean isDarkMode = true;
-    private Integer fontSize = 16;
+    private Integer fontSize = 0;
     private Boolean librasActive = false;
 
     @Column(name = "two_factor_secret")

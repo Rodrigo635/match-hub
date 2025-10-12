@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { getUserByToken } from "@/app/services/userService";
+import { getUserByToken } from "@/services/userService";
 
 function VLibras({ forceOnload }) {
   const [shouldRender, setShouldRender] = useState(false);

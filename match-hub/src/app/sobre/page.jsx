@@ -1,8 +1,7 @@
 // src/app/sobre/page.js
-export const metadata = {
-  title: 'Sobre - MATCH HUB',
-  description: 'Saiba mais sobre o Match Hub, arquitetura, funcionalidades, público-alvo e mercado.',
-};
+'use client';
+import Link from "next/link";
+import Image from "next/image";
 
 export default function SobrePage() {
   return (
@@ -57,10 +56,12 @@ export default function SobrePage() {
         <div className="container">
           <div className="row gap-4 my-4">
             <div className="col mb-4 mb-lg-0 order-lg-2">
-              <img
+              <Image
                 src="/static/img/sobre/montar-pc-gamer-shutterstock_1430140055.jpg"
                 alt="Equipe de e-sports competindo"
                 className="img-fluid img-custom h-100"
+                width={500}
+                height={500}
               />
             </div>
             <div className="col-lg-6 order-lg-1">
@@ -142,10 +143,12 @@ export default function SobrePage() {
         <div className="container">
           <div className="row gap-4 my-4">
             <div className="col mb-4 mb-lg-0">
-              <img
+              <Image
                 src="/static/img/sobre/esg.png"
                 alt="Equipe de e-sports competindo"
                 className="img-fluid img-custom h-100"
+                width={500}
+                height={500}
               />
             </div>
             <div className="col-lg-6">
