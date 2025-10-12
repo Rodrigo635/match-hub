@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { createUser, login } from "../services/userService";
+import { createUser, login } from "../../services/userService";
 import { useRouter } from "next/navigation";
 import {
   validaCampo,

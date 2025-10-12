@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { toggleColorMode, toggleVLibrasMode, changeFontSize } from "@/app/services/userService";
+import { toggleColorMode, toggleVLibrasMode, changeFontSize } from "@/services/userService";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 

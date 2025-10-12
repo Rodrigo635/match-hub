@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getAllGames } from "@/app/services/gameService";
+import { getAllGames } from "@/services/gameService";
 
 export default function GamesList({ initialItems, additionalItems }) {
   const router = useRouter();

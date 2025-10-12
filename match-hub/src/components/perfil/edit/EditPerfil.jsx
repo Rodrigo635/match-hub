@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { updateInfoUser } from "@/app/services/userService";
+import { updateInfoUser } from "@/services/userService";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 

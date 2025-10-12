@@ -5,11 +5,11 @@ import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams, useParams } from 'next/navigation';
-import { getUsers, deleteUser, getUserByToken } from '@/app/services/userService';
-import { getGames, deleteGame } from '@/app/services/gameService';
-import { getChampionships, deleteChampionship } from '@/app/services/championshipService';
-import { getTeams, deleteTeam } from '@/app/services/teamService';
-import { getMatches, deleteMatch } from '@/app/services/matchService';
+import { getUsers, deleteUser, getUserByToken } from '@/services/userService';
+import { getGames, deleteGame } from '@/services/gameService';
+import { getChampionships, deleteChampionship } from '@/services/championshipService';
+import { getTeams, deleteTeam } from '@/services/teamService';
+import { getMatches, deleteMatch } from '@/services/matchService';
 import { handleGetUser } from '@/app/global/global';
 
 export default function AdminEntityPage() {

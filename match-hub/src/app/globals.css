@@ -171,7 +171,7 @@ html[data-theme="light"] .page-game .container * {
 html[data-theme="light"] .page-contato .quem-somos .text-white,
 html[data-theme="light"] .page-contato .estamos-buscando .text-white,
 html[data-theme="light"] .page-contato .form h1,
-html[data-theme="light"] .page-contato .form label {
+html[data-theme="light"] .page-contato .form label { 
   color: var(--text-color) !important;
 }
 

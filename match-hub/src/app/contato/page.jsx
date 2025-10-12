@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from './StarRating.module.css';
+import Image from "next/image";
 // src/app/contato/page.js
 import Script from "next/script";
 
@@ -71,10 +72,12 @@ export default function ContatoPage() {
                     <div className="infos col col-lg-9">
                       <div className="row justify-content-md-center">
                         <div className="foto col">
-                          <img
+                          <Image
                             className="img-fluid rounded-3"
                             src="/static/img/contato/gabriel2.png"
                             alt="Foto do Gabriel"
+                            width={300}
+                            height={300}
                           />
                         </div>
                         <div className="col-md-8 col-lg-9">
@@ -111,10 +114,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/github.png"
                                   alt="Logo do GitHub"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -131,10 +135,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/linkedin.jpeg"
                                   alt="Logo do Linkedin"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -154,10 +159,12 @@ export default function ContatoPage() {
                     <div className="infos col col-lg-9">
                       <div className="row justify-content-md-center">
                         <div className="foto col">
-                          <img
+                          <Image
                             className="img-fluid rounded-3"
                             src="/static/img/contato/miguel.png"
                             alt="Foto do Miguel"
+                            width={300}
+                            height={300}
                           />
                         </div>
                         <div className="col-md-8 col-lg-9">
@@ -194,10 +201,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/github.png"
                                   alt="Logo do GitHub"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -214,10 +222,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/linkedin.jpeg"
                                   alt="Logo do Linkedin"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -237,10 +246,12 @@ export default function ContatoPage() {
                     <div className="infos col col-lg-9">
                       <div className="row justify-content-md-center">
                         <div className="foto col">
-                          <img
+                          <Image
                             className="img-fluid rounded-3"
                             src="/static/img/contato/luis.png"
                             alt="Foto do Luis"
+                            width={300}
+                            height={300}
                           />
                         </div>
                         <div className="col-md-8 col-lg-9">
@@ -278,10 +289,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/github.png"
                                   alt="Logo do GitHub"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -298,10 +310,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/linkedin.jpeg"
                                   alt="Logo do Linkedin"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -321,10 +334,12 @@ export default function ContatoPage() {
                     <div className="infos col col-lg-9">
                       <div className="row justify-content-md-center">
                         <div className="foto col">
-                          <img
+                          <Image
                             className="img-fluid rounded-3"
                             src="/static/img/contato/michel.png"
                             alt="Foto do Michel"
+                            width={300}
+                            height={300}
                           />
                         </div>
                         <div className="col-md-8 col-lg-9">
@@ -362,10 +377,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/github.png"
                                   alt="Logo do GitHub"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -382,10 +398,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/linkedin.jpeg"
                                   alt="Logo do Linkedin"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -405,10 +422,12 @@ export default function ContatoPage() {
                     <div className="infos col col-lg-9">
                       <div className="row justify-content-md-center">
                         <div className="foto col">
-                          <img
+                          <Image
                             className="img-fluid rounded-3"
                             src="/static/img/contato/rodrigo.png"
                             alt="Foto do Rodrigo"
+                            width={300}
+                            height={300}
                           />
                         </div>
                         <div className="col-md-8 col-lg-9">
@@ -446,10 +465,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/github.png"
                                   alt="Logo do GitHub"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -466,10 +486,11 @@ export default function ContatoPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <img
+                                <Image
                                   src="/static/img/contato/linkedin.jpeg"
                                   alt="Logo do Linkedin"
-                                  width="50px"
+                                  width={50}
+                                  height={50}
                                 />
                               </a>
                             </div>
@@ -514,10 +535,12 @@ export default function ContatoPage() {
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0 order-lg-2">
-                <img
+                <Image
                   src="/static/img/contato/place-work.jpg"
                   alt="Equipe de e-sports competindo"
                   className="img-fluid img-custom h-100"
+                  width={500}
+                  height={500}
                 />
               </div>
               <div className="col-lg-6 order-lg-1">
@@ -563,10 +586,12 @@ export default function ContatoPage() {
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0">
-                <img
+                <Image
                   src="/static/img/contato/busca.jpg"
                   alt="Equipe de e-sports competindo"
-                  className="img-fluid img-custom h-100"
+                  className="img-fluid img-custom"
+                  width={600}
+                  height={600}
                 />
               </div>
               <div className="col-lg-6">
@@ -709,7 +734,7 @@ export default function ContatoPage() {
                 id="success-message"
               >
                 <h1 className="text-center">Formulário enviado com sucesso!</h1>
-                <img src="/static/icons/caveira.gif" alt="Sucesso" />
+                <Image src="/static/icons/caveira.gif" alt="Sucesso" width={100} height={100} />
                 <button
                   className="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light my-4"
                   id="returnForm"

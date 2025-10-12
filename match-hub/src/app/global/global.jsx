@@ -1,4 +1,4 @@
-import { getUserByToken } from "../services/userService";
+import { getUserByToken } from "../../services/userService";
 import Cookies from "js-cookie";
 
 function isTokenExpired(token) {

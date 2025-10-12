@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { verifyTwoFactor } from "../app/services/userService";
+import { verifyTwoFactor } from "../services/userService";
 import Cookies from "js-cookie";
 
 export default function Verify2FA({ email, setStep }) {

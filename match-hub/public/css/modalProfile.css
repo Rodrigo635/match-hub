@@ -30,3 +30,12 @@
 .avatar-container::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+@media (max-width: 845px) {
+  .modal-avatar{
+    max-width: 90% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: auto !important;
+  }
+}

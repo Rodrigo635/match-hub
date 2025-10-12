@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { resetPassword } from "../app/services/userService"; // Crie essa função no backend
+import { resetPassword } from "../services/userService"; // Crie essa função no backend
 import Cookies from "js-cookie";
 
 export default function ResetPassword({ setStep }) {

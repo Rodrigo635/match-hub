@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { resetPasswordConfirm } from "../../services/userService";
+import { resetPasswordConfirm } from "../../../services/userService";
 import Link from "next/link";
 
 export default function ResetPasswordConfirm() {
