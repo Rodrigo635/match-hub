@@ -2,22 +2,18 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { handleGetUser } from "@/app/global/global";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import { useUser } from "@/context/UserContext";
 
 export default function Header() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
   const pathname = usePathname();
-  const [token, setToken] = useState(null);
+  const { user, token, loading, refreshUser } = useUser();
 
+  // Atualiza os dados do usuário quando a rota muda
   useEffect(() => {
-    async function fetchUser() {
-      const u = await handleGetUser({ setToken, setUser });
-      setUser(u);
-    }
-    fetchUser();
+    refreshUser();
   }, [pathname]);
 
   // mockup com próximas partidas (campeonato, jogo, time1/time2, date,time)
@@ -157,7 +153,7 @@ export default function Header() {
       });
     });
   });
-  upcomingMerged.sort((a,b) => {
+  upcomingMerged.sort((a, b) => {
     const da = a.date.split('/').reverse().join('-') + 'T' + a.time;
     const db = b.date.split('/').reverse().join('-') + 'T' + b.time;
     return new Date(da) - new Date(db);
@@ -222,14 +218,20 @@ export default function Header() {
                 </button>
               )}
 
-              {user != null ? (
-                <a href="/perfil">
-                  <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="34" height="34" alt="Avatar" />
-                </a>
+              {loading ? (
+                <div className="rounded-circle" style={{ width: 34, height: 34, backgroundColor: '#ccc' }} />
               ) : (
-                <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center ms-3">
-                  <p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p>
-                </Link>
+                <>
+                  {user != null ? (
+                    <a href="/perfil">
+                      <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="34" height="34" alt="Avatar" />
+                    </a>
+                  ) : (
+                    <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center ms-3">
+                      <p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p>
+                    </Link>
+                  )}
+                </>
               )}
             </div>
           </div>

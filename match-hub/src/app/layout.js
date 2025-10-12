@@ -4,7 +4,8 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import VLibras from "@/components/vLibras";
-import ThemeProvider from "@/components/ThemeProvider";
+import ThemeProvider from "@/context/ThemeProvider";
+import { UserProvider } from "@/context/UserContext";
 
 export const metadata = {
   title: "MATCH HUB",
@@ -57,12 +58,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Header />
-        <VLibras forceOnload />
-        <ThemeProvider>{children}</ThemeProvider>
-        <ScrollToTopButton />
-        <Footer />
 
+        <UserProvider>  <Header />
+          <VLibras forceOnload />
+          <ThemeProvider>{children}</ThemeProvider>
+          <ScrollToTopButton />
+          <Footer /></UserProvider>
         {/* Scripts globais */}
         <Script
           src="/js/bootstrap.bundle.min.js"

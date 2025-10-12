@@ -6,12 +6,11 @@ import PerfilDefault from "@/components/perfil/PerfilDefault";
 import Notificacoes from "@/components/perfil/Notificacoes";
 import Ajuda from "@/components/perfil/Ajuda";
 import { useRouter } from "next/navigation";
-import { handleGetUser } from "../global/global";
+import { useUser } from "@/context/UserContext";
 
 export default function ProfilePage() {
   const router = useRouter();
-  const [user, setUser] = useState([]);
-  const [token, setToken] = useState(null);
+  const { user, token, loading } = useUser();
   const [activeSection, setActiveSection] = useState("perfil");
 
   // Seções
@@ -24,18 +23,14 @@ export default function ProfilePage() {
   ];
 
   useEffect(() => {
-    async function fetchUser() {
-      const user = await handleGetUser({ setToken, setUser });
-      if (!user) {
-        router.push("/cadastro");
-        return;
-      }
-
-      setUser(user);
+    if (!loading && !user) {
+      router.push("/cadastro");
     }
+  }, [loading, user, router]);
 
-    fetchUser();
-  }, []);
+  if (loading) {
+    return <div className="container">Carregando...</div>;
+  }
 
   // Função pra renderizar conteúdo conforme a seção
   function renderSection() {
