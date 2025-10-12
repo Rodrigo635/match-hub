@@ -16,64 +16,6 @@ export default function Header() {
     refreshUser();
   }, [pathname]);
 
-  // mockup com próximas partidas (campeonato, jogo, time1/time2, date,time)
-  const [subscriptions, setSubscriptions] = useState([
-    {
-      id: "g-valorant",
-      title: "Valorant",
-      upcoming: [
-        {
-          id: "m1",
-          championshipName: "VCT Americas",
-          gameName: "Valorant - Champions",
-          time1: "EG",
-          time2: "G2",
-          date: "24/09/2025",
-          time: "21:00"
-        },
-        {
-          id: "m2",
-          championshipName: "VCT Americas",
-          gameName: "Valorant - Champions",
-          time1: "SEN",
-          time2: "MIBR",
-          date: "14/09/2025",
-          time: "18:00"
-        }
-      ]
-    },
-    {
-      id: "c-vct-americas",
-      title: "VCT Americas",
-      upcoming: [
-        {
-          id: "m3",
-          championshipName: "VCT Americas",
-          gameName: "Valorant - Masters",
-          time1: "LOUD",
-          time2: "FURIA",
-          date: "02/10/2025",
-          time: "19:00"
-        }
-      ]
-    },
-    {
-      id: "t-mibr",
-      title: "MIBR",
-      upcoming: [
-        {
-          id: "m4",
-          championshipName: "VCT Americas",
-          gameName: "Valorant - Champions",
-          time1: "MIBR",
-          time2: "SEN",
-          date: "30/09/2025",
-          time: "20:00"
-        }
-      ]
-    }
-  ]);
-
   const [open, setOpen] = useState(false);
   const bellRef = useRef(null);
   const bellRefMobile = useRef(null);
@@ -107,8 +49,8 @@ export default function Header() {
     function handleDown(e) {
       if (!open) return;
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        if (bellRef.current && bellRef.current.contains(e.target)) return;
-        if (bellRefMobile.current && bellRefMobile.current.contains(e.target)) return;
+        if (bellRef.current?.contains(e.target)) return;
+        if (bellRefMobile.current?.contains(e.target)) return;
         setOpen(false);
       }
     }
@@ -141,21 +83,29 @@ export default function Header() {
 
   const handleOpenMatch = (match) => {
     setOpen(false);
-    // router.push(`/partidas/${match.id}`) // se quisesse navegar
   };
 
-  const upcomingMerged = [];
-  subscriptions.forEach(sub => {
-    (sub.upcoming || []).forEach(m => {
-      upcomingMerged.push({
-        subTitle: sub.title,
-        ...m
-      });
-    });
-  });
+  // Formata notificações do backend
+  const upcomingMerged = user?.notifications ? user.notifications.map(notif => ({
+    id: notif.id,
+    matchId: notif.matchId,
+    subTitle: notif.gameName || notif.championshipName,
+    championshipName: notif.championshipName,
+    gameName: notif.gameName,
+    tounamentName: notif.tounamentName,
+    time1: notif.teams?.[0] || "Time 1",
+    time2: notif.teams?.[1] || "Time 2",
+    date: new Date(notif.scheduledAt).toLocaleDateString("pt-BR"),
+    time: new Date(notif.scheduledAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+    message: notif.message,
+    type: notif.type,
+    read: notif.read
+  })) : [];
+
+  // Ordena por data
   upcomingMerged.sort((a, b) => {
-    const da = a.date.split('/').reverse().join('-') + 'T' + a.time;
-    const db = b.date.split('/').reverse().join('-') + 'T' + b.time;
+    const da = `${a.date.split('/').reverse().join('-')}T${a.time}`;
+    const db = `${b.date.split('/').reverse().join('-')}T${b.time}`;
     return new Date(da) - new Date(db);
   });
 
@@ -173,6 +123,7 @@ export default function Header() {
           <div className="d-flex align-items-center d-lg-none">
             {user != null && (
               <button
+                type="button"
                 ref={bellRefMobile}
                 className="btn btn-bell-mobile me-2"
                 aria-label="Notificações rápidas (mobile)"
@@ -222,8 +173,7 @@ export default function Header() {
               {loading ? (
                 <div className="rounded-circle" style={{ width: 34, height: 34, backgroundColor: '#ccc' }} />
               ) : (
-                <>
-                  {user != null ? (
+                user != null ? (
                     <Link href="/perfil">
                       <Image src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"} className="rounded-circle" width="34" height="34" alt="Avatar" />
                     </Link>
@@ -231,8 +181,7 @@ export default function Header() {
                     <Link href="/cadastro" className="btn-entrar text-white d-flex align-items-center ms-3">
                       <p className="mb-0">Entrar <i className="fa-solid fa-arrow-right-to-bracket ms-2"></i></p>
                     </Link>
-                  )}
-                </>
+                  )
               )}
             </div>
           </div>
@@ -257,18 +206,17 @@ export default function Header() {
                 <li className="nav-item"><Link href="/sobre" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-circle-info me-2"></i>Sobre</p></Link></li>
                 <li className="nav-item"><Link href="/contato" className="btn btn-outline-primary d-flex rounded-3 justify-content-center"><p className="mb-0"><i className="fa-solid fa-phone me-2"></i>Contato</p></Link></li>
               </ul>
-
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Dropdown simples (posicionado absolut o via state) */}
+      {/* Dropdown com notificações do backend */}
       {open && (
         <div
           ref={dropdownRef}
           className="notif-dropdown"
-          style={{ position: "absolute", top: dropdownStyle.top + "px", left: dropdownStyle.left + "px", width: dropdownStyle.width + "px", zIndex: 2200 }}
+          style={{ position: "absolute", top: `${dropdownStyle.top}px`, left: `${dropdownStyle.left}px`, width: `${dropdownStyle.width}px`, zIndex: 2200 }}
         >
           <div className="notif-dropdown-header d-flex justify-content-between align-items-center mb-0 px-3 py-2">
             <strong>Próximos jogos</strong>
@@ -285,7 +233,7 @@ export default function Header() {
                 <div className="row notif-row d-flex align-items-center py-3 px-2 border-bottom border-white" key={m.id}>
                   <div className="col-12">
                     <div className="small text-primary">{m.championshipName} - {m.gameName}</div>
-                    <div className="small text-white"></div>
+                    {m.tounamentName && <div className="small text-secondary">{m.tounamentName}</div>}
                   </div>
 
                   <div className="col-12">
