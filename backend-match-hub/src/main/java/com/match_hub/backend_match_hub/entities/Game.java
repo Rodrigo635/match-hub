@@ -53,6 +53,7 @@ public class Game implements Serializable, HasProfileImage, HasVideo, HasGif {
 
     @ManyToOne
     @JoinColumn(name = "championship_id")
+    @ToString.Exclude
     private Championship championship;
 
     @CreationTimestamp
