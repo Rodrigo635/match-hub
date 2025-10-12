@@ -1,11 +1,10 @@
-// src/app/admin/[entity]/page.jsx
 'use client';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, useParams } from 'next/navigation';
 import { getUsers, deleteUser, getUserByToken } from '@/app/services/userService';
 import { getGames, deleteGame } from '@/app/services/gameService';
 import { getChampionships, deleteChampionship } from '@/app/services/championshipService';
@@ -13,9 +12,12 @@ import { getTeams, deleteTeam } from '@/app/services/teamService';
 import { getMatches, deleteMatch } from '@/app/services/matchService';
 import { handleGetUser } from '@/app/global/global';
 
-export default function AdminEntityPage({ params }) {
+export default function AdminEntityPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const params = useParams();
+
+  const entity = params.entity;
 
   // Estados para dados
   const [users, setUsers] = useState([]);
@@ -40,9 +42,11 @@ export default function AdminEntityPage({ params }) {
     hasPrevious: false,
   });
 
-  const { entity } = React.use(params);
+  // Estado para modal
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  // Pega parâmetros da URL
+  // Pega parâmetros da URL para paginação
   const currentPage = parseInt(searchParams.get('page')) || 0;
   const pageSize = parseInt(searchParams.get('size')) || 10;
 
@@ -80,7 +84,7 @@ export default function AdminEntityPage({ params }) {
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
     params.set('size', pageSize.toString());
-    router.push(`?${params.toString()}`);
+    router.push(`/admin/${entity}?${params.toString()}`);
   };
 
   // Função para mudar tamanho da página
@@ -88,7 +92,7 @@ export default function AdminEntityPage({ params }) {
     const params = new URLSearchParams(searchParams);
     params.set('page', '0'); // Reset para primeira página
     params.set('size', newSize.toString());
-    router.push(`?${params.toString()}`);
+    router.push(`/admin/${entity}?${params.toString()}`);
   };
 
   // Atualizado para buscar com paginação
@@ -96,83 +100,49 @@ export default function AdminEntityPage({ params }) {
     setError(null);
     setLoading(true);
 
-    // Função helper para atualizar dados e paginação
     const updateData = data => {
-      if (data.content) {
-        // Tem paginação
+      if (data && data.content) {
         setPagination(data.page);
         return data.content;
-      } else {
-        // Sem paginação (talvez seja array direto)
-        setPagination({
-          number: 0,
-          size: data.length,
-          totalElements: data.length,
-          totalPages: 1,
-          first: true,
-          last: true,
-          hasNext: false,
-          hasPrevious: false,
-        });
-        return data;
       }
+      const fallbackData = Array.isArray(data) ? data : [];
+      setPagination({
+        number: 0,
+        size: fallbackData.length,
+        totalElements: fallbackData.length,
+        totalPages: 1,
+        first: true,
+        last: true,
+        hasNext: false,
+        hasPrevious: false,
+      });
+      return fallbackData;
+    };
+
+    const fetchData = (getFunc, setFunc) => {
+      // A chamada agora passa apenas os parâmetros de paginação
+      getFunc(currentPage, pageSize)
+        .then(data => {
+          const content = updateData(data);
+          setFunc(content);
+        })
+        .catch(err => {
+          console.error(`Erro ao carregar ${entity}:`, err);
+          setError(`Erro ao carregar ${entity}`);
+        })
+        .finally(() => setLoading(false));
     };
 
     if (entity === 'user') {
-      getUsers(currentPage, pageSize)
-        .then(data => {
-          const content = updateData(data);
-          setUsers(content);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar usuários:', err);
-          setError('Erro ao carregar usuários');
-        })
-        .finally(() => setLoading(false));
+      fetchData(getUsers, setUsers);
     } else if (entity === 'game') {
-      getGames(currentPage, pageSize)
-        .then(data => {
-          const content = updateData(data);
-          setGames(content);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar jogos:', err);
-          setError('Erro ao carregar jogos');
-        })
-        .finally(() => setLoading(false));
+      fetchData(getGames, setGames);
     } else if (entity === 'championship') {
-      getChampionships(currentPage, pageSize)
-        .then(data => {
-          const content = updateData(data);
-          setChampionships(content);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar campeonatos:', err);
-          setError('Erro ao carregar campeonatos');
-        })
-        .finally(() => setLoading(false));
+      fetchData(getChampionships, setChampionships);
     } else if (entity === 'team') {
-      getTeams(currentPage, pageSize)
-        .then(data => {
-          const content = updateData(data);
-          setTeams(content);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar times:', err);
-          setError('Erro ao carregar times');
-        })
-        .finally(() => setLoading(false));
+      fetchData(getTeams, setTeams);
     } else if (entity === 'match') {
-      getMatches(currentPage, pageSize)
-        .then(data => {
-          const content = updateData(data);
-          setMatch(content);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar partidas:', err);
-          setError('Erro ao carregar partidas');
-        })
-        .finally(() => setLoading(false));
+      fetchData(getMatches, setMatch);
     } else {
       setLoading(false);
     }
@@ -189,19 +159,8 @@ export default function AdminEntityPage({ params }) {
     case 'game':
       items = games;
       columns = [
-        'ID',
-        'Nome',
-        'Torneio',
-        'Imagem',
-        'Descrição',
-        'Tags',
-        'Lançamento',
-        'Gênero',
-        'Desenvolvedora',
-        'Distribuidora',
-        'PEGI',
-        'Data de Criação',
-        'Ações',
+        'ID', 'Nome', 'Torneio', 'Imagem', 'Descrição', 'Tags', 'Lançamento', 'Gênero',
+        'Desenvolvedora', 'Distribuidora', 'PEGI', 'Data de Criação', 'Ações',
       ];
       break;
     case 'championship':
@@ -215,15 +174,8 @@ export default function AdminEntityPage({ params }) {
     case 'match':
       items = match;
       columns = [
-        'ID',
-        'Data',
-        'Horário',
-        'Link',
-        'ID do Campeonato',
-        'Data de Criação',
-        'Time 1',
-        'Time 2',
-        'Ações',
+        'ID', 'Data', 'Horário', 'Link', 'ID do Campeonato', 'Data de Criação',
+        'Time 1', 'Time 2', 'Ações',
       ];
       break;
   }
@@ -255,33 +207,103 @@ export default function AdminEntityPage({ params }) {
     }
   };
 
+  const handleView = (item) => {
+    setSelectedItem(item);
+    setShowModal(true);
+  };
+
   const normalizeImageSrc = src => {
-    if (!src) return null;
-    if (typeof src !== 'string') return null;
-    if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('/')) {
+    if (!src || typeof src !== 'string') return null;
+    if (src.startsWith('http') || src.startsWith('/')) {
       return src;
     }
     return `/${src}`;
   };
 
-  // Gerar números de páginas para mostrar
   const getPageNumbers = () => {
     const { number: currentPage, totalPages } = pagination;
     const pages = [];
     const maxVisible = 5;
-
     let start = Math.max(0, currentPage - Math.floor(maxVisible / 2));
     let end = Math.min(totalPages - 1, start + maxVisible - 1);
-
     if (end - start < maxVisible - 1) {
       start = Math.max(0, end - maxVisible + 1);
     }
-
     for (let i = start; i <= end; i++) {
       pages.push(i);
     }
-
     return pages;
+  };
+
+  const renderModalContent = () => {
+    if (!selectedItem) return null;
+    const imgChamp = normalizeImageSrc(selectedItem.imageChampionship ?? selectedItem.image);
+    const imgTeam = normalizeImageSrc(selectedItem.logo);
+    switch (entity) {
+      case 'user':
+        return (
+          <>
+            <p><strong>ID:</strong> {selectedItem.id}</p>
+            <p><strong>Nome:</strong> {selectedItem.name ?? selectedItem.username}</p>
+            <p><strong>E-mail:</strong> {selectedItem.email}</p>
+            <p><strong>Role:</strong> {selectedItem.role ?? '—'}</p>
+            <p><strong>Data de Nascimento:</strong> {selectedItem.born ?? selectedItem.birthDate ?? ''}</p>
+            <p><strong>Data de Criação:</strong> {selectedItem.createdAt ?? selectedItem.date_creation ?? ''}</p>
+          </>
+        );
+      case 'game':
+        return (
+          <>
+            <p><strong>ID:</strong> {selectedItem.id}</p>
+            <p><strong>Nome:</strong> {selectedItem.name}</p>
+            <p><strong>Torneio:</strong> {typeof selectedItem.tournament === 'object' ? selectedItem.tournament.name : selectedItem.tournament}</p>
+            {selectedItem.image && (<div className="text-center mb-3"><Image src={selectedItem.image} alt={selectedItem.name} width={200} height={200} style={{ objectFit: 'cover' }} className="rounded" /></div>)}
+            <p><strong>Descrição:</strong> {selectedItem.description ?? ''}</p>
+            <p><strong>Tags:</strong> {Array.isArray(selectedItem.tags) ? selectedItem.tags.join(', ') : selectedItem.tags}</p>
+            <p><strong>Lançamento:</strong> {selectedItem.release}</p>
+            <p><strong>Gênero:</strong> {selectedItem.genre}</p>
+            <p><strong>Desenvolvedora:</strong> {selectedItem.developer}</p>
+            <p><strong>Distribuidora:</strong> {selectedItem.publisher}</p>
+            <p><strong>PEGI:</strong> {selectedItem.ageRating}</p>
+            <p><strong>Data de Criação:</strong> {new Date(selectedItem.createdAt).toLocaleDateString('pt-BR')}</p>
+          </>
+        );
+      case 'championship':
+        return (
+          <>
+            <p><strong>ID:</strong> {selectedItem.id}</p>
+            <p><strong>Nome:</strong> {selectedItem.name}</p>
+            {imgChamp && (<div className="text-center mb-3"><Image src={imgChamp} alt={selectedItem.name} width={200} height={200} style={{ objectFit: 'cover' }} className="rounded" /></div>)}
+            <p><strong>Descrição:</strong> {selectedItem.description ?? ''}</p>
+            <p><strong>Data de Criação:</strong> {selectedItem.date_creation ?? selectedItem.createdAt}</p>
+          </>
+        );
+      case 'team':
+        return (
+          <>
+            <p><strong>ID:</strong> {selectedItem.id}</p>
+            <p><strong>Nome:</strong> {selectedItem.name}</p>
+            <p><strong>Descrição:</strong> {selectedItem.description ?? ''}</p>
+            {imgTeam && (<div className="text-center mb-3"><Image src={imgTeam} alt={selectedItem.name} width={200} height={200} style={{ objectFit: 'cover' }} className="rounded" /></div>)}
+            <p><strong>Data de Criação:</strong> {selectedItem.date_creation ?? selectedItem.createdAt}</p>
+          </>
+        );
+      case 'match':
+        return (
+          <>
+            <p><strong>ID:</strong> {selectedItem.id}</p>
+            <p><strong>Data:</strong> {selectedItem.date ?? selectedItem.date}</p>
+            <p><strong>Horário:</strong> {selectedItem.hour ?? selectedItem.time}</p>
+            <p><strong>Link:</strong> {selectedItem.link ? <a href={selectedItem.link} target="_blank" rel="noopener noreferrer">Ver Link</a> : '—'}</p>
+            <p><strong>ID do Campeonato:</strong> {selectedItem.championshipId ?? selectedItem.championship?.id}</p>
+            <p><strong>Data de Criação:</strong> {selectedItem.createdAt}</p>
+            <p><strong>Time 1:</strong> {selectedItem.matchTeams[0].team.name}</p>
+            <p><strong>Time 2:</strong> {selectedItem.matchTeams[1].team.name}</p>
+          </>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -295,7 +317,6 @@ export default function AdminEntityPage({ params }) {
         </div>
       </div>
 
-      {/* Controles de paginação no topo */}
       <div className="row mb-3">
         <div className="col-md-6">
           <div className="d-flex align-items-center">
@@ -338,18 +359,17 @@ export default function AdminEntityPage({ params }) {
       {!loading && !error && items.length > 0 && (
         <>
           <div className="table-responsive">
-            <table className="table table-dark table-striped align-middle">
+            <table className="table table-dark table-striped table-sm align-middle">
               <thead>
                 <tr>
-                  {columns.map(col => (
-                    <th key={col}>{col}</th>
-                  ))}
+                  {columns.map(col => (<th key={col}>{col}</th>))}
                 </tr>
               </thead>
               <tbody>
                 {items.map(item => {
                   const imgChamp = normalizeImageSrc(item.imageChampionship ?? item.image);
                   const imgTeam = normalizeImageSrc(item.logo);
+                  const description = item.description ?? '';
                   return (
                     <tr key={item.id}>
                       {entity === 'user' && (
@@ -366,35 +386,9 @@ export default function AdminEntityPage({ params }) {
                         <>
                           <td>{item.id}</td>
                           <td>{item.name}</td>
-                          <td>
-                            {typeof item.tournament === 'object'
-                              ? item.tournament.name
-                              : item.tournament}
-                          </td>
-                          <td>
-                            {item.image ? (
-                              <div
-                                style={{
-                                  width: '40px',
-                                  height: '40px',
-                                  position: 'relative',
-                                }}
-                              >
-                                <Image
-                                  src={item.image}
-                                  alt={item.name}
-                                  fill
-                                  style={{ objectFit: 'cover' }}
-                                  className="rounded"
-                                />
-                              </div>
-                            ) : (
-                              <span>—</span>
-                            )}
-                          </td>
-                          <td style={{ maxWidth: '150px' }} className="texto-justificado">
-                            {item.description}
-                          </td>
+                          <td>{typeof item.tournament === 'object' ? item.tournament.name : item.tournament}</td>
+                          <td>{item.image ? (<div style={{ width: '40px', height: '40px', position: 'relative' }}><Image src={item.image} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded" /></div>) : (<span>—</span>)}</td>
+                          <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{description.substring(0, 100)}{description.length > 100 && '...'}</td>
                           <td>{Array.isArray(item.tags) ? item.tags.join(', ') : item.tags}</td>
                           <td>{item.release}</td>
                           <td>{item.genre}</td>
@@ -408,28 +402,8 @@ export default function AdminEntityPage({ params }) {
                         <>
                           <td>{item.id}</td>
                           <td>{item.name}</td>
-                          <td>{item.description}</td>
-                          <td>
-                            {imgChamp ? (
-                              <div
-                                style={{
-                                  width: '40px',
-                                  height: '40px',
-                                  position: 'relative',
-                                }}
-                              >
-                                <Image
-                                  src={imgChamp}
-                                  alt={item.name}
-                                  fill
-                                  style={{ objectFit: 'cover' }}
-                                  className="rounded"
-                                />
-                              </div>
-                            ) : (
-                              <span>—</span>
-                            )}
-                          </td>
+                          <td>{imgChamp ? (<div style={{ width: '40px', height: '40px', position: 'relative' }}><Image src={imgChamp} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded" /></div>) : (<span>—</span>)}</td>
+                          <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{description.substring(0, 100)}{description.length > 100 && '...'}</td>
                           <td>{item.date_creation ?? item.createdAt}</td>
                         </>
                       )}
@@ -437,28 +411,8 @@ export default function AdminEntityPage({ params }) {
                         <>
                           <td>{item.id}</td>
                           <td>{item.name}</td>
-                          <td>{item.description}</td>
-                          <td>
-                            {imgTeam ? (
-                              <div
-                                style={{
-                                  width: '40px',
-                                  height: '40px',
-                                  position: 'relative',
-                                }}
-                              >
-                                <Image
-                                  src={imgTeam}
-                                  alt={item.name}
-                                  fill
-                                  style={{ objectFit: 'cover' }}
-                                  className="rounded"
-                                />
-                              </div>
-                            ) : (
-                              <span>—</span>
-                            )}
-                          </td>
+                          <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{description.substring(0, 100)}{description.length > 100 && '...'}</td>
+                          <td>{imgTeam ? (<div style={{ width: '40px', height: '40px', position: 'relative' }}><Image src={imgTeam} alt={item.name} fill style={{ objectFit: 'cover' }} className="rounded" /></div>) : (<span>—</span>)}</td>
                           <td>{item.date_creation ?? item.createdAt}</td>
                         </>
                       )}
@@ -467,39 +421,17 @@ export default function AdminEntityPage({ params }) {
                           <td>{item.id}</td>
                           <td>{item.date ?? item.date}</td>
                           <td>{item.hour ?? item.time}</td>
-                          <td>
-                            {item.link ? (
-                              <a
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-sm btn-outline-secondary me-1"
-                              >
-                                Ver
-                              </a>
-                            ) : (
-                              <span>—</span>
-                            )}
-                          </td>
+                          <td>{item.link ? (<a href={item.link} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-secondary">Ver</a>) : (<span>—</span>)}</td>
                           <td>{item.championshipId ?? item.championship?.id}</td>
                           <td>{item.createdAt}</td>
                           <td>{item.matchTeams[0].team.name}</td>
                           <td>{item.matchTeams[1].team.name}</td>
                         </>
                       )}
-                      <td>
-                        <Link
-                          href={`/admin/${entity}/${item.id}/edit`}
-                          className="btn btn-sm btn-outline-secondary me-1"
-                        >
-                          Editar <i className="fa-solid fa-pen-to-square"></i>
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(item.id)}
-                          className="btn btn-sm btn-outline-danger"
-                        >
-                          Deletar <i className="fa-solid fa-trash"></i>
-                        </button>
+                      <td style={{ whiteSpace: 'nowrap' }}>
+                        <button onClick={() => handleView(item)} className="btn btn-sm btn-outline-info me-1">Ver <i className="fa-solid fa-eye"></i></button>
+                        <Link href={`/admin/${entity}/${item.id}/edit`} className="btn btn-sm btn-outline-secondary me-1">Editar <i className="fa-solid fa-pen-to-square"></i></Link>
+                        <button onClick={() => handleDelete(item.id)} className="btn btn-sm btn-outline-danger">Deletar <i className="fa-solid fa-trash"></i></button>
                       </td>
                     </tr>
                   );
@@ -508,73 +440,23 @@ export default function AdminEntityPage({ params }) {
             </table>
           </div>
 
-          {/* Controles de paginação */}
           {pagination.totalPages > 1 && (
             <nav aria-label="Navegação de páginas">
               <div className="row align-items-center mt-4">
                 <div className="col-md-6">
-                  <small className="text-white">
-                    Página {pagination.number + 1} de {pagination.totalPages}(
-                    {pagination.totalElements} registros no total)
-                  </small>
+                  <small className="text-white">Página {pagination.number + 1} de {pagination.totalPages} ({pagination.totalElements} registros no total)</small>
                 </div>
                 <div className="col-md-6">
                   <ul className="pagination justify-content-end mb-0">
-                    {/* Primeira página */}
-                    <li className={`page-item ${!pagination.hasPrevious ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => goToPage(0)}
-                        disabled={!pagination.hasPrevious}
-                      >
-                        ««
-                      </button>
-                    </li>
-
-                    {/* Página anterior */}
-                    <li className={`page-item ${!pagination.hasPrevious ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => goToPage(pagination.number - 1)}
-                        disabled={!pagination.hasPrevious}
-                      >
-                        ‹
-                      </button>
-                    </li>
-
-                    {/* Números das páginas */}
+                    <li className={`page-item ${!pagination.hasPrevious ? 'disabled' : ''}`}><button className="page-link" onClick={() => goToPage(0)} disabled={!pagination.hasPrevious}>««</button></li>
+                    <li className={`page-item ${!pagination.hasPrevious ? 'disabled' : ''}`}><button className="page-link" onClick={() => goToPage(pagination.number - 1)} disabled={!pagination.hasPrevious}>‹</button></li>
                     {getPageNumbers().map(pageNum => (
-                      <li
-                        key={pageNum}
-                        className={`page-item ${pageNum === pagination.number ? 'active' : ''}`}
-                      >
-                        <button className="page-link" onClick={() => goToPage(pageNum)}>
-                          {pageNum + 1}
-                        </button>
+                      <li key={pageNum} className={`page-item ${pageNum === pagination.number ? 'active' : ''}`}>
+                        <button className="page-link" onClick={() => goToPage(pageNum)}>{pageNum + 1}</button>
                       </li>
                     ))}
-
-                    {/* Próxima página */}
-                    <li className={`page-item ${!pagination.hasNext ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => goToPage(pagination.number + 1)}
-                        disabled={!pagination.hasNext}
-                      >
-                        ›
-                      </button>
-                    </li>
-
-                    {/* Última página */}
-                    <li className={`page-item ${!pagination.hasNext ? 'disabled' : ''}`}>
-                      <button
-                        className="page-link"
-                        onClick={() => goToPage(pagination.totalPages - 1)}
-                        disabled={!pagination.hasNext}
-                      >
-                        »»
-                      </button>
-                    </li>
+                    <li className={`page-item ${!pagination.hasNext ? 'disabled' : ''}`}><button className="page-link" onClick={() => goToPage(pagination.number + 1)} disabled={!pagination.hasNext}>›</button></li>
+                    <li className={`page-item ${!pagination.hasNext ? 'disabled' : ''}`}><button className="page-link" onClick={() => goToPage(pagination.totalPages - 1)} disabled={!pagination.hasNext}>»»</button></li>
                   </ul>
                 </div>
               </div>
@@ -582,7 +464,26 @@ export default function AdminEntityPage({ params }) {
           )}
         </>
       )}
+
+      {showModal && selectedItem && (
+        <>
+          <div className="modal-backdrop fade show" style={{ zIndex: 1040 }} onClick={() => setShowModal(false)}></div>
+          <div className="modal fade show" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1050 }} tabIndex="-1" role="dialog">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Detalhes de {title}</h5>
+                  <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                </div>
+                <div className="modal-body">{renderModalContent()}</div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
-

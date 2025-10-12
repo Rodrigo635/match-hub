@@ -7,7 +7,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="footer text-white pt-5 pb-4" style={{ background: "linear-gradient(180deg, #000 0%, #0a0a0a 100%)" }}>
+    <footer className="footer text-white pt-5 pb-4">
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 col-md text-center">

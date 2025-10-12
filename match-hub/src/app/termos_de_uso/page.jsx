@@ -1,6 +1,6 @@
 export default function Termos() {
     return (
-        <main>
+        <main className="page-termos-de-uso">
             <section className="py-5 text-white">
                 <div className="container">
                     <h1 className="mb-4">Termos de Uso</h1>

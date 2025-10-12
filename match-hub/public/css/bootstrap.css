@@ -1916,12 +1916,10 @@ progress {
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-color-type: var(--bs-table-striped-color);
-  --bs-table-bg-type: var(--bs-table-striped-bg);
 }
 
 .table-striped-columns > :not(caption) > tr > :nth-child(even) {
   --bs-table-color-type: var(--bs-table-striped-color);
-  --bs-table-bg-type: var(--bs-table-striped-bg);
 }
 
 .table-active {

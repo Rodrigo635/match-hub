@@ -399,7 +399,7 @@ export default function SobrePage() {
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_1.pdf"
                 download
               >
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 1 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
@@ -410,7 +410,7 @@ export default function SobrePage() {
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_2.pdf"
                 download
               >
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 2 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
@@ -421,7 +421,7 @@ export default function SobrePage() {
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_3.pdf"
                 download
               >
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 3 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
@@ -431,7 +431,7 @@ export default function SobrePage() {
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_4.pdf"
                 download
               >
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 4 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
@@ -441,21 +441,21 @@ export default function SobrePage() {
                 href="/download/Projeto_Happy_Game_Match_Hub_Fase_5.pdf"
                 download
               >
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 5 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
             </div>
             <div className="col">
               <a className="doc-btn-disabled">
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 6 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
             </div>
             <div className="col">
               <a className="doc-btn-disabled">
-                <h5 className="mb-0">
+                <h5 className="mb-0 text-white">
                   Fase 7 <i className="fa-solid fa-download"></i>
                 </h5>
               </a>
