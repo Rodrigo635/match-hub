@@ -83,6 +83,7 @@ export default function GamesList({ initialItems, additionalItems }) {
 
   return (
     <section>
+      <link rel="stylesheet" href="/css/gameslist.css" />
       {/* Filtros */}
       <div className="container mt-5 mb-3">
         <div className="row align-items-center">

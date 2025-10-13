@@ -77,7 +77,7 @@ export default function Ajuda({ user }) {
           </p>
           <button
             type="button"
-            className="btn btn-outline-success"
+            className="btn btn-outline-primary"
             onClick={() => router.push('/contato#contate-nos')}
           >
             Abrir Chat de Contato

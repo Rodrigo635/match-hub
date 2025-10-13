@@ -133,7 +133,9 @@ header {
   background-image: url("../static/icons/close.png");
 }
 
-
+.footer {
+  background-color: var(--cor-preto);
+}
 
 /* Animação para revelar o conteúdo de cima para baixo (Ver mais) */
 @keyframes RevelarCards {
