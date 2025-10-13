@@ -347,4 +347,48 @@ console.log(res);
 
 }
 
+// --------------------- Remover Favorito ---------------------
+export async function removeFavorite(id, token, type) {
+  console.log("removeFavorite", id, type, token);
+
+  const body = {};
+
+  switch (type) {
+    case "game":
+      body.gameId = id;
+      break;
+    case "championship":
+      body.championshipId = id;
+      break;
+    case "team":
+      body.teamId = id;
+      break;
+    default:
+      throw new Error("Tipo de favorito inválido");
+  }
+
+  console.log("DELETE body:", body);
+
+  const res = await fetch(`${BASE_URL}/favorites`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: "include",
+    body: JSON.stringify(body),
+  });
+
+  console.log(res);
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao remover favorito: ${res.status}, ${text}`);
+  }
+
+  // Se 204, não há corpo, apenas retorna
+  return;
+}
+
+
 
