@@ -252,7 +252,7 @@ public class UserController {
             security = @SecurityRequirement(name = "bearer-key"),
             description = "Removes all favorite games, championships, and teams from the user."
     )
-    @DeleteMapping("/favorites")
+    @DeleteMapping("/favorites/all")
     public ResponseEntity<Void> removeAllFavorites(HttpServletRequest request) {
         String token = tokenService.getToken(request);
         String email = tokenService.getSubject(token);
