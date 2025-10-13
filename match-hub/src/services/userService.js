@@ -19,7 +19,7 @@ export async function getUserById(id) {
 }
 
 export async function createUser(userData) {
-  return await createData(userData, BASE_URL + "/register");
+  return await createData(userData, `${BASE_URL}/register`);
 }
 
 export async function updateUser(id, userData) {
@@ -305,3 +305,46 @@ export async function resetPasswordConfirm(token, password) {
     throw new Error(`Erro ao resetar senha: ${res.status}, ${text}`);
   }
 }
+
+// --------------------- Favoritos ---------------------
+export async function toggleFavoriteGame(id, token, type) {
+  console.log("toggleFavoriteGame", id, type, token);
+
+  const body = {};
+
+  switch (type) {
+    case "game":
+      body.gameId = id;
+      break;
+    case "championship":
+      body.championshipId = id;
+      break;
+    case "team":
+      body.teamId = id;
+      break;
+    default:
+      throw new Error("Tipo de favorito inválido");
+  }
+
+  console.log(body);
+
+  const res = await fetch(`${BASE_URL}/favorites`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: "include",
+    body: JSON.stringify(body),
+  });
+  
+console.log(res);
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao alternar favorito: ${res.status}, ${text}`);
+  }
+
+}
+
+

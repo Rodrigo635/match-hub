@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { getGameById } from '../../services/gameService';
-import { getMatchesByChampionship } from '../../services/matchService';
 import { getChampionshipsByGame } from '../../services/championshipService';
+import { useUser } from '@/context/UserContext';
+import { toggleFavoriteGame } from '@/services/userService';
 
 export default function GamePage() {
   const router = useRouter();
+  const { user, token } = useUser();
   const [gameData, setGameData] = useState(null);
   const [championshipData, setChampionshipData] = useState([]);
   const [matchesData, setMatchesData] = useState([]);
@@ -16,9 +18,12 @@ export default function GamePage() {
   const [selectedCampeonato, setSelectedCampeonato] = useState('Todos');
   const [selectedTime, setSelectedTime] = useState('Todos');
   const [loading, setLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [loadingFavorite, setLoadingFavorite] = useState(false);
   
   // Usar useRef para evitar chamadas duplicadas
   const championshipsLoaded = useRef(false);
+  const favoritesChecked = useRef(false);
 
   const handleGetInfoGame = async id => {
     try {
@@ -46,59 +51,39 @@ export default function GamePage() {
     }
   };
 
-  // // Quando carregar: ler localStorage; se não houver, redirecionar para home
-  // useEffect(() => {
-  //   if (typeof window === 'undefined') return;
+  // Verificar se o jogo é favorito
+  const handleCheckFavorite = async gameId => {
+    try {
+      if (!user || !token || favoritesChecked.current) return;
 
-  //   const stored = localStorage.getItem('selectedGame');
-  //   if (!stored) {
-  //     router.push('/');
-  //     return;
-  //   }
+      // Verifica se o jogo está nos favoritos do usuário
+      const isFav = user.favoriteGames?.some(game => game.id === gameId) || false;
+      setIsFavorite(isFav);
+      favoritesChecked.current = true;
+    } catch (error) {
+      console.error('Erro ao verificar favorito:', error);
+      setIsFavorite(false);
+    }
+  };
 
-  //   try {
-  //     const id = JSON.parse(stored);
-  //     if (!id) {
-  //       router.push('/');
-  //       return;
-  //     }
-
-  //     handleGetInfoGame(id);
-  //   } catch (error) {
-  //     console.error('Erro ao processar dados do localStorage:', error);
-  //     router.push('/');
-  //   }
-  // }, [router]);
-
-  // // Carregar favoritos do localStorage
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && gameData) {
-  //     const storedFavorites = localStorage.getItem('favoriteMatches');
-  //     if (storedFavorites) {
-  //       const favSet = new Set(JSON.parse(storedFavorites));
-  //       setFavorites(favSet);
-  //     }
-  //   }
-  // }, [gameData]);
-
-  // // Salvar favoritos no localStorage sempre que mudar
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     localStorage.setItem('favoriteMatches', JSON.stringify(Array.from(favorites)));
-  //   }
-  // }, [favorites]);
-
-  // Carregar multiplicador de fonte do localStorage
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const storedFontSize = localStorage.getItem('fontSizeMultiplier');
-  //     if (storedFontSize) {
-  //       const multiplier = parseFloat(storedFontSize);
-  //       setFontSizeMultiplier(multiplier);
-  //       document.documentElement.style.fontSize = `${multiplier * 100}%`;
-  //     }
-  //   }
-  // }, []);
+  // Toggle de notificações (favoritar)
+  const handleToggleNotification = async () => {
+    try {
+      if (!user || !token || !gameData) {
+        alert('Você precisa estar logado para ativar notificações.');
+        return;
+      }
+      setLoadingFavorite(true);
+      await toggleFavoriteGame(gameData.id, token, "game");
+      setIsFavorite(!isFavorite);
+      console.log('Notificações habilitadas/desabilitadas com sucesso');
+    } catch (error) {
+      console.error('Erro ao alternar notificações:', error);
+      alert('Erro ao alternar notificações. Tente novamente.');
+    } finally {
+      setLoadingFavorite(false);
+    }
+  };
 
   // UseEffect 1: Inicialização e carregamento do jogo
   useEffect(() => {
@@ -131,7 +116,14 @@ export default function GamePage() {
     }
   }, [gameData?.id]);
 
-  // UseEffect 3: Processa partidas quando championshipData estiver disponível
+  // UseEffect 3: Verifica se o jogo é favorito quando user e gameData estão disponíveis
+  useEffect(() => {
+    if (user && token && gameData?.id && !favoritesChecked.current) {
+      handleCheckFavorite(gameData.id);
+    }
+  }, [user, token, gameData?.id]);
+
+  // UseEffect 4: Processa partidas quando championshipData estiver disponível
   useEffect(() => {
     if (championshipData && championshipData.length > 0) {
       console.log('Processando partidas dos campeonatos...');
@@ -155,13 +147,12 @@ export default function GamePage() {
         }
       });
 
-      // NÃO atualiza gameData - só matchesData
       setMatchesData(allMatches);
       setFilteredMatches(allMatches);
     }
   }, [championshipData]);
 
-  // UseEffect 4: Aplica filtros nas partidas
+  // UseEffect 5: Aplica filtros nas partidas
   useEffect(() => {
     if (!matchesData || matchesData.length === 0) return;
 
@@ -194,21 +185,6 @@ export default function GamePage() {
     Array.from(camps).sort().forEach(c => campeonatoOptions.push(c));
     Array.from(times).sort().forEach(t => timeOptions.push(t));
   }
-
-  // Atualiza filteredMatches quando filtros mudam
-  useEffect(() => {
-    if (!gameData || !Array.isArray(gameData.partidas)) return;
-    let arr = gameData.partidas;
-    if (selectedCampeonato !== 'Todos') {
-      arr = arr.filter(p => p.campeonato === selectedCampeonato);
-    }
-    if (selectedTime !== 'Todos') {
-      arr = arr.filter(
-        p => p.time1 === selectedTime || p.time2 === selectedTime
-      );
-    }
-    setFilteredMatches(arr);
-  }, [selectedCampeonato, selectedTime, gameData]);
 
   useEffect(() => {
     if (!gameData) return;
@@ -263,12 +239,8 @@ export default function GamePage() {
         <link rel="stylesheet" href="/css/game.css" />
         <div className="game-loading d-flex align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
           <div className="loading-wrapper text-center">
-            {/* Spinner circular */}
             <div className="loader" role="status" aria-live="polite" aria-label="Carregando jogo" />
-
             <h4 className="mt-3 text-white">Carregando jogo...</h4>
-
-            {/* Texto auxiliar menor */}
             <p className="text-muted small mt-3">Se a página demorar muito, verifique sua conexão ou tente recarregar.</p>
           </div>
         </div>
@@ -290,8 +262,16 @@ export default function GamePage() {
                     <button type="button" onClick={handleBack} className="btn btn-voltar text-white">
                       <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
                     </button>
-                    <button type="button" className="btn btn-outline-branco w-auto text-white">
-                      <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
+                    <button 
+                      type="button" 
+                      className={`btn ${isFavorite ? 'btn-primary' : 'btn-outline-branco'} w-auto text-white`}
+                      onClick={handleToggleNotification}
+                      disabled={loadingFavorite}
+                    >
+                      <h5 className="mb-0 ms-2">
+                        <i className={`fa-${isFavorite ? 'solid' : 'regular'} fa-bell me-2`}/>
+                        {loadingFavorite ? 'Processando...' : isFavorite ? 'Notificações Ativas' : 'Ativar Notificações'}
+                      </h5>
                     </button>
                   </div>
 
@@ -387,7 +367,6 @@ export default function GamePage() {
               <div
                 key={idx}
                 className="col-12 col-md-6 col-lg-4"
-                // opcional: onClick para abrir link
                 onClick={() => {
                   if (item.link) window.open(item.link, '_blank');
                 }}
@@ -467,7 +446,6 @@ export default function GamePage() {
                     role="button"
                     tabIndex={0}
                     onClick={() => {
-                      // opcional: guardar seleção (não obrigatório)
                       try {
                         localStorage.setItem('selectedChampionship', JSON.stringify(camp.id));
                       } catch (e) {}
