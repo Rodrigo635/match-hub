@@ -29,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000", "https://match-hub.vercel.app", "http://82.112.245.100:3000")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("location", "Location")
                 .allowCredentials(true);
