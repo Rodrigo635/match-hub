@@ -45,10 +45,31 @@ public class Security {
                 .and()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasAuthority("ADMIN")
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // Endpoints de autenticação
                         .requestMatchers("/login/**", "/oauth2/**").permitAll() // OAuth2 endpoints
                         .requestMatchers(HttpMethod.GET, "/api/users/details").authenticated()
+
+                        .requestMatchers(HttpMethod.DELETE,"/api/teams/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/teams/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/teams/**").hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE,"/api/games/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/games/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/games/**").hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE,"/api/matches/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/matches/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/matches/**").hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE,"/api/championships/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/championships/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/championships/**").hasAuthority("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST,"/api/avatars/**").hasAuthority("ADMIN")
+
                         .requestMatchers("/v3/api-docs/**","/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .anyRequest().permitAll()
                 )

@@ -53,7 +53,7 @@ public class UserController {
     @Autowired
     private TwoFactorService twoFactorService;
 
-    @Operation(summary = "Retrieve paginated list of users", description = "Returns a paginated list of users with their basic information. Supports pagination with page number and page size.")
+    @Operation(summary = "Retrieve paginated list of users", security = @SecurityRequirement(name = "bearer-key"), description = "Returns a paginated list of users with their basic information. Supports pagination with page number and page size.")
     @GetMapping
     public ResponseEntity<PageResponseDTO<UserResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page,
@@ -193,7 +193,7 @@ public class UserController {
     }
 
 
-    @Operation(summary = "Delete user profile picture", description = "Deletes the profile picture for an existing user.")
+    @Operation(summary = "Delete user profile picture", security = @SecurityRequirement(name = "bearer-key"), description = "Deletes the profile picture for an existing user.")
     @DeleteMapping(value = "/image/delete/{id}")
     public ResponseEntity<Map<String, String>> deleteProfileImage(
             @PathVariable("id")

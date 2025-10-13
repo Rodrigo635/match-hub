@@ -8,6 +8,7 @@ import com.match_hub.backend_match_hub.entities.Game;
 import com.match_hub.backend_match_hub.services.GameService;
 import com.match_hub.backend_match_hub.services.MediaUploaderService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -47,6 +48,7 @@ public class GameController {
 
     @Operation(
             summary = "Create a new game",
+            security = @SecurityRequirement(name = "bearer-key"),
             description = "Creates a new game with the provided data."
     )
     @PostMapping
@@ -56,6 +58,11 @@ public class GameController {
         return ResponseEntity.created(address).build();
     }
 
+    @Operation(
+            summary = "Upload game media",
+            security = @SecurityRequirement(name = "bearer-key"),
+            description = "Uploads an image, GIF, or video for an existing game."
+    )
     @PostMapping(value = "/{id}/media", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Map<String, String>> uploadGameMedia(
             @PathVariable Long id,
@@ -80,6 +87,7 @@ public class GameController {
 
     @Operation(
             summary = "Update a game",
+            security = @SecurityRequirement(name = "bearer-key"),
             description = "Updates the fields of an existing game identified by its ID."
     )
     @PutMapping("/{id}")
@@ -90,6 +98,7 @@ public class GameController {
 
     @Operation(
             summary = "Delete a game",
+            security = @SecurityRequirement(name = "bearer-key"),
             description = "Deletes an existing game identified by its ID."
     )
     @DeleteMapping("/{id}")
