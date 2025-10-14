@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { getGameById } from '../../services/gameService';
 import { getChampionshipsByGame } from '../../services/championshipService';
 import { useUser } from '@/context/UserContext';
-import { toggleFavoriteGame } from '@/services/userService';
+import { toggleFavoriteGame, removeFavorite } from '@/services/userService';
 
 export default function GamePage() {
   const router = useRouter();
@@ -66,24 +66,37 @@ export default function GamePage() {
     }
   };
 
-  // Toggle de notificações (favoritar)
-  const handleToggleNotification = async () => {
-    try {
-      if (!user || !token || !gameData) {
-        alert('Você precisa estar logado para ativar notificações.');
-        return;
-      }
-      setLoadingFavorite(true);
-      await toggleFavoriteGame(gameData.id, token, "game");
-      setIsFavorite(!isFavorite);
-      console.log('Notificações habilitadas/desabilitadas com sucesso');
-    } catch (error) {
-      console.error('Erro ao alternar notificações:', error);
-      alert('Erro ao alternar notificações. Tente novamente.');
-    } finally {
-      setLoadingFavorite(false);
+// Toggle de notificações (favoritar/remover)
+const handleToggleNotification = async () => {
+  try {
+    if (!user || !token || !gameData) {
+      alert("Você precisa estar logado para ativar notificações.");
+      return;
     }
-  };
+
+    setLoadingFavorite(true);
+
+    if (user.favoriteGames?.some((game) => game.id === gameData.id)) {
+      // Já favoritado → remover
+      await removeFavorite(gameData.id, token, "game");
+      setIsFavorite(false);
+      user.favoriteGames = user.favoriteGames.filter((game) => game.id !== gameData.id);
+      console.log("Favorito removido com sucesso");
+    } else {
+      // Não é favorito → adicionar
+      await toggleFavoriteGame(gameData.id, token, "game");
+      user.favoriteGames.push(gameData);
+      setIsFavorite(true);
+      console.log("Favorito adicionado com sucesso");
+    }
+  } catch (error) {
+    console.error("Erro ao alternar notificações:", error);
+    alert("Erro ao alternar notificações. Tente novamente.");
+  } finally {
+    setLoadingFavorite(false);
+  }
+};
+
 
   // UseEffect 1: Inicialização e carregamento do jogo
   useEffect(() => {
@@ -264,7 +277,7 @@ export default function GamePage() {
                     </button>
                     <button 
                       type="button" 
-                      className={`btn ${isFavorite ? 'btn-primary' : 'btn-outline-branco'} w-auto text-white`}
+                      className={`btn ${isFavorite ? 'btn-voltar' : 'btn-outline-branco'} w-auto text-white`}
                       onClick={handleToggleNotification}
                       disabled={loadingFavorite}
                     >
