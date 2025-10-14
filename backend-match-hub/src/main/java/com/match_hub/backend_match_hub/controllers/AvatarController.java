@@ -48,4 +48,19 @@ public class AvatarController {
 
         return ResponseEntity.ok(response);
     }
+
+    @Operation(summary = "Deletar avatar", security = @SecurityRequirement(name = "bearer-key"), description = "Deleta um avatar pelo nome do arquivo.")
+    @DeleteMapping(value = "/{fileName}")
+    public ResponseEntity<Map<String, String>> deleteAvatar(
+            @PathVariable
+            @Parameter(description = "Nome do arquivo do avatar (ex: 1697123456789_avatar.png)")
+            String fileName) {
+
+        avatarService.deleteAvatar(fileName);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Avatar deletado com sucesso!");
+
+        return ResponseEntity.ok(response);
+    }
 }
