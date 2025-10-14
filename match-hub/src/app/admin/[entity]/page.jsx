@@ -11,9 +11,11 @@ import { getChampionships, deleteChampionship } from '@/services/championshipSer
 import { getTeams, deleteTeam } from '@/services/teamService';
 import { getMatches, deleteMatch } from '@/services/matchService';
 import { handleGetUser } from '@/app/global/global';
+import { useUser } from '@/context/UserContext';
 
 export default function AdminEntityPage() {
   const router = useRouter();
+  const { User } = useUser();
   const searchParams = useSearchParams();
   const params = useParams();
 
@@ -121,7 +123,7 @@ export default function AdminEntityPage() {
 
     const fetchData = (getFunc, setFunc) => {
       // A chamada agora passa apenas os parâmetros de paginação
-      getFunc(currentPage, pageSize)
+      getFunc(currentPage, pageSize, user.token)
         .then(data => {
           const content = updateData(data);
           setFunc(content);
