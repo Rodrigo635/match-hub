@@ -1,7 +1,7 @@
 import {
   createData,
   deleteData,
-  getData,
+  getDataWithToken,
   getDataById,
   updateData,
   uploadImage,
@@ -10,8 +10,8 @@ import {
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
 const BASE_URL2 = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 // --------------------- CRUD Usuários ---------------------
-export async function getUsers(page = 0, size = 5) {
-  return await getData(page, size, BASE_URL);
+export async function getUsers(page = 0, size = 5, token) {
+  return await getDataWithToken(page, size, BASE_URL, token);
 }
 
 export async function getUserById(id) {

@@ -84,6 +84,22 @@ export async function uploadImage(id, formData, endpoint) {
   return imageResponse;
 }
 
+export async function getDataWithToken(page, size, endpoint, token) {
+  console.log('token', token);
+  const url = `${endpoint}?page=${page}&size=${size}`;
+  const res = await fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    console.error('Erro status:', res.status, text);
+    throw new Error(`Erro ao buscar dados: ${res.status}`);
+  }
+  const data = await res.json();
+  return data;
+}
 
 export async function getData(page, size, endpoint) {
   const url = `${endpoint}?page=${page}&size=${size}`;
