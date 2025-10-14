@@ -1,7 +1,7 @@
 'use client';
-import HeroBanner from '@/components/HeroBanner';
-import GamesList from '@/components/GamesList';
 import Image from 'next/image';
+import GamesList from '@/components/GamesList';
+import HeroBanner from '@/components/HeroBanner';
 
 export default function HomePage() {
   return (

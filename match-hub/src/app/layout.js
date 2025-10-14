@@ -39,23 +39,6 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/home.css" />
         <link rel="stylesheet" href="/css/variaveis.css" />
 
-        {/* Script para aplicar tema antes do React renderizar */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  if (!theme) {
-                    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    theme = dark ? 'dark' : 'light';
-                  }
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
       </head>
       <body>
         <UserProvider>

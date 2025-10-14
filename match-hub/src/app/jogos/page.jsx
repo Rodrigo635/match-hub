@@ -6,10 +6,10 @@ export const metadata = {
 
 export default function JogosPage() {
   return (
-    <>
+    
       <main >
         <GamesList initialItems={18} additionalItems={0} />
       </main>
-    </>
+    
   );
 }

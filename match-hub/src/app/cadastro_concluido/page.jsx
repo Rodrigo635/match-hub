@@ -11,10 +11,7 @@ export default function CadastroConcluido() {
       <main className="bg-image py-5 main-teste">
         <div className="container">
           <div className="card bg-dark text-white rounded-4 mx-auto p-4 p-md-5 col-12 col-md-10 col-lg-6">
-            
-            {/* Aqui renderiza o GIF aleatório */}
             <Gif />
-
             <div className="card-body text-center">
               <h2 className="titulo fw-bold text-center">Cadastro concluído com sucesso!</h2>
               <h5 className="subtitulo fs-5 fs-md-3 text-center">

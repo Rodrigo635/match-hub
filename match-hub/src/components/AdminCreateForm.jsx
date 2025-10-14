@@ -1,12 +1,13 @@
 // src/components/AdminCreateForm.jsx
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { formFieldsConfig } from "@/app/admin/[entity]/create/formConfig";
-
-import { getGames } from "@/services/gameService";
 import { getChampionships } from "@/services/championshipService";
+import { getGames } from "@/services/gameService";
 import { getTeams } from "@/services/teamService";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+
 
 // Importe os métodos corretos de cada service
 import {
@@ -116,7 +117,6 @@ export default function AdminCreateForm({ entity, id }) {
                 return { ...field, options };
               }
             } catch (err) {
-              console.error("Erro ao carregar opções para", field.name, err);
               return { ...field, options: [] };
             }
           }
@@ -168,7 +168,6 @@ export default function AdminCreateForm({ entity, id }) {
           setExistingFiles(initExisting);
         })
         .catch((err) => {
-          console.error(`Erro ao buscar ${entity} para edição:`, err);
           setError(`Falha ao carregar dados de ${entity}`);
         })
         .finally(() => setLoading(false));
@@ -298,7 +297,6 @@ export default function AdminCreateForm({ entity, id }) {
       // Redireciona para listagem genérica
       router.push(`/admin/${entity}`);
     } catch (err) {
-      console.error(`Erro ao submeter formulário ${entity}:`, err);
       // Se o service lançar Error com mensagem, use-a; ou else mensagem genérica
       setError(err.message || "Falha ao salvar");
     } finally {

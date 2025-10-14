@@ -28,7 +28,7 @@ export default function CalendarPage() {
   const [currentMonth, setCurrentMonth] = useState(() => { const d = new Date(); d.setDate(1); return d; });
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const games = useMemo(() => { const s = new Set(); mockEvents.forEach((e) => s.add(e.game)); return ['all', ...Array.from(s)]; }, []);
+  const games = useMemo(() => { const s = new Set(); mockEvents.map((e) => s.add(e.game)); return ['all', ...Array.from(s)]; }, []);
 
   // Filtragem (mantém comportamento "all" = tudo)
   const filteredEvents = useMemo(() => {
@@ -42,7 +42,7 @@ export default function CalendarPage() {
       }
       return true;
     });
-  }, [mockEvents, typeFilter, gameFilter, query]);
+  }, [typeFilter, gameFilter, query]);
 
   function buildMonthGrid(date) {
     const year = date.getFullYear();

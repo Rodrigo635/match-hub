@@ -31,6 +31,8 @@ export default function Gif() {
         id="gif-concluido"
         src={gifEscolhido}
         alt="GIF concluído"
+        width={0}
+        height={0}
         className="img-fluid rounded-4 mx-auto d-block mb-4 loaded"
         style={{ maxHeight: '250px', minHeight: '250px', objectFit: 'contain' }}
       />

@@ -42,7 +42,7 @@ export default function NotificationPageMock() {
           </div>
 
           <div className="col-12 col-md-6 d-flex justify-content-start justify-content-md-end mt-3 mt-md-0">
-            <button className="btn btn-danger" onClick={handleClearAll} disabled={notifs.length === 0 || loading}>
+            <button type="button" className="btn btn-danger" onClick={handleClearAll} disabled={notifs.length === 0 || loading}>
               <i className="fas fa-xmark me-2"></i>Desligar todas
             </button>
           </div>
@@ -81,6 +81,7 @@ export default function NotificationPageMock() {
 
                       <div className="ms-3 align-self-center">
                         <button
+                          type="button"
                           className="btn btn-outline-danger"
                           onClick={() => handleRemove(n.id)}
                           aria-label={`Desligar notificações de ${n.title}`}

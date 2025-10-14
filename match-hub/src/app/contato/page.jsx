@@ -736,6 +736,7 @@ export default function ContatoPage() {
                 <h1 className="text-center">Formulário enviado com sucesso!</h1>
                 <Image src="/static/icons/caveira.gif" alt="Sucesso" width={100} height={100} />
                 <button
+                  type="button"
                   className="btn-primary btn align-items-center w-100 fw-bold py-2 mb-2 rounded-3 btn-light my-4"
                   id="returnForm"
                 >

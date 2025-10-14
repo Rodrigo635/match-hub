@@ -69,7 +69,8 @@ export default function ProfilePage() {
         <aside className="profile-sidebar d-none d-md-block col-md-3 col-lg-2">
           <nav className="nav flex-column">
             {sections.map((sec) => (
-              <a
+              <button
+                type="button"
                 key={sec.key}
                 href="#"
                 className={`nav-link ${
@@ -82,7 +83,7 @@ export default function ProfilePage() {
               >
                 <i className={`${sec.iconClass} me-2`} aria-hidden="true"></i>
                 {sec.label}
-              </a>
+              </button>
             ))}
           </nav>
         </aside>

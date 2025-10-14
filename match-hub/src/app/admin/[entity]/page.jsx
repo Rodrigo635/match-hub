@@ -122,7 +122,6 @@ export default function AdminEntityPage() {
           setFunc(content);
         })
         .catch((err) => {
-          console.error(`Erro ao carregar ${entity}:`, err);
           setError(`Erro ao carregar ${entity}: ${err.message}`);
         })
         .finally(() => setLoading(false));
@@ -231,7 +230,6 @@ export default function AdminEntityPage() {
         setMatch((prev) => prev.filter((m) => m.id !== id));
       }
     } catch (err) {
-      console.error("Erro ao deletar:", err);
       alert(`Falha ao deletar: ${err.message}`);
     }
   };
@@ -464,7 +462,7 @@ export default function AdminEntityPage() {
     return (
       <div className="container py-4">
         <div className="text-center py-4">
-          <div className="spinner-border text-primary" role="status">
+          <div className="spinner-border text-primary">
             <span className="visually-hidden">Carregando...</span>
           </div>
           <p className="text-white mt-2">Carregando autenticação...</p>
@@ -487,12 +485,12 @@ export default function AdminEntityPage() {
       <div className="row mb-3">
         <div className="col-md-6">
           <div className="d-flex align-items-center">
-            <label className="form-label me-2 mb-0 text-white">
+            <label htmlFor="pageSize" className="form-label me-2 mb-0 text-white">
               Registros por página:
             </label>
             <select
               value={pageSize}
-              onChange={(e) => changePageSize(parseInt(e.target.value))}
+              onChange={(e) => changePageSize(Number(e.target.value))}
               className="form-select form-select-sm"
               style={{ width: "auto" }}
             >
@@ -512,7 +510,7 @@ export default function AdminEntityPage() {
 
       {loading && (
         <div className="text-center py-4">
-          <div className="spinner-border text-primary" role="status">
+          <div className="spinner-border text-primary">
             <span className="visually-hidden">Carregando...</span>
           </div>
           <p className="text-white mt-2">Carregando...</p>

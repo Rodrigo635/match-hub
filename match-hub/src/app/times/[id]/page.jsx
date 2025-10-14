@@ -36,7 +36,6 @@ export default function TeamDetailsPage() {
         setMatches(matchesRes.content || []); // a API retorna content, totalPages, etc
       })
       .catch((err) => {
-        console.error("Erro ao buscar time ou partidas:", err);
         router.push("/");
       })
       .finally(() => mounted && setLoading(false));
@@ -63,7 +62,6 @@ export default function TeamDetailsPage() {
       setIsFavorite(isFav);
       favoritesChecked.current = true;
     } catch (error) {
-      console.error("Erro ao verificar favorito:", error);
       setIsFavorite(false);
     }
   };
@@ -85,16 +83,13 @@ export default function TeamDetailsPage() {
         user.favoriteTeams = user.favoriteTeams.filter(
           (game) => game.id !== team,
         );
-        console.log("Favorito removido com sucesso");
       } else {
         // Não é favorito → adicionar
         await toggleFavoriteGame(team.id, token, "team");
         user.favoriteTeams.push(team);
         setIsFavorite(true);
-        console.log("Favorito adicionado com sucesso");
       }
     } catch (error) {
-      console.error("Erro ao alternar notificações:", error);
       alert("Erro ao alternar notificações. Tente novamente.");
     } finally {
       setLoadingFavorite(false);
@@ -108,7 +103,7 @@ export default function TeamDetailsPage() {
         style={{ minHeight: "40vh" }}
       >
         <div className="text-white text-center">
-          <div className="spinner-border text-primary mb-3" role="status">
+          <div className="spinner-border text-primary mb-3">
             <span className="visually-hidden">Carregando...</span>
           </div>
           <p>Carregando time...</p>

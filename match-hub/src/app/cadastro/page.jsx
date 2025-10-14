@@ -7,10 +7,11 @@ import {
   validaCampo,
   regexPatterns,
   useValidacao,
-} from "../../components/utils/ValidaCampo";
+} from "../../utils/ValidaCampo";
 import Cookies from "js-cookie";
 import Verify2FA from "@/components/Verify2FA";
 import ResetPassword from "@/components/ResetPassword";
+import Image from "next/image";
 
 export default function CadastroPage() {
   const router = useRouter();
@@ -23,7 +24,6 @@ export default function CadastroPage() {
   const [senha, setSenha] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [confirmSenha, setConfirmSenha] = useState("");
-  const [aceitaTermos, setAceitaTermos] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Login state
@@ -144,7 +144,6 @@ export default function CadastroPage() {
       Cookies.set("token", res.token);
       router.push("/cadastro_concluido");
     } catch (err) {
-      console.error("Erro no cadastro:", err);
       setErrorMessage("Falha no cadastro. Verifique os dados.");
     }
   };
@@ -442,7 +441,7 @@ export default function CadastroPage() {
                   className="btn btn-light btn-google btn-lg w-100 d-flex align-items-center justify-content-center gap-2 mb-4"
                   onClick={() => console.log("Cadastrar com Google")}
                 >
-                  <img src="/static/icons/google.png" alt="Google" width="22" />
+                  <Image src="/static/icons/google.png" alt="Google" width={22} height={22} />
                   <span>Cadastrar com Google</span>
                 </button>
               </div>
@@ -547,7 +546,7 @@ export default function CadastroPage() {
                   className="btn btn-light btn-google btn-lg w-100 d-flex align-items-center justify-content-center gap-2 mb-4"
                   onClick={() => console.log("Login com Google")}
                 >
-                  <img src="/static/icons/google.png" alt="Google" width="22" />
+                  <Image src="/static/icons/google.png" alt="Google" width={22} height={22} />
                   <span>Entrar com Google</span>
                 </button>
               </div>

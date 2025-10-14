@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
-import { updateInfoUser } from "@/services/userService";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useEffect, useState  } from "react";
+import { updateInfoUser } from "@/services/userService";
 
 export default function EditPerfil({ user, onClose, token }) {
   const router = useRouter();

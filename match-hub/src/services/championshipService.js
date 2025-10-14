@@ -13,8 +13,6 @@ export async function getChampionshipsByGame(gameId){
     credentials: "include",
   });
   if (!response.ok) {
-    const text = await response.text();
-    console.error("getChampionshipsByGame: erro status", response.status, text);
     throw new Error(`Erro ao buscar jogos: ${response.status}`);
   }
   return response.json();

@@ -14,7 +14,6 @@ export default function ChampionshipDetailsPage() {
   const [championshipData, setChampionshipData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("times");
-  const [selectedMatch, setSelectedMatch] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [loadingFavorite, setLoadingFavorite] = useState(false);
 
@@ -24,10 +23,8 @@ export default function ChampionshipDetailsPage() {
     try {
       setLoading(true);
       const response = await getChampionshipById(id);
-      console.log("Championship data recebido:", response);
       setChampionshipData(response);
     } catch (error) {
-      console.error("Erro ao carregar campeonato:", error);
       router.push("/campeonatos");
     } finally {
       setLoading(false);
@@ -52,7 +49,6 @@ export default function ChampionshipDetailsPage() {
 
       handleGetChampionshipInfo(id);
     } catch (error) {
-      console.error("Erro ao processar dados do localStorage:", error);
       router.push("/campeonatos");
     }
   }, [router]);
@@ -71,12 +67,11 @@ export default function ChampionshipDetailsPage() {
       // Verifica se o jogo está nos favoritos do usuário
       const isFav =
         user.favoriteChampionships?.some(
-          (championship) => championship.id === championshipId,
+          (championship) => championship.id === championshipId
         ) || false;
       setIsFavorite(isFav);
       favoritesChecked.current = true;
-    } catch (error) {
-      console.error("Erro ao verificar favorito:", error);
+    } catch (err) {
       setIsFavorite(false);
     }
   };
@@ -93,25 +88,22 @@ export default function ChampionshipDetailsPage() {
 
       if (
         user.favoriteChampionships?.some(
-          (championship) => championshipData.id === championship,
+          (championship) => championshipData.id === championship
         )
       ) {
         // Já favoritado → remover
         await removeFavorite(championshipData.id, token, "championship");
         setIsFavorite(false);
         user.favoriteChampionships = user.favoriteChampionships.filter(
-          (game) => game.id !== championshipData.id,
+          (game) => game.id !== championshipData.id
         );
-        console.log("Favorito removido com sucesso");
       } else {
         // Não é favorito → adicionar
         await toggleFavoriteGame(championshipData.id, token, "championship");
         user.favoriteChampionships.push(championshipData);
         setIsFavorite(true);
-        console.log("Favorito adicionado com sucesso");
       }
-    } catch (error) {
-      console.error("Erro ao alternar notificações:", error);
+    } catch (err) {
       alert("Erro ao alternar notificações. Tente novamente.");
     } finally {
       setLoadingFavorite(false);
@@ -197,8 +189,8 @@ export default function ChampionshipDetailsPage() {
         return true;
       })
       .sort((a, b) => {
-        const dateA = new Date(a.date + "T" + a.hour);
-        const dateB = new Date(b.date + "T" + b.hour);
+        const dateA = new Date(`${a.date}T${a.hour}`);
+        const dateB = new Date(`${b.date}T${b.hour}`);
         return status === "upcoming" ? dateA - dateB : dateB - dateA;
       });
   };
@@ -210,7 +202,7 @@ export default function ChampionshipDetailsPage() {
         style={{ minHeight: "100vh" }}
       >
         <div className="text-white text-center">
-          <div className="spinner-border text-primary mb-3" role="status">
+          <div className="spinner-border text-primary mb-3">
             <span className="visually-hidden">Carregando...</span>
           </div>
           <p>Carregando detalhes do campeonato...</p>
@@ -276,19 +268,23 @@ export default function ChampionshipDetailsPage() {
             </button>
             <button
               type="button"
-              className={`btn ${isFavorite ? "btn-voltar" : "btn-outline-branco"} w-auto text-white`}
+              className={`btn ${
+                isFavorite ? "btn-voltar" : "btn-outline-branco"
+              } w-auto text-white`}
               onClick={handleToggleNotification}
               disabled={loadingFavorite}
             >
               <h5 className="mb-0 ms-2">
                 <i
-                  className={`fa-${isFavorite ? "solid" : "regular"} fa-bell me-2`}
+                  className={`fa-${
+                    isFavorite ? "solid" : "regular"
+                  } fa-bell me-2`}
                 />
                 {loadingFavorite
                   ? "Processando..."
                   : isFavorite
-                    ? "Notificações Ativas"
-                    : "Ativar Notificações"}
+                  ? "Notificações Ativas"
+                  : "Ativar Notificações"}
               </h5>
             </button>
           </div>
@@ -328,7 +324,11 @@ export default function ChampionshipDetailsPage() {
             <li className="nav-item">
               <button
                 type="button"
-                className={`nav-link ${activeTab === "times" ? "active bg-dark text-primary" : "text-white"} border-0 rounded-top`}
+                className={`nav-link ${
+                  activeTab === "times"
+                    ? "active bg-dark text-primary"
+                    : "text-white"
+                } border-0 rounded-top`}
                 onClick={() => setActiveTab("times")}
               >
                 <i className="fas fa-users me-2"></i>Times
@@ -337,7 +337,11 @@ export default function ChampionshipDetailsPage() {
             <li className="nav-item">
               <button
                 type="button"
-                className={`nav-link ${activeTab === "proximas" ? "active bg-dark text-primary" : "text-white"} border-0 rounded-top`}
+                className={`nav-link ${
+                  activeTab === "proximas"
+                    ? "active bg-dark text-primary"
+                    : "text-white"
+                } border-0 rounded-top`}
                 onClick={() => setActiveTab("proximas")}
               >
                 <i className="fas fa-calendar me-2"></i>Próximas Partidas
@@ -346,7 +350,11 @@ export default function ChampionshipDetailsPage() {
             <li className="nav-item">
               <button
                 type="button"
-                className={`nav-link ${activeTab === "passadas" ? "active bg-dark text-primary" : "text-white"} border-0 rounded-top`}
+                className={`nav-link ${
+                  activeTab === "passadas"
+                    ? "active bg-dark text-primary"
+                    : "text-white"
+                } border-0 rounded-top`}
                 onClick={() => setActiveTab("passadas")}
               >
                 <i className="fas fa-history me-2"></i>Partidas Passadas
@@ -369,16 +377,14 @@ export default function ChampionshipDetailsPage() {
                     key={team.id}
                     className="col-12 col-sm-6 col-md-4 col-lg-3"
                   >
-                    <div
-                      role="button"
+                    <button
+                      type="button"
                       tabIndex={0}
                       onClick={() => {
-                        try {
-                          localStorage.setItem(
-                            "selectedTeam",
-                            JSON.stringify(team.id),
-                          );
-                        } catch (e) {}
+                        localStorage.setItem(
+                          "selectedTeam",
+                          JSON.stringify(team.id)
+                        );
                         router.push(`/times/${team.id}`);
                       }}
                       onKeyDown={(e) => {
@@ -386,7 +392,7 @@ export default function ChampionshipDetailsPage() {
                           router.push(`/times/${team.id}`);
                         }
                       }}
-                      className="card bg-dark text-white h-100 border-0 shadow cursor-pointer"
+                      className="card bg-dark text-white h-100 border-0 shadow cursor-pointer w-100"
                     >
                       <div className="card-body-campeonato text-center p-4">
                         {team.logo && (
@@ -398,12 +404,7 @@ export default function ChampionshipDetailsPage() {
                               margin: "0 auto 1rem",
                             }}
                           >
-                            <Image
-                              src={team.logo}
-                              alt={team.name}
-                              fill
-                              style={{ objectFit: "contain" }}
-                            />
+                            <Image src={team.logo} alt={team.name} fill />
                           </div>
                         )}
                         <h5 className="card-title fw-bold">{team.name}</h5>
@@ -414,7 +415,7 @@ export default function ChampionshipDetailsPage() {
                           </small>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   </div>
                 ))
               ) : (
@@ -433,8 +434,8 @@ export default function ChampionshipDetailsPage() {
               <h2 className="text-white mb-4">Próximas Partidas</h2>
               <div className="row g-4">
                 {upcomingMatches.length > 0 ? (
-                  upcomingMatches.map((match, idx) => (
-                    <div key={idx} className="col-12 col-md-6 col-lg-4">
+                  upcomingMatches.map((match) => (
+                    <div key={match.id} className="col-12 col-md-6 col-lg-4">
                       <div className="card bg-dark text-white h-100 border-0 shadow">
                         <div className="card-body-campeonato p-4">
                           <div className="d-flex justify-content-between align-items-center mb-3">
@@ -534,8 +535,8 @@ export default function ChampionshipDetailsPage() {
               <h2 className="text-white mb-4">Partidas Passadas</h2>
               <div className="row g-4">
                 {pastMatches.length > 0 ? (
-                  pastMatches.map((match, idx) => (
-                    <div key={idx} className="col-12 col-md-6 col-lg-4">
+                  pastMatches.map((match) => (
+                    <div key={match.id} className="col-12 col-md-6 col-lg-4">
                       <div className="card bg-dark text-white h-100 border-0 shadow">
                         <div className="card-body-campeonato p-4">
                           <div className="d-flex justify-content-between align-items-center mb-3">

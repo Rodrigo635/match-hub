@@ -19,8 +19,6 @@ export async function getMatchesByChampionship(championshipId) {
     credentials: "include",
   });
   if (!response.ok) {
-    const text = await response.text();
-    console.error("getMatchesByChampionship: erro status", response.status, text);
     throw new Error(`Erro ao buscar jogos: ${response.status}`);
   }
   return response.json();
@@ -33,8 +31,6 @@ export async function getMatchesByTeam(teamId, page = 0, size = 10) {
     credentials: 'include',
   });
   if (!res.ok) {
-    const text = await res.text();
-    console.error('Erro status:', res.status, text);
     throw new Error(`Erro ao buscar partidas do time ${teamId}: ${res.status}`);
   }
   return await res.json();

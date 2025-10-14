@@ -26,15 +26,10 @@ export default function GamesList({ initialItems, additionalItems }) {
 
   // Busca todos os jogos apenas uma vez
   const handleGetAllGames = async () => {
-    try {
-      const response = await getAllGames();
-      const content = response?.content ?? response ?? [];
-      setAllData(content);
-      // aplica filtro inicial (todos)
-      setFiltered(content);
-    } catch (error) {
-      console.error("Erro ao carregar jogos:", error);
-    }
+    const response = await getAllGames();
+    const content = response?.content ?? response ?? [];
+    setAllData(content);
+    setFiltered(content);
   };
 
   useEffect(() => {

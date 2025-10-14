@@ -54,7 +54,6 @@ export async function getUserByToken(token) {
 
   if (!res.ok) {
     const text = await res.text();
-    console.error("getUserByToken: erro status", res.status, text);
     throw new Error(`Erro ao buscar usuário: ${res.status}, ${text}`);
   }
   return res.json();
@@ -154,7 +153,6 @@ export async function uploadProfileImage(id, formData, token) {
 }
 
 export async function uploadPublicAvatar(avatarUrl, token) {
-  console.log(JSON.stringify({ avatarUrl: avatarUrl }));
   const res = await fetch(`${BASE_URL}/avatar`, {
     method: "PUT",
     headers: {
@@ -209,8 +207,6 @@ export async function login(email, password) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-
-  console.log(res);
 
   if (!res.ok) {
     const text = await res.text();
@@ -292,7 +288,6 @@ export async function resetPassword(email) {
 }
 
 export async function resetPasswordConfirm(token, password) {
-  console.log(token, password);
 
   const res = await fetch(`${BASE_URL}/reset-password/confirm?token=${token}`, {
     method: "POST",
@@ -308,8 +303,6 @@ export async function resetPasswordConfirm(token, password) {
 
 // --------------------- Favoritos ---------------------
 export async function toggleFavoriteGame(id, token, type) {
-  console.log("toggleFavoriteGame", id, type, token);
-
   const body = {};
 
   switch (type) {
@@ -325,8 +318,6 @@ export async function toggleFavoriteGame(id, token, type) {
     default:
       throw new Error("Tipo de favorito inválido");
   }
-
-  console.log(body);
 
   const res = await fetch(`${BASE_URL}/favorites`, {
     method: "PATCH",
@@ -337,8 +328,6 @@ export async function toggleFavoriteGame(id, token, type) {
     credentials: "include",
     body: JSON.stringify(body),
   });
-  
-console.log(res);
 
   if (!res.ok) {
     const text = await res.text();
@@ -349,7 +338,6 @@ console.log(res);
 
 // --------------------- Remover Favorito ---------------------
 export async function removeFavorite(id, token, type) {
-  console.log("removeFavorite", id, type, token);
 
   const body = {};
 
@@ -367,8 +355,6 @@ export async function removeFavorite(id, token, type) {
       throw new Error("Tipo de favorito inválido");
   }
 
-  console.log("DELETE body:", body);
-
   const res = await fetch(`${BASE_URL}/favorites`, {
     method: "DELETE",
     headers: {
@@ -378,8 +364,6 @@ export async function removeFavorite(id, token, type) {
     credentials: "include",
     body: JSON.stringify(body),
   });
-
-  console.log(res);
 
   if (!res.ok) {
     const text = await res.text();
