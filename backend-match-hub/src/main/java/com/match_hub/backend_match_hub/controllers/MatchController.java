@@ -7,6 +7,7 @@ import com.match_hub.backend_match_hub.dtos.match.MatchResponseDTO;
 import com.match_hub.backend_match_hub.dtos.match.UpdateMatchDTO;
 import com.match_hub.backend_match_hub.services.MatchService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,7 @@ public class MatchController {
         return ResponseEntity.ok(match);
     }
 
-    @Operation(summary = "Create a match", description = "Creates a new match with participating teams and details.")
+    @Operation(summary = "Create a match", security = @SecurityRequirement(name = "bearer-key"), description = "Creates a new match with participating teams and details.")
     @PostMapping
     public ResponseEntity<?> save(@RequestBody @Valid CreateMatchDTO createMatchDTO) {
         MatchResponseDTO match = matchService.save(createMatchDTO);
@@ -67,14 +68,14 @@ public class MatchController {
         return ResponseEntity.created(address).build();
     }
 
-    @Operation(summary = "Update a match", description = "Updates an existing match by ID.")
+    @Operation(summary = "Update a match", security = @SecurityRequirement(name = "bearer-key"), description = "Updates an existing match by ID.")
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid UpdateMatchDTO updateMatchDTO) {
         matchService.update(id, updateMatchDTO);
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Delete a match", description = "Deletes a match by its unique ID.")
+    @Operation(summary = "Delete a match", security = @SecurityRequirement(name = "bearer-key"), description = "Deletes a match by its unique ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         matchService.delete(id);

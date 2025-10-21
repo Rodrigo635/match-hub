@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function CalendarPage() {
   const mockEvents = [
@@ -28,7 +28,7 @@ export default function CalendarPage() {
   const [currentMonth, setCurrentMonth] = useState(() => { const d = new Date(); d.setDate(1); return d; });
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const games = useMemo(() => { const s = new Set(); mockEvents.forEach((e) => s.add(e.game)); return ['all', ...Array.from(s)]; }, []);
+  const games = useMemo(() => { const s = new Set(); mockEvents.map((e) => s.add(e.game)); return ['all', ...Array.from(s)]; }, []);
 
   // Filtragem (mantém comportamento "all" = tudo)
   const filteredEvents = useMemo(() => {
@@ -42,7 +42,7 @@ export default function CalendarPage() {
       }
       return true;
     });
-  }, [mockEvents, typeFilter, gameFilter, query]);
+  }, [typeFilter, gameFilter, query]);
 
   function buildMonthGrid(date) {
     const year = date.getFullYear();
@@ -54,7 +54,7 @@ export default function CalendarPage() {
     const end = new Date(last);
     end.setDate(last.getDate() + (6 - last.getDay()));
     const grid = [];
-    let cur = new Date(start);
+    const cur = new Date(start);
     while (cur <= end) {
       const week = [];
       for (let i = 0; i < 7; i++) {
@@ -134,8 +134,8 @@ export default function CalendarPage() {
             <div className="d-flex justify-content-between align-items-center mb-2 flex-wrap">
               <h4 className="mb-0 text-white">{formatMonthTitle(currentMonth)}</h4>
               <div className="mb-2">
-                <button className="btn btn-outline-primary me-2 mb-1" onClick={prevMonth}>← Voltar</button>
-                <button className="btn btn-outline-primary mb-1" onClick={nextMonth}>Avançar →</button>
+                <button type='button' className="btn btn-outline-primary me-2 mb-1" onClick={prevMonth}>← Voltar</button>
+                <button type='button' className="btn btn-outline-primary mb-1" onClick={nextMonth}>Avançar →</button>
               </div>
             </div>
 
@@ -242,7 +242,7 @@ export default function CalendarPage() {
                   ))}
 
                   <div className="d-grid mt-2">
-                    <button className="btn btn-outline-light btn-sm" onClick={() => setSelectedDate(null)}>Fechar</button>
+                    <button type="button" className="btn btn-outline-light btn-sm" onClick={() => setSelectedDate(null)}>Fechar</button>
                   </div>
                 </>
               ) : (
@@ -264,7 +264,7 @@ export default function CalendarPage() {
               ))}
 
               <div className="mt-3">
-                <button className="btn btn-primary btn-sm w-100" onClick={() => {
+                <button type="button" className="btn btn-primary btn-sm w-100" onClick={() => {
                   if (filteredEvents.length > 0) {
                     const d = ymdToDateLocal(filteredEvents[0].date);
                     setCurrentMonth(new Date(d.getFullYear(), d.getMonth(), 1));

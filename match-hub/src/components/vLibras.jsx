@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { getUserByToken } from "@/app/services/userService";
+import { getUserByToken } from "@/services/userService";
 
 function VLibras({ forceOnload }) {
   const [shouldRender, setShouldRender] = useState(false);
@@ -10,16 +10,12 @@ function VLibras({ forceOnload }) {
 
   useEffect(() => {
     const checkUserLibrasActive = async () => {
-      try {
-        const token = Cookies.get("token");
-        if (token) {
-          const user = await getUserByToken(token);
-          if (user && user.librasActive === true) {
-            setShouldRender(true);
-          }
+      const token = Cookies.get("token");
+      if (token) {
+        const user = await getUserByToken(token);
+        if (user && user.librasActive === true) {
+          setShouldRender(true);
         }
-      } catch (error) {
-        console.error("Erro ao verificar configuração do usuário:", error);
       }
     };
 
@@ -30,7 +26,9 @@ function VLibras({ forceOnload }) {
     if (!shouldRender || isLoaded) return;
 
     // Verificar se o script já foi carregado
-    const existingScript = document.querySelector('script[src="https://vlibras.gov.br/app/vlibras-plugin.js"]');
+    const existingScript = document.querySelector(
+      'script[src="https://vlibras.gov.br/app/vlibras-plugin.js"]'
+    );
     if (existingScript) {
       // Se o script já existe, apenas inicializar o widget
       initializeVLibras();
@@ -40,15 +38,11 @@ function VLibras({ forceOnload }) {
     const script = document.createElement("script");
     script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
     script.async = true;
-    
+
     script.onload = () => {
       initializeVLibras();
     };
-    
-    script.onerror = () => {
-      console.error("Erro ao carregar o script do VLibras");
-    };
-    
+
     document.head.appendChild(script);
 
     // Cleanup function
@@ -63,28 +57,22 @@ function VLibras({ forceOnload }) {
   const initializeVLibras = () => {
     // Aguardar um pouco para garantir que o DOM esteja pronto
     setTimeout(() => {
-      try {
-        if (window.VLibras && window.VLibras.Widget) {
-          // Limpar qualquer instância anterior
-          const existingWidget = document.querySelector('.vw-plugin-wrapper');
-          if (existingWidget && existingWidget.innerHTML) {
-            existingWidget.innerHTML = '';
-          }
-
-          // Inicializar o widget
-          new window.VLibras.Widget('https://vlibras.gov.br/app');
-          setIsLoaded(true);
-          
-          // Forçar onload se necessário
-          if (forceOnload && typeof window.onload === 'function') {
-            window.onload();
-          }
-        } else {
-          console.error("VLibras não está disponível no window");
+      if (window.VLibras && window.VLibras.Widget) {
+        // Limpar qualquer instância anterior
+        const existingWidget = document.querySelector(".vw-plugin-wrapper");
+        if (existingWidget && existingWidget.innerHTML) {
+          existingWidget.innerHTML = "";
         }
-      } catch (error) {
-        console.error("Erro ao inicializar VLibras:", error);
-      }
+
+        // Inicializar o widget
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+        setIsLoaded(true);
+
+        // Forçar onload se necessário
+        if (forceOnload && typeof window.onload === "function") {
+          window.onload();
+        }
+      } 
     }, 100);
   };
 

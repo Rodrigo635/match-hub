@@ -1,9 +1,7 @@
-import HeroBanner from '@/components/HeroBanner';
+'use client';
+import Image from 'next/image';
 import GamesList from '@/components/GamesList';
-
-export const metadata = {
-  title: 'Home - MATCH HUB',
-};
+import HeroBanner from '@/components/HeroBanner';
 
 export default function HomePage() {
   return (
@@ -52,10 +50,12 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="col-12 col-md-7 imagem-funcao">
-              <img
+              <Image
                 className="img-fluid d-flex align-items-end justify-content-end"
                 src="/static/img/index/Neon_Artwork_Full.png"
                 alt="logo do match hub"
+                width={500}
+                height={500}
               />
             </div>
           </div>

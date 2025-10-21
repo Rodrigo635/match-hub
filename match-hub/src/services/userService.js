@@ -1,7 +1,7 @@
 import {
   createData,
   deleteData,
-  getData,
+  getDataWithToken,
   getDataById,
   updateData,
   uploadImage,
@@ -10,8 +10,8 @@ import {
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
 const BASE_URL2 = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 // --------------------- CRUD Usuários ---------------------
-export async function getUsers(page = 0, size = 5) {
-  return await getData(page, size, BASE_URL);
+export async function getUsers(page = 0, size = 5, token) {
+  return await getDataWithToken(page, size, BASE_URL, token);
 }
 
 export async function getUserById(id) {
@@ -19,7 +19,7 @@ export async function getUserById(id) {
 }
 
 export async function createUser(userData) {
-  return await createData(userData, BASE_URL + "/register");
+  return await createData(userData, `${BASE_URL}/register`);
 }
 
 export async function updateUser(id, userData) {
@@ -54,7 +54,6 @@ export async function getUserByToken(token) {
 
   if (!res.ok) {
     const text = await res.text();
-    console.error("getUserByToken: erro status", res.status, text);
     throw new Error(`Erro ao buscar usuário: ${res.status}, ${text}`);
   }
   return res.json();
@@ -154,7 +153,6 @@ export async function uploadProfileImage(id, formData, token) {
 }
 
 export async function uploadPublicAvatar(avatarUrl, token) {
-  console.log(JSON.stringify({ avatarUrl: avatarUrl }));
   const res = await fetch(`${BASE_URL}/avatar`, {
     method: "PUT",
     headers: {
@@ -209,8 +207,6 @@ export async function login(email, password) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-
-  console.log(res);
 
   if (!res.ok) {
     const text = await res.text();
@@ -292,7 +288,6 @@ export async function resetPassword(email) {
 }
 
 export async function resetPasswordConfirm(token, password) {
-  console.log(token, password);
 
   const res = await fetch(`${BASE_URL}/reset-password/confirm?token=${token}`, {
     method: "POST",
@@ -305,3 +300,79 @@ export async function resetPasswordConfirm(token, password) {
     throw new Error(`Erro ao resetar senha: ${res.status}, ${text}`);
   }
 }
+
+// --------------------- Favoritos ---------------------
+export async function toggleFavoriteGame(id, token, type) {
+  const body = {};
+
+  switch (type) {
+    case "game":
+      body.gameId = id;
+      break;
+    case "championship":
+      body.championshipId = id;
+      break;
+    case "team":
+      body.teamId = id;
+      break;
+    default:
+      throw new Error("Tipo de favorito inválido");
+  }
+
+  const res = await fetch(`${BASE_URL}/favorites`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: "include",
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao alternar favorito: ${res.status}, ${text}`);
+  }
+
+}
+
+// --------------------- Remover Favorito ---------------------
+export async function removeFavorite(id, token, type) {
+
+  const body = {};
+
+  switch (type) {
+    case "game":
+      body.gameId = id;
+      break;
+    case "championship":
+      body.championshipId = id;
+      break;
+    case "team":
+      body.teamId = id;
+      break;
+    default:
+      throw new Error("Tipo de favorito inválido");
+  }
+
+  const res = await fetch(`${BASE_URL}/favorites`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: "include",
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao remover favorito: ${res.status}, ${text}`);
+  }
+
+  // Se 204, não há corpo, apenas retorna
+  return;
+}
+
+
+

@@ -58,7 +58,7 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     private Boolean hasPassword;
 
     private Boolean isDarkMode = true;
-    private Integer fontSize = 16;
+    private Integer fontSize = 0;
     private Boolean librasActive = false;
 
     @Column(name = "two_factor_secret")
@@ -70,13 +70,31 @@ public class User implements UserDetails, Serializable, HasProfileImage {
     @OneToMany(mappedBy = "user")
     private final List<Notification> notifications = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "user_favorite_games",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "game_id"})
+    )
     private final List<Game> favoriteGames = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "user_favorite_championships",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "championship_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "championship_id"})
+    )
     private final List<Championship> favoriteChampionships = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "user_favorite_teams",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "team_id"})
+    )
     private final List<Team> favoriteTeams = new ArrayList<>();
 
     @CreationTimestamp

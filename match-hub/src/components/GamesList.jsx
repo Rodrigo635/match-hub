@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getAllGames } from "@/app/services/gameService";
+import { getAllGames } from "@/services/gameService";
+import Image from "next/image";
 
 export default function GamesList({ initialItems, additionalItems }) {
   const router = useRouter();
@@ -25,15 +26,10 @@ export default function GamesList({ initialItems, additionalItems }) {
 
   // Busca todos os jogos apenas uma vez
   const handleGetAllGames = async () => {
-    try {
-      const response = await getAllGames();
-      const content = response?.content ?? response ?? [];
-      setAllData(content);
-      // aplica filtro inicial (todos)
-      setFiltered(content);
-    } catch (error) {
-      console.error("Erro ao carregar jogos:", error);
-    }
+    const response = await getAllGames();
+    const content = response?.content ?? response ?? [];
+    setAllData(content);
+    setFiltered(content);
   };
 
   useEffect(() => {
@@ -82,6 +78,7 @@ export default function GamesList({ initialItems, additionalItems }) {
 
   return (
     <section>
+      <link rel="stylesheet" href="/css/gameslist.css" />
       {/* Filtros */}
       <div className="container mt-5 mb-3">
         <div className="row align-items-center">
@@ -135,10 +132,12 @@ export default function GamesList({ initialItems, additionalItems }) {
             >
               <div className="card bg-transparent h-100">
                 <div>
-                  <img
+                  <Image
+                    alt={item.game || "Imagem do jogo"}
                     className=" rounded-3"
+                    width={300}
+                    height={300}
                     src={item.image}
-                    alt={item.game}
                   />
                 </div>
 
@@ -155,21 +154,23 @@ export default function GamesList({ initialItems, additionalItems }) {
 
         {/* Paginação */}
         <div className="container text-center my-5">
-          {hasPrev && additionalItems != 0 && (
-            <h5
-              className="text-center ver-menos cursor-pointer"
+          {hasPrev && additionalItems !== 0 && (
+            <button
+              type="button"
+              className="text-center ver-menos cursor-pointer bg-transparent border-0"
               onClick={handlePrev}
             >
               <span className="text-azul">Ver menos</span>
-            </h5>
+            </button>
           )}
-          {hasNext && additionalItems != 0 && (
-            <h5
-              className="text-center ver-mais cursor-pointer"
+          {hasNext && additionalItems !== 0 && (
+            <button
+              type="button"
+              className="text-center ver-mais cursor-pointer bg-transparent border-0"
               onClick={handleNext}
             >
               <span className="text-azul">Ver mais</span>
-            </h5>
+            </button>
           )}
         </div>
       </section>

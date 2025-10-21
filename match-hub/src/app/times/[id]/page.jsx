@@ -1,19 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { getTeamById } from '../../services/teamService';
-import { getMatchesByTeam } from '../../services/matchService';
+import { useState, useEffect, useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import { getTeamById } from "../../../services/teamService";
+import { getMatchesByTeam } from "../../../services/matchService";
+import { toggleFavoriteGame, removeFavorite } from "@/services/userService";
+import { useUser } from "../../../context/UserContext";
 
 export default function TeamDetailsPage() {
   const params = useParams();
   const router = useRouter();
   const id = params?.id;
-
+  const { user, token } = useUser();
   const [team, setTeam] = useState(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [loadingFavorite, setLoadingFavorite] = useState(false);
+
+  const favoritesChecked = useRef(false);
 
   useEffect(() => {
     if (!id) return;
@@ -22,16 +28,15 @@ export default function TeamDetailsPage() {
 
     Promise.all([
       getTeamById(id),
-      getMatchesByTeam(id, 0, 10) // pagina 0, até 10 partidas
+      getMatchesByTeam(id, 0, 10), // pagina 0, até 10 partidas
     ])
       .then(([teamRes, matchesRes]) => {
         if (!mounted) return;
         setTeam(teamRes);
         setMatches(matchesRes.content || []); // a API retorna content, totalPages, etc
       })
-      .catch(err => {
-        console.error('Erro ao buscar time ou partidas:', err);
-        router.push('/');
+      .catch((err) => {
+        router.push("/");
       })
       .finally(() => mounted && setLoading(false));
 
@@ -40,11 +45,65 @@ export default function TeamDetailsPage() {
 
   const handleBack = () => router.back();
 
+  useEffect(() => {
+    if (user && token && team?.id && !favoritesChecked.current) {
+      handleCheckFavorite(team.id);
+    }
+  }, [user, token, team?.id]);
+
+  // Verificar se o jogo é favorito
+  const handleCheckFavorite = async (teamId) => {
+    try {
+      if (!user || !token || favoritesChecked.current) return;
+
+      // Verifica se o jogo está nos favoritos do usuário
+      const isFav =
+        user.favoriteTeams.some((team) => team.id === teamId) || false;
+      setIsFavorite(isFav);
+      favoritesChecked.current = true;
+    } catch (error) {
+      setIsFavorite(false);
+    }
+  };
+
+  // Toggle de notificações (favoritar/remover)
+  const handleToggleNotification = async () => {
+    try {
+      if (!user || !token || !team) {
+        alert("Você precisa estar logado para ativar notificações.");
+        return;
+      }
+
+      setLoadingFavorite(true);
+
+      if (user.favoriteTeams?.some((team) => team.id === team)) {
+        // Já favoritado → remover
+        await removeFavorite(team.id, token, "team");
+        setIsFavorite(false);
+        user.favoriteTeams = user.favoriteTeams.filter(
+          (game) => game.id !== team,
+        );
+      } else {
+        // Não é favorito → adicionar
+        await toggleFavoriteGame(team.id, token, "team");
+        user.favoriteTeams.push(team);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      alert("Erro ao alternar notificações. Tente novamente.");
+    } finally {
+      setLoadingFavorite(false);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "40vh" }}
+      >
         <div className="text-white text-center">
-          <div className="spinner-border text-primary mb-3" role="status">
+          <div className="spinner-border text-primary mb-3">
             <span className="visually-hidden">Carregando...</span>
           </div>
           <p>Carregando time...</p>
@@ -57,7 +116,13 @@ export default function TeamDetailsPage() {
     return (
       <div className="container py-5 text-center text-white">
         <h3>Time não encontrado</h3>
-        <button className="btn btn-primary mt-3" onClick={() => router.push('/')}>Voltar</button>
+        <button
+          type="button"
+          className="btn btn-primary mt-3"
+          onClick={() => router.push("/")}
+        >
+          Voltar
+        </button>
       </div>
     );
   }
@@ -69,16 +134,35 @@ export default function TeamDetailsPage() {
       <section className="championship-header bg-dark time-bg py-5">
         <div className="container">
           <div className="col-12 d-flex justify-content-start gap-2 mb-4 mt-5">
-            <button onClick={handleBack} className="btn btn-voltar text-white">
-              <h5 className="mb-0 ms-2"><i className="fa-solid fa-arrow-left me-2"/> Voltar</h5>
+            <button
+              type="button"
+              onClick={handleBack}
+              className="btn btn-voltar text-white"
+            >
+              <h5 className="mb-0 ms-2">
+                <i className="fa-solid fa-arrow-left me-2" /> Voltar
+              </h5>
             </button>
-            <button className="btn btn-outline-branco w-auto text-white">
-              <h5 className="mb-0 ms-2"><i className="fa-solid fa-bell me-2"/> Ativar Notificações</h5>
+            <button
+              type="button"
+              className={`btn ${isFavorite ? "btn-voltar" : "btn-outline-branco"} w-auto text-white`}
+              onClick={handleToggleNotification}
+              disabled={loadingFavorite}
+            >
+              <h5 className="mb-0 ms-2">
+                <i
+                  className={`fa-${isFavorite ? "solid" : "regular"} fa-bell me-2`}
+                />
+                {loadingFavorite
+                  ? "Processando..."
+                  : isFavorite
+                    ? "Notificações Ativas"
+                    : "Ativar Notificações"}
+              </h5>
             </button>
           </div>
 
           <div className="row align-items-center">
-
             <div className="col-md-9">
               <h1 className="display-4 fw-bold text-white mb-3">{team.name}</h1>
 
@@ -89,19 +173,33 @@ export default function TeamDetailsPage() {
               <div className="row text-white">
                 <div className="mb-2">
                   <i className="fas fa-calendar me-2 text-primary"></i>
-                  <span className="fw-bold">Partidas cadastradas:</span> {matches.length}
+                  <span className="fw-bold">Partidas cadastradas:</span>{" "}
+                  {matches.length}
                 </div>
                 <div>
                   <i className="fas fa-user-friends me-2 text-primary"></i>
-                  <span className="fw-bold">País / Tag:</span> {team.country || team.tag || '—'}
+                  <span className="fw-bold">País / Tag:</span>{" "}
+                  {team.country || team.tag || "—"}
                 </div>
               </div>
             </div>
 
             <div className="col-md-3 text-center mb-4 mb-md-0 order-first order-md-last">
               {team.logo && (
-                <div style={{ width: 150, height: 150, position: 'relative', margin: '0 auto' }}>
-                  <Image src={team.logo} alt={team.name} fill style={{ objectFit: 'contain' }} />
+                <div
+                  style={{
+                    width: 150,
+                    height: 150,
+                    position: "relative",
+                    margin: "0 auto",
+                  }}
+                >
+                  <Image
+                    src={team.logo}
+                    alt={team.name}
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
               )}
             </div>
@@ -109,7 +207,10 @@ export default function TeamDetailsPage() {
         </div>
       </section>
 
-      <main className="py-5" style={{ backgroundColor: '#1a1a1a', minHeight: '60vh' }}>
+      <main
+        className="py-5"
+        style={{ backgroundColor: "#1a1a1a", minHeight: "60vh" }}
+      >
         <div className="container">
           <h2 className="text-white mb-4">Partidas do time</h2>
 
@@ -118,18 +219,35 @@ export default function TeamDetailsPage() {
               {matches.map((match, idx) => {
                 const tA = match.matchTeams?.[0]?.team || {};
                 const tB = match.matchTeams?.[1]?.team || {};
-                const data = match.date ? new Date(match.date).toLocaleDateString('pt-BR') : '';
-                const hora = match.hour ? match.hour.substring(0, 5) : '';
+                const data = match.date
+                  ? new Date(match.date).toLocaleDateString("pt-BR")
+                  : "";
+                const hora = match.hour ? match.hour.substring(0, 5) : "";
 
                 return (
-                  <div key={match.id || idx} className="col-12 col-md-6 col-lg-4">
+                  <div
+                    key={match.id || idx}
+                    className="col-12 col-md-6 col-lg-4"
+                  >
                     <div className="card bg-dark text-white h-100 border-0 shadow">
                       <div className="card-body p-4">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                           <div className="text-center">
                             {tA.logo && (
-                              <div style={{ width: 60, height: 60, position: 'relative', margin: '0 auto' }}>
-                                <Image src={tA.logo} alt={tA.name} fill style={{ objectFit: 'contain' }} />
+                              <div
+                                style={{
+                                  width: 60,
+                                  height: 60,
+                                  position: "relative",
+                                  margin: "0 auto",
+                                }}
+                              >
+                                <Image
+                                  src={tA.logo}
+                                  alt={tA.name}
+                                  fill
+                                  style={{ objectFit: "contain" }}
+                                />
                               </div>
                             )}
                             <small className="d-block mt-2">{tA.name}</small>
@@ -139,8 +257,20 @@ export default function TeamDetailsPage() {
 
                           <div className="text-center">
                             {tB.logo && (
-                              <div style={{ width: 60, height: 60, position: 'relative', margin: '0 auto' }}>
-                                <Image src={tB.logo} alt={tB.name} fill style={{ objectFit: 'contain' }} />
+                              <div
+                                style={{
+                                  width: 60,
+                                  height: 60,
+                                  position: "relative",
+                                  margin: "0 auto",
+                                }}
+                              >
+                                <Image
+                                  src={tB.logo}
+                                  alt={tB.name}
+                                  fill
+                                  style={{ objectFit: "contain" }}
+                                />
                               </div>
                             )}
                             <small className="d-block mt-2">{tB.name}</small>
@@ -160,7 +290,12 @@ export default function TeamDetailsPage() {
                           </p>
 
                           {match.link && (
-                            <a href={match.link} target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary btn-sm w-100">
+                            <a
+                              href={match.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-outline-primary btn-sm w-100"
+                            >
                               <i className="fas fa-external-link-alt me-2"></i>
                               Ver Detalhes
                             </a>
@@ -174,7 +309,9 @@ export default function TeamDetailsPage() {
             </div>
           ) : (
             <div className="col-12 text-center py-5">
-              <p className="text-white">Nenhuma partida encontrada para este time.</p>
+              <p className="text-white">
+                Nenhuma partida encontrada para este time.
+              </p>
             </div>
           )}
         </div>

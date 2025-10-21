@@ -8,7 +8,6 @@ export async function uploadGameMediaFiles(id, formData, endpoint) {
       const response = await uploadSingleMedia(id, formData.image, 'image', endpoint);
       mediaUploads.push({ type: 'image', response });
     } catch (error) {
-      console.error('Erro ao enviar imagem:', error);
       mediaUploads.push({ type: 'image', error: error.message });
     }
   }
@@ -19,7 +18,6 @@ export async function uploadGameMediaFiles(id, formData, endpoint) {
       const response = await uploadSingleMedia(id, formData.gif, 'gif', endpoint);
       mediaUploads.push({ type: 'gif', response });
     } catch (error) {
-      console.error('Erro ao enviar GIF:', error);
       mediaUploads.push({ type: 'gif', error: error.message });
     }
   }
@@ -30,7 +28,6 @@ export async function uploadGameMediaFiles(id, formData, endpoint) {
       const response = await uploadSingleMedia(id, formData.video, 'video', endpoint);
       mediaUploads.push({ type: 'video', response });
     } catch (error) {
-      console.error('Erro ao enviar vídeo:', error);
       mediaUploads.push({ type: 'video', error: error.message });
     }
   }
@@ -52,7 +49,6 @@ async function uploadSingleMedia(id, file, type, endpoint) {
 
   if (!res.ok) {
     const text = await res.text();
-    console.error(`Erro ao enviar ${type}:`, res.status, text);
     throw new Error(`Erro ao enviar ${type}: ${res.status}`);
   }
 
@@ -75,7 +71,6 @@ export async function uploadImage(id, formData, endpoint) {
 
     if (!res.ok) {
       const text = await res.text();
-      console.error('Erro ao enviar imagem', res.status, text);
       throw new Error(`Erro ao enviar imagem: ${res.status}`);
     }
 
@@ -84,6 +79,20 @@ export async function uploadImage(id, formData, endpoint) {
   return imageResponse;
 }
 
+export async function getDataWithToken(page, size, endpoint, token) {
+  const url = `${endpoint}?page=${page}&size=${size}`;
+  const res = await fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Erro ao buscar dados: ${res.status}`);
+  }
+  const data = await res.json();
+  return data;
+}
 
 export async function getData(page, size, endpoint) {
   const url = `${endpoint}?page=${page}&size=${size}`;
@@ -93,7 +102,6 @@ export async function getData(page, size, endpoint) {
   });
   if (!res.ok) {
     const text = await res.text();
-    console.error('Erro status:', res.status, text);
     throw new Error(`Erro ao buscar dados: ${res.status}`);
   }
   const data = await res.json();
@@ -106,8 +114,6 @@ export async function getDataById(id, endpoint) {
     credentials: 'include',
   });
   if (!res.ok) {
-    const text = await res.text();
-    console.error('getDataById: erro status', res.status, text);
     throw new Error(`Erro ao buscar com id ${id}: ${res.status}`);
   }
   return res.json();
@@ -145,7 +151,6 @@ export async function createDataWithMedia(teamData, endpoint) {
   const res = await fetch(endpoint, options);
   if (!res.ok) {
     const text = await res.text();
-    console.error('create: erro status', res.status, text);
     throw new Error(`Erro ao criar dados: ${res.status}`);
   }
 
@@ -173,7 +178,6 @@ export async function createData(teamData, endpoint) {
   const res = await fetch(endpoint, options);
   if (!res.ok) {
     const text = await res.text();
-    console.error('create: erro status 01', res.status, text);
     throw new Error(`Erro ao criar dados: ${res.status}`);
   }
 
@@ -216,8 +220,6 @@ export async function updateDataWithMedia(id, teamData, endpoint) {
 
   const res = await fetch(`${endpoint}/${id}`, options);
   if (!res.ok) {
-    const text = await res.text();
-    console.error('update: erro status', res.status, text);
     throw new Error(`Erro ao atualizar dados com id ${id}: ${res.status}`);
   }
 
@@ -241,8 +243,6 @@ export async function updateData(id, teamData, endpoint) {
   }
   const res = await fetch(`${endpoint}/${id}`, options);
   if (!res.ok) {
-    const text = await res.text();
-    console.error('update: erro status', res.status, text);
     throw new Error(`Erro ao atualizar dados com id ${id}: ${res.status}`);
   }
 
@@ -257,8 +257,6 @@ export async function deleteData(id, endpoint) {
     credentials: 'include',
   });
   if (!res.ok) {
-    const text = await res.text();
-    console.error('delete: erro status', res.status, text);
     throw new Error(`Erro ao deletar dados com id ${id}: ${res.status}`);
   }
   return true;

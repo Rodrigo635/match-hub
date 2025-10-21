@@ -51,4 +51,18 @@ public class AvatarService {
             throw new RuntimeException("Erro ao listar avatares: " + e.getMessage(), e);
         }
     }
+    public void deleteAvatar(String fileName) {
+        try {
+            Path filePath = Paths.get(avatarDir).resolve(fileName);
+
+            if (!Files.exists(filePath)) {
+                throw new RuntimeException("Avatar não encontrado: " + fileName);
+            }
+
+            Files.delete(filePath);
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao deletar avatar: " + e.getMessage(), e);
+        }
+    }
+
 }

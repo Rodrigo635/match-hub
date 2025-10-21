@@ -1,6 +1,7 @@
 // components/Gif.jsx
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const gifs = [
   "/static/icons/sonic.gif",
@@ -26,10 +27,12 @@ export default function Gif() {
 
   return (
     gifEscolhido && (
-      <img
+      <Image
         id="gif-concluido"
         src={gifEscolhido}
         alt="GIF concluído"
+        width={0}
+        height={0}
         className="img-fluid rounded-4 mx-auto d-block mb-4 loaded"
         style={{ maxHeight: '250px', minHeight: '250px', objectFit: 'contain' }}
       />

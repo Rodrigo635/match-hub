@@ -1,7 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
-import { updateInfoUser } from "@/app/services/userService";
 import Cookies from "js-cookie";
+import Image from "next/image";
+import { useEffect, useState  } from "react";
+import { updateInfoUser } from "@/services/userService";
+import { regexPatterns } from "@/utils/ValidaCampo";
 
 export default function EditPassword({ user, onClose }) {
   const [formData, setFormData] = useState({
@@ -32,15 +34,8 @@ export default function EditPassword({ user, onClose }) {
     e.preventDefault();
 
     const { password } = formData;
-
-    // Expressão regular para validar:
-    // - Pelo menos 8 caracteres
-    // - Pelo menos uma letra maiúscula
-    // - Pelo menos um número
-    // - Pelo menos um caractere especial
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-    if (!passwordRegex.test(password)) {
+  
+    if (!regexPatterns.senha.test(password)) {
       setError("A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial.");
       return;
     }
@@ -117,14 +112,15 @@ export default function EditPassword({ user, onClose }) {
                       }
                     >
                       <span className="eye-icon">
-                        <img
+                        <Image
                           src={
                             showCurrentPassword
                               ? "/static/icons/eye-solid.svg"
                               : "/static/icons/eye-slash-solid.svg"
                           }
                           alt="Visibilidade da senha"
-                          width="20"
+                          width={20}
+                          height={20}
                         />
                       </span>
                     </button>
@@ -156,14 +152,15 @@ export default function EditPassword({ user, onClose }) {
                       }
                     >
                       <span className="eye-icon">
-                        <img
+                        <Image
                           src={
                             showPassword
                               ? "/static/icons/eye-solid.svg"
                               : "/static/icons/eye-slash-solid.svg"
                           }
                           alt="Visibilidade da senha"
-                          width="20"
+                          width={20}
+                          height={20}
                         />
                       </span>
                     </button>

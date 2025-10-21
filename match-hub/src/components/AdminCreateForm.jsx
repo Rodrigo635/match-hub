@@ -1,40 +1,41 @@
 // src/components/AdminCreateForm.jsx
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { formFieldsConfig } from "@/app/admin/[entity]/create/formConfig";
+import { getChampionships } from "@/services/championshipService";
+import { getGames } from "@/services/gameService";
+import { getTeams } from "@/services/teamService";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import { getGames } from "@/app/services/gameService";
-import { getChampionships } from "@/app/services/championshipService";
-import { getTeams } from "@/app/services/teamService";
+
 
 // Importe os métodos corretos de cada service
 import {
   createUser,
   getUserById,
   updateUser,
-} from "@/app/services/userService";
+} from "@/services/userService";
 import {
   createGame,
   getGameById,
   updateGame,
-} from "@/app/services/gameService";
+} from "@/services/gameService";
 import {
   createChampionship,
   getChampionshipById,
   updateChampionship,
-} from "@/app/services/championshipService";
+} from "@/services/championshipService";
 import {
   createTeam,
   getTeamById,
   updateTeam,
-} from "@/app/services/teamService";
+} from "@/services/teamService";
 // Atenção: importe com os nomes corretos definidos em matchService.js
 import {
   getMatchById,
   createMatch,
   updateMatch,
-} from "@/app/services/matchService";
+} from "@/services/matchService";
 
 export default function AdminCreateForm({ entity, id }) {
   const router = useRouter();
@@ -116,7 +117,6 @@ export default function AdminCreateForm({ entity, id }) {
                 return { ...field, options };
               }
             } catch (err) {
-              console.error("Erro ao carregar opções para", field.name, err);
               return { ...field, options: [] };
             }
           }
@@ -168,7 +168,6 @@ export default function AdminCreateForm({ entity, id }) {
           setExistingFiles(initExisting);
         })
         .catch((err) => {
-          console.error(`Erro ao buscar ${entity} para edição:`, err);
           setError(`Falha ao carregar dados de ${entity}`);
         })
         .finally(() => setLoading(false));
@@ -298,7 +297,6 @@ export default function AdminCreateForm({ entity, id }) {
       // Redireciona para listagem genérica
       router.push(`/admin/${entity}`);
     } catch (err) {
-      console.error(`Erro ao submeter formulário ${entity}:`, err);
       // Se o service lançar Error com mensagem, use-a; ou else mensagem genérica
       setError(err.message || "Falha ao salvar");
     } finally {
@@ -321,17 +319,17 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "file") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               {existingFiles[name] && (
                 <div className="mb-2">
                   <p className="text-white small">Arquivo atual:</p>
                   {/* Supondo que seja imagem; se for outro tipo de arquivo, ajuste preview */}
-                  <img
+                  <Image
                     src={existingFiles[name]}
                     alt={`${label} atual`}
+                    width={80}
+                    height={80}
                     style={{
-                      width: "80px",
-                      height: "80px",
                       objectFit: "cover",
                       borderRadius: "4px",
                     }}
@@ -352,7 +350,7 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "textarea") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               <textarea
                 name={name}
                 className="form-control"
@@ -367,7 +365,7 @@ export default function AdminCreateForm({ entity, id }) {
         if (type === "select") {
           return (
             <div key={name} className="mb-3">
-              <label className="form-label">{label}</label>
+              <label htmlFor={name} className="form-label">{label}</label>
               <select
                 name={name}
                 className="form-select"
@@ -388,7 +386,7 @@ export default function AdminCreateForm({ entity, id }) {
         // input normal: text, email, password, date, time, number etc.
         return (
           <div key={name} className="mb-3">
-            <label className="form-label">{label}</label>
+            <label htmlFor={name} className="form-label">{label}</label>
             <input
               type={type}
               name={name}

@@ -76,6 +76,8 @@ public class Mocks implements CommandLineRunner {
         game.setAgeRating(12);
         game.setChampionship(savedChampionship);
 
+        savedChampionship.setGame(game);
+
         gameRepository.save(game);
         System.out.println("Game criado: " + game.getName());
         Team team1 = new Team();
@@ -86,7 +88,11 @@ public class Mocks implements CommandLineRunner {
         Team savedTeam2 = teamRepository.save(team2);
 
         user.getFavoriteTeams().add(savedTeam1);
+        user.getFavoriteGames().add(game);
+        user.getFavoriteChampionships().add(championship);
         user2.getFavoriteTeams().add(savedTeam2);
+        championshipRepository.save(savedChampionship);
+
 
         userRepository.save(user);
         userRepository.save(user2);

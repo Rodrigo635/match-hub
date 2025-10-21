@@ -1,4 +1,4 @@
-import { getUserByToken } from "../services/userService";
+import { getUserByToken } from "../../services/userService";
 import Cookies from "js-cookie";
 
 function isTokenExpired(token) {
@@ -16,8 +16,6 @@ function isTokenExpired(token) {
 
     return false;
   } catch (error) {
-    // Se não conseguir decodificar, considera como expirado
-    console.error("Erro ao verificar expiração do token:", error);
     return true;
   }
 }

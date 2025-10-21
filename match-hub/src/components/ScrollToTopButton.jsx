@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +26,7 @@ export default function ScrollToTopButton() {
 
   return (
     <button
+      type="button"
       onClick={scrollToTop}
       className={`scroll-to-top ${isVisible ? "show" : ""}`}
       aria-label="Voltar ao topo"

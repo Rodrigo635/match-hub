@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import EditPassword from "./edit/EditPassword";
 import QRCode from "react-qr-code";
-import { setupTwoFactor, disableTwoFactor } from "../../app/services/userService";
+import { setupTwoFactor, disableTwoFactor } from "../../services/userService";
 import Cookies from "js-cookie";
 
 export default function Seguranca({ user }) {
@@ -48,6 +48,7 @@ export default function Seguranca({ user }) {
             <strong>Senha:</strong> ••••••••
           </p>
           <button
+            type="button"
             className="btn btn-outline-primary"
             onClick={() => setShowModal(true)}
           >
@@ -64,25 +65,7 @@ export default function Seguranca({ user }) {
         >
           <div className="modal-dialog">
             <div className="modal-content bg-dark text-white">
-              <div className="modal-header">
-                <h5 className="modal-title">Alterar Senha</h5>
-                <button
-                  type="button"
-                  className="btn-close btn-close-white"
-                  onClick={() => setShowModal(false)}
-                ></button>
-              </div>
-              <div className="modal-body">
                 <EditPassword onClose={() => setShowModal(false)} />
-              </div>
-              <div className="modal-footer">
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setShowModal(false)}
-                >
-                  Fechar
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -99,6 +82,7 @@ export default function Seguranca({ user }) {
 
           {!twoFactorEnabled ? (
             <button
+              type="button"
               className="btn btn-outline-primary"
               onClick={handleEnable2FA}
             >
@@ -130,6 +114,7 @@ export default function Seguranca({ user }) {
               )}
 
               <button
+                type="button"
                 className="btn btn-outline-danger"
                 onClick={handleDisable2FA}
               >

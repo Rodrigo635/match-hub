@@ -3,26 +3,14 @@ import { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, ComposedChart, Scatter } from "recharts";
 
 // ============ FUNÇÕES MATEMÁTICAS PREDITIVAS ============
-
-/**
- * Modelo de Crescimento Logístico
- * Fórmula: U(t) = L / (1 + e^(-k(t - t0)))
- */
 function logisticGrowth(t, L, k, t0) {
   return L / (1 + Math.exp(-k * (t - t0)));
 }
 
-/**
- * Função de Retenção Exponencial
- * Fórmula: R(t) = R0 * e^(-λt)
- */
 function exponentialRetention(t, R0, lambda) {
   return R0 * Math.exp(-lambda * t);
 }
 
-/**
- * Tendência Linear por Regressão
- */
 function calculateTrend(data) {
   const n = data.length;
   const sumX = data.reduce((acc, _, i) => acc + i, 0);
@@ -36,9 +24,6 @@ function calculateTrend(data) {
   return { slope, intercept };
 }
 
-/**
- * Limite de Convergência
- */
 function calculateLimit(data) {
   const { slope } = calculateTrend(data);
   const avgChange = Math.abs(slope);
@@ -239,10 +224,11 @@ export default function AdvancedAnalyticsDashboard() {
         <div className="card" style={{ marginBottom: '24px' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
+              <label htmlFor="timeHorizon" style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
                 Horizonte de Projeção (meses)
               </label>
               <input
+                name="timeHorizon"
                 type="range"
                 min="12"
                 max="36"
@@ -254,10 +240,12 @@ export default function AdvancedAnalyticsDashboard() {
             </div>
             
             <div>
-              <label style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
+              <label htmlFor="showPrediction" style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '8px', display: 'block' }}>
                 Exibir Predições
               </label>
               <button
+                name="showPrediction"
+                type="button"
                 className={`toggle-btn ${showPrediction ? 'active' : ''}`}
                 onClick={() => setShowPrediction(!showPrediction)}
               >

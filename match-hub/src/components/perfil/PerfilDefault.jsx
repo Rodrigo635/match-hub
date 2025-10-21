@@ -58,7 +58,11 @@ export default function PerfilDefault({ user }) {
           <div className="d-flex align-items-center mb-4">
             <div className="me-3 position-relative">
               <Image
-                src={user.profilePicture ? user.profilePicture : "/static/icons/profileIcon.jpg"}
+                src={
+                  user.profilePicture
+                    ? user.profilePicture
+                    : "/static/icons/profileIcon.jpg"
+                }
                 width={80}
                 height={80}
                 style={{ width: "80px", height: "80px" }}
@@ -66,7 +70,10 @@ export default function PerfilDefault({ user }) {
                 className="rounded-circle"
                 onClick={handleOpenUpdateImage}
               />
-              <Pencil className="text-white position-absolute bottom-0 end-0 rounded-circle p-1 bg-primary" onClick={handleOpenUpdateImage}/>
+              <Pencil
+                className="text-white position-absolute bottom-0 end-0 rounded-circle p-1 bg-primary"
+                onClick={handleOpenUpdateImage}
+              />
             </div>
             <div>
               <p className="text-white">
@@ -85,12 +92,17 @@ export default function PerfilDefault({ user }) {
             <strong>Membro desde:</strong> {handleFormatCreatedAt()}
           </p>
           <button
+            type="button"
             className="btn btn-outline-primary"
             onClick={() => setShowEdit(true)}
           >
             Gerenciar conta
           </button>
-          <button className="btn ms-2 btn-outline-danger" onClick={logout}>
+          <button
+            type="button"
+            className="btn ms-2 btn-outline-danger"
+            onClick={logout}
+          >
             Sair
           </button>
         </div>

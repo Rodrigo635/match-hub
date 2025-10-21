@@ -20,12 +20,14 @@ export default function Ajuda({ user }) {
             ou consultar as dúvidas mais frequentes abaixo.
           </p>
           <button
+            type="button"
             className="btn btn-outline-primary me-2"
             onClick={() => router.push('/contato#contate-nos')}
           >
             Entrar em contato
           </button>
           <button
+            type="button"
             className="btn btn-outline-secondary"
             onClick={() => router.push('/sobre')}
           >
@@ -74,7 +76,8 @@ export default function Ajuda({ user }) {
             <strong>Horário:</strong> Segunda a sexta, das 8h às 18h (horário de Brasília)
           </p>
           <button
-            className="btn btn-outline-success"
+            type="button"
+            className="btn btn-outline-primary"
             onClick={() => router.push('/contato#contate-nos')}
           >
             Abrir Chat de Contato

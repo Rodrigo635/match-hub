@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
-import { updateInfoUser } from "@/app/services/userService";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useEffect, useState  } from "react";
+import { updateInfoUser } from "@/services/userService";
 
 export default function EditPerfil({ user, onClose, token }) {
   const router = useRouter();
@@ -74,7 +74,7 @@ export default function EditPerfil({ user, onClose, token }) {
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Nome</label>
+                  <label htmlFor="name" className="form-label">Nome</label>
                   <input
                     type="text"
                     className="form-control"
@@ -86,7 +86,7 @@ export default function EditPerfil({ user, onClose, token }) {
                 </div>
 
                 <div className="mb-3">
-                  <label className="form-label">E-mail</label>
+                  <label htmlFor="email" className="form-label">E-mail</label>
                   <input
                     type="email"
                     className="form-control"
@@ -98,7 +98,7 @@ export default function EditPerfil({ user, onClose, token }) {
                 </div>
 
                 <div className="mb-3">
-                  <label className="form-label">Data de Nascimento</label>
+                  <label htmlFor="birthDate" className="form-label">Data de Nascimento</label>
                   <input
                     type="date"
                     className="form-control"

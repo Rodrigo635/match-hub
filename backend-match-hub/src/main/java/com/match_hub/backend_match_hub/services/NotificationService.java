@@ -1,43 +1,42 @@
 package com.match_hub.backend_match_hub.services;
 
+import com.match_hub.backend_match_hub.entities.Championship;
 import com.match_hub.backend_match_hub.entities.Match;
 import com.match_hub.backend_match_hub.entities.MatchTeam;
 import com.match_hub.backend_match_hub.entities.Notification;
 import com.match_hub.backend_match_hub.entities.User;
 import com.match_hub.backend_match_hub.entities.enums.NotificationType;
 import com.match_hub.backend_match_hub.repositories.NotificationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {
 
-    private final NotificationRepository notificationRepository;
+    @Autowired
+    private  NotificationRepository notificationRepository;
 
-    public NotificationService(NotificationRepository notificationRepository) {
-        this.notificationRepository = notificationRepository;
-    }
 
     public void createInitialNotification(User user, Match match) {
         LocalDateTime start = toMatchStartDateTime(match);
-        String championshipName = safeChampionshipName(match);
+        Championship championship = getChampionship(match);
         List<String> teamNames = getTeamNames(match);
-
-        String team1 = !teamNames.isEmpty() ? teamNames.get(0) : "Time 1";
-        String team2 = teamNames.size() > 1 ? teamNames.get(1) : "Time 2";
-        String matchInfo = team1 + " vs " + team2;
+        String matchInfo = formatMatchInfo(teamNames);
 
         Notification notification = Notification.builder()
                 .user(user)
                 .matchId(match.getId())
-                .team1Name(team1)
-                .team2Name(team2)
-                .championshipName(championshipName)
+                .teams(teamNames)
+                .championshipName(championship.getName())
+                .gameName(championship.getGame() != null ? championship.getGame().getName() : null)
+                .tounamentName(championship.getGame() != null ? championship.getGame().getTournament(): null)
                 .type(NotificationType.INITIAL)
-                .message("Partida " + matchInfo + " do " + championshipName + " nos próximos dias!")
+                .message("Partida " + matchInfo + " do " + championship.getName() + " nos próximos dias!")
                 .scheduledAt(start.minusDays(2))
                 .build();
 
@@ -46,21 +45,18 @@ public class NotificationService {
 
     public void createReminderNotification(User user, Match match) {
         LocalDateTime start = toMatchStartDateTime(match);
-        String championshipName = safeChampionshipName(match);
+        Championship championship = getChampionship(match);
         List<String> teamNames = getTeamNames(match);
-
-        String team1 = !teamNames.isEmpty() ? teamNames.get(0) : "Time 1";
-        String team2 = teamNames.size() > 1 ? teamNames.get(1) : "Time 2";
-        String matchInfo = team1 + " vs " + team2;
+        String matchInfo = formatMatchInfo(teamNames);
 
         Notification notification = Notification.builder()
                 .user(user)
                 .matchId(match.getId())
-                .team1Name(team1)
-                .team2Name(team2)
-                .championshipName(championshipName)
+                .teams(teamNames)
+                .championshipName(championship.getName())
+                .gameName(championship.getGame() != null ? championship.getGame().getName() : null)
                 .type(NotificationType.REMINDER)
-                .message("Partida começando em 1 hora: " + matchInfo + " - " + championshipName)
+                .message("Partida começando em 1 hora: " + matchInfo + " - " + championship.getName())
                 .scheduledAt(start.minusHours(1))
                 .build();
 
@@ -78,12 +74,11 @@ public class NotificationService {
         return LocalDateTime.of(match.getDate(), match.getHour());
     }
 
-    private String safeChampionshipName(Match match) {
-        if (match.getChampionshipId() != null && match.getChampionshipId().getName() != null) {
-            return match.getChampionshipId().getName();
-        } else {
-            return "campeonato";
+    private Championship getChampionship(Match match) {
+        if (match.getChampionshipId() != null) {
+            return match.getChampionshipId();
         }
+        throw new IllegalArgumentException("Match must have a championship");
     }
 
     private List<String> getTeamNames(Match match) {
@@ -93,8 +88,18 @@ public class NotificationService {
 
         return match.getMatchTeams().stream()
                 .map(MatchTeam::getTeam)
-                .filter(team -> team != null)
+                .filter(Objects::nonNull)
                 .map(team -> team.getName() != null ? team.getName() : "Time Desconhecido")
                 .collect(Collectors.toList());
+    }
+
+    private String formatMatchInfo(List<String> teamNames) {
+        if (teamNames.isEmpty()) {
+            return "Time 1 vs Time 2";
+        } else if (teamNames.size() == 1) {
+            return teamNames.getFirst() + " vs Time 2";
+        } else {
+            return teamNames.stream().limit(2).collect(Collectors.joining(" vs "));
+        }
     }
 }

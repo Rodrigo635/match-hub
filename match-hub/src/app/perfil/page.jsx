@@ -7,6 +7,7 @@ import Notificacoes from "@/components/perfil/Notificacoes";
 import Ajuda from "@/components/perfil/Ajuda";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { Link } from "lucide-react";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -68,7 +69,8 @@ export default function ProfilePage() {
         <aside className="profile-sidebar d-none d-md-block col-md-3 col-lg-2">
           <nav className="nav flex-column">
             {sections.map((sec) => (
-              <a
+              <button
+                type="button"
                 key={sec.key}
                 href="#"
                 className={`nav-link ${
@@ -81,7 +83,7 @@ export default function ProfilePage() {
               >
                 <i className={`${sec.iconClass} me-2`} aria-hidden="true"></i>
                 {sec.label}
-              </a>
+              </button>
             ))}
           </nav>
         </aside>
@@ -92,7 +94,7 @@ export default function ProfilePage() {
             <ul className="nav nav-tabs nav-fill">
               {sections.map((sec) => (
                 <li className="nav-item" key={sec.key}>
-                  <a
+                  <Link
                     href="#"
                     className={`nav-link ${
                       activeSection === sec.key ? "active" : ""
@@ -104,7 +106,7 @@ export default function ProfilePage() {
                     style={{ display: "inline-block" }}
                   >
                     {sec.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

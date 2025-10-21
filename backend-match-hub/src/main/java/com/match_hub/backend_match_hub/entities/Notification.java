@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "notifications")
@@ -29,11 +30,16 @@ public class Notification {
     @Column(name = "match_id", nullable = false)
     private Long matchId;
 
-    @Column(name = "team1_name", length = 255)
-    private String team1Name;
+    @ElementCollection
+    @CollectionTable(name = "notification_teams", joinColumns = @JoinColumn(name = "notification_id"))
+    @Column(name = "team_name")
+    private List<String> teams;
 
-    @Column(name = "team2_name", length = 255)
-    private String team2Name;
+    @Column(name = "tournament_name", length = 255)
+    private String tounamentName;
+
+    @Column(name = "game_name")
+    private String gameName;
 
     @Column(name = "championship_name", length = 255)
     private String championshipName;
