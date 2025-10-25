@@ -1,10 +1,10 @@
+import { NotificationType } from "@/types/NotificationType";
 import {
   createData,
   deleteData,
-  getDataWithToken,
   getDataById,
-  updateData,
-  uploadImage,
+  getDataWithToken,
+  updateData
 } from "./globalService";
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/users`;
@@ -168,7 +168,7 @@ export async function uploadPublicAvatar(avatarUrl, token) {
   if (!res.ok) {
     const errorText = await res.text();
     throw new Error(
-      `Erro ao fazer upload da imagem: ${res.status}, ${errorText}`
+      `Erro ao fazer upload da imagem: ${res.status}, ${errorText}`,
     );
   }
 
@@ -282,7 +282,7 @@ export async function resetPassword(email) {
   const res = await fetch(`${BASE_URL}/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }), 
+    body: JSON.stringify({ email }),
   });
 
   if (!res.ok) {
@@ -306,20 +306,19 @@ export async function resetPasswordConfirm(token, password) {
   }
 }
 
-// --------------------- Favoritos ---------------------
 export async function toggleFavoriteGame(id, token, type) {
   console.log("toggleFavoriteGame", id, type, token);
 
   const body = {};
 
   switch (type) {
-    case "game":
+    case NotificationType.GAME:
       body.gameId = id;
       break;
-    case "championship":
+    case NotificationType.CHAMPIONSHIP:
       body.championshipId = id;
       break;
-    case "team":
+    case NotificationType.TEAM:
       body.teamId = id;
       break;
     default:
@@ -337,14 +336,13 @@ export async function toggleFavoriteGame(id, token, type) {
     credentials: "include",
     body: JSON.stringify(body),
   });
-  
-console.log(res);
+
+  console.log(res);
 
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Erro ao alternar favorito: ${res.status}, ${text}`);
   }
-
 }
 
 // --------------------- Remover Favorito ---------------------
@@ -354,16 +352,17 @@ export async function removeFavorite(id, token, type) {
   const body = {};
 
   switch (type) {
-    case "game":
+    case NotificationType.GAME:
       body.gameId = id;
       break;
-    case "championship":
+    case NotificationType.CHAMPIONSHIP:
       body.championshipId = id;
       break;
-    case "team":
+    case NotificationType.TEAM:
       body.teamId = id;
       break;
     default:
+      console.log("removeFavorite", id, type, token);
       throw new Error("Tipo de favorito inválido");
   }
 
@@ -386,9 +385,29 @@ export async function removeFavorite(id, token, type) {
     throw new Error(`Erro ao remover favorito: ${res.status}, ${text}`);
   }
 
-  // Se 204, não há corpo, apenas retorna
   return;
 }
 
+export async function removeAllFavorites(token) {
+  console.log("removeFavoriteAll", token);
 
+  const res = await fetch(`${BASE_URL}/favorites/all`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    credentials: "include",
+  });
 
+  console.log(res);
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(
+      `Erro ao remover todos os favoritos: ${res.status}, ${text}`,
+    );
+  }
+
+  return;
+}

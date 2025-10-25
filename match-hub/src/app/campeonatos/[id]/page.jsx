@@ -1,12 +1,13 @@
 // src/app/campeonato/page.jsx
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { NotificationType } from "@/types/NotificationType";
+import { useFavoriteToggle } from "@/hooks/useFavoriteToggle";
 import Image from "next/image";
-import { getChampionshipById } from "../../../services/championshipService";
-import { toggleFavoriteGame, removeFavorite } from "@/services/userService";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../../../context/UserContext";
+import { getChampionshipById } from "../../../services/championshipService";
 
 export default function ChampionshipDetailsPage() {
   const router = useRouter();
@@ -14,25 +15,108 @@ export default function ChampionshipDetailsPage() {
   const [championshipData, setChampionshipData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("times");
-  const [selectedMatch, setSelectedMatch] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [loadingFavorite, setLoadingFavorite] = useState(false);
+  const { isFavorite, loadingFavorite, checkFavorite, toggleFavorite } =
+    useFavoriteToggle({
+      user,
+      token,
+      entityId: championshipData?.id,
+      entityData: championshipData,
+      notificationType: NotificationType.CHAMPIONSHIP,
+    });
 
-  const favoritesChecked = useRef(false);
+  const handleGetChampionshipInfo = useCallback(
+    async (id) => {
+      try {
+        setLoading(true);
+        const response = await getChampionshipById(id);
+        console.log("Championship data recebido:", response);
+        setChampionshipData(response);
+      } catch (error) {
+        console.error("Erro ao carregar campeonato:", error);
+        router.push("/campeonatos");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [router],
+  );
 
-  const handleGetChampionshipInfo = async (id) => {
-    try {
-      setLoading(true);
-      const response = await getChampionshipById(id);
-      console.log("Championship data recebido:", response);
-      setChampionshipData(response);
-    } catch (error) {
-      console.error("Erro ao carregar campeonato:", error);
-      router.push("/campeonatos");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleBack = useCallback(() => {
+    router.back();
+  });
+
+  const getUniqueTeams = useCallback(() => {
+    if (!championshipData?.matches) return [];
+
+    const teamsMap = new Map();
+
+    championshipData.matches.forEach((match) => {
+      match.matchTeams?.forEach((mt) => {
+        if (mt.team && !teamsMap.has(mt.team.id)) {
+          teamsMap.set(mt.team.id, {
+            id: mt.team.id,
+            name: mt.team.name,
+            logo: mt.team.logo,
+            wins: 0,
+            losses: 0,
+            draws: 0,
+            points: 0,
+            gamesPlayed: 0,
+          });
+        }
+      });
+    });
+
+    championshipData.matches.forEach((match) => {
+      if (match.matchTeams?.length === 2) {
+        const team1 = teamsMap.get(match.matchTeams[0].team.id);
+        const team2 = teamsMap.get(match.matchTeams[1].team.id);
+
+        if (team1) team1.gamesPlayed++;
+        if (team2) team2.gamesPlayed++;
+      }
+    });
+
+    return Array.from(teamsMap.values()).sort((a, b) => b.points - a.points);
+  });
+
+  const formatDate = useCallback((dateString) => {
+    return new Date(dateString).toLocaleDateString("pt-BR");
+  });
+
+  // Formata horário
+  const formatTime = useCallback((timeString) => {
+    return timeString?.substring(0, 5) || "00:00";
+  });
+
+  const isFutureMatch = useCallback((date, time) => {
+    const [dia, mes, ano] = formatDate(date).split("/");
+    const matchDateTime = new Date(`${ano}-${mes}-${dia}T${time}`);
+    return new Date() < matchDateTime;
+  });
+
+  const getMatchesByStatus = useCallback((status) => {
+    if (!championshipData?.matches) return [];
+
+    const now = new Date();
+
+    return championshipData.matches
+      .filter((match) => {
+        const matchDate = new Date(`${match.date}T${match.hour}`);
+
+        if (status === "upcoming") {
+          return matchDate > now;
+        } else if (status === "past") {
+          return matchDate <= now;
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        const dateA = new Date(`${a.date}T${a.hour}`);
+        const dateB = new Date(`${b.date}T${b.hour}`);
+        return status === "upcoming" ? dateA - dateB : dateB - dateA;
+      });
+  });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -55,153 +139,13 @@ export default function ChampionshipDetailsPage() {
       console.error("Erro ao processar dados do localStorage:", error);
       router.push("/campeonatos");
     }
-  }, [router]);
+  }, [router, handleGetChampionshipInfo]);
 
   useEffect(() => {
-    if (user && token && championshipData?.id && !favoritesChecked.current) {
-      handleCheckFavorite(championshipData.id);
+    if (championshipData?.id) {
+      checkFavorite();
     }
-  }, [user, token, championshipData?.id]);
-
-  // Verificar se o jogo é favorito
-  const handleCheckFavorite = async (championshipId) => {
-    try {
-      if (!user || !token || favoritesChecked.current) return;
-
-      // Verifica se o jogo está nos favoritos do usuário
-      const isFav =
-        user.favoriteChampionships?.some(
-          (championship) => championship.id === championshipId,
-        ) || false;
-      setIsFavorite(isFav);
-      favoritesChecked.current = true;
-    } catch (error) {
-      console.error("Erro ao verificar favorito:", error);
-      setIsFavorite(false);
-    }
-  };
-
-  // Toggle de notificações (favoritar/remover)
-  const handleToggleNotification = async () => {
-    try {
-      if (!user || !token || !championshipData) {
-        alert("Você precisa estar logado para ativar notificações.");
-        return;
-      }
-
-      setLoadingFavorite(true);
-
-      if (
-        user.favoriteChampionships?.some(
-          (championship) => championshipData.id === championship,
-        )
-      ) {
-        // Já favoritado → remover
-        await removeFavorite(championshipData.id, token, "championship");
-        setIsFavorite(false);
-        user.favoriteChampionships = user.favoriteChampionships.filter(
-          (game) => game.id !== championshipData.id,
-        );
-        console.log("Favorito removido com sucesso");
-      } else {
-        // Não é favorito → adicionar
-        await toggleFavoriteGame(championshipData.id, token, "championship");
-        user.favoriteChampionships.push(championshipData);
-        setIsFavorite(true);
-        console.log("Favorito adicionado com sucesso");
-      }
-    } catch (error) {
-      console.error("Erro ao alternar notificações:", error);
-      alert("Erro ao alternar notificações. Tente novamente.");
-    } finally {
-      setLoadingFavorite(false);
-    }
-  };
-
-  const handleBack = () => {
-    router.back();
-  };
-
-  // Extrai times únicos das partidas
-  const getUniqueTeams = () => {
-    if (!championshipData?.matches) return [];
-
-    const teamsMap = new Map();
-
-    championshipData.matches.forEach((match) => {
-      match.matchTeams?.forEach((mt) => {
-        if (mt.team && !teamsMap.has(mt.team.id)) {
-          teamsMap.set(mt.team.id, {
-            id: mt.team.id,
-            name: mt.team.name,
-            logo: mt.team.logo,
-            wins: 0,
-            losses: 0,
-            draws: 0,
-            points: 0,
-            gamesPlayed: 0,
-          });
-        }
-      });
-    });
-
-    // Calcula estatísticas básicas (pode ser expandido com dados reais do backend)
-    championshipData.matches.forEach((match) => {
-      if (match.matchTeams?.length === 2) {
-        const team1 = teamsMap.get(match.matchTeams[0].team.id);
-        const team2 = teamsMap.get(match.matchTeams[1].team.id);
-
-        if (team1) team1.gamesPlayed++;
-        if (team2) team2.gamesPlayed++;
-
-        // Aqui você pode adicionar lógica para calcular vitórias/derrotas
-        // baseado nos resultados das partidas se disponíveis
-      }
-    });
-
-    return Array.from(teamsMap.values()).sort((a, b) => b.points - a.points);
-  };
-
-  // Formata data para exibição
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("pt-BR");
-  };
-
-  // Formata horário
-  const formatTime = (timeString) => {
-    return timeString?.substring(0, 5) || "00:00";
-  };
-
-  // Verifica se a partida é futura
-  const isFutureMatch = (date, time) => {
-    const [dia, mes, ano] = formatDate(date).split("/");
-    const matchDateTime = new Date(`${ano}-${mes}-${dia}T${time}`);
-    return new Date() < matchDateTime;
-  };
-
-  // Filtra partidas por status
-  const getMatchesByStatus = (status) => {
-    if (!championshipData?.matches) return [];
-
-    const now = new Date();
-
-    return championshipData.matches
-      .filter((match) => {
-        const matchDate = new Date(match.date + "T" + match.hour);
-
-        if (status === "upcoming") {
-          return matchDate > now;
-        } else if (status === "past") {
-          return matchDate <= now;
-        }
-        return true;
-      })
-      .sort((a, b) => {
-        const dateA = new Date(a.date + "T" + a.hour);
-        const dateB = new Date(b.date + "T" + b.hour);
-        return status === "upcoming" ? dateA - dateB : dateB - dateA;
-      });
-  };
+  }, [championshipData?.id, checkFavorite]);
 
   if (loading) {
     return (
@@ -277,7 +221,7 @@ export default function ChampionshipDetailsPage() {
             <button
               type="button"
               className={`btn ${isFavorite ? "btn-voltar" : "btn-outline-branco"} w-auto text-white`}
-              onClick={handleToggleNotification}
+              onClick={toggleFavorite}
               disabled={loadingFavorite}
             >
               <h5 className="mb-0 ms-2">

@@ -14,12 +14,19 @@ export default function ProfilePage() {
   const { user, token, loading } = useUser();
   const [activeSection, setActiveSection] = useState("perfil");
 
-  // Seções
   const sections = [
     { key: "perfil", label: "Perfil", iconClass: "fa-solid fa-user" },
-    { key: "notificacoes", label: "Notificações", iconClass: "fa-solid fa-bell" },
+    {
+      key: "notificacoes",
+      label: "Notificações",
+      iconClass: "fa-solid fa-bell",
+    },
     { key: "seguranca", label: "Segurança", iconClass: "fa-solid fa-lock" },
-    { key: "configuracoes", label: "Configurações", iconClass: "fa-solid fa-cog" },
+    {
+      key: "configuracoes",
+      label: "Configurações",
+      iconClass: "fa-solid fa-cog",
+    },
     { key: "ajuda", label: "Ajuda", iconClass: "fa-solid fa-circle-question" },
   ];
 
@@ -37,25 +44,15 @@ export default function ProfilePage() {
   function renderSection() {
     switch (activeSection) {
       case "perfil":
-        return (
-          <PerfilDefault user={user} token={token} />
-        );
+        return <PerfilDefault user={user} token={token} />;
       case "notificacoes":
-        return (
-            <Notificacoes user={user} />
-        );
+        return <Notificacoes/>;
       case "seguranca":
-        return (
-            <Seguranca user={user} />
-        );
+        return <Seguranca user={user} />;
       case "configuracoes":
-        return(
-            <Configuracoes user={user} />
-        );
+        return <Configuracoes user={user} />;
       case "ajuda":
-        return (
-            <Ajuda user={user} />
-        );
+        return <Ajuda user={user} />;
       default:
         return null;
     }

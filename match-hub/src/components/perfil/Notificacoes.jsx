@@ -1,51 +1,108 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useUser } from "@/context/UserContext";
+import { removeAllFavorites, removeFavorite } from "@/services/userService";
+import { NotificationType } from "@/types/NotificationType";
+import { useCallback, useEffect, useState } from "react";
 
-export default function Notificacoes({ user }) {
+export default function Notificacoes() {
+  const { user, token, refreshUser } = useUser();
   const [loading, setLoading] = useState(true);
   const [notifs, setNotifs] = useState([]);
+  const [removingId, setRemovingId] = useState(null);
+  const [clearingAll, setClearingAll] = useState(false);
+
+  const handleRemove = useCallback(
+    async (id, type) => {
+      try {
+        if (!user || !token) {
+          console.log(user);
+          alert("Você precisa estar logado para remover notificações.");
+          return;
+        }
+
+        const realId = id.split("-")[1];
+
+        setRemovingId(id);
+
+        await removeFavorite(realId, token, type);
+
+        setNotifs((prev) => prev.filter((n) => n.id !== id));
+
+        await refreshUser();
+
+        console.log(`Favorito ${type} removido com sucesso`);
+      } catch (error) {
+        console.error("Erro ao remover notificação:", error);
+        alert("Erro ao remover notificação. Tente novamente.");
+      } finally {
+        setRemovingId(null);
+      }
+    },
+    [user, token, refreshUser],
+  );
+
+  const handleClearAll = useCallback(async () => {
+    if (!confirm("Desligar todas as notificações?")) return;
+
+    try {
+      if (!user || !token) {
+        alert("Você precisa estar logado para remover notificações.");
+        return;
+      }
+
+      setClearingAll(true);
+
+      await removeAllFavorites(token);
+
+      setNotifs([]);
+
+      await refreshUser();
+
+      console.log("Todas as notificações removidas com sucesso");
+    } catch (error) {
+      console.error("Erro ao remover todas as notificações:", error);
+      alert("Erro ao remover todas as notificações. Tente novamente.");
+    } finally {
+      setClearingAll(false);
+    }
+  }, [user, token, refreshUser]);
 
   useEffect(() => {
     if (!user) {
       setLoading(false);
       return;
     }
-
-    // Formata os dados dos favoritos para o formato de notificações
     const formatNotifications = () => {
       const notifications = [];
 
-      // Adiciona jogos favoritos
       if (user.favoriteGames && user.favoriteGames.length > 0) {
         user.favoriteGames.forEach((game) => {
           notifications.push({
             id: `g-${game.id}`,
-            type: "game",
+            type: NotificationType.GAME,
             title: game.name,
             subtitle: game.tournament,
           });
         });
       }
 
-      // Adiciona campeonatos favoritos
       if (user.favoriteChampionships && user.favoriteChampionships.length > 0) {
         user.favoriteChampionships.forEach((championship) => {
           notifications.push({
             id: `c-${championship.id}`,
-            type: "championship",
+            type: NotificationType.CHAMPIONSHIP,
             title: championship.name,
             subtitle: "Campeonato",
           });
         });
       }
 
-      // Adiciona times favoritos
       if (user.favoriteTeams && user.favoriteTeams.length > 0) {
         user.favoriteTeams.forEach((team) => {
           notifications.push({
             id: `t-${team.id}`,
-            type: "team",
+            type: NotificationType.TEAM,
             title: team.name,
             subtitle: "Equipe",
           });
@@ -58,15 +115,6 @@ export default function Notificacoes({ user }) {
 
     formatNotifications();
   }, [user]);
-
-  function handleRemove(id) {
-    setNotifs((prev) => prev.filter((n) => n.id !== id));
-  }
-
-  function handleClearAll() {
-    if (!confirm("Desligar todas as notificações?")) return;
-    setNotifs([]);
-  }
 
   return (
     <div>
@@ -83,9 +131,22 @@ export default function Notificacoes({ user }) {
             type="button"
             className="btn btn-danger"
             onClick={handleClearAll}
-            disabled={notifs.length === 0 || loading}
+            disabled={notifs.length === 0 || loading || clearingAll}
           >
-            <i className="fas fa-xmark me-2"></i>Desligar todas
+            {clearingAll ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Removendo...
+              </>
+            ) : (
+              <>
+                <i className="fas fa-xmark me-2"></i>Desligar todas
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -139,10 +200,24 @@ export default function Notificacoes({ user }) {
                       <button
                         type="button"
                         className="btn btn-outline-danger"
-                        onClick={() => handleRemove(n.id)}
+                        onClick={() => handleRemove(n.id, n.type)}
+                        disabled={removingId === n.id}
                         aria-label={`Desligar notificações de ${n.title}`}
                       >
-                        <i className="fas fa-xmark me-2"></i>Desligar
+                        {removingId === n.id ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm me-2"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            Removendo...
+                          </>
+                        ) : (
+                          <>
+                            <i className="fas fa-xmark me-2"></i>Desligar
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>

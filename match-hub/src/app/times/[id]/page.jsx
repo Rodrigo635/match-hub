@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { NotificationType } from "@/types/NotificationType";
 import Image from "next/image";
-import { getTeamById } from "../../../services/teamService";
-import { getMatchesByTeam } from "../../../services/matchService";
-import { toggleFavoriteGame, removeFavorite } from "@/services/userService";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useUser } from "../../../context/UserContext";
+import { useFavoriteToggle } from "../../../hooks/useFavoriteToggle";
+import { getMatchesByTeam } from "../../../services/matchService";
+import { getTeamById } from "../../../services/teamService";
 
 export default function TeamDetailsPage() {
   const params = useParams();
@@ -16,24 +17,29 @@ export default function TeamDetailsPage() {
   const [team, setTeam] = useState(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [loadingFavorite, setLoadingFavorite] = useState(false);
+  const { isFavorite, loadingFavorite, checkFavorite, toggleFavorite } =
+    useFavoriteToggle({
+      user,
+      token,
+      entityId: team?.id,
+      entityData: team,
+      notificationType: NotificationType.TEAM,
+    });
 
-  const favoritesChecked = useRef(false);
+  ////////////////
+  // Callbacks //
+  ///////////////
 
   useEffect(() => {
     if (!id) return;
     let mounted = true;
     setLoading(true);
 
-    Promise.all([
-      getTeamById(id),
-      getMatchesByTeam(id, 0, 10), // pagina 0, até 10 partidas
-    ])
+    Promise.all([getTeamById(id), getMatchesByTeam(id, 0, 10)])
       .then(([teamRes, matchesRes]) => {
         if (!mounted) return;
         setTeam(teamRes);
-        setMatches(matchesRes.content || []); // a API retorna content, totalPages, etc
+        setMatches(matchesRes.content || []);
       })
       .catch((err) => {
         console.error("Erro ao buscar time ou partidas:", err);
@@ -47,59 +53,10 @@ export default function TeamDetailsPage() {
   const handleBack = () => router.back();
 
   useEffect(() => {
-    if (user && token && team?.id && !favoritesChecked.current) {
-      handleCheckFavorite(team.id);
+    if (team?.id) {
+      checkFavorite();
     }
-  }, [user, token, team?.id]);
-
-  // Verificar se o jogo é favorito
-  const handleCheckFavorite = async (teamId) => {
-    try {
-      if (!user || !token || favoritesChecked.current) return;
-
-      // Verifica se o jogo está nos favoritos do usuário
-      const isFav =
-        user.favoriteTeams.some((team) => team.id === teamId) || false;
-      setIsFavorite(isFav);
-      favoritesChecked.current = true;
-    } catch (error) {
-      console.error("Erro ao verificar favorito:", error);
-      setIsFavorite(false);
-    }
-  };
-
-  // Toggle de notificações (favoritar/remover)
-  const handleToggleNotification = async () => {
-    try {
-      if (!user || !token || !team) {
-        alert("Você precisa estar logado para ativar notificações.");
-        return;
-      }
-
-      setLoadingFavorite(true);
-
-      if (user.favoriteTeams?.some((team) => team.id === team)) {
-        // Já favoritado → remover
-        await removeFavorite(team.id, token, "team");
-        setIsFavorite(false);
-        user.favoriteTeams = user.favoriteTeams.filter(
-          (game) => game.id !== team,
-        );
-        console.log("Favorito removido com sucesso");
-      } else {
-        // Não é favorito → adicionar
-        await toggleFavoriteGame(team.id, token, "team");
-        user.favoriteTeams.push(team);
-        setIsFavorite(true);
-        console.log("Favorito adicionado com sucesso");
-      }
-    } catch (error) {
-      console.error("Erro ao alternar notificações:", error);
-      alert("Erro ao alternar notificações. Tente novamente.");
-    } finally {
-      setLoadingFavorite(false);
-    }
-  };
+  }, [team?.id, checkFavorite]);
 
   if (loading) {
     return (
@@ -151,7 +108,7 @@ export default function TeamDetailsPage() {
             <button
               type="button"
               className={`btn ${isFavorite ? "btn-voltar" : "btn-outline-branco"} w-auto text-white`}
-              onClick={handleToggleNotification}
+              onClick={toggleFavorite}
               disabled={loadingFavorite}
             >
               <h5 className="mb-0 ms-2">

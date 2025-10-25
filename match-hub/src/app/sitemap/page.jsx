@@ -2,23 +2,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { handleGetUser } from "../global/global";
 import Image from "next/image";
+import { useUser } from "@/context/UserContext";
 
 export default function SitemapPage() {
-  const [user, setUser] = useState(null); 
-  const [token, setToken] = useState(null);
-
-
-  useEffect(() => {
-    async function fetchUser() {
-      const user = await handleGetUser({ setToken, setUser });
-
-      setUser(user);
-    }
-
-    fetchUser();
-  }, []);
+  const { user } = useUser();
 
   return (
     <main className="page-mapa-do-site my-5 mapa">
@@ -83,7 +71,10 @@ export default function SitemapPage() {
                   </li>
                   <li>
                     <h5>
-                      <Link href="/dashboard" className="text-azul sitemap-link">
+                      <Link
+                        href="/dashboard"
+                        className="text-azul sitemap-link"
+                      >
                         Dashboard
                       </Link>
                     </h5>
