@@ -535,12 +535,10 @@ export default function ContatoPage() {
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0 order-lg-2">
-                <Image
+                <img
                   src="/static/img/contato/place-work.jpg"
-                  alt="Equipe de e-sports competindo"
+                  alt="Mesa de trabalho com um notebook e papéis"
                   className="img-fluid img-custom h-100"
-                  width={500}
-                  height={500}
                 />
               </div>
               <div className="col-lg-6 order-lg-1">
@@ -586,12 +584,10 @@ export default function ContatoPage() {
           <div className="container">
             <div className="row gap-4 my-4">
               <div className="col mb-4 mb-lg-0">
-                <Image
+                <img
                   src="/static/img/contato/busca.jpg"
-                  alt="Equipe de e-sports competindo"
+                  alt="Gabriel com um binóculo"
                   className="img-fluid img-custom"
-                  width={600}
-                  height={600}
                 />
               </div>
               <div className="col-lg-6">

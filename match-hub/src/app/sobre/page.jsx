@@ -56,12 +56,10 @@ export default function SobrePage() {
         <div className="container">
           <div className="row gap-4 my-4">
             <div className="col mb-4 mb-lg-0 order-lg-2">
-              <Image
+              <img
                 src="/static/img/sobre/montar-pc-gamer-shutterstock_1430140055.jpg"
-                alt="Equipe de e-sports competindo"
+                alt="Mesa com Setup Gamer"
                 className="img-fluid img-custom h-100"
-                width={600}
-                height={500}
               />
             </div>
             <div className="col-lg-6 order-lg-1">
@@ -143,12 +141,10 @@ export default function SobrePage() {
         <div className="container">
           <div className="row gap-4 my-4">
             <div className="col mb-4 mb-lg-0">
-              <Image
+              <img
                 src="/static/img/sobre/esg.png"
-                alt="Equipe de e-sports competindo"
+                alt="Imagem da Raze do jogo Valorant"
                 className="img-fluid img-custom h-100"
-                width={500}
-                height={500}
               />
             </div>
             <div className="col-lg-6">
