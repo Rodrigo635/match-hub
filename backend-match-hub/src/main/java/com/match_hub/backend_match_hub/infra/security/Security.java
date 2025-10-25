@@ -45,12 +45,15 @@ public class Security {
                 .and()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/api/users/details").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/favorites").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/favorites/all").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/users/favorites").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users").hasAuthority("ADMIN")
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // Endpoints de autenticação
                         .requestMatchers("/login/**", "/oauth2/**").permitAll() // OAuth2 endpoints
-                        .requestMatchers(HttpMethod.GET, "/api/users/details").authenticated()
 
                         .requestMatchers(HttpMethod.DELETE,"/api/teams/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST,"/api/teams/**").hasAuthority("ADMIN")
