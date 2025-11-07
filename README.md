@@ -8,6 +8,9 @@ Projeto desenvolvido para a disciplina *Happy Game* da **FIAP**.
 * **Fase 2**: [Apresentação Fase 2](https://www.youtube.com/watch?v=IAaclmrmPZU)
 * **Fase 3**: [Apresentação Fase 3](https://www.youtube.com/watch?v=xgC5VPvFw4w)
 * **Fase 4**: [Apresentação Fase 4](https://www.youtube.com/watch?v=iK2lrtsPago&feature=youtu.be)
+* **Fase 5**: [Apresentação Fase 5](https://youtu.be/9RznH5C-G8w)
+* **Fase 6**: [Apresentação Fase 6](https://youtu.be/P7Xwfqqmx10)
+* **Fase 7**: [Apresentação Fase 7](https://youtu.be/YHLwlNBLbUo)
 
 ---
 
