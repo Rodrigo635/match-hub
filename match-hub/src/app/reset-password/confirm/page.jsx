@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { resetPasswordConfirm } from "../../../services/userService";
 import Link from "next/link";
 
-export default function ResetPasswordConfirm() {
+function ResetPasswordForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
@@ -50,7 +50,7 @@ export default function ResetPasswordConfirm() {
 
   return (
     <main className="min-vh-100 d-flex align-items-center justify-content-center bg-dark-custom text-white">
-    <link rel="stylesheet" href="/css/cadastro.css" />
+      <link rel="stylesheet" href="/css/cadastro.css" />
       <div className="auth-container shadow-lg bg-dark rounded-4 overflow-hidden p-4" style={{ maxWidth: "450px", width: "100%" }}>
         <h2 className="fw-bold text-center mb-4">
           <i className="fas fa-key me-2 text-azul"></i>Redefinir Senha
@@ -123,5 +123,19 @@ export default function ResetPasswordConfirm() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ResetPasswordConfirm() {
+  return (
+    <Suspense fallback={
+      <main className="min-vh-100 d-flex align-items-center justify-content-center bg-dark-custom text-white">
+        <div className="spinner-border text-light" role="status">
+          <span className="visually-hidden">Carregando...</span>
+        </div>
+      </main>
+    }>
+      <ResetPasswordForm />
+    </Suspense>
   );
 }
